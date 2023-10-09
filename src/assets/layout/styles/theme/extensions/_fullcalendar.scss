@@ -10,7 +10,6 @@
 
             td {
                 &.fc-widget-content {
-                    background: $panelContentBg;
                     border: $panelContentBorder;
                     color: $panelContentTextColor;
                 }
@@ -18,6 +17,10 @@
                 &.fc-head-container {
                     border: $panelHeaderBorder;
                 }
+            }
+
+            .fc-view {
+                background: $panelContentBg;
             }
 
             .fc-row {
@@ -64,14 +67,14 @@
                 }
 
                 .fc-icon-chevron-left {
-                    font-family: "PrimeIcons" !important;
+                    font-family: 'PrimeIcons' !important;
                     text-indent: 0;
                     @include icon_override("\e900");
                     font-size: $primeIconFontSize;
                 }
 
                 .fc-icon-chevron-right {
-                    font-family: "PrimeIcons" !important;
+                    font-family: 'PrimeIcons' !important;
                     text-indent: 0;
                     @include icon_override("\e901");
                     font-size: $primeIconFontSize;
@@ -170,7 +173,7 @@
                         align-items: center;
                         justify-content: center;
                         overflow: hidden;
-                        font-family: "PrimeIcons" !important;
+                        font-family: 'PrimeIcons' !important;
                         @include icon_override("\e90b");
                         font-size: $primeIconFontSize;
                         @include action-icon(false);
@@ -248,14 +251,14 @@
                 }
 
                 .fc-icon-chevron-left {
-                    font-family: "PrimeIcons" !important;
+                    font-family: 'PrimeIcons' !important;
                     text-indent: 0;
                     @include icon_override("\e900");
                     font-size: $primeIconFontSize;
                 }
 
                 .fc-icon-chevron-right {
-                    font-family: "PrimeIcons" !important;
+                    font-family: 'PrimeIcons' !important;
                     text-indent: 0;
                     @include icon_override("\e901");
                     font-size: $primeIconFontSize;
@@ -315,10 +318,6 @@
                     }
                 }
             }
-        }
-
-        a {
-            color: $textColor;
         }
 
         .fc-highlight {
