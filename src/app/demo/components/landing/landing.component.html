@@ -29,7 +29,7 @@
                 </svg>
             </a>
             <a pRipple class="cursor-pointer block md:hidden text-700 text-primary" pStyleClass="@next"
-                enterClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
+                enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
                 leaveActiveClass="px-fadeout" [hideOnOutsideClick]="true">
                 <i class="pi pi-bars text-4xl"></i>
             </a>
@@ -37,34 +37,34 @@
                 class="list-none  p-3 md:p-0  justify-content-end ng-hidden md:flex absolute md:static w-full md:w-6 md:px-0 z-3 shadow-2 md:shadow-none  surface-card md:surface-ground">
                 <a pRipple class="cursor-pointer block md:hidden text-700 text-primary absolute z-5" style="top:1.5rem;
                 right: 1.5rem;" pRipple pStyleClass="@parent"
-                        enterClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden" leaveActiveClass="px-fadeout">
+                        enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden" leaveActiveClass="px-fadeout">
                     <i class="pi pi-times text-3xl"></i>
                 </a>
 
                 <li class=" md:mt-0">
                     <a (click)="router.navigate(['/landing'], {fragment: 'home'})" pRipple pStyleClass="@grandparent"
-                        enterClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
+                        enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
                         class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3 cursor-pointer">
                         <span>Home</span>
                     </a>
                 </li>
                 <li>
                     <a (click)="router.navigate(['/landing'], {fragment: 'apps'})" pRipple pStyleClass="@grandparent"
-                        enterClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
+                        enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
                         class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3 cursor-pointer">
                         <span>Apps</span>
                     </a>
                 </li>
                 <li>
                     <a (click)="router.navigate(['/landing'], {fragment: 'pricing'})" pRipple pStyleClass="@grandparent"
-                        enterClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
+                        enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
                         class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3 cursor-pointer">
                         <span>Pricing</span>
                     </a>
                 </li>
                 <li>
                     <a (click)="router.navigate(['/landing'], {fragment: 'features'})" pRipple pStyleClass="@grandparent"
-                        enterClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
+                        enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
                         class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3 cursor-pointer">
                         <span>Features</span>
                     </a>
@@ -72,7 +72,7 @@
             
                 
                 <li class="flex align-items-center">
-                    <button pButton pRipple type="button" pStyleClass="@grandparent" enterClass="ng-hidden"
+                    <button pButton pRipple type="button" pStyleClass="@grandparent" enterFromClass="ng-hidden"
                         enterActiveClass="px-fadein" leaveToClass="ng-hidden" label="Buy Now"
                         class="m-0 mt-3 md:mt-0 md:ml-5 white-space-nowrap"></button>
                 </li>

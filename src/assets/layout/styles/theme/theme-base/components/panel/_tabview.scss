@@ -1,4 +1,8 @@
 .p-tabview {
+    .p-tabview-nav-content {
+        scroll-padding-inline: $buttonIconOnlyWidth;
+    }
+
     .p-tabview-nav {
         background: $tabviewNavBg;
         border: $tabviewNavBorder;
@@ -20,7 +24,7 @@
                 transition: $listItemTransition;
                 margin: $tabviewHeaderMargin;
 
-                &:not(.p-disabled):focus {
+                &:not(.p-disabled):focus-visible {
                     @include focused-inset();
                 }
             }
@@ -62,7 +66,7 @@
         box-shadow: $raisedButtonShadow;
         border-radius: 0;
 
-        &:focus {
+        &:focus-visible {
             @include focused-inset();
         }
     }

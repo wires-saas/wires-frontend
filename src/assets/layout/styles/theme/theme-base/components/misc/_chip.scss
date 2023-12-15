@@ -31,8 +31,12 @@
         border-radius: $borderRadius;
         transition: $actionIconTransition;
         
-        &:focus {
+        &:focus-visible {
             @include focused();
+        }
+
+        &:focus {
+            outline: 0 none;
         }
     }
 }
