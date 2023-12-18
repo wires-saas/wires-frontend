@@ -14,8 +14,4 @@ export class BlogListCardComponent {
     navigateToDetail(): void {
         this.router.navigateByUrl('/apps/blog/detail');
     }
-
-    ngOnInit() {
-        console.log(this.blog);
-    }
 }
