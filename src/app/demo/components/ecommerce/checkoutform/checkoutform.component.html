@@ -68,10 +68,22 @@
                 </div>
             </div>
             <div class="py-2 mt-3 surface-border">
-                <div class="p-inputgroup mb-3">
-                    <input type="text" [(ngModel)]="value" pInputText placeholder="Promo code" class="w-full">         
-                    <button type="button" pButton pRipple label="Apply" [disabled]="!value"></button>
-                </div>
+                <p-inputGroup class="mb-3">
+                    <input
+                        type="text"
+                        [(ngModel)]="value"
+                        pInputText
+                        placeholder="Promo code"
+                        class="w-full"
+                    />
+                    <button
+                        type="button"
+                        pButton
+                        pRipple
+                        label="Apply"
+                        [disabled]="!value"
+                    ></button>
+                </p-inputGroup>
             </div>
             <div class="py-2 mt-3">
                 <div class="flex justify-content-between align-items-center mb-3">
