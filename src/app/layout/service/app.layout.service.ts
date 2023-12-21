@@ -1,5 +1,4 @@
 import { Injectable, effect, signal } from '@angular/core';
-import { val } from 'cheerio/lib/api/attributes';
 import { Subject } from 'rxjs';
 
 export type MenuMode =
@@ -71,6 +70,15 @@ export class LayoutService {
 
     overlayOpen$ = this.overlayOpen.asObservable();
 
+    constructor() {
+        effect(() => {
+            const config = this.config();
+            this.changeTheme();
+            this.changeScale(config.scale);
+            this.onConfigUpdate();
+        });
+    }
+
     onMenuToggle() {
         if (this.isOverlay()) {
             this.state.overlayMenuActive = !this.state.overlayMenuActive;
@@ -130,17 +138,8 @@ export class LayoutService {
     }
 
     onConfigUpdate() {
+        this._config = { ...this.config() };
         this.configUpdate.next(this.config());
-    }
-
-    constructor() {
-        effect(() => {
-            const config = this.config();
-            this.changeTheme();
-            this.changeScale(config.scale);
-            this._config = { ...config };
-            this.onConfigUpdate();
-        });
     }
 
     changeTheme() {
