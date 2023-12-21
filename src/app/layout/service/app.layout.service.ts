@@ -50,7 +50,7 @@ export class LayoutService {
         menuTheme: 'colorScheme',
     };
 
-    config = signal<any>(this._config);
+    config = signal<AppConfig>(this._config);
 
     state: LayoutState = {
         staticMenuDesktopInactive: false,
