@@ -1,11 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, effect, signal } from '@angular/core';
+import { val } from 'cheerio/lib/api/attributes';
 import { Subject } from 'rxjs';
 
-export type MenuMode = 'static' | 'overlay' | 'horizontal' | 'slim' | 'slim-plus' | 'reveal' | 'drawer';
+export type MenuMode =
+    | 'static'
+    | 'overlay'
+    | 'horizontal'
+    | 'slim'
+    | 'slim-plus'
+    | 'reveal'
+    | 'drawer';
 
-export type ColorScheme = 'light' | 'dark'| 'dim';
+export type ColorScheme = 'light' | 'dark' | 'dim';
 
-export type MenuColorScheme = 'colorScheme' | 'primaryColor'| 'transparent';
+export type MenuColorScheme = 'colorScheme' | 'primaryColor' | 'transparent';
 
 export interface AppConfig {
     inputStyle: string;
@@ -24,24 +32,25 @@ interface LayoutState {
     configSidebarVisible: boolean;
     staticMenuMobileActive: boolean;
     menuHoverActive: boolean;
-    sidebarActive:boolean;
-    anchored: boolean,
+    sidebarActive: boolean;
+    anchored: boolean;
 }
 
 @Injectable({
     providedIn: 'root',
 })
 export class LayoutService {
-
-    config: AppConfig = {
+    _config: AppConfig = {
         ripple: false,
         inputStyle: 'outlined',
         menuMode: 'static',
         colorScheme: 'light',
         theme: 'indigo',
         scale: 14,
-        menuTheme: 'colorScheme'
+        menuTheme: 'colorScheme',
     };
+
+    config = signal<any>(this._config);
 
     state: LayoutState = {
         staticMenuDesktopInactive: false,
@@ -50,8 +59,8 @@ export class LayoutService {
         configSidebarVisible: false,
         staticMenuMobileActive: false,
         menuHoverActive: false,
-        sidebarActive:false,
-        anchored: false
+        sidebarActive: false,
+        anchored: false,
     };
 
     private configUpdate = new Subject<AppConfig>();
@@ -72,10 +81,11 @@ export class LayoutService {
         }
 
         if (this.isDesktop()) {
-            this.state.staticMenuDesktopInactive = !this.state.staticMenuDesktopInactive;
-        }
-        else {
-            this.state.staticMenuMobileActive = !this.state.staticMenuMobileActive;
+            this.state.staticMenuDesktopInactive =
+                !this.state.staticMenuDesktopInactive;
+        } else {
+            this.state.staticMenuMobileActive =
+                !this.state.staticMenuMobileActive;
 
             if (this.state.staticMenuMobileActive) {
                 this.overlayOpen.next(null);
@@ -96,7 +106,7 @@ export class LayoutService {
     }
 
     isOverlay() {
-        return this.config.menuMode === 'overlay';
+        return this.config().menuMode === 'overlay';
     }
 
     isDesktop() {
@@ -104,15 +114,15 @@ export class LayoutService {
     }
 
     isSlim() {
-        return this.config.menuMode === 'slim';
+        return this.config().menuMode === 'slim';
     }
 
     isSlimPlus() {
-        return this.config.menuMode === 'slim-plus';
+        return this.config().menuMode === 'slim-plus';
     }
 
     isHorizontal() {
-        return this.config.menuMode === 'horizontal';
+        return this.config().menuMode === 'horizontal';
     }
 
     isMobile() {
@@ -120,7 +130,58 @@ export class LayoutService {
     }
 
     onConfigUpdate() {
-        this.configUpdate.next(this.config);
+        this.configUpdate.next(this.config());
     }
 
+    constructor() {
+        effect(() => {
+            const config = this.config();
+            this.changeTheme();
+            this.changeScale(config.scale);
+            this._config = { ...config };
+            this.onConfigUpdate();
+        });
+    }
+
+    changeTheme() {
+        const config = this.config();
+        const themeLink = <HTMLLinkElement>(
+            document.getElementById('theme-link')
+        );
+        const themeLinkHref = themeLink.getAttribute('href')!;
+        const newHref = themeLinkHref
+            .split('/')
+            .map((el) =>
+                el == this._config.theme
+                    ? (el = config.theme)
+                    : el == `theme-${this._config.colorScheme}`
+                    ? (el = `theme-${config.colorScheme}`)
+                    : el
+            )
+            .join('/');
+
+        this.replaceThemeLink(newHref);
+    }
+
+    replaceThemeLink(href: string) {
+        const id = 'theme-link';
+        let themeLink = <HTMLLinkElement>document.getElementById(id);
+        const cloneLinkElement = <HTMLLinkElement>themeLink.cloneNode(true);
+
+        cloneLinkElement.setAttribute('href', href);
+        cloneLinkElement.setAttribute('id', id + '-clone');
+
+        themeLink.parentNode!.insertBefore(
+            cloneLinkElement,
+            themeLink.nextSibling
+        );
+        cloneLinkElement.addEventListener('load', () => {
+            themeLink.remove();
+            cloneLinkElement.setAttribute('id', id);
+        });
+    }
+
+    changeScale(value: number) {
+        document.documentElement.style.fontSize = `${value}px`;
+    }
 }

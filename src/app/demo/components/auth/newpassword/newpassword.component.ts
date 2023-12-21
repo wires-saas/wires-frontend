@@ -2,16 +2,14 @@ import { Component } from '@angular/core';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
-	templateUrl: './newpassword.component.html'
+    templateUrl: './newpassword.component.html',
 })
 export class NewPasswordComponent {
+    rememberMe: boolean = false;
 
-	rememberMe: boolean = false;
+    constructor(private layoutService: LayoutService) {}
 
-	constructor(private layoutService: LayoutService) {}
-
-	get dark(): boolean {
-		return this.layoutService.config.colorScheme !== 'light';
-	}
-
+    get dark(): boolean {
+        return this.layoutService.config().colorScheme !== 'light';
+    }
 }

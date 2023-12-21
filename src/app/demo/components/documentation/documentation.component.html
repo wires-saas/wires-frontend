@@ -56,7 +56,7 @@ export class AppComponent implements OnInit &#123;
         this.primengConfig.ripple = true;       //enables core ripple functionality
 
         //optional configuration with the default configuration
-        this.layoutService.config = &#123;
+        const config = &#123;
             ripple: false,                      //toggles ripple on and off
             inputStyle: 'outlined',             //default style for input elements
             menuMode: 'static',                 //layout mode of the menu, valid values are "static", "overlay", "slim", "horizontal", "reveal" and "drawer" 
@@ -65,6 +65,7 @@ export class AppComponent implements OnInit &#123;
             menuTheme: "colorScheme",           //theme of the menu, valid values are "colorScheme", "primaryColor" and "transparent"
             scale: 14                           //size of the body font size to scale the whole application
         &#125;;
+        this.layoutService.config.set(config);
     &#125;
 
 &#125;</code></pre>
