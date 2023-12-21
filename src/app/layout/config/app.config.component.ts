@@ -36,7 +36,10 @@ export class AppConfigComponent implements OnInit {
     }
 
     set scale(_val: number) {
-        this.layoutService.config().scale = _val;
+        this.layoutService.config.update((config) => ({
+            ...config,
+            scale: _val,
+        }));
     }
 
     get menuMode(): MenuMode {
@@ -44,7 +47,10 @@ export class AppConfigComponent implements OnInit {
     }
 
     set menuMode(_val: MenuMode) {
-        this.layoutService.config().menuMode = _val;
+        this.layoutService.config.update((config) => ({
+            ...config,
+            menuMode: _val,
+        }));
         if (
             this.layoutService.isSlimPlus() ||
             this.layoutService.isSlim() ||
@@ -67,7 +73,10 @@ export class AppConfigComponent implements OnInit {
     }
 
     set inputStyle(_val: string) {
-        this.layoutService.config().inputStyle = _val;
+        this.layoutService.config.update((config) => ({
+            ...config,
+            inputStyle: _val,
+        }));
     }
 
     get ripple(): boolean {
@@ -75,7 +84,10 @@ export class AppConfigComponent implements OnInit {
     }
 
     set ripple(_val: boolean) {
-        this.layoutService.config().ripple = _val;
+        this.layoutService.config.update((config) => ({
+            ...config,
+            ripple: _val,
+        }));
     }
 
     get menuTheme(): MenuColorScheme {
@@ -83,7 +95,10 @@ export class AppConfigComponent implements OnInit {
     }
 
     set menuTheme(_val: MenuColorScheme) {
-        this.layoutService.config().menuTheme = _val;
+        this.layoutService.config.update((config) => ({
+            ...config,
+            menuTheme: _val,
+        }));
     }
 
     ngOnInit() {
