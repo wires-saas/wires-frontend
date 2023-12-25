@@ -73,10 +73,19 @@ export class LayoutService {
     constructor() {
         effect(() => {
             const config = this.config();
-            this.changeTheme();
+            if (this.updateStyle(config)) {
+                this.changeTheme();
+            }
             this.changeScale(config.scale);
             this.onConfigUpdate();
         });
+    }
+
+    updateStyle(config: AppConfig) {
+        return (
+            config.theme !== this._config.theme ||
+            config.colorScheme !== this._config.colorScheme
+        );
     }
 
     onMenuToggle() {

@@ -26,7 +26,6 @@ export class AppConfigComponent implements OnInit {
     get visible(): boolean {
         return this.layoutService.state.configSidebarVisible;
     }
-
     set visible(_val: boolean) {
         this.layoutService.state.configSidebarVisible = _val;
     }
@@ -34,7 +33,6 @@ export class AppConfigComponent implements OnInit {
     get scale(): number {
         return this.layoutService.config().scale;
     }
-
     set scale(_val: number) {
         this.layoutService.config.update((config) => ({
             ...config,
@@ -45,7 +43,6 @@ export class AppConfigComponent implements OnInit {
     get menuMode(): MenuMode {
         return this.layoutService.config().menuMode;
     }
-
     set menuMode(_val: MenuMode) {
         this.layoutService.config.update((config) => ({
             ...config,
@@ -63,15 +60,16 @@ export class AppConfigComponent implements OnInit {
     get colorScheme(): ColorScheme {
         return this.layoutService.config().colorScheme;
     }
-
     set colorScheme(_val: ColorScheme) {
-        this.changeColorScheme(_val);
+        this.layoutService.config.update((config) => ({
+            ...config,
+            colorScheme: _val,
+        }));
     }
 
     get inputStyle(): string {
         return this.layoutService.config().inputStyle;
     }
-
     set inputStyle(_val: string) {
         this.layoutService.config.update((config) => ({
             ...config,
@@ -82,7 +80,6 @@ export class AppConfigComponent implements OnInit {
     get ripple(): boolean {
         return this.layoutService.config().ripple;
     }
-
     set ripple(_val: boolean) {
         this.layoutService.config.update((config) => ({
             ...config,
@@ -93,11 +90,20 @@ export class AppConfigComponent implements OnInit {
     get menuTheme(): MenuColorScheme {
         return this.layoutService.config().menuTheme;
     }
-
     set menuTheme(_val: MenuColorScheme) {
         this.layoutService.config.update((config) => ({
             ...config,
             menuTheme: _val,
+        }));
+    }
+
+    get theme(): string {
+        return this.layoutService.config().theme;
+    }
+    set theme(_val: string) {
+        this.layoutService.config.update((config) => ({
+            ...config,
+            theme: _val,
         }));
     }
 
@@ -119,30 +125,18 @@ export class AppConfigComponent implements OnInit {
     }
 
     changeColorScheme(colorScheme: ColorScheme) {
-        this.layoutService.config.update((config) => ({
-            ...config,
-            colorScheme,
-        }));
+        this.colorScheme = colorScheme;
     }
 
     changeTheme(theme: string) {
-        this.layoutService.config.update((config) => ({ ...config, theme }));
+        this.theme = theme;
     }
 
     decrementScale() {
         this.scale--;
-        this.applyScale();
     }
 
     incrementScale() {
         this.scale++;
-        this.applyScale();
-    }
-
-    applyScale() {
-        this.layoutService.config.update((config) => ({
-            ...config,
-            scale: this.scale,
-        }));
     }
 }
