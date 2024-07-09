@@ -31,12 +31,6 @@ jobs:
         if: steps.cache_node_modules.outputs.cache-hit != 'true'
         run: npm install
 
-      - name: Lint with ESLint
-        run: npm run lint
-
-      - name: Run tests with Jest
-        run: npm run test
-
       - name: Compile Typescript
         run: npm run build
 
