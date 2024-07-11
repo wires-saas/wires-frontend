@@ -30,8 +30,7 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.scss",
-                            "src/assets/layout/styles/theme/theme-light/indigo/theme.scss"
+                            "src/styles.scss"
                         ],
                         "scripts": []
                     },
@@ -95,8 +94,7 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.scss",
-                            "src/assets/layout/styles/theme/theme-light/indigo/theme.scss"
+                            "src/styles.scss"
                         ],
                         "scripts": []
                     }
