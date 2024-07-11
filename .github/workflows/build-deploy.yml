@@ -38,6 +38,12 @@ jobs:
       - name: Compile Typescript
         run: npm run build
 
+      - name: List files
+        run: ls -la
+
+      - name: Echo content of assets
+        run: ls -la ./dist/assets/layout/styles/theme/theme-light/indigo
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
