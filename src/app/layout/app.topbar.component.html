@@ -16,11 +16,17 @@
                 </span>
             </li>
             <li class="ml-3">
+                <button *ngIf="colorScheme === 'dim'; else lightMode" pButton type="button" icon="pi pi-moon" class="p-button-text p-button-secondary p-button-rounded flex-shrink-0" (click)="setLightMode()"></button>
+                <ng-template #lightMode>
+                    <button pButton type="button" icon="pi pi-sun" class="p-button-text p-button-secondary p-button-rounded flex-shrink-0" (click)="setDimMode()"></button>
+                </ng-template>
+            </li>
+            <li class="ml-3">
                 <button pButton type="button" icon="pi pi-cog" class="p-button-text p-button-secondary p-button-rounded flex-shrink-0" (click)="onConfigButtonClick()"></button>
             </li>
             <li class="topbar-profile">
                 <button type="button" class="p-link" (click)="onProfileButtonClick()">
-                    <img src="assets/layout/images/avatar.png" alt="Profile" />
+                    <img src="assets/layout/images/avatar.png" alt="Profile" class="p-border-round p-border-1"/>
                 </button>
             </li>
         </ul>

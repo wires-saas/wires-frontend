@@ -45,7 +45,7 @@ export class LayoutService {
         menuMode: 'static',
         colorScheme: 'light',
         theme: 'indigo',
-        scale: 14,
+        scale: 13,
         menuTheme: 'colorScheme',
     };
 
@@ -73,6 +73,7 @@ export class LayoutService {
     constructor() {
         effect(() => {
             const config = this.config();
+            console.log('got config', config);
             if (this.updateStyle(config)) {
                 this.changeTheme();
             }
