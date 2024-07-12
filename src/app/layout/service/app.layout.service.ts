@@ -39,6 +39,7 @@ interface LayoutState {
     providedIn: 'root',
 })
 export class LayoutService {
+
     _config: AppConfig = {
         ripple: false,
         inputStyle: 'outlined',
@@ -80,6 +81,18 @@ export class LayoutService {
             this.changeScale(config.scale);
             this.onConfigUpdate();
         });
+
+        // Switch to dark theme if night
+        const hours = new Date().getHours();
+
+        let colorScheme: ColorScheme = (hours > 10 && hours <= 20) ? 'light' : 'dim';
+
+        setTimeout(() => {
+            this.config.update((config) => ({
+                ...config,
+                colorScheme
+            }));
+        }, 1);
     }
 
     updateStyle(config: AppConfig) {
@@ -117,6 +130,10 @@ export class LayoutService {
 
     showProfileSidebar() {
         this.state.profileSidebarVisible = true;
+    }
+
+    hideProfileSidebar() {
+        this.state.profileSidebarVisible = false;
     }
 
     showConfigSidebar() {

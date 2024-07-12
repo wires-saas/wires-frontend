@@ -18,12 +18,12 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Overview',
                         icon: 'pi pi-fw pi-home',
-                        routerLink: ['/']
+                        routerLink: ['/overview']
                     },
                     {
                         label: 'Blank',
                         icon: 'pi pi-fw pi-circle-off',
-                        routerLink: ['/pages/empty']
+                        routerLink: ['/blank']
                     },
                 ]
             },
@@ -55,18 +55,18 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'Others',
+                label: 'Help',
                 icon: 'pi pi-fw pi-th-large',
                 items: [
                     {
                         label: 'FAQ',
                         icon: 'pi pi-fw pi-question-circle',
-                        routerLink: ['/pages/faq']
+                        routerLink: ['/help/faq']
                     },
                     {
                         label: 'Contact Us',
                         icon: 'pi pi-fw pi-phone',
-                        routerLink: ['/pages/contact']
+                        routerLink: ['/help/contact']
                     }
                 ]
             },
