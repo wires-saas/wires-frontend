@@ -8,7 +8,12 @@
             <div class="grid formgrid p-fluid">
                 <div class="field col-12 md:col-6">
                     <label for="name" class="font-medium text-900">Organization Name</label>
-                    <input id="name" type="text" pInputText>
+
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-building"></i>
+                        <input id="name" type="text" pInputText>
+                    </span>
+
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="display-name" class="font-medium text-900">Display Name</label>
@@ -121,17 +126,45 @@
 </div>
 
 <div class="card">
-    <span class="text-900 text-xl font-bold mb-4 block">Organization Settings</span>
+    <span class="text-900 text-xl font-bold mb-4 block">Settings</span>
     <div class="grid">
         <div class="col-12 lg:col-2">
             <div class="text-900 font-medium text-xl mb-3">Plan</div>
         </div>
         <div class="col-12 lg:col-10">
-            <div class="grid formgrid p-fluid">
+            <app-plans planEnabled="basic"></app-plans>
 
-                <div class="col-12 flex md:justify-content-end justify-content-center">
-                    <button pButton pRipple label="Save Changes" icon="pi pi-save" class="w-auto mt-3"></button>
+            <div class="col-12 flex md:justify-content-end justify-content-center">
+                <button pButton pRipple label="Resiliate Plan" icon="pi pi-save" class="w-auto mt-3 p-button-danger p-button-outlined"></button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="grid">
+        <div class="col-12 lg:col-2">
+            <div class="text-900 font-medium text-xl mb-3">Security</div>
+        </div>
+        <div class="col-12 lg:col-10">
+
+            <div class="grid formgrid p-fluid">
+                <div class="field col-12">
+                    <h5>Two Factor Authentication</h5>
+
+                    <p-inputSwitch [(ngModel)]="force2FA"></p-inputSwitch>
+                    <span class="text-900 p-3">Enable 2FA for all users</span>
                 </div>
+
+                <!-- TODO force select Email + disable select button -->
+                <div *ngIf="force2FA || true" class="field col-12 md:col-6">
+                    <p-selectButton [options]="optionsFor2FA" [(ngModel)]="selectedOptionsFor2FA" [multiple]="true"
+                                    optionLabel="name"></p-selectButton>
+                </div>
+            </div>
+
+            <div class="col-12 flex md:justify-content-end justify-content-center">
+                <button pButton pRipple label="Update Settings" icon="pi pi-save" class="w-auto mt-3"></button>
             </div>
         </div>
     </div>

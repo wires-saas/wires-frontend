@@ -1,0 +1,135 @@
+<div class="grid grid-nogutter justify-content-center mt-4" [class.mt-8]="forLanding">
+                    <div class="col-12 lg:col-6 xl:col-4">
+                        <div class="p-3 h-full">
+                            <div class="shadow-1 p-6 h-full flex flex-column surface-card" [class.shadow-2]="forLanding" style="border-radius: 6px">
+                                <span class="text-900 block font-medium text-xl mb-2 text-center">Basic Licence</span>
+                                <span class="font-bold block text-2xl text-900 text-center">$200</span>
+
+                                <ul class="list-none p-0 m-0 flex-grow-1 mt-6">
+                                    <li class="flex align-items-center mb-3">
+                                        <i class="pi pi-check text-green-500 mr-2"></i>
+                                        <span>Up to 3 Active Users</span>
+                                    </li>
+                                    <li class="flex align-items-center mb-3">
+                                        <i class="pi pi-check text-green-500 mr-2"></i>
+                                        <span>Up to 10 Project Integrations</span>
+                                    </li>
+                                    <li class="flex align-items-center mb-3">
+                                        <i class="pi pi-check text-green-500 mr-2"></i>
+                                        <span>Analytics Module</span>
+                                    </li>
+                                    <li class="flex align-items-center mb-3">
+                                        <i class="pi pi-times text-red-500 mr-2"></i>
+                                        <span>Dedicated Support</span>
+                                    </li>
+                                </ul>
+
+                                <button *ngIf="planEnabled === 'basic'"
+                                        pButton pRipple label="Current Plan" [disabled]="true" class="px-5 w-full mt-6 p-button-outlined"></button>
+
+                                <button *ngIf="planEnabled === 'extended' || planEnabled === 'entreprise'"
+                                        (click)="selectPlan('basic')"
+                                        pButton pRipple label="Downgrade Plan" class="px-5 w-full mt-6 p-button-outlined p-button-danger"
+                                        icon="pi pi-arrow-right" iconPos="right"></button>
+
+                                <button *ngIf="planEnabled === 'none'"
+                                        (click)="selectPlan('basic')"
+                                        pButton pRipple label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
+                                        icon="pi pi-arrow-right" iconPos="right"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 lg:col-6 xl:col-4">
+                        <div class="p-3 h-full">
+                            <div class="shadow-1 p-6 h-full flex flex-column surface-card" [class.shadow-2]="forLanding" style="border-radius: 6px">
+                                <span class="text-900 block font-medium text-xl mb-2 text-center">Extended
+                                    Licence</span>
+                                <span class="font-bold block text-2xl text-900 text-center">$500</span>
+
+                                <ul class="list-none p-0 m-0 flex-grow-1 mt-6">
+                                    <li class="flex align-items-center mb-3">
+                                        <i class="pi pi-check text-green-500 mr-2"></i>
+                                        <span>Up to 10 Active Users</span>
+                                    </li>
+                                    <li class="flex align-items-center mb-3">
+                                        <i class="pi pi-check text-green-500 mr-2"></i>
+                                        <span>Up to 50 Project Integrations</span>
+                                    </li>
+                                    <li class="flex align-items-center mb-3">
+                                        <i class="pi pi-check text-green-500 mr-2"></i>
+                                        <span>Analytics Module</span>
+                                    </li>
+                                    <li class="flex align-items-center mb-3">
+                                        <i class="pi pi-check text-green-500 mr-2"></i>
+                                        <span>Dedicated Support</span>
+                                    </li>
+                                </ul>
+
+
+                                <button *ngIf="planEnabled === 'extended'"
+                                        pButton pRipple label="Current Plan" [disabled]="true" class="px-5 w-full mt-6 p-button-outlined"></button>
+
+                                <button *ngIf="planEnabled === 'entreprise'"
+                                        (click)="selectPlan('extended')"
+                                        pButton pRipple label="Downgrade Plan" class="px-5 w-full mt-6 p-button-outlined p-button-danger"
+                                        icon="pi pi-arrow-right" iconPos="right"></button>
+
+                                <button *ngIf="planEnabled === 'basic'"
+                                        (click)="selectPlan('extended')"
+                                        pButton pRipple label="Upgrade Plan" class="px-5 w-full mt-6 p-button"
+                                        icon="pi pi-arrow-right" iconPos="right"></button>
+
+                                <button *ngIf="planEnabled === 'none'"
+                                        (click)="selectPlan('extended')"
+                                        pButton pRipple label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
+                                        icon="pi pi-arrow-right" iconPos="right"></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 lg:col-6 xl:col-4">
+        <div class="p-3 h-full">
+            <div class="shadow-1 p-6 h-full flex flex-column surface-card" [class.shadow-2]="forLanding" style="border-radius: 6px">
+                                <span class="text-900 block font-medium text-xl mb-2 text-center">Entreprise
+                                    Licence</span>
+                <span class="font-bold block text-2xl text-900 text-center">Custom Price</span>
+
+                <ul class="list-none p-0 m-0 flex-grow-1 mt-6">
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span>Unlimited Users</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span>Unlimited Project Integrations</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span>Analytics Module</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span>Dedicated Support</span>
+                    </li>
+                </ul>
+
+
+                <button *ngIf="planEnabled === 'entreprise'"
+                        pButton pRipple label="Current Plan" [disabled]="true" class="px-5 w-full mt-6 p-button-outlined"></button>
+
+                <button *ngIf="planEnabled === 'basic' || planEnabled === 'extended'"
+                        (click)="selectPlan('entreprise')"
+                        pButton pRipple label="Upgrade Plan" class="px-5 w-full mt-6 p-button"
+                        icon="pi pi-arrow-right" iconPos="right"></button>
+
+                <button *ngIf="planEnabled === 'none'"
+                        (click)="selectPlan('entreprise')"
+                        pButton pRipple label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
+                        icon="pi pi-arrow-right" iconPos="right"></button>
+
+            </div>
+        </div>
+    </div>
+                </div>

@@ -28,11 +28,12 @@ const routes: Routes = [
         ]
     },
     // { path: 'auth', data: { breadcrumb: 'Auth' }, loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
-    { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
+    // { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
     { path: 'notfound', loadChildren: () => import('./demo/components/notfound/notfound.module').then(m => m.NotfoundModule) },
 
     // Implemented routes
     { path: 'auth', data: { breadcrumb: 'Auth' }, loadChildren: () => import('./views/auth/auth.module').then(m => m.AuthModule) },
+    { path: 'landing', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule) },
 
     { path: '**', redirectTo: '/notfound' }
 ];

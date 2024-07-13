@@ -12,6 +12,9 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InformationComponent } from './information.component';
 import { InformationRoutingModule } from './information-routing.module';
 import { CheckboxModule } from 'primeng/checkbox';
+import { PlansModule } from '../../../meta-components/plans/plans.module';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
     imports: [
@@ -26,7 +29,10 @@ import { CheckboxModule } from 'primeng/checkbox';
         InputTextareaModule,
         InputGroupModule,
         InputGroupAddonModule,
-        CheckboxModule
+        CheckboxModule,
+        PlansModule,
+        InputSwitchModule,
+        SelectButtonModule
     ],
     declarations: [InformationComponent]
 })
