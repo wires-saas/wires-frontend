@@ -22,7 +22,7 @@ export class ListUsersComponent implements OnInit {
     }
 
     navigateToCreateUser(){
-        this.router.navigate(['profile/create'])
+        this.router.navigate(['organization/users/create'])
     }
 
 }

@@ -22,8 +22,8 @@ export class ListOrganizationsComponent implements OnInit {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains')
     }
 
-    navigateToCreateUser(){
-        this.router.navigate(['profile/create'])
+    navigateToCreateOrganization(){
+        this.router.navigate(['administration/organizations/create'])
     }
 
 }
