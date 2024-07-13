@@ -37,7 +37,7 @@
                 </div>
                 <div class="field mb-3 col-12 md:col-4">
                     <label for="country" class="font-medium text-900">Country</label>
-                    <p-dropdown inputId="country" [options]="countries" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Country">
+                    <p-dropdown inputId="country" [(ngModel)]="organizationCountry" [options]="countries" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Country">
                         <ng-template let-country pTemplate="item">
                             <div class="flex align-items-center">
                                 <img src="../../../../../assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + country.code.toLowerCase()" style="width:18px"/>
@@ -157,9 +157,9 @@
                 </div>
 
                 <!-- TODO force select Email + disable select button -->
-                <div *ngIf="force2FA || true" class="field col-12 md:col-6">
+                <div *ngIf="force2FA" class="field col-12 md:col-6">
                     <p-selectButton [options]="optionsFor2FA" [(ngModel)]="selectedOptionsFor2FA" [multiple]="true"
-                                    optionLabel="name"></p-selectButton>
+                                    optionLabel="name" optionValue="id" [disabled]="true"></p-selectButton>
                 </div>
             </div>
 

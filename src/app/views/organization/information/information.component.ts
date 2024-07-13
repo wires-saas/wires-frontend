@@ -13,11 +13,13 @@ export class InformationComponent implements OnInit {
     force2FA: boolean = false;
 
     optionsFor2FA= [
-        { name: 'Email', value: 1 },
-        { name: 'SMS (not yet implemented)', value: 2, disabled: true },
+        { name: 'Email', id: "email" },
+        { name: 'SMS (not yet implemented)', id: "sms", disabled: true },
     ];
 
-    selectedOptionsFor2FA: string = "";
+    selectedOptionsFor2FA: string[] = ["email"];
+
+    organizationCountry: any = {name: 'France', code: 'FR'};
 
     ngOnInit() {
         this.countries = [
