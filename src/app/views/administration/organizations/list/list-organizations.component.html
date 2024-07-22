@@ -1,7 +1,7 @@
 <div class="card">
-    <p-table #dt [value]="customers" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+    <p-table #dt [value]="organizations" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
-        [globalFilterFields]="['name','country.name','representative.name']">
+        [globalFilterFields]="['name']">
         <ng-template pTemplate="caption">
             <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
                 <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
@@ -14,27 +14,29 @@
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="name" class="white-space-nowrap" style="width:25%">Name <p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="country.name" class="white-space-nowrap" style="width:25%">Country <p-sortIcon field="country.name"></p-sortIcon></th>
-                <th pSortableColumn="date" class="white-space-nowrap" style="width:25%">Join Date <p-sortIcon field="date"></p-sortIcon></th>
-                <th pSortableColumn="representative.name" class="white-space-nowrap" style="width:25%">Created By <p-sortIcon field="representative.name"></p-sortIcon></th>
-                <th pSortableColumn="activity" class="white-space-nowrap" style="width:25%">Activity <p-sortIcon field="activity"></p-sortIcon></th>
+
+                <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:25%">Creation Date <p-sortIcon field="createdAt"></p-sortIcon></th>
+                <th pSortableColumn="address.country" class="white-space-nowrap" style="width:25%">Country <p-sortIcon field="address.country"></p-sortIcon></th>
+                <th pSortableColumn="security.twoFactorAuthenticationEnabled" class="white-space-nowrap" style="width:10%">2FA <p-sortIcon field="security.twoFactorAuthenticationEnabled"></p-sortIcon></th>
+                <th pSortableColumn="subscription.type" class="white-space-nowrap" style="width:25%">Plan <p-sortIcon field="subscription.type"></p-sortIcon></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
+        <ng-template pTemplate="body" let-organization>
             <tr>
-                <td>{{customer.name}}</td>
+                <td>{{ organization.name }}</td>
+                <td>{{ organization.createdAt | date: 'dd/MM/yyyy' }}</td>
                 <td>
-                    <img src="../../../../../assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" class="w-2rem mr-2">
-                    <span class="image-text">{{customer.country.name}}</span>
+                    <img src="../../../../../assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + organization.address.country.toLowerCase()" class="w-2rem mr-2">
+                    {{ organization.address.country | countryName }}
                 </td>
-                <td>{{customer.date | date: 'MM/dd/yyyy'}}</td>
                 <td>
-                    <div class="inline-flex align-items-center">
-                        <img [alt]="customer.representative.name" src="assets/demo/images/avatar/{{customer.representative.image}}" class="w-2rem mr-2" />
-                        <span>{{customer.representative.name}}</span>
-                    </div>
+                    <i *ngIf="organization.security.twoFactorAuthenticationEnabled; else twoFactorAuthenticationDisabled"
+                       class="pi pi-check mr-2 text-900 text-green-500"></i>
+                    <ng-template #twoFactorAuthenticationDisabled>
+                        <i class="pi pi-times mr-2 text-900 text-red-500"></i>
+                    </ng-template>
                 </td>
-                <td><p-progressBar [value]="customer.activity" [showValue]="false" [style]="{'height':'.5rem'}"></p-progressBar></td>
+                <td>{{ organization.subscription.type }}</td>
             </tr>
         </ng-template>
     </p-table>

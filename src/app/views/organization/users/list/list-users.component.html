@@ -1,4 +1,6 @@
 <div class="card">
+
+    {{ users | json }}
     <p-table #dt [value]="customers" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
         [globalFilterFields]="['name','country.name','representative.name']">

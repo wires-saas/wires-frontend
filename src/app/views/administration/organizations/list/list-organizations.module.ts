@@ -7,17 +7,19 @@ import { TableModule } from 'primeng/table';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ListOrganizationsComponent } from './list-organizations.component';
 import { ListOrganizationsRoutingModule } from './list-organizations-routing.module';
+import { CountryNamePipe } from '../../../../country-name.pipe';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		ListOrganizationsRoutingModule,
-		RippleModule,
-		ButtonModule,
-		InputTextModule,
-		TableModule,
-		ProgressBarModule
-	],
+    imports: [
+        CommonModule,
+        ListOrganizationsRoutingModule,
+        RippleModule,
+        ButtonModule,
+        InputTextModule,
+        TableModule,
+        ProgressBarModule,
+        CountryNamePipe
+    ],
 	declarations: [ListOrganizationsComponent]
 })
 export class ListOrganizationsModule { }

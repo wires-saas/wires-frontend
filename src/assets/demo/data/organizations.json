@@ -1,0 +1,548 @@
+[
+{
+"name": "Nolan Inc",
+"slug": "nolan-inc",
+"logo": "https://via.placeholder.com/150",
+"activity": "Centralized motivating paradigm",
+"address": {
+"street": "6961 Fritsch Stravenue",
+"city": "Port Toni",
+"zip": "84863",
+"country": "EE"
+},
+"adminContact": {
+"firstname": "Erick",
+"lastname": "Miller",
+"email": "erick.miller@example.com"
+},
+"billingContact": {
+"firstname": "Loraine",
+"lastname": "Collins",
+"email": "loraine.collins@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": true,
+"twoFactorAuthenticationMethods": ["email", "sms"]
+},
+"subscription": {
+"type": "extended",
+"expirationDate": 1746960000000
+},
+"createdAt": 1609459200000,
+"updatedAt": 1682208000000
+},
+{
+"name": "Jones LLC",
+"slug": "jones-llc",
+"logo": "https://via.placeholder.com/150",
+"activity": "Profit-focused system-worthy workforce",
+"address": {
+"street": "169 Toy Heights",
+"city": "New Brianne",
+"zip": "24613-5738",
+"country": "IN"
+},
+"adminContact": {
+"firstname": "Alfredo",
+"lastname": "Parker",
+"email": "alfredo.parker@example.com"
+},
+"billingContact": {
+"firstname": "Alma",
+"lastname": "Anderson",
+"email": "alma.anderson@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": false,
+"twoFactorAuthenticationMethods": ["email", "app"]
+},
+"subscription": {
+"type": "basic",
+"expirationDate": 1746960000000
+},
+"createdAt": 1612137600000,
+"updatedAt": 1682211600000
+},
+{
+"name": "Thompson Group",
+"slug": "thompson-group",
+"logo": "https://via.placeholder.com/150",
+"activity": "Synergized 6th generation toolset",
+"address": {
+"street": "183 Larkin Pines",
+"city": "West Kirsten",
+"zip": "89974",
+"country": "US"
+},
+"adminContact": {
+"firstname": "Bernard",
+"lastname": "Garcia",
+"email": "bernard.garcia@example.com"
+},
+"billingContact": {
+"firstname": "Lucille",
+"lastname": "Mendoza",
+"email": "lucille.mendoza@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": true,
+"twoFactorAuthenticationMethods": ["email", "sms"]
+},
+"subscription": {
+"type": "enterprise",
+"expirationDate": 1746960000000
+},
+"createdAt": 1614556800000,
+"updatedAt": 1682215200000
+},
+{
+"name": "Martinez and Sons",
+"slug": "martinez-and-sons",
+"logo": "https://via.placeholder.com/150",
+"activity": "Proactive 4th generation knowledge base",
+"address": {
+"street": "6204 Nolan Ridge",
+"city": "West Erin",
+"zip": "42167",
+"country": "CA"
+},
+"adminContact": {
+"firstname": "Dorothy",
+"lastname": "Miller",
+"email": "dorothy.miller@example.com"
+},
+"billingContact": {
+"firstname": "Peter",
+"lastname": "Smith",
+"email": "peter.smith@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": false,
+"twoFactorAuthenticationMethods": ["app"]
+},
+"subscription": {
+"type": "free",
+"expirationDate": 1746960000000
+},
+"createdAt": 1617235200000,
+"updatedAt": 1682218800000
+},
+{
+"name": "Miller Group",
+"slug": "miller-group",
+"logo": "https://via.placeholder.com/150",
+"activity": "Future-proofed bifurcated time-frame",
+"address": {
+"street": "1241 Ullrich Lights",
+"city": "New Ronnie",
+"zip": "37014",
+"country": "FR"
+},
+"adminContact": {
+"firstname": "Roland",
+"lastname": "Johnson",
+"email": "roland.johnson@example.com"
+},
+"billingContact": {
+"firstname": "Tracey",
+"lastname": "Thomas",
+"email": "tracey.thomas@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": true,
+"twoFactorAuthenticationMethods": ["email", "app"]
+},
+"subscription": {
+"type": "extended",
+"expirationDate": 1746960000000
+},
+"createdAt": 1619827200000,
+"updatedAt": 1682222400000
+},
+{
+"name": "Smith Ltd",
+"slug": "smith-ltd",
+"logo": "https://via.placeholder.com/150",
+"activity": "Ergonomic context-sensitive paradigm",
+"address": {
+"street": "50190 Becker Brook",
+"city": "New Carol",
+"zip": "66764-4224",
+"country": "GB"
+},
+"adminContact": {
+"firstname": "Sabrina",
+"lastname": "Clark",
+"email": "sabrina.clark@example.com"
+},
+"billingContact": {
+"firstname": "Randy",
+"lastname": "Perez",
+"email": "randy.perez@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": true,
+"twoFactorAuthenticationMethods": ["email"]
+},
+"subscription": {
+"type": "enterprise",
+"expirationDate": 1746960000000
+},
+"createdAt": 1622505600000,
+"updatedAt": 1682226000000
+},
+{
+"name": "Brown Inc",
+"slug": "brown-inc",
+"logo": "https://via.placeholder.com/150",
+"activity": "Persistent solution-oriented forecast",
+"address": {
+"street": "7319 Bailey Brook",
+"city": "North Nicholas",
+"zip": "83936",
+"country": "DE"
+},
+"adminContact": {
+"firstname": "Clara",
+"lastname": "Evans",
+"email": "clara.evans@example.com"
+},
+"billingContact": {
+"firstname": "Monique",
+"lastname": "Gonzalez",
+"email": "monique.gonzalez@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": false,
+"twoFactorAuthenticationMethods": ["app"]
+},
+"subscription": {
+"type": "basic",
+"expirationDate": 1746960000000
+},
+"createdAt": 1625097600000,
+"updatedAt": 1682229600000
+},
+{
+"name": "Davis LLC",
+"slug": "davis-llc",
+"logo": "https://via.placeholder.com/150",
+"activity": "Automated methodical software",
+"address": {
+"street": "6702 Marvin Road",
+"city": "North Dennis",
+"zip": "15541",
+"country": "JP"
+},
+"adminContact": {
+"firstname": "Manuel",
+"lastname": "Williams",
+"email": "manuel.williams@example.com"
+},
+"billingContact": {
+"firstname": "Carmen",
+"lastname": "Hernandez",
+"email": "carmen.hernandez@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": true,
+"twoFactorAuthenticationMethods": ["email", "sms"]
+},
+"subscription": {
+"type": "free",
+"expirationDate": 1746960000000
+},
+"createdAt": 1627776000000,
+"updatedAt": 1682233200000
+},
+{
+"name": "Lopez Ltd",
+"slug": "lopez-ltd",
+"logo": "https://via.placeholder.com/150",
+"activity": "Synergistic holistic methodology",
+"address": {
+"street": "2631 Gloria Path",
+"city": "Port Sharon",
+"zip": "79429",
+"country": "AU"
+},
+"adminContact": {
+"firstname": "Pamela",
+"lastname": "Davis",
+
+
+"email": "pamela.davis@example.com"
+},
+"billingContact": {
+"firstname": "Cody",
+"lastname": "Clark",
+"email": "cody.clark@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": true,
+"twoFactorAuthenticationMethods": ["email", "app"]
+},
+"subscription": {
+"type": "extended",
+"expirationDate": 1746960000000
+},
+"createdAt": 1630454400000,
+"updatedAt": 1682236800000
+},
+{
+"name": "Johnson Group",
+"slug": "johnson-group",
+"logo": "https://via.placeholder.com/150",
+"activity": "Streamlined interactive concept",
+"address": {
+"street": "86581 Charles Mountains",
+"city": "North Rhonda",
+"zip": "85782",
+"country": "NZ"
+},
+"adminContact": {
+"firstname": "Ian",
+"lastname": "Robinson",
+"email": "ian.robinson@example.com"
+},
+"billingContact": {
+"firstname": "Ann",
+"lastname": "Martinez",
+"email": "ann.martinez@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": false,
+"twoFactorAuthenticationMethods": ["email"]
+},
+"subscription": {
+"type": "enterprise",
+"expirationDate": 1746960000000
+},
+"createdAt": 1633046400000,
+"updatedAt": 1682240400000
+},
+{
+"name": "Garcia and Sons",
+"slug": "garcia-and-sons",
+"logo": "https://via.placeholder.com/150",
+"activity": "Devolved logistical help-desk",
+"address": {
+"street": "86278 Davis Ranch",
+"city": "South Mary",
+"zip": "16825",
+"country": "CN"
+},
+"adminContact": {
+"firstname": "Jeanne",
+"lastname": "White",
+"email": "jeanne.white@example.com"
+},
+"billingContact": {
+"firstname": "Terry",
+"lastname": "Harris",
+"email": "terry.harris@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": true,
+"twoFactorAuthenticationMethods": ["sms"]
+},
+"subscription": {
+"type": "basic",
+"expirationDate": 1746960000000
+},
+"createdAt": 1635724800000,
+"updatedAt": 1682244000000
+},
+{
+"name": "Martinez LLC",
+"slug": "martinez-llc",
+"logo": "https://via.placeholder.com/150",
+"activity": "Secured 3rd generation capability",
+"address": {
+"street": "702 Johnathon Stravenue",
+"city": "South Megan",
+"zip": "95748",
+"country": "KR"
+},
+"adminContact": {
+"firstname": "Katherine",
+"lastname": "Walker",
+"email": "katherine.walker@example.com"
+},
+"billingContact": {
+"firstname": "Marlon",
+"lastname": "Green",
+"email": "marlon.green@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": false,
+"twoFactorAuthenticationMethods": ["email"]
+},
+"subscription": {
+"type": "free",
+"expirationDate": 1746960000000
+},
+"createdAt": 1638316800000,
+"updatedAt": 1682247600000
+},
+{
+"name": "Hernandez and Sons",
+"slug": "hernandez-and-sons",
+"logo": "https://via.placeholder.com/150",
+"activity": "Re-engineered asymmetric knowledge user",
+"address": {
+"street": "4349 Reichert Shores",
+"city": "Lake Rachel",
+"zip": "39895",
+"country": "BR"
+},
+"adminContact": {
+"firstname": "Ronald",
+"lastname": "Martin",
+"email": "ronald.martin@example.com"
+},
+"billingContact": {
+"firstname": "Penny",
+"lastname": "Allen",
+"email": "penny.allen@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": true,
+"twoFactorAuthenticationMethods": ["email", "sms"]
+},
+"subscription": {
+"type": "extended",
+"expirationDate": 1746960000000
+},
+"createdAt": 1640995200000,
+"updatedAt": 1682251200000
+},
+{
+"name": "Hernandez, Clark",
+"slug": "hernandez-clark-and-white",
+"logo": "https://via.placeholder.com/150",
+"activity": "Innovative fresh-thinking extranet",
+"address": {
+"street": "68428 Alfredo Burg",
+"city": "West Judithview",
+"zip": "79856-4433",
+"country": "RU"
+},
+"adminContact": {
+"firstname": "Christina",
+"lastname": "Scott",
+"email": "christina.scott@example.com"
+},
+"billingContact": {
+"firstname": "Steve",
+"lastname": "Garcia",
+"email": "steve.garcia@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": false,
+"twoFactorAuthenticationMethods": ["app"]
+},
+"subscription": {
+"type": "enterprise",
+"expirationDate": 1746960000000
+},
+"createdAt": 1643673600000,
+"updatedAt": 1682254800000
+},
+{
+"name": "White-King",
+"slug": "white-king",
+"logo": "https://via.placeholder.com/150",
+"activity": "Seamless secondary frame",
+"address": {
+"street": "10358 Wehner Ridge",
+"city": "South Gregory",
+"zip": "18504",
+"country": "ZA"
+},
+"adminContact": {
+"firstname": "Gary",
+"lastname": "Mitchell",
+"email": "gary.mitchell@example.com"
+},
+"billingContact": {
+"firstname": "Leslie",
+"lastname": "Smith",
+"email": "leslie.smith@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": true,
+"twoFactorAuthenticationMethods": ["email", "sms"]
+},
+"subscription": {
+"type": "basic",
+"expirationDate": 1746960000000
+},
+"createdAt": 1646092800000,
+"updatedAt": 1682258400000
+},
+{
+"name": "Ramirez Group",
+"slug": "ramirez-group",
+"logo": "https://via.placeholder.com/150",
+"activity": "Proactive uniform adapter",
+"address": {
+"street": "824 Breitenberg Rapids",
+"city": "Lake Amie",
+"zip": "30646-7755",
+"country": "AR"
+},
+"adminContact": {
+"firstname": "Crystal",
+"lastname": "Young",
+"email": "crystal.young@example.com"
+},
+"billingContact": {
+"firstname": "Guy",
+"lastname": "Lee",
+"email": "guy.lee@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": false,
+"twoFactorAuthenticationMethods": ["app"]
+},
+"subscription": {
+"type": "free",
+"expirationDate": 1746960000000
+},
+"createdAt": 1648771200000,
+"updatedAt": 1682262000000
+},
+{
+"name": "Walker, Smith and Williams",
+"slug": "walker-smith-and-williams",
+"logo": "https://via.placeholder.com/150",
+"activity": "Organized bandwidth-monitored software",
+"address": {
+"street": "382 Haley Mountain",
+"city": "Edwinbury",
+"zip": "89302",
+"country": "PT"
+},
+"adminContact": {
+"firstname": "Leonard",
+"lastname": "Hill",
+"email": "leonard.hill@example.com"
+},
+"billingContact": {
+"firstname": "Debra",
+"lastname": "Lopez",
+"email": "debra.lopez@example.com"
+},
+"security": {
+"twoFactorAuthenticationEnabled": true,
+"twoFactorAuthenticationMethods": ["email"]
+},
+"subscription": {
+"type": "enterprise",
+"expirationDate": 1746960000000
+},
+"createdAt": 1651363200000,
+"updatedAt": 1682265600000
+}
+]

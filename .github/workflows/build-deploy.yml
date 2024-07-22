@@ -36,7 +36,7 @@ jobs:
         run: npm install
 
       - name: Compile Typescript
-        run: npm run build
+        run: npm run build:dev
 
       - name: List files
         run: ls -la

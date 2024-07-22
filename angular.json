@@ -48,9 +48,29 @@
                                     "maximumError": "4kb"
                                 }
                             ],
-                            "outputHashing": "all"
+                            "outputHashing": "all",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
                         },
                         "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.dev.ts"
+                                }
+                            ]
+                        },
+                        "local": {
                             "buildOptimizer": false,
                             "optimization": false,
                             "vendorChunk": true,
@@ -69,9 +89,12 @@
                         },
                         "development": {
                             "buildTarget": "saas-factory-frontend:build:development"
+                        },
+                        "local": {
+                            "buildTarget": "saas-factory-frontend:build:local"
                         }
                     },
-                    "defaultConfiguration": "development"
+                    "defaultConfiguration": "local"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
