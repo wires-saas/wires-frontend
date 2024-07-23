@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { Customer } from 'src/app/demo/api/customer';
 import { CustomerService } from 'src/app/demo/service/customer.service';
@@ -14,12 +14,19 @@ export class ListUsersComponent implements OnInit {
 
     users: User[] = [];
 
-    constructor(private customerService: CustomerService, private userService: UserService, private router: Router) { }
+    multiOrganizations: boolean = false;
+
+    constructor(private customerService: CustomerService,
+                private userService: UserService,
+                private route: ActivatedRoute,
+                private router: Router) { }
 
     async ngOnInit() {
         this.customerService.getCustomersLarge().then(customers => this.customers = customers);
 
         this.users = await this.userService.getUsers();
+
+        this.multiOrganizations = !!this.route.snapshot.data['multiOrganizations'];
     }
 
     onGlobalFilter(table: Table, event: Event) {
@@ -27,7 +34,16 @@ export class ListUsersComponent implements OnInit {
     }
 
     navigateToCreateUser(){
-        this.router.navigate(['organization/users/create'])
+        if (this.multiOrganizations) {
+            this.router.navigate(['administration/organizations/users/create']);
+        } else {
+            this.router.navigate(['organizations/users/create']);
+        }
+    }
+
+    getUserRole(user: User): string {
+        if (user?.roles?.length) return user.roles[0].role;
+        else return '';
     }
 
 }

@@ -23,7 +23,7 @@ const routes: Routes = [
             // Implemented routes
             { path: '', loadChildren: () => import('./views/dashboards/dashboards.module').then(m => m.DashboardsModule) },
             { path: 'administration', data: { breadcrumb: 'Administration' }, loadChildren: () => import('./views/administration/administration.module').then(m => m.AdministrationModule) },
-            { path: 'organization', data: { breadcrumb: 'My Organization' }, loadChildren: () => import('./views/organization/organization.module').then(m => m.OrganizationModule) },
+            { path: 'organization/:slug', data: { breadcrumb: 'My Organization' }, loadChildren: () => import('./views/organization/organization.module').then(m => m.OrganizationModule) },
             { path: 'help', data: { breadcrumb: 'Help' }, loadChildren: () => import('./views/help/help.module').then(m => m.HelpModule) }
         ]
     },

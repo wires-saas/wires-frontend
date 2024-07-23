@@ -41,7 +41,7 @@ export interface User {
 })
 export class UserService {
 
-    private domain: string;
+    private readonly domain: string;
 
     constructor(
         private http: HttpClient

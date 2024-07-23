@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { User } from './user.service';
 
 
 export enum Plan {
@@ -13,27 +15,19 @@ export enum Plan {
 export interface Organization {
     name: string;
     slug: string;
-    logo: string;
-    activity: string;
+    logo?: string;
+    activity?: string;
 
-    address: {
+    address?: {
         street: string;
         city: string;
         zip: string;
         country: string;
     };
 
-    adminContact: {
-        firstName: string;
-        lastName: string;
-        email: string;
-    };
+    adminContact?: User;
 
-    billingContact: {
-        firstName: string;
-        lastName: string;
-        email: string;
-    };
+    billingContact: User;
 
     security: {
         twoFactorAuthenticationEnabled: boolean;
@@ -42,7 +36,7 @@ export interface Organization {
 
     subscription: {
         type: Plan;
-        willExpireAt: number;
+        willExpireAt?: number;
     }
 
     createdAt: number;
@@ -54,18 +48,25 @@ export interface Organization {
 })
 export class OrganizationService {
 
-    // Service on top of the organization CRUD API
-    private domain: string = 'http://localhost:3000/v1';
+    private readonly domain: string;
+
+    private currentOrganization$$: Subject<Organization | undefined> = new BehaviorSubject<Organization | undefined>(undefined);
+    public currentOrganization$ = this.currentOrganization$$.asObservable();
 
     constructor(
         private http: HttpClient
     ) {
+        this.domain = environment.backend;
     }
 
     // Get all organizations
     getAll(): Promise<Organization[]> {
-        // return firstValueFrom(this.http.get<any[]>(`${this.domain}/organizations`));
-        return firstValueFrom(this.http.get<any[]>('assets/demo/data/organizations.json'));
+        return firstValueFrom(this.http.get<any[]>(`${this.domain}/organizations`));
+        // return firstValueFrom(this.http.get<any[]>('assets/demo/data/organizations.json'));
+    }
+
+    setCurrentOrganization(organization: Organization) {
+        this.currentOrganization$$.next(organization);
     }
 
 

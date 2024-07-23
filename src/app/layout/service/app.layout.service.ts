@@ -74,7 +74,6 @@ export class LayoutService {
     constructor() {
         effect(() => {
             const config = this.config();
-            console.log('got config', config);
             if (this.updateStyle(config)) {
                 this.changeTheme();
             }
