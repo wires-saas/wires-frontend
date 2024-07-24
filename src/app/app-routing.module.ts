@@ -3,6 +3,7 @@ import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { CanActivateOrganization } from './guards/can-activate-organization.guard';
 import { CanActivateAdministration } from './guards/can-activate-administration.guard';
+import { AutologinGuard } from './guards/autologin.guard';
 
 const routerOptions: ExtraOptions = {
     anchorScrolling: 'enabled'
@@ -44,7 +45,12 @@ const routes: Routes = [
     { path: 'notfound', loadChildren: () => import('./demo/components/notfound/notfound.module').then(m => m.NotfoundModule) },
 
     // Implemented routes
-    { path: 'auth', data: { breadcrumb: 'Auth' }, loadChildren: () => import('./views/auth/auth.module').then(m => m.AuthModule) },
+    {
+        path: 'auth',
+        data: { breadcrumb: 'Auth' },
+        canActivate: [AutologinGuard],
+        loadChildren: () => import('./views/auth/auth.module').then(m => m.AuthModule)
+    },
     { path: 'landing', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule) },
 
     { path: '**', redirectTo: '/notfound' }
@@ -53,6 +59,6 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes, routerOptions)],
     exports: [RouterModule],
-    providers: [CanActivateOrganization, CanActivateAdministration]
+    providers: [CanActivateOrganization, CanActivateAdministration, AutologinGuard]
 })
 export class AppRoutingModule { }

@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 
 @Injectable()
 export class CanActivateAdministration implements CanActivate {
-    constructor() {}
+    constructor(private authService: AuthService) {}
 
-    canActivate(
+    async canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
-    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        console.log('can we activate administration ?'); // TODO fetch current user isSuperAdmin
-        return true;
+    ): Promise<boolean | UrlTree> {
+        return firstValueFrom(this.authService.currentUser$).then((user) => {
+            console.log('canActivate', user?.isSuperAdmin);
+            return !!user?.isSuperAdmin;
+        });
     }
 }

@@ -11,24 +11,24 @@
             <div class="text-900 text-xl font-bold mb-2">Log in</div>
             <span class="text-600 font-medium">Please enter your details</span>
         </div>
-        <div class="flex flex-column">
+        <form class="flex flex-column">
             <span class="p-input-icon-left w-full mb-4">
                 <i class="pi pi-envelope"></i>
-                <input id="email" type="text" pInputText class="w-full md:w-25rem" placeholder="Email">
+                <input id="email" type="text" name="email" [(ngModel)]="email" pInputText class="w-full md:w-25rem" placeholder="Email">
             </span>
             <span class="p-input-icon-left w-full mb-4">
                 <i class="pi pi-lock"></i>
-                <input id="password" type="password" pInputText class="w-full md:w-25rem" placeholder="Password">
+                <input id="truc" type="password" name="truc" [(ngModel)]="password" pInputText class="w-full md:w-25rem" placeholder="Password">
             </span>
             <div class="mb-4 flex flex-wrap gap-3">
                 <div>
-                    <p-checkbox name="checkbox" value="val" [(ngModel)]="rememberMe" styleClass="mr-2" [binary]="true"></p-checkbox>
-                    <label for="checkbox" class="text-900 font-medium mr-8">Remember Me</label>
+                    <p-checkbox name="rememberMe" id="rememberMe" value="val" [(ngModel)]="rememberMe" styleClass="mr-2" [binary]="true"></p-checkbox>
+                    <label for="rememberMe" class="text-900 font-medium mr-8">Remember Me</label>
                 </div>
                 <a [routerLink]="['/auth/forgotpassword']" class="text-600 cursor-pointer hover:text-primary cursor-pointer ml-auto transition-colors transition-duration-300">Reset password</a>
             </div>
-            <button pButton pRipple label="Log In" class="w-full" [routerLink]="['/auth/verification']"></button>
-        </div>
+            <button pButton pRipple label="Log In" class="w-full" (click)="tryLogIn()"></button>
+        </form>
     </div>
 </div>
 

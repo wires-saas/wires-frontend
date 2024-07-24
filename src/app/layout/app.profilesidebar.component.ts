@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { Subject, takeUntil } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { User } from '../services/user.service';
 
 @Component({
     selector: 'app-profilemenu',
     templateUrl: './app.profilesidebar.component.html'
 })
-export class AppProfileSidebarComponent {
+export class AppProfileSidebarComponent implements OnInit, OnDestroy {
 
-    constructor(public layoutService: LayoutService, private router: Router) { }
+    private unsubscribe$: Subject<void> = new Subject<void>();
+
+    public currentUser: User | undefined = undefined;
+
+    constructor(public layoutService: LayoutService, private authService: AuthService, private router: Router) { }
 
     get visible(): boolean {
         return this.layoutService.state.profileSidebarVisible;
@@ -18,8 +26,23 @@ export class AppProfileSidebarComponent {
         this.layoutService.state.profileSidebarVisible = _val;
     }
 
-    navigateToLogin(): void {
-        this.router.navigateByUrl('/auth/login');
+    ngOnInit() {
+        this.authService.currentUser$.pipe(
+            map((user) => {
+                this.currentUser = user;
+            }),
+            takeUntil(this.unsubscribe$)
+        ).subscribe();
+    }
+
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    }
+
+    async logoutAndGoToLogin() {
+        await this.authService.logOut();
+        await this.router.navigateByUrl('/auth/login');
         this.layoutService.hideProfileSidebar();
     }
 }

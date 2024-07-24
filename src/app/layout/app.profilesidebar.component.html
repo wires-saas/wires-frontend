@@ -1,7 +1,7 @@
 <p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" styleClass="layout-profile-sidebar w-full sm:w-25rem">
     <div class="flex flex-column mx-auto md:mx-0">
         <!-- <span class="mb-2 font-semibold">Welcome</span> -->
-        <span class="text-color-secondary font-medium mb-5">Connected as <b>Isabella Andolini</b></span>
+        <span class="text-color-secondary font-medium mb-5">Connected as <b>{{ currentUser?.firstName | titlecase }} {{ currentUser?.lastName | titlecase }}</b></span>
 
         <ul class="list-none m-0 p-0">
             <li>
@@ -27,7 +27,7 @@
                 </a>
             </li> -->
             <li>
-                <a class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
+                <a [routerLink]="['/auth/login']" class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
                     <span>
                         <i class="pi pi-cog text-xl text-primary"></i>
                     </span>
@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li>
-                <a (click)="navigateToLogin()" class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
+                <a (click)="logoutAndGoToLogin()" class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
                     <span>
                         <i class="pi pi-power-off text-xl text-primary"></i>
                     </span>

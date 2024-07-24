@@ -33,6 +33,7 @@ export interface User {
     updatedAt: number;
     lastSeenAt: number;
 
+    isSuperAdmin: boolean;
     roles: UserRole[];
 }
 

@@ -58,7 +58,6 @@ export class OrganizationService {
         private http: HttpClient,
         private route: ActivatedRoute
     ) {
-        console.log('constructed');
         this.domain = environment.backend;
         this.route.paramMap.subscribe(params => {
             console.log('params', params);

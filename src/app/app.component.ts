@@ -8,7 +8,7 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppComponent implements OnInit {
     constructor(private primengConfig: PrimeNGConfig) {}
 
-    ngOnInit(): void {
+    async ngOnInit() {
         this.primengConfig.ripple = true;
     }
 }
