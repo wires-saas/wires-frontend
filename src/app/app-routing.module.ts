@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from './layout/app.layout.component';
+import { CanActivateOrganization } from './guards/can-activate-organization.guard';
+import { CanActivateAdministration } from './guards/can-activate-administration.guard';
 
 const routerOptions: ExtraOptions = {
     anchorScrolling: 'enabled'
@@ -22,8 +24,18 @@ const routes: Routes = [
 
             // Implemented routes
             { path: '', loadChildren: () => import('./views/dashboards/dashboards.module').then(m => m.DashboardsModule) },
-            { path: 'administration', data: { breadcrumb: 'Administration' }, loadChildren: () => import('./views/administration/administration.module').then(m => m.AdministrationModule) },
-            { path: 'organization/:slug', data: { breadcrumb: 'My Organization' }, loadChildren: () => import('./views/organization/organization.module').then(m => m.OrganizationModule) },
+            {
+                path: 'administration',
+                data: { breadcrumb: 'Administration' },
+                canActivate: [CanActivateAdministration],
+                loadChildren: () => import('./views/administration/administration.module').then(m => m.AdministrationModule)
+            },
+            {
+                path: 'organization/:slug',
+                data: { breadcrumb: 'My Organization' },
+                canActivate: [CanActivateOrganization],
+                loadChildren: () => import('./views/organization/organization.module').then(m => m.OrganizationModule)
+            },
             { path: 'help', data: { breadcrumb: 'Help' }, loadChildren: () => import('./views/help/help.module').then(m => m.HelpModule) }
         ]
     },
@@ -40,6 +52,7 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(routes, routerOptions)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [CanActivateOrganization, CanActivateAdministration]
 })
 export class AppRoutingModule { }

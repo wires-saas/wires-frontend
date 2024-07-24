@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, firstValueFrom, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from './user.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 export enum Plan {
@@ -54,9 +55,14 @@ export class OrganizationService {
     public currentOrganization$ = this.currentOrganization$$.asObservable();
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private route: ActivatedRoute
     ) {
+        console.log('constructed');
         this.domain = environment.backend;
+        this.route.paramMap.subscribe(params => {
+            console.log('params', params);
+        });
     }
 
     // Get all organizations
