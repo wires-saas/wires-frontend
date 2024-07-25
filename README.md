@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
 
+## Local Storage
+
+We use the following keys :
+- `access_token` : The access token for the user
+- `autologin` : Whether we should try to autologin if the access token is present
+- `user`: Current user information, including roles, name, encrypted email, etc.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

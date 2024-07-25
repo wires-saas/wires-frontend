@@ -27,7 +27,10 @@ export class AutologinGuard implements CanActivate {
             else {
                 // If token found, trying to autologin
                 return await this.authService.getProfile()
-                    .then(() => this.router.parseUrl('/'))
+                    .then(() => {
+                        const redirectTo = route.queryParams['redirectTo'] || '/';
+                        return this.router.parseUrl(redirectTo);
+                    })
                     .catch((err) => {
                         console.error('autologin failed', err);
                         localStorage.removeItem('access_token');

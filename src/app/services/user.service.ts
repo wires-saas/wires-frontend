@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
+import { UserRole } from '../utils/role.utils';
 
 export enum UserEmailStatus {
     CONFIRMED = 'confirmed',
@@ -13,12 +14,6 @@ export enum UserStatus {
     ACTIVE = 'active',
     INACTIVE = 'inactive',
     PENDING = 'pending',
-}
-
-export interface UserRole {
-    organization: string;
-    user: string;
-    role: string;
 }
 
 export interface User {
