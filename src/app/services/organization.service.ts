@@ -59,9 +59,6 @@ export class OrganizationService {
         private route: ActivatedRoute
     ) {
         this.domain = environment.backend;
-        this.route.paramMap.subscribe(params => {
-            console.log('params', params);
-        });
     }
 
     // Get all organizations

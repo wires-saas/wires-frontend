@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service';
 
 
 @Injectable()
-export class CanActivateAdministration implements CanActivate {
+export class IsSuperAdminGuard implements CanActivate {
     constructor(private authService: AuthService) {}
 
     async canActivate(
@@ -13,7 +13,6 @@ export class CanActivateAdministration implements CanActivate {
         state: RouterStateSnapshot
     ): Promise<boolean | UrlTree> {
         return firstValueFrom(this.authService.currentUser$).then((user) => {
-            console.log('canActivate', user?.isSuperAdmin);
             return !!user?.isSuperAdmin;
         });
     }

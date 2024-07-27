@@ -125,7 +125,6 @@ export class AppMenuComponent implements OnInit {
 
         this.organizationService.currentOrganization$.pipe(
             map((org) => {
-                console.log('buildingMenuForOrganization');
                 if (org) {
                     this.buildMenuForOrganization(org, this.authService);
                 }

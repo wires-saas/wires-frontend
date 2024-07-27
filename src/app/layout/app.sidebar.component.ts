@@ -1,9 +1,8 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { Organization, OrganizationService } from '../services/organization.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { Slug } from '../utils/types.utils';
 
 @Component({
     selector: 'app-sidebar',
@@ -19,13 +18,11 @@ export class AppSidebarComponent implements OnInit {
     constructor(public layoutService: LayoutService,
                 public el: ElementRef,
                 private router: Router,
-                private activatedRoute: ActivatedRoute,
                 private organizationService: OrganizationService) {}
 
     async ngOnInit() {
 
         // Fetching all organizations
-        // setTimeout(() => {
             this.organizationService.getAll().then(organizations => {
                 this.availableOrganizations = organizations;
 
@@ -36,10 +33,10 @@ export class AppSidebarComponent implements OnInit {
                 } else if (this.availableOrganizations?.length > 1) {
 
                     // if multiple organizations, select the one in the URL
-                    console.log(this.activatedRoute.snapshot.url);
-
-                    const slugInUrl: Slug = this.activatedRoute.snapshot.params['slug'];
-                    console.log('slugInUrl', slugInUrl);
+                    const url = this.router.url;
+                    const regex = /organization\/([^\/]+)/;
+                    const match = url.match(regex);
+                    const slugInUrl = match && match[1];
 
                     this.selectedOrganization = this.availableOrganizations.find(org => org.slug === slugInUrl);
 
@@ -54,7 +51,6 @@ export class AppSidebarComponent implements OnInit {
 
                 if (this.selectedOrganization) this.organizationService.setCurrentOrganization(this.selectedOrganization);
             });
-        // }, 1000);
     }
 
     async onOrganizationChange() {
@@ -65,7 +61,6 @@ export class AppSidebarComponent implements OnInit {
             this.organizationService.setCurrentOrganization(this.selectedOrganization);
 
             if (previousOrganization && this.router.url.includes(previousOrganization.slug)) {
-                console.log('rewriting url');
                 await this.router.navigateByUrl(
                     this.router.url.replace(
                         `/${previousOrganization.slug}/`,

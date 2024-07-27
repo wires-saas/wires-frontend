@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from './layout/app.layout.component';
-import { CanActivateOrganization } from './guards/can-activate-organization.guard';
-import { CanActivateAdministration } from './guards/can-activate-administration.guard';
-import { AutologinGuard } from './guards/autologin.guard';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
-import { HasRoleGuard } from './guards/has-role.guard';
+import { IsSuperAdminGuard } from './guards/is-super-admin.guard';
 
 const routerOptions: ExtraOptions = {
     anchorScrolling: 'enabled',
-    paramsInheritanceStrategy: 'always',
 };
 
 const routes: Routes = [
@@ -32,7 +28,7 @@ const routes: Routes = [
             {
                 path: 'administration',
                 data: { breadcrumb: 'Administration' },
-                canActivate: [AuthenticatedGuard, CanActivateAdministration],
+                canActivate: [AuthenticatedGuard, IsSuperAdminGuard],
                 loadChildren: () => import('./views/administration/administration.module').then(m => m.AdministrationModule)
             },
             {
@@ -62,8 +58,7 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes, routerOptions)],
     exports: [RouterModule],
     providers: [
-        CanActivateOrganization,
-        CanActivateAdministration,
+        IsSuperAdminGuard,
         AuthenticatedGuard
     ]
 })
