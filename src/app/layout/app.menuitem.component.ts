@@ -31,7 +31,7 @@ import {DomHandler} from 'primeng/dom';
         <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
     </a>
     <a
-        *ngIf="item.routerLink && !item.items && item.visible !== false"
+        *ngIf="item.routerLink && !item.items && item.visible !== false && !item.restriction || (item.restriction | async) === true"
         (click)="itemClick($event)"
         (mouseenter)="onMouseEnter()"
         [ngClass]="item.class"
@@ -153,7 +153,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
             this.menuService.onMenuStateChange({key: this.key, routeEvent: true});
         }
     }
-    
+
     onSubmenuAnimated(event: AnimationEvent) {
         if (event.toState === 'visible' && this.layoutService.isDesktop() && (this.layoutService.isHorizontal() || this.layoutService.isSlim()|| this.layoutService.isSlimPlus())) {
             const el = <HTMLUListElement> event.element;
@@ -171,7 +171,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
             // reset
             overlay.style.top = '';
             overlay.style.left = '';
-      
+
             if (this.layoutService.isHorizontal()) {
                 const width = left + oWidth + scrollbarWidth;
                 overlay.style.left = vWidth < width ? `${left - (width - vWidth)}px` : `${left}px`;
@@ -181,7 +181,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
             }
         }
       }
-    
+
     itemClick(event: Event) {
         // avoid processing disabled items
         if (this.item.disabled) {
@@ -235,7 +235,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         if (this.layoutService.isDesktop() && (this.layoutService.isHorizontal() || this.layoutService.isSlim() || this.layoutService.isSlimPlus())){
             return this.active ? 'visible' : 'hidden';
         }
-          
+
         else
             return this.root ? 'expanded' : (this.active ? 'expanded' : 'collapsed');
     }
@@ -252,7 +252,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         return this.layoutService.isSlimPlus();
     }
 
-    @HostBinding('class.active-menuitem') 
+    @HostBinding('class.active-menuitem')
     get activeClass() {
         return this.active && !this.root;
     }

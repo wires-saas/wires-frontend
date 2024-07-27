@@ -46,7 +46,7 @@ export class LayoutService {
         menuMode: 'static',
         colorScheme: 'light',
         theme: 'indigo',
-        scale: 13,
+        scale: 14,
         menuTheme: 'colorScheme',
     };
 

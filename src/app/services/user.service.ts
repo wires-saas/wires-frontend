@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
 import { UserRole } from '../utils/role.utils';
+import { Slug } from '../utils/types.utils';
 
 export enum UserEmailStatus {
     CONFIRMED = 'confirmed',
@@ -45,7 +46,16 @@ export class UserService {
         this.domain = environment.backend;
     }
 
-    async getUsers(): Promise<User[]> {
+    async getUsers(organizations?: Slug[]): Promise<User[]> {
+
+        if (organizations?.length) {
+            return firstValueFrom(this.http.get<User[]>(`${this.domain}/users`, {
+                params: {
+                    organizations
+                }
+            }));
+        }
+
         return firstValueFrom(this.http.get<User[]>(`${this.domain}/users`));
     }
 

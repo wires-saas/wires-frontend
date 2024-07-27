@@ -1,13 +1,17 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
 import { Organization, OrganizationService } from '../services/organization.service';
-import { firstValueFrom } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { Role } from '../utils/role.utils';
+import { map } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-menu',
     templateUrl: './app.menu.component.html'
 })
 export class AppMenuComponent implements OnInit {
+
+    private destroyRef = inject(DestroyRef);
 
     model: any[] = [];
 
@@ -30,30 +34,35 @@ export class AppMenuComponent implements OnInit {
         }
     ]);
 
-    private organizationMenu: (org: Organization) => any[] = (org) => ([
+    private organizationMenu: (org: Organization, authService: AuthService) => any[] = (org, authService) => ([
         {
             label: 'Organization',
             icon: 'pi pi-fw pi-building',
+            restriction: authService.hasRole$(Role.MANAGER, org.slug),
             items: [
                 {
                     label: 'All Users',
                     icon: 'pi pi-fw pi-users',
-                    routerLink: [`organization/${org.slug}/users/list`]
+                    routerLink: [`organization/${org.slug}/users/list`],
+                    restriction: authService.hasRole$(Role.MANAGER, org.slug)
                 },
                 {
                     label: 'Add User',
                     icon: 'pi pi-fw pi-user-plus',
-                    routerLink: [`organization/${org.slug}/users/create`]
+                    routerLink: [`organization/${org.slug}/users/create`],
+                    restriction: authService.hasRole$(Role.MANAGER, org.slug)
                 },
                 {
                     label: 'Information',
                     icon: 'pi pi-fw pi-building',
-                    routerLink: [`organization/${org.slug}/information`]
+                    routerLink: [`organization/${org.slug}/information`],
+                    restriction: authService.hasRole$(Role.ADMIN, org.slug)
                 },
                 {
                     label: 'Billing',
                     icon: 'pi pi-fw pi-wallet',
-                    routerLink: [`organization/${org.slug}/billing`]
+                    routerLink: [`organization/${org.slug}/billing`],
+                    restriction: authService.hasRole$(Role.ADMIN, org.slug)
                 },
 
             ]
@@ -79,10 +88,11 @@ export class AppMenuComponent implements OnInit {
         }
     ];
 
-    private superAdminMenu: any[] = [
+    private superAdminMenu: (authService: AuthService) => any[] = (authService) => ([
         {
             label: 'Administration',
             icon: 'pi pi-fw pi-shield',
+            restriction: authService.hasRole$(Role.SUPER_ADMIN),
             items: [
                 {
                     label: 'All Organizations',
@@ -106,31 +116,37 @@ export class AppMenuComponent implements OnInit {
                 },
             ]
         }
-    ];
+    ]);
 
-    constructor(private organizationService: OrganizationService) { }
+    constructor(private organizationService: OrganizationService, private authService: AuthService) { }
 
     ngOnInit() {
-        this.buildMenu();
+        this.buildMenu(this.authService);
 
-        this.organizationService.currentOrganization$.subscribe((org) => {
-            if (org) this.buildMenuForOrganization(org);
-        });
+        this.organizationService.currentOrganization$.pipe(
+            map((org) => {
+                console.log('buildingMenuForOrganization');
+                if (org) {
+                    this.buildMenuForOrganization(org, this.authService);
+                }
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
     }
 
-    buildMenu() {
+    buildMenu(authService: AuthService) {
         this.model = [
             ...this.helpMenu,
-            ...this.superAdminMenu
+            ...this.superAdminMenu(authService)
         ];
     }
 
-    buildMenuForOrganization(org: Organization) {
+    buildMenuForOrganization(org: Organization, authService: AuthService) {
         this.model = [
             ...this.dashboardMenu(org),
-            ...this.organizationMenu(org),
+            ...this.organizationMenu(org, authService),
             ...this.helpMenu,
-            ...this.superAdminMenu
+            ...this.superAdminMenu(authService)
         ];
     }
 }

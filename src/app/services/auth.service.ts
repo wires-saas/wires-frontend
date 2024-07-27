@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, firstValueFrom, Subject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { User } from './user.service';
+import { Role, RoleUtils } from '../utils/role.utils';
+import { map } from 'rxjs/operators';
 
 interface ProfileData {
     jwt: {
@@ -63,5 +65,15 @@ export class AuthService {
             });
     }
 
+    hasRole$(role: Role, slug?: string): Observable<boolean> {
+        return this.currentUser$.pipe(
+            map((user) => {
+
+                if (!user) return false;
+
+                return RoleUtils.hasRole(user, role, slug);
+            })
+        );
+    }
 
 }
