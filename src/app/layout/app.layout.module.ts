@@ -21,6 +21,7 @@ import { AppMenuitemComponent } from './app.menuitem.component';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import { DropdownModule } from 'primeng/dropdown';
         InputSwitchModule,
         ButtonModule,
         TooltipModule,
+        ToastModule,
         RippleModule,
         RouterModule,
         AppConfigModule,

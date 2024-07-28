@@ -22,26 +22,7 @@ export class ListUsersComponent implements OnInit {
 
     users: User[] = [];
 
-    rolesMenuItems: MenuItem[] = [
-        { label: 'Set Admin' },
-        { label: 'Set Manager' },
-        { label: 'Set User' },
-    ];
-
-    actionsMenuItems: MenuItem[] = [
-        {
-            label: 'Re-send Invite', icon: 'pi pi-fw pi-envelope'
-        },
-        {
-            label: 'Remove', icon: 'pi pi-fw pi-user-minus'
-        },
-        {
-            separator: true
-        },
-        { label: 'Set Admin', icon: 'pi pi-fw pi-sort-up', data: 'admin' },
-        { label: 'Set Manager', icon: 'pi pi-fw pi-sort', data: 'manager' },
-        { label: 'Set User', icon: 'pi pi-fw pi-sort-down', data: 'user' },
-    ];
+    actionsMenuItems: MenuItem[] = [];
 
     multiOrganizations: boolean = false;
 
@@ -100,8 +81,6 @@ export class ListUsersComponent implements OnInit {
 
     async toggleMenuFor(user: User, menu: any, event: Event) {
 
-        console.log(user);
-
         const currentUser = await firstValueFrom(this.authService.currentUser$);
 
         if (!currentUser) throw new Error('No current user');
@@ -109,6 +88,21 @@ export class ListUsersComponent implements OnInit {
         const currentUserRole = this.getRoleOfUser(currentUser);
 
         const role = this.getRoleOfUser(user);
+
+
+        this.actionsMenuItems = [
+            {
+                label: 'Edit',
+                icon: 'pi pi-fw pi-pencil',
+                routerLink: ['/organization', this.currentOrgSlug, 'users', user._id, 'edit']
+            },
+            { label: 'Re-send Invite', icon: 'pi pi-fw pi-envelope' },
+            { label: 'Remove', icon: 'pi pi-fw pi-user-minus' },
+            { separator: true },
+            { label: 'Set Admin', icon: 'pi pi-fw pi-sort-up', data: 'admin' },
+            { label: 'Set Manager', icon: 'pi pi-fw pi-sort', data: 'manager' },
+            { label: 'Set User', icon: 'pi pi-fw pi-sort-down', data: 'user' },
+        ];
 
         this.actionsMenuItems
             .filter(_ => !!_['data'])

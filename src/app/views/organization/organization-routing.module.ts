@@ -14,7 +14,13 @@ import { HasRoleGuard } from '../../guards/has-role.guard';
             path: 'users/create',
             data: { breadcrumb: 'Users', requiredRole: 'manager' },
             canActivate: [HasRoleGuard],
-            loadChildren: () => import('./users/create/create-user.module').then(m => m.CreateUserModule)
+            loadChildren: () => import('./users/create-or-edit/create-or-edit-user.module').then(m => m.CreateOrEditUserModule)
+        },
+        {
+            path: 'users/:user/edit',
+            data: { breadcrumb: 'Users', requiredRole: 'manager' },
+            canActivate: [HasRoleGuard],
+            loadChildren: () => import('./users/create-or-edit/create-or-edit-user.module').then(m => m.CreateOrEditUserModule)
         },
         {
             path: 'information',

@@ -109,11 +109,6 @@ export class AppMenuComponent implements OnInit {
                     icon: 'pi pi-fw pi-users',
                     routerLink: ['administration/organizations/users/list']
                 },
-                {
-                    label: 'Add User',
-                    icon: 'pi pi-fw pi-user-plus',
-                    routerLink: ['administration/organizations/users/create']
-                },
             ]
         }
     ]);

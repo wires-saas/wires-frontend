@@ -1,9 +1,16 @@
 <div class="card">
-    <span class="text-900 text-xl font-bold mb-4 block">Invitation to join {{ organizationName$ | async }}</span>
+    <span class="text-900 text-xl font-bold mb-4 block">
+        <ng-container *ngIf="isInvitingNewUser; else modifyingUser">
+            Invitation to join {{ organizationName$ | async }}
+        </ng-container>
+        <ng-template #modifyingUser>
+            Edit User
+        </ng-template>
+    </span>
     <div class="grid">
         <div class="col-12 lg:col-2">
             <div class="text-900 font-medium text-xl mb-3">Profile</div>
-            <p class="m-0 p-0 text-600 line-height-3 mr-3">After accepting invitation, user will be able to edit his profile information</p>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3" *ngIf="isInvitingNewUser">After accepting invitation, user will be able to edit his profile information</p>
         </div>
         <div class="col-12 lg:col-10">
             <form class="grid formgrid p-fluid" [formGroup]="userForm">
@@ -29,11 +36,15 @@
 
                 <div class="field mb-4 col-12 md:col-4">
                     <label for="street" class="font-medium text-900">Street</label>
-                    <input id="street" type="text" pInputText>
+                    <input formControlName="street" id="street" type="text" pInputText>
                 </div>
                 <div class="field mb-4 col-12 md:col-4">
                     <label for="city" class="font-medium text-900">City</label>
-                    <input id="city" type="text" pInputText>
+                    <input formControlName="city" id="city" type="text" pInputText>
+                </div>
+                <div class="field mb-4 col-12 md:col-4">
+                    <label for="zipCode" class="font-medium text-900">ZIP Code</label>
+                    <input formControlName="zipCode" id="zipCode" type="text" pInputText>
                 </div>
                 <div class="field mb-3 col-12 md:col-4">
                     <label for="country" class="font-medium text-900">Country</label>
@@ -48,9 +59,25 @@
                 </div>
 
                 <div class="col-12">
-                    <button (click)="onSubmit()" pButton pRipple label="Create User" class="w-auto mt-3"></button>
+                    <button *ngIf="isInvitingNewUser; else modifyUserButton"
+                            (click)="onSubmit()" pButton pRipple label="Invite User" icon="pi pi-user-plus" class="w-auto mt-3">
+                    </button>
+                    <ng-template #modifyUserButton>
+                        <button (click)="onSubmit()" pButton pRipple label="Update User" icon="pi pi-user-edit" class="w-auto mt-3">
+                        </button>
+                    </ng-template>
+
+                    <a [routerLink]="['/organization', currentOrgSlug, 'users', 'list']">
+                        <button  pButton pRipple label="Return to users list" class="p-button-text w-auto mt-3">
+                        </button>
+                    </a>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<p-toast />
+
+<p-confirmDialog header="Confirmation" key="confirm-invitation" icon="pi pi-question-circle" message="Are you sure you want to invite user ?"
+                 [style]="{width: '350px'}" defaultFocus="none" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

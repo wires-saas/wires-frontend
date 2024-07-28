@@ -64,8 +64,16 @@ export class UserService {
         return firstValueFrom(this.http.get<User[]>(`${this.domain}/users`));
     }
 
+    async getUserById(id: string): Promise<User> {
+        return firstValueFrom(this.http.get<User>(`${this.domain}/users/${id}`));
+    }
+
     async createUser(user: Partial<User>): Promise<User> {
         return firstValueFrom(this.http.post<User>(`${this.domain}/users`, user));
+    }
+
+    async updateUser(userId: string, user: Partial<User>): Promise<User> {
+        return firstValueFrom(this.http.patch<User>(`${this.domain}/users/${userId}`, user));
     }
 
 
