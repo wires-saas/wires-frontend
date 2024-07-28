@@ -29,6 +29,11 @@ export interface User {
     updatedAt: number;
     lastSeenAt: number;
 
+    street: string;
+    city: string;
+    zipCode: string;
+    country: string;
+
     isSuperAdmin: boolean;
     roles: UserRole[];
 }
@@ -57,6 +62,10 @@ export class UserService {
         }
 
         return firstValueFrom(this.http.get<User[]>(`${this.domain}/users`));
+    }
+
+    async createUser(user: Partial<User>): Promise<User> {
+        return firstValueFrom(this.http.post<User>(`${this.domain}/users`, user));
     }
 
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -16,6 +16,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 	imports: [
 		CommonModule,
 		FormsModule,
+        ReactiveFormsModule,
 		CreateUserRoutingModule,
 		ButtonModule,
 		RippleModule,

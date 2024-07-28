@@ -7,17 +7,19 @@ import { TableModule } from 'primeng/table';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ListUsersComponent } from './list-users.component';
 import { ListUsersRoutingModule } from './list-users-routing.module';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		ListUsersRoutingModule,
-		RippleModule,
-		ButtonModule,
-		InputTextModule,
-		TableModule,
-		ProgressBarModule
-	],
+    imports: [
+        CommonModule,
+        ListUsersRoutingModule,
+        RippleModule,
+        ButtonModule,
+        InputTextModule,
+        TableModule,
+        ProgressBarModule,
+        MenuModule
+    ],
 	declarations: [ListUsersComponent]
 })
 export class ListUsersModule { }

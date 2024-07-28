@@ -1,4 +1,7 @@
 <div class="card">
+
+    <p-menu #actionsMenu [popup]="true" [model]="actionsMenuItems"></p-menu>
+
     <p-table #dt [value]="users" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
         [globalFilterFields]="['firstName', 'lastName','email']">
@@ -8,7 +11,9 @@
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Global Search" class="w-full" />
                 </span>
-                <button (click)="navigateToCreateUser()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
+                <a [routerLink]="['/organization/' + currentOrgSlug + '/users/create']">
+                    <button pButton class="w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Invite User"></button>
+                </a>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -20,6 +25,7 @@
                 <th pSortableColumn="status" class="white-space-nowrap" style="width:25%">Status <p-sortIcon field="status"></p-sortIcon></th>
                 <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:25%">Invited <p-sortIcon field="createdAt"></p-sortIcon></th>
                 <th pSortableColumn="lastSeenAt" class="white-space-nowrap" style="width:25%">Last Seen <p-sortIcon field="lastSeen"></p-sortIcon></th>
+                <th class="white-space-nowrap" style="width:25%">Actions</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-user>
@@ -27,12 +33,15 @@
                 <td>{{ user.firstName}}</td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ getUserRole(user) | titlecase }}</td>
+                <td>{{ getRoleOfUser(user) | titlecase }}</td>
                 <td>{{ user.status | titlecase }}</td>
                 <td>{{ user.createdAt | date: 'dd/MM/yyyy'}}</td>
                 <td>
                     <ng-container *ngIf="user.lastSeenAt; else neverSeen">{{ user.lastSeenAt | date: 'dd/MM/yyyy'}}</ng-container>
                     <ng-template #neverSeen>Never</ng-template>
+                </td>
+                <td>
+                    <button (click)="toggleMenuFor(user, actionsMenu, $event)" pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-outlined p-button-info"></button>
                 </td>
             </tr>
         </ng-template>

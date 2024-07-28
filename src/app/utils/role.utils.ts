@@ -11,6 +11,7 @@ export enum Role {
     ADMIN = 'admin',
     MANAGER = 'manager',
     USER = 'user',
+    GUEST = 'guest'
 }
 
 export class RoleUtils {
@@ -20,15 +21,15 @@ export class RoleUtils {
 
         return user.roles.some(userRole => {
             if (organization) {
-                return RoleUtils.isRoleOrGreater(userRole, role) && userRole.organization === organization;
+                return RoleUtils.isRoleOrGreater(userRole.role, role) && userRole.organization === organization;
             } else {
-                return RoleUtils.isRoleOrGreater(userRole, role);
+                return RoleUtils.isRoleOrGreater(userRole.role, role);
             }
         });
     }
 
-    static isRoleOrGreater(userRoleTested: UserRole, roleRequired: Role): boolean {
-        return RoleUtils.getRoleHierarchy(userRoleTested.role) >= RoleUtils.getRoleHierarchy(roleRequired);
+    static isRoleOrGreater(roleTested: Role, roleRequired: Role): boolean {
+        return RoleUtils.getRoleHierarchy(roleTested) >= RoleUtils.getRoleHierarchy(roleRequired);
     }
 
     static getRoleHierarchy(role: Role): number {

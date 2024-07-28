@@ -7,7 +7,11 @@ import { User, UserService } from '../../../../services/user.service';
 import { OrganizationService } from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import { filter } from 'rxjs';
+import { filter, firstValueFrom } from 'rxjs';
+import { MenuItem } from 'primeng/api';
+import { Role, RoleUtils } from '../../../../utils/role.utils';
+import { Slug } from '../../../../utils/types.utils';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     templateUrl: './list-users.component.html'
@@ -18,11 +22,35 @@ export class ListUsersComponent implements OnInit {
 
     users: User[] = [];
 
+    rolesMenuItems: MenuItem[] = [
+        { label: 'Set Admin' },
+        { label: 'Set Manager' },
+        { label: 'Set User' },
+    ];
+
+    actionsMenuItems: MenuItem[] = [
+        {
+            label: 'Re-send Invite', icon: 'pi pi-fw pi-envelope'
+        },
+        {
+            label: 'Remove', icon: 'pi pi-fw pi-user-minus'
+        },
+        {
+            separator: true
+        },
+        { label: 'Set Admin', icon: 'pi pi-fw pi-sort-up', data: 'admin' },
+        { label: 'Set Manager', icon: 'pi pi-fw pi-sort', data: 'manager' },
+        { label: 'Set User', icon: 'pi pi-fw pi-sort-down', data: 'user' },
+    ];
+
     multiOrganizations: boolean = false;
+
+    currentOrgSlug: Slug | undefined;
 
     private destroyRef = inject(DestroyRef);
 
     constructor(private customerService: CustomerService,
+                private authService: AuthService,
                 private userService: UserService,
                 private organizationService: OrganizationService,
                 private route: ActivatedRoute,
@@ -31,10 +59,13 @@ export class ListUsersComponent implements OnInit {
     async ngOnInit() {
         this.customerService.getCustomersLarge().then(customers => this.customers = customers);
 
+        this.multiOrganizations = !!this.route.snapshot.data['multiOrganizations'];
+
         this.organizationService.currentOrganization$.pipe(
             filter(org => !!org),
             map(async (org) => {
-                if (org?.slug) {
+                this.currentOrgSlug = org?.slug;
+                if (org?.slug && !this.multiOrganizations) {
                     this.users = await this.userService.getUsers([org.slug]);
                 } else {
                     this.users = await this.userService.getUsers();
@@ -42,25 +73,58 @@ export class ListUsersComponent implements OnInit {
             }),
             takeUntilDestroyed(this.destroyRef)
         ).subscribe();
-
-        this.multiOrganizations = !!this.route.snapshot.data['multiOrganizations'];
     }
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains')
     }
 
-    navigateToCreateUser(){
+    async navigateToCreateUser(){
         if (this.multiOrganizations) {
-            this.router.navigate(['administration/organizations/users/create']);
+            await this.router.navigate(['administration/organizations/users/create']);
         } else {
-            this.router.navigate(['organizations/users/create']);
+            await this.router.navigate(['users', 'create']);
         }
     }
 
-    getUserRole(user: User): string {
-        if (user?.roles?.length) return user.roles[0].role;
-        else return '';
+    getRoleOfUser(user: User): Role {
+        if (user?.isSuperAdmin) return Role.SUPER_ADMIN;
+
+        if (user?.roles?.length) {
+            if (this.currentOrgSlug) return user.roles.find(_ => _.organization === this.currentOrgSlug)?.role || Role.GUEST;
+            else return user.roles[0].role;
+        }
+
+        return Role.GUEST;
+    }
+
+    async toggleMenuFor(user: User, menu: any, event: Event) {
+
+        console.log(user);
+
+        const currentUser = await firstValueFrom(this.authService.currentUser$);
+
+        if (!currentUser) throw new Error('No current user');
+
+        const currentUserRole = this.getRoleOfUser(currentUser);
+
+        const role = this.getRoleOfUser(user);
+
+        this.actionsMenuItems
+            .filter(_ => !!_['data'])
+            .forEach(_ => {
+                // Disabling possibility to set same role user already has
+                _.disabled = (role === _['data'])
+
+                if (currentUserRole === Role.MANAGER) {
+                    if (_['data'] === Role.ADMIN) {
+                        _.visible = false;
+                    }
+                }
+            });
+
+        menu.toggle(event);
+
     }
 
 }
