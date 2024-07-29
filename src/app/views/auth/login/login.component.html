@@ -27,9 +27,11 @@
                 </div>
                 <a [routerLink]="['/auth/forgotpassword']" class="text-600 cursor-pointer hover:text-primary cursor-pointer ml-auto transition-colors transition-duration-300">Reset password</a>
             </div>
-            <button pButton pRipple label="Log In" class="w-full" (click)="tryLogIn()"></button>
+            <button pButton pRipple label="Log In" [loading]="isWaitingServer" class="w-full" (click)="tryLogIn()"></button>
         </form>
     </div>
 </div>
 
 <app-config [minimal]="true"></app-config>
+
+<p-toast position="bottom-center"/>

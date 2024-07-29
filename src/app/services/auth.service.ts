@@ -65,6 +65,10 @@ export class AuthService {
             });
     }
 
+    async checkToken(token: string): Promise<boolean> {
+        return firstValueFrom(this.http.get<boolean>(`${this.domain}/auth/invite/${token}`));
+    }
+
     hasRole$(role: Role, slug?: string): Observable<boolean> {
         return this.currentUser$.pipe(
             map((user) => {
