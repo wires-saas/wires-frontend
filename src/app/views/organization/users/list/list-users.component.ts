@@ -8,10 +8,11 @@ import { OrganizationService } from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { filter, firstValueFrom } from 'rxjs';
-import { MenuItem } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Role, RoleUtils } from '../../../../utils/role.utils';
 import { Slug } from '../../../../utils/types.utils';
 import { AuthService } from '../../../../services/auth.service';
+import { MessageUtils } from '../../../../utils/message.utils';
 
 @Component({
     templateUrl: './list-users.component.html'
@@ -34,6 +35,8 @@ export class ListUsersComponent implements OnInit {
                 private authService: AuthService,
                 private userService: UserService,
                 private organizationService: OrganizationService,
+                private confirmationService: ConfirmationService,
+                private messageService: MessageService,
                 private route: ActivatedRoute,
                 private router: Router) { }
 
@@ -89,6 +92,8 @@ export class ListUsersComponent implements OnInit {
 
         const role = this.getRoleOfUser(user);
 
+        const isCurrentUser = currentUser._id === user._id
+
 
         this.actionsMenuItems = [
             {
@@ -96,12 +101,42 @@ export class ListUsersComponent implements OnInit {
                 icon: 'pi pi-fw pi-pencil',
                 routerLink: ['/organization', this.currentOrgSlug, 'users', user._id, 'edit']
             },
-            { label: 'Re-send Invite', icon: 'pi pi-fw pi-envelope' },
-            { label: 'Remove', icon: 'pi pi-fw pi-user-minus' },
-            { separator: true },
-            { label: 'Set Admin', icon: 'pi pi-fw pi-sort-up', data: 'admin' },
-            { label: 'Set Manager', icon: 'pi pi-fw pi-sort', data: 'manager' },
-            { label: 'Set User', icon: 'pi pi-fw pi-sort-down', data: 'user' },
+            { label: 'Re-send Invite', icon: 'pi pi-fw pi-envelope', visible: !isCurrentUser },
+            {
+                label: 'Remove',
+                icon: 'pi pi-fw pi-user-minus',
+                visible: !isCurrentUser && (currentUserRole === Role.ADMIN || currentUserRole === Role.MANAGER || currentUserRole === Role.SUPER_ADMIN),
+                command: () => {
+                    this.confirmationService.confirm({
+                        key: 'confirm-delete',
+                        accept: async() => {
+                            if (!this.currentOrgSlug) throw new Error('No current organization slug');
+                            await this.userService.deleteUser(user._id, this.currentOrgSlug).then(() => {
+                                this.users = this.users.filter(_ => _.email !== user.email);
+
+                                this.messageService.add({
+                                    severity: 'success',
+                                    summary: 'Success removing user',
+                                    detail: 'User has been removed from your organization',
+                                    life: 5000,
+
+                                });
+
+                            }).catch((err) => {
+                                console.error(err);
+
+                                MessageUtils.parseServerError(this.messageService, err, {
+                                    summary: 'Error removing user',
+                                });
+                            });
+                        }
+                    });
+                }
+            },
+            { separator: true, visible: !isCurrentUser },
+            { label: 'Set Admin', icon: 'pi pi-fw pi-sort-up', visible: !isCurrentUser, data: 'admin' },
+            { label: 'Set Manager', icon: 'pi pi-fw pi-sort', visible: !isCurrentUser, data: 'manager' },
+            { label: 'Set User', icon: 'pi pi-fw pi-sort-down', visible: !isCurrentUser, data: 'user' },
         ];
 
         this.actionsMenuItems

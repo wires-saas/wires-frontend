@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Slug } from '../../../../utils/types.utils';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessageUtils } from '../../../../utils/message.utils';
 
 @Component({
     templateUrl: './create-or-edit-user.component.html',
@@ -18,8 +19,6 @@ export class CreateOrEditUserComponent implements OnInit, AfterViewInit {
 
     countries: any[] = [];
 
-    userCountry: any = {name: 'France', code: 'FR'};
-
     userForm: FormGroup = new FormGroup({
         firstName: new FormControl('', Validators.required),
         lastName: new FormControl('', Validators.required),
@@ -27,7 +26,7 @@ export class CreateOrEditUserComponent implements OnInit, AfterViewInit {
         street: new FormControl(''),
         city: new FormControl(''),
         zipCode: new FormControl(''),
-        country: new FormControl(''),
+        country: new FormControl('FR'),
     });
 
     isInvitingNewUser: boolean = false;
@@ -102,18 +101,19 @@ export class CreateOrEditUserComponent implements OnInit, AfterViewInit {
             this.confirmationService.confirm({
                 key: 'confirm-invitation',
                 accept: async () => {
-                    await this.userService.createUser(this.userForm.value).then(async (userCreated) => {
+                    await this.userService.createUser({
+                        ...this.userForm.value,
+                        organization: this.currentOrgSlug
+                    }).then(async (userCreated) => {
                         await this.router.navigate(
                             ['/organization', this.currentOrgSlug, 'users', userCreated._id, 'edit'],
                             { queryParams: { newlyCreated: true }}
                         );
                     }).catch((err) => {
                         console.error(err);
-                        this.messageService.add({
-                            severity: 'error',
+
+                        MessageUtils.parseServerError(this.messageService, err, {
                             summary: 'Error creating user',
-                            detail: `${err.statusText} (${err.status})`,
-                            life: 3000
                         });
 
                     })

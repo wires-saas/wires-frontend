@@ -10,7 +10,8 @@
     <div class="grid">
         <div class="col-12 lg:col-2">
             <div class="text-900 font-medium text-xl mb-3">Profile</div>
-            <p class="m-0 p-0 text-600 line-height-3 mr-3" *ngIf="isInvitingNewUser">After accepting invitation, user will be able to edit his profile information</p>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3" *ngIf="isInvitingNewUser">
+                Fields marked with an asterisk (*) are required</p>
         </div>
         <div class="col-12 lg:col-10">
             <form class="grid formgrid p-fluid" [formGroup]="userForm">
@@ -27,6 +28,9 @@
                 <div class="field mb-4 col-12">
                     <label for="email" class="font-medium text-900">Email *</label>
                     <input formControlName="email" id="email" type="email" pInputText>
+                    <small *ngIf="userForm.get('email')?.dirty && userForm.get('email')?.invalid" class="p-error">
+                        Must be a valid email such as example&#x40;mail.com
+                    </small>
                 </div>
 
                 <div class="field mb-4 col-12">
@@ -77,7 +81,7 @@
     </div>
 </div>
 
-<p-toast />
+<p-toast position="bottom-right"/>
 
 <p-confirmDialog header="Confirmation" key="confirm-invitation" icon="pi pi-question-circle" message="Are you sure you want to invite user ?"
                  [style]="{width: '350px'}" defaultFocus="none" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

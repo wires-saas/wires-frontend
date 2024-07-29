@@ -47,3 +47,11 @@
         </ng-template>
     </p-table>
 </div>
+
+<p-confirmDialog header="Delete User" key="confirm-delete" icon="pi pi-exclamation-triangle"
+                 message="Are you sure you want to delete user ? This action cannot be undone and will require you to re-invite the user."
+                 [style]="{width: '350px'}" defaultFocus="none"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
+
+<p-toast position="bottom-right" />

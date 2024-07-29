@@ -8,6 +8,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ListUsersComponent } from './list-users.component';
 import { ListUsersRoutingModule } from './list-users-routing.module';
 import { MenuModule } from 'primeng/menu';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     imports: [
@@ -18,7 +20,9 @@ import { MenuModule } from 'primeng/menu';
         InputTextModule,
         TableModule,
         ProgressBarModule,
-        MenuModule
+        MenuModule,
+        ConfirmDialogModule,
+        ToastModule
     ],
 	declarations: [ListUsersComponent]
 })

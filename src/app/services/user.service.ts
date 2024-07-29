@@ -76,5 +76,13 @@ export class UserService {
         return firstValueFrom(this.http.patch<User>(`${this.domain}/users/${userId}`, user));
     }
 
+    async deleteUser(userId: string, orgSlug: Slug): Promise<void> {
+        return firstValueFrom(this.http.delete<void>(`${this.domain}/users/${userId}`, {
+            params: {
+                organization: orgSlug
+            }
+        }));
+    }
+
 
 }
