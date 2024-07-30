@@ -11,8 +11,16 @@ import { CanAcceptInviteGuard } from '../../guards/can-accept-invite.guard';
         { path: 'forgotpassword', canActivate: [AutologinGuard], loadChildren: () => import('./forgotpassword/forgotpassword.module').then(m => m.ForgotPasswordModule) },
         { path: 'newpassword', canActivate: [AutologinGuard], loadChildren: () => import('./newpassword/newpassword.module').then(m => m.NewPasswordModule) },
         { path: 'accept-invite', data: { welcomeNewUser: true }, canActivate: [CanAcceptInviteGuard], loadChildren: () => import('./newpassword/newpassword.module').then(m => m.NewPasswordModule) },
-        { path: 'expired-token', loadChildren: () => import('./tokens/expired-token/expired-token.module').then(m => m.ExpiredTokenModule) },
-        { path: 'invalid-token', data: { title: 'Invalid Token', description: '---' }, loadChildren: () => import('./tokens/invalid-token/invalid-token.module').then(m => m.InvalidTokenModule) },
+        {
+            path: 'expired-token',
+            data: { title: 'Expired Invite', message: 'It looks like this invitation reached its expiracy, please ask your administrator for a new one', button: 'Go to Log In' },
+            loadChildren: () => import('./error/error.module').then(m => m.ErrorModule)
+        },
+        {
+            path: 'invalid-token',
+            data: { title: 'Invalid Invite', message: 'Please retry clicking email link, if the problem persists you shall ask your administrator for a new invite', button: 'Go to Log In' },
+            loadChildren: () => import('./error/error.module').then(m => m.ErrorModule)
+        },
         { path: 'verification', canActivate: [AutologinGuard], loadChildren: () => import('./verification/verification.module').then(m => m.VerificationModule) },
         { path: '**', redirectTo: '/notfound' }
     ])],
