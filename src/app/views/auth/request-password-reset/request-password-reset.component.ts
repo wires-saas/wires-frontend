@@ -3,10 +3,10 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { Message, MessageService } from 'primeng/api';
 
 @Component({
-    templateUrl: './forgotpassword.component.html',
+    templateUrl: './request-password-reset.component.html',
     providers: [MessageService]
 })
-export class ForgotPasswordComponent {
+export class RequestPasswordResetComponent {
 
     msgs: Message[] = [];
 

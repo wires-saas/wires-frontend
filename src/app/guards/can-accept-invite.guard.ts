@@ -30,6 +30,8 @@ export class CanAcceptInviteGuard implements CanActivate {
                 return this.router.parseUrl('/auth/expired-token');
             case 404:
                 return this.router.parseUrl('/auth/invalid-token');
+            case 500:
+                return this.router.parseUrl('/auth/already-used-token');
             default:
                 return this.router.parseUrl('/auth/login');
         }

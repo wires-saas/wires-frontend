@@ -69,6 +69,10 @@ export class AuthService {
         return firstValueFrom(this.http.get<{ organization: string; firstName: string; }>(`${this.domain}/auth/invite/${token}`));
     }
 
+    async useToken(token: string, password: string): Promise<void> {
+        return firstValueFrom(this.http.post<void>(`${this.domain}/auth/invite/${token}`, { password }));
+    }
+
     hasRole$(role: Role, slug?: string): Observable<boolean> {
         return this.currentUser$.pipe(
             map((user) => {

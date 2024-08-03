@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ForgotPasswordRoutingModule } from './forgotpassword-routing.module';
-import { ForgotPasswordComponent } from './forgotpassword.component';
+import { RequestPasswordResetRoutingModule } from './request-password-reset-routing.module';
+import { RequestPasswordResetComponent } from './request-password-reset.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { AppConfigModule } from 'src/app/layout/config/app.config.module';
@@ -13,11 +13,11 @@ import { MessageModule } from 'primeng/message';
         CommonModule,
         ButtonModule,
         InputTextModule,
-        ForgotPasswordRoutingModule,
+        RequestPasswordResetRoutingModule,
         MessagesModule,
         MessageModule,
         AppConfigModule
     ],
-    declarations: [ForgotPasswordComponent]
+    declarations: [RequestPasswordResetComponent]
 })
-export class ForgotPasswordModule { }
+export class RequestPasswordResetModule { }

@@ -4,9 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
-    templateUrl: './newpassword.component.html',
+    templateUrl: './reset-password.component.html',
 })
-export class NewPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
 
 
     welcomeNewUser: boolean = false;
@@ -15,6 +15,9 @@ export class NewPasswordComponent implements OnInit {
 
     firstName: string = '';
     organizationName: string = '';
+
+    password: string = '';
+    passwordConfirmation: string = '';
 
     constructor(private layoutService: LayoutService, private router: Router,
                 private activatedRoute: ActivatedRoute, private authService: AuthService) {}
@@ -34,5 +37,13 @@ export class NewPasswordComponent implements OnInit {
             this.organizationName = data.organization
         });
 
+    }
+
+    async submitPassword() {
+        console.log(this.password);
+        if (this.token && this.password && this.passwordConfirmation === this.password) {
+            await this.authService.useToken(this.token, this.password);
+            await this.router.navigate(['/auth/login']);
+        }
     }
 }
