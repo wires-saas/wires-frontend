@@ -35,7 +35,19 @@ export class LoginComponent implements OnInit {
         setTimeout(async () => {
 
             const success = await this.authService.logIn(this.email, this.password, this.rememberMe).catch((err) => {
-                this.messageService.add({severity: 'error', summary: 'Login failed', detail: 'Invalid credentials'});
+
+                switch (err.status) {
+                    case 401:
+                        this.messageService.add({severity: 'error', summary: 'Login failed', detail: 'Invalid credentials'});
+                        break;
+                    case 403:
+                        this.messageService.add({severity: 'error', summary: 'Login failed', detail: 'Invite pending confirmation'});
+                        break;
+                    default:
+                        this.messageService.add({severity: 'error', summary: 'Login failed', detail: 'An error occurred'});
+                        break;
+                }
+
             }).finally(() => this.isWaitingServer = false);
             // TODO 2FA redirection if needed
 

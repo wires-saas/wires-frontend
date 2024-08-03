@@ -65,12 +65,24 @@ export class AuthService {
             });
     }
 
-    async checkToken(token: string): Promise<{ organization: string; firstName: string; }> {
+    async checkInviteToken(token: string): Promise<{ organization: string; firstName: string; }> {
         return firstValueFrom(this.http.get<{ organization: string; firstName: string; }>(`${this.domain}/auth/invite/${token}`));
     }
 
-    async useToken(token: string, password: string): Promise<void> {
+    async useInviteToken(token: string, password: string): Promise<void> {
         return firstValueFrom(this.http.post<void>(`${this.domain}/auth/invite/${token}`, { password }));
+    }
+
+    async requestPasswordReset(email: string): Promise<void> {
+        return firstValueFrom(this.http.post<void>(`${this.domain}/auth/password`, { email }));
+    }
+
+    async checkPasswordResetToken(token: string): Promise<{ organization: string; firstName: string; }> {
+        return firstValueFrom(this.http.get<{ organization: string; firstName: string; }>(`${this.domain}/auth/password/${token}`));
+    }
+
+    async usePasswordResetToken(token: string, password: string): Promise<void> {
+        return firstValueFrom(this.http.post<void>(`${this.domain}/auth/password/${token}`, { password }));
     }
 
     hasRole$(role: Role, slug?: string): Observable<boolean> {

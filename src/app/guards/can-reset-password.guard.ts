@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth.service';
 
 
 @Injectable()
-export class CanAcceptInviteGuard implements CanActivate {
+export class CanResetPasswordGuard implements CanActivate {
     constructor(private authService: AuthService, private router: Router) {}
 
     async canActivate(
@@ -18,7 +18,7 @@ export class CanAcceptInviteGuard implements CanActivate {
             return false;
         }
 
-        const tokenCode = await this.authService.checkInviteToken(token).then(() => 200).catch((err) => {
+        const tokenCode = await this.authService.checkPasswordResetToken(token).then(() => 200).catch((err) => {
             console.error(err);
             return err.status;
         });
@@ -26,14 +26,10 @@ export class CanAcceptInviteGuard implements CanActivate {
         switch (tokenCode) {
             case 200:
                 break;
-            case 410:
-                return this.router.parseUrl('/auth/accept-invite/already-used-token');
             case 403:
-                return this.router.parseUrl('/auth/accept-invite/expired-token');
+                return this.router.parseUrl('/auth/reset-password/expired-token');
             case 404:
-                return this.router.parseUrl('/auth/accept-invite/invalid-token');
-            case 500:
-                return this.router.parseUrl('/auth/accept-invite/invalid-token');
+                return this.router.parseUrl('/auth/reset-password/invalid-token');
             default:
                 return this.router.parseUrl('/auth/login');
         }
