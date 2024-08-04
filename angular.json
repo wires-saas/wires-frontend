@@ -13,10 +13,19 @@
             "root": "",
             "sourceRoot": "src",
             "prefix": "app",
+            "i18n": {
+                "sourceLocale": "en",
+                "locales": {
+                    "fr": {
+                        "translation": "src/locales/messages.fr.xlf"
+                    }
+                }
+            },
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "localize": true,
                         "outputPath": "dist",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -77,6 +86,12 @@
                             "extractLicenses": false,
                             "sourceMap": true,
                             "namedChunks": true
+                        },
+                        "fr": {
+                            "localize": ["fr"]
+                        },
+                        "en": {
+                            "localize": ["en"]
                         }
                     },
                     "defaultConfiguration": "production"
@@ -88,10 +103,16 @@
                             "buildTarget": "saas-factory-frontend:build:production"
                         },
                         "development": {
-                            "buildTarget": "saas-factory-frontend:build:development"
+                            "buildTarget": "saas-factory-frontend:build:development,fr"
                         },
                         "local": {
-                            "buildTarget": "saas-factory-frontend:build:local"
+                            "buildTarget": "saas-factory-frontend:build:local,fr"
+                        },
+                        "fr": {
+                            "localize": ["fr"]
+                        },
+                        "en": {
+                            "localize": ["en"]
                         }
                     },
                     "defaultConfiguration": "local"

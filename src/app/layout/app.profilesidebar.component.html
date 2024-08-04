@@ -1,7 +1,7 @@
 <p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" styleClass="layout-profile-sidebar w-full sm:w-25rem">
     <div class="flex flex-column mx-auto md:mx-0">
         <!-- <span class="mb-2 font-semibold">Welcome</span> -->
-        <span class="text-color-secondary font-medium mb-5">Connected as <b>{{ currentUser?.firstName | titlecase }} {{ currentUser?.lastName | titlecase }}</b></span>
+        <span class="text-color-secondary font-medium mb-5" i18n>Connected as <b>{{ currentUser?.firstName | titlecase }} {{ currentUser?.lastName | titlecase }}</b></span>
 
         <ul class="list-none m-0 p-0">
             <li>
@@ -10,8 +10,8 @@
                         <i class="pi pi-user text-xl text-primary"></i>
                     </span>
                     <div class="ml-3">
-                        <span class="mb-2 font-semibold">Profile</span>
-                        <p class="text-color-secondary m-0">Email, Avatar, Name, etc...</p>
+                        <span class="mb-2 font-semibold" i18n>Profile</span>
+                        <p class="text-color-secondary m-0" i18n>Email, Avatar, Name, etc...</p>
                     </div>
                 </a>
             </li>
@@ -32,8 +32,8 @@
                         <i class="pi pi-cog text-xl text-primary"></i>
                     </span>
                     <div class="ml-3">
-                        <span class="mb-2 font-semibold">Preferences</span>
-                        <p class="text-color-secondary m-0">Notifications, Dark/Light Mode</p>
+                        <span class="mb-2 font-semibold" i18n>Preferences</span>
+                        <p class="text-color-secondary m-0" i18n>Notifications, Dark/Light Mode</p>
                     </div>
                 </a>
             </li>
@@ -43,7 +43,7 @@
                         <i class="pi pi-power-off text-xl text-primary"></i>
                     </span>
                     <div class="ml-3">
-                        <span class="mb-2 font-semibold">Sign Out</span>
+                        <span class="mb-2 font-semibold" i18n>Sign Out</span>
                     </div>
                 </a>
             </li>

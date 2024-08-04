@@ -4,7 +4,8 @@
 
     <p-table #dt [value]="users" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
-        [globalFilterFields]="['firstName', 'lastName','email']">
+        [globalFilterFields]="['firstName', 'lastName','email']"
+             (sortFunction)="customSort($event)" [customSort]="true" sortField="roles" [sortOrder]="-1">
         <ng-template pTemplate="caption">
             <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
                 <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
@@ -24,6 +25,7 @@
                 <th pSortableColumn="roles" class="white-space-nowrap" style="width:25%">Roles <p-sortIcon field="roles"></p-sortIcon></th>
                 <th pSortableColumn="status" class="white-space-nowrap" style="width:25%">Status <p-sortIcon field="status"></p-sortIcon></th>
                 <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:25%">Invited <p-sortIcon field="createdAt"></p-sortIcon></th>
+                <th class="white-space-nowrap" style="width:25%">Invite Expired </th>
                 <th pSortableColumn="lastSeenAt" class="white-space-nowrap" style="width:25%">Last Seen <p-sortIcon field="lastSeen"></p-sortIcon></th>
                 <th class="white-space-nowrap" style="width:25%">Actions</th>
             </tr>
@@ -36,6 +38,7 @@
                 <td>{{ getRoleOfUser(user) | titlecase }}</td>
                 <td>{{ user.status | titlecase }}</td>
                 <td>{{ user.createdAt | date: 'dd/MM/yyyy'}}</td>
+                <td><button *ngIf="isInviteExpired(user)" pButton pRipple type="button" icon="pi pi-exclamation-triangle" class="p-button-rounded p-button-warning p-button-text"></button></td>
                 <td>
                     <ng-container *ngIf="user.lastSeenAt; else neverSeen">{{ user.lastSeenAt | date: 'dd/MM/yyyy'}}</ng-container>
                     <ng-template #neverSeen>Never</ng-template>

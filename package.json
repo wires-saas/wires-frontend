@@ -11,7 +11,8 @@
         "build:dev": "ng build --configuration development",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "lint": "ng lint"
+        "lint": "ng lint",
+        "localize": "ng extract-i18n --output-path src/locales --out-file messages.en.xlf"
     },
     "private": true,
     "dependencies": {
@@ -43,6 +44,7 @@
         "@angular-devkit/build-angular": "^17.0.5",
         "@angular/cli": "^17.0.5",
         "@angular/compiler-cli": "^17.0.5",
+        "@angular/localize": "^17.0.7",
         "@types/jasmine": "~4.3.1",
         "jasmine-core": "~4.6.0",
         "karma": "~6.4.2",

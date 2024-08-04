@@ -25,6 +25,7 @@ export interface User {
     password: string;
     status: UserStatus;
     emailStatus: UserEmailStatus;
+    inviteTokenExpiresAt: number;
     createdAt: number;
     updatedAt: number;
     lastSeenAt: number;
@@ -84,5 +85,8 @@ export class UserService {
         }));
     }
 
+    async resendInvite(userId: string): Promise<void> {
+        return firstValueFrom(this.http.post<void>(`${this.domain}/users/${userId}/invite`, {}));
+    }
 
 }

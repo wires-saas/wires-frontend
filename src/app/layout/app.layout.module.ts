@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { ToastModule } from 'primeng/toast';
         RippleModule,
         RouterModule,
         AppConfigModule,
-        DropdownModule
+        DropdownModule,
+        MenuModule
     ]
 })
 export class AppLayoutModule { }

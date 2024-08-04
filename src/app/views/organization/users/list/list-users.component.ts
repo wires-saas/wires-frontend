@@ -3,12 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { Customer } from 'src/app/demo/api/customer';
 import { CustomerService } from 'src/app/demo/service/customer.service';
-import { User, UserService } from '../../../../services/user.service';
+import { User, UserService, UserStatus } from '../../../../services/user.service';
 import { OrganizationService } from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { filter, firstValueFrom } from 'rxjs';
-import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService, SortEvent } from 'primeng/api';
 import { Role, RoleUtils } from '../../../../utils/role.utils';
 import { Slug } from '../../../../utils/types.utils';
 import { AuthService } from '../../../../services/auth.service';
@@ -28,6 +28,8 @@ export class ListUsersComponent implements OnInit {
     multiOrganizations: boolean = false;
 
     currentOrgSlug: Slug | undefined;
+
+    now: number = Date.now();
 
     private destroyRef = inject(DestroyRef);
 
@@ -82,6 +84,11 @@ export class ListUsersComponent implements OnInit {
         return Role.GUEST;
     }
 
+    isInviteExpired(user: User): boolean {
+        if (user?.status !== UserStatus.PENDING) return false;
+        else return user.inviteTokenExpiresAt < this.now;
+    }
+
     async toggleMenuFor(user: User, menu: any, event: Event) {
 
         const currentUser = await firstValueFrom(this.authService.currentUser$);
@@ -92,7 +99,9 @@ export class ListUsersComponent implements OnInit {
 
         const role = this.getRoleOfUser(user);
 
-        const isCurrentUser = currentUser._id === user._id
+        const isCurrentUser = currentUser._id === user._id;
+
+        const visibleForManagersOrAdmins = !isCurrentUser && (currentUserRole === Role.ADMIN || currentUserRole === Role.MANAGER || currentUserRole === Role.SUPER_ADMIN);
 
 
         this.actionsMenuItems = [
@@ -101,11 +110,32 @@ export class ListUsersComponent implements OnInit {
                 icon: 'pi pi-fw pi-pencil',
                 routerLink: ['/organization', this.currentOrgSlug, 'users', user._id, 'edit']
             },
-            { label: 'Re-send Invite', icon: 'pi pi-fw pi-envelope', visible: !isCurrentUser },
+            {
+                label: 'Re-send Invite',
+                icon: 'pi pi-fw pi-envelope',
+                visible: visibleForManagersOrAdmins,
+                command: () => {
+                    if (!this.currentOrgSlug) throw new Error('No current organization slug');
+                    this.userService.resendInvite(user._id).then(() => {
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Success re-sending invite',
+                            detail: 'User has been invited again',
+                            life: 5000,
+                        });
+                    }).catch((err) => {
+                        console.error(err);
+
+                        MessageUtils.parseServerError(this.messageService, err, {
+                            summary: 'Error re-sending invite',
+                        });
+                    });
+                }
+            },
             {
                 label: 'Remove',
                 icon: 'pi pi-fw pi-user-minus',
-                visible: !isCurrentUser && (currentUserRole === Role.ADMIN || currentUserRole === Role.MANAGER || currentUserRole === Role.SUPER_ADMIN),
+                visible: visibleForManagersOrAdmins,
                 command: () => {
                     this.confirmationService.confirm({
                         key: 'confirm-delete',
@@ -154,6 +184,33 @@ export class ListUsersComponent implements OnInit {
 
         menu.toggle(event);
 
+    }
+
+
+    customSort(event: Required<SortEvent>) {
+        console.log(event);
+        return this.sortTableData(event);
+    }
+
+    private sortTableData(event: Required<SortEvent>) {
+        return event.data.sort((data1, data2) => {
+            let value1 = data1[event.field];
+            let value2 = data2[event.field];
+            let result = null;
+            console.log(value1);
+            console.log(value2);
+
+            if (value1 == null && value2 != null) result = -1;
+            else if (value1 != null && value2 == null) result = 1;
+            else if (value1 == null && value2 == null) result = 0;
+            else if (event.field === 'roles') {
+                result = RoleUtils.getRoleHierarchy(this.getRoleOfUser(data1)) > RoleUtils.getRoleHierarchy(this.getRoleOfUser(data2)) ? 1 : -1;
+            }
+            else if (typeof value1 === 'string' && typeof value2 === 'string') result = value1.localeCompare(value2);
+            else result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0;
+
+            return event.order * result;
+        });
     }
 
 }

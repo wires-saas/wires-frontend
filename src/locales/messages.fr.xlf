@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="9046289591289296242" datatype="html">
+        <source>Connecté en tant que <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="tName | titlecase }}"/> <x id="INTERPOLATION_1" equiv-text="{{ currentUser?.lastName | titlecase }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
+          <context context-type="linenumber">4,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4915431133669985304" datatype="html">
+        <source>Profil</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/views/organization/users/create-or-edit/create-or-edit-user.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="340976743545932114" datatype="html">
+        <source>Email, Avatar, Prénom, etc...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8951128623878467862" datatype="html">
+        <source>Préférences</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4747457509249886884" datatype="html">
+        <source>Notifications, Mode Sombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="935790816200474922" datatype="html">
+        <source>Se Déconnecter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8264303751010138722" datatype="html">
+        <source> Invitation à rejoindre <x id="INTERPOLATION" equiv-text="{{ organizationName$ | async }}"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/views/organization/users/create-or-edit/create-or-edit-user.component.html</context>
+          <context context-type="linenumber">3,5</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
