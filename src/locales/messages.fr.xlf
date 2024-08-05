@@ -48,6 +48,76 @@
           <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
+            <trans-unit id="2336550011721758066" datatype="html">
+              <source>Connexion</source>
+              <context-group purpose="location">
+                <context context-type="sourcefile">src/app/views/auth/login/login.component.html</context>
+                <context context-type="linenumber">11</context>
+              </context-group>
+            </trans-unit>
+            <trans-unit id="2168260455585338737" datatype="html">
+              <source>Renseignez vos identifiants</source>
+              <context-group purpose="location">
+                <context context-type="sourcefile">src/app/views/auth/login/login.component.html</context>
+                <context context-type="linenumber">12</context>
+              </context-group>
+            </trans-unit>
+            <trans-unit id="8162764183540934263" datatype="html">
+              <source>Connexion automatique</source>
+              <context-group purpose="location">
+                <context context-type="sourcefile">src/app/views/auth/login/login.component.html</context>
+                <context context-type="linenumber">26</context>
+              </context-group>
+            </trans-unit>
+            <trans-unit id="1636934520301910285" datatype="html">
+              <source>Mot de passe oublié ?</source>
+              <context-group purpose="location">
+                <context context-type="sourcefile">src/app/views/auth/login/login.component.html</context>
+                <context context-type="linenumber">28</context>
+              </context-group>
+            </trans-unit>
+            <trans-unit id="2950516762204674600" datatype="html">
+              <source>Réinitialisation</source>
+              <context-group purpose="location">
+                <context context-type="sourcefile">src/app/views/auth/request-password-reset/request-password-reset.component.html</context>
+                <context context-type="linenumber">11</context>
+              </context-group>
+            </trans-unit>
+            <trans-unit id="6274553395779743523" datatype="html">
+              <source>Renseignez votre adresse email pour recevoir un lien de réinitialisation</source>
+              <context-group purpose="location">
+                <context context-type="sourcefile">src/app/views/auth/request-password-reset/request-password-reset.component.html</context>
+                <context context-type="linenumber">12</context>
+              </context-group>
+            </trans-unit>
+            <trans-unit id="5722048521308312525" datatype="html">
+              <source>Bienvenue <x id="INTERPOLATION" equiv-text="{{ firstName }}"/>!</source>
+              <context-group purpose="location">
+                <context context-type="sourcefile">src/app/views/auth/reset-password/reset-password.component.html</context>
+                <context context-type="linenumber">12</context>
+              </context-group>
+            </trans-unit>
+            <trans-unit id="8021896010452571976" datatype="html">
+              <source>Vous avez été invité à rejoindre <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="}}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text=",&lt;br/&gt; set you"/>,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> set your password and log in</source>
+              <context-group purpose="location">
+                <context context-type="sourcefile">src/app/views/auth/reset-password/reset-password.component.html</context>
+                <context context-type="linenumber">13</context>
+              </context-group>
+            </trans-unit>
+            <trans-unit id="1221596867309460035" datatype="html">
+              <source>Réinitialisation</source>
+              <context-group purpose="location">
+                <context context-type="sourcefile">src/app/views/auth/reset-password/reset-password.component.html</context>
+                <context context-type="linenumber">17</context>
+              </context-group>
+            </trans-unit>
+            <trans-unit id="640008116263652717" datatype="html">
+              <source>Choisissez votre nouveau mot de passe</source>
+              <context-group purpose="location">
+                <context context-type="sourcefile">src/app/views/auth/reset-password/reset-password.component.html</context>
+                <context context-type="linenumber">18</context>
+              </context-group>
+            </trans-unit>
       <trans-unit id="8264303751010138722" datatype="html">
         <source> Invitation à rejoindre <x id="INTERPOLATION" equiv-text="{{ organizationName$ | async }}"/> </source>
         <context-group purpose="location">

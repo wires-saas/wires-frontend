@@ -12,7 +12,7 @@
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "lint": "ng lint",
-        "localize": "ng extract-i18n --output-path src/locales --out-file messages.en.xlf"
+        "i18n": "ng extract-i18n --output-path src/locales --out-file messages.en.xlf"
     },
     "private": true,
     "dependencies": {

@@ -8,8 +8,8 @@
 <div class="px-5 min-h-screen flex justify-content-center align-items-center">
     <div class="border-1 surface-border surface-card border-round py-7 px-4 md:px-7 z-1">
         <div class="mb-4">
-            <div class="text-900 text-xl font-bold mb-2">Log in</div>
-            <span class="text-600 font-medium">Please enter your details</span>
+            <div class="text-900 text-xl font-bold mb-2" i18n>Log in</div>
+            <span class="text-600 font-medium" i18n>Please enter your details</span>
         </div>
         <form class="flex flex-column">
             <span class="p-input-icon-left w-full mb-4">
@@ -18,14 +18,14 @@
             </span>
             <span class="p-input-icon-left w-full mb-4">
                 <i class="pi pi-lock"></i>
-                <input id="truc" type="password" name="truc" [(ngModel)]="password" pInputText class="w-full md:w-25rem" placeholder="Password">
+                <input id="password" type="password" name="password" [(ngModel)]="password" pInputText class="w-full md:w-25rem" placeholder="Password">
             </span>
             <div class="mb-4 flex flex-wrap gap-3">
                 <div>
                     <p-checkbox name="rememberMe" id="rememberMe" value="val" [(ngModel)]="rememberMe" styleClass="mr-2" [binary]="true"></p-checkbox>
-                    <label for="rememberMe" class="text-900 font-medium mr-8">Remember Me</label>
+                    <label for="rememberMe" class="text-900 font-medium mr-8" i18n>Remember Me</label>
                 </div>
-                <a [routerLink]="['/auth/request-password-reset']" class="text-600 cursor-pointer hover:text-primary cursor-pointer ml-auto transition-colors transition-duration-300">Reset password</a>
+                <a [routerLink]="['/auth/request-password-reset']" class="text-600 cursor-pointer hover:text-primary cursor-pointer ml-auto transition-colors transition-duration-300" i18n>Reset password</a>
             </div>
             <button pButton pRipple label="Log In" [loading]="isWaitingServer" class="w-full" (click)="tryLogIn()"></button>
         </form>
