@@ -63,7 +63,7 @@
               </context-group>
             </trans-unit>
             <trans-unit id="8162764183540934263" datatype="html">
-              <source>Connexion automatique</source>
+              <source>Mémoriser</source>
               <context-group purpose="location">
                 <context context-type="sourcefile">src/app/views/auth/login/login.component.html</context>
                 <context context-type="linenumber">26</context>
@@ -84,7 +84,7 @@
               </context-group>
             </trans-unit>
             <trans-unit id="6274553395779743523" datatype="html">
-              <source>Renseignez votre adresse email pour recevoir un lien de réinitialisation</source>
+              <source>Renseignez votre adresse email <br/>pour recevoir un lien de réinitialisation</source>
               <context-group purpose="location">
                 <context context-type="sourcefile">src/app/views/auth/request-password-reset/request-password-reset.component.html</context>
                 <context context-type="linenumber">12</context>
