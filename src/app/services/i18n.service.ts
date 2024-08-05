@@ -45,7 +45,7 @@ export class I18nService {
         console.debug('Setting locale to ' + locale);
         this.selectedLocale = locale;
         localStorage.setItem('locale', locale);
-        await this.router.navigateByUrl('/' + locale);
+        window.location.assign('/' + locale);
     }
 
 }
