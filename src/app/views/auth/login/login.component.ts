@@ -38,13 +38,13 @@ export class LoginComponent implements OnInit {
 
                 switch (err.status) {
                     case 401:
-                        this.messageService.add({severity: 'error', summary: 'Login failed', detail: 'Invalid credentials'});
+                        this.messageService.add({severity: 'error', summary: $localize `Login failed`, detail: $localize `Invalid credentials`});
                         break;
                     case 403:
-                        this.messageService.add({severity: 'error', summary: 'Login failed', detail: 'Invite pending confirmation'});
+                        this.messageService.add({severity: 'error', summary: $localize `Login failed`, detail: $localize `Invite pending confirmation`});
                         break;
                     default:
-                        this.messageService.add({severity: 'error', summary: 'Login failed', detail: 'An error occurred'});
+                        this.messageService.add({severity: 'error', summary: $localize `Login failed`, detail: $localize `An error occurred`});
                         break;
                 }
 

@@ -1,129 +1,113 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en" datatype="plaintext" original="ng2.template">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="9046289591289296242" datatype="html">
-        <source>Connecté en tant que <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="tName | titlecase }}"/> <x id="INTERPOLATION_1" equiv-text="{{ currentUser?.lastName | titlecase }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/span&gt;"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
-          <context context-type="linenumber">4,6</context>
-        </context-group>
+        <source>Connected as <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="tName | titlecase }}"/> <x id="INTERPOLATION_1" equiv-text="{{ currentUser?.lastName | titlecase }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/span&gt;"/></source>
+        <target state="new">Connecté en tant que <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="tName | titlecase }}"/> <x id="INTERPOLATION_1" equiv-text="{{ currentUser?.lastName | titlecase }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/span&gt;"/></target>
       </trans-unit>
       <trans-unit id="4915431133669985304" datatype="html">
-        <source>Profil</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/views/organization/users/create-or-edit/create-or-edit-user.component.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
+        <source>Profile</source>
+        <target state="new">Profil</target>
       </trans-unit>
       <trans-unit id="340976743545932114" datatype="html">
-        <source>Email, Avatar, Prénom, etc...</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
+        <source>Email, Avatar, Name, etc...</source>
+        <target state="new">Email, Avatar, Prénom...</target>
       </trans-unit>
       <trans-unit id="8951128623878467862" datatype="html">
-        <source>Préférences</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
+        <source>Preferences</source>
+        <target state="new">Préférences</target>
       </trans-unit>
       <trans-unit id="4747457509249886884" datatype="html">
-        <source>Notifications, Mode Sombre</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
-          <context context-type="linenumber">36</context>
-        </context-group>
+        <source>Notifications, Dark/Light Mode</source>
+        <target state="new">Notifications, Mode Sombre...</target>
       </trans-unit>
       <trans-unit id="935790816200474922" datatype="html">
-        <source>Se Déconnecter</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layout/app.profilesidebar.component.html</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
+        <source>Sign Out</source>
+        <target state="new">Se Déconnecter</target>
       </trans-unit>
-            <trans-unit id="2336550011721758066" datatype="html">
-              <source>Connexion</source>
-              <context-group purpose="location">
-                <context context-type="sourcefile">src/app/views/auth/login/login.component.html</context>
-                <context context-type="linenumber">11</context>
-              </context-group>
-            </trans-unit>
-            <trans-unit id="2168260455585338737" datatype="html">
-              <source>Renseignez vos identifiants</source>
-              <context-group purpose="location">
-                <context context-type="sourcefile">src/app/views/auth/login/login.component.html</context>
-                <context context-type="linenumber">12</context>
-              </context-group>
-            </trans-unit>
-            <trans-unit id="8162764183540934263" datatype="html">
-              <source>Mémoriser</source>
-              <context-group purpose="location">
-                <context context-type="sourcefile">src/app/views/auth/login/login.component.html</context>
-                <context context-type="linenumber">26</context>
-              </context-group>
-            </trans-unit>
-            <trans-unit id="1636934520301910285" datatype="html">
-              <source>Mot de passe oublié ?</source>
-              <context-group purpose="location">
-                <context context-type="sourcefile">src/app/views/auth/login/login.component.html</context>
-                <context context-type="linenumber">28</context>
-              </context-group>
-            </trans-unit>
-            <trans-unit id="2950516762204674600" datatype="html">
-              <source>Réinitialisation</source>
-              <context-group purpose="location">
-                <context context-type="sourcefile">src/app/views/auth/request-password-reset/request-password-reset.component.html</context>
-                <context context-type="linenumber">11</context>
-              </context-group>
-            </trans-unit>
-            <trans-unit id="6274553395779743523" datatype="html">
-              <source>Renseignez votre adresse email</source>
-              <context-group purpose="location">
-                <context context-type="sourcefile">src/app/views/auth/request-password-reset/request-password-reset.component.html</context>
-                <context context-type="linenumber">12</context>
-              </context-group>
-            </trans-unit>
-            <trans-unit id="5722048521308312525" datatype="html">
-              <source>Bienvenue <x id="INTERPOLATION" equiv-text="{{ firstName }}"/>!</source>
-              <context-group purpose="location">
-                <context context-type="sourcefile">src/app/views/auth/reset-password/reset-password.component.html</context>
-                <context context-type="linenumber">12</context>
-              </context-group>
-            </trans-unit>
-            <trans-unit id="8021896010452571976" datatype="html">
-              <source>Vous avez été invité à rejoindre <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="}}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text=",&lt;br/&gt; set you"/>,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> set your password and log in</source>
-              <context-group purpose="location">
-                <context context-type="sourcefile">src/app/views/auth/reset-password/reset-password.component.html</context>
-                <context context-type="linenumber">13</context>
-              </context-group>
-            </trans-unit>
-            <trans-unit id="1221596867309460035" datatype="html">
-              <source>Réinitialisation</source>
-              <context-group purpose="location">
-                <context context-type="sourcefile">src/app/views/auth/reset-password/reset-password.component.html</context>
-                <context context-type="linenumber">17</context>
-              </context-group>
-            </trans-unit>
-            <trans-unit id="640008116263652717" datatype="html">
-              <source>Choisissez votre nouveau mot de passe</source>
-              <context-group purpose="location">
-                <context context-type="sourcefile">src/app/views/auth/reset-password/reset-password.component.html</context>
-                <context context-type="linenumber">18</context>
-              </context-group>
-            </trans-unit>
+      <trans-unit id="2336550011721758066" datatype="html">
+        <source>Log in</source>
+        <target state="new">Connexion</target>
+      </trans-unit>
+      <trans-unit id="2168260455585338737" datatype="html">
+        <source>Please enter your details</source>
+        <target state="new">Veuillez renseigner vos infos</target>
+      </trans-unit>
+      <trans-unit id="4768749765465246664" datatype="html">
+        <source>Email</source>
+        <target state="new">Email</target>
+      </trans-unit>
+      <trans-unit id="1431416938026210429" datatype="html">
+        <source>Password</source>
+        <target state="new">Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="8162764183540934263" datatype="html">
+        <source>Remember Me</source>
+        <target state="new">Mémoriser</target>
+      </trans-unit>
+      <trans-unit id="1636934520301910285" datatype="html">
+        <source>Reset password</source>
+        <target state="new">Réinitialiser le mot de passe</target>
+      </trans-unit>
+      <trans-unit id="8520023152129279437" datatype="html">
+        <source>Log In</source>
+        <target state="new">Connexion</target>
+      </trans-unit>
+      <trans-unit id="8053477814844632887" datatype="html">
+        <source>Login failed</source>
+        <target state="new">Connexion échouée</target>
+      </trans-unit>
+      <trans-unit id="7858768589576583715" datatype="html">
+        <source>Invalid credentials</source>
+        <target state="new">Identifiants invalides</target>
+      </trans-unit>
+      <trans-unit id="6573174762541154627" datatype="html">
+        <source>Invite pending confirmation</source>
+        <target state="new">Invitation en attente de confirmation</target>
+      </trans-unit>
+      <trans-unit id="7065464372847182937" datatype="html">
+        <source>An error occurred</source>
+        <target state="new">Une erreur est survenue</target>
+      </trans-unit>
+      <trans-unit id="2950516762204674600" datatype="html">
+        <source>Forgot Password</source>
+        <target state="new">Mot de passe oublié</target>
+      </trans-unit>
+      <trans-unit id="6274553395779743523" datatype="html">
+        <source>Enter your email to reset your password</source>
+        <target state="new">Merci de renseigner votre email</target>
+      </trans-unit>
+      <trans-unit id="2159130950882492111" datatype="html">
+        <source>Cancel</source>
+        <target state="new">Annuler</target>
+      </trans-unit>
+      <trans-unit id="935187492052582731" datatype="html">
+        <source>Submit</source>
+        <target state="new">Valider</target>
+      </trans-unit>
+      <trans-unit id="5722048521308312525" datatype="html">
+        <source>Welcome <x id="INTERPOLATION" equiv-text="{{ firstName }}"/>!</source>
+        <target state="new">Bienvenue <x id="INTERPOLATION" equiv-text="{{ firstName }}"/>!</target>
+      </trans-unit>
+      <trans-unit id="8021896010452571976" datatype="html">
+        <source>You&apos;ve been invited to join <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="}}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text=",&lt;br/&gt; set you"/>,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> set your password and log in</source>
+        <target state="new">Vous avez été invité à rejoindre <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="}}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text=",&lt;br/&gt; set you"/>,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Choisissez votre mot de passe</target>
+      </trans-unit>
+      <trans-unit id="1221596867309460035" datatype="html">
+        <source>New Password</source>
+        <target state="new">Nouveau mot de passe</target>
+      </trans-unit>
+      <trans-unit id="640008116263652717" datatype="html">
+        <source>Enter your new password</source>
+        <target state="new">Saisissez votre nouveau mot de passe</target>
+      </trans-unit>
+      <trans-unit id="4541118533130714111" datatype="html">
+        <source>Repeat Password</source>
+        <target state="new">Confirmez le mot de passe</target>
+      </trans-unit>
       <trans-unit id="8264303751010138722" datatype="html">
-        <source> Invitation à rejoindre <x id="INTERPOLATION" equiv-text="{{ organizationName$ | async }}"/> </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/views/organization/users/create-or-edit/create-or-edit-user.component.html</context>
-          <context context-type="linenumber">3,5</context>
-        </context-group>
+        <source> Invitation to join <x id="INTERPOLATION" equiv-text="{{ organizationName$ | async }}"/> </source>
+        <target state="new"> Inviter à rejoindre <x id="INTERPOLATION" equiv-text="{{ organizationName$ | async }}"/> </target>
       </trans-unit>
     </body>
   </file>
