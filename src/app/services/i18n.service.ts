@@ -20,8 +20,6 @@ export class I18nService {
             this.selectedLocale = preferredLocale;
         }
 
-        console.log(this.selectedLocale);
-
         // On app start, check the URL to set the locale
 
         const url = window.location.pathname;
@@ -52,12 +50,8 @@ export class I18nService {
     }
 
     async setLocale(locale: SupportedLocales, redirect: boolean) {
-        if (locale === this.selectedLocale) {
-            console.debug('Locale ' + locale + ' already selected');
-            return;
-        }
+        if (locale === this.selectedLocale) return;
 
-        console.debug('Setting locale to ' + locale);
         this.selectedLocale = locale;
         localStorage.setItem('locale', locale);
         if (redirect) window.location.assign('/' + locale);
