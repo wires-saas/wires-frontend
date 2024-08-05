@@ -188,7 +188,6 @@ export class ListUsersComponent implements OnInit {
 
 
     customSort(event: Required<SortEvent>) {
-        console.log(event);
         return this.sortTableData(event);
     }
 
@@ -197,8 +196,6 @@ export class ListUsersComponent implements OnInit {
             let value1 = data1[event.field];
             let value2 = data2[event.field];
             let result = null;
-            console.log(value1);
-            console.log(value2);
 
             if (value1 == null && value2 != null) result = -1;
             else if (value1 != null && value2 == null) result = 1;

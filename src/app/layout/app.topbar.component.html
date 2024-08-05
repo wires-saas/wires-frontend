@@ -25,9 +25,9 @@
                 <ng-template pTemplate="item" let-item>
                     <a pRipple class="flex align-items-center p-menuitem-link">
                         <span *ngIf="item.icon" [class]="item.icon"></span>
-                        <img src="/assets/demo/images/flag/flag_placeholder.png" style="width: 22px;" [class]="'mr-2 flag flag-' + item.countryCode"/>
+                        <img src="assets/demo/images/flag/flag_placeholder.png" style="width: 22px;" [class]="'mr-2 flag flag-' + item.countryCode"/>
                         <span class="ml-2">{{ item.label }}</span>
-                        <p-badge *ngIf="item.badge" class="ml-auto" [value]="item.badge" />
+                        <span *ngIf="item.isActive" class="ml-2 pt-1"><i class="pi pi-check-circle"></i></span>
                         <span *ngIf="item.shortcut" class="ml-auto border-1 surface-border border-round surface-100 text-xs">
                             {{ item.shortcut }}
                         </span>
@@ -38,7 +38,7 @@
             <li class="ml-3">
                 <p-button (click)="menuLanguage.toggle($event)" [rounded]="true" [text]="true" severity="secondary">
                     <i class="pi pi-language"></i>
-                    <img src="/assets/demo/images/flag/flag_placeholder.png" style="width: 22px; opacity: .8;" [class]="'ml-2 flag flag-uk'"/>
+                    <img src="/assets/demo/images/flag/flag_placeholder.png" style="width: 22px; opacity: .8;" [class]="'ml-2 flag flag-' + currentCountryCode"/>
                 </p-button>
             </li>
             <li class="ml-3">
