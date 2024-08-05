@@ -1,5 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { DestroyRef, inject, Injectable } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
 
 export enum SupportedLocales {
     FR = 'fr',
@@ -13,12 +16,30 @@ export class I18nService {
 
     private selectedLocale: SupportedLocales = SupportedLocales.FR;
 
+    private destroyRef = inject(DestroyRef);
+
     constructor(private router: Router) {
         const preferredLocale = localStorage.getItem('locale');
 
         if (preferredLocale && preferredLocale === SupportedLocales.EN || preferredLocale === SupportedLocales.FR) {
             this.selectedLocale = preferredLocale;
         }
+
+        console.log(this.selectedLocale);
+
+        // Listening on URL changes to update the selected locale
+        this.router.events.pipe(
+            filter((event) => event instanceof NavigationEnd),
+            map(async (event) => {
+                console.log(event);
+                if ((event as NavigationEnd).urlAfterRedirects.startsWith('/en')) {
+                    await this.setLocale(SupportedLocales.EN, false);
+                } else if ((event as NavigationEnd).urlAfterRedirects.startsWith('/fr')) {
+                    await this.setLocale(SupportedLocales.FR, false);
+                }
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
     }
 
     getLocale(): SupportedLocales {
@@ -36,7 +57,7 @@ export class I18nService {
         }
     }
 
-    async setLocale(locale: SupportedLocales) {
+    async setLocale(locale: SupportedLocales, redirect: boolean) {
         if (locale === this.selectedLocale) {
             console.debug('Locale ' + locale + ' already selected');
             return;
@@ -45,7 +66,7 @@ export class I18nService {
         console.debug('Setting locale to ' + locale);
         this.selectedLocale = locale;
         localStorage.setItem('locale', locale);
-        window.location.assign('/' + locale);
+        if (redirect) window.location.assign('/' + locale);
     }
 
 }

@@ -35,7 +35,7 @@ export class AppTopbarComponent implements OnInit {
                 disabled: this.i18nService.getLocale() === SupportedLocales.FR,
                 isActive: this.i18nService.getLocale() === SupportedLocales.FR,
                 command: async () => {
-                    await this.i18nService.setLocale(SupportedLocales.FR);
+                    await this.i18nService.setLocale(SupportedLocales.FR, true);
                     this.buildLanguagesMenu();
                 }
             },
@@ -45,7 +45,7 @@ export class AppTopbarComponent implements OnInit {
                 disabled: this.i18nService.getLocale() === SupportedLocales.EN,
                 isActive: this.i18nService.getLocale() === SupportedLocales.EN,
                 command: async () => {
-                    await this.i18nService.setLocale(SupportedLocales.EN);
+                    await this.i18nService.setLocale(SupportedLocales.EN, true);
                     this.buildLanguagesMenu();
                 }
             }
