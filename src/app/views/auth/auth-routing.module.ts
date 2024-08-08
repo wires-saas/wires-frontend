@@ -16,12 +16,12 @@ import { CanResetPasswordGuard } from '../../guards/can-reset-password.guard';
 
         {
             path: 'reset-password/expired-token',
-            data: { title: 'Expired', message: 'Token allowing password reset is expired, please request a new one', button: 'Go to Log In' },
+            data: { title: $localize `Expired`, message: $localize `Token allowing password reset is expired, please request a new one`, button: $localize `Go to Log In` },
             loadChildren: () => import('./error/error.module').then(m => m.ErrorModule)
         },
         {
             path: 'reset-password/invalid-token',
-            data: { title: 'Invalid Token', message: 'This token has already been used or never existed', button: 'Go to Log In' },
+            data: { title: $localize `Invalid Token`, message: $localize `This token has already been used or never existed`, button: $localize `Go to Log In` },
             loadChildren: () => import('./error/error.module').then(m => m.ErrorModule)
         },
 
@@ -33,17 +33,17 @@ import { CanResetPasswordGuard } from '../../guards/can-reset-password.guard';
 
         {
             path: 'accept-invite/expired-token',
-            data: { title: 'Expired Invite', message: 'It looks like this invitation expired, please ask your administrator for a new one', button: 'Go to Log In' },
+            data: { title: $localize `Expired Invite`, message: $localize `It looks like this invitation expired, please ask your administrator for a new one`, button: $localize `Go to Log In` },
             loadChildren: () => import('./error/error.module').then(m => m.ErrorModule)
         },
         {
             path: 'accept-invite/invalid-token',
-            data: { title: 'Invalid Invite', message: 'Please retry clicking email link, if the problem persists you shall ask your administrator for a new invite', button: 'Go to Log In' },
+            data: { title: $localize `Invalid Invite`, message: $localize `Please retry clicking email link, if the problem persists you shall ask your administrator for a new invite`, button: $localize `Go to Log In` },
             loadChildren: () => import('./error/error.module').then(m => m.ErrorModule)
         },
         {
             path: 'accept-invite/already-used-token',
-            data: { title: 'Already Accepted', message: 'Your invite has already been accepted. Try requesting a password reset ?', button: 'Go to Log In' },
+            data: { title: $localize `Already Accepted`, message: $localize `Your invite has already been accepted. Try requesting a password reset ?`, button: $localize `Go to Log In` },
             loadChildren: () => import('./error/error.module').then(m => m.ErrorModule)
         },
 

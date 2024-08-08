@@ -218,6 +218,42 @@
       <trans-unit id="9154532065456849958" datatype="html">
         <source>Extended Licence</source>
       </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ data.title || &apos;ERROR&apos; }}"/></source>
+      </trans-unit>
+      <trans-unit id="1324562044865604828" datatype="html">
+        <source>Expired Invite</source>
+      </trans-unit>
+      <trans-unit id="1628835627814691398" datatype="html">
+        <source>Already Accepted</source>
+      </trans-unit>
+      <trans-unit id="3696368088209543120" datatype="html">
+        <source>Invalid Token</source>
+      </trans-unit>
+      <trans-unit id="4018623713011682663" datatype="html">
+        <source>It looks like this invitation expired, please ask your administrator for a new one</source>
+      </trans-unit>
+      <trans-unit id="464749780222721589" datatype="html">
+        <source>Expired</source>
+      </trans-unit>
+      <trans-unit id="4661038749219268828" datatype="html">
+        <source>This token has already been used or never existed</source>
+      </trans-unit>
+      <trans-unit id="5552565650095747569" datatype="html">
+        <source>Please retry clicking email link, if the problem persists you shall ask your administrator for a new invite</source>
+      </trans-unit>
+      <trans-unit id="650255436238812914" datatype="html">
+        <source>Go to Log In</source>
+      </trans-unit>
+      <trans-unit id="7455642101367598609" datatype="html">
+        <source>Token allowing password reset is expired, please request a new one</source>
+      </trans-unit>
+      <trans-unit id="8954695724689602970" datatype="html">
+        <source>Your invite has already been accepted. Try requesting a password reset ?</source>
+      </trans-unit>
+      <trans-unit id="9135624279061286565" datatype="html">
+        <source>Invalid Invite</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

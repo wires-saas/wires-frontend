@@ -143,7 +143,7 @@
       </trans-unit>
       <trans-unit id="3652156113818814191" datatype="html">
         <source>The ultimate collection of design-agnostic, flexible and accessible UI Components.</source>
-        <target state="new">La collection ultime de composants qui s'adaptent à vos besoins.</target>
+        <target state="new">La collection ultime de composants qui s&apos;adaptent à vos besoins.</target>
       </trans-unit>
       <trans-unit id="8130557161756365658" datatype="html">
         <source>Pricing Plans</source>
@@ -155,7 +155,7 @@
       </trans-unit>
       <trans-unit id="5944467795190292726" datatype="html">
         <source>PrimeTek Informatics is the author of PrimeReact, a UI Component vendor with well known vastly popular projects including PrimeFaces, PrimeNG and PrimeVue.</source>
-        <target state="new">PrimeTek Informatics est l'auteur de PrimeReact, une librairie de composants qui fonctionnent notamment avec PrimeFaces, PrimeNG et PrimeVue.</target>
+        <target state="new">PrimeTek Informatics est l&apos;auteur de PrimeReact, une librairie de composants qui fonctionnent notamment avec PrimeFaces, PrimeNG et PrimeVue.</target>
       </trans-unit>
       <trans-unit id="1826215573205981970" datatype="html">
         <source>Company</source>
@@ -207,7 +207,7 @@
       </trans-unit>
       <trans-unit id="2029980907058777630" datatype="html">
         <source>Terms of Service</source>
-        <target state="new">Conditions d'utilisation</target>
+        <target state="new">Conditions d&apos;utilisation</target>
       </trans-unit>
       <trans-unit id="8439955599488894226" datatype="html">
         <source>Privacy Policy</source>
@@ -227,11 +227,11 @@
       </trans-unit>
       <trans-unit id="4024923294743236805" datatype="html">
         <source>Up to 3 Active Users</source>
-        <target state="new">Jusqu'à 3 utilisateurs actifs</target>
+        <target state="new">Jusqu&apos;à 3 utilisateurs actifs</target>
       </trans-unit>
       <trans-unit id="6426378511798929134" datatype="html">
         <source>Up to 10 Project Integrations</source>
-        <target state="new">Jusqu'à 10 projets</target>
+        <target state="new">Jusqu&apos;à 10 projets</target>
       </trans-unit>
       <trans-unit id="62349588862483851" datatype="html">
         <source>Analytics Module</source>
@@ -263,11 +263,11 @@
       </trans-unit>
       <trans-unit id="2276110414358547668" datatype="html">
         <source>Up to 10 Active Users</source>
-        <target state="new">Jusqu'à 10 utilisateurs actifs</target>
+        <target state="new">Jusqu&apos;à 10 utilisateurs actifs</target>
       </trans-unit>
       <trans-unit id="4310204894294721884" datatype="html">
         <source>Up to 50 Project Integrations</source>
-        <target state="new">Jusqu'à 50 projets</target>
+        <target state="new">Jusqu&apos;à 50 projets</target>
       </trans-unit>
       <trans-unit id="5499742151525073097" datatype="html">
         <source>Upgrade Plan</source>
@@ -288,6 +288,54 @@
       <trans-unit id="5394735073306242149" datatype="html">
         <source>Unlimited Project Integrations</source>
         <target state="new">Projets illimités</target>
+      </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ data.title || &apos;ERROR&apos; }}"/></source>
+        <target state="new"><x id="INTERPOLATION" equiv-text="{{ data.title || &apos;ERREUR&apos; }}"/></target>
+      </trans-unit>
+      <trans-unit id="464749780222721589" datatype="html">
+        <source>Expired</source>
+        <target state="new">Expiré</target>
+      </trans-unit>
+      <trans-unit id="7455642101367598609" datatype="html">
+        <source>Token allowing password reset is expired, please request a new one</source>
+        <target state="new">Le jeton autorisant la réinitialisation est expiré, vous pouvez refaire une demande</target>
+      </trans-unit>
+      <trans-unit id="650255436238812914" datatype="html">
+        <source>Go to Log In</source>
+        <target state="new">Se connecter</target>
+      </trans-unit>
+      <trans-unit id="3696368088209543120" datatype="html">
+        <source>Invalid Token</source>
+        <target state="new">Jeton Invalide</target>
+      </trans-unit>
+      <trans-unit id="4661038749219268828" datatype="html">
+        <source>This token has already been used or never existed</source>
+        <target state="new">Ce jeton n'existe pas ou bien a déjà été utilisé</target>
+      </trans-unit>
+      <trans-unit id="1324562044865604828" datatype="html">
+        <source>Expired Invite</source>
+        <target state="new">Invitation Expirée</target>
+      </trans-unit>
+      <trans-unit id="4018623713011682663" datatype="html">
+        <source>It looks like this invitation expired, please ask your administrator for a new one</source>
+        <target state="new">Vous pouvez demander à votre administrateur d'envoyer une nouvelle invitation'</target>
+      </trans-unit>
+      <trans-unit id="9135624279061286565" datatype="html">
+        <source>Invalid Invite</source>
+        <target state="new">Invitation Invalide</target>
+      </trans-unit>
+      <trans-unit id="5552565650095747569" datatype="html">
+        <source>Please retry clicking email link, if the problem persists you shall ask your administrator for a new invite</source>
+        <target state="new">Veuillez réessayer, si le problème persiste votre administrateur devra vous inviter à nouveau</target>
+      </trans-unit>
+      <trans-unit id="1628835627814691398" datatype="html">
+        <source>Already Accepted</source>
+        <target state="new">Déjà Acceptée</target>
+      </trans-unit>
+      <trans-unit id="8954695724689602970" datatype="html">
+        <source>Your invite has already been accepted. Try requesting a password reset ?</source>
+        <target state="new">Il semblerait que vous ayez déjà accepté cette invitation</target>
       </trans-unit>
     </body>
   </file>
