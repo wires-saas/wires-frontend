@@ -89,6 +89,135 @@
       <trans-unit id="892110761745370539" datatype="html">
         <source>Are you sure you want to delete user ? This action cannot be undone and will require you to re-invite the user.</source>
       </trans-unit>
+      <trans-unit id="1274247756500564795" datatype="html">
+        <source>Community</source>
+      </trans-unit>
+      <trans-unit id="1726363342938046830" datatype="html">
+        <source>About</source>
+      </trans-unit>
+      <trans-unit id="179068074879482237" datatype="html">
+        <source>Choose a plan that works best for you and your team.</source>
+      </trans-unit>
+      <trans-unit id="1826215573205981970" datatype="html">
+        <source>Company</source>
+      </trans-unit>
+      <trans-unit id="2029980907058777630" datatype="html">
+        <source>Terms of Service</source>
+      </trans-unit>
+      <trans-unit id="2045779543869682721" datatype="html">
+        <source>Get Started</source>
+      </trans-unit>
+      <trans-unit id="2446117790692479672" datatype="html">
+        <source>Resources</source>
+      </trans-unit>
+      <trans-unit id="2806917038528218276" datatype="html">
+        <source>FAQ</source>
+      </trans-unit>
+      <trans-unit id="2821179408673282599" datatype="html">
+        <source>Home</source>
+      </trans-unit>
+      <trans-unit id="3270220110521306016" datatype="html">
+        <source>Free Trial</source>
+      </trans-unit>
+      <trans-unit id="3387422732252707037" datatype="html">
+        <source>GDPR</source>
+      </trans-unit>
+      <trans-unit id="3652156113818814191" datatype="html">
+        <source>The ultimate collection of design-agnostic, flexible and accessible UI Components.</source>
+      </trans-unit>
+      <trans-unit id="4895326106573044490" datatype="html">
+        <source>Documentation</source>
+      </trans-unit>
+      <trans-unit id="5080775557941296581" datatype="html">
+        <source>Pricing</source>
+      </trans-unit>
+      <trans-unit id="5650635157678221891" datatype="html">
+        <source>Apps</source>
+      </trans-unit>
+      <trans-unit id="5679172509909100053" datatype="html">
+        <source>Case Studies</source>
+      </trans-unit>
+      <trans-unit id="5944467795190292726" datatype="html">
+        <source>PrimeTek Informatics is the author of PrimeReact, a UI Component vendor with well known vastly popular projects including PrimeFaces, PrimeNG and PrimeVue.</source>
+      </trans-unit>
+      <trans-unit id="6599364831830861985" datatype="html">
+        <source>Features</source>
+      </trans-unit>
+      <trans-unit id="759687838251957893" datatype="html">
+        <source>Contact Us</source>
+      </trans-unit>
+      <trans-unit id="7751010942038334793" datatype="html">
+        <source>Blog</source>
+      </trans-unit>
+      <trans-unit id="7814069298939347422" datatype="html">
+        <source>Legal</source>
+      </trans-unit>
+      <trans-unit id="7911416166208830577" datatype="html">
+        <source>Help</source>
+      </trans-unit>
+      <trans-unit id="8130557161756365658" datatype="html">
+        <source>Pricing Plans</source>
+      </trans-unit>
+      <trans-unit id="8439955599488894226" datatype="html">
+        <source>Privacy Policy</source>
+      </trans-unit>
+      <trans-unit id="8743929466879339982" datatype="html">
+        <source>Modern, stylish and clean</source>
+      </trans-unit>
+      <trans-unit id="1318314568328205146" datatype="html">
+        <source>Custom Price</source>
+      </trans-unit>
+      <trans-unit id="1840927243550776932" datatype="html">
+        <source> Entreprise Licence </source>
+      </trans-unit>
+      <trans-unit id="2050544676907877559" datatype="html">
+        <source>Downgrade Plan</source>
+      </trans-unit>
+      <trans-unit id="2173081621523524547" datatype="html">
+        <source>Dedicated Support</source>
+      </trans-unit>
+      <trans-unit id="2276110414358547668" datatype="html">
+        <source>Up to 10 Active Users</source>
+      </trans-unit>
+      <trans-unit id="3472163900154820979" datatype="html">
+        <source>$500</source>
+      </trans-unit>
+      <trans-unit id="3788974316770322919" datatype="html">
+        <source>Basic Licence</source>
+      </trans-unit>
+      <trans-unit id="4024923294743236805" datatype="html">
+        <source>Up to 3 Active Users</source>
+      </trans-unit>
+      <trans-unit id="4310204894294721884" datatype="html">
+        <source>Up to 50 Project Integrations</source>
+      </trans-unit>
+      <trans-unit id="5394735073306242149" datatype="html">
+        <source>Unlimited Project Integrations</source>
+      </trans-unit>
+      <trans-unit id="5499742151525073097" datatype="html">
+        <source>Upgrade Plan</source>
+      </trans-unit>
+      <trans-unit id="62349588862483851" datatype="html">
+        <source>Analytics Module</source>
+      </trans-unit>
+      <trans-unit id="6426378511798929134" datatype="html">
+        <source>Up to 10 Project Integrations</source>
+      </trans-unit>
+      <trans-unit id="6675646304085290803" datatype="html">
+        <source>$200</source>
+      </trans-unit>
+      <trans-unit id="7127329929373239791" datatype="html">
+        <source>Choose Plan</source>
+      </trans-unit>
+      <trans-unit id="7193306592661382402" datatype="html">
+        <source>Current Plan</source>
+      </trans-unit>
+      <trans-unit id="8501231313853023509" datatype="html">
+        <source>Unlimited Users</source>
+      </trans-unit>
+      <trans-unit id="9154532065456849958" datatype="html">
+        <source>Extended Licence</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

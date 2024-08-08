@@ -1,2 +1,10 @@
-<img [class.hidden]="!lightMode" src="assets/imgs/logo_purple_transparent.png" alt="logo" class="w-10rem" />
-<img [class.hidden]="lightMode" src="assets/imgs/logo_teal_transparent.png" alt="logo" class="w-10rem" />
+<img [class.hidden]="!lightMode"
+     src="assets/imgs/logo_purple_transparent.png"
+     class="w-10rem"
+     [class.border-bottom-2]="withBorder" [class.pb-2]="withBorder" [style.border-color]="'var(--indigo-100)'"
+     alt="light logo" />
+<img [class.hidden]="lightMode"
+     src="assets/imgs/logo_teal_transparent.png"
+     class="w-10rem"
+     [class.border-bottom-2]="withBorder" [class.pb-2]="withBorder" [style.border-color]="'var(--teal-900)'"
+     alt="dark logo" />

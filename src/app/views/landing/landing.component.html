@@ -24,28 +24,28 @@
                     <a (click)="router.navigate(['/landing'], {fragment: 'home'})" pRipple pStyleClass="@grandparent"
                         enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
                         class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3 cursor-pointer">
-                        <span>Home</span>
+                        <span i18n>Home</span>
                     </a>
                 </li>
                 <li>
                     <a (click)="router.navigate(['/landing'], {fragment: 'apps'})" pRipple pStyleClass="@grandparent"
                         enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
                         class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3 cursor-pointer">
-                        <span>Apps</span>
+                        <span i18n>Apps</span>
                     </a>
                 </li>
                 <li>
                     <a (click)="router.navigate(['/landing'], {fragment: 'pricing'})" pRipple pStyleClass="@grandparent"
                         enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
                         class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3 cursor-pointer">
-                        <span>Pricing</span>
+                        <span i18n>Pricing</span>
                     </a>
                 </li>
                 <li>
                     <a (click)="router.navigate(['/landing'], {fragment: 'features'})" pRipple pStyleClass="@grandparent"
                         enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
                         class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3 cursor-pointer">
-                        <span>Features</span>
+                        <span i18n>Features</span>
                     </a>
                 </li>
 
@@ -53,14 +53,14 @@
                     <a (click)="router.navigate(['/auth/login'], {fragment: 'features'})" pRipple pStyleClass="@grandparent"
                        enterFromClass="ng-hidden" enterActiveClass="px-fadein" leaveToClass="ng-hidden"
                        class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3 cursor-pointer">
-                        <span>Log In</span>
+                        <span i18n>Log In</span>
                     </a>
                 </li>
 
 
                 <li class="flex align-items-center">
                     <button pButton pRipple type="button" pStyleClass="@grandparent" enterFromClass="ng-hidden"
-                        enterActiveClass="px-fadein" leaveToClass="ng-hidden" label="Free Trial"
+                        enterActiveClass="px-fadein" leaveToClass="ng-hidden" i18n-label label="Free Trial"
                         class="m-0 mt-3 md:mt-0 md:ml-5 white-space-nowrap"></button>
                 </li>
             </ul>
@@ -71,8 +71,8 @@
                 class="grid grid-nogutter justify-content-between align-items-center mb-6 py-6 md:mb-8 md:py-8">
                 <div
                     class="col-12 md:col-4 flex flex-column gap-4 flex-order-1 md:flex-order-0 align-items-center md:align-items-start text-center md:text-left">
-                    <span class="block text-900 font-bold text-4xl">Modern, stylish and clean</span>
-                    <span class="block text-700 text-lg">The ultimate collection of design-agnostic, flexible and
+                    <span class="block text-900 font-bold text-4xl" i18n>Modern, stylish and clean</span>
+                    <span class="block text-700 text-lg" i18n>The ultimate collection of design-agnostic, flexible and
                         accessible UI Components.</span>
                     <ul class="flex flex-wrap gap-5 list-none p-0">
                         <li class="flex align-items-center">
@@ -88,7 +88,7 @@
                             <span class="text-900 font-semibold">Angular</span>
                         </li>
                     </ul>
-                    <button pButton pRipple type="button" label="Log In" icon="pi pi-arrow-right" iconPos="right" [routerLink]="['/auth/login']"
+                    <button pButton pRipple type="button" i18n-label label="Log In" icon="pi pi-arrow-right" iconPos="right" [routerLink]="['/auth/login']"
                         class="w-12rem p-button-outlined"></button>
                 </div>
 
@@ -128,81 +128,17 @@
             </div>
 
             <div id="pricing" class="my-6 py-6 md:my-8 md:py-8">
-                <div class="text-900 font-bold text-5xl mb-4 text-center">Pricing Plans</div>
-                <div class="text-700 text-xl mb-8 text-center line-height-3">Choose a plan that works best for you and
+                <div class="text-900 font-bold text-5xl mb-4 text-center" i18n>Pricing Plans</div>
+                <div class="text-700 text-xl mb-8 text-center line-height-3" i18n>Choose a plan that works best for you and
                     your team.</div>
 
                 <app-plans [forLanding]="true"></app-plans>
 
-                <!--<div class="grid grid-nogutter justify-content-center mt-8">
-                    <div class="col-12 lg:col-6 xl:col-4">
-                        <div class="p-3 h-full">
-                            <div class="shadow-2 p-6 h-full flex flex-column surface-card" style="border-radius: 6px">
-                                <span class="text-900 block font-medium text-xl mb-2 text-center">Basic Licence</span>
-                                <span class="font-bold block text-2xl text-900 text-center">$29</span>
-
-                                <ul class="list-none p-0 m-0 flex-grow-1 mt-6">
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span>Up to 10 Active Users</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span>Up to 30 Project Integrations</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span>Analytics Module</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-times text-red-500 mr-2"></i>
-                                        <span>Finance Module</span>
-                                    </li>
-                                </ul>
-
-                                <button pButton pRipple label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
-                                    icon="pi pi-arrow-right" iconPos="right"></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 lg:col-6 xl:col-4">
-                        <div class="p-3 h-full">
-                            <div class="shadow-2 p-6 h-full flex flex-column surface-card" style="border-radius: 6px">
-                                <span class="text-900 block font-medium text-xl mb-2 text-center">Extended
-                                    Licence</span>
-                                <span class="font-bold block text-2xl text-900 text-center">$49</span>
-
-                                <ul class="list-none p-0 m-0 flex-grow-1 mt-6">
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span>Up to 10 Active Users</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span>Up to 30 Project Integrations</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span>Analytics Module</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-times text-red-500 mr-2"></i>
-                                        <span>Finance Module</span>
-                                    </li>
-                                </ul>
-
-                                <button pButton pRipple label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
-                                    icon="pi pi-arrow-right" iconPos="right"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
             </div>
 
             <div id="features" class="my-6 py-6 md:my-8 md:py-8">
-                <span class="text-900 block font-bold text-5xl mb-4 text-center">Features</span>
-                <span class="text-700 block text-xl mb-8 text-center line-height-3">PrimeTek Informatics is the author
+                <span class="text-900 block font-bold text-5xl mb-4 text-center" i18n>Features</span>
+                <span class="text-700 block text-xl mb-8 text-center line-height-3" i18n>PrimeTek Informatics is the author
                     of PrimeReact, a UI Component vendor with well known vastly popular projects including PrimeFaces,
                     PrimeNG and PrimeVue.</span>
 
@@ -292,34 +228,30 @@
                 <div class="col-12 md:col-10 lg:col-7">
                     <div class="grid text-center md:text-left">
                         <div class="col-12 md:col-3">
-                            <h4 class="font-medium text-xl line-height-3 mb-3 text-900">Company</h4>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">About Us</a>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">News</a>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">Investor Relations</a>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">Careers</a>
-                            <a class="line-height-3 block cursor-pointer text-700">Media Kit</a>
+                            <h4 class="font-medium text-xl line-height-3 mb-3 text-900" i18n>Company</h4>
+                            <a class="line-height-3 block cursor-pointer mb-2 text-700" i18n>Contact Us</a>
+                            <a class="line-height-3 block cursor-pointer text-700" i18n>About</a>
                         </div>
 
                         <div class="col-12 md:col-3 mt-4 md:mt-0">
-                            <h4 class="font-medium text-xl line-height-3 mb-3 text-900">Resources</h4>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">Get Started</a>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">Learn</a>
-                            <a class="line-height-3 block cursor-pointer text-700">Case Studies</a>
+                            <h4 class="font-medium text-xl line-height-3 mb-3 text-900" i18n>Resources</h4>
+                            <a class="line-height-3 block cursor-pointer mb-2 text-700" i18n>Get Started</a>
+                            <a class="line-height-3 block cursor-pointer mb-2 text-700" i18n href="https://api.dev.wires.fr/api" target="_blank">Documentation</a>
+                            <a class="line-height-3 block cursor-pointer text-700" i18n>Case Studies</a>
                         </div>
 
                         <div class="col-12 md:col-3 mt-4 md:mt-0">
-                            <h4 class="font-medium text-xl line-height-3 mb-3 text-900">Community</h4>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">Discord</a>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">Events</a>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">FAQ</a>
-                            <a class="line-height-3 block cursor-pointer text-700">Blog</a>
+                            <h4 class="font-medium text-xl line-height-3 mb-3 text-900" i18n>Community</h4>
+                            <a class="line-height-3 block cursor-pointer mb-2 text-700" i18n>FAQ</a>
+                            <a class="line-height-3 block cursor-pointer mb-2 text-700" i18n>Help</a>
+                            <a class="line-height-3 block cursor-pointer text-700" i18n>Blog</a>
                         </div>
 
                         <div class="col-12 md:col-3 mt-4 md:mt-0">
-                            <h4 class="font-medium text-xl line-height-3 mb-3 text-900">Legal</h4>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">Brand Policy</a>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700">Privacy Policy</a>
-                            <a class="line-height-3 block cursor-pointer text-700">Terms of Service</a>
+                            <h4 class="font-medium text-xl line-height-3 mb-3 text-900" i18n>Legal</h4>
+                            <a class="line-height-3 block cursor-pointer mb-2 text-700" i18n>Terms of Service</a>
+                            <a class="line-height-3 block cursor-pointer mb-2 text-700" i18n>Privacy Policy</a>
+                            <a class="line-height-3 block cursor-pointer text-700" i18n>GDPR</a>
                         </div>
                     </div>
                 </div>

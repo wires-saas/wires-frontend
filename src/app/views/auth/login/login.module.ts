@@ -10,6 +10,7 @@ import { AppConfigModule } from 'src/app/layout/config/app.config.module';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
+import { LogosModule } from '../../../meta-components/logos/logos.module';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { AvatarModule } from 'primeng/avatar';
         FormsModule,
         AppConfigModule,
         ToastModule,
-        AvatarModule
+        AvatarModule,
+        LogosModule
     ],
     declarations: [LoginComponent],
     providers: [MessageService],

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LayoutService } from '../../layout/service/app.layout.service';
 
 @Component({
@@ -6,6 +6,8 @@ import { LayoutService } from '../../layout/service/app.layout.service';
     selector: 'app-logo',
 })
 export class LogoComponent {
+
+    @Input() withBorder: boolean = false;
 
     get lightMode(): boolean {
         return this.layoutService.isLightMode();
