@@ -119,6 +119,7 @@ export class ListUsersComponent implements OnInit {
             {
                 label: 'Re-send Invite',
                 icon: 'pi pi-fw pi-envelope',
+                disabled: user.status !== UserStatus.PENDING,
                 visible: visibleForManagersOrAdmins,
                 command: () => {
                     if (!this.currentOrgSlug) throw new Error('No current organization slug');

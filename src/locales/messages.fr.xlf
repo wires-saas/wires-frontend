@@ -311,7 +311,7 @@
       </trans-unit>
       <trans-unit id="4661038749219268828" datatype="html">
         <source>This token has already been used or never existed</source>
-        <target state="new">Ce jeton n'existe pas ou bien a déjà été utilisé</target>
+        <target state="new">Ce jeton n&apos;existe pas ou bien a déjà été utilisé</target>
       </trans-unit>
       <trans-unit id="1324562044865604828" datatype="html">
         <source>Expired Invite</source>
@@ -319,7 +319,7 @@
       </trans-unit>
       <trans-unit id="4018623713011682663" datatype="html">
         <source>It looks like this invitation expired, please ask your administrator for a new one</source>
-        <target state="new">Vous pouvez demander à votre administrateur d'envoyer une nouvelle invitation'</target>
+        <target state="new">Vous pouvez demander à votre administrateur d&apos;envoyer une nouvelle invitation&apos;</target>
       </trans-unit>
       <trans-unit id="9135624279061286565" datatype="html">
         <source>Invalid Invite</source>
@@ -336,6 +336,86 @@
       <trans-unit id="8954695724689602970" datatype="html">
         <source>Your invite has already been accepted. Try requesting a password reset ?</source>
         <target state="new">Il semblerait que vous ayez déjà accepté cette invitation</target>
+      </trans-unit>
+      <trans-unit id="143318366100741906" datatype="html">
+        <source>Access Denied</source>
+        <target state="new">Accès Refusé</target>
+      </trans-unit>
+      <trans-unit id="2111988672297224117" datatype="html">
+        <source>You don&apos;t have the permissions to access this page</source>
+        <target state="new">Vous n&apos;avez pas les permissions nécessaires</target>
+      </trans-unit>
+      <trans-unit id="178520337056147266" datatype="html">
+        <source>Go to Dashboard</source>
+        <target state="new">Accueil</target>
+      </trans-unit>
+      <trans-unit id="8766840274158243690" datatype="html">
+        <source>Oops!</source>
+        <target state="new">Oups !</target>
+      </trans-unit>
+      <trans-unit id="693027650393741132" datatype="html">
+        <source>There is nothing here</source>
+        <target state="new">Il n'y rien ici</target>
+      </trans-unit>
+      <trans-unit id="7197870580140559288" datatype="html">
+        <source>Sales</source>
+        <target state="new">Ventes</target>
+      </trans-unit>
+      <trans-unit id="1836325341458112664" datatype="html">
+        <source>Revenue</source>
+        <target state="new">Revenus</target>
+      </trans-unit>
+      <trans-unit id="2940211510142561457" datatype="html">
+        <source>Visitors</source>
+        <target state="new">Visiteurs</target>
+      </trans-unit>
+      <trans-unit id="4613338085351943838" datatype="html">
+        <source>Stock</source>
+        <target state="new">Stock</target>
+      </trans-unit>
+      <trans-unit id="7806195000207837552" datatype="html">
+        <source>ALL REVENUES</source>
+        <target state="new">TOUS LES REVENUS</target>
+      </trans-unit>
+      <trans-unit id="8885733122031268618" datatype="html">
+        <source>Sales by Category</source>
+        <target state="new">Ventes par Catégorie</target>
+      </trans-unit>
+      <trans-unit id="4340070332044695651" datatype="html">
+        <source>Recent Sales</source>
+        <target state="new">Ventes Récentes</target>
+      </trans-unit>
+      <trans-unit id="1831113653457443508" datatype="html">
+        <source>Name <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;name&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></source>
+        <target state="new">Nom <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;name&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></target>
+      </trans-unit>
+      <trans-unit id="8386621951042608841" datatype="html">
+        <source>Category <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;category&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></source>
+        <target state="new">Catégorie <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;category&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></target>
+      </trans-unit>
+      <trans-unit id="5757937685699742652" datatype="html">
+        <source>Price <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;price&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></source>
+        <target state="new">Prix <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;price&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></target>
+      </trans-unit>
+      <trans-unit id="2499839142582186183" datatype="html">
+        <source>Status <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;inventoryStatus&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></source>
+        <target state="new">Statut <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;inventoryStatus&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></target>
+      </trans-unit>
+      <trans-unit id="1806667489382256324" datatype="html">
+        <source>Category</source>
+        <target state="new">Catégorie</target>
+      </trans-unit>
+      <trans-unit id="8894377483833272091" datatype="html">
+        <source>Price</source>
+        <target state="new">Prix</target>
+      </trans-unit>
+      <trans-unit id="5611592591303869712" datatype="html">
+        <source>Status</source>
+        <target state="new">Statut</target>
+      </trans-unit>
+      <trans-unit id="5062508845012326327" datatype="html">
+        <source>Top Products</source>
+        <target state="new">Top Produits</target>
       </trans-unit>
     </body>
   </file>
