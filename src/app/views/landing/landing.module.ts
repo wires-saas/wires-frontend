@@ -8,6 +8,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigModule } from 'src/app/layout/config/app.config.module';
 import { AnimateEnterDirective } from './animateenter.directive';
 import { PlansModule } from '../../meta-components/plans/plans.module';
+import { LogosModule } from '../../meta-components/logos/logos.module';
 
 @NgModule({
     imports: [
@@ -17,7 +18,9 @@ import { PlansModule } from '../../meta-components/plans/plans.module';
         RouterModule,
         StyleClassModule,
         AppConfigModule,
-        PlansModule
+        PlansModule,
+        LogosModule,
+        LogosModule
     ],
     declarations: [LandingComponent, AnimateEnterDirective]
 })

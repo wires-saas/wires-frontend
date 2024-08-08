@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AppConfigModule } from 'src/app/layout/config/app.config.module';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { MessageService } from 'primeng/api';
         CheckboxModule,
         FormsModule,
         AppConfigModule,
-        ToastModule
+        ToastModule,
+        AvatarModule
     ],
     declarations: [LoginComponent],
     providers: [MessageService],

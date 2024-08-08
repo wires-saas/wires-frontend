@@ -23,6 +23,7 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
+import { LogosModule } from '../meta-components/logos/logos.module';
 
 @NgModule({
     declarations: [
@@ -51,7 +52,8 @@ import { MenuModule } from 'primeng/menu';
         RouterModule,
         AppConfigModule,
         DropdownModule,
-        MenuModule
+        MenuModule,
+        LogosModule
     ]
 })
 export class AppLayoutModule { }

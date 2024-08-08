@@ -1,8 +1,7 @@
 <div class="layout-sidebar" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
-    <div class="sidebar-header">
+    <div class="sidebar-header pt-3">
         <a [routerLink]="['/landing']" class="app-logo">
-            <img [class.hidden]="!lightMode" src="assets/imgs/logo_purple_transparent.png" alt="logo" width="200"/>
-            <img [class.hidden]="lightMode" src="assets/imgs/logo_teal_transparent.png" alt="logo" width="200"/>
+            <app-logo></app-logo>
         </a>
         <!-- <button class="layout-sidebar-anchor p-link z-2 mb-2" type="button" (click)="anchor()"></button> -->
     </div>

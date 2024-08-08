@@ -15,6 +15,10 @@ export class LoginComponent implements OnInit {
 
     isWaitingServer: boolean = false;
 
+    get lightMode(): boolean {
+        return this.layoutService.isLightMode();
+    }
+
     constructor(private layoutService: LayoutService,
                 private authService: AuthService,
                 private messageService: MessageService,
@@ -23,10 +27,6 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.rememberMe = localStorage.getItem('autologin') === 'true';
-    }
-
-    get dark(): boolean {
-        return this.layoutService.config().colorScheme !== 'light';
     }
 
     async tryLogIn() {

@@ -47,7 +47,7 @@
       </trans-unit>
       <trans-unit id="1636934520301910285" datatype="html">
         <source>Reset password</source>
-        <target state="new">Réinitialiser le mot de passe</target>
+        <target state="new">Mot de passe perdu ?</target>
       </trans-unit>
       <trans-unit id="8520023152129279437" datatype="html">
         <source>Log In</source>
