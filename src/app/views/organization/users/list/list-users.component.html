@@ -19,26 +19,24 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="firstName" class="white-space-nowrap" style="width:25%">First Name <p-sortIcon field="firstName"></p-sortIcon></th>
-                <th pSortableColumn="lastName" class="white-space-nowrap" style="width:25%">Last Name <p-sortIcon field="lastName"></p-sortIcon></th>
+                <th pSortableColumn="firstName" class="white-space-nowrap" style="width:15%">First Name <p-sortIcon field="firstName"></p-sortIcon></th>
+                <th pSortableColumn="lastName" class="white-space-nowrap" style="width:15%">Last Name <p-sortIcon field="lastName"></p-sortIcon></th>
                 <th pSortableColumn="email" class="white-space-nowrap" style="width:25%">Email <p-sortIcon field="email"></p-sortIcon></th>
-                <th pSortableColumn="roles" class="white-space-nowrap" style="width:25%">Roles <p-sortIcon field="roles"></p-sortIcon></th>
-                <th pSortableColumn="status" class="white-space-nowrap" style="width:25%">Status <p-sortIcon field="status"></p-sortIcon></th>
-                <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:25%">Invited <p-sortIcon field="createdAt"></p-sortIcon></th>
-                <th class="white-space-nowrap" style="width:25%">Invite Expired </th>
-                <th pSortableColumn="lastSeenAt" class="white-space-nowrap" style="width:25%">Last Seen <p-sortIcon field="lastSeen"></p-sortIcon></th>
-                <th class="white-space-nowrap" style="width:25%">Actions</th>
+                <th pSortableColumn="roles" class="white-space-nowrap" style="width:15%">Roles <p-sortIcon field="roles"></p-sortIcon></th>
+                <th pSortableColumn="status" class="white-space-nowrap" style="width:15%">Status <p-sortIcon field="status"></p-sortIcon></th>
+                <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:30%">Invited <p-sortIcon field="createdAt"></p-sortIcon></th>
+                <th pSortableColumn="lastSeenAt" class="white-space-nowrap" style="width:15%">Last Seen <p-sortIcon field="lastSeen"></p-sortIcon></th>
+                <th class="white-space-nowrap" style="width:15%">Actions</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-user>
             <tr>
-                <td>{{ user.firstName}}</td>
+                <td>{{ user.firstName}}<i *ngIf="isCurrentUser(user) | async" pTooltip="You" tooltipPosition="bottom" class="pi pi-user ml-2"></i></td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ getRoleOfUser(user) | titlecase }}</td>
                 <td>{{ user.status | titlecase }}</td>
-                <td>{{ user.createdAt | date: 'dd/MM/yyyy'}}</td>
-                <td><button *ngIf="isInviteExpired(user)" pButton pRipple type="button" icon="pi pi-exclamation-triangle" class="p-button-rounded p-button-warning p-button-text"></button></td>
+                <td>{{ user.createdAt | date: 'dd/MM/yyyy'}} <i *ngIf="isInviteExpired(user)" pTooltip="Invite expired" class="pi pi-exclamation-triangle text-yellow-500"></i></td>
                 <td>
                     <ng-container *ngIf="user.lastSeenAt; else neverSeen">{{ user.lastSeenAt | date: 'dd/MM/yyyy'}}</ng-container>
                     <ng-template #neverSeen>Never</ng-template>
@@ -51,8 +49,8 @@
     </p-table>
 </div>
 
-<p-confirmDialog header="Delete User" key="confirm-delete" icon="pi pi-exclamation-triangle"
-                 message="Are you sure you want to delete user ? This action cannot be undone and will require you to re-invite the user."
+<p-confirmDialog i18n-header header="Delete User" key="confirm-delete" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to delete user ? This action cannot be undone and will require you to re-invite the user."
                  [style]="{width: '350px'}" defaultFocus="none"
                  acceptButtonStyleClass="p-button-danger"
                  rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>

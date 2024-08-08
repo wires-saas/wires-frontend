@@ -147,6 +147,10 @@ export class LayoutService {
         return window.innerWidth > 991;
     }
 
+    isLightMode() {
+        return this.config().colorScheme === 'light';
+    }
+
     isSlim() {
         return this.config().menuMode === 'slim';
     }

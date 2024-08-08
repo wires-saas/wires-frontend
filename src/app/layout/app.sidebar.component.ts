@@ -14,6 +14,10 @@ export class AppSidebarComponent implements OnInit {
     availableOrganizations: Organization[] = [];
     selectedOrganization: Organization | undefined = undefined;
 
+    get lightMode(): boolean {
+        return this.layoutService.isLightMode();
+    }
+
     @ViewChild('menuContainer') menuContainer!: ElementRef;
     constructor(public layoutService: LayoutService,
                 public el: ElementRef,

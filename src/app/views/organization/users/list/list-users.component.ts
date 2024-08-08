@@ -7,7 +7,7 @@ import { User, UserService, UserStatus } from '../../../../services/user.service
 import { OrganizationService } from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import { filter, firstValueFrom } from 'rxjs';
+import { filter, firstValueFrom, Observable } from 'rxjs';
 import { ConfirmationService, MenuItem, MessageService, SortEvent } from 'primeng/api';
 import { Role, RoleUtils } from '../../../../utils/role.utils';
 import { Slug } from '../../../../utils/types.utils';
@@ -73,6 +73,12 @@ export class ListUsersComponent implements OnInit {
         }
     }
 
+    isCurrentUser(user: User): Observable<boolean> {
+        return this.authService.currentUser$.pipe(
+            map(_ => _?._id === user._id),
+            takeUntilDestroyed(this.destroyRef)
+        );
+    }
     getRoleOfUser(user: User): Role {
         if (user?.isSuperAdmin) return Role.SUPER_ADMIN;
 

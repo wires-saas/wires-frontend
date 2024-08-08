@@ -83,6 +83,12 @@
       <trans-unit id="935790816200474922" datatype="html">
         <source>Sign Out</source>
       </trans-unit>
+      <trans-unit id="4839682406703705780" datatype="html">
+        <source>Delete User</source>
+      </trans-unit>
+      <trans-unit id="892110761745370539" datatype="html">
+        <source>Are you sure you want to delete user ? This action cannot be undone and will require you to re-invite the user.</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

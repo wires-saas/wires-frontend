@@ -109,6 +109,14 @@
         <source> Invitation to join <x id="INTERPOLATION" equiv-text="{{ organizationName$ | async }}"/> </source>
         <target state="new"> Inviter à rejoindre <x id="INTERPOLATION" equiv-text="{{ organizationName$ | async }}"/> </target>
       </trans-unit>
+      <trans-unit id="4839682406703705780" datatype="html">
+        <source>Delete User</source>
+        <target state="new">Retirer l'utilisateur</target>
+      </trans-unit>
+      <trans-unit id="892110761745370539" datatype="html">
+        <source>Are you sure you want to delete user ? This action cannot be undone and will require you to re-invite the user.</source>
+        <target state="new">Êtes-vous sûr de vouloir retirer cet utilisateur ? Il vous faudra l'inviter de nouveau si nécessaire.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
