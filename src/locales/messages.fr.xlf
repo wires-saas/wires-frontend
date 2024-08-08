@@ -355,7 +355,7 @@
       </trans-unit>
       <trans-unit id="693027650393741132" datatype="html">
         <source>There is nothing here</source>
-        <target state="new">Il n'y rien ici</target>
+        <target state="new">Il n&apos;y rien ici</target>
       </trans-unit>
       <trans-unit id="7197870580140559288" datatype="html">
         <source>Sales</source>
@@ -416,6 +416,46 @@
       <trans-unit id="5062508845012326327" datatype="html">
         <source>Top Products</source>
         <target state="new">Top Produits</target>
+      </trans-unit>
+      <trans-unit id="2614607010577950577" datatype="html">
+        <source>Overview</source>
+        <target state="new">Aperçu</target>
+      </trans-unit>
+      <trans-unit id="4165850386196559100" datatype="html">
+        <source>Empty</source>
+        <target state="new">Nouveau</target>
+      </trans-unit>
+      <trans-unit id="3076687427621376223" datatype="html">
+        <source>Organization</source>
+        <target state="new">Organisation</target>
+      </trans-unit>
+      <trans-unit id="2353218794817409278" datatype="html">
+        <source>All Users</source>
+        <target state="new">Utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="2941198503117307737" datatype="html">
+        <source>Add User</source>
+        <target state="new">Nouvel utilisateur</target>
+      </trans-unit>
+      <trans-unit id="5037437391296624618" datatype="html">
+        <source>Information</source>
+        <target state="new">Information</target>
+      </trans-unit>
+      <trans-unit id="5875130684997376720" datatype="html">
+        <source>Billing</source>
+        <target state="new">Facturation</target>
+      </trans-unit>
+      <trans-unit id="7844706011418789951" datatype="html">
+        <source>Administration</source>
+        <target state="new">Administration</target>
+      </trans-unit>
+      <trans-unit id="8911589640536279832" datatype="html">
+        <source>All Organizations</source>
+        <target state="new">Organisations</target>
+      </trans-unit>
+      <trans-unit id="3408634695827914335" datatype="html">
+        <source>Add Organization</source>
+        <target state="new">Nouvelle organisation</target>
       </trans-unit>
     </body>
   </file>

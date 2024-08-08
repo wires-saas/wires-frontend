@@ -21,12 +21,12 @@ export class AppMenuComponent implements OnInit {
             icon: 'pi pi-home',
             items: [
                 {
-                    label: 'Overview',
+                    label: $localize `Overview`,
                     icon: 'pi pi-fw pi-home',
                     routerLink: ['/overview']
                 },
                 {
-                    label: 'Blank',
+                    label: $localize `Empty`,
                     icon: 'pi pi-fw pi-circle-off',
                     routerLink: ['/blank']
                 },
@@ -36,30 +36,30 @@ export class AppMenuComponent implements OnInit {
 
     private organizationMenu: (org: Organization, authService: AuthService) => any[] = (org, authService) => ([
         {
-            label: 'Organization',
+            label: $localize `Organization`,
             icon: 'pi pi-fw pi-building',
             restriction: authService.hasRole$(Role.MANAGER, org.slug),
             items: [
                 {
-                    label: 'All Users',
+                    label: $localize `All Users`,
                     icon: 'pi pi-fw pi-users',
                     routerLink: [`organization/${org.slug}/users/list`],
                     restriction: authService.hasRole$(Role.MANAGER, org.slug)
                 },
                 {
-                    label: 'Add User',
+                    label: $localize `Add User`,
                     icon: 'pi pi-fw pi-user-plus',
                     routerLink: [`organization/${org.slug}/users/create`],
                     restriction: authService.hasRole$(Role.MANAGER, org.slug)
                 },
                 {
-                    label: 'Information',
+                    label: $localize `Information`,
                     icon: 'pi pi-fw pi-building',
                     routerLink: [`organization/${org.slug}/information`],
                     restriction: authService.hasRole$(Role.ADMIN, org.slug)
                 },
                 {
-                    label: 'Billing',
+                    label: $localize `Billing`,
                     icon: 'pi pi-fw pi-wallet',
                     routerLink: [`organization/${org.slug}/billing`],
                     restriction: authService.hasRole$(Role.ADMIN, org.slug)
@@ -71,16 +71,16 @@ export class AppMenuComponent implements OnInit {
 
     private helpMenu: any[] = [
         {
-            label: 'Help',
+            label: $localize `Help`,
             icon: 'pi pi-fw pi-th-large',
             items: [
                 {
-                    label: 'FAQ',
+                    label: $localize `FAQ`,
                     icon: 'pi pi-fw pi-question-circle',
                     routerLink: ['/help/faq']
                 },
                 {
-                    label: 'Contact Us',
+                    label: $localize `Contact Us`,
                     icon: 'pi pi-fw pi-phone',
                     routerLink: ['/help/contact']
                 }
@@ -90,22 +90,22 @@ export class AppMenuComponent implements OnInit {
 
     private superAdminMenu: (authService: AuthService) => any[] = (authService) => ([
         {
-            label: 'Administration',
+            label: $localize `Administration`,
             icon: 'pi pi-fw pi-shield',
             restriction: authService.hasRole$(Role.SUPER_ADMIN),
             items: [
                 {
-                    label: 'All Organizations',
+                    label: $localize `All Organizations`,
                     icon: 'pi pi-fw pi-list',
                     routerLink: ['administration/organizations/list']
                 },
                 {
-                    label: 'Add Organization',
+                    label: $localize `Add Organization`,
                     icon: 'pi pi-fw pi-plus',
                     routerLink: ['administration/organizations/create']
                 },
                 {
-                    label: 'All Users',
+                    label: $localize `All Users`,
                     icon: 'pi pi-fw pi-users',
                     routerLink: ['administration/organizations/users/list']
                 },

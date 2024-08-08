@@ -314,6 +314,36 @@
       <trans-unit id="8894377483833272091" datatype="html">
         <source>Price</source>
       </trans-unit>
+      <trans-unit id="2353218794817409278" datatype="html">
+        <source>All Users</source>
+      </trans-unit>
+      <trans-unit id="2614607010577950577" datatype="html">
+        <source>Overview</source>
+      </trans-unit>
+      <trans-unit id="2941198503117307737" datatype="html">
+        <source>Add User</source>
+      </trans-unit>
+      <trans-unit id="3076687427621376223" datatype="html">
+        <source>Organization</source>
+      </trans-unit>
+      <trans-unit id="3408634695827914335" datatype="html">
+        <source>Add Organization</source>
+      </trans-unit>
+      <trans-unit id="4165850386196559100" datatype="html">
+        <source>Empty</source>
+      </trans-unit>
+      <trans-unit id="5037437391296624618" datatype="html">
+        <source>Information</source>
+      </trans-unit>
+      <trans-unit id="5875130684997376720" datatype="html">
+        <source>Billing</source>
+      </trans-unit>
+      <trans-unit id="7844706011418789951" datatype="html">
+        <source>Administration</source>
+      </trans-unit>
+      <trans-unit id="8911589640536279832" datatype="html">
+        <source>All Organizations</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
