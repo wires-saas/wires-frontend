@@ -112,68 +112,98 @@ export class ListUsersComponent implements OnInit {
 
         this.actionsMenuItems = [
             {
-                label: 'Edit',
-                icon: 'pi pi-fw pi-pencil',
-                routerLink: ['/organization', this.currentOrgSlug, 'users', user._id, 'edit']
-            },
-            {
-                label: 'Re-send Invite',
-                icon: 'pi pi-fw pi-envelope',
-                disabled: user.status !== UserStatus.PENDING,
-                visible: visibleForManagersOrAdmins,
-                command: () => {
-                    if (!this.currentOrgSlug) throw new Error('No current organization slug');
-                    this.userService.resendInvite(user._id).then(() => {
-                        this.messageService.add({
-                            severity: 'success',
-                            summary: 'Success re-sending invite',
-                            detail: 'User has been invited again',
-                            life: 5000,
-                        });
-                    }).catch((err) => {
-                        console.error(err);
-
-                        MessageUtils.parseServerError(this.messageService, err, {
-                            summary: 'Error re-sending invite',
-                        });
-                    });
-                }
-            },
-            {
-                label: 'Remove',
-                icon: 'pi pi-fw pi-user-minus',
-                visible: visibleForManagersOrAdmins,
-                command: () => {
-                    this.confirmationService.confirm({
-                        key: 'confirm-delete',
-                        accept: async() => {
+                label: $localize `Actions`,
+                items: [
+                    {
+                        label: $localize `Edit`,
+                        icon: 'pi pi-fw pi-pencil',
+                        routerLink: ['/organization', this.currentOrgSlug, 'users', user._id, 'edit']
+                    },
+                    {
+                        label: $localize `Re-send Invite`,
+                        icon: 'pi pi-fw pi-envelope',
+                        disabled: user.status !== UserStatus.PENDING,
+                        visible: visibleForManagersOrAdmins,
+                        command: () => {
                             if (!this.currentOrgSlug) throw new Error('No current organization slug');
-                            await this.userService.deleteUser(user._id, this.currentOrgSlug).then(() => {
-                                this.users = this.users.filter(_ => _.email !== user.email);
-
+                            this.userService.resendInvite(user._id).then(() => {
                                 this.messageService.add({
                                     severity: 'success',
-                                    summary: 'Success removing user',
-                                    detail: 'User has been removed from your organization',
+                                    summary: $localize `Success re-sending invite`,
+                                    detail: $localize `User has been invited again`,
                                     life: 5000,
-
                                 });
-
                             }).catch((err) => {
                                 console.error(err);
 
                                 MessageUtils.parseServerError(this.messageService, err, {
-                                    summary: 'Error removing user',
+                                    summary: $localize `Error re-sending invite`,
                                 });
                             });
                         }
-                    });
-                }
+                    },
+                    {
+                        label: $localize `Remove`,
+                        icon: 'pi pi-fw pi-user-minus',
+                        visible: visibleForManagersOrAdmins,
+                        command: () => {
+                            this.confirmationService.confirm({
+                                key: 'confirm-delete',
+                                accept: async() => {
+                                    if (!this.currentOrgSlug) throw new Error('No current organization slug');
+                                    await this.userService.deleteUser(user._id, this.currentOrgSlug).then(() => {
+                                        this.users = this.users.filter(_ => _.email !== user.email);
+
+                                        this.messageService.add({
+                                            severity: 'success',
+                                            summary: $localize `Success removing user`,
+                                            detail: $localize `User has been removed from your organization`,
+                                            life: 5000,
+
+                                        });
+
+                                    }).catch((err) => {
+                                        console.error(err);
+
+                                        MessageUtils.parseServerError(this.messageService, err, {
+                                            summary: $localize `Error removing user`,
+                                        });
+                                    });
+                                }
+                            });
+                        }
+                    }
+                ]
+
             },
-            { separator: true, visible: !isCurrentUser },
-            { label: 'Set Admin', icon: 'pi pi-fw pi-sort-up', visible: !isCurrentUser, data: 'admin' },
-            { label: 'Set Manager', icon: 'pi pi-fw pi-sort', visible: !isCurrentUser, data: 'manager' },
-            { label: 'Set User', icon: 'pi pi-fw pi-sort-down', visible: !isCurrentUser, data: 'user' },
+            { separator: true, visible: visibleForManagersOrAdmins && !isCurrentUser },
+            {
+                label: $localize `Roles`,
+                visible: visibleForManagersOrAdmins && !isCurrentUser,
+                items: [
+                    {
+                        label: $localize `Set Admin`,
+                        icon: 'pi pi-fw pi-sort-up',
+                        visible: !isCurrentUser,
+                        disabled: this.getRoleOfUser(user) === Role.ADMIN,
+                        data: 'admin'
+                    },
+                    {
+                        label: $localize `Set Manager`,
+                        icon: 'pi pi-fw pi-sort',
+                        visible: !isCurrentUser,
+                        disabled: this.getRoleOfUser(user) === Role.MANAGER,
+                        data: 'manager'
+                    },
+                    {
+                        label: $localize `Set User`,
+                        icon: 'pi pi-fw pi-sort-down',
+                        visible: !isCurrentUser,
+                        disabled: this.getRoleOfUser(user) === Role.USER,
+                        data: 'user'
+                    }
+                ]
+            }
         ];
 
         this.actionsMenuItems

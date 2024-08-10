@@ -374,6 +374,219 @@
       <trans-unit id="434775311083233135" datatype="html">
         <source>Enter a password</source>
       </trans-unit>
+      <trans-unit id="2565164139557117651" datatype="html">
+        <source>Password reset</source>
+      </trans-unit>
+      <trans-unit id="3822059242853947509" datatype="html">
+        <source>You can now log in with your new password</source>
+      </trans-unit>
+      <trans-unit id="4023810215533952980" datatype="html">
+        <source>Invite confirmed</source>
+      </trans-unit>
+      <trans-unit id="6816051190192710565" datatype="html">
+        <source>You can now log in</source>
+      </trans-unit>
+      <trans-unit id="3193976279273491157" datatype="html">
+        <source>Actions</source>
+      </trans-unit>
+      <trans-unit id="3616922130332812315" datatype="html">
+        <source>Last Seen <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;lastSeen&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+      </trans-unit>
+      <trans-unit id="3913559456545794630" datatype="html">
+        <source>Invited <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;createdAt&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+      </trans-unit>
+      <trans-unit id="4431084996280764621" datatype="html">
+        <source>Invite expired</source>
+      </trans-unit>
+      <trans-unit id="5519074357430456571" datatype="html">
+        <source>Roles <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;roles&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+      </trans-unit>
+      <trans-unit id="6405982538817857792" datatype="html">
+        <source>First Name <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;firstName&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+      </trans-unit>
+      <trans-unit id="6708852060148788987" datatype="html">
+        <source>Email <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;email&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+      </trans-unit>
+      <trans-unit id="720557322859638078" datatype="html">
+        <source>You</source>
+      </trans-unit>
+      <trans-unit id="8372007266188249803" datatype="html">
+        <source>Never</source>
+      </trans-unit>
+      <trans-unit id="8944407613319550114" datatype="html">
+        <source>Last Name <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;lastName&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+      </trans-unit>
+      <trans-unit id="181268056502376150" datatype="html">
+        <source>Set Manager</source>
+      </trans-unit>
+      <trans-unit id="1842581728291163418" datatype="html">
+        <source>User has been removed from your organization</source>
+      </trans-unit>
+      <trans-unit id="2559449788312523606" datatype="html">
+        <source>Error removing user</source>
+      </trans-unit>
+      <trans-unit id="3319479636751438330" datatype="html">
+        <source>Success re-sending invite</source>
+      </trans-unit>
+      <trans-unit id="381429878162414591" datatype="html">
+        <source>Success removing user</source>
+      </trans-unit>
+      <trans-unit id="4479081224397813551" datatype="html">
+        <source>User has been invited again</source>
+      </trans-unit>
+      <trans-unit id="4814285799071780083" datatype="html">
+        <source>Remove</source>
+      </trans-unit>
+      <trans-unit id="7259588108463219079" datatype="html">
+        <source>Set User</source>
+      </trans-unit>
+      <trans-unit id="7585826646011739428" datatype="html">
+        <source>Edit</source>
+      </trans-unit>
+      <trans-unit id="7840796531248419924" datatype="html">
+        <source>Set Admin</source>
+      </trans-unit>
+      <trans-unit id="8170885557369261178" datatype="html">
+        <source>Re-send Invite</source>
+      </trans-unit>
+      <trans-unit id="901319418511145568" datatype="html">
+        <source>Error re-sending invite</source>
+      </trans-unit>
+      <trans-unit id="1211169124143348857" datatype="html">
+        <source>Edit User</source>
+      </trans-unit>
+      <trans-unit id="1392017644702589696" datatype="html">
+        <source>Success inviting user</source>
+      </trans-unit>
+      <trans-unit id="1585425644523299468" datatype="html">
+        <source>Email *</source>
+      </trans-unit>
+      <trans-unit id="1847047605496409443" datatype="html">
+        <source>Street</source>
+      </trans-unit>
+      <trans-unit id="212820117866187249" datatype="html">
+        <source>India</source>
+      </trans-unit>
+      <trans-unit id="2314075913167237221" datatype="html">
+        <source>City</source>
+      </trans-unit>
+      <trans-unit id="3793363326863773180" datatype="html">
+        <source>Error creating user</source>
+      </trans-unit>
+      <trans-unit id="3847673789207378086" datatype="html">
+        <source>Spain</source>
+      </trans-unit>
+      <trans-unit id="4126304011787241908" datatype="html">
+        <source>Last Name *</source>
+      </trans-unit>
+      <trans-unit id="4159029734254898733" datatype="html">
+        <source>User has been invited by email to join !</source>
+      </trans-unit>
+      <trans-unit id="4585143651785848185" datatype="html">
+        <source>ZIP Code</source>
+      </trans-unit>
+      <trans-unit id="4837550591673319472" datatype="html">
+        <source>Are you sure you want to invite user ?</source>
+      </trans-unit>
+      <trans-unit id="5134090110001463731" datatype="html">
+        <source>China</source>
+      </trans-unit>
+      <trans-unit id="516176798986294299" datatype="html">
+        <source>Country</source>
+      </trans-unit>
+      <trans-unit id="5414293408829797992" datatype="html">
+        <source>Brazil</source>
+      </trans-unit>
+      <trans-unit id="6014862663057951430" datatype="html">
+        <source>Germany</source>
+      </trans-unit>
+      <trans-unit id="6020357970867883938" datatype="html">
+        <source>Update User</source>
+      </trans-unit>
+      <trans-unit id="6133495983093212227" datatype="html">
+        <source>United States</source>
+      </trans-unit>
+      <trans-unit id="6215338719113626053" datatype="html">
+        <source>Global Search</source>
+      </trans-unit>
+      <trans-unit id="6525109356951792180" datatype="html">
+        <source>Avatar</source>
+      </trans-unit>
+      <trans-unit id="6724050522405858430" datatype="html">
+        <source>Egypt</source>
+      </trans-unit>
+      <trans-unit id="6762532372374891558" datatype="html">
+        <source> Must be a valid email such as example@mail.com </source>
+      </trans-unit>
+      <trans-unit id="7273706059895780829" datatype="html">
+        <source>Select a Country</source>
+      </trans-unit>
+      <trans-unit id="795890916060309463" datatype="html">
+        <source>Roles</source>
+      </trans-unit>
+      <trans-unit id="797743923912773831" datatype="html">
+        <source>Australia</source>
+      </trans-unit>
+      <trans-unit id="80663871075536039" datatype="html">
+        <source>Japan</source>
+      </trans-unit>
+      <trans-unit id="8455748975405069739" datatype="html">
+        <source>Invite User</source>
+      </trans-unit>
+      <trans-unit id="872961297877778350" datatype="html">
+        <source>Return to users list</source>
+      </trans-unit>
+      <trans-unit id="8838478044018052369" datatype="html">
+        <source>First Name *</source>
+      </trans-unit>
+      <trans-unit id="9102111099070729831" datatype="html">
+        <source> Fields marked with an asterisk (*) are required </source>
+      </trans-unit>
+      <trans-unit id="956678847762152494" datatype="html">
+        <source>France</source>
+      </trans-unit>
+      <trans-unit id="6288082678754862274" datatype="html">
+        <source>Upload Image</source>
+      </trans-unit>
+      <trans-unit id="1102670394574478320" datatype="html">
+        <source>UI Kit</source>
+      </trans-unit>
+      <trans-unit id="1486515619927301272" datatype="html">
+        <source>E-Commerce</source>
+      </trans-unit>
+      <trans-unit id="1699748585121922983" datatype="html">
+        <source>Auth</source>
+      </trans-unit>
+      <trans-unit id="2549712342933889320" datatype="html">
+        <source>Prime Blocks</source>
+      </trans-unit>
+      <trans-unit id="3848479214898655176" datatype="html">
+        <source>Utilities</source>
+      </trans-unit>
+      <trans-unit id="6215970478390263685" datatype="html">
+        <source>My Organization</source>
+      </trans-unit>
+      <trans-unit id="4555457172864212828" datatype="html">
+        <source>Users</source>
+      </trans-unit>
+      <trans-unit id="6439365426343089851" datatype="html">
+        <source>General</source>
+      </trans-unit>
+      <trans-unit id="1069523139277190436" datatype="html">
+        <source>Statistics</source>
+      </trans-unit>
+      <trans-unit id="7625361024281600761" datatype="html">
+        <source>Empty Dashboard</source>
+      </trans-unit>
+      <trans-unit id="8539325943407755549" datatype="html">
+        <source>Organizations</source>
+      </trans-unit>
+      <trans-unit id="7607333843168590962" datatype="html">
+        <source>Empty Page</source>
+      </trans-unit>
+      <trans-unit id="8172423498899867393" datatype="html">
+        <source>This is your empty page template to start building beautiful applications.</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

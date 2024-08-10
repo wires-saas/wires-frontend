@@ -55,7 +55,7 @@ import { CanResetPasswordGuard } from '../../guards/can-reset-password.guard';
         // 2FA - not implemented yet
 
         { path: 'verification', canActivate: [AutologinGuard], loadChildren: () => import('./verification/verification.module').then(m => m.VerificationModule) },
-        { path: '**', redirectTo: '/notfound' }
+        { path: '**', redirectTo: '/not-found' }
     ])],
     exports: [RouterModule],
     providers: [AutologinGuard, CanAcceptInviteGuard, CanResetPasswordGuard]

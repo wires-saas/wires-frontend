@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
         { path: 'newpassword', loadChildren: () => import('./newpassword/newpassword.module').then(m => m.NewPasswordModule) },
         { path: 'verification', loadChildren: () => import('./verification/verification.module').then(m => m.VerificationModule) },
         { path: 'lockscreen', loadChildren: () => import('./lockscreen/lockscreen.module').then(m => m.LockScreenModule) },
-        { path: '**', redirectTo: '/notfound' }
+        { path: '**', redirectTo: '/not-found' }
     ])],
     exports: [RouterModule]
 })

@@ -6,35 +6,35 @@ import { HasRoleGuard } from '../../guards/has-role.guard';
     imports: [RouterModule.forChild([
         {
             path: 'users/list',
-            data: { breadcrumb: 'Users', requiredRole: 'manager' },
+            data: { breadcrumb: $localize `Users`, requiredRole: 'manager' },
             canActivate: [HasRoleGuard],
             loadChildren: () => import('./users/list/list-users.module').then(m => m.ListUsersModule)
         },
         {
             path: 'users/create',
-            data: { breadcrumb: 'Users', requiredRole: 'manager' },
+            data: { breadcrumb: $localize `Users`, requiredRole: 'manager' },
             canActivate: [HasRoleGuard],
             loadChildren: () => import('./users/create-or-edit/create-or-edit-user.module').then(m => m.CreateOrEditUserModule)
         },
         {
             path: 'users/:user/edit',
-            data: { breadcrumb: 'Users', requiredRole: 'manager' },
+            data: { breadcrumb: $localize `Users`, requiredRole: 'manager' },
             canActivate: [HasRoleGuard],
             loadChildren: () => import('./users/create-or-edit/create-or-edit-user.module').then(m => m.CreateOrEditUserModule)
         },
         {
             path: 'information',
-            data: { breadcrumb: 'General', requiredRole: 'admin'},
+            data: { breadcrumb: $localize `General`, requiredRole: 'admin'},
             canActivate: [HasRoleGuard],
             loadChildren: () => import('./information/information.module').then(m => m.InformationModule)
         },
         {
             path: 'billing',
-            data: { breadcrumb: 'Billing', requiredRole: 'admin' },
+            data: { breadcrumb: $localize `Billing`, requiredRole: 'admin' },
             canActivate: [HasRoleGuard],
             loadChildren: () => import('./billing/billing.module').then(m => m.BillingModule)
         },
-        { path: '**', redirectTo: '/notfound' }
+        { path: '**', redirectTo: '/not-found' }
     ])],
     exports: [RouterModule],
     providers: [HasRoleGuard]

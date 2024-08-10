@@ -7,7 +7,7 @@ import { IconsComponent } from './icons/icons.component';
     imports: [RouterModule.forChild([
         { path: 'icons', data: { breadcrumb: 'Prime Icons' }, component: IconsComponent },
         { path: 'colors', data: { breadcrumb: 'Colors' }, component: ColorsComponent },
-        { path: '**', redirectTo: '/notfound' }
+        { path: '**', redirectTo: '/not-found' }
     ])],
     exports: [RouterModule]
 })

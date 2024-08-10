@@ -70,16 +70,16 @@ export class CreateOrEditUserComponent implements OnInit, AfterViewInit {
         }
 
         this.countries = [
-            {name: 'Australia', code: 'AU'},
-            {name: 'Brazil', code: 'BR'},
-            {name: 'China', code: 'CN'},
-            {name: 'Egypt', code: 'EG'},
-            {name: 'France', code: 'FR'},
-            {name: 'Germany', code: 'DE'},
-            {name: 'India', code: 'IN'},
-            {name: 'Japan', code: 'JP'},
-            {name: 'Spain', code: 'ES'},
-            {name: 'United States', code: 'US'}
+            {name: $localize `Australia`, code: 'AU'},
+            {name: $localize `Brazil`, code: 'BR'},
+            {name: $localize `China`, code: 'CN'},
+            {name: $localize `Egypt`, code: 'EG'},
+            {name: $localize `France`, code: 'FR'},
+            {name: $localize `Germany`, code: 'DE'},
+            {name: $localize `India`, code: 'IN'},
+            {name: $localize `Japan`, code: 'JP'},
+            {name: $localize `Spain`, code: 'ES'},
+            {name: $localize `United States`, code: 'US'}
         ];
     }
 
@@ -87,8 +87,8 @@ export class CreateOrEditUserComponent implements OnInit, AfterViewInit {
         if (!!this.activatedRoute.snapshot.queryParams['newlyCreated']) {
             this.messageService.add({
                 severity: 'success',
-                summary: 'Success inviting user',
-                detail: 'User has been invited by email to join !',
+                summary: $localize `Success inviting user`,
+                detail: $localize `User has been invited by email to join !`,
                 life: 5000
             });
         }
@@ -113,7 +113,7 @@ export class CreateOrEditUserComponent implements OnInit, AfterViewInit {
                         console.error(err);
 
                         MessageUtils.parseServerError(this.messageService, err, {
-                            summary: 'Error creating user',
+                            summary: $localize `Error creating user`,
                         });
 
                     })

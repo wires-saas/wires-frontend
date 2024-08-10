@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
         { path: 'new-product', data: { breadcrumb: 'New Product' }, loadChildren: () => import('./newproduct/newproduct.module').then(m => m.NewProductModule) },
         { path: 'order-history', data: { breadcrumb: 'Order History' }, loadChildren: () => import('./orderhistory/orderhistory.module').then(m => m.OrderHistoryModule) },
         { path: 'order-summary', data: { breadcrumb: 'Order Summary' }, loadChildren: () => import('./ordersummary/ordersummary.module').then(m => m.OrderSummaryModule) },
-        { path: '**', redirectTo: '/notfound' }
+        { path: '**', redirectTo: '/not-found' }
     ])],
     exports: [RouterModule]
 })

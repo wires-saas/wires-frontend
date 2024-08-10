@@ -86,11 +86,14 @@ export class ResetPasswordComponent implements OnInit {
     async submitPassword() {
         if (this.token && this.password && this.passwordConfirmation === this.password) {
 
-            // TODO find a way to show message to user post password reset or invite acceptance
+            if (this.welcomeNewUser) {
+                await this.authService.useInviteToken(this.token, this.password);
+                await this.router.navigate(['/auth/login'], { state: { inviteConfirmation: true } });
+            } else {
+                await this.authService.usePasswordResetToken(this.token, this.password);
+                await this.router.navigate(['/auth/login'], { state: { passwordReset: true } });
+            }
 
-            if (this.welcomeNewUser) await this.authService.useInviteToken(this.token, this.password);
-            else await this.authService.usePasswordResetToken(this.token, this.password);
-            await this.router.navigate(['/auth/login']);
         }
     }
 }

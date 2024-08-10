@@ -10,36 +10,36 @@
             <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
                 <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Global Search" class="w-full" />
+                    <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" i18n-placeholder placeholder="Global Search" class="w-full" />
                 </span>
                 <a *ngIf="!multiOrganizations" [routerLink]="['/organization/' + currentOrgSlug + '/users/create']">
-                    <button pButton class="w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Invite User"></button>
+                    <button pButton class="w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" i18n-label label="Invite User"></button>
                 </a>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="firstName" class="white-space-nowrap" style="width:15%">First Name <p-sortIcon field="firstName"></p-sortIcon></th>
-                <th pSortableColumn="lastName" class="white-space-nowrap" style="width:15%">Last Name <p-sortIcon field="lastName"></p-sortIcon></th>
-                <th pSortableColumn="email" class="white-space-nowrap" style="width:25%">Email <p-sortIcon field="email"></p-sortIcon></th>
-                <th pSortableColumn="roles" class="white-space-nowrap" style="width:15%">Roles <p-sortIcon field="roles"></p-sortIcon></th>
-                <th pSortableColumn="status" class="white-space-nowrap" style="width:15%">Status <p-sortIcon field="status"></p-sortIcon></th>
-                <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:30%">Invited <p-sortIcon field="createdAt"></p-sortIcon></th>
-                <th pSortableColumn="lastSeenAt" class="white-space-nowrap" style="width:15%">Last Seen <p-sortIcon field="lastSeen"></p-sortIcon></th>
-                <th class="white-space-nowrap" style="width:15%">Actions</th>
+                <th pSortableColumn="firstName" class="white-space-nowrap" style="width:15%" i18n>First Name <p-sortIcon field="firstName"></p-sortIcon></th>
+                <th pSortableColumn="lastName" class="white-space-nowrap" style="width:15%" i18n>Last Name <p-sortIcon field="lastName"></p-sortIcon></th>
+                <th pSortableColumn="email" class="white-space-nowrap" style="width:25%" i18n>Email <p-sortIcon field="email"></p-sortIcon></th>
+                <th pSortableColumn="roles" class="white-space-nowrap" style="width:15%" i18n>Roles <p-sortIcon field="roles"></p-sortIcon></th>
+                <th pSortableColumn="status" class="white-space-nowrap" style="width:15%" i18n>Status <p-sortIcon field="status"></p-sortIcon></th>
+                <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:30%" i18n>Invited <p-sortIcon field="createdAt"></p-sortIcon></th>
+                <th pSortableColumn="lastSeenAt" class="white-space-nowrap" style="width:15%" i18n>Last Seen <p-sortIcon field="lastSeen"></p-sortIcon></th>
+                <th class="white-space-nowrap" style="width:15%" i18n>Actions</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-user>
             <tr>
-                <td>{{ user.firstName}}<i *ngIf="isCurrentUser(user) | async" pTooltip="You" tooltipPosition="bottom" class="pi pi-user ml-2"></i></td>
+                <td>{{ user.firstName}}<i *ngIf="isCurrentUser(user) | async" i18n-pTooltip pTooltip="You" tooltipPosition="bottom" class="pi pi-user ml-2"></i></td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ getRoleOfUser(user) | titlecase }}</td>
                 <td>{{ user.status | titlecase }}</td>
-                <td>{{ user.createdAt | date: 'dd/MM/yyyy'}} <i *ngIf="isInviteExpired(user)" pTooltip="Invite expired" class="pi pi-exclamation-triangle text-yellow-500"></i></td>
+                <td>{{ user.createdAt | date: 'dd/MM/yyyy'}} <i *ngIf="isInviteExpired(user)" i18n-pTooltip pTooltip="Invite expired" class="pi pi-exclamation-triangle text-yellow-500"></i></td>
                 <td>
                     <ng-container *ngIf="user.lastSeenAt; else neverSeen">{{ user.lastSeenAt | date: 'dd/MM/yyyy'}}</ng-container>
-                    <ng-template #neverSeen>Never</ng-template>
+                    <ng-template #neverSeen><span i18n>Never</span></ng-template>
                 </td>
                 <td>
                     <button (click)="toggleMenuFor(user, actionsMenu, $event)" pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-outlined p-button-info"></button>

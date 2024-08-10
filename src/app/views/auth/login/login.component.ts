@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { AuthService } from '../../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,13 +7,16 @@ import { MessageService } from 'primeng/api';
 @Component({
     templateUrl: './login.component.html',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
     rememberMe: boolean = false;
 
     email: string = '';
     password: string = '';
 
     isWaitingServer: boolean = false;
+
+    showResetPasswordConfirmation: boolean = false;
+    showInviteConfirmation: boolean = false;
 
     get lightMode(): boolean {
         return this.layoutService.isLightMode();
@@ -23,10 +26,32 @@ export class LoginComponent implements OnInit {
                 private authService: AuthService,
                 private messageService: MessageService,
                 private router: Router,
-                private route: ActivatedRoute) {}
+                private route: ActivatedRoute) {
+        const navigation = this.router.getCurrentNavigation()
+        if (navigation?.extras?.state?.['passwordReset']) this.showResetPasswordConfirmation = true;
+        if (navigation?.extras?.state?.['inviteConfirmation']) this.showInviteConfirmation = true;
+    }
 
     ngOnInit() {
         this.rememberMe = localStorage.getItem('autologin') === 'true';
+    }
+
+    ngAfterViewInit() {
+        if (this.showResetPasswordConfirmation) {
+            this.messageService.add({
+                severity: 'info',
+                summary: $localize `Password reset`,
+                detail: $localize `You can now log in with your new password`
+            });
+        }
+
+        if (this.showInviteConfirmation) {
+            this.messageService.add({
+                severity: 'info',
+                summary: $localize `Invite confirmed`,
+                detail: $localize `You can now log in`
+            });
+        }
     }
 
     async tryLogIn() {
