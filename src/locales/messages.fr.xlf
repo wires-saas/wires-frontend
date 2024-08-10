@@ -473,9 +473,9 @@
         <source>Your password must match the following requirements :</source>
         <target state="new">Votre mot de passe doit comporter :</target>
       </trans-unit>
-      <trans-unit id="1807509540209654628" datatype="html">
-        <source>14 characters or more</source>
-        <target state="new">14 caractères ou plus</target>
+      <trans-unit id="4280818489711644364" datatype="html">
+        <source>12 characters or more</source>
+        <target state="new">12 caractères ou plus</target>
       </trans-unit>
       <trans-unit id="8460924633697450662" datatype="html">
         <source>At least 1 lowercase</source>
@@ -492,6 +492,10 @@
       <trans-unit id="206361209953575440" datatype="html">
         <source>At least 1 special character</source>
         <target state="new">Au moins 1 caractère spécial</target>
+      </trans-unit>
+      <trans-unit id="434775311083233135" datatype="html">
+        <source>Enter a password</source>
+        <target state="new">En attente de saisie</target>
       </trans-unit>
     </body>
   </file>

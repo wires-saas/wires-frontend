@@ -25,7 +25,7 @@ export class ResetPasswordComponent implements OnInit {
 
 
     get passwordLengthOK(): boolean {
-        return this.password.length >= 14;
+        return this.password.length >= 12;
     }
 
     get passwordUppercaseOK(): boolean {
@@ -42,6 +42,15 @@ export class ResetPasswordComponent implements OnInit {
 
     get passwordSpecialCharOK(): boolean {
         return /[^A-Za-z0-9]/.test(this.password);
+    }
+
+    get canSubmit(): boolean {
+        return this.password === this.passwordConfirmation
+            && this.passwordLengthOK
+            && this.passwordUppercaseOK
+            && this.passwordLowercaseOK
+            && this.passwordDigitOK
+            && this.passwordSpecialCharOK;
     }
 
     constructor(private layoutService: LayoutService, private router: Router,

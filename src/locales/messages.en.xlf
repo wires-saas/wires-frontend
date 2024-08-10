@@ -347,8 +347,8 @@
       <trans-unit id="1230210432091329841" datatype="html">
         <source>Would be cracked in days</source>
       </trans-unit>
-      <trans-unit id="1807509540209654628" datatype="html">
-        <source>14 characters or more</source>
+      <trans-unit id="4280818489711644364" datatype="html">
+        <source>12 characters or more</source>
       </trans-unit>
       <trans-unit id="1935584361101392706" datatype="html">
         <source>At least 1 uppercase</source>
@@ -370,6 +370,9 @@
       </trans-unit>
       <trans-unit id="8460924633697450662" datatype="html">
         <source>At least 1 lowercase</source>
+      </trans-unit>
+      <trans-unit id="434775311083233135" datatype="html">
+        <source>Enter a password</source>
       </trans-unit>
     </body>
   </file>
