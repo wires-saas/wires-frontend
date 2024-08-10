@@ -593,9 +593,6 @@
       <trans-unit id="2149300564474427551" datatype="html">
         <source>Administrator</source>
       </trans-unit>
-      <trans-unit id="3013055597615607317" datatype="html">
-        <source>Display Name</source>
-      </trans-unit>
       <trans-unit id="4319441956121197474" datatype="html">
         <source>Save Changes</source>
       </trans-unit>
@@ -1240,6 +1237,9 @@
       </trans-unit>
       <trans-unit id="976142842851961456" datatype="html">
         <source>Uruguay</source>
+      </trans-unit>
+      <trans-unit id="7647133798807378669" datatype="html">
+        <source>Legal Name</source>
       </trans-unit>
     </body>
   </file>

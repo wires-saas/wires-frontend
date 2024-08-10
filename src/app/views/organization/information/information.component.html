@@ -11,13 +11,13 @@
 
                     <span class="p-input-icon-left">
                         <i class="pi pi-building"></i>
-                        <input id="name" type="text" pInputText>
+                        <input id="name" type="text" [(ngModel)]="name" pInputText>
                     </span>
 
                 </div>
                 <div class="field col-12 md:col-6">
-                    <label for="display-name" class="font-medium text-900" i18n>Display Name</label>
-                    <input id="display-name" type="text" pInputText>
+                    <label for="legal-name" class="font-medium text-900" i18n>Legal Name</label>
+                    <input id="legal-name" type="text" [(ngModel)]="legalName" pInputText>
                 </div>
                 <div class="field mb-4 col-12">
                     <label for="logo" class="font-medium text-900" i18n>Logo</label>
@@ -25,15 +25,15 @@
                 </div>
                 <div class="field mb-4 col-12">
                     <label for="bio" class="font-medium text-900" i18n>Activity</label>
-                    <textarea id="bio" type="text" pInputTextarea rows="2" [autoResize]="true"></textarea>
+                    <textarea id="bio" type="text" pInputTextarea rows="2" [(ngModel)]="activity" [autoResize]="true"></textarea>
                 </div>
                 <div class="field mb-4 col-12 md:col-4">
                     <label for="street" class="font-medium text-900" i18n>Street</label>
-                    <input id="street" type="text" pInputText>
+                    <input id="street" type="text" [(ngModel)]="street" pInputText>
                 </div>
                 <div class="field mb-4 col-12 md:col-4">
                     <label for="city" class="font-medium text-900" i18n>City</label>
-                    <input id="city" type="text" pInputText>
+                    <input id="city" type="text" [(ngModel)]="city" pInputText>
                 </div>
                 <div class="field mb-3 col-12 md:col-4">
                     <label for="country" class="font-medium text-900" i18n>Country</label>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="field mb-4 col-12">
                     <label for="company-id" class="font-medium text-900" i18n>Company ID</label>
-                    <input id="company-id" type="text" pInputText>
+                    <input id="company-id" type="text" [(ngModel)]="companyId" pInputText>
                 </div>
                 <div class="field mb-4 col-12">
                     <label for="website" class="font-medium text-900" i18n>Website</label>
@@ -58,11 +58,11 @@
                         <p-inputGroupAddon>
                             <span>www.</span>
                         </p-inputGroupAddon>
-                        <input id="website" type="text" pInputText>
+                        <input id="website" type="text" [(ngModel)]="website" pInputText>
                     </p-inputGroup>
                 </div>
                 <div class="col-12 flex md:justify-content-end justify-content-center">
-                    <button pButton pRipple i18n-label label="Save Changes" icon="pi pi-save" class="w-auto mt-3"></button>
+                    <button (click)="updateIdentityFields()" pButton pRipple i18n-label label="Save Changes" icon="pi pi-save" class="w-auto mt-3"></button>
                 </div>
             </div>
         </div>

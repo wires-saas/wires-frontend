@@ -9,6 +9,7 @@ import { Slug } from '../../../../utils/types.utils';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { MessageUtils } from '../../../../utils/message.utils';
+import { CountriesUtils } from '../../../../utils/countries.utils';
 
 @Component({
     templateUrl: './create-or-edit-user.component.html',
@@ -69,18 +70,7 @@ export class CreateOrEditUserComponent implements OnInit {
             }
         }
 
-        this.countries = [
-            {name: $localize `Australia`, code: 'AU'},
-            {name: $localize `Brazil`, code: 'BR'},
-            {name: $localize `China`, code: 'CN'},
-            {name: $localize `Egypt`, code: 'EG'},
-            {name: $localize `France`, code: 'FR'},
-            {name: $localize `Germany`, code: 'DE'},
-            {name: $localize `India`, code: 'IN'},
-            {name: $localize `Japan`, code: 'JP'},
-            {name: $localize `Spain`, code: 'ES'},
-            {name: $localize `United States`, code: 'US'}
-        ];
+        this.countries = CountriesUtils.countries;
     }
 
     async onSubmit() {

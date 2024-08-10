@@ -791,11 +791,7 @@
       </trans-unit>
       <trans-unit id="452555574979101628" datatype="html">
         <source>Organization Name</source>
-        <target state="new">Nom légal</target>
-      </trans-unit>
-      <trans-unit id="3013055597615607317" datatype="html">
-        <source>Display Name</source>
-        <target state="new">Nom d&apos;usage</target>
+        <target state="new">Nom de l'organisation</target>
       </trans-unit>
       <trans-unit id="4550958265168690830" datatype="html">
         <source>Logo</source>
@@ -1652,6 +1648,10 @@
       <trans-unit id="2257839169115954108" datatype="html">
         <source>Zimbabwe</source>
         <target state="new">Zimbabwe</target>
+      </trans-unit>
+      <trans-unit id="7647133798807378669" datatype="html">
+        <source>Legal Name</source>
+        <target state="new">Entité juridique</target>
       </trans-unit>
     </body>
   </file>

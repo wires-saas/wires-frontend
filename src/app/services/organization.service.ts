@@ -15,11 +15,14 @@ export enum Plan {
 
 export interface Organization {
     name: string;
+    legalName: string;
+    legalId: string;
     slug: string;
-    logo?: string;
-    activity?: string;
+    website: string;
+    logo: string;
+    activity: string;
 
-    address?: {
+    address: {
         street: string;
         city: string;
         zip: string;
@@ -65,6 +68,11 @@ export class OrganizationService {
     getAll(): Promise<Organization[]> {
         return firstValueFrom(this.http.get<any[]>(`${this.domain}/organizations`));
         // return firstValueFrom(this.http.get<any[]>('assets/demo/data/organizations.json'));
+    }
+
+    // Update organization
+    update(organizationId: string, organization: Partial<Organization>): Promise<Organization> {
+        return firstValueFrom(this.http.patch<Organization>(`${this.domain}/organizations/${organizationId}`, organization));
     }
 
     setCurrentOrganization(organization: Organization) {
