@@ -344,6 +344,33 @@
       <trans-unit id="8911589640536279832" datatype="html">
         <source>All Organizations</source>
       </trans-unit>
+      <trans-unit id="1230210432091329841" datatype="html">
+        <source>Would be cracked in days</source>
+      </trans-unit>
+      <trans-unit id="1807509540209654628" datatype="html">
+        <source>14 characters or more</source>
+      </trans-unit>
+      <trans-unit id="1935584361101392706" datatype="html">
+        <source>At least 1 uppercase</source>
+      </trans-unit>
+      <trans-unit id="206361209953575440" datatype="html">
+        <source>At least 1 special character</source>
+      </trans-unit>
+      <trans-unit id="4512748853238199358" datatype="html">
+        <source>Would be cracked in minutes</source>
+      </trans-unit>
+      <trans-unit id="6100061661150499170" datatype="html">
+        <source>At least 1 digit</source>
+      </trans-unit>
+      <trans-unit id="6531683031107804298" datatype="html">
+        <source>Your password must match the following requirements :</source>
+      </trans-unit>
+      <trans-unit id="6986914440628007711" datatype="html">
+        <source>Would be cracked in years</source>
+      </trans-unit>
+      <trans-unit id="8460924633697450662" datatype="html">
+        <source>At least 1 lowercase</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
