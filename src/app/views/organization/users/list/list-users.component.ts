@@ -1,7 +1,6 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Table } from 'primeng/table';
-import { Customer } from 'src/app/demo/api/customer';
 import { CustomerService } from 'src/app/demo/service/customer.service';
 import { User, UserService, UserStatus } from '../../../../services/user.service';
 import { OrganizationService } from '../../../../services/organization.service';
@@ -13,13 +12,12 @@ import { Role, RoleUtils } from '../../../../utils/role.utils';
 import { Slug } from '../../../../utils/types.utils';
 import { AuthService } from '../../../../services/auth.service';
 import { MessageUtils } from '../../../../utils/message.utils';
+import { CsvUtils } from '../../../../utils/csv.utils';
 
 @Component({
     templateUrl: './list-users.component.html'
 })
-export class ListUsersComponent implements OnInit {
-
-    customers: Customer[] = [];
+export class ListUsersComponent implements OnInit, AfterViewInit {
 
     users: User[] = [];
 
@@ -31,6 +29,8 @@ export class ListUsersComponent implements OnInit {
 
     now: number = Date.now();
 
+    showUserInvitedConfirmation: boolean = false;
+
     private destroyRef = inject(DestroyRef);
 
     constructor(private customerService: CustomerService,
@@ -40,10 +40,12 @@ export class ListUsersComponent implements OnInit {
                 private confirmationService: ConfirmationService,
                 private messageService: MessageService,
                 private route: ActivatedRoute,
-                private router: Router) { }
+                private router: Router) {
+        const navigation = this.router.getCurrentNavigation()
+        if (navigation?.extras?.state?.['userInvited']) this.showUserInvitedConfirmation = true;
+    }
 
     async ngOnInit() {
-        this.customerService.getCustomersLarge().then(customers => this.customers = customers);
 
         this.multiOrganizations = !!this.route.snapshot.data['multiOrganizations'];
 
@@ -61,16 +63,19 @@ export class ListUsersComponent implements OnInit {
         ).subscribe();
     }
 
-    onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal((event.target as HTMLInputElement).value, 'contains')
+    ngAfterViewInit() {
+        if (this.showUserInvitedConfirmation) {
+            this.messageService.add({
+                severity: 'success',
+                summary: $localize `Success inviting user`,
+                detail: $localize `User has been invited by email to join !`,
+                life: 5000
+            });
+        }
     }
 
-    async navigateToCreateUser(){
-        if (this.multiOrganizations) {
-            await this.router.navigate(['administration/organizations/users/create']);
-        } else {
-            await this.router.navigate(['users', 'create']);
-        }
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal((event.target as HTMLInputElement).value, 'contains')
     }
 
     isCurrentUser(user: User): Observable<boolean> {
@@ -79,6 +84,7 @@ export class ListUsersComponent implements OnInit {
             takeUntilDestroyed(this.destroyRef)
         );
     }
+
     getRoleOfUser(user: User): Role {
         if (user?.isSuperAdmin) return Role.SUPER_ADMIN;
 
@@ -245,6 +251,22 @@ export class ListUsersComponent implements OnInit {
 
             return event.order * result;
         });
+    }
+
+    exportUsersToCSV() {
+        const fileContent = CsvUtils.jsonToCsv<User>(
+            ['firstName', 'lastName', 'email', 'status', 'emailStatus', 'createdAt'],
+            this.users,
+            ';'
+        );
+
+        const blob = new Blob([fileContent], {type: 'text/csv'});
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${this.currentOrgSlug}_users.csv`;
+        a.click();
+        window.URL.revokeObjectURL(url);
     }
 
 }

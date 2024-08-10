@@ -12,9 +12,19 @@
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" i18n-placeholder placeholder="Global Search" class="w-full" />
                 </span>
-                <a *ngIf="!multiOrganizations" [routerLink]="['/organization/' + currentOrgSlug + '/users/create']">
-                    <button pButton class="w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" i18n-label label="Invite User"></button>
-                </a>
+
+
+
+                <div *ngIf="!multiOrganizations" class="flex flex-wrap gap-2">
+                    <a [routerLink]="['/organization/' + currentOrgSlug + '/users/create']">
+                        <button pButton class="w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" i18n-label label="Invite New User"></button>
+                    </a>
+
+                    <button (click)="exportUsersToCSV()" pButton pRipple type="button"
+                            icon="pi pi-upload" class="p-button p-button-outlined"
+                            i18n-pTooltip pTooltip="Export users to CSV" tooltipPosition="bottom">
+                    </button>
+                </div>
             </div>
         </ng-template>
         <ng-template pTemplate="header">

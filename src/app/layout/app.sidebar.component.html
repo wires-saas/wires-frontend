@@ -1,5 +1,5 @@
 <div class="layout-sidebar" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
-    <div class="sidebar-header pt-3">
+    <div class="sidebar-header pt-3 pb-0">
         <a [routerLink]="['/landing']" class="app-logo">
             <app-logo></app-logo>
         </a>
@@ -12,7 +12,7 @@
                     (onChange)="onOrganizationChange()"
                     [disabled]="!(availableOrganizations.length && availableOrganizations.length >= 2)"
                     optionLabel="name"
-                    placeholder="Organization" styleClass="w-full"></p-dropdown>
+                    i18n-placeholder placeholder="Organization" styleClass="w-full"></p-dropdown>
     </div>
 
 

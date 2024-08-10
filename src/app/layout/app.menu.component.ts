@@ -46,12 +46,12 @@ export class AppMenuComponent implements OnInit {
                     routerLink: [`organization/${org.slug}/users/list`],
                     restriction: authService.hasRole$(Role.MANAGER, org.slug)
                 },
-                {
+                /* {
                     label: $localize `Add User`,
                     icon: 'pi pi-fw pi-user-plus',
                     routerLink: [`organization/${org.slug}/users/create`],
                     restriction: authService.hasRole$(Role.MANAGER, org.slug)
-                },
+                }, */
                 {
                     label: $localize `Information`,
                     icon: 'pi pi-fw pi-building',

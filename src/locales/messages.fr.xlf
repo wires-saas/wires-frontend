@@ -433,13 +433,9 @@
         <source>All Users</source>
         <target state="new">Utilisateurs</target>
       </trans-unit>
-      <trans-unit id="2941198503117307737" datatype="html">
-        <source>Add User</source>
-        <target state="new">Nouvel utilisateur</target>
-      </trans-unit>
       <trans-unit id="5037437391296624618" datatype="html">
         <source>Information</source>
-        <target state="new">Information</target>
+        <target state="new">Informations</target>
       </trans-unit>
       <trans-unit id="5875130684997376720" datatype="html">
         <source>Billing</source>
@@ -780,6 +776,882 @@
       <trans-unit id="8172423498899867393" datatype="html">
         <source>This is your empty page template to start building beautiful applications.</source>
         <target state="new">Cette page permet de servir de point de départ.</target>
+      </trans-unit>
+      <trans-unit id="6801827925113152698" datatype="html">
+        <source>Export users to CSV</source>
+        <target state="new">Exporter vers CSV</target>
+      </trans-unit>
+      <trans-unit id="3217800197358053642" datatype="html">
+        <source>Invite New User</source>
+        <target state="new">Nouvel Utilisateur</target>
+      </trans-unit>
+      <trans-unit id="5593493560884751525" datatype="html">
+        <source>Identity</source>
+        <target state="new">Identité</target>
+      </trans-unit>
+      <trans-unit id="452555574979101628" datatype="html">
+        <source>Organization Name</source>
+        <target state="new">Nom légal</target>
+      </trans-unit>
+      <trans-unit id="3013055597615607317" datatype="html">
+        <source>Display Name</source>
+        <target state="new">Nom d&apos;usage</target>
+      </trans-unit>
+      <trans-unit id="4550958265168690830" datatype="html">
+        <source>Logo</source>
+        <target state="new">Logo</target>
+      </trans-unit>
+      <trans-unit id="5306473977542913614" datatype="html">
+        <source>Activity</source>
+        <target state="new">Activité</target>
+      </trans-unit>
+      <trans-unit id="4209863639881058261" datatype="html">
+        <source>Company ID</source>
+        <target state="new">SIRET / SIREN</target>
+      </trans-unit>
+      <trans-unit id="5481284030283031915" datatype="html">
+        <source>Website</source>
+        <target state="new">Site Web</target>
+      </trans-unit>
+      <trans-unit id="4319441956121197474" datatype="html">
+        <source>Save Changes</source>
+        <target state="new">Sauvegarder</target>
+      </trans-unit>
+      <trans-unit id="5945986349492910662" datatype="html">
+        <source>Contacts</source>
+        <target state="new">Contacts</target>
+      </trans-unit>
+      <trans-unit id="2149300564474427551" datatype="html">
+        <source>Administrator</source>
+        <target state="new">Administrateur</target>
+      </trans-unit>
+      <trans-unit id="6028371114637047813" datatype="html">
+        <source>First Name</source>
+        <target state="new">Prénom</target>
+      </trans-unit>
+      <trans-unit id="4407559560004943843" datatype="html">
+        <source>Last Name</source>
+        <target state="new">Nom de famille</target>
+      </trans-unit>
+      <trans-unit id="8565215218121579926" datatype="html">
+        <source>User explicitly granted permission to receive mails</source>
+        <target state="new">La personne a explicitement consenti à recevoir les mails</target>
+      </trans-unit>
+      <trans-unit id="6902479610229316341" datatype="html">
+        <source>Update Administrator</source>
+        <target state="new">Mettre à jour le contact d&apos;administration</target>
+      </trans-unit>
+      <trans-unit id="4799374982120043626" datatype="html">
+        <source>Update Billing</source>
+        <target state="new">Mettre à jour le contact de facturation</target>
+      </trans-unit>
+      <trans-unit id="4930506384627295710" datatype="html">
+        <source>Settings</source>
+        <target state="new">Paramètres</target>
+      </trans-unit>
+      <trans-unit id="5605123772636494177" datatype="html">
+        <source>Plan</source>
+        <target state="new">Formule</target>
+      </trans-unit>
+      <trans-unit id="8374796251902184629" datatype="html">
+        <source>Resiliate Plan</source>
+        <target state="new">Résilier la souscription</target>
+      </trans-unit>
+      <trans-unit id="8878700331247603166" datatype="html">
+        <source>Security</source>
+        <target state="new">Sécurité</target>
+      </trans-unit>
+      <trans-unit id="6348378429475239545" datatype="html">
+        <source>Two Factor Authentication</source>
+        <target state="new">Authentification à deux facteurs</target>
+      </trans-unit>
+      <trans-unit id="4599431516960200366" datatype="html">
+        <source>Enable 2FA for all users</source>
+        <target state="new">Activer l&apos;authentification à deux facteurs pour tous les utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="6386884903976634321" datatype="html">
+        <source>Update Settings</source>
+        <target state="new">Mettre à jour les paramètres</target>
+      </trans-unit>
+      <trans-unit id="4394642900724919261" datatype="html">
+        <source>Will receive emails related to new features, activity reports and scheduled downtimes</source>
+        <target state="new">Recevra les emails relatifs aux nouvelles fonctionnalités, bulletins d&apos;activités et maintenances</target>
+      </trans-unit>
+      <trans-unit id="2050993483569778272" datatype="html">
+        <source>Will receive emails related to payments, cancellation and contract changes</source>
+        <target state="new">Recevra les emails relatifs aux paiements, résiliations et changements contractuels</target>
+      </trans-unit>
+      <trans-unit id="1209826884150356967" datatype="html">
+        <source>Afghanistan</source>
+        <target state="new">Afghanistan</target>
+      </trans-unit>
+      <trans-unit id="8282620512337325099" datatype="html">
+        <source>Albania</source>
+        <target state="new">Albania</target>
+      </trans-unit>
+      <trans-unit id="1395993998417849156" datatype="html">
+        <source>Algeria</source>
+        <target state="new">Algeria</target>
+      </trans-unit>
+      <trans-unit id="7834778050785304801" datatype="html">
+        <source>American Samoa</source>
+        <target state="new">American Samoa</target>
+      </trans-unit>
+      <trans-unit id="1907015897505457162" datatype="html">
+        <source>Andorra</source>
+        <target state="new">Andorra</target>
+      </trans-unit>
+      <trans-unit id="7814573200614743943" datatype="html">
+        <source>Angola</source>
+        <target state="new">Angola</target>
+      </trans-unit>
+      <trans-unit id="3021673558311985385" datatype="html">
+        <source>Anguilla</source>
+        <target state="new">Anguilla</target>
+      </trans-unit>
+      <trans-unit id="6744772700865814426" datatype="html">
+        <source>Antarctica</source>
+        <target state="new">Antarctica</target>
+      </trans-unit>
+      <trans-unit id="2234013645418722908" datatype="html">
+        <source>Antigua and Barbuda</source>
+        <target state="new">Antigua and Barbuda</target>
+      </trans-unit>
+      <trans-unit id="2575998129003872734" datatype="html">
+        <source>Argentina</source>
+        <target state="new">Argentina</target>
+      </trans-unit>
+      <trans-unit id="5004849258025239958" datatype="html">
+        <source>Armenia</source>
+        <target state="new">Armenia</target>
+      </trans-unit>
+      <trans-unit id="4409995852433618965" datatype="html">
+        <source>Aruba</source>
+        <target state="new">Aruba</target>
+      </trans-unit>
+      <trans-unit id="21641575311466062" datatype="html">
+        <source>Austria</source>
+        <target state="new">Austria</target>
+      </trans-unit>
+      <trans-unit id="2036677760731944610" datatype="html">
+        <source>Azerbaijan</source>
+        <target state="new">Azerbaijan</target>
+      </trans-unit>
+      <trans-unit id="5530828807984079663" datatype="html">
+        <source>Bahamas</source>
+        <target state="new">Bahamas</target>
+      </trans-unit>
+      <trans-unit id="4493078792980020324" datatype="html">
+        <source>Bahrain</source>
+        <target state="new">Bahrain</target>
+      </trans-unit>
+      <trans-unit id="7586179551119829690" datatype="html">
+        <source>Bangladesh</source>
+        <target state="new">Bangladesh</target>
+      </trans-unit>
+      <trans-unit id="1075324242640516651" datatype="html">
+        <source>Barbados</source>
+        <target state="new">Barbados</target>
+      </trans-unit>
+      <trans-unit id="8624069568371048571" datatype="html">
+        <source>Belarus</source>
+        <target state="new">Belarus</target>
+      </trans-unit>
+      <trans-unit id="6787546539374733271" datatype="html">
+        <source>Belgium</source>
+        <target state="new">Belgium</target>
+      </trans-unit>
+      <trans-unit id="6597121833699637826" datatype="html">
+        <source>Belize</source>
+        <target state="new">Belize</target>
+      </trans-unit>
+      <trans-unit id="615066566557540567" datatype="html">
+        <source>Benin</source>
+        <target state="new">Benin</target>
+      </trans-unit>
+      <trans-unit id="4111466936456503227" datatype="html">
+        <source>Bermuda</source>
+        <target state="new">Bermuda</target>
+      </trans-unit>
+      <trans-unit id="3404169924630177375" datatype="html">
+        <source>Bhutan</source>
+        <target state="new">Bhutan</target>
+      </trans-unit>
+      <trans-unit id="6842720336797727339" datatype="html">
+        <source>Bolivia</source>
+        <target state="new">Bolivia</target>
+      </trans-unit>
+      <trans-unit id="3028691365115610369" datatype="html">
+        <source>Bosnia and Herzegovina</source>
+        <target state="new">Bosnia and Herzegovina</target>
+      </trans-unit>
+      <trans-unit id="43190493453313100" datatype="html">
+        <source>Botswana</source>
+        <target state="new">Botswana</target>
+      </trans-unit>
+      <trans-unit id="3909352943647834263" datatype="html">
+        <source>Brunei Darussalam</source>
+        <target state="new">Brunei Darussalam</target>
+      </trans-unit>
+      <trans-unit id="8273479446468988017" datatype="html">
+        <source>Bulgaria</source>
+        <target state="new">Bulgaria</target>
+      </trans-unit>
+      <trans-unit id="2851635003262201259" datatype="html">
+        <source>Burkina Faso</source>
+        <target state="new">Burkina Faso</target>
+      </trans-unit>
+      <trans-unit id="6242941829685502770" datatype="html">
+        <source>Burundi</source>
+        <target state="new">Burundi</target>
+      </trans-unit>
+      <trans-unit id="7848663861484285422" datatype="html">
+        <source>Cambodia</source>
+        <target state="new">Cambodia</target>
+      </trans-unit>
+      <trans-unit id="7065118556791646705" datatype="html">
+        <source>Cameroon</source>
+        <target state="new">Cameroon</target>
+      </trans-unit>
+      <trans-unit id="3486679398271885916" datatype="html">
+        <source>Canada</source>
+        <target state="new">Canada</target>
+      </trans-unit>
+      <trans-unit id="6539744792166853567" datatype="html">
+        <source>Cape Verde</source>
+        <target state="new">Cape Verde</target>
+      </trans-unit>
+      <trans-unit id="6971759191811698526" datatype="html">
+        <source>Cayman Islands</source>
+        <target state="new">Cayman Islands</target>
+      </trans-unit>
+      <trans-unit id="1189791767340618197" datatype="html">
+        <source>Central African Republic</source>
+        <target state="new">Central African Republic</target>
+      </trans-unit>
+      <trans-unit id="1578496123749550538" datatype="html">
+        <source>Chad</source>
+        <target state="new">Chad</target>
+      </trans-unit>
+      <trans-unit id="6268459440891516871" datatype="html">
+        <source>Chile</source>
+        <target state="new">Chile</target>
+      </trans-unit>
+      <trans-unit id="8730463962464508997" datatype="html">
+        <source>Christmas Island</source>
+        <target state="new">Christmas Island</target>
+      </trans-unit>
+      <trans-unit id="6385636805555176186" datatype="html">
+        <source>Cocos (Keeling) Islands</source>
+        <target state="new">Cocos (Keeling) Islands</target>
+      </trans-unit>
+      <trans-unit id="1188282719459309656" datatype="html">
+        <source>Colombia</source>
+        <target state="new">Colombia</target>
+      </trans-unit>
+      <trans-unit id="8535043978777359085" datatype="html">
+        <source>Comoros</source>
+        <target state="new">Comoros</target>
+      </trans-unit>
+      <trans-unit id="3400120958419159727" datatype="html">
+        <source>Congo</source>
+        <target state="new">Congo</target>
+      </trans-unit>
+      <trans-unit id="8573654866465931393" datatype="html">
+        <source>Congo, the Democratic Republic of the</source>
+        <target state="new">Congo, the Democratic Republic of the</target>
+      </trans-unit>
+      <trans-unit id="8834272865510175302" datatype="html">
+        <source>Cook Islands</source>
+        <target state="new">Cook Islands</target>
+      </trans-unit>
+      <trans-unit id="852177379378387675" datatype="html">
+        <source>Costa Rica</source>
+        <target state="new">Costa Rica</target>
+      </trans-unit>
+      <trans-unit id="6839230987909572003" datatype="html">
+        <source>Croatia</source>
+        <target state="new">Croatia</target>
+      </trans-unit>
+      <trans-unit id="2504672715999212143" datatype="html">
+        <source>Cuba</source>
+        <target state="new">Cuba</target>
+      </trans-unit>
+      <trans-unit id="7127846603485222320" datatype="html">
+        <source>Cyprus</source>
+        <target state="new">Cyprus</target>
+      </trans-unit>
+      <trans-unit id="724957661944599897" datatype="html">
+        <source>Czech Republic</source>
+        <target state="new">Czech Republic</target>
+      </trans-unit>
+      <trans-unit id="7969063643194139319" datatype="html">
+        <source>Denmark</source>
+        <target state="new">Denmark</target>
+      </trans-unit>
+      <trans-unit id="2633824972286491960" datatype="html">
+        <source>Djibouti</source>
+        <target state="new">Djibouti</target>
+      </trans-unit>
+      <trans-unit id="9115400918128734980" datatype="html">
+        <source>Dominica</source>
+        <target state="new">Dominica</target>
+      </trans-unit>
+      <trans-unit id="4719460798898909432" datatype="html">
+        <source>Dominican Republic</source>
+        <target state="new">Dominican Republic</target>
+      </trans-unit>
+      <trans-unit id="3753386582290088847" datatype="html">
+        <source>Ecuador</source>
+        <target state="new">Ecuador</target>
+      </trans-unit>
+      <trans-unit id="8496313228903628689" datatype="html">
+        <source>El Salvador</source>
+        <target state="new">El Salvador</target>
+      </trans-unit>
+      <trans-unit id="3741939552178779896" datatype="html">
+        <source>Equatorial Guinea</source>
+        <target state="new">Equatorial Guinea</target>
+      </trans-unit>
+      <trans-unit id="7489009008617420277" datatype="html">
+        <source>Eritrea</source>
+        <target state="new">Eritrea</target>
+      </trans-unit>
+      <trans-unit id="2245078127040642216" datatype="html">
+        <source>Estonia</source>
+        <target state="new">Estonia</target>
+      </trans-unit>
+      <trans-unit id="6870231548013447811" datatype="html">
+        <source>Ethiopia</source>
+        <target state="new">Ethiopia</target>
+      </trans-unit>
+      <trans-unit id="7688915885626198194" datatype="html">
+        <source>Fiji</source>
+        <target state="new">Fiji</target>
+      </trans-unit>
+      <trans-unit id="8812557643580169825" datatype="html">
+        <source>Finland</source>
+        <target state="new">Finland</target>
+      </trans-unit>
+      <trans-unit id="3012223470297892100" datatype="html">
+        <source>Gabon</source>
+        <target state="new">Gabon</target>
+      </trans-unit>
+      <trans-unit id="2150029881148712691" datatype="html">
+        <source>Gambia</source>
+        <target state="new">Gambia</target>
+      </trans-unit>
+      <trans-unit id="7133553227204944356" datatype="html">
+        <source>Georgia</source>
+        <target state="new">Georgia</target>
+      </trans-unit>
+      <trans-unit id="1217416635228213712" datatype="html">
+        <source>Ghana</source>
+        <target state="new">Ghana</target>
+      </trans-unit>
+      <trans-unit id="7017590323423025630" datatype="html">
+        <source>Greece</source>
+        <target state="new">Greece</target>
+      </trans-unit>
+      <trans-unit id="7104853853273794929" datatype="html">
+        <source>Greenland</source>
+        <target state="new">Greenland</target>
+      </trans-unit>
+      <trans-unit id="4251019598823492681" datatype="html">
+        <source>Grenada</source>
+        <target state="new">Grenada</target>
+      </trans-unit>
+      <trans-unit id="8003066830412119130" datatype="html">
+        <source>Guam</source>
+        <target state="new">Guam</target>
+      </trans-unit>
+      <trans-unit id="2246799843509663005" datatype="html">
+        <source>Guatemala</source>
+        <target state="new">Guatemala</target>
+      </trans-unit>
+      <trans-unit id="3303718492506441789" datatype="html">
+        <source>Guinea</source>
+        <target state="new">Guinea</target>
+      </trans-unit>
+      <trans-unit id="9128896776453808891" datatype="html">
+        <source>Guinea-Bissau</source>
+        <target state="new">Guinea-Bissau</target>
+      </trans-unit>
+      <trans-unit id="3975233823881069207" datatype="html">
+        <source>Guyana</source>
+        <target state="new">Guyana</target>
+      </trans-unit>
+      <trans-unit id="2845697602867633165" datatype="html">
+        <source>Haiti</source>
+        <target state="new">Haiti</target>
+      </trans-unit>
+      <trans-unit id="5032618727171063903" datatype="html">
+        <source>Honduras</source>
+        <target state="new">Honduras</target>
+      </trans-unit>
+      <trans-unit id="7795719116479404400" datatype="html">
+        <source>Hong Kong</source>
+        <target state="new">Hong Kong</target>
+      </trans-unit>
+      <trans-unit id="67794167649611006" datatype="html">
+        <source>Hungary</source>
+        <target state="new">Hungary</target>
+      </trans-unit>
+      <trans-unit id="4451202090740543367" datatype="html">
+        <source>Iceland</source>
+        <target state="new">Iceland</target>
+      </trans-unit>
+      <trans-unit id="5303806780432428245" datatype="html">
+        <source>Indonesia</source>
+        <target state="new">Indonesia</target>
+      </trans-unit>
+      <trans-unit id="3334976547350050538" datatype="html">
+        <source>Iran, Islamic Republic of</source>
+        <target state="new">Iran, Islamic Republic of</target>
+      </trans-unit>
+      <trans-unit id="1031090001427437760" datatype="html">
+        <source>Iraq</source>
+        <target state="new">Iraq</target>
+      </trans-unit>
+      <trans-unit id="5378112888361106499" datatype="html">
+        <source>Ireland</source>
+        <target state="new">Ireland</target>
+      </trans-unit>
+      <trans-unit id="7015687759738910427" datatype="html">
+        <source>Israel</source>
+        <target state="new">Israel</target>
+      </trans-unit>
+      <trans-unit id="2427223107800831324" datatype="html">
+        <source>Italy</source>
+        <target state="new">Italy</target>
+      </trans-unit>
+      <trans-unit id="3315113630985882291" datatype="html">
+        <source>Jamaica</source>
+        <target state="new">Jamaica</target>
+      </trans-unit>
+      <trans-unit id="1308416951779533325" datatype="html">
+        <source>Jordan</source>
+        <target state="new">Jordan</target>
+      </trans-unit>
+      <trans-unit id="621094494471295638" datatype="html">
+        <source>Kazakhstan</source>
+        <target state="new">Kazakhstan</target>
+      </trans-unit>
+      <trans-unit id="4102304872659643424" datatype="html">
+        <source>Kenya</source>
+        <target state="new">Kenya</target>
+      </trans-unit>
+      <trans-unit id="3050899002311904259" datatype="html">
+        <source>Kiribati</source>
+        <target state="new">Kiribati</target>
+      </trans-unit>
+      <trans-unit id="8361777369341724612" datatype="html">
+        <source>Korea, Democratic People&apos;s Republic of</source>
+        <target state="new">Korea, Democratic People&apos;s Republic of</target>
+      </trans-unit>
+      <trans-unit id="9040335146446812211" datatype="html">
+        <source>Korea, Republic of</source>
+        <target state="new">Korea, Republic of</target>
+      </trans-unit>
+      <trans-unit id="6639775332361598247" datatype="html">
+        <source>Kuwait</source>
+        <target state="new">Kuwait</target>
+      </trans-unit>
+      <trans-unit id="6229118554878370786" datatype="html">
+        <source>Kyrgyzstan</source>
+        <target state="new">Kyrgyzstan</target>
+      </trans-unit>
+      <trans-unit id="2886216297453349443" datatype="html">
+        <source>Lao People&apos;s Democratic Republic</source>
+        <target state="new">Lao People&apos;s Democratic Republic</target>
+      </trans-unit>
+      <trans-unit id="2875990908335702580" datatype="html">
+        <source>Latvia</source>
+        <target state="new">Latvia</target>
+      </trans-unit>
+      <trans-unit id="7791127373754886139" datatype="html">
+        <source>Lebanon</source>
+        <target state="new">Lebanon</target>
+      </trans-unit>
+      <trans-unit id="1826925740451482221" datatype="html">
+        <source>Lesotho</source>
+        <target state="new">Lesotho</target>
+      </trans-unit>
+      <trans-unit id="7442502921201826082" datatype="html">
+        <source>Liberia</source>
+        <target state="new">Liberia</target>
+      </trans-unit>
+      <trans-unit id="8988497899246123112" datatype="html">
+        <source>Libya</source>
+        <target state="new">Libya</target>
+      </trans-unit>
+      <trans-unit id="3917311667237336403" datatype="html">
+        <source>Liechtenstein</source>
+        <target state="new">Liechtenstein</target>
+      </trans-unit>
+      <trans-unit id="6546239914534670998" datatype="html">
+        <source>Lithuania</source>
+        <target state="new">Lithuania</target>
+      </trans-unit>
+      <trans-unit id="5913366966339102148" datatype="html">
+        <source>Luxembourg</source>
+        <target state="new">Luxembourg</target>
+      </trans-unit>
+      <trans-unit id="7550805341430576867" datatype="html">
+        <source>Macao</source>
+        <target state="new">Macao</target>
+      </trans-unit>
+      <trans-unit id="7232697595921533312" datatype="html">
+        <source>Madagascar</source>
+        <target state="new">Madagascar</target>
+      </trans-unit>
+      <trans-unit id="5814468296071715981" datatype="html">
+        <source>Malawi</source>
+        <target state="new">Malawi</target>
+      </trans-unit>
+      <trans-unit id="284282390173344035" datatype="html">
+        <source>Malaysia</source>
+        <target state="new">Malaysia</target>
+      </trans-unit>
+      <trans-unit id="5099084320487592164" datatype="html">
+        <source>Maldives</source>
+        <target state="new">Maldives</target>
+      </trans-unit>
+      <trans-unit id="5259023098228234423" datatype="html">
+        <source>Mali</source>
+        <target state="new">Mali</target>
+      </trans-unit>
+      <trans-unit id="7731013350359057223" datatype="html">
+        <source>Malta</source>
+        <target state="new">Malta</target>
+      </trans-unit>
+      <trans-unit id="2592002115951925734" datatype="html">
+        <source>Marshall Islands</source>
+        <target state="new">Marshall Islands</target>
+      </trans-unit>
+      <trans-unit id="7420404507961887363" datatype="html">
+        <source>Mauritania</source>
+        <target state="new">Mauritania</target>
+      </trans-unit>
+      <trans-unit id="1030476891035559598" datatype="html">
+        <source>Mauritius</source>
+        <target state="new">Mauritius</target>
+      </trans-unit>
+      <trans-unit id="8147072510678737075" datatype="html">
+        <source>Mexico</source>
+        <target state="new">Mexico</target>
+      </trans-unit>
+      <trans-unit id="4975454400017693409" datatype="html">
+        <source>Micronesia, Federated States of</source>
+        <target state="new">Micronesia, Federated States of</target>
+      </trans-unit>
+      <trans-unit id="1336507619051420537" datatype="html">
+        <source>Moldova, Republic of</source>
+        <target state="new">Moldova, Republic of</target>
+      </trans-unit>
+      <trans-unit id="1736943888981108041" datatype="html">
+        <source>Monaco</source>
+        <target state="new">Monaco</target>
+      </trans-unit>
+      <trans-unit id="1368100063883641774" datatype="html">
+        <source>Mongolia</source>
+        <target state="new">Mongolia</target>
+      </trans-unit>
+      <trans-unit id="8310342568647317562" datatype="html">
+        <source>Montenegro</source>
+        <target state="new">Montenegro</target>
+      </trans-unit>
+      <trans-unit id="2141197120629300851" datatype="html">
+        <source>Morocco</source>
+        <target state="new">Morocco</target>
+      </trans-unit>
+      <trans-unit id="7376113350498509892" datatype="html">
+        <source>Mozambique</source>
+        <target state="new">Mozambique</target>
+      </trans-unit>
+      <trans-unit id="5816956679305721210" datatype="html">
+        <source>Myanmar</source>
+        <target state="new">Myanmar</target>
+      </trans-unit>
+      <trans-unit id="5698737171438719386" datatype="html">
+        <source>Namibia</source>
+        <target state="new">Namibia</target>
+      </trans-unit>
+      <trans-unit id="217956830164259077" datatype="html">
+        <source>Nauru</source>
+        <target state="new">Nauru</target>
+      </trans-unit>
+      <trans-unit id="5857558127981009083" datatype="html">
+        <source>Nepal</source>
+        <target state="new">Nepal</target>
+      </trans-unit>
+      <trans-unit id="3783587393795767345" datatype="html">
+        <source>Netherlands</source>
+        <target state="new">Netherlands</target>
+      </trans-unit>
+      <trans-unit id="3591085113786124083" datatype="html">
+        <source>New Zealand</source>
+        <target state="new">New Zealand</target>
+      </trans-unit>
+      <trans-unit id="1562013926672647714" datatype="html">
+        <source>Nicaragua</source>
+        <target state="new">Nicaragua</target>
+      </trans-unit>
+      <trans-unit id="780371405648733035" datatype="html">
+        <source>Niger</source>
+        <target state="new">Niger</target>
+      </trans-unit>
+      <trans-unit id="2312905197006708918" datatype="html">
+        <source>Nigeria</source>
+        <target state="new">Nigeria</target>
+      </trans-unit>
+      <trans-unit id="6321687538487059592" datatype="html">
+        <source>Norway</source>
+        <target state="new">Norway</target>
+      </trans-unit>
+      <trans-unit id="4719742396933932796" datatype="html">
+        <source>Oman</source>
+        <target state="new">Oman</target>
+      </trans-unit>
+      <trans-unit id="9146974172614086551" datatype="html">
+        <source>Pakistan</source>
+        <target state="new">Pakistan</target>
+      </trans-unit>
+      <trans-unit id="680993875033620982" datatype="html">
+        <source>Palau</source>
+        <target state="new">Palau</target>
+      </trans-unit>
+      <trans-unit id="3140604040449910511" datatype="html">
+        <source>Palestinian Territory, Occupied</source>
+        <target state="new">Palestinian Territory, Occupied</target>
+      </trans-unit>
+      <trans-unit id="7803448958935133459" datatype="html">
+        <source>Panama</source>
+        <target state="new">Panama</target>
+      </trans-unit>
+      <trans-unit id="2090013391283494370" datatype="html">
+        <source>Papua New Guinea</source>
+        <target state="new">Papua New Guinea</target>
+      </trans-unit>
+      <trans-unit id="5162288429120066886" datatype="html">
+        <source>Paraguay</source>
+        <target state="new">Paraguay</target>
+      </trans-unit>
+      <trans-unit id="2132839256314048281" datatype="html">
+        <source>Peru</source>
+        <target state="new">Peru</target>
+      </trans-unit>
+      <trans-unit id="8818655556476681482" datatype="html">
+        <source>Philippines</source>
+        <target state="new">Philippines</target>
+      </trans-unit>
+      <trans-unit id="2356316679035829946" datatype="html">
+        <source>Poland</source>
+        <target state="new">Poland</target>
+      </trans-unit>
+      <trans-unit id="1825932113518847029" datatype="html">
+        <source>Portugal</source>
+        <target state="new">Portugal</target>
+      </trans-unit>
+      <trans-unit id="8884008684136621484" datatype="html">
+        <source>Qatar</source>
+        <target state="new">Qatar</target>
+      </trans-unit>
+      <trans-unit id="545992063382313902" datatype="html">
+        <source>Romania</source>
+        <target state="new">Romania</target>
+      </trans-unit>
+      <trans-unit id="4840690632203238040" datatype="html">
+        <source>Russian Federation</source>
+        <target state="new">Russian Federation</target>
+      </trans-unit>
+      <trans-unit id="1586028726970845686" datatype="html">
+        <source>Rwanda</source>
+        <target state="new">Rwanda</target>
+      </trans-unit>
+      <trans-unit id="3921381038816272025" datatype="html">
+        <source>Samoa</source>
+        <target state="new">Samoa</target>
+      </trans-unit>
+      <trans-unit id="4251280664350448901" datatype="html">
+        <source>San Marino</source>
+        <target state="new">San Marino</target>
+      </trans-unit>
+      <trans-unit id="2306835323143183549" datatype="html">
+        <source>Sao Tome and Principe</source>
+        <target state="new">Sao Tome and Principe</target>
+      </trans-unit>
+      <trans-unit id="7893693635471733470" datatype="html">
+        <source>Saudi Arabia</source>
+        <target state="new">Saudi Arabia</target>
+      </trans-unit>
+      <trans-unit id="5895030245261923484" datatype="html">
+        <source>Senegal</source>
+        <target state="new">Senegal</target>
+      </trans-unit>
+      <trans-unit id="7676611321967250180" datatype="html">
+        <source>Serbia</source>
+        <target state="new">Serbia</target>
+      </trans-unit>
+      <trans-unit id="7211965226704355092" datatype="html">
+        <source>Seychelles</source>
+        <target state="new">Seychelles</target>
+      </trans-unit>
+      <trans-unit id="3710133024160860873" datatype="html">
+        <source>Sierra Leone</source>
+        <target state="new">Sierra Leone</target>
+      </trans-unit>
+      <trans-unit id="4830118002486243553" datatype="html">
+        <source>Singapore</source>
+        <target state="new">Singapore</target>
+      </trans-unit>
+      <trans-unit id="1331379005917484978" datatype="html">
+        <source>Slovakia</source>
+        <target state="new">Slovakia</target>
+      </trans-unit>
+      <trans-unit id="2012353003398074522" datatype="html">
+        <source>Slovenia</source>
+        <target state="new">Slovenia</target>
+      </trans-unit>
+      <trans-unit id="1353381156110688148" datatype="html">
+        <source>Solomon Islands</source>
+        <target state="new">Solomon Islands</target>
+      </trans-unit>
+      <trans-unit id="661727793029310940" datatype="html">
+        <source>Somalia</source>
+        <target state="new">Somalia</target>
+      </trans-unit>
+      <trans-unit id="8039968326438721789" datatype="html">
+        <source>South Africa</source>
+        <target state="new">South Africa</target>
+      </trans-unit>
+      <trans-unit id="8057659420668997409" datatype="html">
+        <source>South Sudan</source>
+        <target state="new">South Sudan</target>
+      </trans-unit>
+      <trans-unit id="7766766928661785123" datatype="html">
+        <source>Sri Lanka</source>
+        <target state="new">Sri Lanka</target>
+      </trans-unit>
+      <trans-unit id="5926828147233586606" datatype="html">
+        <source>Sudan</source>
+        <target state="new">Sudan</target>
+      </trans-unit>
+      <trans-unit id="1586762200046703444" datatype="html">
+        <source>Suriname</source>
+        <target state="new">Suriname</target>
+      </trans-unit>
+      <trans-unit id="9033285898369492375" datatype="html">
+        <source>Swaziland</source>
+        <target state="new">Swaziland</target>
+      </trans-unit>
+      <trans-unit id="7108948537958128740" datatype="html">
+        <source>Sweden</source>
+        <target state="new">Sweden</target>
+      </trans-unit>
+      <trans-unit id="6173123073967909836" datatype="html">
+        <source>Switzerland</source>
+        <target state="new">Switzerland</target>
+      </trans-unit>
+      <trans-unit id="6899782483332002896" datatype="html">
+        <source>Syrian Arab Republic</source>
+        <target state="new">Syrian Arab Republic</target>
+      </trans-unit>
+      <trans-unit id="4954443024319387646" datatype="html">
+        <source>Taiwan, Province of China</source>
+        <target state="new">Taiwan, Province of China</target>
+      </trans-unit>
+      <trans-unit id="5517910262648168251" datatype="html">
+        <source>Tajikistan</source>
+        <target state="new">Tajikistan</target>
+      </trans-unit>
+      <trans-unit id="2254060102521310645" datatype="html">
+        <source>Tanzania, United Republic of</source>
+        <target state="new">Tanzania, United Republic of</target>
+      </trans-unit>
+      <trans-unit id="2040543873210054611" datatype="html">
+        <source>Thailand</source>
+        <target state="new">Thailand</target>
+      </trans-unit>
+      <trans-unit id="6599402623726656875" datatype="html">
+        <source>Timor-Leste</source>
+        <target state="new">Timor-Leste</target>
+      </trans-unit>
+      <trans-unit id="7012227002133419149" datatype="html">
+        <source>Togo</source>
+        <target state="new">Togo</target>
+      </trans-unit>
+      <trans-unit id="6930151682144775692" datatype="html">
+        <source>Tonga</source>
+        <target state="new">Tonga</target>
+      </trans-unit>
+      <trans-unit id="2766960236982030800" datatype="html">
+        <source>Trinidad and Tobago</source>
+        <target state="new">Trinidad and Tobago</target>
+      </trans-unit>
+      <trans-unit id="4324906842486561563" datatype="html">
+        <source>Tunisia</source>
+        <target state="new">Tunisia</target>
+      </trans-unit>
+      <trans-unit id="536132288864070221" datatype="html">
+        <source>Turkey</source>
+        <target state="new">Turkey</target>
+      </trans-unit>
+      <trans-unit id="9141606215802528913" datatype="html">
+        <source>Turkmenistan</source>
+        <target state="new">Turkmenistan</target>
+      </trans-unit>
+      <trans-unit id="3086562963920355958" datatype="html">
+        <source>Tuvalu</source>
+        <target state="new">Tuvalu</target>
+      </trans-unit>
+      <trans-unit id="7627070236552679953" datatype="html">
+        <source>Uganda</source>
+        <target state="new">Uganda</target>
+      </trans-unit>
+      <trans-unit id="4346283537747431562" datatype="html">
+        <source>Ukraine</source>
+        <target state="new">Ukraine</target>
+      </trans-unit>
+      <trans-unit id="4392438521753358690" datatype="html">
+        <source>United Arab Emirates</source>
+        <target state="new">United Arab Emirates</target>
+      </trans-unit>
+      <trans-unit id="7303091661854783304" datatype="html">
+        <source>United Kingdom</source>
+        <target state="new">United Kingdom</target>
+      </trans-unit>
+      <trans-unit id="976142842851961456" datatype="html">
+        <source>Uruguay</source>
+        <target state="new">Uruguay</target>
+      </trans-unit>
+      <trans-unit id="4082876576192670199" datatype="html">
+        <source>Uzbekistan</source>
+        <target state="new">Uzbekistan</target>
+      </trans-unit>
+      <trans-unit id="3911861600857028021" datatype="html">
+        <source>Vanuatu</source>
+        <target state="new">Vanuatu</target>
+      </trans-unit>
+      <trans-unit id="822723707372184306" datatype="html">
+        <source>Venezuela, Bolivarian Republic of</source>
+        <target state="new">Venezuela, Bolivarian Republic of</target>
+      </trans-unit>
+      <trans-unit id="7355609594533651682" datatype="html">
+        <source>Viet Nam</source>
+        <target state="new">Viet Nam</target>
+      </trans-unit>
+      <trans-unit id="5144971260883559528" datatype="html">
+        <source>Yemen</source>
+        <target state="new">Yemen</target>
+      </trans-unit>
+      <trans-unit id="1424712818789206941" datatype="html">
+        <source>Zambia</source>
+        <target state="new">Zambia</target>
+      </trans-unit>
+      <trans-unit id="2257839169115954108" datatype="html">
+        <source>Zimbabwe</source>
+        <target state="new">Zimbabwe</target>
       </trans-unit>
     </body>
   </file>

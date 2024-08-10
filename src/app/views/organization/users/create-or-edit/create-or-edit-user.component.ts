@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { OrganizationService } from '../../../../services/organization.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { MessageUtils } from '../../../../utils/message.utils';
 @Component({
     templateUrl: './create-or-edit-user.component.html',
 })
-export class CreateOrEditUserComponent implements OnInit, AfterViewInit {
+export class CreateOrEditUserComponent implements OnInit {
 
     private destroyRef = inject(DestroyRef);
 
@@ -83,17 +83,6 @@ export class CreateOrEditUserComponent implements OnInit, AfterViewInit {
         ];
     }
 
-    async ngAfterViewInit() {
-        if (!!this.activatedRoute.snapshot.queryParams['newlyCreated']) {
-            this.messageService.add({
-                severity: 'success',
-                summary: $localize `Success inviting user`,
-                detail: $localize `User has been invited by email to join !`,
-                life: 5000
-            });
-        }
-    }
-
     async onSubmit() {
         if (this.isInvitingNewUser) {
 
@@ -106,8 +95,8 @@ export class CreateOrEditUserComponent implements OnInit, AfterViewInit {
                         organization: this.currentOrgSlug
                     }).then(async (userCreated) => {
                         await this.router.navigate(
-                            ['/organization', this.currentOrgSlug, 'users', userCreated._id, 'edit'],
-                            { queryParams: { newlyCreated: true }}
+                            ['/organization', this.currentOrgSlug, 'users', 'list'],
+                            { state: { userInvited: true } }
                         );
                     }).catch((err) => {
                         console.error(err);
