@@ -1,31 +1,31 @@
 <div class="card">
-    <span class="text-900 text-xl font-bold mb-4 block">Create User</span>
+    <span class="text-900 text-xl font-bold mb-4 block" i18n>Create Organization</span>
     <div class="grid">
         <div class="col-12 lg:col-2">
-            <div class="text-900 font-medium text-xl mb-3">Profile</div>
-            <p class="m-0 p-0 text-600 line-height-3 mr-3">Odio euismod lacinia at quis risus sed vulputate odio.</p>
+            <div class="text-900 font-medium text-xl mb-3" i18n>Identity</div>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3" i18n>Slug is the only field you won't be able to change.</p>
         </div>
         <div class="col-12 lg:col-10">
-            <div class="grid formgrid p-fluid">
-                <div class="field mb-4 col-12">
-                    <label for="nickname" class="font-medium text-900">Nickname</label>
-                    <input id="nickname" type="text" pInputText>
+            <form [formGroup]="creationForm" class="grid formgrid p-fluid">
+                <div class="field mb-4 col-10">
+                    <label for="name" class="font-medium text-900">Organization Name</label>
+
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-building"></i>
+                        <input formControlName="name" id="name" type="text" pInputText>
+                    </span>
                 </div>
-                <div class="field mb-4 col-12">
-                    <label for="avatar" class="font-medium text-900">Avatar</label>
-                    <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" [maxFileSize]="1000000" styleClass="p-button-outlined p-button-plain" chooseLabel="Upload Image"></p-fileUpload>
+
+                <div class="field col-12 md:col-6">
+                    <label for="slug" class="font-medium text-900" i18n>Slug (lowercase only)</label>
+                    <input formControlName="slug" id="slug" type="text" oninput="this.value = this.value.toLowerCase()" pInputText>
                 </div>
-                <div class="field mb-4 col-12">
-                    <label for="bio" class="font-medium text-900">Bio</label>
-                    <textarea id="bio" type="text" pInputTextarea rows="5" [autoResize]="true"></textarea>
-                </div>
-                <div class="field mb-4 col-12 md:col-6">
-                    <label for="email" class="font-medium text-900">Email</label>
-                    <input id="email" type="text" pInputText>
-                </div>
-                <div class="field mb-4 col-12 md:col-6">
-                    <label for="country" class="font-medium text-900">Country</label>
-                    <p-dropdown inputId="country" [options]="countries" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Country">
+
+                <div class="field mb-3 col-12 md:col-4">
+                    <label for="country" class="font-medium text-900" i18n>Country</label>
+                    <p-dropdown formControlName="country" inputId="country" [options]="countries" optionLabel="name"
+                                [filter]="true" filterBy="name" [showClear]="true"
+                                i18n-placeholder placeholder="Select a Country">
                         <ng-template let-country pTemplate="item">
                             <div class="flex align-items-center">
                                 <img src="../../../../../assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + country.code.toLowerCase()" style="width:18px"/>
@@ -34,27 +34,19 @@
                         </ng-template>
                     </p-dropdown>
                 </div>
-                <div class="field mb-4 col-12 md:col-6">
-                    <label for="city" class="font-medium text-900">City</label>
-                    <input id="city" type="text" pInputText>
-                </div>
-                <div class="field mb-4 col-12 md:col-6">
-                    <label for="state" class="font-medium text-900">State</label>
-                    <input id="state" type="text" pInputText>
-                </div>
-                <div class="field mb-4 col-12">
-                    <label for="website" class="font-medium text-900">Website</label>
-                    <p-inputGroup>
-                        <p-inputGroupAddon>
-                           <span>www</span>
-                        </p-inputGroupAddon>
-                        <input id="website" type="text" pInputText>
-                    </p-inputGroup>
-                </div>
+
                 <div class="col-12">
-                    <button pButton pRipple label="Create User" class="w-auto mt-3"></button>
+                    <button (click)="createOrganization()" [disabled]="!canCreateOrganization()"
+                            pButton pRipple i18n-label label="Create Organization" class="w-auto mt-3"></button>
+
+                    <a [routerLink]="['/administration/organizations/list']">
+                        <button  pButton pRipple i18n-label label="Return to organizations list" class="p-button-text w-auto mt-3">
+                        </button>
+                    </a>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
+
+<p-toast position="bottom-right" />

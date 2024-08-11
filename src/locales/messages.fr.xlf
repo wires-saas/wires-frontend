@@ -1693,10 +1693,6 @@
         <source>Error updating security settings</source>
         <target state="new">Erreur lors de la sauvegarde</target>
       </trans-unit>
-      <trans-unit id="2304216953155119353" datatype="html">
-        <source>Showing {first} to {last} of {totalRecords} entries</source>
-        <target state="new">Showing {first} to {last} of {totalRecords} entries</target>
-      </trans-unit>
       <trans-unit id="4551866846795587701" datatype="html">
         <source>Create Organization</source>
         <target state="new">Créer une organisation</target>
@@ -1723,7 +1719,7 @@
       </trans-unit>
       <trans-unit id="6083399226303311703" datatype="html">
         <source>Delete Organization</source>
-        <target state="new">Supprimer l'organisation</target>
+        <target state="new">Supprimer l&apos;organisation</target>
       </trans-unit>
       <trans-unit id="3405921303839576679" datatype="html">
         <source>Are you sure you want to delete organization ? This action cannot be undone and will also remove roles from users.</source>
@@ -1748,6 +1744,22 @@
       <trans-unit id="2018980470844680096" datatype="html">
         <source>Error removing organization</source>
         <target state="new">Erreur lors de la suppression</target>
+      </trans-unit>
+      <trans-unit id="5239368588149425954" datatype="html">
+        <source>Slug is the only field you won&apos;t be able to change.</source>
+        <target state="new">Le slug est le seul champ qu'il ne sera pas possible de modifier.</target>
+      </trans-unit>
+      <trans-unit id="9119763834316555081" datatype="html">
+        <source>Slug (lowercase only)</source>
+        <target state="new">Slug (minuscules seulement)</target>
+      </trans-unit>
+      <trans-unit id="5944120467476783394" datatype="html">
+        <source>Return to organizations list</source>
+        <target state="new">Revenir à la liste des organisations</target>
+      </trans-unit>
+      <trans-unit id="8685837414113034297" datatype="html">
+        <source>Error creating organization</source>
+        <target state="new">Erreur lors de la création</target>
       </trans-unit>
     </body>
   </file>

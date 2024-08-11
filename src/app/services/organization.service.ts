@@ -80,6 +80,10 @@ export class OrganizationService {
         // return firstValueFrom(this.http.get<any[]>('assets/demo/data/organizations.json'));
     }
 
+    create(organization: { name: string; slug: string; country?: string; }): Promise<Organization> {
+        return firstValueFrom(this.http.post<Organization>(`${this.domain}/organizations`, organization));
+    }
+
     // Update organization
     update(organizationId: string, organization: Partial<Organization>): Promise<Organization> {
         return firstValueFrom(this.http.patch<Organization>(`${this.domain}/organizations/${organizationId}`, organization));

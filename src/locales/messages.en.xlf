@@ -1283,9 +1283,6 @@
       <trans-unit id="2266978295648852911" datatype="html">
         <source># Members <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;_nbMembers&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
       </trans-unit>
-      <trans-unit id="2304216953155119353" datatype="html">
-        <source>Showing {first} to {last} of {totalRecords} entries</source>
-      </trans-unit>
       <trans-unit id="273407437820674043" datatype="html">
         <source>Success removing organization</source>
       </trans-unit>
@@ -1312,6 +1309,18 @@
       </trans-unit>
       <trans-unit id="8901239637096457862" datatype="html">
         <source>Plan <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;subscription.type&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+      </trans-unit>
+      <trans-unit id="5239368588149425954" datatype="html">
+        <source>Slug is the only field you won&apos;t be able to change.</source>
+      </trans-unit>
+      <trans-unit id="5944120467476783394" datatype="html">
+        <source>Return to organizations list</source>
+      </trans-unit>
+      <trans-unit id="8685837414113034297" datatype="html">
+        <source>Error creating organization</source>
+      </trans-unit>
+      <trans-unit id="9119763834316555081" datatype="html">
+        <source>Slug (lowercase only)</source>
       </trans-unit>
     </body>
   </file>
