@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -15,6 +15,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { PlansModule } from '../../../meta-components/plans/plans.module';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     imports: [
@@ -32,7 +33,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
         CheckboxModule,
         PlansModule,
         InputSwitchModule,
-        SelectButtonModule
+        SelectButtonModule,
+        ReactiveFormsModule,
+        ToastModule
     ],
     declarations: [InformationComponent]
 })

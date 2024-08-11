@@ -84,7 +84,13 @@ export class LayoutService {
         // Switch to dark theme if night
         const hours = new Date().getHours();
 
+        const schemePreferenceFromStorage = localStorage.getItem('color-scheme-preference');
+
         let colorScheme: ColorScheme = (hours > 10 && hours <= 20) ? 'light' : 'dim';
+        if (schemePreferenceFromStorage && ['light', 'dim', 'dark'].indexOf(schemePreferenceFromStorage) > -1) {
+            colorScheme = schemePreferenceFromStorage as ColorScheme;
+        }
+
 
         setTimeout(() => {
             this.config.update((config) => ({

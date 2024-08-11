@@ -165,7 +165,6 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                                             summary: $localize `Success removing user`,
                                             detail: $localize `User has been removed from your organization`,
                                             life: 5000,
-
                                         });
 
                                     }).catch((err) => {

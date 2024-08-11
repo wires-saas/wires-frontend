@@ -1241,6 +1241,24 @@
       <trans-unit id="7647133798807378669" datatype="html">
         <source>Legal Name</source>
       </trans-unit>
+      <trans-unit id="2432676560996776390" datatype="html">
+        <source>Error saving identity information</source>
+      </trans-unit>
+      <trans-unit id="3498776535113618933" datatype="html">
+        <source>Organization identity information updated successfully</source>
+      </trans-unit>
+      <trans-unit id="3459616100784348988" datatype="html">
+        <source>Billing contact updated successfully</source>
+      </trans-unit>
+      <trans-unit id="4453425171781033750" datatype="html">
+        <source>Admin contact updated successfully</source>
+      </trans-unit>
+      <trans-unit id="8743809639201203513" datatype="html">
+        <source>Error updating admin contact</source>
+      </trans-unit>
+      <trans-unit id="8789388499512098108" datatype="html">
+        <source>Error updating billing contact</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

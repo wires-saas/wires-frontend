@@ -5,39 +5,43 @@
             <div class="text-900 font-medium text-xl mb-3" i18n>Identity</div>
         </div>
         <div class="col-12 lg:col-10">
-            <div class="grid formgrid p-fluid">
+            <form class="grid formgrid p-fluid" [formGroup]="identityForm">
                 <div class="field col-12 md:col-6">
                     <label for="name" class="font-medium text-900" i18n>Organization Name</label>
 
                     <span class="p-input-icon-left">
                         <i class="pi pi-building"></i>
-                        <input id="name" type="text" [(ngModel)]="name" pInputText>
+                        <input formControlName="name" id="name" type="text" pInputText>
                     </span>
 
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="legal-name" class="font-medium text-900" i18n>Legal Name</label>
-                    <input id="legal-name" type="text" [(ngModel)]="legalName" pInputText>
+                    <input formControlName="legalName" id="legal-name" type="text" pInputText>
                 </div>
                 <div class="field mb-4 col-12">
                     <label for="logo" class="font-medium text-900" i18n>Logo</label>
-                    <p-fileUpload mode="basic" name="logo" url="./upload.php" accept="image/*" [maxFileSize]="1000000" styleClass="p-button-outlined p-button-plain" i18n-chooseLabel chooseLabel="Upload Image"></p-fileUpload>
+                    <p-fileUpload mode="basic" name="logo" url="./upload.php" accept="image/*" [maxFileSize]="1000000"
+                                  styleClass="p-button-outlined p-button-plain"
+                                  i18n-chooseLabel chooseLabel="Upload Image"></p-fileUpload>
                 </div>
                 <div class="field mb-4 col-12">
                     <label for="bio" class="font-medium text-900" i18n>Activity</label>
-                    <textarea id="bio" type="text" pInputTextarea rows="2" [(ngModel)]="activity" [autoResize]="true"></textarea>
+                    <textarea formControlName="activity"
+                              id="bio" type="text" pInputTextarea rows="2" [autoResize]="true">
+                    </textarea>
                 </div>
-                <div class="field mb-4 col-12 md:col-4">
+                <div class="field mb-4 col-12 md:col-4" formGroupName="address">
                     <label for="street" class="font-medium text-900" i18n>Street</label>
-                    <input id="street" type="text" [(ngModel)]="street" pInputText>
+                    <input formControlName="street" id="street" type="text" pInputText>
                 </div>
-                <div class="field mb-4 col-12 md:col-4">
+                <div class="field mb-4 col-12 md:col-4" formGroupName="address">
                     <label for="city" class="font-medium text-900" i18n>City</label>
-                    <input id="city" type="text" [(ngModel)]="city" pInputText>
+                    <input formControlName="city" id="city" type="text" pInputText>
                 </div>
-                <div class="field mb-3 col-12 md:col-4">
+                <div class="field mb-3 col-12 md:col-4" formGroupName="address">
                     <label for="country" class="font-medium text-900" i18n>Country</label>
-                    <p-dropdown inputId="country" [(ngModel)]="organizationCountry" [options]="countries" optionLabel="name"
+                    <p-dropdown formControlName="country" inputId="country" [options]="countries" optionLabel="name"
                                 [filter]="true" filterBy="name" [showClear]="true"
                                 i18n-placeholder placeholder="Select a Country">
                         <ng-template let-country pTemplate="item">
@@ -50,7 +54,7 @@
                 </div>
                 <div class="field mb-4 col-12">
                     <label for="company-id" class="font-medium text-900" i18n>Company ID</label>
-                    <input id="company-id" type="text" [(ngModel)]="companyId" pInputText>
+                    <input formControlName="legalId" id="company-id" type="text" pInputText>
                 </div>
                 <div class="field mb-4 col-12">
                     <label for="website" class="font-medium text-900" i18n>Website</label>
@@ -58,13 +62,14 @@
                         <p-inputGroupAddon>
                             <span>www.</span>
                         </p-inputGroupAddon>
-                        <input id="website" type="text" [(ngModel)]="website" pInputText>
+                        <input formControlName="website" id="website" type="text" pInputText>
                     </p-inputGroup>
                 </div>
                 <div class="col-12 flex md:justify-content-end justify-content-center">
-                    <button (click)="updateIdentityFields()" pButton pRipple i18n-label label="Save Changes" icon="pi pi-save" class="w-auto mt-3"></button>
+                    <button (click)="updateIdentityFields()" [disabled]="!canSaveIdentity()"
+                            pButton pRipple i18n-label label="Save Changes" icon="pi pi-save" class="w-auto mt-3"></button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <div class="grid">
@@ -74,55 +79,57 @@
         <div class="col-12 lg:col-10">
             <h5 i18n>Administrator</h5>
             <p class="text-600" i18n>Will receive emails related to new features, activity reports and scheduled downtimes</p>
-            <div class="grid formgrid p-fluid">
+            <form [formGroup]="adminContactForm" class="grid formgrid p-fluid">
                 <div class="field col-12 md:col-6">
                     <label for="firstname-administrator" class="font-medium text-900" i18n>First Name</label>
-                    <input id="firstname-administrator" type="text" pInputText>
+                    <input formControlName="firstName" id="firstname-administrator" type="text" pInputText>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="lastname-administrator" class="font-medium text-900" i18n>Last Name</label>
-                    <input id="lastname-administrator" type="text" pInputText>
+                    <input formControlName="lastName" id="lastname-administrator" type="text" pInputText>
                 </div>
                 <div class="field mb-4 col-12">
                     <label for="email-administrator" class="font-medium text-900" i18n>Email</label>
-                    <input id="email-administrator" type="text" pInputText>
+                    <input formControlName="email" id="email-administrator" type="text" pInputText>
                 </div>
 
                 <div class="field col-12">
                     <div class="field-checkbox">
-                        <p-checkbox name="consent-administrator" [binary]="true" [(ngModel)]="adminContactConsents" id="consent-administrator"></p-checkbox>
+                        <p-checkbox formControlName="consent" name="consent-administrator" [binary]="true" id="consent-administrator"></p-checkbox>
                         <label for="consent-administrator" i18n>User explicitly granted permission to receive mails</label>
                     </div>
                 </div>
                 <div class="col-12 flex md:justify-content-end justify-content-center">
-                    <button pButton pRipple i18n-label label="Update Administrator" icon="pi pi-save" class="w-auto mt-3"></button>
+                    <button (click)="updateAdminContact()" [disabled]="!canSaveAdminContact()"
+                            pButton pRipple i18n-label label="Update Administrator" icon="pi pi-save" class="w-auto mt-3"></button>
                 </div>
-            </div>
+            </form>
 
             <h5 i18n>Billing</h5>
             <p class="text-600" i18n>Will receive emails related to payments, cancellation and contract changes</p>
-            <div class="grid formgrid p-fluid">
+            <div [formGroup]="billingContactForm" class="grid formgrid p-fluid">
                 <div class="field col-12 md:col-6">
                     <label for="firstname-billing" class="font-medium text-900" i18n>First Name</label>
-                    <input id="firstname-billing" type="text" pInputText>
+                    <input formControlName="firstName" id="firstname-billing" type="text" pInputText>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="lastname-billing" class="font-medium text-900" i18n>Last Name</label>
-                    <input id="lastname-billing" type="text" pInputText>
+                    <input formControlName="lastName" id="lastname-billing" type="text" pInputText>
                 </div>
                 <div class="field mb-4 col-12">
                     <label for="email-billing" class="font-medium text-900" i18n>Email</label>
-                    <input id="email-billing" type="text" pInputText>
+                    <input formControlName="email" id="email-billing" type="text" pInputText>
                 </div>
 
                 <div class="field col-12">
                     <div class="field-checkbox">
-                        <p-checkbox name="consent-billing" [binary]="true" [(ngModel)]="billingContactConsents" id="consent-billing"></p-checkbox>
+                        <p-checkbox formControlName="consent" name="consent-billing" [binary]="true" id="consent-billing"></p-checkbox>
                         <label for="consent-billing" i18n>User explicitly granted permission to receive mails</label>
                     </div>
                 </div>
                 <div class="col-12 flex md:justify-content-end justify-content-center">
-                    <button pButton pRipple i18n-label label="Update Billing" icon="pi pi-save" class="w-auto mt-3"></button>
+                    <button (click)="updateBillingContact()" [disabled]="!canSaveBillingContact()"
+                            pButton pRipple i18n-label label="Update Billing" icon="pi pi-save" class="w-auto mt-3"></button>
                 </div>
             </div>
         </div>
@@ -173,3 +180,5 @@
         </div>
     </div>
 </div>
+
+<p-toast position="bottom-right" />

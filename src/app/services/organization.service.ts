@@ -13,6 +13,14 @@ export enum Plan {
     ENTERPRISE = 'custom',
 }
 
+export interface OrganizationContact {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    consent: boolean;
+}
+
 export interface Organization {
     name: string;
     legalName: string;
@@ -29,9 +37,9 @@ export interface Organization {
         country: string;
     };
 
-    adminContact?: User;
+    adminContact: OrganizationContact;
 
-    billingContact: User;
+    billingContact: OrganizationContact;
 
     security: {
         twoFactorAuthenticationEnabled: boolean;

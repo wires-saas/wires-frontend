@@ -791,7 +791,7 @@
       </trans-unit>
       <trans-unit id="452555574979101628" datatype="html">
         <source>Organization Name</source>
-        <target state="new">Nom de l'organisation</target>
+        <target state="new">Nom de l&apos;organisation</target>
       </trans-unit>
       <trans-unit id="4550958265168690830" datatype="html">
         <source>Logo</source>
@@ -1652,6 +1652,30 @@
       <trans-unit id="7647133798807378669" datatype="html">
         <source>Legal Name</source>
         <target state="new">Entité juridique</target>
+      </trans-unit>
+      <trans-unit id="3498776535113618933" datatype="html">
+        <source>Organization identity information updated successfully</source>
+        <target state="new">Identité de l&apos;organisation modifiée avec succès</target>
+      </trans-unit>
+      <trans-unit id="2432676560996776390" datatype="html">
+        <source>Error saving identity information</source>
+        <target state="new">Erreur lors de la sauvegarde</target>
+      </trans-unit>
+      <trans-unit id="4453425171781033750" datatype="html">
+        <source>Admin contact updated successfully</source>
+        <target state="new">Contact d'administration mis à jour</target>
+      </trans-unit>
+      <trans-unit id="8743809639201203513" datatype="html">
+        <source>Error updating admin contact</source>
+        <target state="new">Erreur lors de la sauvegarde</target>
+      </trans-unit>
+      <trans-unit id="3459616100784348988" datatype="html">
+        <source>Billing contact updated successfully</source>
+        <target state="new">Contact de facturation mis à jour</target>
+      </trans-unit>
+      <trans-unit id="8789388499512098108" datatype="html">
+        <source>Error updating billing contact</source>
+        <target state="new">Erreur lors de la sauvegarde</target>
       </trans-unit>
     </body>
   </file>
