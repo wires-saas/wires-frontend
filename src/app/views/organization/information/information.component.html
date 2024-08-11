@@ -159,23 +159,23 @@
         </div>
         <div class="col-12 lg:col-10">
 
-            <div class="grid formgrid p-fluid">
+            <form [formGroup]="securityForm" class="grid formgrid p-fluid">
                 <div class="field col-12">
                     <h5 i18n>Two Factor Authentication</h5>
 
-                    <p-inputSwitch [(ngModel)]="force2FA"></p-inputSwitch>
+                    <p-inputSwitch formControlName="twoFactorAuthenticationEnabled"></p-inputSwitch>
                     <span class="text-900 p-3" i18n>Enable 2FA for all users</span>
                 </div>
 
-                <!-- TODO force select Email + disable select button -->
-                <div *ngIf="force2FA" class="field col-12 md:col-6">
-                    <p-selectButton [options]="optionsFor2FA" [(ngModel)]="selectedOptionsFor2FA" [multiple]="true"
+                <div *ngIf="!!securityForm.get('twoFactorAuthenticationEnabled')?.value" class="field col-12 md:col-6">
+                    <p-selectButton formControlName="twoFactorAuthenticationMethods" [options]="optionsFor2FA" [multiple]="true"
                                     optionLabel="name" optionValue="id" [disabled]="true"></p-selectButton>
                 </div>
-            </div>
+            </form>
 
             <div class="col-12 flex md:justify-content-end justify-content-center">
-                <button pButton pRipple i18n-label label="Update Settings" icon="pi pi-save" class="w-auto mt-3"></button>
+                <button (click)="updateSecurity()" [disabled]="!canSaveSecurity()"
+                        pButton pRipple i18n-label label="Update Settings" icon="pi pi-save" class="w-auto mt-3"></button>
             </div>
         </div>
     </div>

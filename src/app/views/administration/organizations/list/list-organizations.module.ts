@@ -8,6 +8,9 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ListOrganizationsComponent } from './list-organizations.component';
 import { ListOrganizationsRoutingModule } from './list-organizations-routing.module';
 import { CountryNamePipe } from '../../../../country-name.pipe';
+import { MenuModule } from 'primeng/menu';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     imports: [
@@ -18,7 +21,10 @@ import { CountryNamePipe } from '../../../../country-name.pipe';
         InputTextModule,
         TableModule,
         ProgressBarModule,
-        CountryNamePipe
+        CountryNamePipe,
+        MenuModule,
+        ConfirmDialogModule,
+        ToastModule
     ],
 	declarations: [ListOrganizationsComponent]
 })

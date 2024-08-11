@@ -33,8 +33,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
 
     private destroyRef = inject(DestroyRef);
 
-    constructor(private customerService: CustomerService,
-                private authService: AuthService,
+    constructor(private authService: AuthService,
                 private userService: UserService,
                 private organizationService: OrganizationService,
                 private confirmationService: ConfirmationService,

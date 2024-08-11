@@ -386,7 +386,7 @@
         <target state="new">Ventes Récentes</target>
       </trans-unit>
       <trans-unit id="1831113653457443508" datatype="html">
-        <source>Name <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;name&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></source>
+        <source>Name <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;name&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
         <target state="new">Nom <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;name&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></target>
       </trans-unit>
       <trans-unit id="8386621951042608841" datatype="html">
@@ -1663,7 +1663,7 @@
       </trans-unit>
       <trans-unit id="4453425171781033750" datatype="html">
         <source>Admin contact updated successfully</source>
-        <target state="new">Contact d'administration mis à jour</target>
+        <target state="new">Contact d&apos;administration mis à jour</target>
       </trans-unit>
       <trans-unit id="8743809639201203513" datatype="html">
         <source>Error updating admin contact</source>
@@ -1676,6 +1676,78 @@
       <trans-unit id="8789388499512098108" datatype="html">
         <source>Error updating billing contact</source>
         <target state="new">Erreur lors de la sauvegarde</target>
+      </trans-unit>
+      <trans-unit id="4580988005648117665" datatype="html">
+        <source>Search</source>
+        <target state="new">Rechercher</target>
+      </trans-unit>
+      <trans-unit id="2591237466336965033" datatype="html">
+        <source>SMS (not yet implemented)</source>
+        <target state="new">SMS (à venir)</target>
+      </trans-unit>
+      <trans-unit id="2286824468316013116" datatype="html">
+        <source>Security settings updated successfully</source>
+        <target state="new">Paramètres de sécurité mis à jour</target>
+      </trans-unit>
+      <trans-unit id="1980707604652735899" datatype="html">
+        <source>Error updating security settings</source>
+        <target state="new">Erreur lors de la sauvegarde</target>
+      </trans-unit>
+      <trans-unit id="2304216953155119353" datatype="html">
+        <source>Showing {first} to {last} of {totalRecords} entries</source>
+        <target state="new">Showing {first} to {last} of {totalRecords} entries</target>
+      </trans-unit>
+      <trans-unit id="4551866846795587701" datatype="html">
+        <source>Create Organization</source>
+        <target state="new">Créer une organisation</target>
+      </trans-unit>
+      <trans-unit id="7205061494931220503" datatype="html">
+        <source>Creation Date <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;createdAt&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+        <target state="new">Création le <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;createdAt&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="155035325354018605" datatype="html">
+        <source>Country <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;address.country&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+        <target state="new">Pays <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;address.country&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="1457441417699673405" datatype="html">
+        <source>2FA <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;security.twoFactorAuthenticationEnabled&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+        <target state="new">2FA <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;security.twoFactorAuthenticationEnabled&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="8901239637096457862" datatype="html">
+        <source>Plan <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;subscription.type&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+        <target state="new">Formule <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;subscription.type&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="2266978295648852911" datatype="html">
+        <source># Members <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;_nbMembers&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+        <target state="new"># Membres <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;_nbMembers&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="6083399226303311703" datatype="html">
+        <source>Delete Organization</source>
+        <target state="new">Supprimer l'organisation</target>
+      </trans-unit>
+      <trans-unit id="3405921303839576679" datatype="html">
+        <source>Are you sure you want to delete organization ? This action cannot be undone and will also remove roles from users.</source>
+        <target state="new">Êtes-vous certain de vouloir supprimer cette organisation ? Cette action permanente retirera également les rôles des membres.</target>
+      </trans-unit>
+      <trans-unit id="7005213248357637960" datatype="html">
+        <source>Edit information</source>
+        <target state="new">Modifier</target>
+      </trans-unit>
+      <trans-unit id="502458406190873862" datatype="html">
+        <source>Delete org</source>
+        <target state="new">Supprimer</target>
+      </trans-unit>
+      <trans-unit id="273407437820674043" datatype="html">
+        <source>Success removing organization</source>
+        <target state="new">Succès</target>
+      </trans-unit>
+      <trans-unit id="6896188503778112920" datatype="html">
+        <source>Organization has been removed successfully</source>
+        <target state="new">Organisation supprimée avec succès</target>
+      </trans-unit>
+      <trans-unit id="2018980470844680096" datatype="html">
+        <source>Error removing organization</source>
+        <target state="new">Erreur lors de la suppression</target>
       </trans-unit>
     </body>
   </file>

@@ -51,6 +51,8 @@ export interface Organization {
         willExpireAt?: number;
     }
 
+    _nbMembers?: number;
+
     createdAt: number;
     updatedAt: number;
 }
@@ -81,6 +83,10 @@ export class OrganizationService {
     // Update organization
     update(organizationId: string, organization: Partial<Organization>): Promise<Organization> {
         return firstValueFrom(this.http.patch<Organization>(`${this.domain}/organizations/${organizationId}`, organization));
+    }
+
+    delete(organizationId: string): Promise<void> {
+        return firstValueFrom(this.http.delete<void>(`${this.domain}/organizations/${organizationId}`));
     }
 
     setCurrentOrganization(organization: Organization) {

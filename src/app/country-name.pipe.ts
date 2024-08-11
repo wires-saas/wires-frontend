@@ -214,6 +214,6 @@ export class CountryNamePipe implements PipeTransform {
     };
 
     transform(value: string, ...args: unknown[]): string {
-        return this.countryMap[value.toUpperCase()] || value;
+        return value ? (this.countryMap[value.toUpperCase()] || value) : value;
     }
 }

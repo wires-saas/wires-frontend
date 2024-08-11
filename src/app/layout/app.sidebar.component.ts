@@ -1,8 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { Organization, OrganizationService } from '../services/organization.service';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-sidebar',
@@ -18,6 +20,8 @@ export class AppSidebarComponent implements OnInit {
         return this.layoutService.isLightMode();
     }
 
+    private destroyRef = inject(DestroyRef);
+
     @ViewChild('menuContainer') menuContainer!: ElementRef;
     constructor(public layoutService: LayoutService,
                 public el: ElementRef,
@@ -25,6 +29,18 @@ export class AppSidebarComponent implements OnInit {
                 private organizationService: OrganizationService) {}
 
     async ngOnInit() {
+
+        this.organizationService.currentOrganization$.pipe(
+            map(organization => {
+                if (organization) {
+                    this.selectedOrganization = this.availableOrganizations.find(org => org.slug === organization.slug);
+                } else {
+                    this.selectedOrganization = undefined;
+                }
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
+
 
         // Fetching all organizations
             this.organizationService.getAll().then(organizations => {

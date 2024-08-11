@@ -1,24 +1,29 @@
 <div class="card">
+
+    <p-menu #actionsMenu [popup]="true" [model]="actionsMenuItems"></p-menu>
+
     <p-table #dt [value]="organizations" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
-        [globalFilterFields]="['name']">
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+            [globalFilterFields]="['name']">
         <ng-template pTemplate="caption">
             <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
                 <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Global Search" class="w-full" />
+                    <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" i18n-placeholder placeholder="Global Search" class="w-full" />
                 </span>
-                <button (click)="navigateToCreateOrganization()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-building" label="Add New"></button>
+                <button (click)="navigateToCreateOrganization()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-building" i18n-label label="Create Organization"></button>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="name" class="white-space-nowrap" style="width:25%">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="name" class="white-space-nowrap" style="width:25%" i18n>Name <p-sortIcon field="name"></p-sortIcon></th>
 
-                <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:25%">Creation Date <p-sortIcon field="createdAt"></p-sortIcon></th>
-                <th pSortableColumn="address.country" class="white-space-nowrap" style="width:25%">Country <p-sortIcon field="address.country"></p-sortIcon></th>
-                <th pSortableColumn="security.twoFactorAuthenticationEnabled" class="white-space-nowrap" style="width:10%">2FA <p-sortIcon field="security.twoFactorAuthenticationEnabled"></p-sortIcon></th>
-                <th pSortableColumn="subscription.type" class="white-space-nowrap" style="width:25%">Plan <p-sortIcon field="subscription.type"></p-sortIcon></th>
+                <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:25%" i18n>Creation Date <p-sortIcon field="createdAt"></p-sortIcon></th>
+                <th pSortableColumn="address.country" class="white-space-nowrap" style="width:25%" i18n>Country <p-sortIcon field="address.country"></p-sortIcon></th>
+                <th pSortableColumn="security.twoFactorAuthenticationEnabled" class="white-space-nowrap" style="width:10%" i18n>2FA <p-sortIcon field="security.twoFactorAuthenticationEnabled"></p-sortIcon></th>
+                <th pSortableColumn="subscription.type" class="white-space-nowrap" style="width:25%" i18n>Plan <p-sortIcon field="subscription.type"></p-sortIcon></th>
+                <th pSortableColumn="_nbMembers" class="white-space-nowrap" style="width:25%" i18n># Members <p-sortIcon field="_nbMembers"></p-sortIcon></th>
+                <th class="white-space-nowrap" style="width:15%" i18n>Actions</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-organization>
@@ -37,7 +42,19 @@
                     </ng-template>
                 </td>
                 <td>{{ organization.subscription.type }}</td>
+                <td>{{ organization._nbMembers }}</td>
+                <td>
+                    <button (click)="toggleMenuFor(organization, actionsMenu, $event)" pButton pRipple type="button" icon="pi pi-file-edit" class="p-button-rounded p-button-outlined p-button-info"></button>
+                </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
+
+<p-confirmDialog i18n-header header="Delete Organization" key="confirm-delete" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to delete organization ? This action cannot be undone and will also remove roles from users."
+                 [style]="{width: '350px'}" defaultFocus="none"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
+
+<p-toast position="bottom-right" />
