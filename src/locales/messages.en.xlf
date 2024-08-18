@@ -1322,6 +1322,69 @@
       <trans-unit id="9119763834316555081" datatype="html">
         <source>Slug (lowercase only)</source>
       </trans-unit>
+      <trans-unit id="2017755900820007851" datatype="html">
+        <source>INVOICE</source>
+      </trans-unit>
+      <trans-unit id="2839017758338228267" datatype="html">
+        <source>Enterprise Plan</source>
+      </trans-unit>
+      <trans-unit id="3355620589392370710" datatype="html">
+        <source>Custom pricing</source>
+      </trans-unit>
+      <trans-unit id="6252070156626006029" datatype="html">
+        <source>None</source>
+      </trans-unit>
+      <trans-unit id="7310039385852088297" datatype="html">
+        <source>Free Plan</source>
+      </trans-unit>
+      <trans-unit id="8283910012126884856" datatype="html">
+        <source>Extended Plan</source>
+      </trans-unit>
+      <trans-unit id="8289957608088351390" datatype="html">
+        <source>Billed to</source>
+      </trans-unit>
+      <trans-unit id="8462898146571532691" datatype="html">
+        <source>Basic Plan</source>
+      </trans-unit>
+      <trans-unit id="1599232533055023845" datatype="html">
+        <source>Unit Price</source>
+      </trans-unit>
+      <trans-unit id="3790487355705192747" datatype="html">
+        <source>Line Total</source>
+      </trans-unit>
+      <trans-unit id="4902817035128594900" datatype="html">
+        <source>Description</source>
+      </trans-unit>
+      <trans-unit id="6762504134540024018" datatype="html">
+        <source>Quantity</source>
+      </trans-unit>
+      <trans-unit id="1831102617504515171" datatype="html">
+        <source>VAT (20%)</source>
+      </trans-unit>
+      <trans-unit id="4798047991571109140" datatype="html">
+        <source>NOTES</source>
+      </trans-unit>
+      <trans-unit id="5657082509613927957" datatype="html">
+        <source>SUBTOTAL</source>
+      </trans-unit>
+      <trans-unit id="6684016449595758284" datatype="html">
+        <source>TOTAL</source>
+      </trans-unit>
+      <trans-unit id="6255181836560701959" datatype="html">
+        <source>INVOICE DATE</source>
+      </trans-unit>
+      <trans-unit id="7754403202356625862" datatype="html">
+        <source>REFERENCE #</source>
+      </trans-unit>
+      <trans-unit id="8217951079685286377" datatype="html">
+        <source>DUE DATE</source>
+      </trans-unit>
+      <trans-unit id="1585328301214231050" datatype="html">
+        <source>Total payment is due within 30 days</source>
+      </trans-unit>
+      <trans-unit id="1789368895535087987" datatype="html">
+        <source>Please provide invoice reference with your payment</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

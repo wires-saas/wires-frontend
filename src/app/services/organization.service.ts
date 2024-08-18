@@ -85,8 +85,18 @@ export class OrganizationService {
     }
 
     // Update organization
-    update(organizationId: string, organization: Partial<Organization>): Promise<Organization> {
-        return firstValueFrom(this.http.patch<Organization>(`${this.domain}/organizations/${organizationId}`, organization));
+    async update(organizationId: string, organization: Partial<Organization>): Promise<Organization> {
+        return firstValueFrom(this.http.patch<Organization>(`${this.domain}/organizations/${organizationId}`, organization))
+            .then(async (organizationUpdated) => {
+
+                // Update current in-memory organization if it's the same
+                const currentOrganization = await firstValueFrom(this.currentOrganization$);
+                if (currentOrganization && currentOrganization.slug === organizationUpdated.slug) {
+                    this.currentOrganization$$.next(organizationUpdated);
+                }
+
+                return organizationUpdated;
+        });
     }
 
     delete(organizationId: string): Promise<void> {

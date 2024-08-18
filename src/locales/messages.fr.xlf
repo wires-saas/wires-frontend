@@ -1747,7 +1747,7 @@
       </trans-unit>
       <trans-unit id="5239368588149425954" datatype="html">
         <source>Slug is the only field you won&apos;t be able to change.</source>
-        <target state="new">Le slug est le seul champ qu'il ne sera pas possible de modifier.</target>
+        <target state="new">Le slug est le seul champ qu&apos;il ne sera pas possible de modifier.</target>
       </trans-unit>
       <trans-unit id="9119763834316555081" datatype="html">
         <source>Slug (lowercase only)</source>
@@ -1760,6 +1760,90 @@
       <trans-unit id="8685837414113034297" datatype="html">
         <source>Error creating organization</source>
         <target state="new">Erreur lors de la création</target>
+      </trans-unit>
+      <trans-unit id="8462898146571532691" datatype="html">
+        <source>Basic Plan</source>
+        <target state="new">Offre Basique</target>
+      </trans-unit>
+      <trans-unit id="8283910012126884856" datatype="html">
+        <source>Extended Plan</source>
+        <target state="new">Offre Premium</target>
+      </trans-unit>
+      <trans-unit id="2839017758338228267" datatype="html">
+        <source>Enterprise Plan</source>
+        <target state="new">Offre Entreprise</target>
+      </trans-unit>
+      <trans-unit id="7310039385852088297" datatype="html">
+        <source>Free Plan</source>
+        <target state="new">Offre Gratuite</target>
+      </trans-unit>
+      <trans-unit id="6252070156626006029" datatype="html">
+        <source>None</source>
+        <target state="new">Aucun</target>
+      </trans-unit>
+      <trans-unit id="3355620589392370710" datatype="html">
+        <source>Custom pricing</source>
+        <target state="new">Prix sur mesure</target>
+      </trans-unit>
+      <trans-unit id="2017755900820007851" datatype="html">
+        <source>INVOICE</source>
+        <target state="new">DERNIÈRE FACTURE</target>
+      </trans-unit>
+      <trans-unit id="8289957608088351390" datatype="html">
+        <source>Billed to</source>
+        <target state="new">Facturé à</target>
+      </trans-unit>
+      <trans-unit id="4902817035128594900" datatype="html">
+        <source>Description</source>
+        <target state="new">Description</target>
+      </trans-unit>
+      <trans-unit id="6762504134540024018" datatype="html">
+        <source>Quantity</source>
+        <target state="new">Quantité</target>
+      </trans-unit>
+      <trans-unit id="1599232533055023845" datatype="html">
+        <source>Unit Price</source>
+        <target state="new">Prix Unitaire</target>
+      </trans-unit>
+      <trans-unit id="3790487355705192747" datatype="html">
+        <source>Line Total</source>
+        <target state="new">Total</target>
+      </trans-unit>
+      <trans-unit id="4798047991571109140" datatype="html">
+        <source>NOTES</source>
+        <target state="new">NOTES</target>
+      </trans-unit>
+      <trans-unit id="5657082509613927957" datatype="html">
+        <source>SUBTOTAL</source>
+        <target state="new">SOUS-TOTAL</target>
+      </trans-unit>
+      <trans-unit id="1831102617504515171" datatype="html">
+        <source>VAT (20%)</source>
+        <target state="new">TVA (20%)</target>
+      </trans-unit>
+      <trans-unit id="6684016449595758284" datatype="html">
+        <source>TOTAL</source>
+        <target state="new">TOTAL</target>
+      </trans-unit>
+      <trans-unit id="6255181836560701959" datatype="html">
+        <source>INVOICE DATE</source>
+        <target state="new">FACTURÉ LE</target>
+      </trans-unit>
+      <trans-unit id="8217951079685286377" datatype="html">
+        <source>DUE DATE</source>
+        <target state="new">ÉCHÉANCE DE PAIEMENT</target>
+      </trans-unit>
+      <trans-unit id="7754403202356625862" datatype="html">
+        <source>REFERENCE #</source>
+        <target state="new">RÉFÉRENCE #</target>
+      </trans-unit>
+      <trans-unit id="1789368895535087987" datatype="html">
+        <source>Please provide invoice reference with your payment</source>
+        <target state="new">Merci de fournir la référence de la facture lors de votre virement</target>
+      </trans-unit>
+      <trans-unit id="1585328301214231050" datatype="html">
+        <source>Total payment is due within 30 days</source>
+        <target state="new">La totalité du paiement est exigible sous 30 jours à compter de la date d'émission</target>
       </trans-unit>
     </body>
   </file>

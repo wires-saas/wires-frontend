@@ -64,19 +64,11 @@ export class AppTopbarComponent implements OnInit {
     }
 
     setLightMode() {
-        localStorage.setItem('color-scheme-preference', 'light');
-        this.layoutService.config.update((config) => ({
-            ...config,
-            colorScheme: 'light',
-        }));
+        this.layoutService.switchToLightMode();
     }
 
     setDimMode() {
-        localStorage.setItem('color-scheme-preference', 'dim');
-        this.layoutService.config.update((config) => ({
-            ...config,
-            colorScheme: 'dim',
-        }));
+        this.layoutService.switchToDimMode();
     }
 
 }

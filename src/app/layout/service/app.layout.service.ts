@@ -86,18 +86,29 @@ export class LayoutService {
 
         const schemePreferenceFromStorage = localStorage.getItem('color-scheme-preference');
 
-        let colorScheme: ColorScheme = (hours > 10 && hours <= 20) ? 'light' : 'dim';
+        let colorScheme: ColorScheme;
+
         if (schemePreferenceFromStorage && ['light', 'dim', 'dark'].indexOf(schemePreferenceFromStorage) > -1) {
             colorScheme = schemePreferenceFromStorage as ColorScheme;
+        } else {
+            if (hours > 10 && hours <= 20) {
+                colorScheme = 'light';
+            } else {
+                colorScheme = 'dim';
+            }
         }
 
-
-        setTimeout(() => {
-            this.config.update((config) => ({
-                ...config,
-                colorScheme
-            }));
-        }, 1);
+        switch (colorScheme) {
+            case 'light':
+                setTimeout(() => this.switchToLightMode(), 1);
+                break;
+            case 'dark':
+                setTimeout(() => this.switchToDarkMode(), 1);
+                break;
+            case 'dim':
+                setTimeout(() => this.switchToDimMode(), 1);
+                break;
+        }
     }
 
     updateStyle(config: AppConfig) {
@@ -214,6 +225,33 @@ export class LayoutService {
             themeLink.remove();
             cloneLinkElement.setAttribute('id', id);
         });
+    }
+
+    switchToLightMode() {
+        localStorage.setItem('color-scheme-preference', 'light');
+        this.config.update((config: AppConfig) => ({
+            ...config,
+            theme: 'teal',
+            colorScheme: 'light',
+        }));
+    }
+
+    switchToDarkMode() {
+        localStorage.setItem('color-scheme-preference', 'dark');
+        this.config.update((config: AppConfig) => ({
+            ...config,
+            theme: 'indigo',
+            colorScheme: 'dark',
+        }));
+    }
+
+    switchToDimMode() {
+        localStorage.setItem('color-scheme-preference', 'dim');
+        this.config.update((config: AppConfig) => ({
+            ...config,
+            theme: 'indigo',
+            colorScheme: 'dim',
+        }));
     }
 
     changeScale(value: number) {

@@ -39,6 +39,12 @@
                     <label for="city" class="font-medium text-900" i18n>City</label>
                     <input formControlName="city" id="city" type="text" pInputText>
                 </div>
+
+                <div class="field mb-4 col-12 md:col-4" formGroupName="address">
+                    <label for="zipCode" class="font-medium text-900" i18n>ZIP Code</label>
+                    <input formControlName="zip" id="zipCode" type="text" pInputText>
+                </div>
+
                 <div class="field mb-3 col-12 md:col-4" formGroupName="address">
                     <label for="country" class="font-medium text-900" i18n>Country</label>
                     <p-dropdown formControlName="country" inputId="country" [options]="countries" optionLabel="name"
