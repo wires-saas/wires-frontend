@@ -190,7 +190,34 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                         icon: 'pi pi-fw pi-sort-up',
                         visible: !isCurrentUser,
                         disabled: this.getRoleOfUser(user) === Role.ADMIN,
-                        data: 'admin'
+                        command: async () => {
+                            if (!this.currentOrgSlug) throw new Error('No current organization slug');
+                            await this.userService.addUserRole(user._id, this.currentOrgSlug, Role.ADMIN).then(() => {
+                                this.users = this.users.map(_ => {
+                                    if (_.email === user.email) {
+                                        _.roles = _.roles.map(_ => {
+                                            if (_.organization === this.currentOrgSlug) _.role = Role.ADMIN;
+                                            return _;
+                                        });
+                                    }
+                                    return _;
+                                });
+
+                                this.messageService.add({
+                                    severity: 'success',
+                                    summary: $localize `Success setting role`,
+                                    detail: $localize `User has been set as Admin`,
+                                    life: 5000,
+                                });
+
+                            }).catch((err) => {
+                                console.error(err);
+
+                                MessageUtils.parseServerError(this.messageService, err, {
+                                    summary: $localize `Error setting role`,
+                                });
+                            });
+                        }
                     },
                     {
                         label: $localize `Set Manager`,

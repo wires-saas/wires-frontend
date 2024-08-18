@@ -4,6 +4,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigModule } from 'src/app/layout/config/app.config.module';
 import { LogoPhraseComponent } from './logo-phrase.component';
 import { LogoComponent } from './logo.component';
+import { LogoTextlessComponent } from './logo-textless.component';
 
 @NgModule({
     imports: [
@@ -13,8 +14,9 @@ import { LogoComponent } from './logo.component';
     ],
     exports: [
         LogoPhraseComponent,
+        LogoTextlessComponent,
         LogoComponent
     ],
-    declarations: [LogoPhraseComponent, LogoComponent]
+    declarations: [LogoPhraseComponent, LogoTextlessComponent, LogoComponent]
 })
 export class LogosModule { }

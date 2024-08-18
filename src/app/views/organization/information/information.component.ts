@@ -139,7 +139,6 @@ export class InformationComponent implements OnInit {
                         }
                     });
 
-                    console.log(this.identitySavedState);
                     this.identitySavedState = this.identityForm.value;
                     this.adminContactSavedState = this.adminContactForm.value;
                     this.billingContactSavedState = this.billingContactForm.value;

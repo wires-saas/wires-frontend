@@ -44,8 +44,8 @@
                 <td>{{ user.firstName}}<i *ngIf="isCurrentUser(user) | async" i18n-pTooltip pTooltip="You" tooltipPosition="bottom" class="pi pi-user ml-2"></i></td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ getRoleOfUser(user) | titlecase }}</td>
-                <td>{{ user.status | titlecase }}</td>
+                <td>{{ getRoleOfUser(user) | role }}</td>
+                <td>{{ user.status | status }}</td>
                 <td>{{ user.createdAt | date: 'dd/MM/yyyy'}} <i *ngIf="isInviteExpired(user)" i18n-pTooltip pTooltip="Invite expired" class="pi pi-exclamation-triangle text-yellow-500"></i></td>
                 <td>
                     <ng-container *ngIf="user.lastSeenAt; else neverSeen">{{ user.lastSeenAt | date: 'dd/MM/yyyy'}}</ng-container>

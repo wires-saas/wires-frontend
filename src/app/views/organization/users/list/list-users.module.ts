@@ -10,6 +10,8 @@ import { ListUsersRoutingModule } from './list-users-routing.module';
 import { MenuModule } from 'primeng/menu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { RolePipe } from '../../../../utils/role.pipe';
+import { StatusPipe } from '../../../../utils/status.pipe';
 
 @NgModule({
     imports: [
@@ -22,7 +24,9 @@ import { ToastModule } from 'primeng/toast';
         ProgressBarModule,
         MenuModule,
         ConfirmDialogModule,
-        ToastModule
+        ToastModule,
+        RolePipe,
+        StatusPipe
     ],
 	declarations: [ListUsersComponent]
 })

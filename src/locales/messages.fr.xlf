@@ -1843,7 +1843,43 @@
       </trans-unit>
       <trans-unit id="1585328301214231050" datatype="html">
         <source>Total payment is due within 30 days</source>
-        <target state="new">La totalité du paiement est exigible sous 30 jours à compter de la date d'émission</target>
+        <target state="new">La totalité du paiement est exigible sous 30 jours à compter de la date d&apos;émission</target>
+      </trans-unit>
+      <trans-unit id="1786686364877146278" datatype="html">
+        <source>Super Admin</source>
+        <target state="new">Super Admin</target>
+      </trans-unit>
+      <trans-unit id="5041354590769758251" datatype="html">
+        <source>Admin</source>
+        <target state="new">Admin</target>
+      </trans-unit>
+      <trans-unit id="1540281436321485610" datatype="html">
+        <source>Manager</source>
+        <target state="new">Manager</target>
+      </trans-unit>
+      <trans-unit id="2392488717875840729" datatype="html">
+        <source>User</source>
+        <target state="new">Utilisateur</target>
+      </trans-unit>
+      <trans-unit id="268369328039605234" datatype="html">
+        <source>Guest</source>
+        <target state="new">Invité</target>
+      </trans-unit>
+      <trans-unit id="6811901802533648897" datatype="html">
+        <source>N/A</source>
+        <target state="new">N/A</target>
+      </trans-unit>
+      <trans-unit id="8204176479746810612" datatype="html">
+        <source>Active</source>
+        <target state="new">Actif</target>
+      </trans-unit>
+      <trans-unit id="1859131936150262113" datatype="html">
+        <source>Inactive</source>
+        <target state="new">Inactif</target>
+      </trans-unit>
+      <trans-unit id="4416413576346763682" datatype="html">
+        <source>Pending</source>
+        <target state="new">En attente</target>
       </trans-unit>
     </body>
   </file>

@@ -1385,6 +1385,33 @@
       <trans-unit id="1789368895535087987" datatype="html">
         <source>Please provide invoice reference with your payment</source>
       </trans-unit>
+      <trans-unit id="1540281436321485610" datatype="html">
+        <source>Manager</source>
+      </trans-unit>
+      <trans-unit id="1786686364877146278" datatype="html">
+        <source>Super Admin</source>
+      </trans-unit>
+      <trans-unit id="2392488717875840729" datatype="html">
+        <source>User</source>
+      </trans-unit>
+      <trans-unit id="268369328039605234" datatype="html">
+        <source>Guest</source>
+      </trans-unit>
+      <trans-unit id="5041354590769758251" datatype="html">
+        <source>Admin</source>
+      </trans-unit>
+      <trans-unit id="6811901802533648897" datatype="html">
+        <source>N/A</source>
+      </trans-unit>
+      <trans-unit id="1859131936150262113" datatype="html">
+        <source>Inactive</source>
+      </trans-unit>
+      <trans-unit id="4416413576346763682" datatype="html">
+        <source>Pending</source>
+      </trans-unit>
+      <trans-unit id="8204176479746810612" datatype="html">
+        <source>Active</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

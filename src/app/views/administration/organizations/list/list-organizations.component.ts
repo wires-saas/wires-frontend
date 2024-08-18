@@ -32,9 +32,6 @@ export class ListOrganizationsComponent implements OnInit {
         this.organizations.forEach((org) => {
             org._nbMembers = this.users.filter((user) => user.roles.find(_ => _.organization === org.slug)).length;
         });
-
-        console.log(this.organizations);
-        console.log(this.users);
     }
 
     onGlobalFilter(table: Table, event: Event) {

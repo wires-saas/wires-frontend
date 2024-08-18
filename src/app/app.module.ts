@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +26,8 @@ export function tokenGetter() {
         }),
     ],
     providers: [
-        { provide: LocationStrategy, useClass: PathLocationStrategy }
+        { provide: LocationStrategy, useClass: PathLocationStrategy },
+        { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' }
     ],
     bootstrap: [AppComponent]
 })

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
-import { UserRole } from '../utils/role.utils';
+import { Role, UserRole } from '../utils/role.utils';
 import { Slug } from '../utils/types.utils';
 
 export enum UserEmailStatus {
@@ -87,6 +87,13 @@ export class UserService {
 
     async resendInvite(userId: string): Promise<void> {
         return firstValueFrom(this.http.post<void>(`${this.domain}/users/${userId}/invite`, {}));
+    }
+
+    async addUserRole(userId: string, orgSlug: Slug, role: Role): Promise<UserRole[]> {
+        return firstValueFrom(this.http.post<UserRole[]>(
+            `${this.domain}/users/${userId}/roles`,
+            [{ organization: orgSlug, role }]
+        ));
     }
 
 }
