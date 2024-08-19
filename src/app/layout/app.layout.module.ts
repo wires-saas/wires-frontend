@@ -24,6 +24,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
 import { LogosModule } from '../meta-components/logos/logos.module';
+import { FullNamePipe } from '../utils/full-name.pipe';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,8 @@ import { LogosModule } from '../meta-components/logos/logos.module';
         AppConfigModule,
         DropdownModule,
         MenuModule,
-        LogosModule
+        LogosModule,
+        FullNamePipe
     ]
 })
 export class AppLayoutModule { }

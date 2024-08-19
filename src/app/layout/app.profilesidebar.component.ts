@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { Subject, takeUntil } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../services/user.service';
+import { Notification, NotificationService } from '../services/notification.service';
 
 @Component({
     selector: 'app-profilemenu',
@@ -15,8 +16,12 @@ export class AppProfileSidebarComponent implements OnInit, OnDestroy {
     private unsubscribe$: Subject<void> = new Subject<void>();
 
     public currentUser: User | undefined = undefined;
+    public notifications: Notification[] = [];
 
-    constructor(public layoutService: LayoutService, private authService: AuthService, private router: Router) { }
+    constructor(public layoutService: LayoutService,
+                private authService: AuthService,
+                private notificationService: NotificationService,
+                private router: Router) { }
 
     get visible(): boolean {
         return this.layoutService.state.profileSidebarVisible;
@@ -28,8 +33,9 @@ export class AppProfileSidebarComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.authService.currentUser$.pipe(
-            map((user) => {
+            map(async (user) => {
                 this.currentUser = user;
+                this.notifications = await this.notificationService.getNotifications();
             }),
             takeUntil(this.unsubscribe$)
         ).subscribe();

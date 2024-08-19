@@ -1,16 +1,16 @@
 <p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" styleClass="layout-profile-sidebar w-full sm:w-25rem">
     <div class="flex flex-column mx-auto md:mx-0">
-        <!-- <span class="mb-2 font-semibold">Welcome</span> -->
-        <span class="text-color-secondary font-medium mb-5" i18n>Connected as <b>{{ currentUser?.firstName | titlecase }} {{ currentUser?.lastName | titlecase }}</b></span>
+        <span class="mb-2 font-semibold" i18n>Welcome</span>
+        <span class="text-color-secondary font-medium mb-5">{{ currentUser | fullName }}</span>
 
         <ul class="list-none m-0 p-0">
             <li>
-                <a class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
+                <a [routerLink]="['/settings/profile']" class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
                     <span>
                         <i class="pi pi-user text-xl text-primary"></i>
                     </span>
                     <div class="ml-3">
-                        <span class="mb-2 font-semibold" i18n>Profile</span>
+                        <span class="mb-2 font-semibold text-white" i18n>Profile</span>
                         <p class="text-color-secondary m-0" i18n>Email, Avatar, Name, etc...</p>
                     </div>
                 </a>
@@ -27,12 +27,12 @@
                 </a>
             </li> -->
             <li>
-                <a [routerLink]="['/auth/login']" class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
+                <a [routerLink]="['/settings/preferences']" class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
                     <span>
                         <i class="pi pi-cog text-xl text-primary"></i>
                     </span>
                     <div class="ml-3">
-                        <span class="mb-2 font-semibold" i18n>Preferences</span>
+                        <span class="mb-2 font-semibold text-white" i18n>Preferences</span>
                         <p class="text-color-secondary m-0" i18n>Notifications, Dark/Light Mode</p>
                     </div>
                 </a>
@@ -50,48 +50,29 @@
         </ul>
     </div>
 
-    <!--
-    <div class="flex flex-column mt-5 mx-auto md:mx-0">
-        <span class="mb-2 font-semibold">Notifications</span>
-        <span class="text-color-secondary font-medium mb-5">You have 3 notifications</span>
 
+    <div class="flex flex-column mt-5 mx-auto md:mx-0">
+        <span class="mb-2 font-semibold" i18n><i class="pi pi-bell mr-2"></i> Notifications</span>
+        <span *ngIf="!notifications.length; else notificationsList" class="text-color-secondary font-medium mb-5" i18n>You do not have any notification</span>
+
+        <ng-template #notificationsList>
         <ul class="list-none m-0 p-0">
-            <li>
+            <li *ngFor="let notification of notifications">
                 <a class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
                     <span>
                         <i class="pi pi-comment text-xl text-primary"></i>
                     </span>
                     <div class="ml-3">
-                        <span class="mb-2 font-semibold">Your post has new comments</span>
-                        <p class="text-color-secondary m-0">5 min ago</p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
-                    <span>
-                        <i class="pi pi-trash text-xl text-primary"></i>
-                    </span>
-                    <div class="ml-3">
-                        <span class="mb-2 font-semibold">Your post has been deleted</span>
-                        <p class="text-color-secondary m-0">15min ago</p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
-                    <span>
-                        <i class="pi pi-folder text-xl text-primary"></i>
-                    </span>
-                    <div class="ml-3">
-                        <span class="mb-2 font-semibold">Post has been updated</span>
-                        <p class="text-color-secondary m-0">3h ago</p>
+                        <span class="mb-2 font-semibold" i18n>{{ notification.action }} of {{ notification.scope }}</span>
+                        <p class="text-color-secondary m-0">{{ notification.createdAt | date: 'HH:mm, dd/MM' }}</p>
                     </div>
                 </a>
             </li>
         </ul>
+        </ng-template>
     </div>
 
+    <!--
     <div class="flex flex-column mt-5 mx-auto md:mx-0">
         <span class="mb-2 font-semibold">Messages</span>
         <span class="text-color-secondary font-medium mb-5">You have new messages</span>

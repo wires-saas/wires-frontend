@@ -37,7 +37,8 @@ const routes: Routes = [
                 canActivate: [AuthenticatedGuard],
                 loadChildren: () => import('./views/organization/organization.module').then(m => m.OrganizationModule)
             },
-            { path: 'help', data: { breadcrumb: $localize `Help` }, loadChildren: () => import('./views/help/help.module').then(m => m.HelpModule) }
+            { path: 'help', data: { breadcrumb: $localize `Help` }, loadChildren: () => import('./views/help/help.module').then(m => m.HelpModule) },
+            { path: 'settings', data: { breadcrumb: $localize `Settings` }, loadChildren: () => import('./views/settings/settings.module').then(m => m.SettingsModule) },
         ]
     },
 

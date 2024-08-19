@@ -74,9 +74,6 @@
       <trans-unit id="8951128623878467862" datatype="html">
         <source>Preferences</source>
       </trans-unit>
-      <trans-unit id="9046289591289296242" datatype="html">
-        <source>Connected as <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="tName | titlecase }}"/> <x id="INTERPOLATION_1" equiv-text="{{ currentUser?.lastName | titlecase }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/span&gt;"/></source>
-      </trans-unit>
       <trans-unit id="935187492052582731" datatype="html">
         <source>Submit</source>
       </trans-unit>
@@ -1465,6 +1462,24 @@
       </trans-unit>
       <trans-unit id="905150179853267182" datatype="html">
         <source>User Role</source>
+      </trans-unit>
+      <trans-unit id="3492007542396725315" datatype="html">
+        <source>Welcome</source>
+      </trans-unit>
+      <trans-unit id="2213047497655755743" datatype="html">
+        <source>You do not have any notification</source>
+      </trans-unit>
+      <trans-unit id="4747940509314227461" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="notification.action }}"/> of <x id="INTERPOLATION_1" equiv-text="{{ notification.scope }}"/></source>
+      </trans-unit>
+      <trans-unit id="492139385579335028" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="class=&quot;pi pi-bell mr-2&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="Notifications&lt;/sp"/> Notifications</source>
+      </trans-unit>
+      <trans-unit id="2127032578120864096" datatype="html">
+        <source>My Profile</source>
+      </trans-unit>
+      <trans-unit id="4930506384627295710" datatype="html">
+        <source>Settings</source>
       </trans-unit>
     </body>
   </file>
