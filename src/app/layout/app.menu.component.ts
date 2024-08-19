@@ -64,7 +64,12 @@ export class AppMenuComponent implements OnInit {
                     routerLink: [`organization/${org.slug}/billing`],
                     restriction: authService.hasRole$(Role.ADMIN, org.slug)
                 },
-
+                {
+                    label: $localize `Configuration`,
+                    icon: 'pi pi-fw pi-cog',
+                    routerLink: [`organization/${org.slug}/configuration`],
+                    restriction: authService.hasRole$(Role.ADMIN, org.slug)
+                },
             ]
         }
     ]);

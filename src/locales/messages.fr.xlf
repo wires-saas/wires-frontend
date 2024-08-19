@@ -841,14 +841,6 @@
         <source>Update Billing</source>
         <target state="new">Mettre à jour le contact de facturation</target>
       </trans-unit>
-      <trans-unit id="4930506384627295710" datatype="html">
-        <source>Settings</source>
-        <target state="new">Paramètres</target>
-      </trans-unit>
-      <trans-unit id="5605123772636494177" datatype="html">
-        <source>Plan</source>
-        <target state="new">Formule</target>
-      </trans-unit>
       <trans-unit id="8374796251902184629" datatype="html">
         <source>Resiliate Plan</source>
         <target state="new">Résilier la souscription</target>
@@ -1900,6 +1892,66 @@
       <trans-unit id="5946931270378231999" datatype="html">
         <source><x id="PH" equiv-text="user.firstName"/> has been set as User</source>
         <target state="new"><x id="PH" equiv-text="user.firstName"/> est désormais Utilisateur</target>
+      </trans-unit>
+      <trans-unit id="3008420115644088420" datatype="html">
+        <source>Configuration</source>
+        <target state="new">Configuration</target>
+      </trans-unit>
+      <trans-unit id="3893786420868776954" datatype="html">
+        <source>Authorizations</source>
+        <target state="new">Autorisations</target>
+      </trans-unit>
+      <trans-unit id="6950911552017826263" datatype="html">
+        <source>Available Plans</source>
+        <target state="new">Formules Disponibles</target>
+      </trans-unit>
+      <trans-unit id="6379936207886923216" datatype="html">
+        <source>Each plan is billed for 30 days, change of plan mid period will be billed accordingly</source>
+        <target state="new">Chaque formule couvre 30 jours renouvelables, un changement de formule impactera la facturation au prorata du nombre de jours</target>
+      </trans-unit>
+      <trans-unit id="8615671782880239984" datatype="html">
+        <source>Fine-grained Access Control</source>
+        <target state="new">Fine-grained Access Control</target>
+      </trans-unit>
+      <trans-unit id="4388879716045736175" datatype="html">
+        <source>Note</source>
+        <target state="new">Note</target>
+      </trans-unit>
+      <trans-unit id="832810147659938940" datatype="html">
+        <source>Role Name</source>
+        <target state="new">Nom du rôle</target>
+      </trans-unit>
+      <trans-unit id="7556008998273386780" datatype="html">
+        <source>Associated Permissions</source>
+        <target state="new">Permissions associées</target>
+      </trans-unit>
+      <trans-unit id="5674286808255988565" datatype="html">
+        <source>Create</source>
+        <target state="new">Créer</target>
+      </trans-unit>
+      <trans-unit id="2327592562693301723" datatype="html">
+        <source>Read</source>
+        <target state="new">Lire</target>
+      </trans-unit>
+      <trans-unit id="4021752662928002901" datatype="html">
+        <source>Update</source>
+        <target state="new">Modifier</target>
+      </trans-unit>
+      <trans-unit id="7022070615528435141" datatype="html">
+        <source>Delete</source>
+        <target state="new">Supprimer</target>
+      </trans-unit>
+      <trans-unit id="3897348120591552265" datatype="html">
+        <source>Manage</source>
+        <target state="new">Gérer</target>
+      </trans-unit>
+      <trans-unit id="905150179853267182" datatype="html">
+        <source>User Role</source>
+        <target state="new">Droits Utilisateur</target>
+      </trans-unit>
+      <trans-unit id="1368581392815982471" datatype="html">
+        <source>Fine-grained access control is available with entreprise plans</source>
+        <target state="new">La gestion d'accès est personnalisable avec la formule Entreprise</target>
       </trans-unit>
     </body>
   </file>

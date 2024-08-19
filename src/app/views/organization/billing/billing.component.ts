@@ -20,6 +20,7 @@ export class BillingComponent implements OnInit {
     amount: number = 0;
     taxes: number = 0;
     totalAmount: number = 0;
+    reference: string = '';
 
     private destroyRef = inject(DestroyRef);
 
@@ -49,6 +50,10 @@ export class BillingComponent implements OnInit {
         this.amount = this.getPlanPrice(organization);
         this.taxes = this.getTaxes(organization);
         this.totalAmount = this.amount + this.taxes;
+
+        const paddedMonth = (this.today.getMonth()).toString().padStart(2, '0');
+        const paddedYear = this.today.getFullYear().toString().slice(-2);
+        this.reference = `${organization.slug}${paddedYear}${paddedMonth}`;
     }
 
     private getPlanPrice(organization: Organization): number {

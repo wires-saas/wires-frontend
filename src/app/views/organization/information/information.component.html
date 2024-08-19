@@ -143,10 +143,11 @@
 </div>
 
 <div class="card">
-    <span class="text-900 text-xl font-bold mb-4 block" i18n>Settings</span>
+    <span class="text-900 text-xl font-bold mb-4 block" i18n>Available Plans</span>
     <div class="grid">
         <div class="col-12 lg:col-2">
-            <div class="text-900 font-medium text-xl mb-3" i18n>Plan</div>
+            <div class="text-900 font-medium text-xl mb-3" i18n>Note</div>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3" i18n>Each plan is billed for 30 days, change of plan mid period will be billed accordingly</p>
         </div>
         <div class="col-12 lg:col-10">
             <app-plans planEnabled="basic"></app-plans>
@@ -157,33 +158,6 @@
         </div>
 
 
-    </div>
-
-    <div class="grid">
-        <div class="col-12 lg:col-2">
-            <div class="text-900 font-medium text-xl mb-3" i18n>Security</div>
-        </div>
-        <div class="col-12 lg:col-10">
-
-            <form [formGroup]="securityForm" class="grid formgrid p-fluid">
-                <div class="field col-12">
-                    <h5 i18n>Two Factor Authentication</h5>
-
-                    <p-inputSwitch formControlName="twoFactorAuthenticationEnabled"></p-inputSwitch>
-                    <span class="text-900 p-3" i18n>Enable 2FA for all users</span>
-                </div>
-
-                <div *ngIf="!!securityForm.get('twoFactorAuthenticationEnabled')?.value" class="field col-12 md:col-6">
-                    <p-selectButton formControlName="twoFactorAuthenticationMethods" [options]="optionsFor2FA" [multiple]="true"
-                                    optionLabel="name" optionValue="id" [disabled]="true"></p-selectButton>
-                </div>
-            </form>
-
-            <div class="col-12 flex md:justify-content-end justify-content-center">
-                <button (click)="updateSecurity()" [disabled]="!canSaveSecurity()"
-                        pButton pRipple i18n-label label="Update Settings" icon="pi pi-save" class="w-auto mt-3"></button>
-            </div>
-        </div>
     </div>
 </div>
 

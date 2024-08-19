@@ -29,6 +29,12 @@ import { HasRoleGuard } from '../../guards/has-role.guard';
             loadChildren: () => import('./information/information.module').then(m => m.InformationModule)
         },
         {
+            path: 'configuration',
+            data: { breadcrumb: $localize `Configuration`, requiredRole: 'admin'},
+            canActivate: [HasRoleGuard],
+            loadChildren: () => import('./configuration/configuration.module').then(m => m.ConfigurationModule)
+        },
+        {
             path: 'billing',
             data: { breadcrumb: $localize `Billing`, requiredRole: 'admin' },
             canActivate: [HasRoleGuard],

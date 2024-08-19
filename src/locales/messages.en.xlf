@@ -614,9 +614,6 @@
       <trans-unit id="4799374982120043626" datatype="html">
         <source>Update Billing</source>
       </trans-unit>
-      <trans-unit id="4930506384627295710" datatype="html">
-        <source>Settings</source>
-      </trans-unit>
       <trans-unit id="5306473977542913614" datatype="html">
         <source>Activity</source>
       </trans-unit>
@@ -625,9 +622,6 @@
       </trans-unit>
       <trans-unit id="5593493560884751525" datatype="html">
         <source>Identity</source>
-      </trans-unit>
-      <trans-unit id="5605123772636494177" datatype="html">
-        <source>Plan</source>
       </trans-unit>
       <trans-unit id="5945986349492910662" datatype="html">
         <source>Contacts</source>
@@ -1426,6 +1420,51 @@
       </trans-unit>
       <trans-unit id="5946931270378231999" datatype="html">
         <source><x id="PH" equiv-text="user.firstName"/> has been set as User</source>
+      </trans-unit>
+      <trans-unit id="3008420115644088420" datatype="html">
+        <source>Configuration</source>
+      </trans-unit>
+      <trans-unit id="3893786420868776954" datatype="html">
+        <source>Authorizations</source>
+      </trans-unit>
+      <trans-unit id="6379936207886923216" datatype="html">
+        <source>Each plan is billed for 30 days, change of plan mid period will be billed accordingly</source>
+      </trans-unit>
+      <trans-unit id="6950911552017826263" datatype="html">
+        <source>Available Plans</source>
+      </trans-unit>
+      <trans-unit id="4388879716045736175" datatype="html">
+        <source>Note</source>
+      </trans-unit>
+      <trans-unit id="8615671782880239984" datatype="html">
+        <source>Fine-grained Access Control</source>
+      </trans-unit>
+      <trans-unit id="7556008998273386780" datatype="html">
+        <source>Associated Permissions</source>
+      </trans-unit>
+      <trans-unit id="832810147659938940" datatype="html">
+        <source>Role Name</source>
+      </trans-unit>
+      <trans-unit id="1368581392815982471" datatype="html">
+        <source>Fine-grained access control is available with entreprise plans</source>
+      </trans-unit>
+      <trans-unit id="2327592562693301723" datatype="html">
+        <source>Read</source>
+      </trans-unit>
+      <trans-unit id="3897348120591552265" datatype="html">
+        <source>Manage</source>
+      </trans-unit>
+      <trans-unit id="4021752662928002901" datatype="html">
+        <source>Update</source>
+      </trans-unit>
+      <trans-unit id="5674286808255988565" datatype="html">
+        <source>Create</source>
+      </trans-unit>
+      <trans-unit id="7022070615528435141" datatype="html">
+        <source>Delete</source>
+      </trans-unit>
+      <trans-unit id="905150179853267182" datatype="html">
+        <source>User Role</source>
       </trans-unit>
     </body>
   </file>

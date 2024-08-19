@@ -24,28 +24,12 @@ interface OrganizationIdentity {
     };
 }
 
-interface OrganizationSecurity {
-    twoFactorAuthenticationEnabled: boolean;
-    twoFactorAuthenticationMethods: string[];
-}
-
-
-
 @Component({
     templateUrl: './information.component.html'
 })
 export class InformationComponent implements OnInit {
 
     countries: any[] = [];
-
-    force2FA: boolean = false;
-
-    optionsFor2FA= [
-        { name: $localize `Email`, id: "email" },
-        { name: $localize `SMS (not yet implemented)`, id: "sms", disabled: true },
-    ];
-
-    selectedOptionsFor2FA: string[] = ["email"];
 
     identityForm: FormGroup = new FormGroup({
         name: new FormControl(''),
@@ -61,11 +45,6 @@ export class InformationComponent implements OnInit {
             zip: new FormControl(''),
             country: new FormControl(),
         }),
-    });
-
-    securityForm: FormGroup = new FormGroup({
-        twoFactorAuthenticationEnabled: new FormControl(false),
-        twoFactorAuthenticationMethods: new FormControl([]),
     });
 
     adminContactForm: FormGroup = new FormGroup({
@@ -88,7 +67,6 @@ export class InformationComponent implements OnInit {
     identitySavedState: OrganizationIdentity | undefined;
     adminContactSavedState: OrganizationContact | undefined;
     billingContactSavedState: OrganizationContact | undefined;
-    securitySavedState: OrganizationSecurity | undefined;
 
     currentOrgSlug: string | undefined;
 
@@ -133,16 +111,9 @@ export class InformationComponent implements OnInit {
                         }
                     });
 
-                    Object.entries(organization.security).forEach(([key, value]) => {
-                        if (this.securityForm.get(key)) {
-                            this.securityForm.get(key)?.setValue(value);
-                        }
-                    });
-
                     this.identitySavedState = this.identityForm.value;
                     this.adminContactSavedState = this.adminContactForm.value;
                     this.billingContactSavedState = this.billingContactForm.value;
-                    this.securitySavedState = this.securityForm.value;
                 }
             }),
             takeUntilDestroyed(this.destroyRef)
@@ -178,12 +149,6 @@ export class InformationComponent implements OnInit {
             && this.billingContactForm.dirty
             && this.billingContactForm.get('consent')?.value === true
             && !deepEquals(this.billingContactForm.value, this.billingContactSavedState);
-    }
-
-    canSaveSecurity() {
-        return this.securityForm.valid
-            && this.securityForm.dirty
-            && !deepEquals(this.securityForm.value, this.securitySavedState);
     }
 
     async updateIdentityFields() {
@@ -251,29 +216,6 @@ export class InformationComponent implements OnInit {
 
             MessageUtils.parseServerError(this.messageService, err, {
                 summary: $localize `Error updating billing contact`,
-            });
-        });
-    }
-
-    async updateSecurity() {
-        if (!this.currentOrgSlug) throw new Error('cannot update organization without slug');
-        await this.organizationService.update(this.currentOrgSlug, {
-            security: this.securityForm.value
-        }).then(() => {
-
-            this.securitySavedState = this.securityForm.value;
-
-            this.messageService.add({
-                severity: 'info',
-                detail: $localize `Security settings updated successfully`,
-                life: 3000,
-            });
-
-        }).catch((err) => {
-            console.error(err);
-
-            MessageUtils.parseServerError(this.messageService, err, {
-                summary: $localize `Error updating security settings`,
             });
         });
     }
