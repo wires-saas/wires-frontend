@@ -1881,6 +1881,26 @@
         <source>Pending</source>
         <target state="new">En attente</target>
       </trans-unit>
+      <trans-unit id="4281228730646725704" datatype="html">
+        <source>Success setting role</source>
+        <target state="new">Rôle modifié avec succès</target>
+      </trans-unit>
+      <trans-unit id="4303536589755256552" datatype="html">
+        <source><x id="PH" equiv-text="user.firstName"/> has been set as Admin</source>
+        <target state="new"><x id="PH" equiv-text="user.firstName"/> est désormais Admin</target>
+      </trans-unit>
+      <trans-unit id="5501027451953367639" datatype="html">
+        <source>Error setting role</source>
+        <target state="new">Erreur lors du changement de rôle</target>
+      </trans-unit>
+      <trans-unit id="5355205116662167518" datatype="html">
+        <source><x id="PH" equiv-text="user.firstName"/> has been set as Manager</source>
+        <target state="new"><x id="PH" equiv-text="user.firstName"/> est désormais Manager</target>
+      </trans-unit>
+      <trans-unit id="5946931270378231999" datatype="html">
+        <source><x id="PH" equiv-text="user.firstName"/> has been set as User</source>
+        <target state="new"><x id="PH" equiv-text="user.firstName"/> est désormais Utilisateur</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

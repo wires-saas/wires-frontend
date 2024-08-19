@@ -1412,6 +1412,21 @@
       <trans-unit id="8204176479746810612" datatype="html">
         <source>Active</source>
       </trans-unit>
+      <trans-unit id="4281228730646725704" datatype="html">
+        <source>Success setting role</source>
+      </trans-unit>
+      <trans-unit id="4303536589755256552" datatype="html">
+        <source><x id="PH" equiv-text="user.firstName"/> has been set as Admin</source>
+      </trans-unit>
+      <trans-unit id="5355205116662167518" datatype="html">
+        <source><x id="PH" equiv-text="user.firstName"/> has been set as Manager</source>
+      </trans-unit>
+      <trans-unit id="5501027451953367639" datatype="html">
+        <source>Error setting role</source>
+      </trans-unit>
+      <trans-unit id="5946931270378231999" datatype="html">
+        <source><x id="PH" equiv-text="user.firstName"/> has been set as User</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
