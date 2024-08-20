@@ -73,7 +73,6 @@ export class ConfigurationComponent implements OnInit {
 
                     // TODO fetch permissions
                     const rolesWithPermissions = await this.permissionService.getRoles(organization.slug);
-                    console.log(rolesWithPermissions);
 
                     this.permissionsList = await this.permissionService.getPermissions(organization.slug);
 

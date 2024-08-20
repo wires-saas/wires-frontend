@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { DestroyRef, inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { User } from './user.service';
 import { Role, RoleUtils } from '../utils/role.utils';
 import { map } from 'rxjs/operators';
+import { NotificationService } from './notification.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 interface ProfileData {
     jwt: {
@@ -26,10 +28,21 @@ export class AuthService {
     private readonly currentUser$$: Subject<User | undefined> = new BehaviorSubject<User | undefined>(undefined);
     public readonly currentUser$ = this.currentUser$$.asObservable();
 
+    private destroyRef = inject(DestroyRef);
+
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private notificationService: NotificationService
     ) {
         this.domain = environment.backend;
+
+        this.currentUser$.pipe(
+            map(async (user) => {
+                await this.notificationService.getNotifications(user?._id);
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
+
     }
 
     async logIn(email: string, password: string, rememberMe: boolean): Promise<boolean> {

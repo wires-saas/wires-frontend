@@ -1,22 +1,25 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { Subject, takeUntil } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../services/user.service';
 import { Notification, NotificationService } from '../services/notification.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-profilemenu',
     templateUrl: './app.profilesidebar.component.html'
 })
-export class AppProfileSidebarComponent implements OnInit, OnDestroy {
-
-    private unsubscribe$: Subject<void> = new Subject<void>();
+export class AppProfileSidebarComponent implements OnInit {
 
     public currentUser: User | undefined = undefined;
-    public notifications: Notification[] = [];
+    private notifications: Notification[] = [];
+    public get unreadNotifications(): Notification[] {
+        return this.notifications.filter((notif) => !notif.read);
+    }
+
+    private destroyRef = inject(DestroyRef);
 
     constructor(public layoutService: LayoutService,
                 private authService: AuthService,
@@ -33,17 +36,23 @@ export class AppProfileSidebarComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.authService.currentUser$.pipe(
-            map(async (user) => {
+            map((user) => {
                 this.currentUser = user;
-                this.notifications = await this.notificationService.getNotifications();
             }),
-            takeUntil(this.unsubscribe$)
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
+
+        this.notificationService.currentUserNotifications$.pipe(
+            map((notifications) => {
+                this.notifications = notifications;
+            }),
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe();
     }
 
-    ngOnDestroy() {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
+    async markNotificationAsRead(notification: Notification) {
+        if (!this.currentUser) return;
+        await this.notificationService.readNotification(this.currentUser._id, notification._id);
     }
 
     async logoutAndGoToLogin() {

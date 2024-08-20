@@ -36,6 +36,8 @@ export class CreateOrEditUserComponent implements OnInit {
 
     userBeingModified: User | undefined;
 
+    saving: boolean = false;
+
     get organizationName$(): Observable<string> {
         return this.organizationService.currentOrganization$.pipe(map(org => org?.name || ''));
     }
@@ -80,6 +82,7 @@ export class CreateOrEditUserComponent implements OnInit {
             this.confirmationService.confirm({
                 key: 'confirm-invitation',
                 accept: async () => {
+                    this.saving = true;
                     await this.userService.createUser({
                         ...this.userForm.value,
                         organization: this.currentOrgSlug
@@ -95,12 +98,27 @@ export class CreateOrEditUserComponent implements OnInit {
                             summary: $localize `Error creating user`,
                         });
 
-                    })
+                    }).finally(() => this.saving = false);
                 }
             });
 
         } else if (this.userBeingModified) {
-            await this.userService.updateUser(this.userBeingModified._id, this.userForm.value);
+            this.saving = true;
+            await this.userService.updateUser(this.userBeingModified._id, this.userForm.value).then((user) => {
+
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: $localize `Success updating user`,
+                        detail: $localize `Some changes may take a few minutes to be effective.`,
+                        life: 3000,
+                    });
+            }).catch((err) => {
+                console.error(err);
+
+                MessageUtils.parseServerError(this.messageService, err, {
+                    summary: $localize `Error updating user`,
+                });
+            }).finally(() => this.saving = false);
         }
     }
 

@@ -25,6 +25,7 @@ import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
 import { LogosModule } from '../meta-components/logos/logos.module';
 import { FullNamePipe } from '../utils/full-name.pipe';
+import { ArrayFilterPipe } from '../utils/array-filter.pipe';
 
 @NgModule({
     declarations: [
@@ -55,7 +56,8 @@ import { FullNamePipe } from '../utils/full-name.pipe';
         DropdownModule,
         MenuModule,
         LogosModule,
-        FullNamePipe
+        FullNamePipe,
+        ArrayFilterPipe
     ]
 })
 export class AppLayoutModule { }

@@ -45,9 +45,17 @@
                 <button pButton type="button" icon="pi pi-cog" class="p-button-text p-button-secondary p-button-rounded flex-shrink-0" (click)="onConfigButtonClick()"></button>
             </li>
             <li class="topbar-profile">
-                <button type="button" class="p-link" (click)="onProfileButtonClick()">
+
+
+                <button *ngIf="(notifications | arrayFilter:{read: false}).length; else buttonWithoutBadge" type="button" class="p-link" (click)="onProfileButtonClick()" pBadge [value]="notificationsBadge" severity="danger">
                     <img src="assets/layout/images/avatar.png" i18n-alt alt="Profile" class="p-border-round p-border-1"/>
                 </button>
+
+                <ng-template #buttonWithoutBadge>
+                    <button type="button" class="p-link" (click)="onProfileButtonClick()">
+                        <img src="assets/layout/images/avatar.png" i18n-alt alt="Profile" class="p-border-round p-border-1"/>
+                    </button>
+                </ng-template>
             </li>
         </ul>
     </div>

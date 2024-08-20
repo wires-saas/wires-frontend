@@ -5,12 +5,12 @@
 
         <ul class="list-none m-0 p-0">
             <li>
-                <a [routerLink]="['/settings/profile']" class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
+                <a [routerLink]="['/settings/profile']" (click)="layoutService.hideProfileSidebar()" class="cursor-pointer select-none flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
                     <span>
                         <i class="pi pi-user text-xl text-primary"></i>
                     </span>
                     <div class="ml-3">
-                        <span class="mb-2 font-semibold text-white" i18n>Profile</span>
+                        <span class="mb-2 font-semibold text-primary" i18n>Profile</span>
                         <p class="text-color-secondary m-0" i18n>Email, Avatar, Name, etc...</p>
                     </div>
                 </a>
@@ -27,12 +27,12 @@
                 </a>
             </li> -->
             <li>
-                <a [routerLink]="['/settings/preferences']" class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
+                <a [routerLink]="['/settings/preferences']" (click)="layoutService.hideProfileSidebar()" class="cursor-pointer select-none flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
                     <span>
                         <i class="pi pi-cog text-xl text-primary"></i>
                     </span>
                     <div class="ml-3">
-                        <span class="mb-2 font-semibold text-white" i18n>Preferences</span>
+                        <span class="mb-2 font-semibold text-primary" i18n>Preferences</span>
                         <p class="text-color-secondary m-0" i18n>Notifications, Dark/Light Mode</p>
                     </div>
                 </a>
@@ -53,12 +53,12 @@
 
     <div class="flex flex-column mt-5 mx-auto md:mx-0">
         <span class="mb-2 font-semibold" i18n><i class="pi pi-bell mr-2"></i> Notifications</span>
-        <span *ngIf="!notifications.length; else notificationsList" class="text-color-secondary font-medium mb-5" i18n>You do not have any notification</span>
+        <span *ngIf="!unreadNotifications.length; else notificationsList" class="text-color-secondary font-medium mb-5" i18n>You do not have any notification</span>
 
         <ng-template #notificationsList>
         <ul class="list-none m-0 p-0">
-            <li *ngFor="let notification of notifications">
-                <a class="cursor-pointer flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
+            <li *ngFor="let notification of unreadNotifications">
+                <a (click)="markNotificationAsRead(notification)" class="cursor-pointer select-none flex surface-border mb-3 p-3 align-items-center border-1 surface-border border-round hover:surface-hover transition-colors transition-duration-150">
                     <span>
                         <i class="pi pi-comment text-xl text-primary"></i>
                     </span>

@@ -4,13 +4,27 @@ import { AccordionModule } from 'primeng/accordion';
 import { RippleModule } from 'primeng/ripple';
 import { ProfileComponent } from './profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { FileUploadModule } from 'primeng/fileupload';
+import { InputTextModule } from 'primeng/inputtext';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     imports: [
         CommonModule,
         ProfileRoutingModule,
         AccordionModule,
-        RippleModule
+        RippleModule,
+        ButtonModule,
+        ConfirmDialogModule,
+        DropdownModule,
+        FileUploadModule,
+        InputTextModule,
+        ReactiveFormsModule,
+        ToastModule
     ],
     declarations: [ProfileComponent]
 })

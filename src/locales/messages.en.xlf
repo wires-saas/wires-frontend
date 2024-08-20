@@ -1475,11 +1475,32 @@
       <trans-unit id="492139385579335028" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="class=&quot;pi pi-bell mr-2&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="Notifications&lt;/sp"/> Notifications</source>
       </trans-unit>
-      <trans-unit id="2127032578120864096" datatype="html">
-        <source>My Profile</source>
-      </trans-unit>
       <trans-unit id="4930506384627295710" datatype="html">
         <source>Settings</source>
+      </trans-unit>
+      <trans-unit id="1216351271229895783" datatype="html">
+        <source> Edit My Profile </source>
+      </trans-unit>
+      <trans-unit id="397620864091171490" datatype="html">
+        <source>Success updating profile</source>
+      </trans-unit>
+      <trans-unit id="5675284233594559253" datatype="html">
+        <source>Some changes may not be visible until next login.</source>
+      </trans-unit>
+      <trans-unit id="8674393701528742233" datatype="html">
+        <source>Error updating profile</source>
+      </trans-unit>
+      <trans-unit id="935836356119933355" datatype="html">
+        <source>Update Profile</source>
+      </trans-unit>
+      <trans-unit id="4253876130176038311" datatype="html">
+        <source>Success updating user</source>
+      </trans-unit>
+      <trans-unit id="6734096839683871569" datatype="html">
+        <source>Some changes may take a few minutes to be effective.</source>
+      </trans-unit>
+      <trans-unit id="712390234077091914" datatype="html">
+        <source>Error updating user</source>
       </trans-unit>
     </body>
   </file>

@@ -61,7 +61,7 @@
                                 i18n-placeholder placeholder="Select a Country">
                         <ng-template let-country pTemplate="item">
                             <div class="flex align-items-center">
-                                <img src="../../../../../assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + country.code.toLowerCase()" style="width:18px"/>
+                                <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + country.code.toLowerCase()" style="width:18px"/>
                                 <div>{{country.name}}</div>
                             </div>
                         </ng-template>
@@ -73,7 +73,7 @@
                             (click)="onSubmit()" pButton pRipple i18n-label label="Invite User" icon="pi pi-user-plus" class="w-auto mt-3">
                     </button>
                     <ng-template #modifyUserButton>
-                        <button (click)="onSubmit()" pButton pRipple i18n-label label="Update User" icon="pi pi-user-edit" class="w-auto mt-3">
+                        <button (click)="onSubmit()" [loading]="saving" pButton pRipple i18n-label label="Update User" icon="pi pi-user-edit" class="w-auto mt-3">
                         </button>
                     </ng-template>
 

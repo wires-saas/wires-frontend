@@ -1,7 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { ColorScheme, LayoutService } from 'src/app/layout/service/app.layout.service';
 import { MenuItem } from 'primeng/api';
 import { I18nService, SupportedLocales } from '../services/i18n.service';
+import { Notification, NotificationService } from '../services/notification.service';
+import { map } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-topbar',
@@ -13,6 +16,10 @@ export class AppTopbarComponent implements OnInit {
 
     languages: MenuItem[] = [];
 
+    notifications: Notification[] = [];
+
+    private destroyRef = inject(DestroyRef);
+
     get colorScheme(): ColorScheme {
         return this.layoutService.config().colorScheme;
     }
@@ -21,10 +28,23 @@ export class AppTopbarComponent implements OnInit {
         return this.i18nService.getCountryCode();
     }
 
-    constructor(public layoutService: LayoutService, private i18nService: I18nService) { }
+    get notificationsBadge(): string {
+        return this.notifications.length > 9 ? '' : this.notifications.length.toString(10);
+    }
+
+    constructor(public layoutService: LayoutService,
+                private i18nService: I18nService,
+                private notificationService: NotificationService) { }
 
     ngOnInit() {
         this.buildLanguagesMenu();
+
+        this.notificationService.currentUserNotifications$.pipe(
+            map((notifications) => {
+                this.notifications = notifications;
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
     }
 
     private buildLanguagesMenu() {

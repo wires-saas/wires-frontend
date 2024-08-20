@@ -31,7 +31,7 @@
                 <td>{{ organization.name }}</td>
                 <td>{{ organization.createdAt | date: 'dd/MM/yyyy' }}</td>
                 <td>
-                    <img src="../../../../../assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + organization.address.country.toLowerCase()" class="w-2rem mr-2">
+                    <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + organization.address.country.toLowerCase()" class="w-2rem mr-2">
                     {{ organization.address.country | countryName }}
                 </td>
                 <td>

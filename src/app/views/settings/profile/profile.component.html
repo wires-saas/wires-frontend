@@ -1,8 +1,81 @@
-<div class="grid">
-    <div class="col-12">
-        <div class="card">
-            <h4 i18n>My Profile</h4>
-            <p i18n>This is your empty page template to start building beautiful applications.</p>
+<div class="card">
+    <span class="text-900 text-xl font-bold mb-4 block" i18n>
+        Edit My Profile
+    </span>
+    <div class="grid">
+        <div class="col-12 lg:col-2">
+            <!-- <div class="text-900 font-medium text-xl mb-3" i18n>Profile</div> -->
+            <p class="m-0 p-0 text-600 line-height-3 mr-3" i18n>
+                Fields marked with an asterisk (*) are required
+            </p>
+        </div>
+        <div class="col-12 lg:col-10">
+            <form class="grid formgrid p-fluid" [formGroup]="userForm">
+
+                <div class="field col-12 md:col-6">
+                    <label for="firstname" class="font-medium text-900" i18n>First Name *</label>
+                    <input formControlName="firstName" id="firstname" type="text" pInputText>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="lastname" class="font-medium text-900" i18n>Last Name *</label>
+                    <input formControlName="lastName" id="lastname" type="text" pInputText>
+                </div>
+
+                <div class="field mb-4 col-12">
+                    <label for="email" class="font-medium text-900" i18n>Email *</label>
+                    <input formControlName="email" id="email" type="email" pInputText>
+                    <small *ngIf="userForm.get('email')?.dirty && userForm.get('email')?.invalid" class="p-error" i18n>
+                        Must be a valid email such as example&#x40;mail.com
+                    </small>
+                </div>
+
+                <div class="field mb-4 col-12">
+                    <label for="avatar" class="font-medium text-900" i18n>Avatar</label>
+                    <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" [maxFileSize]="1000000"
+                                  styleClass="p-button-outlined p-button-plain"
+                                  i18n-chooseLabel chooseLabel="Upload Image">
+                    </p-fileUpload>
+                </div>
+
+                <div class="field mb-4 col-12 md:col-4">
+                    <label for="street" class="font-medium text-900" i18n>Street</label>
+                    <input formControlName="street" id="street" type="text" pInputText>
+                </div>
+                <div class="field mb-4 col-12 md:col-4">
+                    <label for="city" class="font-medium text-900" i18n>City</label>
+                    <input formControlName="city" id="city" type="text" pInputText>
+                </div>
+                <div class="field mb-4 col-12 md:col-4">
+                    <label for="zipCode" class="font-medium text-900" i18n>ZIP Code</label>
+                    <input formControlName="zipCode" id="zipCode" type="text" pInputText>
+                </div>
+                <div class="field mb-3 col-12 md:col-4">
+                    <label for="country" class="font-medium text-900" i18n>Country</label>
+                    <p-dropdown inputId="country" formControlName="country" [options]="countries" optionValue="code" optionLabel="name"
+                                [filter]="true" filterBy="name" [showClear]="true"
+                                i18n-placeholder placeholder="Select a Country">
+                        <ng-template let-country pTemplate="item">
+                            <div class="flex align-items-center">
+                                <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + country.code.toLowerCase()" style="width:18px"/>
+                                <div>{{country.name}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+
+                <div class="col-12 flex md:justify-content-end justify-content-end">
+                    <button (click)="onSubmit()" [disabled]="!canSaveProfile()" [loading]="saving"
+                            pButton pRipple i18n-label label="Update Profile" icon="pi pi-user-edit" class="w-auto mt-3">
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<p-toast position="bottom-right"/>
+
+<!--
+<p-confirmDialog header="Confirmation" key="confirm-invitation" icon="pi pi-question-circle"
+                 i18n-message message="Are you sure you want to invite user ?"
+                 [style]="{width: '350px'}" defaultFocus="none" rejectButtonStyleClass="p-button-text"></p-confirmDialog> -->

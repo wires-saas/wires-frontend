@@ -194,37 +194,43 @@ export class LayoutService {
         const themeLink = <HTMLLinkElement>(
             document.getElementById('theme-link')
         );
-        const themeLinkHref = themeLink.getAttribute('href')!;
-        const newHref = themeLinkHref
-            .split('/')
-            .map((el) =>
-                el == this._config.theme
-                    ? (el = config.theme)
-                    : el == `theme-${this._config.colorScheme}`
-                    ? (el = `theme-${config.colorScheme}`)
-                    : el
-            )
-            .join('/');
 
-        this.replaceThemeLink(newHref);
+        const oldThemeLinkHref = themeLink.getAttribute('href')!;
+        const newThemeLinkHref = `assets/layout/styles/theme/theme-${config.colorScheme}/${config.theme}/theme.css`
+
+        if (oldThemeLinkHref !== newThemeLinkHref) this.replaceThemeLink(newThemeLinkHref);
     }
 
     replaceThemeLink(href: string) {
         const id = 'theme-link';
         let themeLink = <HTMLLinkElement>document.getElementById(id);
-        const cloneLinkElement = <HTMLLinkElement>themeLink.cloneNode(true);
 
-        cloneLinkElement.setAttribute('href', href);
-        cloneLinkElement.setAttribute('id', id + '-clone');
+        if (themeLink.href.endsWith(href)) {
+            return;
+        } else {
 
-        themeLink.parentNode!.insertBefore(
-            cloneLinkElement,
-            themeLink.nextSibling
-        );
-        cloneLinkElement.addEventListener('load', () => {
-            themeLink.remove();
-            cloneLinkElement.setAttribute('id', id);
-        });
+            const cloneLinkElement = <HTMLLinkElement>themeLink.cloneNode(true);
+
+            cloneLinkElement.setAttribute('href', href);
+            cloneLinkElement.setAttribute('id', id + '-clone');
+
+
+
+            themeLink.parentNode!.insertBefore(
+                cloneLinkElement,
+                themeLink.nextSibling
+            );
+
+            // if you remove themeLink before newThemeLink loaded,
+            // charts will be theme-less if cache is disabled/loading takes a little time
+            // themeLink.remove();
+
+
+            cloneLinkElement.addEventListener('load', () => {
+                themeLink.remove();
+                cloneLinkElement.setAttribute('id', id);
+            });
+        }
     }
 
     switchToLightMode() {
