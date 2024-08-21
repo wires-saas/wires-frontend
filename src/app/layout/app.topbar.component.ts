@@ -5,6 +5,8 @@ import { I18nService, SupportedLocales } from '../services/i18n.service';
 import { Notification, NotificationService } from '../services/notification.service';
 import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AuthService } from '../services/auth.service';
+import { User } from '../services/user.service';
 
 @Component({
     selector: 'app-topbar',
@@ -17,6 +19,9 @@ export class AppTopbarComponent implements OnInit {
     languages: MenuItem[] = [];
 
     notifications: Notification[] = [];
+
+    private readonly DEFAULT_AVATAR: string = 'assets/layout/images/avatar.png';
+    avatarImage: string = this.DEFAULT_AVATAR;
 
     private destroyRef = inject(DestroyRef);
 
@@ -33,6 +38,7 @@ export class AppTopbarComponent implements OnInit {
     }
 
     constructor(public layoutService: LayoutService,
+                private authService: AuthService,
                 private i18nService: I18nService,
                 private notificationService: NotificationService) { }
 
@@ -42,6 +48,13 @@ export class AppTopbarComponent implements OnInit {
         this.notificationService.currentUserNotifications$.pipe(
             map((notifications) => {
                 this.notifications = notifications;
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
+
+        this.authService.currentUser$.pipe(
+            map((user: User | undefined) => {
+                this.avatarImage = user?.avatar || this.DEFAULT_AVATAR;
             }),
             takeUntilDestroyed(this.destroyRef)
         ).subscribe();

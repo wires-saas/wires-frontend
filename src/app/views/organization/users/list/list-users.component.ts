@@ -318,6 +318,10 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
         });
     }
 
+    getPaginationLabel() {
+        return $localize `Showing {first} to {last} of {totalRecords} entries`;
+    }
+
     exportUsersToCSV() {
         const fileContent = CsvUtils.jsonToCsv<User>(
             ['firstName', 'lastName', 'email', 'status', 'emailStatus', 'createdAt'],

@@ -2001,6 +2001,14 @@
         <source>Error updating user</source>
         <target state="new">Erreur lors de la sauvegarde</target>
       </trans-unit>
+      <trans-unit id="1741681609592419129" datatype="html">
+        <source>Upload Another Image</source>
+        <target state="new">Choisir une autre image</target>
+      </trans-unit>
+      <trans-unit id="2304216953155119353" datatype="html">
+        <source>Showing {first} to {last} of {totalRecords} entries</source>
+        <target state="new">Affichage {{first}} to {last} of {totalRecords} entries</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

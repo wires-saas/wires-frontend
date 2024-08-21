@@ -34,11 +34,15 @@
                     </small>
                 </div>
 
-                <div class="field mb-4 col-12">
+                <div class="field col-2">
+                    <img [src]="userBeingModified?.avatar" i18n-alt alt="" class="w-full"/>
+                </div>
+
+                <div class="field mb-4 col-8">
                     <label for="avatar" class="font-medium text-900" i18n>Avatar</label>
                     <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" [maxFileSize]="1000000"
                                   styleClass="p-button-outlined p-button-plain"
-                                  i18n-chooseLabel chooseLabel="Upload Image">
+                                  i18n-chooseLabel chooseLabel="Upload Another Image">
                     </p-fileUpload>
                 </div>
 

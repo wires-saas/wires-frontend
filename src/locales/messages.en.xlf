@@ -1502,6 +1502,12 @@
       <trans-unit id="712390234077091914" datatype="html">
         <source>Error updating user</source>
       </trans-unit>
+      <trans-unit id="1741681609592419129" datatype="html">
+        <source>Upload Another Image</source>
+      </trans-unit>
+      <trans-unit id="2304216953155119353" datatype="html">
+        <source>Showing {first} to {last} of {totalRecords} entries</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

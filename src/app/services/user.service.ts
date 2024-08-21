@@ -35,6 +35,8 @@ export interface User {
     zipCode: string;
     country: string;
 
+    avatar?: string;
+
     isSuperAdmin: boolean;
     roles: UserRole[];
 }
