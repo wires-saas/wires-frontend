@@ -35,11 +35,17 @@
 
                 <div class="field mb-4 col-10">
                     <label for="avatar" class="font-medium text-900" i18n>Avatar</label>
-                    <p-fileUpload mode="basic" name="avatar" accept="image/*" [maxFileSize]="1000000"
-                                  styleClass="p-button-outlined p-button-plain"
-                                  (onSelect)="avatarSelection($event)"
-                                  i18n-chooseLabel chooseLabel="Upload Another Image">
-                    </p-fileUpload>
+
+                    <div class="flex">
+                        <p-fileUpload #fileUploadInput mode="basic" name="avatar" accept="image/*" [maxFileSize]="1000000"
+                                      styleClass="p-button-outlined p-button-plain mr-3"
+                                      (onSelect)="avatarSelection($event)"
+                                      i18n-chooseLabel chooseLabel="Upload Another Image">
+                        </p-fileUpload>
+
+                        <button *ngIf="fileUploadInput.hasFiles()" (click)="cancelAvatarSelection(fileUploadInput)"
+                                pButton pRipple type="button" icon="pi pi-times" class="p-button-outlined p-button-danger"></button>
+                    </div>
                 </div>
 
                 <div class="field mb-4 col-12 md:col-4">
@@ -69,7 +75,7 @@
                 </div>
 
                 <div class="col-12 flex md:justify-content-end justify-content-end">
-                    <button (click)="onSubmit()" [disabled]="!canSaveProfile()" [loading]="saving"
+                    <button (click)="onSubmit()" [disabled]="!canSaveProfile() && !canSaveAvatar()" [loading]="saving"
                             pButton pRipple i18n-label label="Update Profile" icon="pi pi-user-edit" class="w-auto mt-3">
                     </button>
                 </div>

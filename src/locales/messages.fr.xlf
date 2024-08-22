@@ -2009,6 +2009,18 @@
         <source>Showing {first} to {last} of {totalRecords} entries</source>
         <target state="new">Affichage de {{first}} à {{last}} sur {{totalRecords}} entrées</target>
       </trans-unit>
+      <trans-unit id="3527530530147184010" datatype="html">
+        <source>Success updating avatar</source>
+        <target state="new">Avatar mis à jour</target>
+      </trans-unit>
+      <trans-unit id="3614581291972271986" datatype="html">
+        <source>It may not be visible immediately for other users.</source>
+        <target state="new">Cela peut prendre quelques temps à s'actualiser.</target>
+      </trans-unit>
+      <trans-unit id="1099868831159454031" datatype="html">
+        <source>Error updating avatar</source>
+        <target state="new">Erreur lors du changement d'avatar</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

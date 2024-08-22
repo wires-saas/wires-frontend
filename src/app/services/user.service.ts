@@ -75,6 +75,13 @@ export class UserService {
         return firstValueFrom(this.http.post<User>(`${this.domain}/users`, user));
     }
 
+    async uploadAvatar(userId: string, file: File): Promise<{ fileName: string; }> {
+        const formData = new FormData();
+        formData.append('avatar', file);
+
+        return firstValueFrom(this.http.post<{ fileName: string; }>(`${this.domain}/users/${userId}/avatar`, formData));
+    }
+
     async updateUser(userId: string, user: Partial<User>): Promise<User> {
         return firstValueFrom(this.http.patch<User>(`${this.domain}/users/${userId}`, user));
     }

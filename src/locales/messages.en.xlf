@@ -1508,6 +1508,15 @@
       <trans-unit id="2304216953155119353" datatype="html">
         <source>Showing {first} to {last} of {totalRecords} entries</source>
       </trans-unit>
+      <trans-unit id="1099868831159454031" datatype="html">
+        <source>Error updating avatar</source>
+      </trans-unit>
+      <trans-unit id="3527530530147184010" datatype="html">
+        <source>Success updating avatar</source>
+      </trans-unit>
+      <trans-unit id="3614581291972271986" datatype="html">
+        <source>It may not be visible immediately for other users.</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
