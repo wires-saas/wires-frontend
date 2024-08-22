@@ -9,7 +9,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 
 @NgModule({
@@ -24,7 +24,8 @@ import { ToastModule } from 'primeng/toast';
         FileUploadModule,
         InputTextModule,
         ReactiveFormsModule,
-        ToastModule
+        ToastModule,
+        FormsModule
     ],
     declarations: [ProfileComponent]
 })

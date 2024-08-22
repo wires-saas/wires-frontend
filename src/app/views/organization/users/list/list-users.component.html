@@ -43,7 +43,7 @@
             <tr>
                 <td>
                     <div class="inline-flex align-items-center">
-                    <img [src]="user.avatar" i18n-alt alt="" class="w-2rem mr-2 p-border-round p-border-1 border-circle"/>
+                    <img [src]="user.avatarUrl" i18n-alt alt="" class="w-2rem mr-2 p-border-round p-border-1 border-circle"/>
                         <span>{{ user.firstName}}<i *ngIf="isCurrentUser(user) | async" i18n-pTooltip pTooltip="You" tooltipPosition="bottom" class="pi pi-user ml-2"></i></span>
                     </div>
                 </td>

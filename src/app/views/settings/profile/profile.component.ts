@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { MessageUtils } from '../../../utils/message.utils';
 import { deepEquals } from '../../../utils/deep-equals';
+import { FileSelectEvent } from 'primeng/fileupload';
 
 export interface UserProfile {
     firstName: string;
@@ -40,6 +41,9 @@ export class ProfileComponent implements OnInit {
     });
 
     userSavedState: UserProfile | undefined;
+
+    nextAvatar: File | undefined;
+    nextAvatarPreview: string = '';
 
     saving: boolean = false;
 
@@ -76,6 +80,27 @@ export class ProfileComponent implements OnInit {
         return this.userForm.valid
             && this.userForm.dirty
             && !deepEquals(this.userForm.value, this.userSavedState) && !this.saving;
+    }
+
+    async avatarSelection(e: FileSelectEvent) {
+        console.log(e.currentFiles);
+        if (!e?.currentFiles?.length) throw new Error('No file selected');
+
+        const file = e.currentFiles[0];
+        this.nextAvatar = file;
+
+        // Logic required to display the image preview
+        const reader: FileReader = new FileReader();
+
+        reader.onload = (e) => {
+            this.nextAvatarPreview = e.target?.result as string;
+        };
+
+        // readAsArrayBuffer for sending image to backend
+
+        reader.readAsDataURL(file);
+
+        console.log(file);
     }
 
     async onSubmit() {

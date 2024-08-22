@@ -30,13 +30,14 @@
                 </div>
 
                 <div class="field col-2">
-                    <img [src]="currentUser?.avatar" i18n-alt alt="" class="w-full"/>
+                    <img [src]="nextAvatarPreview || currentUser?.avatarUrl" i18n-alt alt="" class="w-full"/>
                 </div>
 
                 <div class="field mb-4 col-10">
                     <label for="avatar" class="font-medium text-900" i18n>Avatar</label>
-                    <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" [maxFileSize]="1000000"
+                    <p-fileUpload mode="basic" name="avatar" accept="image/*" [maxFileSize]="1000000"
                                   styleClass="p-button-outlined p-button-plain"
+                                  (onSelect)="avatarSelection($event)"
                                   i18n-chooseLabel chooseLabel="Upload Another Image">
                     </p-fileUpload>
                 </div>

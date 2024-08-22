@@ -54,7 +54,7 @@ export class AppTopbarComponent implements OnInit {
 
         this.authService.currentUser$.pipe(
             map((user: User | undefined) => {
-                this.avatarImage = user?.avatar || this.DEFAULT_AVATAR;
+                this.avatarImage = user?.avatarUrl || this.DEFAULT_AVATAR;
             }),
             takeUntilDestroyed(this.destroyRef)
         ).subscribe();
