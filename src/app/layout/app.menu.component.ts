@@ -21,15 +21,20 @@ export class AppMenuComponent implements OnInit {
             icon: 'pi pi-home',
             items: [
                 {
-                    label: $localize `Overview`,
+                    label: $localize `Home`,
                     icon: 'pi pi-fw pi-home',
-                    routerLink: ['/overview']
+                    routerLink: ['/files']
                 },
                 {
                     label: $localize `Empty`,
                     icon: 'pi pi-fw pi-circle-off',
                     routerLink: ['/blank']
                 },
+                /* {
+                    label: $localize `Overview`,
+                    icon: 'pi pi-fw pi-file',
+                    routerLink: ['/overview']
+                } */
             ]
         }
     ]);

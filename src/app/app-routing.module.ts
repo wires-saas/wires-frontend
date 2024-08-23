@@ -37,6 +37,12 @@ const routes: Routes = [
                 canActivate: [AuthenticatedGuard],
                 loadChildren: () => import('./views/organization/organization.module').then(m => m.OrganizationModule)
             },
+            {
+                path: 'files',
+                data: { breadcrumb: $localize `Home` },
+                canActivate: [AuthenticatedGuard],
+                loadChildren: () => import('./views/core/file/file.app.module').then(m => m.FileAppModule)
+            },
             { path: 'help', data: { breadcrumb: $localize `Help` }, loadChildren: () => import('./views/help/help.module').then(m => m.HelpModule) },
             { path: 'settings', data: { breadcrumb: $localize `Settings` }, loadChildren: () => import('./views/settings/settings.module').then(m => m.SettingsModule) },
         ]
