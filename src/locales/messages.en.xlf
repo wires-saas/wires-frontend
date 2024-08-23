@@ -1517,6 +1517,9 @@
       <trans-unit id="3614581291972271986" datatype="html">
         <source>It may not be visible immediately for other users.</source>
       </trans-unit>
+      <trans-unit id="3044303043970895474" datatype="html">
+        <source>Error refreshing profile</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

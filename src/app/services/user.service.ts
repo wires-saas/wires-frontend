@@ -41,6 +41,16 @@ export interface User {
     roles: UserRole[];
 }
 
+export interface UserProfile {
+    firstName: string;
+    lastName: string;
+    email: string;
+    street: string;
+    city: string;
+    zipCode: string;
+    country: string;
+}
+
 @Injectable({
     providedIn: 'root',
 })

@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrganizationService } from '../../../services/organization.service';
-import { User, UserService } from '../../../services/user.service';
+import { User, UserProfile, UserService } from '../../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CountriesUtils } from '../../../utils/countries.utils';
@@ -11,15 +11,6 @@ import { MessageUtils } from '../../../utils/message.utils';
 import { deepEquals } from '../../../utils/deep-equals';
 import { FileSelectEvent, FileUpload } from 'primeng/fileupload';
 
-export interface UserProfile {
-    firstName: string;
-    lastName: string;
-    email: string;
-    street: string;
-    city: string;
-    zipCode: string;
-    country: string;
-}
 
 @Component({
     templateUrl: './profile.component.html',
@@ -89,7 +80,6 @@ export class ProfileComponent implements OnInit {
     }
 
     async avatarSelection(e: FileSelectEvent) {
-        console.log(e.currentFiles);
         if (!e?.currentFiles?.length) throw new Error('No file selected');
 
         const file = e.currentFiles[0];
@@ -102,11 +92,7 @@ export class ProfileComponent implements OnInit {
             this.nextAvatarPreview = e.target?.result as string;
         };
 
-        // readAsArrayBuffer for sending image to backend
-
         reader.readAsDataURL(file);
-
-        console.log(file);
     }
 
     cancelAvatarSelection(input: FileUpload) {
@@ -124,7 +110,6 @@ export class ProfileComponent implements OnInit {
         if (this.nextAvatar) {
 
             await this.userService.uploadAvatar(this.currentUser._id, this.nextAvatar).then((avatar) => {
-                console.log('response', avatar);
 
                 this.messageService.add({
                     severity: 'success',
@@ -166,6 +151,7 @@ export class ProfileComponent implements OnInit {
 
         }
 
+        // Refreshing profile to fetch avatar url
         await this.authService.getProfile().then(async () => {
             this.currentUser = await firstValueFrom(this.authService.currentUser$);
 

@@ -2015,11 +2015,15 @@
       </trans-unit>
       <trans-unit id="3614581291972271986" datatype="html">
         <source>It may not be visible immediately for other users.</source>
-        <target state="new">Cela peut prendre quelques temps à s'actualiser.</target>
+        <target state="new">Cela peut prendre quelques temps à s&apos;actualiser.</target>
       </trans-unit>
       <trans-unit id="1099868831159454031" datatype="html">
         <source>Error updating avatar</source>
-        <target state="new">Erreur lors du changement d'avatar</target>
+        <target state="new">Erreur lors du changement d&apos;avatar</target>
+      </trans-unit>
+      <trans-unit id="3044303043970895474" datatype="html">
+        <source>Error refreshing profile</source>
+        <target state="new">Error refreshing profile</target>
       </trans-unit>
     </body>
   </file>

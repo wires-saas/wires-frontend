@@ -1,20 +1,24 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, ViewChild } from '@angular/core';
 import { OrganizationService } from '../../../../services/organization.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { User, UserService } from '../../../../services/user.service';
+import { User, UserProfile, UserService } from '../../../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Slug } from '../../../../utils/types.utils';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { CountriesUtils } from '../../../../utils/countries.utils';
+import { FileSelectEvent, FileUpload } from 'primeng/fileupload';
+import { deepEquals } from '../../../../utils/deep-equals';
 
 @Component({
     templateUrl: './create-or-edit-user.component.html',
 })
 export class CreateOrEditUserComponent implements OnInit {
+
+    @ViewChild('fileUploadInput') fileUploadInput: FileUpload | undefined;
 
     private destroyRef = inject(DestroyRef);
 
@@ -30,11 +34,15 @@ export class CreateOrEditUserComponent implements OnInit {
         country: new FormControl('FR'),
     });
 
+    nextAvatar: File | undefined;
+    nextAvatarPreview: string = '';
+
     isInvitingNewUser: boolean = false;
 
     currentOrgSlug: Slug | undefined;
 
     userBeingModified: User | undefined;
+    userSavedState: UserProfile | undefined;
 
     saving: boolean = false;
 
@@ -53,6 +61,7 @@ export class CreateOrEditUserComponent implements OnInit {
     async ngOnInit() {
 
         const userFoundInUrl: string = this.activatedRoute.snapshot.params['user'];
+        this.countries = CountriesUtils.countries;
 
         this.organizationService.currentOrganization$.pipe(
             map(org => {
@@ -63,16 +72,58 @@ export class CreateOrEditUserComponent implements OnInit {
 
         this.isInvitingNewUser = !userFoundInUrl;
 
+        await this.fetchUserAndInitForms();
+    }
+
+    private async fetchUserAndInitForms() {
+
+        const userFoundInUrl: string = this.activatedRoute.snapshot.params['user'];
         if (userFoundInUrl) {
             this.userBeingModified = await this.userService.getUserById(userFoundInUrl);
+
+            this.nextAvatar = undefined;
+            this.nextAvatarPreview = '';
 
             if (this.userBeingModified) {
                 this.userForm.patchValue(this.userBeingModified);
                 this.userForm.get('email')?.disable(); // not permitting email modification on behalf of user
+
+                this.userSavedState = this.userForm.value;
             }
         }
+    }
 
-        this.countries = CountriesUtils.countries;
+    async avatarSelection(e: FileSelectEvent) {
+        if (!e?.currentFiles?.length) throw new Error('No file selected');
+
+        const file = e.currentFiles[0];
+        this.nextAvatar = file;
+
+        // Logic required to display the image preview
+        const reader: FileReader = new FileReader();
+
+        reader.onload = (e) => {
+            this.nextAvatarPreview = e.target?.result as string;
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    cancelAvatarSelection(input: FileUpload) {
+        this.nextAvatar = undefined;
+        this.nextAvatarPreview = '';
+
+        input.clear();
+    }
+
+    canSaveAvatar() {
+        return !!this.nextAvatar;
+    }
+
+    canSaveProfile() {
+        return this.userForm.valid
+            && this.userForm.dirty
+            && !deepEquals(this.userForm.value, this.userSavedState) && !this.saving;
     }
 
     async onSubmit() {
@@ -104,21 +155,52 @@ export class CreateOrEditUserComponent implements OnInit {
 
         } else if (this.userBeingModified) {
             this.saving = true;
-            await this.userService.updateUser(this.userBeingModified._id, this.userForm.value).then((user) => {
+
+            // Relevant to save avatar
+            if (this.canSaveAvatar() && this.nextAvatar) {
+                await this.userService.uploadAvatar(this.userBeingModified._id, this.nextAvatar).then((avatar) => {
 
                     this.messageService.add({
                         severity: 'success',
-                        summary: $localize `Success updating user`,
-                        detail: $localize `Some changes may take a few minutes to be effective.`,
+                        summary: $localize `Success updating avatar`,
+                        detail: $localize `It may not be visible immediately for other users.`,
+                        life: 5000
+                    });
+
+                }).catch((err) => {
+                    console.error(err);
+
+                    MessageUtils.parseServerError(this.messageService, err, {
+                        summary: $localize`Error updating avatar`,
+                    });
+                });
+            }
+
+            // Relevant to save profile
+            if (this.canSaveProfile()) {
+                await this.userService.updateUser(this.userBeingModified._id, this.userForm.value).then((user) => {
+
+                    this.userSavedState = this.userForm.value;
+
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: $localize`Success updating user`,
+                        detail: $localize`Some changes may take a few minutes to be effective.`,
                         life: 3000,
                     });
-            }).catch((err) => {
-                console.error(err);
 
-                MessageUtils.parseServerError(this.messageService, err, {
-                    summary: $localize `Error updating user`,
+                }).catch((err) => {
+                    console.error(err);
+
+                    MessageUtils.parseServerError(this.messageService, err, {
+                        summary: $localize`Error updating user`,
+                    });
                 });
-            }).finally(() => this.saving = false);
+            }
+
+            this.saving = false;
+            await this.fetchUserAndInitForms();
+
         }
     }
 
