@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="flex justify-content-between align-items-center mb-5">
+        <span class="text-900 text-xl font-semibold" i18n>Feeds List</span>
+        <button pButton pRipple class="p-button-outlined font-semibold" icon="pi pi-plus" label="Create Task" (click)="showDialog()"></button>
+    </div>
+    <app-feed-list [taskList]="todo" title="ToDo"></app-feed-list>
+    <app-feed-list [taskList]="completed" title="Completed"></app-feed-list>
+</div>
+
+<app-create-feed></app-create-feed>

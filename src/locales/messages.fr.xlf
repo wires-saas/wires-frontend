@@ -2025,6 +2025,26 @@
         <source>Inbox</source>
         <target state="new">Boîte Mail</target>
       </trans-unit>
+      <trans-unit id="3871356154402153903" datatype="html">
+        <source>Contents</source>
+        <target state="new">Contenus</target>
+      </trans-unit>
+      <trans-unit id="5539833462297888878" datatype="html">
+        <source>Articles</source>
+        <target state="new">Articles</target>
+      </trans-unit>
+      <trans-unit id="1246086532983525846" datatype="html">
+        <source>Feeds</source>
+        <target state="new">Flux</target>
+      </trans-unit>
+      <trans-unit id="2318155491589244186" datatype="html">
+        <source>Create Tag From Filters</source>
+        <target state="new">Créer un tag d'après les filtres</target>
+      </trans-unit>
+      <trans-unit id="2118590605718815738" datatype="html">
+        <source>Feeds List</source>
+        <target state="new">Liste des Flux</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

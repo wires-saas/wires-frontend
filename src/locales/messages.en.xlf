@@ -1520,6 +1520,21 @@
       <trans-unit id="799485662157076328" datatype="html">
         <source>Inbox</source>
       </trans-unit>
+      <trans-unit id="1246086532983525846" datatype="html">
+        <source>Feeds</source>
+      </trans-unit>
+      <trans-unit id="3871356154402153903" datatype="html">
+        <source>Contents</source>
+      </trans-unit>
+      <trans-unit id="5539833462297888878" datatype="html">
+        <source>Articles</source>
+      </trans-unit>
+      <trans-unit id="2118590605718815738" datatype="html">
+        <source>Feeds List</source>
+      </trans-unit>
+      <trans-unit id="2318155491589244186" datatype="html">
+        <source>Create Tag From Filters</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

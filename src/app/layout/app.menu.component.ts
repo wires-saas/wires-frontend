@@ -18,7 +18,6 @@ export class AppMenuComponent implements OnInit {
     private dashboardMenu: (org: Organization) => any[] = (org) => ([
         {
             label: 'Dashboards',
-            icon: 'pi pi-home',
             items: [
                 {
                     label: $localize `Home`,
@@ -27,8 +26,9 @@ export class AppMenuComponent implements OnInit {
                 },
                 {
                     label: $localize `Inbox`,
-                    icon: 'pi pi-fw pi-envelope',
-                    routerLink: ['/mail']
+                    icon: 'pi pi-fw pi-inbox',
+                    routerLink: ['/mail'],
+                    routerLinkActiveOptions: { exact: false }
                 },
                 {
                     label: $localize `Empty`,
@@ -44,10 +44,29 @@ export class AppMenuComponent implements OnInit {
         }
     ]);
 
+    private contentsMenu: (org: Organization, authService: AuthService) => any[] = (org, authService) => ([
+        {
+            label: 'Contents',
+            restriction: authService.hasRole$(Role.MANAGER, org.slug),
+            items: [
+                {
+                    label: $localize `Articles`,
+                    icon: 'pi pi-fw pi-box',
+                    routerLink: ['/contents/articles']
+                },
+                {
+                    label: $localize `Feeds`,
+                    icon: 'pi pi-fw pi-sitemap',
+                    routerLink: ['/contents/feeds']
+                }
+            ]
+        }
+     ]);
+
+
     private organizationMenu: (org: Organization, authService: AuthService) => any[] = (org, authService) => ([
         {
             label: $localize `Organization`,
-            icon: 'pi pi-fw pi-building',
             restriction: authService.hasRole$(Role.MANAGER, org.slug),
             items: [
                 {
@@ -153,6 +172,7 @@ export class AppMenuComponent implements OnInit {
     buildMenuForOrganization(org: Organization, authService: AuthService) {
         this.model = [
             ...this.dashboardMenu(org),
+            ...this.contentsMenu(org, authService),
             ...this.organizationMenu(org, authService),
             ...this.helpMenu,
             ...this.superAdminMenu(authService)

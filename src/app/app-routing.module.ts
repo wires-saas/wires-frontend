@@ -26,6 +26,12 @@ const routes: Routes = [
                 loadChildren: () => import('./views/dashboards/dashboards.module').then(m => m.DashboardsModule)
             },
             {
+                path: 'contents',
+                data: { breadcrumb: $localize `Contents` },
+                canActivate: [AuthenticatedGuard],
+                loadChildren: () => import('./views/contents/contents.module').then(m => m.ContentsModule)
+            },
+            {
                 path: 'administration',
                 data: { breadcrumb: $localize `Administration` },
                 canActivate: [AuthenticatedGuard, IsSuperAdminGuard],
