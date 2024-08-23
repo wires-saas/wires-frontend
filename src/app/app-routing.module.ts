@@ -38,6 +38,12 @@ const routes: Routes = [
                 loadChildren: () => import('./views/organization/organization.module').then(m => m.OrganizationModule)
             },
             {
+                path: 'mail',
+                data: { breadcrumb: $localize `Inbox` },
+                canActivate: [AuthenticatedGuard],
+                loadChildren: () => import('./views/core/mail/mail.app.module').then(m => m.MailAppModule)
+            },
+            {
                 path: 'files',
                 data: { breadcrumb: $localize `Home` },
                 canActivate: [AuthenticatedGuard],

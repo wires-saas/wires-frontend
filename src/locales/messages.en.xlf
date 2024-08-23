@@ -314,9 +314,6 @@
       <trans-unit id="2353218794817409278" datatype="html">
         <source>All Users</source>
       </trans-unit>
-      <trans-unit id="2614607010577950577" datatype="html">
-        <source>Overview</source>
-      </trans-unit>
       <trans-unit id="3076687427621376223" datatype="html">
         <source>Organization</source>
       </trans-unit>
@@ -1519,6 +1516,9 @@
       </trans-unit>
       <trans-unit id="3044303043970895474" datatype="html">
         <source>Error refreshing profile</source>
+      </trans-unit>
+      <trans-unit id="799485662157076328" datatype="html">
+        <source>Inbox</source>
       </trans-unit>
     </body>
   </file>

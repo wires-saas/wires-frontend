@@ -1,0 +1,23 @@
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Mail, MailService } from '../service/mail.service';
+
+@Component({
+    selector: 'app-mail-archive',
+    templateUrl: './mail-archive.component.html',
+})
+export class MailArchiveComponent implements OnDestroy {
+    archivedMails: Mail[] = [];
+
+    subscription: Subscription;
+
+    constructor(private mailService: MailService) {
+        this.subscription = this.mailService.mails$.subscribe((data) => {
+            this.archivedMails = data.filter((d) => d.archived);
+        });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
+}

@@ -26,6 +26,11 @@ export class AppMenuComponent implements OnInit {
                     routerLink: ['/files']
                 },
                 {
+                    label: $localize `Inbox`,
+                    icon: 'pi pi-fw pi-envelope',
+                    routerLink: ['/mail']
+                },
+                {
                     label: $localize `Empty`,
                     icon: 'pi pi-fw pi-circle-off',
                     routerLink: ['/blank']
