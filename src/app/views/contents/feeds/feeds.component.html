@@ -1,10 +1,23 @@
 <div class="card">
     <div class="flex justify-content-between align-items-center mb-5">
-        <span class="text-900 text-xl font-semibold" i18n>Feeds List</span>
-        <button pButton pRipple class="p-button-outlined font-semibold" icon="pi pi-plus" label="Create Task" (click)="showDialog()"></button>
+        <span class="text-900 text-xl font-semibold" i18n>Feeds Management</span>
+        <button pButton pRipple class="p-button-outlined font-semibold" icon="pi pi-plus" label="Add Feed" (click)="showDialog()"></button>
     </div>
-    <app-feed-list [taskList]="todo" title="ToDo"></app-feed-list>
-    <app-feed-list [taskList]="completed" title="Completed"></app-feed-list>
+    <app-feed-list [feeds]="feeds" title="Existing Feeds"></app-feed-list>
+    <!-- <app-feed-list [feeds]="completed" title="Completed"></app-feed-list> -->
+</div>
+
+<div class="card">
+    <h5>Auto Scheduling</h5>
+    <p>
+        Scraping frequency can be too high, scraping same articles multiple times, or too low, missing articles
+        <br/>
+        If enabled, auto scheduling will adjust frequency in order to find the right spot
+    </p>
+
+
+    <p-toggleButton [(ngModel)]="autoSchedule" (onChange)="toggleAutoSchedule($event)" onLabel="Enabled" offLabel="Disabled" class="ml-3"
+                    [style]="{'width': '10em'}"></p-toggleButton>
 </div>
 
 <app-create-feed></app-create-feed>

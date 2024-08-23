@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class CreateFeedComponent implements OnInit, OnDestroy {
 
-    task!: Feed;
+    feed!: Feed;
 
     members: Member[] = [];
 
@@ -24,20 +24,33 @@ export class CreateFeedComponent implements OnInit, OnDestroy {
 
     dialogSubscription: Subscription;
 
-    constructor(private memberService: MemberService, private messageService: MessageService, private taskService: FeedService) {
-        this.subscription = this.taskService.selectedTask$.subscribe(data => this.task = data);
-        this.dialogSubscription = this.taskService.dialogSource$.subscribe(data => {
+    availableGranularity: any[] = [];
+
+    get creation(): boolean {
+        return !!this.dialogConfig.newFeed;
+    }
+
+    constructor(private memberService: MemberService, private messageService: MessageService, private feedService: FeedService) {
+        this.subscription = this.feedService.selectedFeed$.subscribe(data => this.feed = data);
+        this.dialogSubscription = this.feedService.dialogSource$.subscribe(data => {
             this.dialogConfig = data;
 
-            if(this.dialogConfig.newTask) {
-                this.resetTask();
+            if(this.dialogConfig.newFeed) {
+                this.resetFeed();
             }
         });
     }
 
     ngOnInit(): void {
+
+        this.availableGranularity = [
+            { label: 'Minute(s)', value: 'minute' },
+            { label: 'Hour(s)', value: 'hour' },
+            { label: 'Day(s)', value: 'day' },
+        ];
+
         this.memberService.getMembers().then(members => this.members = members);
-        this.resetTask();
+        this.resetFeed();
     }
 
     filterMembers(event: any) {
@@ -54,20 +67,39 @@ export class CreateFeedComponent implements OnInit, OnDestroy {
         this.filteredMembers = filtered;
     }
 
+    canSave(): boolean {
+        return !!(this.feed.name && this.feed.urls?.length && this.feed.scrapingFrequency && this.feed.scrapingGranularity);
+    }
+
     save() {
-        this.task.id = Math.floor(Math.random() * 1000);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: `Task "${this.task.name}" created successfully.` });
-        this.taskService.addTask(this.task);
-        this.taskService.closeDialog();
+        this.feed.id = Math.floor(Math.random() * 1000);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: `Feed "${this.feed.name}" created successfully.` });
+        this.feedService.addFeed(this.feed);
+        this.feedService.closeDialog();
     }
 
-    cancelTask(){
-        this.resetTask()
-        this.taskService.closeDialog();
+    testAndSave() {
+        // TODO preview some articles fetched from the feed
+        this.feed.id = Math.floor(Math.random() * 1000);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: `Feed "${this.feed.name}" created successfully.` });
+        this.feedService.addFeed(this.feed);
+        this.feedService.closeDialog();
     }
 
-    resetTask() {
-        this.task = { id: this.task && this.task.id ? this.task.id : Math.floor(Math.random() * 1000), status: 'Waiting' };
+    cancelFeed(){
+        this.resetFeed()
+        this.feedService.closeDialog();
+    }
+
+    resetFeed() {
+        this.feed = {
+            id: this.feed && this.feed.id ? this.feed.id : Math.floor(Math.random() * 1000),
+            description: '',
+            scrapingFrequency: 30,
+            scrapingGranularity: 'minute',
+            scrapingEnabled: true,
+            urls: []
+        };
     }
 
     ngOnDestroy() {

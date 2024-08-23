@@ -3,41 +3,35 @@
     <div class="p-4">
         <div class="grid p-fluid formgrid">
             <div class="col-12 field">
-                <label for="name" class="text-900 font-semibold">Task Name</label>
-                <input id="name" type="text" placeholder="Title" pInputText [(ngModel)]="task.name" />
+                <label for="feed-name" class="text-900 font-semibold">Feed Name</label>
+                <input id="feed-name" type="text" placeholder="Sitemap, top articles, fun facts..." pInputText [(ngModel)]="feed.name" />
             </div>
             <div class="col-12 field">
-                <label for="description" class="text-900 font-semibold">Description</label>
-                <p-editor [(ngModel)]="task.description" [style]="{'height':'150px'}"></p-editor>
+                <label for="feed-description" class="text-900 font-semibold">Description (optional)</label>
+                <textarea id="feed-description" [(ngModel)]="feed.description" rows="2" pInputTextarea style="resize: vertical;" placeholder="Small description comes handy as documentation"></textarea>
             </div>
-            <div class="col-6 field mt-0">
-                <label for="start" class="text-900 font-semibold">Start Date</label>
-                <p-calendar appendTo="body" dateFormat="yy-mm-dd" [showTime]="false" inputId="start" placeholder="Start Date" [(ngModel)]="task.startDate"></p-calendar>
+            <div class="col-6 field">
+                <label for="scraping-frequency" class="text-900 font-semibold">Scraping Frequency</label>
+                <p-inputNumber id="scraping-frequency" [showButtons]="true" [min]="1" [(ngModel)]="feed.scrapingFrequency" />
             </div>
-            <div class="col-6 field mt-0">
-                <label for="end" class="text-900 font-semibold">Due Date</label>
-                <p-calendar appendTo="body" dateFormat="yy-mm-dd" [showTime]="false" inputId="end" placeholder="Due Date" [(ngModel)]="task.endDate"></p-calendar>
+            <div class="col-6 field">
+                <label for="scraping-granularity" class="text-900 font-semibold">Scraping Granularity</label>
+                <p-dropdown id="scraping-granularity" [autoDisplayFirst]="true" [options]="availableGranularity" [(ngModel)]="feed.scrapingGranularity" placeholder="Time Unit"
+                            [showClear]="false"></p-dropdown>
             </div>
             <div class="col-12 field">
-                <label for="members" class="text-900 font-semibold">Add Team Member</label>
-                <p-autoComplete appendTo="body" inputId="members" [(ngModel)]="task.members" [suggestions]="filteredMembers" (completeMethod)="filterMembers($event)" field="name" [multiple]="true" placeholder="Choose team members" [inputStyle]="{'height': '2.5rem'}">
-                    <ng-template let-member pTemplate="selectedItem">
-                        <div class="flex align-items-center">
-                            <img src="assets/demo/images/avatar/{{member.image}}" [alt]="member.name" class="h-2rem w-2rem mr-2">
-                            <span class="text-900 font-medium">{{member.name}}</span>
-                        </div>
-                    </ng-template>
-                    <ng-template let-member pTemplate="item">
-                        <div class="flex align-items-center border-round">
-                            <img src="assets/demo/images/avatar/{{member.image}}" [alt]="member.name" class="h-2rem w-2rem mr-2">
-                            <span class="text-900 font-medium">{{member.name}}</span>
-                        </div>
-                    </ng-template>
-                </p-autoComplete>
+                <label for="urls" class="text-900 font-semibold">URLs</label>
+                <p-chips inputId="urls" [(ngModel)]="feed.urls" [allowDuplicate]="false"></p-chips>
+                <p class="p-text-secondary">We encourage copy/paste for avoiding mistakes, press Enter to validate URL</p>
             </div>
             <div class="col-12 flex justify-content-end mt-4">
-                <button pButton pRipple class="p-button-outlined w-8rem mr-3" icon="pi pi-times" label="Cancel" (click)="cancelTask()"></button>
-                <button pButton pRipple class="p-button-primary w-8rem" icon="pi pi-check" label="Save" (click)="save()"></button>
+                <button pButton pRipple class="p-button-outlined w-8rem mr-3" icon="pi pi-times" label="Cancel" (click)="cancelFeed()"></button>
+
+                <button *ngIf="creation; else onlySave" (click)="testAndSave()" [disabled]="!canSave()" pButton pRipple class="p-button-primary w-12rem" icon="pi pi-check" label="Test and Save" ></button>
+
+                <ng-template #onlySave>
+                    <button (click)="save()" [disabled]="!canSave()" pButton pRipple class="p-button-primary w-8rem" icon="pi pi-check" label="Save"></button>
+                </ng-template>
             </div>
         </div>
     </div>

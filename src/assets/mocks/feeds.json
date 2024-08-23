@@ -1,0 +1,157 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Sitemap",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna.",
+            "startDate": "2022-05-13",
+            "endDate": "2022-05-15",
+            "completed": false,
+            "status": "Approved",
+            "comments": 3,
+            "attachments": 2,
+
+            "totalArticles": 381,
+            "lastWeekArticles": 10,
+            "scrapingFrequency": 20,
+            "scrapingGranularity": "minute",
+            "scrapingEnabled": true
+        },
+        {
+            "id": 2,
+            "name": "Create Dashboard",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna.",
+            "startDate": "2022-05-16",
+            "endDate": "2022-05-20",
+            "completed": false,
+            "status": "Waiting",
+            "comments": 2,
+            "attachments": 4,
+
+            "totalArticles": 28,
+            "lastWeekArticles": 3,
+            "scrapingFrequency": 30,
+            "scrapingGranularity": "minute",
+            "scrapingEnabled": true
+        },
+        {
+            "id": 3,
+            "name": "Brand logo design",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna.",
+            "startDate": "2022-05-17",
+            "endDate": "2022-05-18",
+            "completed": null,
+            "status": "Approved",
+            "comments": 4,
+            "attachments": 1,
+
+            "totalArticles": 0,
+            "lastWeekArticles": 0,
+            "scrapingFrequency": 15,
+            "scrapingGranularity": "minute",
+            "scrapingEnabled": true
+        },
+        {
+            "id": 4,
+            "name": "Create Dashboard",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna.",
+            "startDate": "2022-05-20",
+            "endDate": "2022-05-22",
+            "completed": null,
+            "status": "Approved",
+            "comments": 1,
+            "attachments": 3,
+
+            "totalArticles": 1873,
+            "lastWeekArticles": 120,
+            "scrapingFrequency": 20,
+            "scrapingGranularity": "minute",
+            "scrapingEnabled": true
+        },
+        {
+            "id": 5,
+            "name": "Rebranding For Peak",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna.",
+            "startDate": "2022-05-24",
+            "endDate": "2022-05-26",
+            "completed": false,
+            "status": "Waiting",
+            "comments": 5,
+            "attachments": 2,
+
+            "totalArticles": 85,
+            "lastWeekArticles": 8,
+            "scrapingFrequency": 1,
+            "scrapingGranularity": "hour",
+            "scrapingEnabled": false
+        },
+        {
+            "id": 6,
+            "name": "Create Mobile UI",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna.",
+            "startDate": "2022-05-13",
+            "endDate": "2022-05-15",
+            "completed": null,
+            "status": "Approved",
+            "comments": 1,
+            "attachments": 2,
+
+            "totalArticles": 103,
+            "lastWeekArticles": 7,
+            "scrapingFrequency": 45,
+            "scrapingGranularity": "minute",
+            "scrapingEnabled": true
+        },
+        {
+            "id": 7,
+            "name": "Create a New Marketing Project",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna.",
+            "startDate": "2022-05-13",
+            "endDate": "2022-05-15",
+            "completed": true,
+            "status": "Complete",
+            "comments": 7,
+            "attachments": 4,
+
+            "totalArticles": 10703,
+            "lastWeekArticles": 938,
+            "scrapingFrequency": 5,
+            "scrapingGranularity": "minute",
+            "scrapingEnabled": false
+        },
+        {
+            "id": 8,
+            "name": "Analyze New Sprint",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna.",
+            "startDate": "2022-05-10",
+            "endDate": "2022-05-12",
+            "completed": true,
+            "status": "Complete",
+            "comments": 3,
+            "attachments": 2,
+
+            "totalArticles": 381,
+            "lastWeekArticles": 10,
+            "scrapingFrequency": 20,
+            "scrapingGranularity": "minute",
+            "scrapingEnabled": true
+        },
+        {
+            "id": 9,
+            "name": "Create New Icon Set",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium aenean pharetra magna.",
+            "startDate": "2022-05-13",
+            "endDate": "2022-05-15",
+            "completed": true,
+            "status": "Complete",
+            "comments": 1,
+            "attachments": 3,
+
+            "totalArticles": 33,
+            "lastWeekArticles": 2,
+            "scrapingFrequency": 3,
+            "scrapingGranularity": "hour",
+            "scrapingEnabled": true
+        }
+    ]
+}

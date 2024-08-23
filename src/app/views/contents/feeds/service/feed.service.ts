@@ -1,18 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Subject } from 'rxjs';
 
 export interface Feed {
     id: number;
     name?: string;
     description?: string;
-    startDate?: Date;
-    endDate?: Date;
-    members?: Member[];
-    completed?: boolean;
-    status?: string;
-    comments?: number;
-    attachments?: number;
+
+    scrapingFrequency?: number;
+    scrapingGranularity?: 'day' | 'hour' | 'minute';
+    scrapingEnabled?: boolean;
+
+    autoScrapingFrequency?: number;
+    autoScrapingGranularity?: 'day' | 'hour' | 'minute';
+    autoScrapingEnabled?: boolean;
+
+    totalArticles?: number;
+    lastWeekArticles?: number;
+
+    urls?: string[];
 }
 
 export interface Member {
@@ -23,7 +29,7 @@ export interface Member {
 export interface DialogConfig {
     visible: boolean;
     header?: string;
-    newTask?: boolean;
+    newFeed?: boolean;
 }
 
 @Injectable()
@@ -32,66 +38,82 @@ export class FeedService {
     dialogConfig: DialogConfig = {
         visible: false,
         header: '',
-        newTask: false
+        newFeed: false
     };
 
-    feeds: Feed[] = [];
+    private feeds: Feed[] = [];
 
-    private taskSource = new BehaviorSubject<Feed[]>(this.feeds);
+    public autoSchedule: boolean = true;
 
-    private selectedTask = new Subject<Feed>();
+    private feedSource$$ = new BehaviorSubject<Feed[]>(this.feeds);
 
-    private dialogSource = new BehaviorSubject<DialogConfig>(this.dialogConfig);
+    private selectedFeed$$ = new Subject<Feed>();
 
-    taskSource$ = this.taskSource.asObservable();
+    private dialogSource$$ = new BehaviorSubject<DialogConfig>(this.dialogConfig);
 
-    selectedTask$ = this.selectedTask.asObservable();
+    feedSource$ = this.feedSource$$.asObservable();
 
-    dialogSource$ = this.dialogSource.asObservable();
+    selectedFeed$ = this.selectedFeed$$.asObservable();
+
+    dialogSource$ = this.dialogSource$$.asObservable();
 
     constructor(private http: HttpClient) {
-        this.http.get<any>('assets/demo/data/tasks.json')
-            .toPromise()
+        this.fetchFeeds();
+    }
+
+    fetchFeeds() {
+        firstValueFrom(this.http.get<any>('assets/mocks/feeds.json'))
             .then(res => res.data as Feed[])
             .then(data => {
-                this.feeds = data;
-                this.taskSource.next(data);
+                this.feeds = data.map((f: Feed) => ({
+                    ...f,
+                    autoScrapingFrequency: Math.floor(Math.random() * 20),
+                    autoScrapingGranularity: f.scrapingGranularity,
+                    autoScrapingEnabled: this.autoSchedule,
+                }));
+                this.feedSource$$.next(this.feeds);
             });
     }
 
-    addTask(task: Feed) {
-        if (this.feeds.includes(task)) {
-            this.feeds = this.feeds.map(t => t.id === task.id ? task : t);
+    toggleAutoSchedule(enabled: boolean) {
+        this.autoSchedule = enabled;
+
+        this.fetchFeeds();
+    }
+
+    addFeed(feed: Feed) {
+        if (this.feeds.includes(feed)) {
+            this.feeds = this.feeds.map(f => f.id === feed.id ? feed : f);
         }
         else {
-            this.feeds = [...this.feeds, task];
+            this.feeds = [...this.feeds, feed];
         }
 
-        this.taskSource.next(this.feeds);
+        this.feedSource$$.next(this.feeds);
     }
 
     removeTask(id: number) {
-        this.feeds = this.feeds.filter(t => t.id !== id);
-        this.taskSource.next(this.feeds);
+        this.feeds = this.feeds.filter(f => f.id !== id);
+        this.feedSource$$.next(this.feeds);
     }
 
     onTaskSelect(task: Feed) {
-        this.selectedTask.next(task);
+        this.selectedFeed$$.next(task);
     }
 
-    markAsCompleted(task: Feed) {
-        this.feeds = this.feeds.map(t => t.id === task.id ? task : t);
-        this.taskSource.next(this.feeds);
+    updateFeed(feed: Feed) {
+        this.feeds = this.feeds.map(f => f.id === feed.id ? feed : f);
+        this.feedSource$$.next(this.feeds);
     }
 
-    showDialog(header: string, newTask: boolean) {
+    showDialog(header: string, newFeed: boolean) {
         this.dialogConfig = {
             visible: true,
             header: header,
-            newTask: newTask
+            newFeed: newFeed
         };
 
-        this.dialogSource.next(this.dialogConfig);
+        this.dialogSource$$.next(this.dialogConfig);
     }
 
     closeDialog() {
@@ -99,7 +121,7 @@ export class FeedService {
             visible: false
         }
 
-        this.dialogSource.next(this.dialogConfig);
+        this.dialogSource$$.next(this.dialogConfig);
     }
 
 }

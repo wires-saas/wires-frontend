@@ -18,6 +18,12 @@ import { DialogModule } from 'primeng/dialog';
 import { FeedListComponent } from './feed-list/feed-list.component'
 import { FeedService } from './service/feed.service';
 import { RippleModule } from 'primeng/ripple';
+import { ChipsModule } from 'primeng/chips';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ArraySortPipe } from '../../../utils/array-sort.pipe';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @NgModule({
     imports: [
@@ -35,7 +41,13 @@ import { RippleModule } from 'primeng/ripple';
         CheckboxModule,
         MenuModule,
         DialogModule,
-        RippleModule
+        RippleModule,
+        ChipsModule,
+        InputNumberModule,
+        DropdownModule,
+        InputTextareaModule,
+        ArraySortPipe,
+        ToggleButtonModule
     ],
     declarations: [FeedsComponent, CreateFeedComponent, FeedListComponent],
     providers: [FeedService]

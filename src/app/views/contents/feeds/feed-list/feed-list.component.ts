@@ -10,7 +10,7 @@ import { Feed, FeedService } from '../service/feed.service';
 })
 export class FeedListComponent implements OnInit {
 
-    @Input() taskList!: Feed[];
+    @Input() feeds!: Feed[];
 
     @Input() title!: string;
 
@@ -18,9 +18,9 @@ export class FeedListComponent implements OnInit {
 
     menuItems: MenuItem[] = [];
 
-    clickedTask!: Feed;
+    clickedFeed!: Feed;
 
-    constructor(private taskService: FeedService) { }
+    constructor(private feedService: FeedService) { }
 
     ngOnInit(): void {
         this.menuItems = [
@@ -35,22 +35,30 @@ export class FeedListComponent implements OnInit {
     }
 
     handleDelete() {
-        this.taskService.removeTask(this.clickedTask.id);
+        this.feedService.removeTask(this.clickedFeed.id);
     }
 
-    toggleMenu(event: Event, task: Feed) {
-        this.clickedTask = task;
+    toggleMenu(event: Event, feed: Feed) {
+        this.clickedFeed = feed;
         this.menu.toggle(event);
     }
 
     onEdit() {
-        this.taskService.onTaskSelect(this.clickedTask);
-        this.taskService.showDialog('Edit Task', false);
+        this.feedService.onTaskSelect(this.clickedFeed);
+        this.feedService.showDialog('Edit Feed', false);
     }
 
-    onCheckboxChange(event: any, task: Feed) {
+    onCheckboxChange(event: any, feed: Feed) {
         event.originalEvent.stopPropagation();
-        task.completed = event.checked;
-        this.taskService.markAsCompleted(task);
+        feed.scrapingEnabled = event.checked;
+        this.feedService.updateFeed(feed);
+    }
+
+    autoScrapingRelevant(feed: Feed) {
+        return !!(feed.scrapingEnabled
+            && feed.autoScrapingEnabled
+            && feed.autoScrapingFrequency
+            && feed.autoScrapingGranularity
+            && feed.autoScrapingFrequency !== feed.scrapingFrequency);
     }
 }
