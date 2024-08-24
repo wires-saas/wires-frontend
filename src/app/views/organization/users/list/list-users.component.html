@@ -49,7 +49,7 @@
                 </td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ getRoleOfUser(user) | role }}</td>
+                <td>{{ RoleUtils.getRoleForOrganization(user, currentOrgSlug) | role }}</td>
                 <td>{{ user.status | status }}</td>
                 <td>{{ user.createdAt | date: 'dd/MM/yyyy'}} <i *ngIf="isInviteExpired(user)" i18n-pTooltip pTooltip="Invite expired" class="pi pi-exclamation-triangle text-yellow-500"></i></td>
                 <td>

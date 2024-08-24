@@ -26,14 +26,14 @@
                 <p class="p-text-secondary" i18n>We encourage copy/paste for avoiding mistakes, press Enter to validate URL</p>
             </div>
             <div class="col-12 flex justify-content-end mt-4">
-                <button (click)="cancelFeed()" [disabled]="saving" pButton pRipple class="p-button-outlined w-8rem mr-3" icon="pi pi-times" i18n-label label="Cancel"></button>
+                <button (click)="cancelFeed()" [disabled]="saving" pButton pRipple class="p-button-outlined w-10rem mr-3" icon="pi pi-times" i18n-label label="Cancel"></button>
 
                 <button *ngIf="creation; else onlySave" (click)="testAndCreateFeed()" [disabled]="!canSave()" [loading]="saving"
                         pButton pRipple class="p-button-primary w-20rem" icon="pi pi-check" i18n-label label="Test and Save"></button>
 
                 <ng-template #onlySave>
                     <button (click)="updateFeed()" [disabled]="!canSave()" [loading]="saving"
-                            pButton pRipple class="p-button-primary w-8rem" icon="pi pi-check" i18n-label label="Save"></button>
+                            pButton pRipple class="p-button-primary w-12rem" icon="pi pi-check" i18n-label label="Save"></button>
                 </ng-template>
             </div>
         </div>

@@ -46,4 +46,15 @@ export class RoleUtils {
                 return 0;
         }
     }
+
+    static getRoleForOrganization(user: User, organizationSlug?: string): Role {
+        if (user?.isSuperAdmin) return Role.SUPER_ADMIN;
+
+        if (user?.roles?.length) {
+            if (organizationSlug) return user.roles.find(_ => _.organization === organizationSlug)?.role || Role.GUEST;
+            else return user.roles[0].role;
+        }
+
+        return Role.GUEST;
+    }
 }

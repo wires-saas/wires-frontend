@@ -543,7 +543,7 @@
       </trans-unit>
       <trans-unit id="7585826646011739428" datatype="html">
         <source>Edit</source>
-        <target state="new">Modifier le profil</target>
+        <target state="new">Modifier</target>
       </trans-unit>
       <trans-unit id="8170885557369261178" datatype="html">
         <source>Re-send Invite</source>

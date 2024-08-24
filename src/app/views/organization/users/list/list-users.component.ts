@@ -84,17 +84,6 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
         );
     }
 
-    getRoleOfUser(user: User): Role {
-        if (user?.isSuperAdmin) return Role.SUPER_ADMIN;
-
-        if (user?.roles?.length) {
-            if (this.currentOrgSlug) return user.roles.find(_ => _.organization === this.currentOrgSlug)?.role || Role.GUEST;
-            else return user.roles[0].role;
-        }
-
-        return Role.GUEST;
-    }
-
     isInviteExpired(user: User): boolean {
         if (user?.status !== UserStatus.PENDING) return false;
         else return user.inviteTokenExpiresAt < this.now;
@@ -106,9 +95,9 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
 
         if (!currentUser) throw new Error('No current user');
 
-        const currentUserRole = this.getRoleOfUser(currentUser);
+        const currentUserRole = RoleUtils.getRoleForOrganization(currentUser, this.currentOrgSlug);
 
-        const role = this.getRoleOfUser(user);
+        const role = RoleUtils.getRoleForOrganization(user, this.currentOrgSlug);
 
         const isCurrentUser = currentUser._id === user._id;
 
@@ -205,7 +194,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                         label: $localize `Set Admin`,
                         icon: 'pi pi-fw pi-sort-up',
                         visible: !isCurrentUser,
-                        disabled: this.getRoleOfUser(user) === Role.ADMIN,
+                        disabled: RoleUtils.getRoleForOrganization(user, this.currentOrgSlug) === Role.ADMIN,
                         command: async () => {
                             await setRoleAndReflectChangeOnUser(Role.ADMIN).then(() => {
 
@@ -229,7 +218,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                         label: $localize `Set Manager`,
                         icon: 'pi pi-fw pi-sort',
                         visible: visibleForAdmins && !isCurrentUser,
-                        disabled: this.getRoleOfUser(user) === Role.MANAGER,
+                        disabled: RoleUtils.getRoleForOrganization(user, this.currentOrgSlug) === Role.MANAGER,
                         command: async () => {
                             await setRoleAndReflectChangeOnUser(Role.MANAGER).then(() => {
 
@@ -253,7 +242,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                         label: $localize `Set User`,
                         icon: 'pi pi-fw pi-sort-down',
                         visible: visibleForAdmins && !isCurrentUser,
-                        disabled: this.getRoleOfUser(user) === Role.USER,
+                        disabled: RoleUtils.getRoleForOrganization(user, this.currentOrgSlug) === Role.USER,
                         command: async () => {
                             await setRoleAndReflectChangeOnUser(Role.USER).then(() => {
 
@@ -309,7 +298,9 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
             else if (value1 != null && value2 == null) result = 1;
             else if (value1 == null && value2 == null) result = 0;
             else if (event.field === 'roles') {
-                result = RoleUtils.getRoleHierarchy(this.getRoleOfUser(data1)) > RoleUtils.getRoleHierarchy(this.getRoleOfUser(data2)) ? 1 : -1;
+                result = RoleUtils.getRoleHierarchy(RoleUtils.getRoleForOrganization(data1, this.currentOrgSlug))
+                            > RoleUtils.getRoleHierarchy(RoleUtils.getRoleForOrganization(data2, this.currentOrgSlug))
+                    ? 1 : -1;
             }
             else if (typeof value1 === 'string' && typeof value2 === 'string') result = value1.localeCompare(value2);
             else result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0;
@@ -338,4 +329,5 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
         window.URL.revokeObjectURL(url);
     }
 
+    protected readonly RoleUtils = RoleUtils;
 }
