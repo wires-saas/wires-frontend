@@ -2039,11 +2039,131 @@
       </trans-unit>
       <trans-unit id="2318155491589244186" datatype="html">
         <source>Create Tag From Filters</source>
-        <target state="new">Créer un tag d'après les filtres</target>
+        <target state="new">Créer un tag d&apos;après les filtres</target>
       </trans-unit>
-      <trans-unit id="2118590605718815738" datatype="html">
-        <source>Feeds List</source>
-        <target state="new">Liste des Flux</target>
+      <trans-unit id="7299620787619799529" datatype="html">
+        <source>Feed Name</source>
+        <target state="new">Nom du flux</target>
+      </trans-unit>
+      <trans-unit id="2948838476336466751" datatype="html">
+        <source>Sitemap, top articles, fun facts...</source>
+        <target state="new">Sitemap, meilleurs articles, faits divers...</target>
+      </trans-unit>
+      <trans-unit id="3327094637278066401" datatype="html">
+        <source>Description (optional)</source>
+        <target state="new">Description (optionnel)</target>
+      </trans-unit>
+      <trans-unit id="8799778098875410855" datatype="html">
+        <source>A small description can come handy</source>
+        <target state="new">Une courte description peut s'avérer être un gain de temps par la suite</target>
+      </trans-unit>
+      <trans-unit id="9100995413084149873" datatype="html">
+        <source>Scraping Granularity</source>
+        <target state="new">Échelle</target>
+      </trans-unit>
+      <trans-unit id="3548180789147259812" datatype="html">
+        <source>Time Unit</source>
+        <target state="new">Unité de temps</target>
+      </trans-unit>
+      <trans-unit id="2883859734114302285" datatype="html">
+        <source>URLs</source>
+        <target state="new">URLs</target>
+      </trans-unit>
+      <trans-unit id="8596640406539432936" datatype="html">
+        <source>We encourage copy/paste for avoiding mistakes, press Enter to validate URL</source>
+        <target state="new">Nous incitons à copier/coller pour éviter les erreurs, appuyez sur Entrée pour valider une URL</target>
+      </trans-unit>
+      <trans-unit id="7125255682099216860" datatype="html">
+        <source>Test and Save</source>
+        <target state="new">Tester et sauvegarder</target>
+      </trans-unit>
+      <trans-unit id="3768927257183755959" datatype="html">
+        <source>Save</source>
+        <target state="new">Sauvegarder</target>
+      </trans-unit>
+      <trans-unit id="2365388243339409921" datatype="html">
+        <source>Minute(s)</source>
+        <target state="new">Minute(s)</target>
+      </trans-unit>
+      <trans-unit id="660968041670905112" datatype="html">
+        <source>Hour(s)</source>
+        <target state="new">Heure(s)</target>
+      </trans-unit>
+      <trans-unit id="6877003697022351372" datatype="html">
+        <source>Day(s)</source>
+        <target state="new">Jour(s)</target>
+      </trans-unit>
+      <trans-unit id="4648900870671159218" datatype="html">
+        <source>Success</source>
+        <target state="new">Succès</target>
+      </trans-unit>
+      <trans-unit id="5392212341983227072" datatype="html">
+        <source>Feed &quot;<x id="PH" equiv-text="this.feed.displayName"/>&quot; updated successfully.</source>
+        <target state="new">Flux &quot;<x id="PH" equiv-text="this.feed.displayName"/>&quot; mis à jour avec succès.</target>
+      </trans-unit>
+      <trans-unit id="4976416056375375111" datatype="html">
+        <source>Error updating feed</source>
+        <target state="new">Erreur lors de la mise à jour du flux</target>
+      </trans-unit>
+      <trans-unit id="5240522066595325019" datatype="html">
+        <source>Feed &quot;<x id="PH" equiv-text="this.feed.displayName"/>&quot; created successfully.</source>
+        <target state="new">Flux &quot;<x id="PH" equiv-text="this.feed.displayName"/>&quot; créé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="8852962233316066263" datatype="html">
+        <source>Error creating feed</source>
+        <target state="new">Erreur lors de la création du flux</target>
+      </trans-unit>
+      <trans-unit id="6195511704004519201" datatype="html">
+        <source>Every <x id="INTERPOLATION" equiv-text="{{ feed.scrapingInterval }}"/> <x id="INTERPOLATION_1" equiv-text="{{ feed.scrapingGranularity }}"/></source>
+        <target state="new">Toute(s) le(s) <x id="INTERPOLATION" equiv-text="{{ feed.scrapingInterval }}"/> <x id="INTERPOLATION_1" equiv-text="{{ feed.scrapingGranularity }}"/></target>
+      </trans-unit>
+      <trans-unit id="7941188603752320246" datatype="html">
+        <source>No article in last 7 days</source>
+        <target state="new">Aucun article récupéré dans les 7 derniers jours</target>
+      </trans-unit>
+      <trans-unit id="9187290368170392732" datatype="html">
+        <source>Scraping disabled</source>
+        <target state="new">Récupération désactivée</target>
+      </trans-unit>
+      <trans-unit id="1078991528530548709" datatype="html">
+        <source>Edit Feed</source>
+        <target state="new">Modifier le flux</target>
+      </trans-unit>
+      <trans-unit id="8865787608600352305" datatype="html">
+        <source>Feeds Management</source>
+        <target state="new">Gestion des flux</target>
+      </trans-unit>
+      <trans-unit id="6372201297165580832" datatype="html">
+        <source>Add Feed</source>
+        <target state="new">Créer un nouveau flux</target>
+      </trans-unit>
+      <trans-unit id="2089102847927816834" datatype="html">
+        <source>Existing Feeds</source>
+        <target state="new">Flux existants</target>
+      </trans-unit>
+      <trans-unit id="949018238395520482" datatype="html">
+        <source>Auto Scheduling</source>
+        <target state="new">Planification automatique</target>
+      </trans-unit>
+      <trans-unit id="7258240726915227171" datatype="html">
+        <source> Scraping frequency can be too high, scraping same articles multiple times, or too low, missing articles <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> If enabled, auto scheduling will adjust frequency in order to find the right spot </source>
+        <target state="new"> La fréquence de récupération des flux peut être trop élevée, récupérant les mêmes articles plusieurs fois et requêtant inutilement vos serveurs, ou bien trop faible, avec le risque de rater des articles entre deux récupérations <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Si active, la planification automatique optimisera progressivement les fréquences de récupération afin de trouver la fréquence idéale</target>
+      </trans-unit>
+      <trans-unit id="4816216590591222133" datatype="html">
+        <source>Enabled</source>
+        <target state="new">Active</target>
+      </trans-unit>
+      <trans-unit id="5769292297914455214" datatype="html">
+        <source>Disabled</source>
+        <target state="new">Inactive</target>
+      </trans-unit>
+      <trans-unit id="8336461970368407711" datatype="html">
+        <source>Create Feed</source>
+        <target state="new">Créer un flux</target>
+      </trans-unit>
+      <trans-unit id="869430802969809132" datatype="html">
+        <source>Scraping Interval</source>
+        <target state="new">Fréquence de récupération des articles</target>
       </trans-unit>
     </body>
   </file>

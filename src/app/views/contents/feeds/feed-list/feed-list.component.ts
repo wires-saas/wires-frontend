@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Menu } from 'primeng/menu';
-import { Feed, FeedService } from '../service/feed.service';
+import { Feed, FeedService } from '../../../../services/feed.service';
 
 @Component({
     selector: 'app-feed-list',
@@ -24,18 +24,13 @@ export class FeedListComponent implements OnInit {
 
     ngOnInit(): void {
         this.menuItems = [
-            { label: 'Edit', icon: 'pi pi-pencil', command: () => this.onEdit() },
-            { label: 'Delete', icon: 'pi pi-trash', command: () => this.handleDelete() }
+            { label: $localize `Edit`, icon: 'pi pi-pencil', command: () => this.onEdit() },
+            { label: $localize `Delete`, icon: 'pi pi-trash', command: () => this.handleDelete() }
         ];
     }
 
-    parseDate(date: Date) {
-        let d = new Date(date);
-        return d.toUTCString().split(' ').slice(1, 3).join(' ');
-    }
-
-    handleDelete() {
-        this.feedService.removeTask(this.clickedFeed.id);
+    async handleDelete() {
+        await this.feedService.removeFeed(this.clickedFeed.organization, this.clickedFeed._id);
     }
 
     toggleMenu(event: Event, feed: Feed) {
@@ -44,21 +39,20 @@ export class FeedListComponent implements OnInit {
     }
 
     onEdit() {
-        this.feedService.onTaskSelect(this.clickedFeed);
-        this.feedService.showDialog('Edit Feed', false);
+        this.feedService.onFeedSelect(this.clickedFeed);
+        this.feedService.showDialog($localize `Edit Feed`, false);
     }
 
-    onCheckboxChange(event: any, feed: Feed) {
+    async onCheckboxChange(event: any, feed: Feed) {
         event.originalEvent.stopPropagation();
-        feed.scrapingEnabled = event.checked;
-        this.feedService.updateFeed(feed);
+        await this.feedService.toggleFeed(feed.organization, feed._id, event.checked);
     }
 
     autoScrapingRelevant(feed: Feed) {
         return !!(feed.scrapingEnabled
             && feed.autoScrapingEnabled
-            && feed.autoScrapingFrequency
+            && feed.autoScrapingInterval
             && feed.autoScrapingGranularity
-            && feed.autoScrapingFrequency !== feed.scrapingFrequency);
+            && feed.autoScrapingInterval !== feed.scrapingInterval);
     }
 }

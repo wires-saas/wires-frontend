@@ -1,0 +1,41 @@
+<p-toast></p-toast>
+<p-dialog [header]="dialogConfig.header || ''" [(visible)]="dialogConfig.visible" [modal]="true" [dismissableMask]="true" styleClass="mx-3 sm:mx-0 sm:w-full md:w-8 lg:w-6" contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
+    <div class="p-4">
+        <div class="grid p-fluid formgrid">
+            <div class="col-12 field">
+                <label for="feed-name" class="text-900 font-semibold" i18n>Feed Name</label>
+                <input id="feed-name" type="text" i18n-placeholder placeholder="Sitemap, top articles, fun facts..." pInputText [(ngModel)]="feed.displayName" />
+            </div>
+            <div class="col-12 field">
+                <label for="feed-description" class="text-900 font-semibold" i18n>Description (optional)</label>
+                <textarea id="feed-description" [(ngModel)]="feed.description" rows="2" pInputTextarea style="resize: vertical;" i18n-placeholder placeholder="A small description can come handy"></textarea>
+            </div>
+            <div class="col-6 field">
+                <label for="scraping-interval" class="text-900 font-semibold" i18n>Scraping Interval</label>
+                <p-inputNumber id="scraping-interval" [showButtons]="true" [min]="1" [(ngModel)]="feed.scrapingInterval" />
+            </div>
+            <div class="col-6 field">
+                <label for="scraping-granularity" class="text-900 font-semibold" i18n>Scraping Granularity</label>
+                <p-dropdown id="scraping-granularity" [(ngModel)]="feed.scrapingGranularity"
+                            [autoDisplayFirst]="true" [options]="availableGranularity" [showClear]="false"
+                            i18n-placeholder placeholder="Time Unit"></p-dropdown>
+            </div>
+            <div class="col-12 field">
+                <label for="urls" class="text-900 font-semibold" i18n>URLs</label>
+                <p-chips inputId="urls" [(ngModel)]="feed.urls" [allowDuplicate]="false"></p-chips>
+                <p class="p-text-secondary" i18n>We encourage copy/paste for avoiding mistakes, press Enter to validate URL</p>
+            </div>
+            <div class="col-12 flex justify-content-end mt-4">
+                <button (click)="cancelFeed()" [disabled]="saving" pButton pRipple class="p-button-outlined w-8rem mr-3" icon="pi pi-times" i18n-label label="Cancel"></button>
+
+                <button *ngIf="creation; else onlySave" (click)="testAndCreateFeed()" [disabled]="!canSave()" [loading]="saving"
+                        pButton pRipple class="p-button-primary w-20rem" icon="pi pi-check" i18n-label label="Test and Save"></button>
+
+                <ng-template #onlySave>
+                    <button (click)="updateFeed()" [disabled]="!canSave()" [loading]="saving"
+                            pButton pRipple class="p-button-primary w-8rem" icon="pi pi-check" i18n-label label="Save"></button>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</p-dialog>

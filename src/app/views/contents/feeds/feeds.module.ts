@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FeedsRoutingModule } from './feeds-routing.module';
 import { FeedsComponent } from './feeds.component';
-import { CreateFeedComponent } from './create-feed/create-feed.component';
+import { CreateOrUpdateFeedComponent } from './create-or-update-feed/create-or-update-feed.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor'
@@ -16,7 +16,7 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
 import { FeedListComponent } from './feed-list/feed-list.component'
-import { FeedService } from './service/feed.service';
+import { FeedService } from '../../../services/feed.service';
 import { RippleModule } from 'primeng/ripple';
 import { ChipsModule } from 'primeng/chips';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -49,7 +49,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
         ArraySortPipe,
         ToggleButtonModule
     ],
-    declarations: [FeedsComponent, CreateFeedComponent, FeedListComponent],
+    declarations: [FeedsComponent, CreateOrUpdateFeedComponent, FeedListComponent],
     providers: [FeedService]
 })
 export class FeedsModule { }

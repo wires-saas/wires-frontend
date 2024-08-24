@@ -12,13 +12,17 @@ export class MessageUtils {
         switch (err.status) {
             case 0:
                 detail = 'Server is unreachable';
+                break;
+            default:
+                if (err.error.message) detail += JSON.stringify(err.error.message);
+                break;
         }
 
         messageService.add({
             severity: 'error',
             summary: 'Error',
             detail,
-            life: 3000,
+            life: 5000,
             ...overrides
         });
     }

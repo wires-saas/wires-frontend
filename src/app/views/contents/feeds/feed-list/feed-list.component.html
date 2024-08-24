@@ -1,18 +1,38 @@
 <div>
-    <div class="text-900 font-semibold text-lg mt-5 mb-3 border-bottom-1 surface-border py-3">{{title}}</div>
+    <div class="text-900 font-semibold text-lg mt-5 mb-3 border-bottom-1 surface-border py-3">{{ title }}</div>
     <ul class="list-none p-0 m-0">
-        <li *ngFor="let feed of feeds | arraySort:{'totalArticles':'desc'} " class="flex flex-column gap-3 md:flex-row md:align-items-center p-2 border-bottom-1 surface-border">
+
+        <li *ngFor="let feed of feeds | arraySort:{'totalArticles':'desc'}; let k = index;"
+            class="flex flex-column gap-3 md:flex-row md:align-items-center p-2 border-bottom-1 surface-border">
+
             <div class="flex align-items-center" style="flex-grow: 1 !important; flex-shrink: 1 !important; flex-basis:33% !important;">
-                <p-checkbox [binary]="true" (onChange)="onCheckboxChange($event, feed)" [(ngModel)]="feed.scrapingEnabled" [inputId]="feed.id.toString()"></p-checkbox>
-                <label for="feed.id" style="word-break: break-word;" class="font-medium ml-2" [ngClass]="{'line-through': !feed.scrapingEnabled}">{{feed.name}}</label>
+                <p-checkbox [binary]="true" (onChange)="onCheckboxChange($event, feed)" [(ngModel)]="feed.scrapingEnabled" [inputId]="k.toString(10)"></p-checkbox>
+                <label [for]="k" style="word-break: break-word;" class="font-medium ml-2" [ngClass]="{'line-through': !feed.scrapingEnabled}">{{ feed.displayName }}</label>
             </div>
+
             <div class="flex gap-3 flex-column sm:flex-row sm:justify-content-between" style="flex-grow: 1 !important; flex-shrink: 1 !important; flex-basis:67% !important;">
                 <div class="flex align-items-center">
-                    <span class="flex align-items-center font-semibold mr-3" pTooltip="Articles" tooltipPosition="bottom"><i class="pi pi-box mr-2"></i>{{feed.totalArticles}}</span>
-                    <span *ngIf="feed.scrapingEnabled" [class.line-through]="autoScrapingRelevant(feed)" class="flex align-items-center font-semibold white-space-nowrap mr-3"><i class="pi pi-clock mr-2"></i>Every {{ feed.scrapingFrequency }} {{ feed.scrapingGranularity }}</span>
-                    <span *ngIf="autoScrapingRelevant(feed)" class="flex align-items-center font-semibold white-space-nowrap mr-3">-&gt; Every {{ feed.autoScrapingFrequency }} {{ feed.autoScrapingGranularity }}</span>
-                    <span *ngIf="feed.scrapingEnabled && feed.lastWeekArticles === 0" class="flex align-items-center font-semibold"><i class="pi pi-exclamation-triangle mr-2"></i>No article in last 7 days</span>
-                    <span *ngIf="!feed.scrapingEnabled" class="flex align-items-center font-semibold"><i class="pi pi-info-circle mr-2"></i>Scraping disabled</span>
+                    <span class="flex align-items-center font-semibold mr-3" i18n-pTooltip pTooltip="Articles" tooltipPosition="bottom">
+                        <i class="pi pi-box mr-2"></i>{{ feed.totalArticles }}
+                    </span>
+
+                    <!-- user scheduling -->
+                    <span *ngIf="feed.scrapingEnabled" [class.line-through]="autoScrapingRelevant(feed)" class="flex align-items-center font-semibold white-space-nowrap mr-3">
+                        <i class="pi pi-clock mr-2"></i><span i18n>Every {{ feed.scrapingInterval }} {{ feed.scrapingGranularity }}</span>
+                    </span>
+
+                    <!-- if auto scheduler erased user config -->
+                    <span *ngIf="autoScrapingRelevant(feed)" class="flex align-items-center font-semibold white-space-nowrap mr-3">
+                        -&gt; <span i18n>Every {{ feed.autoScrapingInterval }} {{ feed.autoScrapingGranularity }}</span>
+                    </span>
+
+                    <span *ngIf="feed.scrapingEnabled && feed.lastWeekArticles === 0" class="flex align-items-center font-semibold">
+                        <i class="pi pi-exclamation-triangle mr-2"></i><span i18n>No article in last 7 days</span>
+                    </span>
+
+                    <span *ngIf="!feed.scrapingEnabled" class="flex align-items-center font-semibold">
+                        <i class="pi pi-info-circle mr-2"></i><span i18n>Scraping disabled</span>
+                    </span>
                 </div>
                 <div class="flex align-items-center sm:justify-content-end">
                     <button pButton pRipple type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text z-3 ml-auto sm:ml-0" (click)="toggleMenu($event, feed)"></button>
