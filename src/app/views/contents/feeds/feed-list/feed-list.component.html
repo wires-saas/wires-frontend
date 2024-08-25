@@ -18,12 +18,12 @@
 
                     <!-- user scheduling -->
                     <span *ngIf="feed.scrapingEnabled" [class.line-through]="autoScrapingRelevant(feed)" class="flex align-items-center font-semibold white-space-nowrap mr-3">
-                        <i class="pi pi-clock mr-2"></i><span i18n>Every {{ feed.scrapingInterval }} {{ feed.scrapingGranularity }}</span>
+                        <i class="pi pi-clock mr-2"></i>{{ feed | frequency:'manual' }}
                     </span>
 
                     <!-- if auto scheduler erased user config -->
                     <span *ngIf="autoScrapingRelevant(feed)" class="flex align-items-center font-semibold white-space-nowrap mr-3">
-                        -&gt; <span i18n>Every {{ feed.autoScrapingInterval }} {{ feed.autoScrapingGranularity }}</span>
+                        {{ feed | frequency:'auto' }}
                     </span>
 
                     <span *ngIf="feed.scrapingEnabled && feed.lastWeekArticles === 0" class="flex align-items-center font-semibold">
@@ -42,3 +42,9 @@
         </li>
     </ul>
 </div>
+
+<p-confirmDialog i18n-header header="Permanently Delete Feed" key="confirm-delete-feed" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to permanently delete feed and not disable it ? Note this will not delete any article."
+                 defaultFocus="none"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>

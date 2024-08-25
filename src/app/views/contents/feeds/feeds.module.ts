@@ -24,6 +24,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ArraySortPipe } from '../../../utils/pipes/array-sort.pipe';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { FeedFrequencyPipe } from '../../../utils/pipes/feed-frequency.pipe';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
     imports: [
@@ -47,9 +50,11 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
         DropdownModule,
         InputTextareaModule,
         ArraySortPipe,
-        ToggleButtonModule
+        ToggleButtonModule,
+        FeedFrequencyPipe,
+        ConfirmDialogModule
     ],
     declarations: [FeedsComponent, CreateOrUpdateFeedComponent, FeedListComponent],
-    providers: [FeedService]
+    providers: [FeedService, MessageService, ConfirmationService]
 })
 export class FeedsModule { }

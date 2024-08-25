@@ -1574,9 +1574,6 @@
       <trans-unit id="5769292297914455214" datatype="html">
         <source>Disabled</source>
       </trans-unit>
-      <trans-unit id="6195511704004519201" datatype="html">
-        <source>Every <x id="INTERPOLATION" equiv-text="{{ feed.scrapingInterval }}"/> <x id="INTERPOLATION_1" equiv-text="{{ feed.scrapingGranularity }}"/></source>
-      </trans-unit>
       <trans-unit id="6372201297165580832" datatype="html">
         <source>Add Feed</source>
       </trans-unit>
@@ -1672,6 +1669,54 @@
       </trans-unit>
       <trans-unit id="642534594356440342" datatype="html">
         <source>Feed</source>
+      </trans-unit>
+      <trans-unit id="3778321780176405324" datatype="html">
+        <source>Feed &quot;<x id="PH" equiv-text="feed.displayName"/>&quot; disabled.</source>
+      </trans-unit>
+      <trans-unit id="5291870404702250254" datatype="html">
+        <source>Error enabling feed</source>
+      </trans-unit>
+      <trans-unit id="6208431874936969701" datatype="html">
+        <source>Feed &quot;<x id="PH" equiv-text="feed.displayName"/>&quot; enabled.</source>
+      </trans-unit>
+      <trans-unit id="7754611694805150287" datatype="html">
+        <source>Error disabling feed</source>
+      </trans-unit>
+      <trans-unit id="1629418959399436405" datatype="html">
+        <source>Error deleting feed</source>
+      </trans-unit>
+      <trans-unit id="5496863718763549613" datatype="html">
+        <source>Feed has been deleted successfully.</source>
+      </trans-unit>
+      <trans-unit id="2916448129128764012" datatype="html">
+        <source>Every <x id="PH" equiv-text="interval"/> days</source>
+      </trans-unit>
+      <trans-unit id="5411779212415809513" datatype="html">
+        <source>Every <x id="PH" equiv-text="interval"/> minutes</source>
+      </trans-unit>
+      <trans-unit id="6117023198151037702" datatype="html">
+        <source>Every <x id="PH" equiv-text="interval"/> hours</source>
+      </trans-unit>
+      <trans-unit id="3510279130223735922" datatype="html">
+        <source>Every minute</source>
+      </trans-unit>
+      <trans-unit id="6057435863417829702" datatype="html">
+        <source>Every hour</source>
+      </trans-unit>
+      <trans-unit id="6174308501997156278" datatype="html">
+        <source>Every day</source>
+      </trans-unit>
+      <trans-unit id="8486406438183289279" datatype="html">
+        <source>Fetch Articles</source>
+      </trans-unit>
+      <trans-unit id="2039965584310693227" datatype="html">
+        <source>Are you sure you want to permanently delete feed and not disable it ? Note this will not delete any article.</source>
+      </trans-unit>
+      <trans-unit id="9178182467454450952" datatype="html">
+        <source>Confirm</source>
+      </trans-unit>
+      <trans-unit id="7373254601261965618" datatype="html">
+        <source>Permanently Delete Feed</source>
       </trans-unit>
     </body>
   </file>

@@ -1,11 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, Input, OnInit, ViewChild } from '@angular/core';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Menu } from 'primeng/menu';
 import { Feed, FeedService } from '../../../../services/feed.service';
 import { AuthService } from '../../../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { Role, RoleUtils } from '../../../../utils/role.utils';
 import { OrganizationService } from '../../../../services/organization.service';
+import { MessageUtils } from '../../../../utils/message.utils';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-feed-list',
@@ -13,6 +16,8 @@ import { OrganizationService } from '../../../../services/organization.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedListComponent implements OnInit {
+
+    private destroyRef = inject(DestroyRef);
 
     @Input() feeds!: Feed[];
 
@@ -25,28 +30,71 @@ export class FeedListComponent implements OnInit {
     clickedFeed!: Feed;
 
     constructor(private authService: AuthService,
+                private messageService: MessageService,
+                private confirmationService: ConfirmationService,
                 private organizationService: OrganizationService,
                 private feedService: FeedService) { }
 
     async ngOnInit() {
 
-        const currentOrganization = await firstValueFrom(this.organizationService.currentOrganization$);
-        const currentUser = await firstValueFrom(this.authService.currentUser$);
+        this.organizationService.currentOrganization$.pipe(
+            map(async (org) => {
+                if (org) {
+                    let canDelete = false;
+                    const currentUser = await firstValueFrom(this.authService.currentUser$);
 
-        let canDelete: boolean = false;
-        if (currentOrganization && currentUser) {
-            const currentUserRole = RoleUtils.getRoleForOrganization(currentUser, currentOrganization?.slug);
-            canDelete = currentUserRole === Role.ADMIN || currentUserRole === Role.SUPER_ADMIN;
-        }
+                    if (currentUser) {
+                        const currentUserRole = RoleUtils.getRoleForOrganization(currentUser, org?.slug);
+                        canDelete = currentUserRole === Role.ADMIN || currentUserRole === Role.SUPER_ADMIN;
+                    }
 
-        this.menuItems = [
-            { label: $localize `Edit`, icon: 'pi pi-pencil', command: () => this.onEdit() },
-            { label: $localize `Delete`, icon: 'pi pi-trash', disabled: !canDelete, command: () => this.handleDelete() }
-        ];
+                    this.menuItems = [
+                        {
+                            label: $localize `Fetch Articles`,
+                            icon: 'pi pi-play-circle',
+                            command: async () => await this.onPlayNow()
+                        },
+                        {
+                            label: $localize `Edit`,
+                            icon: 'pi pi-pencil',
+                            command: () => this.onEdit()
+                        },
+                        {
+                            label: $localize `Delete`,
+                            icon: 'pi pi-trash',
+                            disabled: !canDelete,
+                            command: () => this.handleDelete()
+                        }
+                    ];
+                }
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
+
     }
 
     async handleDelete() {
-        await this.feedService.removeFeed(this.clickedFeed.organization, this.clickedFeed._id);
+
+        this.confirmationService.confirm({
+            key: 'confirm-delete-feed',
+            acceptLabel: $localize `Confirm`,
+            rejectLabel: $localize `Cancel`,
+            accept: async () => {
+
+                await this.feedService.removeFeed(this.clickedFeed.organization, this.clickedFeed._id).then(() => {
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: $localize`Success`,
+                        detail: $localize`Feed has been deleted successfully.`
+                    });
+                }).catch((err) => {
+                    console.error(err);
+                    MessageUtils.parseServerError(this.messageService, err, {
+                        summary: $localize`Error deleting feed`,
+                    });
+                });
+            }
+        });
     }
 
     toggleMenu(event: Event, feed: Feed) {
@@ -59,9 +107,31 @@ export class FeedListComponent implements OnInit {
         this.feedService.showDialog($localize `Edit Feed`, false);
     }
 
+    async onPlayNow() {
+        this.feedService.onFeedSelect(this.clickedFeed);
+        await this.feedService.playFeed(this.clickedFeed.organization, this.clickedFeed);
+    }
+
     async onCheckboxChange(event: any, feed: Feed) {
         event.originalEvent.stopPropagation();
-        await this.feedService.toggleFeed(feed.organization, feed._id, event.checked);
+        await this.feedService.toggleFeed(feed.organization, feed._id, event.checked).then(() => {
+
+            const detail = event.checked ? $localize `Feed "${feed.displayName}" enabled.` : $localize `Feed "${feed.displayName}" disabled.`;
+
+            this.messageService.add({
+                severity: 'info',
+                summary: $localize `Success`,
+                detail: detail
+            });
+
+        }).catch((err) => {
+            console.error(err);
+            const summary = event.checked ? $localize `Error enabling feed` : $localize `Error disabling feed`;
+
+            MessageUtils.parseServerError(this.messageService, err, {
+                summary: summary,
+            });
+        })
     }
 
     autoScrapingRelevant(feed: Feed) {

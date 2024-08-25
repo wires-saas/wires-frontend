@@ -8,7 +8,6 @@ import { MessageUtils } from '../../../../utils/message.utils';
 @Component({
     selector: 'app-create-or-update-feed',
     templateUrl: './create-or-update-feed.component.html',
-    providers: [MessageService]
 })
 export class CreateOrUpdateFeedComponent implements OnInit {
 

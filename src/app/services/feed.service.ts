@@ -76,7 +76,6 @@ export class FeedService {
     async fetchFeeds(organizationId: string): Promise<Feed[]> {
         return firstValueFrom(this.http.get<Feed[]>(`${this.domain}/organizations/${organizationId}/feeds`))
             .then((feeds) => {
-                console.log(feeds);
                 this.feeds$$.next(feeds);
                 return feeds;
             });
@@ -128,6 +127,13 @@ export class FeedService {
                 const feeds = this.feeds$$.getValue().map(f => updatedFeed._id === f._id ? updatedFeed : f);
                 this.feeds$$.next([...feeds]);
                 return updatedFeed;
+            });
+    }
+
+    async playFeed(organizationId: string, feed: Partial<Feed>): Promise<void> {
+        return firstValueFrom(this.http.post<any>(`${this.domain}/organizations/${organizationId}/feeds/${feed._id}/runs`, {}))
+            .then((result) => {
+                console.log('playing feed : ', result);
             });
     }
 
