@@ -23,27 +23,28 @@
                 <th style="min-width: 14rem">
                     <div class="flex justify-content-between align-items-center">
                         <span i18n>Image</span>
-                        <p-columnFilter type="text" field="metadata.image" display="menu" placeholder="Search by image"></p-columnFilter>
+                        <p-columnFilter type="text" field="metadata.image" display="menu"
+                                        i18n-placeholder placeholder="Search by image"></p-columnFilter>
                     </div>
                 </th>
 
                 <th style="min-width: 12rem">
                     <div class="flex justify-content-between align-items-center">
                         <span i18n>Title</span>
-                        <p-columnFilter type="text" field="metadata.title" display="menu" placeholder="Search by title"></p-columnFilter>
+                        <p-columnFilter type="text" field="metadata.title" display="menu" i18n-placeholder placeholder="Search by title"></p-columnFilter>
                     </div>
                 </th>
                 <th style="min-width: 12rem">
                     <div class="flex justify-content-between align-items-center">
                         <span i18n>Description</span>
-                        <p-columnFilter type="text" field="metadata.description" display="menu" placeholder="Search by description"></p-columnFilter>
+                        <p-columnFilter type="text" field="metadata.description" display="menu" i18n-placeholder placeholder="Search by description"></p-columnFilter>
                     </div>
                 </th>
 
                 <th style="min-width: 10rem">
                     <div class="flex justify-content-between align-items-center">
                         <span i18n>Publication</span>
-                        <p-columnFilter type="date" field="metadata.publishedAt" display="menu" placeholder="dd/mm/yyyy"></p-columnFilter>
+                        <p-columnFilter type="date" field="metadata.publishedAt" display="menu" i18n-placeholder placeholder="dd/mm/yyyy"></p-columnFilter>
                     </div>
                 </th>
                 <th style="min-width: 10rem">
@@ -51,7 +52,8 @@
                         <span i18n>Categories</span>
                         <p-columnFilter field="status" matchMode="equals" display="menu">
                             <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [style]="{'min-width': '12rem'}" >
+                                <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
+                                            i18n-placeholder placeholder="Any" [style]="{'min-width': '12rem'}" >
                                     <ng-template let-option pTemplate="item">
                                         <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
                                     </ng-template>
@@ -65,7 +67,8 @@
                         <span i18n>Tags</span>
                         <p-columnFilter field="status" matchMode="equals" display="menu">
                             <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [style]="{'min-width': '12rem'}" >
+                                <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
+                                            i18n-placeholder placeholder="Any" [style]="{'min-width': '12rem'}" >
                                     <ng-template let-option pTemplate="item">
                                         <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
                                     </ng-template>
@@ -79,7 +82,8 @@
                         <span i18n>Popularity</span>
                         <p-columnFilter field="activity" matchMode="between" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
                             <ng-template pTemplate="filter" let-filter="filterCallback">
-                                <p-slider [ngModel]="activityValues" [range]="true" (onSlideEnd)="filter($event.values)" styleClass="m-3" [style]="{'min-width': '12rem'}" ></p-slider>
+                                <p-slider [ngModel]="activityValues" [range]="true" (onSlideEnd)="filter($event.values)"
+                                          styleClass="m-3" [style]="{'min-width': '12rem'}" ></p-slider>
                                 <div class="flex align-items-center justify-content-between px-2">
                                     <span>{{activityValues[0]}}</span>
                                     <span>{{activityValues[1]}}</span>

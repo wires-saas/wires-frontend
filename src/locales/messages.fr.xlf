@@ -2205,6 +2205,30 @@
         <source>Loading articles data. Please wait.</source>
         <target state="new">Chargement des articles. Veuillez patienter.</target>
       </trans-unit>
+      <trans-unit id="1778566165350542713" datatype="html">
+        <source>Search by image</source>
+        <target state="new">Chercher par image</target>
+      </trans-unit>
+      <trans-unit id="3768264297677107657" datatype="html">
+        <source>Search by title</source>
+        <target state="new">Chercher par titr</target>
+      </trans-unit>
+      <trans-unit id="4970302946495837912" datatype="html">
+        <source>Search by description</source>
+        <target state="new">Chercher par description</target>
+      </trans-unit>
+      <trans-unit id="356860348434920580" datatype="html">
+        <source>dd/mm/yyyy</source>
+        <target state="new">dd/mm/yyyy</target>
+      </trans-unit>
+      <trans-unit id="3184700926171002527" datatype="html">
+        <source>Any</source>
+        <target state="new">N&apos;importe</target>
+      </trans-unit>
+      <trans-unit id="642534594356440342" datatype="html">
+        <source>Feed</source>
+        <target state="new">Flux</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

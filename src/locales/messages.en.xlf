@@ -1655,6 +1655,24 @@
       <trans-unit id="916798626618034358" datatype="html">
         <source>Popularity</source>
       </trans-unit>
+      <trans-unit id="1778566165350542713" datatype="html">
+        <source>Search by image</source>
+      </trans-unit>
+      <trans-unit id="3184700926171002527" datatype="html">
+        <source>Any</source>
+      </trans-unit>
+      <trans-unit id="356860348434920580" datatype="html">
+        <source>dd/mm/yyyy</source>
+      </trans-unit>
+      <trans-unit id="3768264297677107657" datatype="html">
+        <source>Search by title</source>
+      </trans-unit>
+      <trans-unit id="4970302946495837912" datatype="html">
+        <source>Search by description</source>
+      </trans-unit>
+      <trans-unit id="642534594356440342" datatype="html">
+        <source>Feed</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

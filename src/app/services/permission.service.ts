@@ -18,6 +18,7 @@ export enum PermissionSubject {
     Organization = 'organization',
     UserRole = 'userRole',
     User = 'user',
+    Feed = 'feed',
 }
 
 export class Permission {
@@ -62,6 +63,9 @@ export class Permission {
                 break;
             case PermissionSubject.User:
                 subjectI18N = $localize `User`;
+                break;
+            case PermissionSubject.Feed:
+                subjectI18N = $localize `Feed`;
                 break;
             default:
                 subjectI18N = $localize `N/A`;
