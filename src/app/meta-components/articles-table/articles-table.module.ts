@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ArticlesComponent } from './articles.component';
-import { ArticlesRoutingModule } from './articles-routing.module';
-import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { TooltipModule } from 'primeng/tooltip';
+import { ArticleClickRatePipe } from '../../utils/pipes/article-click-rate.pipe';
+import { ArticlesTableComponent } from './articles-table.component';
+import { ArticlesRoutingModule } from '../../views/contents/articles/articles-routing.module';
+import { TableModule } from 'primeng/table';
+import { RatingModule } from 'primeng/rating';
+import { SliderModule } from 'primeng/slider';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { RippleModule } from 'primeng/ripple';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { DropdownModule } from 'primeng/dropdown';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
-import { SliderModule } from 'primeng/slider';
-import { RatingModule } from 'primeng/rating';
-import { TooltipModule } from 'primeng/tooltip';
-import { ArticlesViewModule } from '../../../meta-components/articles-view/articles-view.module';
-import { ArticlesTableModule } from '../../../meta-components/articles-table/articles-table.module';
 
 @NgModule({
     imports: [
@@ -35,9 +34,13 @@ import { ArticlesTableModule } from '../../../meta-components/articles-table/art
         ProgressBarModule,
         ToastModule,
         TooltipModule,
-        ArticlesViewModule,
-        ArticlesTableModule
+        ArticleClickRatePipe,
     ],
-	declarations: [ArticlesComponent]
+    exports: [
+        ArticlesTableComponent,
+    ],
+    declarations: [
+        ArticlesTableComponent,
+    ]
 })
-export class ArticlesModule { }
+export class ArticlesTableModule { }

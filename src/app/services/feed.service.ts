@@ -41,7 +41,6 @@ export enum AuthorizationType {
 export interface DialogConfig {
     visible: boolean;
     header?: string;
-    organization?: string;
     newFeed?: boolean;
 }
 

@@ -10,8 +10,8 @@ import { ListUsersRoutingModule } from './list-users-routing.module';
 import { MenuModule } from 'primeng/menu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
-import { RolePipe } from '../../../../utils/role.pipe';
-import { StatusPipe } from '../../../../utils/status.pipe';
+import { RolePipe } from '../../../../utils/pipes/role.pipe';
+import { StatusPipe } from '../../../../utils/pipes/status.pipe';
 
 @NgModule({
     imports: [

@@ -17,7 +17,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ToastModule } from 'primeng/toast';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { RolePipe } from '../../../utils/role.pipe';
+import { RolePipe } from '../../../utils/pipes/role.pipe';
 
 @NgModule({
     imports: [

@@ -24,8 +24,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
 import { LogosModule } from '../meta-components/logos/logos.module';
-import { FullNamePipe } from '../utils/full-name.pipe';
-import { ArrayFilterPipe } from '../utils/array-filter.pipe';
+import { FullNamePipe } from '../utils/pipes/full-name.pipe';
+import { ArrayFilterPipe } from '../utils/pipes/array-filter.pipe';
 
 @NgModule({
     declarations: [

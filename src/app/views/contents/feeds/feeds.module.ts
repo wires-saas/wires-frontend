@@ -22,7 +22,7 @@ import { ChipsModule } from 'primeng/chips';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { ArraySortPipe } from '../../../utils/array-sort.pipe';
+import { ArraySortPipe } from '../../../utils/pipes/array-sort.pipe';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @NgModule({

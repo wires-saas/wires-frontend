@@ -17,6 +17,9 @@ import { BlogListRoutingModule } from "./blog-list-routing.module";
         DataViewModule,
         DropdownModule
     ],
+    exports: [
+        BlogListCardComponent
+    ],
     declarations: [BlogListComponent, BlogListCardComponent]
-  })
+})
   export class BlogListModule { }

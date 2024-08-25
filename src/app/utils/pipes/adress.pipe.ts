@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Organization } from '../services/organization.service';
+import { Organization } from '../../services/organization.service';
 
 @Pipe({
     name: 'address',

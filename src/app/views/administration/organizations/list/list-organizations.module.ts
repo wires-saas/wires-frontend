@@ -7,7 +7,7 @@ import { TableModule } from 'primeng/table';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ListOrganizationsComponent } from './list-organizations.component';
 import { ListOrganizationsRoutingModule } from './list-organizations-routing.module';
-import { CountryNamePipe } from '../../../../utils/country-name.pipe';
+import { CountryNamePipe } from '../../../../utils/pipes/country-name.pipe';
 import { MenuModule } from 'primeng/menu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
