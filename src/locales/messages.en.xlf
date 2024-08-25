@@ -1625,6 +1625,36 @@
       <trans-unit id="869430802969809132" datatype="html">
         <source>Scraping Interval</source>
       </trans-unit>
+      <trans-unit id="1819652562485333830" datatype="html">
+        <source>Publication</source>
+      </trans-unit>
+      <trans-unit id="1902100407096396858" datatype="html">
+        <source>Categories</source>
+      </trans-unit>
+      <trans-unit id="3012906865384504293" datatype="html">
+        <source>Image</source>
+      </trans-unit>
+      <trans-unit id="4069595631516152552" datatype="html">
+        <source>Loading articles data. Please wait.</source>
+      </trans-unit>
+      <trans-unit id="4594048873339677178" datatype="html">
+        <source>Search Keyword</source>
+      </trans-unit>
+      <trans-unit id="5701618810648052610" datatype="html">
+        <source>Title</source>
+      </trans-unit>
+      <trans-unit id="7886570921510760899" datatype="html">
+        <source>Tags</source>
+      </trans-unit>
+      <trans-unit id="8700121026680200191" datatype="html">
+        <source>Clear</source>
+      </trans-unit>
+      <trans-unit id="8998886274661331420" datatype="html">
+        <source>No articles found.</source>
+      </trans-unit>
+      <trans-unit id="916798626618034358" datatype="html">
+        <source>Popularity</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -2,7 +2,7 @@
 
     <p-menu #actionsMenu [popup]="true" [model]="actionsMenuItems"></p-menu>
 
-    <p-table #dt [value]="users" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+    <p-table #dt [value]="users" [paginator]="true" [rows]="10" [rowHover]="true" [showCurrentPageReport]="true" responsiveLayout="scroll"
         [currentPageReportTemplate]="getPaginationLabel()" [rowsPerPageOptions]="[10,25,50]"
         [globalFilterFields]="['firstName', 'lastName','email']"
              (sortFunction)="customSort($event)" [customSort]="true" sortField="roles" [sortOrder]="-1">
@@ -42,7 +42,7 @@
         <ng-template pTemplate="body" let-user>
             <tr>
                 <td>
-                    <div class="inline-flex align-items-center">
+                    <div class="inline-flex align-items-center vertical-align-middle">
                     <img [src]="user.avatarUrl" i18n-alt alt="" class="w-2rem mr-2 p-border-round p-border-1 border-circle"/>
                         <span>{{ user.firstName}}<i *ngIf="isCurrentUser(user) | async" i18n-pTooltip pTooltip="You" tooltipPosition="bottom" class="pi pi-user ml-2"></i></span>
                     </div>

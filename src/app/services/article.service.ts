@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Customer } from '../demo/api/customer';
 
 export interface ArticleMetadata {
     title: string;
@@ -86,6 +87,11 @@ export class ArticleService {
     closeDialog() {
         this.dialogConfig = { visible: false };
         this.dialogSource$$.next(this.dialogConfig);
+    }
+
+    async getFakeArticles(): Promise<Article[]> {
+        return firstValueFrom(this.http.get<any>('assets/mocks/articles.json'))
+            .then(res => res.data as Article[]);
     }
 
 }

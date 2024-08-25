@@ -46,7 +46,7 @@ export class AppMenuComponent implements OnInit {
 
     private contentsMenu: (org: Organization, authService: AuthService) => any[] = (org, authService) => ([
         {
-            label: 'Contents',
+            label: $localize `Contents`,
             restriction: authService.hasRole$(Role.MANAGER, org.slug),
             items: [
                 {

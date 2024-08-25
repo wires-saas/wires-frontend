@@ -16,6 +16,8 @@ import { RippleModule } from 'primeng/ripple';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
+import { ChipModule } from 'primeng/chip';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
     imports: [
@@ -35,6 +37,8 @@ import { ToastModule } from 'primeng/toast';
         ToastModule,
         TooltipModule,
         ArticleClickRatePipe,
+        ChipModule,
+        TagModule,
     ],
     exports: [
         ArticlesTableComponent,

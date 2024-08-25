@@ -2055,7 +2055,7 @@
       </trans-unit>
       <trans-unit id="8799778098875410855" datatype="html">
         <source>A small description can come handy</source>
-        <target state="new">Une courte description peut s'avérer être un gain de temps par la suite</target>
+        <target state="new">Une courte description peut s&apos;avérer être un gain de temps par la suite</target>
       </trans-unit>
       <trans-unit id="9100995413084149873" datatype="html">
         <source>Scraping Granularity</source>
@@ -2164,6 +2164,46 @@
       <trans-unit id="869430802969809132" datatype="html">
         <source>Scraping Interval</source>
         <target state="new">Fréquence de récupération des articles</target>
+      </trans-unit>
+      <trans-unit id="8700121026680200191" datatype="html">
+        <source>Clear</source>
+        <target state="new">Réinitialiser</target>
+      </trans-unit>
+      <trans-unit id="4594048873339677178" datatype="html">
+        <source>Search Keyword</source>
+        <target state="new">Recherche par mot</target>
+      </trans-unit>
+      <trans-unit id="3012906865384504293" datatype="html">
+        <source>Image</source>
+        <target state="new">Image</target>
+      </trans-unit>
+      <trans-unit id="5701618810648052610" datatype="html">
+        <source>Title</source>
+        <target state="new">Titre</target>
+      </trans-unit>
+      <trans-unit id="1819652562485333830" datatype="html">
+        <source>Publication</source>
+        <target state="new">Publication</target>
+      </trans-unit>
+      <trans-unit id="1902100407096396858" datatype="html">
+        <source>Categories</source>
+        <target state="new">Catégories</target>
+      </trans-unit>
+      <trans-unit id="7886570921510760899" datatype="html">
+        <source>Tags</source>
+        <target state="new">Tags</target>
+      </trans-unit>
+      <trans-unit id="916798626618034358" datatype="html">
+        <source>Popularity</source>
+        <target state="new">Popularité</target>
+      </trans-unit>
+      <trans-unit id="8998886274661331420" datatype="html">
+        <source>No articles found.</source>
+        <target state="new">Aucun article trouvé.</target>
+      </trans-unit>
+      <trans-unit id="4069595631516152552" datatype="html">
+        <source>Loading articles data. Please wait.</source>
+        <target state="new">Chargement des articles. Veuillez patienter.</target>
       </trans-unit>
     </body>
   </file>

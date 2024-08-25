@@ -1,41 +1,45 @@
-import { Component } from '@angular/core';
-import { Customer, Representative } from 'src/app/demo/api/customer';
-import { Product } from 'src/app/demo/api/product';
+import { Component, OnInit } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { ProductService } from '../../../demo/service/product.service';
+import { Article, ArticleService } from '../../../services/article.service';
 
-interface expandedRows {
-    [key: string]: boolean;
-}
 
 @Component({
     templateUrl: './articles.component.html',
     providers: [MessageService, ConfirmationService]
 })
-export class ArticlesComponent {
+export class ArticlesComponent implements OnInit {
 
-    customers1: Customer[] = [];
-
-    selectedCustomers1: Customer[] = [];
-
-    selectedCustomer: Customer = {};
-
-    representatives: Representative[] = [];
+    articles: Article[] = [];
 
     statuses: any[] = [];
 
-    products: Product[] = [];
-
-    rowGroupMetadata: any;
-
-    expandedRows: expandedRows = {};
-
-    activityValues: number[] = [0, 100];
-
-    isExpanded: boolean = false;
-
-    idFrozen: boolean = false;
-
     loading: boolean = true;
+
+    constructor(private articleService: ArticleService, private productService: ProductService) { }
+
+
+    ngOnInit() {
+        setTimeout(() => {
+            this.articleService.getFakeArticles().then(articles => {
+                this.articles = articles;
+                this.loading = false;
+
+                // @ts-ignore
+                this.articles.forEach(article => article.date = new Date(article.metadata.publishedAt));
+            });
+        }, 200);
+
+
+        this.statuses = [
+            { label: 'Unqualified', value: 'unqualified' },
+            { label: 'Qualified', value: 'qualified' },
+            { label: 'New', value: 'new' },
+            { label: 'Negotiation', value: 'negotiation' },
+            { label: 'Renewal', value: 'renewal' },
+            { label: 'Proposal', value: 'proposal' }
+        ];
+    }
 
 
 

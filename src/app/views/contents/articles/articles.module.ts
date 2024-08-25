@@ -17,6 +17,7 @@ import { RatingModule } from 'primeng/rating';
 import { TooltipModule } from 'primeng/tooltip';
 import { ArticlesViewModule } from '../../../meta-components/articles-view/articles-view.module';
 import { ArticlesTableModule } from '../../../meta-components/articles-table/articles-table.module';
+import { ArticleService } from '../../../services/article.service';
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import { ArticlesTableModule } from '../../../meta-components/articles-table/art
         ArticlesViewModule,
         ArticlesTableModule
     ],
-	declarations: [ArticlesComponent]
+	declarations: [ArticlesComponent],
+    providers: [ArticleService]
 })
 export class ArticlesModule { }

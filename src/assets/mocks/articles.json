@@ -1,0 +1,220 @@
+{
+    "data": [
+        {
+            "_id": "1",
+            "url": "/article/1",
+            "metadata": {
+                "title": "Blog",
+                "description": "Ornare egestas pellentesque facilisis in a ultrices erat diam metus integer sed",
+                "image": "assets/demo/images/blog/blog-1.png",
+                "categories": [
+                    "Voyage"
+                ],
+                "publishedAt": 1724590829681
+            },
+
+            "stats": {
+                "sent": 10,
+                "displayed": 5,
+                "clicked": 1
+            },
+
+            "tags": ["Économie", "Important", "Top"],
+            "feeds": [],
+            "createdAt": 1724590829681,
+            "updatedAt": 1724590829681
+        },
+        {
+            "_id": "2",
+            "url": "/article/2",
+            "metadata": {
+                "title": "Blog2",
+                "description": "Ornare egestas pellentesque facilisis in a ultrices erat diam metus integer sed",
+                "image": "assets/demo/images/blog/blog-2.png",
+                "categories": [
+                    "Blog", "Sport"
+                ],
+                "publishedAt": 1724590829681
+            },
+
+            "stats": {
+                "sent": 10,
+                "displayed": 5,
+                "clicked": 1
+            },
+
+            "tags": ["Top"],
+            "feeds": [],
+            "createdAt": 1724590829681,
+            "updatedAt": 1724590829681
+        },
+        {
+            "_id": "3",
+            "url": "/article/3",
+            "metadata": {
+                "title": "Blog",
+                "description": "Ornare egestas pellentesque facilisis in a ultrices erat diam metus integer sed",
+                "image": "assets/demo/images/blog/blog-3.png",
+                "categories": [
+                    "Blog"
+                ],
+                "publishedAt": 1724590829681
+            },
+
+            "stats": {
+                "sent": 10,
+                "displayed": 5,
+                "clicked": 1
+            },
+
+            "tags": ["Récent", "Top"],
+            "feeds": [],
+            "createdAt": 1724590829681,
+            "updatedAt": 1724590829681
+        },
+        {
+            "_id": "4",
+            "url": "/article/4",
+            "metadata": {
+                "title": "Blog",
+                "description": "Ornare egestas pellentesque facilisis in a ultrices erat diam metus integer sed",
+                "image": "assets/demo/images/blog/blog-4.png",
+                "categories": [
+                    "Blog"
+                ],
+                "publishedAt": 1724590829681
+            },
+
+            "stats": {
+                "sent": 10,
+                "displayed": 5,
+                "clicked": 1
+            },
+
+            "tags": ["a", "b"],
+            "feeds": [],
+            "createdAt": 1724590829681,
+            "updatedAt": 1724590829681
+        },
+        {
+            "_id": "5",
+            "url": "/article/5",
+            "metadata": {
+                "title": "Blog",
+                "description": "Ornare egestas pellentesque facilisis in a ultrices erat diam metus integer sed",
+                "image": "assets/demo/images/blog/blog-5.png",
+                "categories": [
+                    "Blog"
+                ],
+                "publishedAt": 1724590829681
+            },
+
+            "stats": {
+                "sent": 10,
+                "displayed": 5,
+                "clicked": 1
+            },
+
+            "tags": ["a", "b"],
+            "feeds": [],
+            "createdAt": 1724590829681,
+            "updatedAt": 1724590829681
+        },
+        {
+            "_id": "6",
+            "url": "/article/6",
+            "metadata": {
+                "title": "Blog",
+                "description": "Ornare egestas pellentesque facilisis in a ultrices erat diam metus integer sed",
+                "image": "assets/demo/images/blog/blog-5.png",
+                "categories": [
+                    "Blog"
+                ],
+                "publishedAt": 1724590829681
+            },
+
+            "stats": {
+                "sent": 10,
+                "displayed": 5,
+                "clicked": 1
+            },
+
+            "tags": ["a", "b"],
+            "feeds": [],
+            "createdAt": 1724590829681,
+            "updatedAt": 1724590829681
+        },
+        {
+            "_id": "7",
+            "url": "/article/7",
+            "metadata": {
+                "title": "Blog",
+                "description": "Ornare egestas pellentesque facilisis in a ultrices erat diam metus integer sed",
+                "image": "assets/demo/images/blog/blog-1.png",
+                "categories": [
+                    "Blog"
+                ],
+                "publishedAt": 1724590829681
+            },
+
+            "stats": {
+                "sent": 10,
+                "displayed": 5,
+                "clicked": 1
+            },
+
+            "tags": ["a", "b"],
+            "feeds": [],
+            "createdAt": 1724590829681,
+            "updatedAt": 1724590829681
+        },
+        {
+            "_id": "8",
+            "url": "/article/8",
+            "metadata": {
+                "title": "Blog",
+                "description": "Ornare egestas pellentesque facilisis in a ultrices erat diam metus integer sed",
+                "image": "assets/demo/images/blog/blog-1.png",
+                "categories": [
+                    "Blog"
+                ],
+                "publishedAt": 1724590829681
+            },
+
+            "stats": {
+                "sent": 10,
+                "displayed": 5,
+                "clicked": 1
+            },
+
+            "tags": ["a", "b"],
+            "feeds": [],
+            "createdAt": 1724590829681,
+            "updatedAt": 1724590829681
+        },
+        {
+            "_id": "9",
+            "url": "/article/9",
+            "metadata": {
+                "title": "Blog",
+                "description": "Ornare egestas pellentesque facilisis in a ultrices erat diam metus integer sed",
+                "image": "assets/demo/images/blog/blog-1.png",
+                "categories": [
+                    "Blog"
+                ],
+                "publishedAt": 1724590829681
+            },
+
+            "stats": {
+                "sent": 10,
+                "displayed": 5,
+                "clicked": 1
+            },
+
+            "tags": ["a", "b"],
+            "feeds": [],
+            "createdAt": 1724590829681,
+            "updatedAt": 1724590829681
+        }
+    ]
+}
