@@ -9,6 +9,7 @@ import { OrganizationService } from '../../../../services/organization.service';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-feed-list',
@@ -33,7 +34,8 @@ export class FeedListComponent implements OnInit {
                 private messageService: MessageService,
                 private confirmationService: ConfirmationService,
                 private organizationService: OrganizationService,
-                private feedService: FeedService) { }
+                private feedService: FeedService,
+                private router: Router) { }
 
     async ngOnInit() {
 
@@ -109,7 +111,23 @@ export class FeedListComponent implements OnInit {
 
     async onPlayNow() {
         this.feedService.onFeedSelect(this.clickedFeed);
-        await this.feedService.playFeed(this.clickedFeed.organization, this.clickedFeed);
+
+        await this.feedService.playFeed(this.clickedFeed.organization, this.clickedFeed).then(async (run) => {
+
+            console.log(run);
+
+            await this.router.navigate([
+                'organization', this.clickedFeed.organization,
+                'contents', 'feeds', run.feed,
+                'runs', run._id]);
+
+        }).catch((err) => {
+            console.error(err);
+
+            MessageUtils.parseServerError(this.messageService, err, {
+                summary: $localize `Error playing feed`,
+            });
+        });
     }
 
     async onCheckboxChange(event: any, feed: Feed) {

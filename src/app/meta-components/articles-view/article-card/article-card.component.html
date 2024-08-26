@@ -1,5 +1,5 @@
 <div class="p-3" *ngIf="article">
-    <div class="surface-100 cursor-pointer z-index border-round" (click)="navigateToDetail()">
+    <div class="surface-100 cursor-pointer z-index border-round">
         <div class="relative">
             <img [src]="article.metadata.image" class="w-full" />
         </div>
@@ -7,7 +7,7 @@
             <div class="text-900 font-semibold text-xl mb-3">{{ article.metadata.title }}</div>
             <p class="text-700 text-lg mt-0 mb-5">{{ article.metadata.description }}</p>
 
-            <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+            <div *ngIf="article.stats; else footerWithoutStats" class="flex flex-wrap gap-2 align-items-center justify-content-between">
                 <span class="flex align-items-center text-900" pTooltip="Tags" tooltipPosition="bottom">
                     <i class="pi pi-tags mr-2"></i>
                     <span class="font-semibold">{{ article.tags.length }}</span>
@@ -31,6 +31,19 @@
                     <span class="font-semibold">{{ article.metadata.publishedAt | date: 'dd/MM' }}</span>
                 </span>
             </div>
+
+            <ng-template #footerWithoutStats>
+                <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+                    <span class="flex align-items-center text-900" pTooltip="Publication Date" tooltipPosition="bottom">
+                        <i class="pi pi-clock mr-2"></i>
+                        <span class="font-semibold">{{ article.metadata.publishedAt | date: 'dd/MM' }}</span>
+                    </span>
+                    <a class="flex align-items-center text-900"
+                          pTooltip="Open Link" tooltipPosition="bottom" [href]="article.url" target="_blank">
+                        <i class="pi pi-external-link"></i>
+                    </a>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

@@ -28,6 +28,8 @@ export interface Feed {
     authorizationToken?: string;
 }
 
+export type FeedRun = any;
+
 export interface CreateFeedDto extends Pick<Feed, 'displayName' | 'description' | 'urls' | 'scrapingInterval' | 'scrapingGranularity' > {}
 export interface UpdateFeedDto extends Partial<Pick<Feed, 'displayName' | 'description' | 'urls' | 'scrapingInterval' | 'scrapingGranularity'>> {}
 
@@ -68,6 +70,8 @@ export class FeedService {
     selectedFeed$: Observable<Feed> = this.selectedFeed$$.asObservable();
 
     dialogSource$: Observable<DialogConfig> = this.dialogSource$$.asObservable();
+
+    private feedRunCached: any;
 
     constructor(private http: HttpClient) {
         this.domain = environment.backend;
@@ -130,11 +134,17 @@ export class FeedService {
             });
     }
 
-    async playFeed(organizationId: string, feed: Partial<Feed>): Promise<void> {
+    async playFeed(organizationId: string, feed: Partial<Feed>): Promise<any> {
         return firstValueFrom(this.http.post<any>(`${this.domain}/organizations/${organizationId}/feeds/${feed._id}/runs`, {}))
             .then((result) => {
-                console.log('playing feed : ', result);
+                console.log('playing feed and caching run result', result);
+                this.feedRunCached = result;
+                return result;
             });
+    }
+
+    async getFeedRun(organizationId: string, feedId: string, runId: string): Promise<FeedRun> {
+        return firstValueFrom(this.http.get<FeedRun>(`${this.domain}/organizations/${organizationId}/feeds/${feedId}/runs/${runId}`));
     }
 
     async toggleFeed(organizationId: string, feedId: string, scrapingEnabled: boolean) {

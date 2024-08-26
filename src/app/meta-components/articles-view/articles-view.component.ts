@@ -20,6 +20,9 @@ export class ArticlesViewComponent {
 
     sortField: string = '';
 
+    @Input() allArticles: Article[] = [];
+
+    /*
     allArticles: Article[] = [
         {
             _id: '1',
@@ -159,4 +162,5 @@ export class ArticlesViewComponent {
             updatedAt: Date.now(),
         },
     ];
+     */
 }

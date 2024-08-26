@@ -52,12 +52,12 @@ export class AppMenuComponent implements OnInit {
                 {
                     label: $localize `Articles`,
                     icon: 'pi pi-fw pi-box',
-                    routerLink: ['/contents/articles']
+                    routerLink: [`/organization/${org.slug}/contents/articles`]
                 },
                 {
                     label: $localize `Feeds`,
                     icon: 'pi pi-fw pi-sitemap',
-                    routerLink: ['/contents/feeds']
+                    routerLink: [`/organization/${org.slug}/contents/feeds`]
                 }
             ]
         }

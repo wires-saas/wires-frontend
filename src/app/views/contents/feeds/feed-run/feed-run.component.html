@@ -1,0 +1,20 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card mb-4">
+            <h4 i18n>Feed Run</h4>
+            <p i18n>Run #{{ runId }} of feed #{{ feedId }}</p>
+        </div>
+
+        <div class="card mb-4" *ngIf="feedRun">
+            <h4 i18n>Feed Stats</h4>
+            <p i18n>Run #{{ runId }} of feed #{{ feedId }}</p>
+            <p>Feed run started at {{ feedRun.startedAt | date: 'HH:mm:ss, dd/MM' }} and took {{ feedRun.duration }}ms</p>
+            <p>{{ feedRun.articles.length }} articles fetched, {{ feedRun.articlesMissed.length }} articles missed</p>
+        </div>
+
+        <div class="card" *ngIf="feedRun">
+            <h4 i18n>Details</h4>
+            <app-articles-view [allArticles]="feedRun.articles" [articlesPerPage]="3"></app-articles-view>
+        </div>
+    </div>
+</div>
