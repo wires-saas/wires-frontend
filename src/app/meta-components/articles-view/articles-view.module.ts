@@ -11,6 +11,8 @@ import { DataViewModule } from 'primeng/dataview';
 import { ArticleCardComponent } from './article-card/article-card.component';
 import { TooltipModule } from 'primeng/tooltip';
 import { ArticleClickRatePipe } from '../../utils/pipes/article-click-rate.pipe';
+import { BadgeModule } from 'primeng/badge';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
     imports: [
@@ -24,6 +26,8 @@ import { ArticleClickRatePipe } from '../../utils/pipes/article-click-rate.pipe'
         DataViewModule,
         TooltipModule,
         ArticleClickRatePipe,
+        BadgeModule,
+        TagModule,
     ],
     exports: [
         ArticlesViewComponent,

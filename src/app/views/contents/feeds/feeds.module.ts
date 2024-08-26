@@ -29,6 +29,9 @@ import { FeedFrequencyPipe } from '../../../utils/pipes/feed-frequency.pipe';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FeedRunComponent } from './feed-run/feed-run.component';
 import { ArticlesViewModule } from '../../../meta-components/articles-view/articles-view.module';
+import { DividerModule } from 'primeng/divider';
+import { FeedRunStatusPipe } from '../../../utils/pipes/feed-run-status.pipe';
+import { StyleClassModule } from 'primeng/styleclass';
 
 @NgModule({
     imports: [
@@ -55,7 +58,10 @@ import { ArticlesViewModule } from '../../../meta-components/articles-view/artic
         ToggleButtonModule,
         FeedFrequencyPipe,
         ConfirmDialogModule,
-        ArticlesViewModule
+        ArticlesViewModule,
+        DividerModule,
+        FeedRunStatusPipe,
+        StyleClassModule
     ],
     declarations: [FeedsComponent, CreateOrUpdateFeedComponent, FeedListComponent, FeedRunComponent],
     providers: [FeedService, MessageService, ConfirmationService]

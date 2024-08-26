@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FeedService } from '../../../../services/feed.service';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Feed, FeedRun, FeedService } from '../../../../services/feed.service';
+import { map } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -9,13 +12,16 @@ import { FeedService } from '../../../../services/feed.service';
 })
 export class FeedRunComponent implements OnInit {
 
+    private destroyRef = inject(DestroyRef)
+
     organizationSlug!: string;
     feedId!: string;
     runId!: string;
 
-    feedRun: any;
+    feed: Feed | undefined;
+    feedRun: FeedRun | undefined;
 
-    constructor(private route: ActivatedRoute, private feedService: FeedService) {
+    constructor(private router: Router, private route: ActivatedRoute, private feedService: FeedService) {
     }
 
 
@@ -25,9 +31,23 @@ export class FeedRunComponent implements OnInit {
         this.feedId = this.route.snapshot.params['feedId'];
         this.runId = this.route.snapshot.params['runId'];
 
-        this.feedRun = await this.feedService.getFeedRun(this.organizationSlug, this.feedId, this.runId);
-        console.log(this.feedRun);
+        this.feed = await this.feedService.getFeed(this.organizationSlug, this.feedId)
+            .catch((error) => {
+                console.error(error);
+                this.router.navigateByUrl('/not-found');
+                return undefined;
+            });
 
+        this.feedRun = await this.feedService.getFeedRun(this.organizationSlug, this.feedId, this.runId)
+            .catch((error) => {
+                console.error(error);
+                this.router.navigateByUrl('/not-found');
+                return undefined;
+            });
+    }
+
+    async goBackToFeedList() {
+        await this.router.navigateByUrl(`/organizations/${this.organizationSlug}/contents/feeds`);
     }
 
 }

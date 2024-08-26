@@ -21,6 +21,7 @@ export class ArticlesViewComponent {
     sortField: string = '';
 
     @Input() allArticles: Article[] = [];
+    @Input() newArticles: Array<Article['url']> = [];
 
     /*
     allArticles: Article[] = [

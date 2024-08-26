@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Article } from './article.service';
 
 export interface Feed {
     _id: string;
@@ -28,7 +29,24 @@ export interface Feed {
     authorizationToken?: string;
 }
 
-export type FeedRun = any;
+export enum FeedRunStatus {
+    PENDING = 'pending',
+    RUNNING = 'running',
+    COMPLETED = 'completed',
+    FAILED = 'failed',
+}
+
+export interface FeedRun {
+    _id: string;
+    feed: string;
+    status: FeedRunStatus;
+    createdAt: string;
+    updatedAt: string;
+    articles: Article[];
+    newArticles: string[];
+    scrapingDurationMs: number;
+    articlesCreationMs: number;
+}
 
 export interface CreateFeedDto extends Pick<Feed, 'displayName' | 'description' | 'urls' | 'scrapingInterval' | 'scrapingGranularity' > {}
 export interface UpdateFeedDto extends Partial<Pick<Feed, 'displayName' | 'description' | 'urls' | 'scrapingInterval' | 'scrapingGranularity'>> {}
@@ -71,8 +89,6 @@ export class FeedService {
 
     dialogSource$: Observable<DialogConfig> = this.dialogSource$$.asObservable();
 
-    private feedRunCached: any;
-
     constructor(private http: HttpClient) {
         this.domain = environment.backend;
     }
@@ -83,6 +99,10 @@ export class FeedService {
                 this.feeds$$.next(feeds);
                 return feeds;
             });
+    }
+
+    async getFeed(organizationId: string, feedId: string): Promise<Feed> {
+        return firstValueFrom(this.http.get<Feed>(`${this.domain}/organizations/${organizationId}/feeds/${feedId}`))
     }
 
     // TODO not implemented yet
@@ -134,13 +154,8 @@ export class FeedService {
             });
     }
 
-    async playFeed(organizationId: string, feed: Partial<Feed>): Promise<any> {
-        return firstValueFrom(this.http.post<any>(`${this.domain}/organizations/${organizationId}/feeds/${feed._id}/runs`, {}))
-            .then((result) => {
-                console.log('playing feed and caching run result', result);
-                this.feedRunCached = result;
-                return result;
-            });
+    async runFeed(organizationId: string, feed: Partial<Feed>): Promise<any> {
+        return firstValueFrom(this.http.post<any>(`${this.domain}/organizations/${organizationId}/feeds/${feed._id}/runs`, {}));
     }
 
     async getFeedRun(organizationId: string, feedId: string, runId: string): Promise<FeedRun> {

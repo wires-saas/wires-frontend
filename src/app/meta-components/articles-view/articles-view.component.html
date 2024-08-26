@@ -1,4 +1,4 @@
-<div class="card">
+
     <p-dataView [value]="allArticles" [paginator]="true" [rows]="articlesPerPage" filterBy="title" [sortField]="sortField" [sortOrder]="-1" layout="grid">
         <ng-template pTemplate="header">
             <div class="flex flex-column sm:flex-row sm:align-items-center sm:justify-content-between gap-3">
@@ -10,9 +10,8 @@
         <ng-template let-articles pTemplate="gridItem">
             <div class="grid grid-nogutter">
                 <div class="col-12 md:col-4" *ngFor="let article of articles">
-                    <app-article-card [article]="article"></app-article-card>
+                    <app-article-card [article]="article" [displayNewBadge]="newArticles.includes(article.url)"></app-article-card>
                 </div>
             </div>
         </ng-template>
     </p-dataView>
-</div>

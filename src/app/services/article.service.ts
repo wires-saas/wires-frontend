@@ -66,7 +66,6 @@ export class ArticleService {
     async fetchArticles(organizationId: string): Promise<Article[]> {
         return firstValueFrom(this.http.get<Article[]>(`${this.domain}/organizations/${organizationId}/articles`))
             .then((articles) => {
-                console.log(articles);
                 this.articles$$.next(articles);
                 return articles;
             });

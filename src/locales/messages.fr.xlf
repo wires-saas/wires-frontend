@@ -2289,6 +2289,54 @@
         <source>Permanently Delete Feed</source>
         <target state="new">Supprimer définitivement le flux</target>
       </trans-unit>
+      <trans-unit id="885312924927533764" datatype="html">
+        <source>Error playing feed</source>
+        <target state="new">Erreur lors de la récupération du flux</target>
+      </trans-unit>
+      <trans-unit id="3865935952968834510" datatype="html">
+        <source>Run of feed &quot;<x id="INTERPOLATION" equiv-text="{{ feed.displayName }}"/>&quot;</source>
+        <target state="new">Récupération du flux &quot;<x id="INTERPOLATION" equiv-text="{{ feed.displayName }}"/>&quot;</target>
+      </trans-unit>
+      <trans-unit id="8802433277842246383" datatype="html">
+        <source>Started At</source>
+        <target state="new">Début</target>
+      </trans-unit>
+      <trans-unit id="8441647245285315737" datatype="html">
+        <source>Articles Found</source>
+        <target state="new">Articles trouvés</target>
+      </trans-unit>
+      <trans-unit id="3124108299936099643" datatype="html">
+        <source>New Articles</source>
+        <target state="new">Nouveaux articles</target>
+      </trans-unit>
+      <trans-unit id="2277053553712740734" datatype="html">
+        <source>Tags Impacted</source>
+        <target state="new">Tags impactés</target>
+      </trans-unit>
+      <trans-unit id="2335431074080486693" datatype="html">
+        <source>Total Time</source>
+        <target state="new">Temps total</target>
+      </trans-unit>
+      <trans-unit id="6205355627445317276" datatype="html">
+        <source>Content</source>
+        <target state="new">Contenu récupéré</target>
+      </trans-unit>
+      <trans-unit id="2956098160626271284" datatype="html">
+        <source>Running</source>
+        <target state="new">En cours</target>
+      </trans-unit>
+      <trans-unit id="1161299114153631702" datatype="html">
+        <source>Completed</source>
+        <target state="new">Terminé</target>
+      </trans-unit>
+      <trans-unit id="7256395947475975935" datatype="html">
+        <source>Failed</source>
+        <target state="new">Échoué</target>
+      </trans-unit>
+      <trans-unit id="2170113579757852874" datatype="html">
+        <source>Return to feed list</source>
+        <target state="new">Revenir à la liste des flux</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

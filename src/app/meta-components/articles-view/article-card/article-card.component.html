@@ -4,10 +4,13 @@
             <img [src]="article.metadata.image" class="w-full" />
         </div>
         <div class="p-3">
-            <div class="text-900 font-semibold text-xl mb-3">{{ article.metadata.title }}</div>
+            <div class="text-900 font-semibold text-xl mb-3">
+                <p-tag *ngIf="displayNewBadge" severity="info" value="NEW" class="vertical-align-text-bottom mr-1"></p-tag>
+                {{ article.metadata.title }}
+            </div>
             <p class="text-700 text-lg mt-0 mb-5">{{ article.metadata.description }}</p>
 
-            <div *ngIf="article.stats; else footerWithoutStats" class="flex flex-wrap gap-2 align-items-center justify-content-between">
+            <div *ngIf="statsRelevant; else footerWithoutStats" class="flex flex-wrap gap-2 align-items-center justify-content-between">
                 <span class="flex align-items-center text-900" pTooltip="Tags" tooltipPosition="bottom">
                     <i class="pi pi-tags mr-2"></i>
                     <span class="font-semibold">{{ article.tags.length }}</span>

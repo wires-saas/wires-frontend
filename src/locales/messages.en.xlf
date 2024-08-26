@@ -1718,6 +1718,42 @@
       <trans-unit id="7373254601261965618" datatype="html">
         <source>Permanently Delete Feed</source>
       </trans-unit>
+      <trans-unit id="2277053553712740734" datatype="html">
+        <source>Tags Impacted</source>
+      </trans-unit>
+      <trans-unit id="2335431074080486693" datatype="html">
+        <source>Total Time</source>
+      </trans-unit>
+      <trans-unit id="3124108299936099643" datatype="html">
+        <source>New Articles</source>
+      </trans-unit>
+      <trans-unit id="3865935952968834510" datatype="html">
+        <source>Run of feed &quot;<x id="INTERPOLATION" equiv-text="{{ feed.displayName }}"/>&quot;</source>
+      </trans-unit>
+      <trans-unit id="6205355627445317276" datatype="html">
+        <source>Content</source>
+      </trans-unit>
+      <trans-unit id="8441647245285315737" datatype="html">
+        <source>Articles Found</source>
+      </trans-unit>
+      <trans-unit id="8802433277842246383" datatype="html">
+        <source>Started At</source>
+      </trans-unit>
+      <trans-unit id="885312924927533764" datatype="html">
+        <source>Error playing feed</source>
+      </trans-unit>
+      <trans-unit id="1161299114153631702" datatype="html">
+        <source>Completed</source>
+      </trans-unit>
+      <trans-unit id="2956098160626271284" datatype="html">
+        <source>Running</source>
+      </trans-unit>
+      <trans-unit id="7256395947475975935" datatype="html">
+        <source>Failed</source>
+      </trans-unit>
+      <trans-unit id="2170113579757852874" datatype="html">
+        <source>Return to feed list</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -57,7 +57,8 @@ export class AppMenuComponent implements OnInit {
                 {
                     label: $localize `Feeds`,
                     icon: 'pi pi-fw pi-sitemap',
-                    routerLink: [`/organization/${org.slug}/contents/feeds`]
+                    routerLink: [`/organization/${org.slug}/contents/feeds`],
+                    routerLinkActiveOptions: { exact: false }
                 }
             ]
         }

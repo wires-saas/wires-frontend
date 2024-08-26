@@ -112,9 +112,7 @@ export class FeedListComponent implements OnInit {
     async onPlayNow() {
         this.feedService.onFeedSelect(this.clickedFeed);
 
-        await this.feedService.playFeed(this.clickedFeed.organization, this.clickedFeed).then(async (run) => {
-
-            console.log(run);
+        await this.feedService.runFeed(this.clickedFeed.organization, this.clickedFeed).then(async (run) => {
 
             await this.router.navigate([
                 'organization', this.clickedFeed.organization,
