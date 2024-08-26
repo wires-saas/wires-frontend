@@ -32,6 +32,10 @@ import { ArticlesViewModule } from '../../../meta-components/articles-view/artic
 import { DividerModule } from 'primeng/divider';
 import { FeedRunStatusPipe } from '../../../utils/pipes/feed-run-status.pipe';
 import { StyleClassModule } from 'primeng/styleclass';
+import { FeedRunListComponent } from './feed-run-list/feed-run-list.component';
+import { TableModule } from 'primeng/table';
+import { StatusBadgeModule } from '../../../meta-components/status-badge/status-badge.module';
+import { DurationPipe } from '../../../utils/pipes/duration.pipe';
 
 @NgModule({
     imports: [
@@ -61,9 +65,18 @@ import { StyleClassModule } from 'primeng/styleclass';
         ArticlesViewModule,
         DividerModule,
         FeedRunStatusPipe,
-        StyleClassModule
+        StyleClassModule,
+        TableModule,
+        StatusBadgeModule,
+        DurationPipe
     ],
-    declarations: [FeedsComponent, CreateOrUpdateFeedComponent, FeedListComponent, FeedRunComponent],
+    declarations: [
+        FeedsComponent,
+        CreateOrUpdateFeedComponent,
+        FeedListComponent,
+        FeedRunComponent,
+        FeedRunListComponent
+    ],
     providers: [FeedService, MessageService, ConfirmationService]
 })
 export class FeedsModule { }

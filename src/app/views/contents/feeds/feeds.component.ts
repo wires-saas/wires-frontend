@@ -1,10 +1,11 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { Feed, FeedService } from '../../../services/feed.service';
+import { Feed, FeedRun, FeedRunPopulated, FeedService } from '../../../services/feed.service';
 import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 import { OrganizationService } from '../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { Slug } from '../../../utils/types.utils';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     templateUrl: './feeds.component.html'
@@ -17,9 +18,14 @@ export class FeedsComponent implements OnInit {
 
     feeds: Feed[] = [];
 
+    feedRuns: FeedRun[] = [];
+
     autoSchedule: boolean = false;
 
-    constructor(private organizationService: OrganizationService, private feedService: FeedService) {
+    constructor(private organizationService: OrganizationService,
+                private feedService: FeedService,
+                private router: Router,
+                private route: ActivatedRoute) {
         this.autoSchedule = this.feedService.autoSchedule;
     }
 
@@ -30,10 +36,15 @@ export class FeedsComponent implements OnInit {
             takeUntilDestroyed(this.destroyRef)
         ).subscribe();
 
+
+
         this.organizationService.currentOrganization$.pipe(
             map(async (org) => {
                 this.currentOrgSlug = org?.slug;
-                if (org) await this.feedService.fetchFeeds(org.slug);
+                if (org) {
+                    await this.feedService.fetchFeeds(org.slug);
+                    this.feedRuns = await this.feedService.getFeedRuns(org.slug);
+                }
             }),
             takeUntilDestroyed(this.destroyRef)
         ).subscribe();
@@ -46,5 +57,11 @@ export class FeedsComponent implements OnInit {
 
     showDialog() {
         this.feedService.showDialog($localize `Create Feed`, true);
+    }
+
+    async navigateToFeedRun(run: FeedRun | FeedRunPopulated) {
+        const feedId: string = typeof run.feed === 'string' ? run.feed : run.feed._id;
+
+        await this.router.navigate([feedId, 'runs', run._id], { relativeTo: this.route });
     }
 }

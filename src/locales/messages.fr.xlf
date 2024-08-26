@@ -2289,10 +2289,6 @@
         <source>Permanently Delete Feed</source>
         <target state="new">Supprimer définitivement le flux</target>
       </trans-unit>
-      <trans-unit id="885312924927533764" datatype="html">
-        <source>Error playing feed</source>
-        <target state="new">Erreur lors de la récupération du flux</target>
-      </trans-unit>
       <trans-unit id="3865935952968834510" datatype="html">
         <source>Run of feed &quot;<x id="INTERPOLATION" equiv-text="{{ feed.displayName }}"/>&quot;</source>
         <target state="new">Récupération du flux &quot;<x id="INTERPOLATION" equiv-text="{{ feed.displayName }}"/>&quot;</target>
@@ -2336,6 +2332,82 @@
       <trans-unit id="2170113579757852874" datatype="html">
         <source>Return to feed list</source>
         <target state="new">Revenir à la liste des flux</target>
+      </trans-unit>
+      <trans-unit id="816590031830706859" datatype="html">
+        <source>Running feed...</source>
+        <target state="new">Récupération du flux...</target>
+      </trans-unit>
+      <trans-unit id="1759842672496439620" datatype="html">
+        <source>Please wait a moment, you will be redirected to the feed run page.</source>
+        <target state="new">Veuillez patienter, cette opération peut prendre quelques secondes</target>
+      </trans-unit>
+      <trans-unit id="3973931101896534797" datatype="html">
+        <source>Date</source>
+        <target state="new">Date</target>
+      </trans-unit>
+      <trans-unit id="5280218112746407598" datatype="html">
+        <source>New</source>
+        <target state="new">New</target>
+      </trans-unit>
+      <trans-unit id="7410432243549869948" datatype="html">
+        <source>Duration</source>
+        <target state="new">Durée</target>
+      </trans-unit>
+      <trans-unit id="3174105474056085014" datatype="html">
+        <source>Last Executions</source>
+        <target state="new">Dernières récupérations</target>
+      </trans-unit>
+      <trans-unit id="3503618959709580968" datatype="html">
+        <source>Error running feed</source>
+        <target state="new">Erreur lors de la récupération</target>
+      </trans-unit>
+      <trans-unit id="2628920443756485102" datatype="html">
+        <source>Fetched Articles</source>
+        <target state="new">Articles récupérés</target>
+      </trans-unit>
+      <trans-unit id="7699622144571229146" datatype="html">
+        <source>Sort by</source>
+        <target state="new">Trier par</target>
+      </trans-unit>
+      <trans-unit id="9143561358718896119" datatype="html">
+        <source>Most Recent</source>
+        <target state="new">Les + récents</target>
+      </trans-unit>
+      <trans-unit id="2313625481941289012" datatype="html">
+        <source>Most Sent</source>
+        <target state="new">Les + envoyés</target>
+      </trans-unit>
+      <trans-unit id="2870308377913825845" datatype="html">
+        <source>Most Displayed</source>
+        <target state="new">Les + affichés</target>
+      </trans-unit>
+      <trans-unit id="4088524049387380882" datatype="html">
+        <source>Most Clicked</source>
+        <target state="new">Les + cliqué</target>
+      </trans-unit>
+      <trans-unit id="1147828071904789728" datatype="html">
+        <source>NEW</source>
+        <target state="new">NEW</target>
+      </trans-unit>
+      <trans-unit id="7481183920179363714" datatype="html">
+        <source>Sent</source>
+        <target state="new">Envois</target>
+      </trans-unit>
+      <trans-unit id="2758620051671121324" datatype="html">
+        <source>Displays</source>
+        <target state="new">Affichages</target>
+      </trans-unit>
+      <trans-unit id="959537888660873016" datatype="html">
+        <source>Clicks / Displays</source>
+        <target state="new">Clics / Affichages</target>
+      </trans-unit>
+      <trans-unit id="7569274918783170322" datatype="html">
+        <source>Publication Date</source>
+        <target state="new">Date de publication</target>
+      </trans-unit>
+      <trans-unit id="492462897434743133" datatype="html">
+        <source>Open Link</source>
+        <target state="new">Ouvrir l'article</target>
       </trans-unit>
     </body>
   </file>

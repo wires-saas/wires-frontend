@@ -112,6 +112,12 @@ export class FeedListComponent implements OnInit {
     async onPlayNow() {
         this.feedService.onFeedSelect(this.clickedFeed);
 
+        this.messageService.add({
+            severity: 'info',
+            summary: $localize `Running feed...`,
+            detail: $localize `Please wait a moment, you will be redirected to the feed run page.`
+        });
+
         await this.feedService.runFeed(this.clickedFeed.organization, this.clickedFeed).then(async (run) => {
 
             await this.router.navigate([
@@ -123,7 +129,7 @@ export class FeedListComponent implements OnInit {
             console.error(err);
 
             MessageUtils.parseServerError(this.messageService, err, {
-                summary: $localize `Error playing feed`,
+                summary: $localize `Error running feed`,
             });
         });
     }

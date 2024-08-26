@@ -1,0 +1,7 @@
+<ng-container [ngSwitch]="value.status">
+    <p-tag *ngSwitchCase="'completed'" severity="success" [value]="value | feedRunStatus"></p-tag>
+    <p-tag *ngSwitchCase="'failed'" severity="danger" [value]="value | feedRunStatus"></p-tag>
+    <p-tag *ngSwitchCase="'running'" severity="info" [value]="value | feedRunStatus"></p-tag>
+    <p-tag *ngSwitchCase="'pending'" [value]="value | feedRunStatus"></p-tag>
+    <p-tag *ngSwitchDefault [value]="value | feedRunStatus"></p-tag>
+</ng-container>

@@ -48,6 +48,10 @@ export interface FeedRun {
     articlesCreationMs: number;
 }
 
+export interface FeedRunPopulated extends Omit<FeedRun, 'feed'> {
+    feed: Feed;
+}
+
 export interface CreateFeedDto extends Pick<Feed, 'displayName' | 'description' | 'urls' | 'scrapingInterval' | 'scrapingGranularity' > {}
 export interface UpdateFeedDto extends Partial<Pick<Feed, 'displayName' | 'description' | 'urls' | 'scrapingInterval' | 'scrapingGranularity'>> {}
 
@@ -160,6 +164,10 @@ export class FeedService {
 
     async getFeedRun(organizationId: string, feedId: string, runId: string): Promise<FeedRun> {
         return firstValueFrom(this.http.get<FeedRun>(`${this.domain}/organizations/${organizationId}/feeds/${feedId}/runs/${runId}`));
+    }
+
+    async getFeedRuns(organizationId: string): Promise<FeedRun[]> {
+        return firstValueFrom(this.http.get<FeedRun[]>(`${this.domain}/organizations/${organizationId}/feeds/runs`));
     }
 
     async toggleFeed(organizationId: string, feedId: string, scrapingEnabled: boolean) {

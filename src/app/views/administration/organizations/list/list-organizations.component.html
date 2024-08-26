@@ -2,9 +2,8 @@
 
     <p-menu #actionsMenu [popup]="true" [model]="actionsMenuItems"></p-menu>
 
-    <p-table #dt [value]="organizations" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
-             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
-            [globalFilterFields]="['name']">
+    <p-table #dt [value]="organizations" [paginator]="true" [rows]="10" [rowHover]="true" responsiveLayout="scroll"
+             [rowsPerPageOptions]="[10,25,50]" [globalFilterFields]="['name']">
         <ng-template pTemplate="caption">
             <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
                 <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">

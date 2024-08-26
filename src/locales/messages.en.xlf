@@ -1739,9 +1739,6 @@
       <trans-unit id="8802433277842246383" datatype="html">
         <source>Started At</source>
       </trans-unit>
-      <trans-unit id="885312924927533764" datatype="html">
-        <source>Error playing feed</source>
-      </trans-unit>
       <trans-unit id="1161299114153631702" datatype="html">
         <source>Completed</source>
       </trans-unit>
@@ -1753,6 +1750,63 @@
       </trans-unit>
       <trans-unit id="2170113579757852874" datatype="html">
         <source>Return to feed list</source>
+      </trans-unit>
+      <trans-unit id="1759842672496439620" datatype="html">
+        <source>Please wait a moment, you will be redirected to the feed run page.</source>
+      </trans-unit>
+      <trans-unit id="3174105474056085014" datatype="html">
+        <source>Last Executions</source>
+      </trans-unit>
+      <trans-unit id="3973931101896534797" datatype="html">
+        <source>Date</source>
+      </trans-unit>
+      <trans-unit id="5280218112746407598" datatype="html">
+        <source>New</source>
+      </trans-unit>
+      <trans-unit id="7410432243549869948" datatype="html">
+        <source>Duration</source>
+      </trans-unit>
+      <trans-unit id="816590031830706859" datatype="html">
+        <source>Running feed...</source>
+      </trans-unit>
+      <trans-unit id="3503618959709580968" datatype="html">
+        <source>Error running feed</source>
+      </trans-unit>
+      <trans-unit id="2628920443756485102" datatype="html">
+        <source>Fetched Articles</source>
+      </trans-unit>
+      <trans-unit id="2313625481941289012" datatype="html">
+        <source>Most Sent</source>
+      </trans-unit>
+      <trans-unit id="2870308377913825845" datatype="html">
+        <source>Most Displayed</source>
+      </trans-unit>
+      <trans-unit id="4088524049387380882" datatype="html">
+        <source>Most Clicked</source>
+      </trans-unit>
+      <trans-unit id="7699622144571229146" datatype="html">
+        <source>Sort by</source>
+      </trans-unit>
+      <trans-unit id="9143561358718896119" datatype="html">
+        <source>Most Recent</source>
+      </trans-unit>
+      <trans-unit id="1147828071904789728" datatype="html">
+        <source>NEW</source>
+      </trans-unit>
+      <trans-unit id="2758620051671121324" datatype="html">
+        <source>Displays</source>
+      </trans-unit>
+      <trans-unit id="492462897434743133" datatype="html">
+        <source>Open Link</source>
+      </trans-unit>
+      <trans-unit id="7481183920179363714" datatype="html">
+        <source>Sent</source>
+      </trans-unit>
+      <trans-unit id="7569274918783170322" datatype="html">
+        <source>Publication Date</source>
+      </trans-unit>
+      <trans-unit id="959537888660873016" datatype="html">
+        <source>Clicks / Displays</source>
       </trans-unit>
     </body>
   </file>
