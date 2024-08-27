@@ -97,7 +97,7 @@ export class FeedService {
         this.domain = environment.backend;
     }
 
-    async fetchFeeds(organizationId: string): Promise<Feed[]> {
+    async getFeeds(organizationId: string): Promise<Feed[]> {
         return firstValueFrom(this.http.get<Feed[]>(`${this.domain}/organizations/${organizationId}/feeds`))
             .then((feeds) => {
                 this.feeds$$.next(feeds);

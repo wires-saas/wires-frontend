@@ -45,7 +45,7 @@ export class FeedsComponent implements OnInit {
                 this.currentOrgSlug = org?.slug;
                 if (org) {
                     this.loading = true;
-                    await this.feedService.fetchFeeds(org.slug);
+                    await this.feedService.getFeeds(org.slug);
                     this.feedRuns = await this.feedService.getFeedRuns(org.slug);
                     this.loading = false;
                 }

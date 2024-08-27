@@ -2189,10 +2189,6 @@
         <source>Tags</source>
         <target state="new">Tags</target>
       </trans-unit>
-      <trans-unit id="916798626618034358" datatype="html">
-        <source>Popularity</source>
-        <target state="new">Popularité</target>
-      </trans-unit>
       <trans-unit id="8998886274661331420" datatype="html">
         <source>No articles found.</source>
         <target state="new">Aucun article trouvé.</target>
@@ -2421,9 +2417,29 @@
         <source>No feed found, create your first feed to start fetching articles</source>
         <target state="new">Aucun flux, créez votre premier flux pour commencer à récupérer des articles</target>
       </trans-unit>
-      <trans-unit id="8628272697022769845" datatype="html">
-        <source>No run found</source>
-        <target state="new">Aucune récupération trouvée</target>
+      <trans-unit id="8863611568205528132" datatype="html">
+        <source>Starts with</source>
+        <target state="new">Commence par</target>
+      </trans-unit>
+      <trans-unit id="6238291467288576076" datatype="html">
+        <source>Contains</source>
+        <target state="new">Contient</target>
+      </trans-unit>
+      <trans-unit id="7186168002821041410" datatype="html">
+        <source>Not contains</source>
+        <target state="new">Ne contient pas</target>
+      </trans-unit>
+      <trans-unit id="7402672269023827698" datatype="html">
+        <source>Ends with</source>
+        <target state="new">Termine par</target>
+      </trans-unit>
+      <trans-unit id="6424246633820870206" datatype="html">
+        <source>Equals</source>
+        <target state="new">Égal à</target>
+      </trans-unit>
+      <trans-unit id="4269208812120923332" datatype="html">
+        <source>Not equals</source>
+        <target state="new">Différent de</target>
       </trans-unit>
     </body>
   </file>
