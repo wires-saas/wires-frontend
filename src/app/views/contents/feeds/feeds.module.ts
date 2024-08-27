@@ -36,6 +36,7 @@ import { FeedRunListComponent } from './feed-run-list/feed-run-list.component';
 import { TableModule } from 'primeng/table';
 import { StatusBadgeModule } from '../../../meta-components/status-badge/status-badge.module';
 import { DurationPipe } from '../../../utils/pipes/duration.pipe';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
     imports: [
@@ -68,7 +69,8 @@ import { DurationPipe } from '../../../utils/pipes/duration.pipe';
         StyleClassModule,
         TableModule,
         StatusBadgeModule,
-        DurationPipe
+        DurationPipe,
+        SkeletonModule
     ],
     declarations: [
         FeedsComponent,

@@ -3,8 +3,7 @@
     <p-menu #actionsMenu [popup]="true" [model]="actionsMenuItems"></p-menu>
 
     <p-table #dt [value]="users" [paginator]="true" [rows]="10" [rowHover]="true" responsiveLayout="scroll"
-             [rowsPerPageOptions]="[10,25,50]"
-        [globalFilterFields]="['firstName', 'lastName','email']"
+             [rowsPerPageOptions]="[10,25,50]" [globalFilterFields]="['firstName', 'lastName','email']"
              (sortFunction)="customSort($event)" [customSort]="true" sortField="roles" [sortOrder]="-1">
         <ng-template pTemplate="caption">
             <div class="flex flex-wrap gap-2 align-items-center justify-content-between">

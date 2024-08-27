@@ -1,13 +1,14 @@
 <p-table [value]="runs" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,25,50]"
+         [loading]="loading" [showLoader]="false"
          sortField="createdAt" [sortOrder]="-1" sortMode="single" [rowHover]="true">
     <ng-template pTemplate="header">
         <tr>
-            <th i18n>Date</th>
-            <th i18n>Feed</th>
-            <th i18n>Articles</th>
-            <th i18n>New</th>
-            <th i18n>Duration</th>
-            <th i18n>Status</th>
+            <th i18n> Date </th>
+            <th i18n> Feed </th>
+            <th i18n> Articles </th>
+            <th i18n> New </th>
+            <th i18n> Duration </th>
+            <th i18n> Status </th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-run>
@@ -29,6 +30,35 @@
             </td>
             <td>
                 <app-status-badge [value]="run"></app-status-badge>
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="6" class="text-center m-5">-</td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="loadingbody">
+        <tr>
+            <td>
+                <p-skeleton width="100%"></p-skeleton>
+            </td>
+            <td>
+                <p-skeleton width="100%"></p-skeleton>
+            </td>
+            <td>
+                <p-skeleton width="100%"></p-skeleton>
+            </td>
+            <td>
+                <p-skeleton width="100%"></p-skeleton>
+            </td>
+            <td>
+                <p-skeleton width="100%"></p-skeleton>
+            </td>
+            <td>
+                <p-skeleton width="100%"></p-skeleton>
             </td>
         </tr>
     </ng-template>

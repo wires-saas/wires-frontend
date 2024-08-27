@@ -16,7 +16,7 @@ export class ArticlesTableComponent {
 
     activityValues: number[] = [0, 100];
 
-    @Input() loading: boolean = false;
+    @Input() loading: boolean = true;
 
     @ViewChild('filter') filter!: ElementRef;
 

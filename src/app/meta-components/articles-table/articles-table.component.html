@@ -1,5 +1,8 @@
 <div class="card">
-    <p-table #dt1 [value]="articles" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines"
+    <p-table #dt1 [value]="articles" dataKey="id" [rows]="10"
+             [loading]="loading" [showLoader]="false"
+             sortField="metadata.publishedAt" [sortOrder]="-1"
+             [rowHover]="true" styleClass="p-datatable-gridlines"
              [paginator]="true" [globalFilterFields]="['metadata.title','metadata.description', 'metadata.categories']" responsiveLayout="scroll">
         <ng-template pTemplate="caption">
             <div class="flex justify-content-between flex-column sm:flex-row">
@@ -41,9 +44,10 @@
                     </div>
                 </th>
 
-                <th style="min-width: 10rem">
+                <th pSortableColumn="metadata.publishedAt" style="min-width: 10rem">
                     <div class="flex justify-content-between align-items-center">
                         <span i18n>Publication</span>
+                        <p-sortIcon field="metadata.publishedAt"></p-sortIcon>
                         <p-columnFilter type="date" field="metadata.publishedAt" display="menu" i18n-placeholder placeholder="dd/mm/yyyy"></p-columnFilter>
                     </div>
                 </th>
@@ -77,10 +81,11 @@
                         </p-columnFilter>
                     </div>
                 </th>
-                <th style="min-width: 12rem">
+                <th pSortableColumn="stats.popularity" style="min-width: 12rem">
                     <div class="flex justify-content-between align-items-center">
                         <span i18n>Popularity</span>
-                        <p-columnFilter field="activity" matchMode="between" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
+                        <p-sortIcon field="stats.popularity"></p-sortIcon>
+                        <p-columnFilter field="popularity" matchMode="between" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
                             <ng-template pTemplate="filter" let-filter="filterCallback">
                                 <p-slider [ngModel]="activityValues" [range]="true" (onSlideEnd)="filter($event.values)"
                                           styleClass="m-3" [style]="{'min-width': '12rem'}" ></p-slider>
@@ -94,10 +99,44 @@
                 </th>
             </tr>
         </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7" class="text-center" i18n>No articles found.</td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="loadingbody">
+            <tr *ngFor="let k of [1,2,3]">
+                <td>
+                    <p-skeleton width="100%" height="5rem"></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton width="100%" height="2rem"></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="100%"></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton width="100%"></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton width="33%" styleClass="mx-auto"></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton width="33%" styleClass="mx-auto"></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton width="100%" height="1.5rem"></p-skeleton>
+                </td>
+            </tr>
+        </ng-template>
         <ng-template pTemplate="body" let-article>
             <tr>
                 <td style="padding: 0;">
-                    <img [src]="article.metadata.image" alt="" [title]="article.metadata.image" style="vertical-align: middle"/>
+                    <img [src]="article.metadata.image" alt="" class="w-full" [title]="article.metadata.image" style="vertical-align: middle"/>
                 </td>
                 <td>
                     {{ article.metadata.title }}
@@ -105,9 +144,8 @@
                 <td>
                     {{ article.metadata.description }}
                 </td>
-
                 <td>
-                    {{ article.createdAt | date: 'dd/MM/yyyy'}}
+                    {{ article.metadata.publishedAt | date: 'dd/MM/yyyy'}}
                 </td>
                 <td class="text-center">
                     <p-chip *ngFor="let category of article.metadata.categories" [label]="category" class="inline-block m-1"></p-chip>
@@ -119,16 +157,6 @@
                     <p-progressBar [value]="article.stats.clicked / article.stats.displayed * 100"
                                    [showValue]="false" [style]="{'height': '1.5rem'}"></p-progressBar>
                 </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td colspan="7" i18n>No articles found.</td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="loadingbody">
-            <tr>
-                <td colspan="7" i18n>Loading articles data. Please wait.</td>
             </tr>
         </ng-template>
     </p-table>

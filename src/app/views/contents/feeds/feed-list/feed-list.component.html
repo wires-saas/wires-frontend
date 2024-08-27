@@ -2,6 +2,18 @@
     <div class="text-900 font-semibold text-lg mt-5 mb-3 border-bottom-1 surface-border py-3">{{ title }}</div>
     <ul class="list-none p-0 m-0">
 
+        <ng-container *ngIf="!feeds.length && loading">
+            <li>
+                <p-skeleton width="100%" height="4rem" class="mb-3"></p-skeleton>
+            </li>
+        </ng-container>
+
+        <ng-container *ngIf="!feeds.length && !loading">
+            <li>
+                <p class="text-center" i18n>No feed found, create your first feed to start fetching articles</p>
+            </li>
+        </ng-container>
+
         <li *ngFor="let feed of feeds | arraySort:{'totalArticles':'desc'}; let k = index;"
             class="flex flex-column gap-3 md:flex-row md:align-items-center p-2 border-bottom-1 surface-border">
 

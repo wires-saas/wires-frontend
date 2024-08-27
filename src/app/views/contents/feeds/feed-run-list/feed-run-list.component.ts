@@ -7,6 +7,8 @@ import { FeedRun } from '../../../../services/feed.service';
 })
 export class FeedRunListComponent {
 
+    @Input() loading: boolean = true;
+
     @Input() runs: FeedRun[] = [];
 
     @Output() runSelect = new EventEmitter<FeedRun>();

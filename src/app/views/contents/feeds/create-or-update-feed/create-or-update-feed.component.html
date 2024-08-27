@@ -22,7 +22,7 @@
             </div>
             <div class="col-12 field">
                 <label for="urls" class="text-900 font-semibold" i18n>URLs</label>
-                <p-chips inputId="urls" [(ngModel)]="feed.urls" [allowDuplicate]="false"></p-chips>
+                <p-chips inputId="urls" (onChipClick)="onClickURL($event)" [(ngModel)]="feed.urls" [allowDuplicate]="false"></p-chips>
                 <p class="p-text-secondary" i18n>We encourage copy/paste for avoiding mistakes, press Enter to validate URL</p>
             </div>
             <div class="col-12 flex justify-content-end mt-4">

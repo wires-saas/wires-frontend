@@ -22,6 +22,8 @@ export class FeedsComponent implements OnInit {
 
     autoSchedule: boolean = false;
 
+    loading: boolean = true;
+
     constructor(private organizationService: OrganizationService,
                 private feedService: FeedService,
                 private router: Router,
@@ -42,8 +44,10 @@ export class FeedsComponent implements OnInit {
             map(async (org) => {
                 this.currentOrgSlug = org?.slug;
                 if (org) {
+                    this.loading = true;
                     await this.feedService.fetchFeeds(org.slug);
                     this.feedRuns = await this.feedService.getFeedRuns(org.slug);
+                    this.loading = false;
                 }
             }),
             takeUntilDestroyed(this.destroyRef)

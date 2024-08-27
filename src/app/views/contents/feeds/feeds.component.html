@@ -6,7 +6,7 @@
                 <span class="text-900 text-xl font-semibold" i18n>Feeds Management</span>
                 <button pButton pRipple class="p-button font-semibold" icon="pi pi-plus" i18n-label label="Add Feed" (click)="showDialog()"></button>
             </div>
-            <app-feed-list [feeds]="feeds" i18n-title title="Existing Feeds"></app-feed-list>
+            <app-feed-list [loading]="loading" [feeds]="feeds" i18n-title title="Existing Feeds"></app-feed-list>
         </div>
 
     </div>
@@ -15,7 +15,7 @@
 
         <div class="card">
             <h5 i18n>Last Executions</h5>
-            <app-feed-run-list [runs]="feedRuns" (runSelect)="navigateToFeedRun($event)"></app-feed-run-list>
+            <app-feed-run-list [loading]="loading" [runs]="feedRuns" (runSelect)="navigateToFeedRun($event)"></app-feed-run-list>
         </div>
 
     </div>

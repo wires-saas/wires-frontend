@@ -18,6 +18,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { ChipModule } from 'primeng/chip';
 import { TagModule } from 'primeng/tag';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
     imports: [
@@ -39,6 +40,7 @@ import { TagModule } from 'primeng/tag';
         ArticleClickRatePipe,
         ChipModule,
         TagModule,
+        SkeletonModule,
     ],
     exports: [
         ArticlesTableComponent,

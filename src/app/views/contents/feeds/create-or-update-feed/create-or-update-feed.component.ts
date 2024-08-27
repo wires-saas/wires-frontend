@@ -4,6 +4,7 @@ import { CreateFeedDto, DialogConfig, Feed, FeedService } from '../../../../serv
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { MessageUtils } from '../../../../utils/message.utils';
+import { deepClone } from '../../../../utils/deep-clone';
 
 @Component({
     selector: 'app-create-or-update-feed',
@@ -32,7 +33,7 @@ export class CreateOrUpdateFeedComponent implements OnInit {
     ngOnInit(): void {
 
         this.feedService.selectedFeed$.pipe(
-            map((data) => this.feed = data),
+            map((data) => this.feed = deepClone(data)),
             takeUntilDestroyed(this.destroyRef)
         ).subscribe();
 
@@ -118,6 +119,10 @@ export class CreateOrUpdateFeedComponent implements OnInit {
             scrapingGranularity: 'minute',
             urls: []
         };
+    }
+
+    onClickURL(e: { value: string }) {
+        window.open(e.value, '_blank');
     }
 
 }

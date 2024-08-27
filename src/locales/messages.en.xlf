@@ -1631,9 +1631,6 @@
       <trans-unit id="3012906865384504293" datatype="html">
         <source>Image</source>
       </trans-unit>
-      <trans-unit id="4069595631516152552" datatype="html">
-        <source>Loading articles data. Please wait.</source>
-      </trans-unit>
       <trans-unit id="4594048873339677178" datatype="html">
         <source>Search Keyword</source>
       </trans-unit>
@@ -1757,15 +1754,6 @@
       <trans-unit id="3174105474056085014" datatype="html">
         <source>Last Executions</source>
       </trans-unit>
-      <trans-unit id="3973931101896534797" datatype="html">
-        <source>Date</source>
-      </trans-unit>
-      <trans-unit id="5280218112746407598" datatype="html">
-        <source>New</source>
-      </trans-unit>
-      <trans-unit id="7410432243549869948" datatype="html">
-        <source>Duration</source>
-      </trans-unit>
       <trans-unit id="816590031830706859" datatype="html">
         <source>Running feed...</source>
       </trans-unit>
@@ -1807,6 +1795,30 @@
       </trans-unit>
       <trans-unit id="959537888660873016" datatype="html">
         <source>Clicks / Displays</source>
+      </trans-unit>
+      <trans-unit id="1058337748709569011" datatype="html">
+        <source> Articles </source>
+      </trans-unit>
+      <trans-unit id="1216445956577529579" datatype="html">
+        <source> Date </source>
+      </trans-unit>
+      <trans-unit id="2364085097539181633" datatype="html">
+        <source> New </source>
+      </trans-unit>
+      <trans-unit id="4282587102956396340" datatype="html">
+        <source> Status </source>
+      </trans-unit>
+      <trans-unit id="8576166194482756163" datatype="html">
+        <source> Duration </source>
+      </trans-unit>
+      <trans-unit id="8633473411198809958" datatype="html">
+        <source> Feed </source>
+      </trans-unit>
+      <trans-unit id="4168929439779327448" datatype="html">
+        <source>No feed found, create your first feed to start fetching articles</source>
+      </trans-unit>
+      <trans-unit id="8628272697022769845" datatype="html">
+        <source>No run found</source>
       </trans-unit>
     </body>
   </file>

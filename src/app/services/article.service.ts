@@ -63,7 +63,7 @@ export class ArticleService {
     }
 
     // TODO pagination
-    async fetchArticles(organizationId: string): Promise<Article[]> {
+    async getArticles(organizationId: string): Promise<Article[]> {
         return firstValueFrom(this.http.get<Article[]>(`${this.domain}/organizations/${organizationId}/articles`))
             .then((articles) => {
                 this.articles$$.next(articles);

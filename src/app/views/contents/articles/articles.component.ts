@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { ProductService } from '../../../demo/service/product.service';
 import { Article, ArticleService } from '../../../services/article.service';
+import { OrganizationService } from '../../../services/organization.service';
+import { map } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -10,25 +13,30 @@ import { Article, ArticleService } from '../../../services/article.service';
 })
 export class ArticlesComponent implements OnInit {
 
+    private destroyRef = inject(DestroyRef);
+
     articles: Article[] = [];
 
     statuses: any[] = [];
 
     loading: boolean = true;
 
-    constructor(private articleService: ArticleService, private productService: ProductService) { }
+    constructor(private articleService: ArticleService, private organizationService: OrganizationService) { }
 
 
     ngOnInit() {
-        setTimeout(() => {
-            this.articleService.getFakeArticles().then(articles => {
-                this.articles = articles;
-                this.loading = false;
 
-                // @ts-ignore
-                this.articles.forEach(article => article.date = new Date(article.metadata.publishedAt));
-            });
-        }, 200);
+        this.organizationService.currentOrganization$.pipe(
+            map(async (organization) => {
+
+                if (organization) {
+                    this.loading = true;
+                    this.articles = await this.articleService.getArticles(organization.slug);
+                    this.loading = false;
+                }
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
 
 
         this.statuses = [

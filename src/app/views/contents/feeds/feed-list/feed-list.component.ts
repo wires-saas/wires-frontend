@@ -20,6 +20,8 @@ export class FeedListComponent implements OnInit {
 
     private destroyRef = inject(DestroyRef);
 
+    @Input() loading: boolean = true;
+
     @Input() feeds!: Feed[];
 
     @Input() title!: string;

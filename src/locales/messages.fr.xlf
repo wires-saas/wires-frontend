@@ -2197,10 +2197,6 @@
         <source>No articles found.</source>
         <target state="new">Aucun article trouvé.</target>
       </trans-unit>
-      <trans-unit id="4069595631516152552" datatype="html">
-        <source>Loading articles data. Please wait.</source>
-        <target state="new">Chargement des articles. Veuillez patienter.</target>
-      </trans-unit>
       <trans-unit id="1778566165350542713" datatype="html">
         <source>Search by image</source>
         <target state="new">Chercher par image</target>
@@ -2341,18 +2337,6 @@
         <source>Please wait a moment, you will be redirected to the feed run page.</source>
         <target state="new">Veuillez patienter, cette opération peut prendre quelques secondes</target>
       </trans-unit>
-      <trans-unit id="3973931101896534797" datatype="html">
-        <source>Date</source>
-        <target state="new">Date</target>
-      </trans-unit>
-      <trans-unit id="5280218112746407598" datatype="html">
-        <source>New</source>
-        <target state="new">New</target>
-      </trans-unit>
-      <trans-unit id="7410432243549869948" datatype="html">
-        <source>Duration</source>
-        <target state="new">Durée</target>
-      </trans-unit>
       <trans-unit id="3174105474056085014" datatype="html">
         <source>Last Executions</source>
         <target state="new">Dernières récupérations</target>
@@ -2407,7 +2391,39 @@
       </trans-unit>
       <trans-unit id="492462897434743133" datatype="html">
         <source>Open Link</source>
-        <target state="new">Ouvrir l'article</target>
+        <target state="new">Ouvrir l&apos;article</target>
+      </trans-unit>
+      <trans-unit id="1216445956577529579" datatype="html">
+        <source> Date </source>
+        <target state="new"> Date </target>
+      </trans-unit>
+      <trans-unit id="8633473411198809958" datatype="html">
+        <source> Feed </source>
+        <target state="new"> Flux </target>
+      </trans-unit>
+      <trans-unit id="1058337748709569011" datatype="html">
+        <source> Articles </source>
+        <target state="new"> Articles </target>
+      </trans-unit>
+      <trans-unit id="2364085097539181633" datatype="html">
+        <source> New </source>
+        <target state="new"> Nouveautés </target>
+      </trans-unit>
+      <trans-unit id="8576166194482756163" datatype="html">
+        <source> Duration </source>
+        <target state="new"> Durée </target>
+      </trans-unit>
+      <trans-unit id="4282587102956396340" datatype="html">
+        <source> Status </source>
+        <target state="new"> Statut </target>
+      </trans-unit>
+      <trans-unit id="4168929439779327448" datatype="html">
+        <source>No feed found, create your first feed to start fetching articles</source>
+        <target state="new">Aucun flux, créez votre premier flux pour commencer à récupérer des articles</target>
+      </trans-unit>
+      <trans-unit id="8628272697022769845" datatype="html">
+        <source>No run found</source>
+        <target state="new">Aucune récupération trouvée</target>
       </trans-unit>
     </body>
   </file>
