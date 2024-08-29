@@ -68,4 +68,6 @@ export class FeedsComponent implements OnInit {
 
         await this.router.navigate([feedId, 'runs', run._id], { relativeTo: this.route });
     }
+
+    static permissions = ['create_feed', 'update_feed', 'read_feedRun'];
 }

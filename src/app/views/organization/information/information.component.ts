@@ -220,4 +220,6 @@ export class InformationComponent implements OnInit {
         });
     }
 
+    static permissions = ['update_organization'];
+
 }

@@ -66,6 +66,5 @@ export class ArticlesComponent implements OnInit {
         ];
     }
 
-
-
+    static permissions = ['read_article'];
 }

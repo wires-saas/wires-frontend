@@ -2441,6 +2441,22 @@
         <source>Not equals</source>
         <target state="new">Différent de</target>
       </trans-unit>
+      <trans-unit id="7474691357977367171" datatype="html">
+        <source>Execute Feed</source>
+        <target state="new">Récupérer Flux</target>
+      </trans-unit>
+      <trans-unit id="3805498685720374026" datatype="html">
+        <source>Feed Run</source>
+        <target state="new">Récupération Flux</target>
+      </trans-unit>
+      <trans-unit id="6095357695778876239" datatype="html">
+        <source>Article</source>
+        <target state="new">Article</target>
+      </trans-unit>
+      <trans-unit id="2029737240354327278" datatype="html">
+        <source>Resiliate Subscription</source>
+        <target state="new">Résilier Souscription</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

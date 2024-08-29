@@ -1832,6 +1832,18 @@
       <trans-unit id="8863611568205528132" datatype="html">
         <source>Starts with</source>
       </trans-unit>
+      <trans-unit id="7474691357977367171" datatype="html">
+        <source>Execute Feed</source>
+      </trans-unit>
+      <trans-unit id="3805498685720374026" datatype="html">
+        <source>Feed Run</source>
+      </trans-unit>
+      <trans-unit id="6095357695778876239" datatype="html">
+        <source>Article</source>
+      </trans-unit>
+      <trans-unit id="2029737240354327278" datatype="html">
+        <source>Resiliate Subscription</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

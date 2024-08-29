@@ -58,6 +58,11 @@ export class AuthService {
                 localStorage.removeItem('autologin');
             }
 
+            response.user.roles = response.user.roles.map((userRole) => ({
+                ...userRole,
+                permissions: RoleUtils.convertManagePermissions(userRole.permissions)
+            }));
+
             this.currentUser$$.next(response.user);
             return true;
         });
@@ -73,7 +78,13 @@ export class AuthService {
     async getProfile(): Promise<ProfileData> {
         return firstValueFrom(this.http.get<ProfileData>(`${this.domain}/auth/profile`))
             .then((profile) => {
-                if (profile.user) this.currentUser$$.next(profile.user);
+                if (profile.user) {
+                    profile.user.roles = profile.user.roles.map((userRole) => ({
+                        ...userRole,
+                        permissions: RoleUtils.convertManagePermissions(userRole.permissions)
+                    }));
+                    this.currentUser$$.next(profile.user);
+                }
                 return profile;
             });
     }
@@ -105,6 +116,39 @@ export class AuthService {
                 if (!user) return false;
 
                 return RoleUtils.hasRole(user, role, slug);
+            })
+        );
+    }
+
+    hasPermission$(permission: string, slug?: string): Observable<boolean> {
+        return this.currentUser$.pipe(
+            map((user) => {
+
+                if (!user) return false;
+
+                return RoleUtils.hasPermission(user, permission, slug);
+            })
+        );
+    }
+
+    hasAtLeast$(permissions: string[], slug?: string): Observable<boolean> {
+        return this.currentUser$.pipe(
+            map((user) => {
+
+                if (!user) return false;
+
+                return !!permissions.find((permission) => RoleUtils.hasPermission(user, permission, slug));
+            })
+        );
+    }
+
+    hasAll$(permissions: string[], slug?: string): Observable<boolean> {
+        return this.currentUser$.pipe(
+            map((user) => {
+
+                if (!user) return false;
+
+                return permissions.every((permission) => RoleUtils.hasPermission(user, permission, slug));
             })
         );
     }

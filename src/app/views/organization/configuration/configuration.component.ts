@@ -140,4 +140,6 @@ export class ConfigurationComponent implements OnInit {
         });
     }
 
+    static permissions = ['update_organization', 'update_userRole'];
+
 }

@@ -71,4 +71,6 @@ export class BillingComponent implements OnInit {
             return 0;
         }
     }
+
+    static permissions = ['read_billing'];
 }

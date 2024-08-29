@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Table } from 'primeng/table';
-import { CustomerService } from 'src/app/demo/service/customer.service';
 import { User, UserService, UserStatus } from '../../../../services/user.service';
 import { OrganizationService } from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -330,4 +329,6 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
     }
 
     protected readonly RoleUtils = RoleUtils;
+
+    static permissions = ['update_user'];
 }

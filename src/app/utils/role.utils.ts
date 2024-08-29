@@ -4,6 +4,7 @@ export interface UserRole {
     organization: string;
     user: string;
     role: Role;
+    permissions: string[];
 }
 
 export enum Role {
@@ -24,6 +25,18 @@ export class RoleUtils {
                 return RoleUtils.isRoleOrGreater(userRole.role, role) && userRole.organization === organization;
             } else {
                 return RoleUtils.isRoleOrGreater(userRole.role, role);
+            }
+        });
+    }
+
+    static hasPermission(user: User, permission: string, organization?: string): boolean {
+        if (user.isSuperAdmin) return true;
+
+        return user.roles.some((userRole: UserRole) => {
+            if (organization) {
+                return userRole.organization === organization && userRole.permissions?.includes(permission);
+            } else {
+                return userRole.permissions?.includes(permission);
             }
         });
     }
@@ -56,5 +69,21 @@ export class RoleUtils {
         }
 
         return Role.GUEST;
+    }
+
+    static convertManagePermissions(permissions: string[]): string[] {
+        // Maybe this would be more relevant in server side
+        return permissions.reduce((acc: string[], permission: string): string[] => {
+
+            const subject = permission.split('_')[1];
+
+            if (permission.startsWith('manage')) {
+                const implicits = ['create', 'read', 'update', 'delete'];
+
+                return [...acc, ...implicits.map(implicit => `${implicit}_${subject}`)];
+            }
+
+            return [...acc, permission];
+        }, []);
     }
 }

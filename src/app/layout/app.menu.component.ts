@@ -4,6 +4,12 @@ import { AuthService } from '../services/auth.service';
 import { Role } from '../utils/role.utils';
 import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FeedsComponent } from '../views/contents/feeds/feeds.component';
+import { ArticlesComponent } from '../views/contents/articles/articles.component';
+import { BillingComponent } from '../views/organization/billing/billing.component';
+import { ConfigurationComponent } from '../views/organization/configuration/configuration.component';
+import { InformationComponent } from '../views/organization/information/information.component';
+import { ListUsersComponent } from '../views/organization/users/list/list-users.component';
 
 @Component({
     selector: 'app-menu',
@@ -47,18 +53,22 @@ export class AppMenuComponent implements OnInit {
     private contentsMenu: (org: Organization, authService: AuthService) => any[] = (org, authService) => ([
         {
             label: $localize `Contents`,
-            restriction: authService.hasRole$(Role.MANAGER, org.slug),
+            restriction: authService.hasAtLeast$([
+                ...FeedsComponent.permissions, ...ArticlesComponent.permissions
+            ], org.slug),
             items: [
                 {
                     label: $localize `Articles`,
                     icon: 'pi pi-fw pi-box',
-                    routerLink: [`/organization/${org.slug}/contents/articles`]
+                    routerLink: [`/organization/${org.slug}/contents/articles`],
+                    restriction: authService.hasAtLeast$(ArticlesComponent.permissions, org.slug)
                 },
                 {
                     label: $localize `Feeds`,
                     icon: 'pi pi-fw pi-sitemap',
                     routerLink: [`/organization/${org.slug}/contents/feeds`],
-                    routerLinkActiveOptions: { exact: false }
+                    routerLinkActiveOptions: { exact: false },
+                    restriction: authService.hasAtLeast$(FeedsComponent.permissions, org.slug)
                 }
             ]
         }
@@ -68,13 +78,18 @@ export class AppMenuComponent implements OnInit {
     private organizationMenu: (org: Organization, authService: AuthService) => any[] = (org, authService) => ([
         {
             label: $localize `Organization`,
-            restriction: authService.hasRole$(Role.MANAGER, org.slug),
+            restriction: authService.hasAtLeast$([
+                ...BillingComponent.permissions,
+                ...ConfigurationComponent.permissions,
+                ...InformationComponent.permissions,
+                ...ListUsersComponent.permissions
+            ], org.slug),
             items: [
                 {
                     label: $localize `All Users`,
                     icon: 'pi pi-fw pi-users',
                     routerLink: [`organization/${org.slug}/users/list`],
-                    restriction: authService.hasRole$(Role.MANAGER, org.slug)
+                    restriction: authService.hasAtLeast$(ListUsersComponent.permissions, org.slug)
                 },
                 /* {
                     label: $localize `Add User`,
@@ -86,19 +101,19 @@ export class AppMenuComponent implements OnInit {
                     label: $localize `Information`,
                     icon: 'pi pi-fw pi-building',
                     routerLink: [`organization/${org.slug}/information`],
-                    restriction: authService.hasRole$(Role.ADMIN, org.slug)
+                    restriction: authService.hasAtLeast$(InformationComponent.permissions, org.slug)
                 },
                 {
                     label: $localize `Billing`,
                     icon: 'pi pi-fw pi-wallet',
                     routerLink: [`organization/${org.slug}/billing`],
-                    restriction: authService.hasRole$(Role.ADMIN, org.slug)
+                    restriction: authService.hasAtLeast$(BillingComponent.permissions, org.slug)
                 },
                 {
                     label: $localize `Configuration`,
                     icon: 'pi pi-fw pi-cog',
                     routerLink: [`organization/${org.slug}/configuration`],
-                    restriction: authService.hasRole$(Role.ADMIN, org.slug)
+                    restriction: authService.hasAtLeast$(ConfigurationComponent.permissions, org.slug)
                 },
             ]
         }

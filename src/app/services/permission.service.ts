@@ -19,6 +19,9 @@ export enum PermissionSubject {
     UserRole = 'userRole',
     User = 'user',
     Feed = 'feed',
+    FeedRun = 'feedRun',
+    Article = 'article',
+    Billing = 'billing',
 }
 
 export class Permission {
@@ -31,48 +34,79 @@ export class Permission {
         this.subject = subject;
         this.action = action;
 
-        let actionI18N;
-        switch (this.action) {
-            case PermissionAction.Create:
-                actionI18N = $localize `Create`;
-                break;
-            case PermissionAction.Read:
-                actionI18N = $localize `Read`;
-                break;
-            case PermissionAction.Update:
-                actionI18N = $localize `Update`;
-                break;
-            case PermissionAction.Delete:
-                actionI18N = $localize `Delete`;
-                break;
-            case PermissionAction.Manage:
-                actionI18N = $localize `Manage`;
-                break;
-            default:
-                actionI18N = $localize `N/A`;
-                break;
+        let customLabel: string = '';
+
+        // Special translations (more explicit)
+        if (this.subject === PermissionSubject.FeedRun) {
+            if (this.action === PermissionAction.Create) {
+                customLabel = $localize `Execute Feed`;
+            }
         }
 
-        let subjectI18N;
-        switch (this.subject) {
-            case PermissionSubject.Organization:
-                subjectI18N = $localize `Organization`;
-                break;
-            case PermissionSubject.UserRole:
-                subjectI18N = $localize `User Role`;
-                break;
-            case PermissionSubject.User:
-                subjectI18N = $localize `User`;
-                break;
-            case PermissionSubject.Feed:
-                subjectI18N = $localize `Feed`;
-                break;
-            default:
-                subjectI18N = $localize `N/A`;
-                break;
+        if (this.subject === PermissionSubject.Billing) {
+            if (this.action === PermissionAction.Delete) {
+                customLabel = $localize `Resiliate Subscription`;
+            }
         }
 
-        this.label = `${actionI18N} ${subjectI18N}`;
+        // Default translation "Action Subject"
+        if (!customLabel) {
+
+            let actionI18N;
+
+            switch (this.action) {
+                case PermissionAction.Create:
+                    actionI18N = $localize`Create`;
+                    break;
+                case PermissionAction.Read:
+                    actionI18N = $localize`Read`;
+                    break;
+                case PermissionAction.Update:
+                    actionI18N = $localize`Update`;
+                    break;
+                case PermissionAction.Delete:
+                    actionI18N = $localize`Delete`;
+                    break;
+                case PermissionAction.Manage:
+                    actionI18N = $localize`Manage`;
+                    break;
+                default:
+                    actionI18N = $localize`N/A`;
+                    break;
+            }
+
+            let subjectI18N;
+            switch (this.subject) {
+                case PermissionSubject.Organization:
+                    subjectI18N = $localize`Organization`;
+                    break;
+                case PermissionSubject.UserRole:
+                    subjectI18N = $localize`User Role`;
+                    break;
+                case PermissionSubject.User:
+                    subjectI18N = $localize`User`;
+                    break;
+                case PermissionSubject.Feed:
+                    subjectI18N = $localize`Feed`;
+                    break;
+                case PermissionSubject.FeedRun:
+                    subjectI18N = $localize`Feed Run`;
+                    break;
+                case PermissionSubject.Article:
+                    subjectI18N = $localize`Article`;
+                    break;
+                case PermissionSubject.Billing:
+                    subjectI18N = $localize`Billing`;
+                    break;
+                default:
+                    subjectI18N = $localize`N/A`;
+                    break;
+            }
+
+            this.label = `${actionI18N} ${subjectI18N}`;
+        } else {
+            this.label = customLabel;
+        }
     }
 }
 
