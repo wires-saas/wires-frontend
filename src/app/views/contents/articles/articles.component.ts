@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, ViewChild } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { ProductService } from '../../../demo/service/product.service';
 import { Article, ArticleService } from '../../../services/article.service';
@@ -6,6 +6,7 @@ import { OrganizationService } from '../../../services/organization.service';
 import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Feed, FeedService } from '../../../services/feed.service';
+import { ArticlesTableComponent } from '../../../meta-components/articles-table/articles-table.component';
 
 
 @Component({
@@ -14,11 +15,15 @@ import { Feed, FeedService } from '../../../services/feed.service';
 })
 export class ArticlesComponent implements OnInit {
 
+    @ViewChild('table') table!: ArticlesTableComponent;
+
     private destroyRef = inject(DestroyRef);
 
     feeds: Feed[] = [];
 
     articles: Article[] = [];
+
+    categories: string[] = [];
 
     statuses: any[] = [];
 
@@ -49,6 +54,10 @@ export class ArticlesComponent implements OnInit {
                         });
                     });
 
+                    const articlesWithCategories = this.articles.filter((article) => article.metadata.categories.length);
+                    const categories = articlesWithCategories.map((article) => article.metadata.categories).flat();
+                    this.categories = [...new Set(categories)];
+
                     this.loading = false;
                 }
             }),
@@ -65,6 +74,14 @@ export class ArticlesComponent implements OnInit {
             { label: 'Proposal', value: 'proposal' }
         ];
     }
+
+    openCreateTagDialog() {
+        console.log('Create article tag', this.table.getFilters());
+        // TODO eliminate some filters (tags)
+        // TODO open dialog
+        // TODO pretty display filters part of created tag
+    }
+
 
     static permissions = ['read_article'];
 }

@@ -1,7 +1,11 @@
 <div class="grid">
 	<div class="col-12">
 
-        <app-articles-table [articles]="articles" [feeds]="feeds" [loading]="loading" class="block mb-4"></app-articles-table>
+        <app-articles-table #table
+                            [articles]="articles" [feeds]="feeds" [categories]="categories"
+                            [loading]="loading"
+                            (onCreateTag)="openCreateTagDialog()"
+                            class="block mb-4"></app-articles-table>
 
 	</div>
 </div>

@@ -1,10 +1,11 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { ConfirmationService, FilterService, MessageService } from 'primeng/api';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ConfirmationService, FilterMetadata, FilterService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Article } from '../../services/article.service';
 import { Feed } from '../../services/feed.service';
 import { DropdownChangeEvent } from 'primeng/dropdown';
-import { TableUtils } from '../../utils/table.utils';
+import { TableFilterUtils, TableUtils } from '../../utils/table.utils';
+import { deepClone } from '../../utils/deep-clone';
 
 @Component({
     selector: 'app-articles-table',
@@ -13,17 +14,24 @@ import { TableUtils } from '../../utils/table.utils';
 })
 export class ArticlesTableComponent {
 
+    @ViewChild('dt1') table!: Table;
+
     @Input() articles: Article[] = [];
+
+    @Input() categories: string[] = [];
 
     @Input() statuses: any[] = [];
     @Input() feeds: Feed[] = [];
 
     textMatchModeOptions: any[] = TableUtils.matchModesOptionsForText();
     urlMatchModeOptions: any[] = TableUtils.matchModesOptionsForUrl();
+    exactMatchModeOptions: any[] = TableUtils.matchModesOptionsExact();
 
     // activityValues: number[] = [0, 100];
 
     @Input() loading: boolean = true;
+
+    @Output() onCreateTag: EventEmitter<void> = new EventEmitter<void>();
 
     @ViewChild('filter') filter!: ElementRef;
 
@@ -33,20 +41,17 @@ export class ArticlesTableComponent {
 
         // TODO get matchModeOptions factorized, within table.utils.ts
 
-        this.filterService.register('hasFeed', (value: string[], filter: string[]): boolean => {
-            console.log(value, filter);
-            if (filter === undefined || filter === null || !filter.length) {
-                return true;
-            }
+        this.filterService.register('hasFeed', TableFilterUtils.hasFeed);
 
-            if (value === undefined || value === null) {
-                return false;
-            }
+        this.filterService.register('dateIs', TableFilterUtils.dateIs);
 
-            return filter.every((f) => value.includes(f));
-        });
+        this.filterService.register('dateIsNot', TableFilterUtils.dateIsNot);
 
-        console.log(this.filterService.filters);
+        this.filterService.register('dateBefore', TableFilterUtils.dateBefore);
+
+        this.filterService.register('dateAfter', TableFilterUtils.dateAfter);
+
+
 
         // this.filterService.filters['isPrimeNumber'](3);
     }
@@ -69,12 +74,25 @@ export class ArticlesTableComponent {
         return severities[safeIndex];
     }
 
-    onFilterFeed(feed: DropdownChangeEvent, filter: any) {
+    getFilters() {
+        let filters:  {[p: string]: FilterMetadata[]} = deepClone(this.table.filters);
 
-        filter(feed.value);
+        filters = Object.entries(filters).reduce((acc, [filterTarget, filterMetadata]) => {
 
-        console.log(filter);
-        console.log(feed);
+            const relevantFilterMetadata = filterMetadata.filter((metadata) => !!metadata.value);
+
+            if (!relevantFilterMetadata.length) return acc;
+            else {
+                acc[filterTarget] = filterMetadata.filter((metadata) => !!metadata.value);
+                return acc;
+            }
+        }, {} as {[p: string]: FilterMetadata[]});
+
+        return filters;
+    }
+
+    logFilters() {
+        console.log(this.table.filters);
     }
 
 }
