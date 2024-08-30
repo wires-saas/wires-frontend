@@ -6,11 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ColorsComponent } from './colors/colors.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        UtilitiesRoutingModule,
-        InputTextModule
-    ],
-    declarations: [IconsComponent, ColorsComponent]
+    imports: [CommonModule, UtilitiesRoutingModule, InputTextModule],
+    declarations: [IconsComponent, ColorsComponent],
 })
-export class UtilitiesModule { }
+export class UtilitiesModule {}

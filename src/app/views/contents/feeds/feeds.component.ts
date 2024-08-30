@@ -1,5 +1,10 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { Feed, FeedRun, FeedRunPopulated, FeedService } from '../../../services/feed.service';
+import {
+    Feed,
+    FeedRun,
+    FeedRunPopulated,
+    FeedService,
+} from '../../../services/feed.service';
 import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 import { OrganizationService } from '../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -8,10 +13,9 @@ import { Slug } from '../../../utils/types.utils';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-    templateUrl: './feeds.component.html'
+    templateUrl: './feeds.component.html',
 })
 export class FeedsComponent implements OnInit {
-
     private destroyRef = inject(DestroyRef);
 
     currentOrgSlug: Slug | undefined;
@@ -24,35 +28,39 @@ export class FeedsComponent implements OnInit {
 
     loading: boolean = true;
 
-    constructor(private organizationService: OrganizationService,
-                private feedService: FeedService,
-                private router: Router,
-                private route: ActivatedRoute) {
+    constructor(
+        private organizationService: OrganizationService,
+        private feedService: FeedService,
+        private router: Router,
+        private route: ActivatedRoute,
+    ) {
         this.autoSchedule = this.feedService.autoSchedule;
     }
 
     async ngOnInit() {
+        this.feedService.feeds$
+            .pipe(
+                map((feeds) => (this.feeds = feeds)),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
 
-        this.feedService.feeds$.pipe(
-            map((feeds) => this.feeds = feeds),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe();
-
-
-
-        this.organizationService.currentOrganization$.pipe(
-            map(async (org) => {
-                this.currentOrgSlug = org?.slug;
-                if (org) {
-                    this.loading = true;
-                    await this.feedService.getFeeds(org.slug);
-                    this.feedRuns = await this.feedService.getFeedRuns(org.slug);
-                    this.loading = false;
-                }
-            }),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe();
-
+        this.organizationService.currentOrganization$
+            .pipe(
+                map(async (org) => {
+                    this.currentOrgSlug = org?.slug;
+                    if (org) {
+                        this.loading = true;
+                        await this.feedService.getFeeds(org.slug);
+                        this.feedRuns = await this.feedService.getFeedRuns(
+                            org.slug,
+                        );
+                        this.loading = false;
+                    }
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
     }
 
     toggleAutoSchedule(e: ToggleButtonChangeEvent) {
@@ -60,13 +68,16 @@ export class FeedsComponent implements OnInit {
     }
 
     showDialog() {
-        this.feedService.showDialog($localize `Create Feed`, true);
+        this.feedService.showDialog($localize`Create Feed`, true);
     }
 
     async navigateToFeedRun(run: FeedRun | FeedRunPopulated) {
-        const feedId: string = typeof run.feed === 'string' ? run.feed : run.feed._id;
+        const feedId: string =
+            typeof run.feed === 'string' ? run.feed : run.feed._id;
 
-        await this.router.navigate([feedId, 'runs', run._id], { relativeTo: this.route });
+        await this.router.navigate([feedId, 'runs', run._id], {
+            relativeTo: this.route,
+        });
     }
 
     static permissions = ['create_feed', 'update_feed', 'read_feedRun'];

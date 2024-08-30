@@ -3,17 +3,17 @@ import { Plan } from '../../services/organization.service';
 
 @Pipe({
     name: 'planPrice',
-    standalone: true
+    standalone: true,
 })
 export class PlanPricePipe implements PipeTransform {
-    transform(plan: Plan, ...args: unknown[]): number | string {
+    transform(plan: Plan): number | string {
         switch (plan) {
             case 'basic':
                 return 200;
             case 'extended':
                 return 500;
             case 'custom':
-                return $localize `Custom pricing`;
+                return $localize`Custom pricing`;
             case 'free':
                 return 0;
             default:

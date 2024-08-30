@@ -10,13 +10,9 @@ import { FeedRunStatusPipe } from '../../utils/pipes/feed-run-status.pipe';
         TagModule,
         FeedRunStatusPipe,
         NgSwitchCase,
-        NgSwitchDefault
+        NgSwitchDefault,
     ],
-    exports: [
-        StatusBadgeComponent,
-    ],
-    declarations: [
-        StatusBadgeComponent,
-    ]
+    exports: [StatusBadgeComponent],
+    declarations: [StatusBadgeComponent],
 })
-export class StatusBadgeModule { }
+export class StatusBadgeModule {}

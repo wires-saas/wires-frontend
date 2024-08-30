@@ -35,8 +35,8 @@ import { ToastModule } from 'primeng/toast';
         InputSwitchModule,
         SelectButtonModule,
         ReactiveFormsModule,
-        ToastModule
+        ToastModule,
     ],
-    declarations: [InformationComponent]
+    declarations: [InformationComponent],
 })
-export class InformationModule { }
+export class InformationModule {}

@@ -1,5 +1,5 @@
 export interface Message {
     text: string;
-    ownerId: number,
+    ownerId: number;
     createdAt: number;
 }

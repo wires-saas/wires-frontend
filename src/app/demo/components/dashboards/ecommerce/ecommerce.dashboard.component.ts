@@ -31,11 +31,11 @@ export class EcommerceDashboardComponent implements OnInit, OnDestroy {
 
     constructor(
         private productService: ProductService,
-        private layoutService: LayoutService
+        private layoutService: LayoutService,
     ) {
         this.subscription = this.layoutService.configUpdate$
             .pipe(debounceTime(25))
-            .subscribe((config) => {
+            .subscribe(() => {
                 this.initCharts();
             });
     }
@@ -78,7 +78,7 @@ export class EcommerceDashboardComponent implements OnInit, OnDestroy {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue(
-            '--text-color-secondary'
+            '--text-color-secondary',
         );
         const surfaceBorder =
             documentStyle.getPropertyValue('--surface-border');
@@ -187,7 +187,7 @@ export class EcommerceDashboardComponent implements OnInit, OnDestroy {
     }
 
     onWeekChange() {
-        let newBarData = { ...this.barData };
+        const newBarData = { ...this.barData };
         newBarData.datasets[0].data = this.selectedWeek.data[0];
         newBarData.datasets[1].data = this.selectedWeek.data[1];
         this.barData = newBarData;
@@ -196,7 +196,7 @@ export class EcommerceDashboardComponent implements OnInit, OnDestroy {
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal(
             (event.target as HTMLInputElement).value,
-            'contains'
+            'contains',
         );
     }
 

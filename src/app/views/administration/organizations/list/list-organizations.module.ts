@@ -24,8 +24,8 @@ import { ToastModule } from 'primeng/toast';
         CountryNamePipe,
         MenuModule,
         ConfirmDialogModule,
-        ToastModule
+        ToastModule,
     ],
-	declarations: [ListOrganizationsComponent]
+    declarations: [ListOrganizationsComponent],
 })
-export class ListOrganizationsModule { }
+export class ListOrganizationsModule {}

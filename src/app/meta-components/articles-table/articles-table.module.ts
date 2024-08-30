@@ -42,11 +42,7 @@ import { SkeletonModule } from 'primeng/skeleton';
         TagModule,
         SkeletonModule,
     ],
-    exports: [
-        ArticlesTableComponent,
-    ],
-    declarations: [
-        ArticlesTableComponent,
-    ]
+    exports: [ArticlesTableComponent],
+    declarations: [ArticlesTableComponent],
 })
-export class ArticlesTableModule { }
+export class ArticlesTableModule {}

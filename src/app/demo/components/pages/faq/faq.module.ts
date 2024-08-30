@@ -6,12 +6,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { RippleModule } from 'primeng/ripple';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FaqRoutingModule,
-        AccordionModule,
-        RippleModule
-    ],
-    declarations: [FaqComponent]
+    imports: [CommonModule, FaqRoutingModule, AccordionModule, RippleModule],
+    declarations: [FaqComponent],
 })
-export class FaqModule { }
+export class FaqModule {}

@@ -11,7 +11,7 @@
         "build:dev": "ng build --configuration development",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "lint": "ng lint",
+        "lint": "eslint \"{src/app,src/environments}/**/*.ts\" --fix",
         "i18n": "ng extract-i18n"
     },
     "private": true,
@@ -46,6 +46,11 @@
         "@angular/compiler-cli": "^17.0.5",
         "@angular/localize": "^17.0.7",
         "@types/jasmine": "~4.3.1",
+        "@typescript-eslint/eslint-plugin": "^6.21.0",
+        "@typescript-eslint/parser": "^6.21.0",
+        "eslint": "^8.56.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.1.3",
         "jasmine-core": "~4.6.0",
         "karma": "~6.4.2",
         "karma-chrome-launcher": "~3.2.0",
@@ -53,6 +58,7 @@
         "karma-jasmine": "~5.1.0",
         "karma-jasmine-html-reporter": "~2.1.0",
         "ng-extract-i18n-merge": "^2.12.0",
+        "prettier": "3.3.3",
         "typescript": "~5.2.2"
     }
 }

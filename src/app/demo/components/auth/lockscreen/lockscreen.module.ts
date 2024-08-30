@@ -16,8 +16,8 @@ import { AppConfigModule } from 'src/app/layout/config/app.config.module';
         InputTextModule,
         ButtonModule,
         RippleModule,
-        AppConfigModule
+        AppConfigModule,
     ],
-    declarations: [LockScreenComponent]
+    declarations: [LockScreenComponent],
 })
-export class LockScreenModule { }
+export class LockScreenModule {}

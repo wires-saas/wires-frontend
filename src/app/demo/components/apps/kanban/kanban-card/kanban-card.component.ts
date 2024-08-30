@@ -6,10 +6,9 @@ import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-kanban-card',
-    templateUrl: './kanban-card.component.html'
+    templateUrl: './kanban-card.component.html',
 })
 export class KanbanCardComponent implements OnDestroy {
-
     @Input() card!: KanbanCard;
 
     @Input() listId!: string;
@@ -19,14 +18,22 @@ export class KanbanCardComponent implements OnDestroy {
     subscription: Subscription;
 
     constructor(private kanbanService: KanbanService) {
-        this.subscription = this.kanbanService.lists$.subscribe(data => {
-            let subMenu = data.map(d => ({ id: d.listId, label: d.title, command: () => this.onMove(d.listId) }));
+        this.subscription = this.kanbanService.lists$.subscribe((data) => {
+            const subMenu = data.map((d) => ({
+                id: d.listId,
+                label: d.title,
+                command: () => this.onMove(d.listId),
+            }));
             this.generateMenu(subMenu);
-        })
+        });
     }
 
     parseDate(dueDate: string) {
-        return new Date(dueDate).toDateString().split(' ').slice(1, 3).join(' ');
+        return new Date(dueDate)
+            .toDateString()
+            .split(' ')
+            .slice(1, 3)
+            .join(' ');
     }
 
     onDelete() {
@@ -45,13 +52,15 @@ export class KanbanCardComponent implements OnDestroy {
         this.menuItems = [
             { label: 'Copy card', command: () => this.onCopy() },
             { label: 'Move card', items: subMenu },
-            { label: 'Delete card', command: () => this.onDelete() }
+            { label: 'Delete card', command: () => this.onDelete() },
         ];
     }
 
     generateTaskInfo() {
-        let total = this.card.taskList.tasks.length;
-        let completed = this.card.taskList.tasks.filter(t => t.completed).length;
+        const total = this.card.taskList.tasks.length;
+        const completed = this.card.taskList.tasks.filter(
+            (t) => t.completed,
+        ).length;
         return `${completed} / ${total}`;
     }
 

@@ -1,28 +1,42 @@
-import {  Directive, ElementRef, OnDestroy, Renderer2, Input, OnInit, HostBinding, AfterViewInit } from '@angular/core';
+import {
+    Directive,
+    ElementRef,
+    OnDestroy,
+    Renderer2,
+    Input,
+    OnInit,
+    HostBinding,
+    AfterViewInit,
+} from '@angular/core';
 
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[animateEnter]'
+    selector: '[animateEnter]',
 })
 export class AnimateEnterDirective implements OnInit, AfterViewInit, OnDestroy {
-
     @Input('animateEnter') animation!: string;
 
-    documentScrollListener: Function | null = null;
+    documentScrollListener: (() => unknown) | null = null;
 
-    loadListener: Function = () => { };
+    loadListener: () => unknown = () => {};
 
     entered: boolean = false;
 
     @HostBinding('class.visibility-hidden') visibilityHidden: boolean = true;
 
-    constructor(public el: ElementRef, public renderer: Renderer2) { }
+    constructor(
+        public el: ElementRef,
+        public renderer: Renderer2,
+    ) {}
 
     ngOnInit() {
         if (this.isImage()) {
-            this.loadListener = this.renderer.listen(this.el.nativeElement, 'load', () => {
-                this.bind();
-            });
+            this.loadListener = this.renderer.listen(
+                this.el.nativeElement,
+                'load',
+                () => {
+                    this.bind();
+                },
+            );
         }
     }
 
@@ -38,30 +52,34 @@ export class AnimateEnterDirective implements OnInit, AfterViewInit, OnDestroy {
         }
 
         if (!this.entered) {
-            this.documentScrollListener = this.renderer.listen('window', 'scroll', () => {
-                if (this.isInViewPort() && this.documentScrollListener) {
-                    this.enter();
-                    this.documentScrollListener();
-                    this.documentScrollListener = null;
-                }
-            });
+            this.documentScrollListener = this.renderer.listen(
+                'window',
+                'scroll',
+                () => {
+                    if (this.isInViewPort() && this.documentScrollListener) {
+                        this.enter();
+                        this.documentScrollListener();
+                        this.documentScrollListener = null;
+                    }
+                },
+            );
         }
     }
 
     shouldEnter(): boolean {
-        return this.entered ? false: this.isInViewPort();
+        return this.entered ? false : this.isInViewPort();
     }
 
     isInViewPort() {
-        let rect = this.el.nativeElement.parentElement.parentElement.parentElement.getBoundingClientRect();
-        let docElement = document.documentElement;
-        let winHeight = docElement.clientHeight;
+        const rect =
+            this.el.nativeElement.parentElement.parentElement.parentElement.getBoundingClientRect();
+        const docElement = document.documentElement;
+        const winHeight = docElement.clientHeight;
 
         if (rect.top > 0) {
-            return (rect.top >= 0 && winHeight >= rect.top);
-        } 
-        else {
-            return true
+            return rect.top >= 0 && winHeight >= rect.top;
+        } else {
+            return true;
         }
     }
 

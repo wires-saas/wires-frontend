@@ -16,7 +16,7 @@ import { MailSpamComponent } from './mail-spam/mail-spam.component';
 import { MailStarredComponent } from './mail-starred/mail-starred.component';
 import { MailTrashComponent } from './mail-trash/mail-trash.component';
 import { MenuModule } from 'primeng/menu';
-import { ButtonModule } from 'primeng/button'
+import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
@@ -44,7 +44,7 @@ import { MailService } from './service/mail.service';
         EditorModule,
         ToastModule,
         FileUploadModule,
-        DialogModule
+        DialogModule,
     ],
     declarations: [
         MailAppComponent,
@@ -59,8 +59,8 @@ import { MailService } from './service/mail.service';
         MailSentComponent,
         MailSpamComponent,
         MailStarredComponent,
-        MailTrashComponent
+        MailTrashComponent,
     ],
-    providers: [MessageService, MailService]
+    providers: [MessageService, MailService],
 })
-export class MailAppModule { }
+export class MailAppModule {}

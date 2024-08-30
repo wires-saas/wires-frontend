@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    ViewChild,
+    ChangeDetectionStrategy,
+} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Menu } from 'primeng/menu';
 import { Task } from 'src/app/demo/api/task';
@@ -7,10 +13,9 @@ import { TaskService } from '../service/task.service';
 @Component({
     selector: 'app-task-list',
     templateUrl: './task-list.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskListComponent implements OnInit {
-
     @Input() taskList!: Task[];
 
     @Input() title!: string;
@@ -21,17 +26,25 @@ export class TaskListComponent implements OnInit {
 
     clickedTask!: Task;
 
-    constructor(private taskService: TaskService) { }
+    constructor(private taskService: TaskService) {}
 
     ngOnInit(): void {
         this.menuItems = [
-            { label: 'Edit', icon: 'pi pi-pencil', command: () => this.onEdit() },
-            { label: 'Delete', icon: 'pi pi-trash', command: () => this.handleDelete() }
+            {
+                label: 'Edit',
+                icon: 'pi pi-pencil',
+                command: () => this.onEdit(),
+            },
+            {
+                label: 'Delete',
+                icon: 'pi pi-trash',
+                command: () => this.handleDelete(),
+            },
         ];
     }
 
     parseDate(date: Date) {
-        let d = new Date(date);
+        const d = new Date(date);
         return d.toUTCString().split(' ').slice(1, 3).join(' ');
     }
 

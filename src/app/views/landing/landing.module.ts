@@ -20,8 +20,8 @@ import { LogosModule } from '../../meta-components/logos/logos.module';
         AppConfigModule,
         PlansModule,
         LogosModule,
-        LogosModule
+        LogosModule,
     ],
-    declarations: [LandingComponent, AnimateEnterDirective]
+    declarations: [LandingComponent, AnimateEnterDirective],
 })
-export class LandingModule { }
+export class LandingModule {}

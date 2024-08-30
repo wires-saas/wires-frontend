@@ -1,12 +1,27 @@
-import { AfterViewInit, Component, DestroyRef, inject, OnInit } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    DestroyRef,
+    inject,
+    OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Table } from 'primeng/table';
-import { User, UserService, UserStatus } from '../../../../services/user.service';
+import {
+    User,
+    UserService,
+    UserStatus,
+} from '../../../../services/user.service';
 import { OrganizationService } from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { filter, firstValueFrom, Observable } from 'rxjs';
-import { ConfirmationService, MenuItem, MessageService, SortEvent } from 'primeng/api';
+import {
+    ConfirmationService,
+    MenuItem,
+    MessageService,
+    SortEvent,
+} from 'primeng/api';
 import { Role, RoleUtils } from '../../../../utils/role.utils';
 import { Slug } from '../../../../utils/types.utils';
 import { AuthService } from '../../../../services/auth.service';
@@ -14,10 +29,9 @@ import { MessageUtils } from '../../../../utils/message.utils';
 import { CsvUtils } from '../../../../utils/csv.utils';
 
 @Component({
-    templateUrl: './list-users.component.html'
+    templateUrl: './list-users.component.html',
 })
 export class ListUsersComponent implements OnInit, AfterViewInit {
-
     users: User[] = [];
 
     actionsMenuItems: MenuItem[] = [];
@@ -32,54 +46,64 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
 
     private destroyRef = inject(DestroyRef);
 
-    constructor(private authService: AuthService,
-                private userService: UserService,
-                private organizationService: OrganizationService,
-                private confirmationService: ConfirmationService,
-                private messageService: MessageService,
-                private route: ActivatedRoute,
-                private router: Router) {
-        const navigation = this.router.getCurrentNavigation()
-        if (navigation?.extras?.state?.['userInvited']) this.showUserInvitedConfirmation = true;
+    constructor(
+        private authService: AuthService,
+        private userService: UserService,
+        private organizationService: OrganizationService,
+        private confirmationService: ConfirmationService,
+        private messageService: MessageService,
+        private route: ActivatedRoute,
+        private router: Router,
+    ) {
+        const navigation = this.router.getCurrentNavigation();
+        if (navigation?.extras?.state?.['userInvited'])
+            this.showUserInvitedConfirmation = true;
     }
 
     async ngOnInit() {
+        this.multiOrganizations =
+            !!this.route.snapshot.data['multiOrganizations'];
 
-        this.multiOrganizations = !!this.route.snapshot.data['multiOrganizations'];
-
-        this.organizationService.currentOrganization$.pipe(
-            filter(org => !!org),
-            map(async (org) => {
-                this.currentOrgSlug = org?.slug;
-                if (org?.slug && !this.multiOrganizations) {
-                    this.users = await this.userService.getUsers([org.slug]);
-                } else {
-                    this.users = await this.userService.getUsers();
-                }
-            }),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe();
+        this.organizationService.currentOrganization$
+            .pipe(
+                filter((org) => !!org),
+                map(async (org) => {
+                    this.currentOrgSlug = org?.slug;
+                    if (org?.slug && !this.multiOrganizations) {
+                        this.users = await this.userService.getUsers([
+                            org.slug,
+                        ]);
+                    } else {
+                        this.users = await this.userService.getUsers();
+                    }
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
     }
 
     ngAfterViewInit() {
         if (this.showUserInvitedConfirmation) {
             this.messageService.add({
                 severity: 'success',
-                summary: $localize `Success inviting user`,
-                detail: $localize `User has been invited by email to join !`,
-                life: 5000
+                summary: $localize`Success inviting user`,
+                detail: $localize`User has been invited by email to join !`,
+                life: 5000,
             });
         }
     }
 
     onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal((event.target as HTMLInputElement).value, 'contains')
+        table.filterGlobal(
+            (event.target as HTMLInputElement).value,
+            'contains',
+        );
     }
 
     isCurrentUser(user: User): Observable<boolean> {
         return this.authService.currentUser$.pipe(
-            map(_ => _?._id === user._id),
-            takeUntilDestroyed(this.destroyRef)
+            map((_) => _?._id === user._id),
+            takeUntilDestroyed(this.destroyRef),
         );
     }
 
@@ -89,187 +113,253 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
     }
 
     async toggleMenuFor(user: User, menu: any, event: Event) {
-
         const currentUser = await firstValueFrom(this.authService.currentUser$);
 
         if (!currentUser) throw new Error('No current user');
 
-        const currentUserRole = RoleUtils.getRoleForOrganization(currentUser, this.currentOrgSlug);
+        const currentUserRole = RoleUtils.getRoleForOrganization(
+            currentUser,
+            this.currentOrgSlug,
+        );
 
-        const role = RoleUtils.getRoleForOrganization(user, this.currentOrgSlug);
+        const role = RoleUtils.getRoleForOrganization(
+            user,
+            this.currentOrgSlug,
+        );
 
         const isCurrentUser = currentUser._id === user._id;
 
-        const visibleForManagersOrAdmins = !isCurrentUser && (currentUserRole === Role.ADMIN || currentUserRole === Role.MANAGER || currentUserRole === Role.SUPER_ADMIN);
-        const visibleForAdmins = !isCurrentUser && (currentUserRole === Role.ADMIN || currentUserRole === Role.SUPER_ADMIN);
+        const visibleForManagersOrAdmins =
+            !isCurrentUser &&
+            (currentUserRole === Role.ADMIN ||
+                currentUserRole === Role.MANAGER ||
+                currentUserRole === Role.SUPER_ADMIN);
+        const visibleForAdmins =
+            !isCurrentUser &&
+            (currentUserRole === Role.ADMIN ||
+                currentUserRole === Role.SUPER_ADMIN);
 
         const setRoleAndReflectChangeOnUser = async (role: Role) => {
-            if (!this.currentOrgSlug) throw new Error('No current organization slug');
-            await this.userService.addUserRole(user._id, this.currentOrgSlug, role).then(() => {
-                this.users = this.users.map(_ => {
-                    if (_.email === user.email) {
-                        _.roles = _.roles.map(_ => {
-                            if (_.organization === this.currentOrgSlug) _.role = role;
-                            return _;
-                        });
-                    }
-                    return _;
+            if (!this.currentOrgSlug)
+                throw new Error('No current organization slug');
+            await this.userService
+                .addUserRole(user._id, this.currentOrgSlug, role)
+                .then(() => {
+                    this.users = this.users.map((_) => {
+                        if (_.email === user.email) {
+                            _.roles = _.roles.map((_) => {
+                                if (_.organization === this.currentOrgSlug)
+                                    _.role = role;
+                                return _;
+                            });
+                        }
+                        return _;
+                    });
                 });
-            });
-        }
-
+        };
 
         this.actionsMenuItems = [
             {
-                label: $localize `Actions`,
+                label: $localize`Actions`,
                 items: [
                     {
-                        label: $localize `Edit`,
+                        label: $localize`Edit`,
                         icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/organization', this.currentOrgSlug, 'users', user._id, 'edit']
+                        routerLink: [
+                            '/organization',
+                            this.currentOrgSlug,
+                            'users',
+                            user._id,
+                            'edit',
+                        ],
                     },
                     {
-                        label: $localize `Re-send Invite`,
+                        label: $localize`Re-send Invite`,
                         icon: 'pi pi-fw pi-envelope',
                         disabled: user.status !== UserStatus.PENDING,
                         visible: visibleForManagersOrAdmins,
                         command: () => {
-                            if (!this.currentOrgSlug) throw new Error('No current organization slug');
-                            this.userService.resendInvite(user._id).then(() => {
-                                this.messageService.add({
-                                    severity: 'success',
-                                    summary: $localize `Success re-sending invite`,
-                                    detail: $localize `User has been invited again`,
-                                    life: 5000,
-                                });
-                            }).catch((err) => {
-                                console.error(err);
+                            if (!this.currentOrgSlug)
+                                throw new Error('No current organization slug');
+                            this.userService
+                                .resendInvite(user._id)
+                                .then(() => {
+                                    this.messageService.add({
+                                        severity: 'success',
+                                        summary: $localize`Success re-sending invite`,
+                                        detail: $localize`User has been invited again`,
+                                        life: 5000,
+                                    });
+                                })
+                                .catch((err) => {
+                                    console.error(err);
 
-                                MessageUtils.parseServerError(this.messageService, err, {
-                                    summary: $localize `Error re-sending invite`,
+                                    MessageUtils.parseServerError(
+                                        this.messageService,
+                                        err,
+                                        {
+                                            summary: $localize`Error re-sending invite`,
+                                        },
+                                    );
                                 });
-                            });
-                        }
+                        },
                     },
                     {
-                        label: $localize `Remove`,
+                        label: $localize`Remove`,
                         icon: 'pi pi-fw pi-user-minus',
                         visible: visibleForManagersOrAdmins,
                         command: () => {
                             this.confirmationService.confirm({
                                 key: 'confirm-delete',
-                                accept: async() => {
-                                    if (!this.currentOrgSlug) throw new Error('No current organization slug');
-                                    await this.userService.deleteUser(user._id, this.currentOrgSlug).then(() => {
-                                        this.users = this.users.filter(_ => _.email !== user.email);
+                                accept: async () => {
+                                    if (!this.currentOrgSlug)
+                                        throw new Error(
+                                            'No current organization slug',
+                                        );
+                                    await this.userService
+                                        .deleteUser(
+                                            user._id,
+                                            this.currentOrgSlug,
+                                        )
+                                        .then(() => {
+                                            this.users = this.users.filter(
+                                                (_) => _.email !== user.email,
+                                            );
 
-                                        this.messageService.add({
-                                            severity: 'success',
-                                            summary: $localize `Success removing user`,
-                                            detail: $localize `User has been removed from your organization`,
-                                            life: 5000,
+                                            this.messageService.add({
+                                                severity: 'success',
+                                                summary: $localize`Success removing user`,
+                                                detail: $localize`User has been removed from your organization`,
+                                                life: 5000,
+                                            });
+                                        })
+                                        .catch((err) => {
+                                            console.error(err);
+
+                                            MessageUtils.parseServerError(
+                                                this.messageService,
+                                                err,
+                                                {
+                                                    summary: $localize`Error removing user`,
+                                                },
+                                            );
                                         });
-
-                                    }).catch((err) => {
-                                        console.error(err);
-
-                                        MessageUtils.parseServerError(this.messageService, err, {
-                                            summary: $localize `Error removing user`,
-                                        });
-                                    });
-                                }
+                                },
                             });
-                        }
-                    }
-                ]
-
+                        },
+                    },
+                ],
             },
             { separator: true, visible: visibleForAdmins && !isCurrentUser },
             {
-                label: $localize `Roles`,
+                label: $localize`Roles`,
                 visible: visibleForAdmins && !isCurrentUser,
                 items: [
                     {
-                        label: $localize `Set Admin`,
+                        label: $localize`Set Admin`,
                         icon: 'pi pi-fw pi-sort-up',
                         visible: !isCurrentUser,
-                        disabled: RoleUtils.getRoleForOrganization(user, this.currentOrgSlug) === Role.ADMIN,
+                        disabled:
+                            RoleUtils.getRoleForOrganization(
+                                user,
+                                this.currentOrgSlug,
+                            ) === Role.ADMIN,
                         command: async () => {
-                            await setRoleAndReflectChangeOnUser(Role.ADMIN).then(() => {
+                            await setRoleAndReflectChangeOnUser(Role.ADMIN)
+                                .then(() => {
+                                    this.messageService.add({
+                                        severity: 'success',
+                                        summary: $localize`Success setting role`,
+                                        detail: $localize`${user.firstName} has been set as Admin`,
+                                        life: 5000,
+                                    });
+                                })
+                                .catch((err) => {
+                                    console.error(err);
 
-                                this.messageService.add({
-                                    severity: 'success',
-                                    summary: $localize `Success setting role`,
-                                    detail: $localize `${user.firstName} has been set as Admin`,
-                                    life: 5000,
+                                    MessageUtils.parseServerError(
+                                        this.messageService,
+                                        err,
+                                        {
+                                            summary: $localize`Error setting role`,
+                                        },
+                                    );
                                 });
-
-                            }).catch((err) => {
-                                console.error(err);
-
-                                MessageUtils.parseServerError(this.messageService, err, {
-                                    summary: $localize `Error setting role`,
-                                });
-                            });
-                        }
+                        },
                     },
                     {
-                        label: $localize `Set Manager`,
+                        label: $localize`Set Manager`,
                         icon: 'pi pi-fw pi-sort',
                         visible: visibleForAdmins && !isCurrentUser,
-                        disabled: RoleUtils.getRoleForOrganization(user, this.currentOrgSlug) === Role.MANAGER,
+                        disabled:
+                            RoleUtils.getRoleForOrganization(
+                                user,
+                                this.currentOrgSlug,
+                            ) === Role.MANAGER,
                         command: async () => {
-                            await setRoleAndReflectChangeOnUser(Role.MANAGER).then(() => {
+                            await setRoleAndReflectChangeOnUser(Role.MANAGER)
+                                .then(() => {
+                                    this.messageService.add({
+                                        severity: 'success',
+                                        summary: $localize`Success setting role`,
+                                        detail: $localize`${user.firstName} has been set as Manager`,
+                                        life: 5000,
+                                    });
+                                })
+                                .catch((err) => {
+                                    console.error(err);
 
-                                this.messageService.add({
-                                    severity: 'success',
-                                    summary: $localize `Success setting role`,
-                                    detail: $localize `${user.firstName} has been set as Manager`,
-                                    life: 5000,
+                                    MessageUtils.parseServerError(
+                                        this.messageService,
+                                        err,
+                                        {
+                                            summary: $localize`Error setting role`,
+                                        },
+                                    );
                                 });
-
-                            }).catch((err) => {
-                                console.error(err);
-
-                                MessageUtils.parseServerError(this.messageService, err, {
-                                    summary: $localize `Error setting role`,
-                                });
-                            });
-                        }
+                        },
                     },
                     {
-                        label: $localize `Set User`,
+                        label: $localize`Set User`,
                         icon: 'pi pi-fw pi-sort-down',
                         visible: visibleForAdmins && !isCurrentUser,
-                        disabled: RoleUtils.getRoleForOrganization(user, this.currentOrgSlug) === Role.USER,
+                        disabled:
+                            RoleUtils.getRoleForOrganization(
+                                user,
+                                this.currentOrgSlug,
+                            ) === Role.USER,
                         command: async () => {
-                            await setRoleAndReflectChangeOnUser(Role.USER).then(() => {
+                            await setRoleAndReflectChangeOnUser(Role.USER)
+                                .then(() => {
+                                    this.messageService.add({
+                                        severity: 'success',
+                                        summary: $localize`Success setting role`,
+                                        detail: $localize`${user.firstName} has been set as User`,
+                                        life: 5000,
+                                    });
+                                })
+                                .catch((err) => {
+                                    console.error(err);
 
-                                this.messageService.add({
-                                    severity: 'success',
-                                    summary: $localize `Success setting role`,
-                                    detail: $localize `${user.firstName} has been set as User`,
-                                    life: 5000,
+                                    MessageUtils.parseServerError(
+                                        this.messageService,
+                                        err,
+                                        {
+                                            summary: $localize`Error setting role`,
+                                        },
+                                    );
                                 });
-
-                            }).catch((err) => {
-                                console.error(err);
-
-                                MessageUtils.parseServerError(this.messageService, err, {
-                                    summary: $localize `Error setting role`,
-                                });
-                            });
-                        }
-                    }
-                ]
-            }
+                        },
+                    },
+                ],
+            },
         ];
 
         this.actionsMenuItems
-            .filter(_ => !!_['data'])
-            .forEach(_ => {
+            .filter((_) => !!_['data'])
+            .forEach((_) => {
                 // Disabling possibility to set same role user already has
-                _.disabled = (role === _['data'])
+                _.disabled = role === _['data'];
 
                 if (currentUserRole === Role.MANAGER) {
                     if (_['data'] === Role.ADMIN) {
@@ -279,9 +369,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
             });
 
         menu.toggle(event);
-
     }
-
 
     customSort(event: Required<SortEvent>) {
         return this.sortTableData(event);
@@ -289,19 +377,31 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
 
     private sortTableData(event: Required<SortEvent>) {
         return event.data.sort((data1, data2) => {
-            let value1 = data1[event.field];
-            let value2 = data2[event.field];
+            const value1 = data1[event.field];
+            const value2 = data2[event.field];
             let result = null;
 
             if (value1 == null && value2 != null) result = -1;
             else if (value1 != null && value2 == null) result = 1;
             else if (value1 == null && value2 == null) result = 0;
             else if (event.field === 'roles') {
-                result = RoleUtils.getRoleHierarchy(RoleUtils.getRoleForOrganization(data1, this.currentOrgSlug))
-                            > RoleUtils.getRoleHierarchy(RoleUtils.getRoleForOrganization(data2, this.currentOrgSlug))
-                    ? 1 : -1;
-            }
-            else if (typeof value1 === 'string' && typeof value2 === 'string') result = value1.localeCompare(value2);
+                result =
+                    RoleUtils.getRoleHierarchy(
+                        RoleUtils.getRoleForOrganization(
+                            data1,
+                            this.currentOrgSlug,
+                        ),
+                    ) >
+                    RoleUtils.getRoleHierarchy(
+                        RoleUtils.getRoleForOrganization(
+                            data2,
+                            this.currentOrgSlug,
+                        ),
+                    )
+                        ? 1
+                        : -1;
+            } else if (typeof value1 === 'string' && typeof value2 === 'string')
+                result = value1.localeCompare(value2);
             else result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0;
 
             return event.order * result;
@@ -309,17 +409,24 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
     }
 
     getPaginationLabel() {
-        return $localize `Showing {first} to {last} of {totalRecords} entries`;
+        return $localize`Showing {first} to {last} of {totalRecords} entries`;
     }
 
     exportUsersToCSV() {
         const fileContent = CsvUtils.jsonToCsv<User>(
-            ['firstName', 'lastName', 'email', 'status', 'emailStatus', 'createdAt'],
+            [
+                'firstName',
+                'lastName',
+                'email',
+                'status',
+                'emailStatus',
+                'createdAt',
+            ],
             this.users,
-            ';'
+            ';',
         );
 
-        const blob = new Blob([fileContent], {type: 'text/csv'});
+        const blob = new Blob([fileContent], { type: 'text/csv' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;

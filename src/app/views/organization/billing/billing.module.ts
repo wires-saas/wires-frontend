@@ -22,8 +22,8 @@ import { LogosModule } from '../../../meta-components/logos/logos.module';
         FullNamePipe,
         PlanPricePipe,
         PlanDesignationPipe,
-        LogosModule
+        LogosModule,
     ],
-	declarations: [BillingComponent]
+    declarations: [BillingComponent],
 })
-export class BillingModule { }
+export class BillingModule {}

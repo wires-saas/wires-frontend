@@ -1,30 +1,30 @@
 export class TableUtils {
     static matchModesOptionsForText = () => {
         return [
-            { label: $localize `Starts with`, value: 'startsWith' },
-            { label: $localize `Contains`, value: 'contains' },
-            { label: $localize `Not contains`, value: 'notContains' },
-            { label: $localize `Ends with`, value: 'endsWith' },
-            { label: $localize `Equals`, value: 'equals' },
-            { label: $localize `Not equals`, value: 'notEquals' },
-        ]
-    }
+            { label: $localize`Starts with`, value: 'startsWith' },
+            { label: $localize`Contains`, value: 'contains' },
+            { label: $localize`Not contains`, value: 'notContains' },
+            { label: $localize`Ends with`, value: 'endsWith' },
+            { label: $localize`Equals`, value: 'equals' },
+            { label: $localize`Not equals`, value: 'notEquals' },
+        ];
+    };
 
     static matchModesOptionsExact = () => {
         return [
-            { label: $localize `Equals`, value: 'equals' },
-            { label: $localize `Not equals`, value: 'notEquals' },
-        ]
-    }
+            { label: $localize`Equals`, value: 'equals' },
+            { label: $localize`Not equals`, value: 'notEquals' },
+        ];
+    };
 
     static matchModesOptionsForUrl = () => {
         return [
-            { label: $localize `Starts with`, value: 'startsWith' },
-            { label: $localize `Contains`, value: 'contains' },
-            { label: $localize `Not contains`, value: 'notContains' },
-            { label: $localize `Ends with`, value: 'endsWith' },
-        ]
-    }
+            { label: $localize`Starts with`, value: 'startsWith' },
+            { label: $localize`Contains`, value: 'contains' },
+            { label: $localize`Not contains`, value: 'notContains' },
+            { label: $localize`Ends with`, value: 'endsWith' },
+        ];
+    };
 }
 
 export class TableFilterUtils {
@@ -38,7 +38,7 @@ export class TableFilterUtils {
         }
 
         return filter.every((f) => value.includes(f));
-    }
+    };
 
     static dateIs = (value: any, filter: any): boolean => {
         if (!filter) {
@@ -53,7 +53,7 @@ export class TableFilterUtils {
         const valueDate = new Date(value);
 
         return valueDate.toDateString() === filterDate.toDateString();
-    }
+    };
 
     static dateIsNot = (value: any, filter: any): boolean => {
         if (!filter) {
@@ -68,7 +68,7 @@ export class TableFilterUtils {
         const valueDate = new Date(value);
 
         return valueDate.toDateString() !== filterDate.toDateString();
-    }
+    };
 
     static dateBefore = (value: any, filter: any): boolean => {
         if (!filter) {
@@ -83,7 +83,7 @@ export class TableFilterUtils {
         const valueDate = new Date(value);
 
         return valueDate < filterDate;
-    }
+    };
 
     static dateAfter = (value: any, filter: any): boolean => {
         if (!filter) {
@@ -98,8 +98,5 @@ export class TableFilterUtils {
         const valueDate = new Date(value);
 
         return valueDate > filterDate;
-    }
-
+    };
 }
-
-

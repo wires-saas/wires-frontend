@@ -39,7 +39,6 @@ interface LayoutState {
     providedIn: 'root',
 })
 export class LayoutService {
-
     _config: AppConfig = {
         ripple: false,
         inputStyle: 'outlined',
@@ -84,11 +83,16 @@ export class LayoutService {
         // Switch to dark theme if night
         const hours = new Date().getHours();
 
-        const schemePreferenceFromStorage = localStorage.getItem('color-scheme-preference');
+        const schemePreferenceFromStorage = localStorage.getItem(
+            'color-scheme-preference',
+        );
 
         let colorScheme: ColorScheme;
 
-        if (schemePreferenceFromStorage && ['light', 'dim', 'dark'].indexOf(schemePreferenceFromStorage) > -1) {
+        if (
+            schemePreferenceFromStorage &&
+            ['light', 'dim', 'dark'].indexOf(schemePreferenceFromStorage) > -1
+        ) {
             colorScheme = schemePreferenceFromStorage as ColorScheme;
         } else {
             if (hours > 10 && hours <= 20) {
@@ -196,35 +200,32 @@ export class LayoutService {
         );
 
         const oldThemeLinkHref = themeLink.getAttribute('href')!;
-        const newThemeLinkHref = `assets/layout/styles/theme/theme-${config.colorScheme}/${config.theme}/theme.css`
+        const newThemeLinkHref = `assets/layout/styles/theme/theme-${config.colorScheme}/${config.theme}/theme.css`;
 
-        if (oldThemeLinkHref !== newThemeLinkHref) this.replaceThemeLink(newThemeLinkHref);
+        if (oldThemeLinkHref !== newThemeLinkHref)
+            this.replaceThemeLink(newThemeLinkHref);
     }
 
     replaceThemeLink(href: string) {
         const id = 'theme-link';
-        let themeLink = <HTMLLinkElement>document.getElementById(id);
+        const themeLink = <HTMLLinkElement>document.getElementById(id);
 
         if (themeLink.href.endsWith(href)) {
             return;
         } else {
-
             const cloneLinkElement = <HTMLLinkElement>themeLink.cloneNode(true);
 
             cloneLinkElement.setAttribute('href', href);
             cloneLinkElement.setAttribute('id', id + '-clone');
 
-
-
             themeLink.parentNode!.insertBefore(
                 cloneLinkElement,
-                themeLink.nextSibling
+                themeLink.nextSibling,
             );
 
             // if you remove themeLink before newThemeLink loaded,
             // charts will be theme-less if cache is disabled/loading takes a little time
             // themeLink.remove();
-
 
             cloneLinkElement.addEventListener('load', () => {
                 themeLink.remove();

@@ -5,10 +5,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [],
-    imports: [
-        CommonModule,
-        SettingsRoutingModule
-    ],
-    providers: [ConfirmationService, MessageService]
+    imports: [CommonModule, SettingsRoutingModule],
+    providers: [ConfirmationService, MessageService],
 })
-export class SettingsModule { }
+export class SettingsModule {}

@@ -4,11 +4,8 @@ import { AdministrationRoutingModule } from './administration-routing.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        AdministrationRoutingModule
-    ],
+    imports: [CommonModule, AdministrationRoutingModule],
     declarations: [],
-    providers: [ConfirmationService, MessageService]
+    providers: [ConfirmationService, MessageService],
 })
-export class AdministrationModule { }
+export class AdministrationModule {}

@@ -3,9 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ContentsRoutingModule } from './contents-routing.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ContentsRoutingModule
-    ]
+    imports: [CommonModule, ContentsRoutingModule],
 })
-export class ContentsModule { }
+export class ContentsModule {}

@@ -16,4 +16,4 @@ import { ShoppingCartRoutingModule } from './shopping-cart-routing.module';
     ],
     declarations: [ShoppingCartComponent],
 })
-export class ShoppingCartModule { }
+export class ShoppingCartModule {}

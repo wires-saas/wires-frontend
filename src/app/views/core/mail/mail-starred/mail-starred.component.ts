@@ -14,7 +14,7 @@ export class MailStarredComponent implements OnDestroy {
     constructor(private mailService: MailService) {
         this.subscription = this.mailService.mails$.subscribe((data) => {
             this.starredMails = data.filter(
-                (d) => d.starred && !d.archived && !d.trash
+                (d) => d.starred && !d.archived && !d.trash,
             );
         });
     }

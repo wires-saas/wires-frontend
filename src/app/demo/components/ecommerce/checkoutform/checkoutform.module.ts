@@ -24,8 +24,8 @@ import { InputGroupModule } from 'primeng/inputgroup';
         ButtonModule,
         RippleModule,
         InputGroupModule,
-        InputGroupAddonModule
+        InputGroupAddonModule,
     ],
-    declarations: [CheckoutFormComponent]
+    declarations: [CheckoutFormComponent],
 })
-export class CheckoutFormModule { }
+export class CheckoutFormModule {}

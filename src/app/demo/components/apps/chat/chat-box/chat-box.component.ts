@@ -1,4 +1,9 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    ChangeDetectionStrategy,
+} from '@angular/core';
 import { Message } from 'src/app/demo/api/message';
 import { User } from 'src/app/demo/api/user';
 import { ChatService } from '../service/chat.service';
@@ -6,10 +11,9 @@ import { ChatService } from '../service/chat.service';
 @Component({
     selector: 'app-chat-box',
     templateUrl: './chat-box.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatBoxComponent implements OnInit {
-
     defaultUserId: number = 123;
 
     message!: Message;
@@ -19,18 +23,94 @@ export class ChatBoxComponent implements OnInit {
     uploadedFiles: any[] = [];
 
     emojis = [
-        '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😇', '😉', '😊', '🙂', '🙃', '😋', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '🤪', '😜', '😝', '😛',
-        '🤑', '😎', '🤓', '🧐', '🤠', '🥳', '🤗', '🤡', '😏', '😶', '😐', '😑', '😒', '🙄', '🤨', '🤔', '🤫', '🤭', '🤥', '😳', '😞', '😟', '😠', '😡', '🤬', '😔',
-        '😟', '😠', '😡', '🤬', '😔', '😕', '🙁', '😬', '🥺', '😣', '😖', '😫', '😩', '🥱', '😤', '😮', '😱', '😨', '😰', '😯', '😦', '😧', '😢', '😥', '😪', '🤤'
+        '😀',
+        '😃',
+        '😄',
+        '😁',
+        '😆',
+        '😅',
+        '😂',
+        '🤣',
+        '😇',
+        '😉',
+        '😊',
+        '🙂',
+        '🙃',
+        '😋',
+        '😌',
+        '😍',
+        '🥰',
+        '😘',
+        '😗',
+        '😙',
+        '😚',
+        '🤪',
+        '😜',
+        '😝',
+        '😛',
+        '🤑',
+        '😎',
+        '🤓',
+        '🧐',
+        '🤠',
+        '🥳',
+        '🤗',
+        '🤡',
+        '😏',
+        '😶',
+        '😐',
+        '😑',
+        '😒',
+        '🙄',
+        '🤨',
+        '🤔',
+        '🤫',
+        '🤭',
+        '🤥',
+        '😳',
+        '😞',
+        '😟',
+        '😠',
+        '😡',
+        '🤬',
+        '😔',
+        '😟',
+        '😠',
+        '😡',
+        '🤬',
+        '😔',
+        '😕',
+        '🙁',
+        '😬',
+        '🥺',
+        '😣',
+        '😖',
+        '😫',
+        '😩',
+        '🥱',
+        '😤',
+        '😮',
+        '😱',
+        '😨',
+        '😰',
+        '😯',
+        '😦',
+        '😧',
+        '😢',
+        '😥',
+        '😪',
+        '🤤',
     ];
 
     @Input() user!: User;
 
-    constructor(private chatService: ChatService) { }
+    constructor(private chatService: ChatService) {}
 
     setMessage() {
         if (this.user) {
-            let filteredMessages = this.user.messages.filter(m => m.ownerId !== this.defaultUserId);
+            const filteredMessages = this.user.messages.filter(
+                (m) => m.ownerId !== this.defaultUserId,
+            );
             this.message = filteredMessages[filteredMessages.length - 1];
         }
     }
@@ -42,15 +122,14 @@ export class ChatBoxComponent implements OnInit {
     sendMessage() {
         if (this.textContent == '' || this.textContent === ' ') {
             return;
-        }
-        else {
-            let message = {
+        } else {
+            const message = {
                 text: this.textContent,
                 ownerId: 123,
                 createdAt: new Date().getTime(),
-            }
+            };
 
-            this.chatService.sendMessage(message)
+            this.chatService.sendMessage(message);
             this.textContent = '';
         }
     }
@@ -60,6 +139,10 @@ export class ChatBoxComponent implements OnInit {
     }
 
     parseDate(timestamp: number) {
-        return new Date(timestamp).toTimeString().split(':').slice(0, 2).join(':');
+        return new Date(timestamp)
+            .toTimeString()
+            .split(':')
+            .slice(0, 2)
+            .join(':');
     }
 }

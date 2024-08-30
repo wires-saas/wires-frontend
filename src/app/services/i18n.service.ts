@@ -10,13 +10,15 @@ export enum SupportedLocales {
     providedIn: 'root',
 })
 export class I18nService {
-
     private selectedLocale: SupportedLocales = SupportedLocales.FR;
 
     constructor(private router: Router) {
         const preferredLocale = localStorage.getItem('locale');
 
-        if (preferredLocale && preferredLocale === SupportedLocales.EN || preferredLocale === SupportedLocales.FR) {
+        if (
+            (preferredLocale && preferredLocale === SupportedLocales.EN) ||
+            preferredLocale === SupportedLocales.FR
+        ) {
             this.selectedLocale = preferredLocale;
         }
 
@@ -56,5 +58,4 @@ export class I18nService {
         localStorage.setItem('locale', locale);
         if (redirect) window.location.assign('/' + locale);
     }
-
 }

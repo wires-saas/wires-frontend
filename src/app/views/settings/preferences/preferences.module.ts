@@ -10,8 +10,8 @@ import { PreferencesRoutingModule } from './preferences-routing.module';
         CommonModule,
         PreferencesRoutingModule,
         AccordionModule,
-        RippleModule
+        RippleModule,
     ],
-    declarations: [PreferencesComponent]
+    declarations: [PreferencesComponent],
 })
-export class PreferencesModule { }
+export class PreferencesModule {}

@@ -12,8 +12,8 @@ import { AppConfigModule } from 'src/app/layout/config/app.config.module';
         ButtonModule,
         InputTextModule,
         ForgotPasswordRoutingModule,
-        AppConfigModule
+        AppConfigModule,
     ],
-    declarations: [ForgotPasswordComponent]
+    declarations: [ForgotPasswordComponent],
 })
-export class ForgotPasswordModule { }
+export class ForgotPasswordModule {}

@@ -3,9 +3,11 @@ import { RouterModule } from '@angular/router';
 import { OverviewDashboardComponent } from './overview.dashboard.component';
 
 @NgModule({
-	imports: [RouterModule.forChild([
-		{ path: '', component: OverviewDashboardComponent }
-	])],
-	exports: [RouterModule]
+    imports: [
+        RouterModule.forChild([
+            { path: '', component: OverviewDashboardComponent },
+        ]),
+    ],
+    exports: [RouterModule],
 })
-export class OverviewDashboardRoutingModule { }
+export class OverviewDashboardRoutingModule {}

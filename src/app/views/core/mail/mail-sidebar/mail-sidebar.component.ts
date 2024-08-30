@@ -6,10 +6,9 @@ import { Mail, MailService } from '../service/mail.service';
 
 @Component({
     selector: 'app-mail-sidebar',
-    templateUrl: './mail-sidebar.component.html'
+    templateUrl: './mail-sidebar.component.html',
 })
 export class MailSidebarComponent implements OnDestroy {
-
     items: MenuItem[] = [];
 
     badgeValues: any;
@@ -20,12 +19,19 @@ export class MailSidebarComponent implements OnDestroy {
 
     url: string = '';
 
-    constructor(private router: Router, private mailService: MailService) {
-        this.mailSubscription = this.mailService.mails$.subscribe(data => this.getBadgeValues(data));
+    constructor(
+        private router: Router,
+        private mailService: MailService,
+    ) {
+        this.mailSubscription = this.mailService.mails$.subscribe((data) =>
+            this.getBadgeValues(data),
+        );
 
-        this.routeSubscription = this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((params: any) => {
-            this.url = params.url;
-        });
+        this.routeSubscription = this.router.events
+            .pipe(filter((event) => event instanceof NavigationEnd))
+            .subscribe((params: any) => {
+                this.url = params.url;
+            });
     }
 
     navigate(item: MenuItem) {
@@ -35,18 +41,23 @@ export class MailSidebarComponent implements OnDestroy {
     }
 
     getBadgeValues(data: Mail[]) {
-        let inbox = [],
+        const inbox = [],
             starred = [],
             spam = [],
             important = [],
             archived = [],
             trash = [],
-            sent = []
+            sent = [];
 
         for (let i = 0; i < data.length; i++) {
-            let mail = data[i];
+            const mail = data[i];
 
-            if (!mail.archived && !mail.trash && !mail.spam && !mail.hasOwnProperty('sent')) {
+            if (
+                !mail.archived &&
+                !mail.trash &&
+                !mail.spam &&
+                !mail.hasOwnProperty('sent')
+            ) {
                 inbox.push(mail);
             }
             if (mail.starred && !mail.archived && !mail.trash) {
@@ -58,7 +69,7 @@ export class MailSidebarComponent implements OnDestroy {
             if (mail.important && !mail.archived && !mail.trash) {
                 important.push(mail);
             }
-            if (mail.archived && !mail.trash ) {
+            if (mail.archived && !mail.trash) {
                 archived.push(mail);
             }
             if (mail.trash) {
@@ -76,7 +87,7 @@ export class MailSidebarComponent implements OnDestroy {
             important: important.length,
             archived: archived.length,
             trash: trash.length,
-            sent: sent.length
+            sent: sent.length,
         };
 
         this.updateSidebar();
@@ -84,13 +95,48 @@ export class MailSidebarComponent implements OnDestroy {
 
     updateSidebar() {
         this.items = [
-            { label: 'Inbox', icon: 'pi pi-inbox', badge: this.badgeValues.inbox, routerLink: '/mail/inbox' },
-            { label: 'Starred', icon: 'pi pi-star', badge: this.badgeValues.starred, routerLink: '/mail/starred' },
-            { label: 'Spam', icon: 'pi pi-ban', badge: this.badgeValues.spam, routerLink: '/mail/spam' },
-            { label: 'Important', icon: 'pi pi-bookmark', badge: this.badgeValues.important, routerLink: '/mail/important' },
-            { label: 'Sent', icon: 'pi pi-send', badge: this.badgeValues.sent, routerLink: '/mail/sent' },
-            { label: 'Archived', icon: 'pi pi-book', badge: this.badgeValues.archived, routerLink: '/mail/archived' },
-            { label: 'Trash', icon: 'pi pi-trash', badge: this.badgeValues.trash, routerLink: '/mail/trash' }
+            {
+                label: 'Inbox',
+                icon: 'pi pi-inbox',
+                badge: this.badgeValues.inbox,
+                routerLink: '/mail/inbox',
+            },
+            {
+                label: 'Starred',
+                icon: 'pi pi-star',
+                badge: this.badgeValues.starred,
+                routerLink: '/mail/starred',
+            },
+            {
+                label: 'Spam',
+                icon: 'pi pi-ban',
+                badge: this.badgeValues.spam,
+                routerLink: '/mail/spam',
+            },
+            {
+                label: 'Important',
+                icon: 'pi pi-bookmark',
+                badge: this.badgeValues.important,
+                routerLink: '/mail/important',
+            },
+            {
+                label: 'Sent',
+                icon: 'pi pi-send',
+                badge: this.badgeValues.sent,
+                routerLink: '/mail/sent',
+            },
+            {
+                label: 'Archived',
+                icon: 'pi pi-book',
+                badge: this.badgeValues.archived,
+                routerLink: '/mail/archived',
+            },
+            {
+                label: 'Trash',
+                icon: 'pi pi-trash',
+                badge: this.badgeValues.trash,
+                routerLink: '/mail/trash',
+            },
         ];
     }
 

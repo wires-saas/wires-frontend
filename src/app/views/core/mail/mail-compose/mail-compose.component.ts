@@ -5,10 +5,9 @@ import { Router } from '@angular/router';
 import { Mail, MailService } from '../service/mail.service';
 
 @Component({
-    templateUrl: './mail-compose.component.html'
+    templateUrl: './mail-compose.component.html',
 })
 export class MailComposeComponent {
-
     newMail: Mail = {
         id: '',
         to: '',
@@ -22,16 +21,25 @@ export class MailComposeComponent {
         trash: false,
         spam: false,
         archived: false,
-        sent: true
+        sent: true,
     };
 
-    constructor(private messageService: MessageService, private location: Location, private router: Router, private mailService: MailService) { }
+    constructor(
+        private messageService: MessageService,
+        private location: Location,
+        private router: Router,
+        private mailService: MailService,
+    ) {}
 
     sendMail() {
         if (this.newMail.message) {
             this.newMail.id = Math.floor(Math.random() * 1000);
             this.mailService.onSend(this.newMail);
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Mail sent' });
+            this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Mail sent',
+            });
             this.router.navigate(['apps/mail/inbox']);
         }
     }
@@ -39,5 +47,4 @@ export class MailComposeComponent {
     goBack() {
         this.location.back();
     }
-
 }

@@ -8,10 +8,9 @@ import { MailService } from '../service/mail.service';
 import { MessageService } from 'primeng/api';
 
 @Component({
-    templateUrl: './mail-detail.component.html'
+    templateUrl: './mail-detail.component.html',
 })
 export class MailDetailComponent implements OnDestroy {
-
     newMail: Mail = {
         id: '',
         to: '',
@@ -25,7 +24,7 @@ export class MailDetailComponent implements OnDestroy {
         trash: false,
         spam: false,
         archived: false,
-        sent: true
+        sent: true,
     };
 
     subscription: Subscription;
@@ -34,16 +33,23 @@ export class MailDetailComponent implements OnDestroy {
 
     id: any;
 
-    constructor(private route: ActivatedRoute, private mailService: MailService, private location: Location, private router: Router, private messageService: MessageService) {
-        this.subscription = this.route.params.pipe(
-            switchMap(params => {
-                this.id = params['id'];
-                return this.mailService.mails$
-            })
-        ).subscribe(data => {
-            this.mail = data.filter(d => d.id == this.id)[0];
-
-        });
+    constructor(
+        private route: ActivatedRoute,
+        private mailService: MailService,
+        private location: Location,
+        private router: Router,
+        private messageService: MessageService,
+    ) {
+        this.subscription = this.route.params
+            .pipe(
+                switchMap((params) => {
+                    this.id = params['id'];
+                    return this.mailService.mails$;
+                }),
+            )
+            .subscribe((data) => {
+                this.mail = data.filter((d) => d.id == this.id)[0];
+            });
     }
 
     goBack() {
@@ -54,9 +60,13 @@ export class MailDetailComponent implements OnDestroy {
         if (this.newMail.message) {
             this.newMail.to = this.mail.from ? this.mail.from : this.mail.to;
             this.newMail.image = this.mail.image;
-            
+
             this.mailService.onSend(this.newMail);
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Mail sent' });
+            this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Mail sent',
+            });
             this.router.navigate(['apps/mail/inbox']);
         }
     }
@@ -64,5 +74,4 @@ export class MailDetailComponent implements OnDestroy {
     ngOnDestroy() {
         this.subscription.unsubscribe();
     }
-
 }

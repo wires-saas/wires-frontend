@@ -10,10 +10,8 @@ import { RippleModule } from 'primeng/ripple';
         CommonModule,
         OrderSummaryRoutingModule,
         ButtonModule,
-        RippleModule
+        RippleModule,
     ],
-    declarations: [
-        OrderSummaryComponent
-    ]
+    declarations: [OrderSummaryComponent],
 })
-export class OrderSummaryModule { }
+export class OrderSummaryModule {}

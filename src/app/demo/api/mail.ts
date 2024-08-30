@@ -2,7 +2,7 @@ export interface Mail {
     id?: any;
     from?: string;
     to?: string;
-    email?:string;
+    email?: string;
     image?: string;
     date?: string;
     message?: string;

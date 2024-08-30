@@ -12,8 +12,8 @@ import { RippleModule } from 'primeng/ripple';
         OrderHistoryRoutingModule,
         ButtonModule,
         DividerModule,
-        RippleModule
+        RippleModule,
     ],
-    declarations: [OrderHistoryComponent]
+    declarations: [OrderHistoryComponent],
 })
-export class OrderHistoryModule { }
+export class OrderHistoryModule {}

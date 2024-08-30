@@ -4,15 +4,17 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { map } from 'rxjs/operators';
 import { User } from '../services/user.service';
-import { Notification, NotificationService } from '../services/notification.service';
+import {
+    Notification,
+    NotificationService,
+} from '../services/notification.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-profilemenu',
-    templateUrl: './app.profilesidebar.component.html'
+    templateUrl: './app.profilesidebar.component.html',
 })
 export class AppProfileSidebarComponent implements OnInit {
-
     public currentUser: User | undefined = undefined;
     private notifications: Notification[] = [];
     public get unreadNotifications(): Notification[] {
@@ -21,10 +23,12 @@ export class AppProfileSidebarComponent implements OnInit {
 
     private destroyRef = inject(DestroyRef);
 
-    constructor(public layoutService: LayoutService,
-                private authService: AuthService,
-                private notificationService: NotificationService,
-                private router: Router) { }
+    constructor(
+        public layoutService: LayoutService,
+        private authService: AuthService,
+        private notificationService: NotificationService,
+        private router: Router,
+    ) {}
 
     get visible(): boolean {
         return this.layoutService.state.profileSidebarVisible;
@@ -35,24 +39,31 @@ export class AppProfileSidebarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authService.currentUser$.pipe(
-            map((user) => {
-                this.currentUser = user;
-            }),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe();
+        this.authService.currentUser$
+            .pipe(
+                map((user) => {
+                    this.currentUser = user;
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
 
-        this.notificationService.currentUserNotifications$.pipe(
-            map((notifications) => {
-                this.notifications = notifications;
-            }),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe();
+        this.notificationService.currentUserNotifications$
+            .pipe(
+                map((notifications) => {
+                    this.notifications = notifications;
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
     }
 
     async markNotificationAsRead(notification: Notification) {
         if (!this.currentUser) return;
-        await this.notificationService.readNotification(this.currentUser._id, notification._id);
+        await this.notificationService.readNotification(
+            this.currentUser._id,
+            notification._id,
+        );
     }
 
     async logoutAndGoToLogin() {

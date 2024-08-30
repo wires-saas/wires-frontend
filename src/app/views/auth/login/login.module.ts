@@ -23,9 +23,9 @@ import { LogosModule } from '../../../meta-components/logos/logos.module';
         AppConfigModule,
         ToastModule,
         AvatarModule,
-        LogosModule
+        LogosModule,
     ],
     declarations: [LoginComponent],
     providers: [MessageService],
 })
-export class LoginModule { }
+export class LoginModule {}

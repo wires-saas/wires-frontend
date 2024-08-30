@@ -13,8 +13,6 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
-import { MessagesModule } from 'primeng/messages';
-import { MessageModule } from 'primeng/message';
 
 @NgModule({
     imports: [
@@ -31,8 +29,8 @@ import { MessageModule } from 'primeng/message';
         InputGroupModule,
         InputGroupAddonModule,
         ConfirmDialogModule,
-        ToastModule
+        ToastModule,
     ],
-	declarations: [CreateOrEditUserComponent]
+    declarations: [CreateOrEditUserComponent],
 })
-export class CreateOrEditUserModule { }
+export class CreateOrEditUserModule {}

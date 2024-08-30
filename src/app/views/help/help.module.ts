@@ -4,9 +4,6 @@ import { HelpRoutingModule } from './help-routing.module';
 
 @NgModule({
     declarations: [],
-    imports: [
-        CommonModule,
-        HelpRoutingModule
-    ]
+    imports: [CommonModule, HelpRoutingModule],
 })
-export class HelpModule { }
+export class HelpModule {}

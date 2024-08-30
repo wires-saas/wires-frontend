@@ -30,7 +30,6 @@ export interface Folder {
 
 @Injectable()
 export class FileAppService {
-
     private readonly domain: string;
 
     constructor(private http: HttpClient) {
@@ -38,31 +37,34 @@ export class FileAppService {
     }
 
     getFiles() {
-        return this.http.get<any>(this.domain)
+        return this.http
+            .get<any>(this.domain)
             .toPromise()
-            .then(res => res.files as File[])
-            .then(data => data);
+            .then((res) => res.files as File[])
+            .then((data) => data);
     }
 
     getMetrics() {
-        return this.http.get<any>(this.domain)
+        return this.http
+            .get<any>(this.domain)
             .toPromise()
-            .then(res => res.metrics as Metric[])
-            .then(data => data);
+            .then((res) => res.metrics as Metric[])
+            .then((data) => data);
     }
 
     getFoldersSmall() {
-        return this.http.get<any>(this.domain)
+        return this.http
+            .get<any>(this.domain)
             .toPromise()
-            .then(res => res.folders_small as Folder[])
-            .then(data => data);
+            .then((res) => res.folders_small as Folder[])
+            .then((data) => data);
     }
 
     getFoldersLarge() {
-        return this.http.get<any>(this.domain)
+        return this.http
+            .get<any>(this.domain)
             .toPromise()
-            .then(res => res.folders_large as Folder[])
-            .then(data => data);
+            .then((res) => res.folders_large as Folder[])
+            .then((data) => data);
     }
-
 }

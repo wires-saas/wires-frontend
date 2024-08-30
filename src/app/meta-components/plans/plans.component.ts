@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs';
     selector: 'app-plans',
 })
 export class PlansComponent implements OnDestroy {
-
     subscription: Subscription;
 
     darkMode: boolean = false;
@@ -16,10 +15,17 @@ export class PlansComponent implements OnDestroy {
     @Input() planEnabled: 'basic' | 'extended' | 'entreprise' | 'none' = 'none';
     @Input() forLanding: boolean = false;
 
-    constructor(public router: Router, private layoutService: LayoutService) {
-        this.subscription = this.layoutService.configUpdate$.subscribe(config => {
-            this.darkMode = config.colorScheme === 'dark' || config.colorScheme === 'dim';
-        });
+    constructor(
+        public router: Router,
+        private layoutService: LayoutService,
+    ) {
+        this.subscription = this.layoutService.configUpdate$.subscribe(
+            (config) => {
+                this.darkMode =
+                    config.colorScheme === 'dark' ||
+                    config.colorScheme === 'dim';
+            },
+        );
     }
 
     ngOnDestroy() {
@@ -27,7 +33,6 @@ export class PlansComponent implements OnDestroy {
     }
 
     selectPlan(plan: 'basic' | 'extended' | 'entreprise') {
-
         if (this.forLanding) {
             // TODO open contact form ?
             return;

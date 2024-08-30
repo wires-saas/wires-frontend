@@ -4,11 +4,8 @@ import { OrganizationRoutingModule } from './organization-routing.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        OrganizationRoutingModule
-    ],
+    imports: [CommonModule, OrganizationRoutingModule],
     declarations: [],
-    providers: [ConfirmationService, MessageService]
+    providers: [ConfirmationService, MessageService],
 })
-export class OrganizationModule { }
+export class OrganizationModule {}

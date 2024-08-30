@@ -5,11 +5,10 @@ import { DialogConfig, Task } from 'src/app/demo/api/task';
 
 @Injectable()
 export class TaskService {
-
     dialogConfig: DialogConfig = {
         visible: false,
         header: '',
-        newTask: false
+        newTask: false,
     };
 
     tasks: Task[] = [];
@@ -27,10 +26,11 @@ export class TaskService {
     dialogSource$ = this.dialogSource.asObservable();
 
     constructor(private http: HttpClient) {
-        this.http.get<any>('assets/demo/data/tasks.json')
+        this.http
+            .get<any>('assets/demo/data/tasks.json')
             .toPromise()
-            .then(res => res.data as Task[])
-            .then(data => {
+            .then((res) => res.data as Task[])
+            .then((data) => {
                 this.tasks = data;
                 this.taskSource.next(data);
             });
@@ -38,9 +38,8 @@ export class TaskService {
 
     addTask(task: Task) {
         if (this.tasks.includes(task)) {
-            this.tasks = this.tasks.map(t => t.id === task.id ? task : t);
-        }
-        else {
+            this.tasks = this.tasks.map((t) => (t.id === task.id ? task : t));
+        } else {
             this.tasks = [...this.tasks, task];
         }
 
@@ -48,7 +47,7 @@ export class TaskService {
     }
 
     removeTask(id: number) {
-        this.tasks = this.tasks.filter(t => t.id !== id);
+        this.tasks = this.tasks.filter((t) => t.id !== id);
         this.taskSource.next(this.tasks);
     }
 
@@ -57,7 +56,7 @@ export class TaskService {
     }
 
     markAsCompleted(task: Task) {
-        this.tasks = this.tasks.map(t => t.id === task.id ? task : t);
+        this.tasks = this.tasks.map((t) => (t.id === task.id ? task : t));
         this.taskSource.next(this.tasks);
     }
 
@@ -65,7 +64,7 @@ export class TaskService {
         this.dialogConfig = {
             visible: true,
             header: header,
-            newTask: newTask
+            newTask: newTask,
         };
 
         this.dialogSource.next(this.dialogConfig);
@@ -73,10 +72,9 @@ export class TaskService {
 
     closeDialog() {
         this.dialogConfig = {
-            visible: false
-        }
+            visible: false,
+        };
 
         this.dialogSource.next(this.dialogConfig);
     }
-
 }

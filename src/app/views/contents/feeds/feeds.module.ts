@@ -6,7 +6,7 @@ import { FeedsComponent } from './feeds.component';
 import { CreateOrUpdateFeedComponent } from './create-or-update-feed/create-or-update-feed.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { EditorModule } from 'primeng/editor'
+import { EditorModule } from 'primeng/editor';
 import { CalendarModule } from 'primeng/calendar';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ToastModule } from 'primeng/toast';
@@ -15,7 +15,7 @@ import { MenuModule } from 'primeng/menu';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
-import { FeedListComponent } from './feed-list/feed-list.component'
+import { FeedListComponent } from './feed-list/feed-list.component';
 import { FeedService } from '../../../services/feed.service';
 import { RippleModule } from 'primeng/ripple';
 import { ChipsModule } from 'primeng/chips';
@@ -70,15 +70,15 @@ import { SkeletonModule } from 'primeng/skeleton';
         TableModule,
         StatusBadgeModule,
         DurationPipe,
-        SkeletonModule
+        SkeletonModule,
     ],
     declarations: [
         FeedsComponent,
         CreateOrUpdateFeedComponent,
         FeedListComponent,
         FeedRunComponent,
-        FeedRunListComponent
+        FeedRunListComponent,
     ],
-    providers: [FeedService, MessageService, ConfirmationService]
+    providers: [FeedService, MessageService, ConfirmationService],
 })
-export class FeedsModule { }
+export class FeedsModule {}

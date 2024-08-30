@@ -7,10 +7,9 @@ import { MailService } from 'src/app/demo/components/apps/mail/service/mail.serv
 
 @Component({
     selector: 'app-mail-table',
-    templateUrl: './mail-table.component.html'
+    templateUrl: './mail-table.component.html',
 })
 export class MailTableComponent implements OnInit {
-
     @Input() mails!: Mail[];
 
     menuItems: MenuItem[] = [];
@@ -21,14 +20,29 @@ export class MailTableComponent implements OnInit {
 
     dialogVisible: boolean = false;
 
-    constructor(private router: Router, private mailService: MailService, private messageService: MessageService) { }
+    constructor(
+        private router: Router,
+        private mailService: MailService,
+        private messageService: MessageService,
+    ) {}
 
     ngOnInit(): void {
-
         this.menuItems = [
-            { label: 'Archive', icon: 'pi pi-fw pi-file', command: () => this.onArchiveMultiple() },
-            { label: 'Spam', icon: 'pi pi-fw pi-ban', command: () => this.onSpamMultiple() },
-            { label: 'Delete', icon: 'pi pi-fw pi-trash', command: () => this.onDeleteMultiple() },
+            {
+                label: 'Archive',
+                icon: 'pi pi-fw pi-file',
+                command: () => this.onArchiveMultiple(),
+            },
+            {
+                label: 'Spam',
+                icon: 'pi pi-fw pi-ban',
+                command: () => this.onSpamMultiple(),
+            },
+            {
+                label: 'Delete',
+                icon: 'pi pi-fw pi-trash',
+                command: () => this.onDeleteMultiple(),
+            },
         ];
     }
 
@@ -54,7 +68,12 @@ export class MailTableComponent implements OnInit {
     onArchive(event: Event, id: number) {
         event.stopPropagation();
         this.mailService.onArchive(id);
-        this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Mail archived', life: 3000 });
+        this.messageService.add({
+            severity: 'info',
+            summary: 'Info',
+            detail: 'Mail archived',
+            life: 3000,
+        });
     }
 
     onBookmark(event: Event, id: number) {
@@ -64,34 +83,54 @@ export class MailTableComponent implements OnInit {
 
     onDelete(id: number) {
         this.mailService.onDelete(id);
-        this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Mail deleted', life: 3000 });
+        this.messageService.add({
+            severity: 'info',
+            summary: 'Info',
+            detail: 'Mail deleted',
+            life: 3000,
+        });
     }
 
     onDeleteMultiple() {
         if (this.selectedMails && this.selectedMails.length > 0) {
             this.mailService.onDeleteMultiple(this.selectedMails);
-            this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Mails deleted', life: 3000 });
+            this.messageService.add({
+                severity: 'info',
+                summary: 'Info',
+                detail: 'Mails deleted',
+                life: 3000,
+            });
         }
     }
 
     onSpamMultiple() {
         if (this.selectedMails && this.selectedMails.length > 0) {
             this.mailService.onSpamMultiple(this.selectedMails);
-            this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Moved to spam', life: 3000 });
+            this.messageService.add({
+                severity: 'info',
+                summary: 'Info',
+                detail: 'Moved to spam',
+                life: 3000,
+            });
         }
     }
 
     onArchiveMultiple() {
         if (this.selectedMails && this.selectedMails.length > 0) {
             this.mailService.onArchiveMultiple(this.selectedMails);
-            this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Moved to archive', life: 3000 });
+            this.messageService.add({
+                severity: 'info',
+                summary: 'Info',
+                detail: 'Moved to archive',
+                life: 3000,
+            });
         }
     }
 
     onTrash(event: Event, mail: Mail) {
         event.stopPropagation();
         if (mail.trash) {
-            this.onDelete(mail.id)
+            this.onDelete(mail.id);
         }
         this.mailService.onTrash(mail.id);
     }
@@ -101,9 +140,11 @@ export class MailTableComponent implements OnInit {
         this.mail = mail;
         this.dialogVisible = true;
     }
-    
-    onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-    }
 
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal(
+            (event.target as HTMLInputElement).value,
+            'contains',
+        );
+    }
 }

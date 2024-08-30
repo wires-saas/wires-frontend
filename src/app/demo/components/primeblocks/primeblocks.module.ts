@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BlocksComponent } from './blocks/blocks.component';
 import { PrimeBlocksRoutingModule } from './primeblocks-routing.module';
-import { BlockViewerComponent } from './blockviewer/blockviewer.component'
+import { BlockViewerComponent } from './blockviewer/blockviewer.component';
 import { ChipModule } from 'primeng/chip';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
@@ -23,8 +23,8 @@ import { TooltipModule } from 'primeng/tooltip';
         InputTextModule,
         PasswordModule,
         PrimeBlocksRoutingModule,
-        TooltipModule
+        TooltipModule,
     ],
-    declarations: [BlocksComponent, BlockViewerComponent]
+    declarations: [BlocksComponent, BlockViewerComponent],
 })
-export class PrimeBlocksModule { }
+export class PrimeBlocksModule {}

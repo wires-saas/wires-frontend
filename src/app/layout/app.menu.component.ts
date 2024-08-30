@@ -1,5 +1,8 @@
-import { Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
-import { Organization, OrganizationService } from '../services/organization.service';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import {
+    Organization,
+    OrganizationService,
+} from '../services/organization.service';
 import { AuthService } from '../services/auth.service';
 import { Role } from '../utils/role.utils';
 import { map } from 'rxjs/operators';
@@ -13,83 +16,103 @@ import { ListUsersComponent } from '../views/organization/users/list/list-users.
 
 @Component({
     selector: 'app-menu',
-    templateUrl: './app.menu.component.html'
+    templateUrl: './app.menu.component.html',
 })
 export class AppMenuComponent implements OnInit {
-
     private destroyRef = inject(DestroyRef);
 
     model: any[] = [];
 
-    private dashboardMenu: (org: Organization) => any[] = (org) => ([
+    private dashboardMenu: () => any[] = () => [
         {
             label: 'Dashboards',
             items: [
                 {
-                    label: $localize `Home`,
+                    label: $localize`Home`,
                     icon: 'pi pi-fw pi-home',
-                    routerLink: ['/files']
+                    routerLink: ['/files'],
                 },
                 {
-                    label: $localize `Inbox`,
+                    label: $localize`Inbox`,
                     icon: 'pi pi-fw pi-inbox',
                     routerLink: ['/mail'],
-                    routerLinkActiveOptions: { exact: false }
+                    routerLinkActiveOptions: { exact: false },
                 },
                 {
-                    label: $localize `Empty`,
+                    label: $localize`Empty`,
                     icon: 'pi pi-fw pi-circle-off',
-                    routerLink: ['/blank']
+                    routerLink: ['/blank'],
                 },
                 /* {
                     label: $localize `Overview`,
                     icon: 'pi pi-fw pi-file',
                     routerLink: ['/overview']
                 } */
-            ]
-        }
-    ]);
+            ],
+        },
+    ];
 
-    private contentsMenu: (org: Organization, authService: AuthService) => any[] = (org, authService) => ([
+    private contentsMenu: (
+        org: Organization,
+        authService: AuthService,
+    ) => any[] = (org, authService) => [
         {
-            label: $localize `Contents`,
-            restriction: authService.hasAtLeast$([
-                ...FeedsComponent.permissions, ...ArticlesComponent.permissions
-            ], org.slug),
+            label: $localize`Contents`,
+            restriction: authService.hasAtLeast$(
+                [
+                    ...FeedsComponent.permissions,
+                    ...ArticlesComponent.permissions,
+                ],
+                org.slug,
+            ),
             items: [
                 {
-                    label: $localize `Articles`,
+                    label: $localize`Articles`,
                     icon: 'pi pi-fw pi-box',
                     routerLink: [`/organization/${org.slug}/contents/articles`],
-                    restriction: authService.hasAtLeast$(ArticlesComponent.permissions, org.slug)
+                    restriction: authService.hasAtLeast$(
+                        ArticlesComponent.permissions,
+                        org.slug,
+                    ),
                 },
                 {
-                    label: $localize `Feeds`,
+                    label: $localize`Feeds`,
                     icon: 'pi pi-fw pi-sitemap',
                     routerLink: [`/organization/${org.slug}/contents/feeds`],
                     routerLinkActiveOptions: { exact: false },
-                    restriction: authService.hasAtLeast$(FeedsComponent.permissions, org.slug)
-                }
-            ]
-        }
-     ]);
+                    restriction: authService.hasAtLeast$(
+                        FeedsComponent.permissions,
+                        org.slug,
+                    ),
+                },
+            ],
+        },
+    ];
 
-
-    private organizationMenu: (org: Organization, authService: AuthService) => any[] = (org, authService) => ([
+    private organizationMenu: (
+        org: Organization,
+        authService: AuthService,
+    ) => any[] = (org, authService) => [
         {
-            label: $localize `Organization`,
-            restriction: authService.hasAtLeast$([
-                ...BillingComponent.permissions,
-                ...ConfigurationComponent.permissions,
-                ...InformationComponent.permissions,
-                ...ListUsersComponent.permissions
-            ], org.slug),
+            label: $localize`Organization`,
+            restriction: authService.hasAtLeast$(
+                [
+                    ...BillingComponent.permissions,
+                    ...ConfigurationComponent.permissions,
+                    ...InformationComponent.permissions,
+                    ...ListUsersComponent.permissions,
+                ],
+                org.slug,
+            ),
             items: [
                 {
-                    label: $localize `All Users`,
+                    label: $localize`All Users`,
                     icon: 'pi pi-fw pi-users',
                     routerLink: [`organization/${org.slug}/users/list`],
-                    restriction: authService.hasAtLeast$(ListUsersComponent.permissions, org.slug)
+                    restriction: authService.hasAtLeast$(
+                        ListUsersComponent.permissions,
+                        org.slug,
+                    ),
                 },
                 /* {
                     label: $localize `Add User`,
@@ -98,100 +121,113 @@ export class AppMenuComponent implements OnInit {
                     restriction: authService.hasRole$(Role.MANAGER, org.slug)
                 }, */
                 {
-                    label: $localize `Information`,
+                    label: $localize`Information`,
                     icon: 'pi pi-fw pi-building',
                     routerLink: [`organization/${org.slug}/information`],
-                    restriction: authService.hasAtLeast$(InformationComponent.permissions, org.slug)
+                    restriction: authService.hasAtLeast$(
+                        InformationComponent.permissions,
+                        org.slug,
+                    ),
                 },
                 {
-                    label: $localize `Billing`,
+                    label: $localize`Billing`,
                     icon: 'pi pi-fw pi-wallet',
                     routerLink: [`organization/${org.slug}/billing`],
-                    restriction: authService.hasAtLeast$(BillingComponent.permissions, org.slug)
+                    restriction: authService.hasAtLeast$(
+                        BillingComponent.permissions,
+                        org.slug,
+                    ),
                 },
                 {
-                    label: $localize `Configuration`,
+                    label: $localize`Configuration`,
                     icon: 'pi pi-fw pi-cog',
                     routerLink: [`organization/${org.slug}/configuration`],
-                    restriction: authService.hasAtLeast$(ConfigurationComponent.permissions, org.slug)
+                    restriction: authService.hasAtLeast$(
+                        ConfigurationComponent.permissions,
+                        org.slug,
+                    ),
                 },
-            ]
-        }
-    ]);
+            ],
+        },
+    ];
 
     private helpMenu: any[] = [
         {
-            label: $localize `Help`,
+            label: $localize`Help`,
             icon: 'pi pi-fw pi-th-large',
             items: [
                 {
-                    label: $localize `FAQ`,
+                    label: $localize`FAQ`,
                     icon: 'pi pi-fw pi-question-circle',
-                    routerLink: ['/help/faq']
+                    routerLink: ['/help/faq'],
                 },
                 {
-                    label: $localize `Contact Us`,
+                    label: $localize`Contact Us`,
                     icon: 'pi pi-fw pi-phone',
-                    routerLink: ['/help/contact']
-                }
-            ]
-        }
+                    routerLink: ['/help/contact'],
+                },
+            ],
+        },
     ];
 
-    private superAdminMenu: (authService: AuthService) => any[] = (authService) => ([
+    private superAdminMenu: (authService: AuthService) => any[] = (
+        authService,
+    ) => [
         {
-            label: $localize `Administration`,
+            label: $localize`Administration`,
             icon: 'pi pi-fw pi-shield',
             restriction: authService.hasRole$(Role.SUPER_ADMIN),
             items: [
                 {
-                    label: $localize `All Organizations`,
+                    label: $localize`All Organizations`,
                     icon: 'pi pi-fw pi-list',
-                    routerLink: ['administration/organizations/list']
+                    routerLink: ['administration/organizations/list'],
                 },
                 {
-                    label: $localize `Add Organization`,
+                    label: $localize`Add Organization`,
                     icon: 'pi pi-fw pi-plus',
-                    routerLink: ['administration/organizations/create']
+                    routerLink: ['administration/organizations/create'],
                 },
                 {
-                    label: $localize `All Users`,
+                    label: $localize`All Users`,
                     icon: 'pi pi-fw pi-users',
-                    routerLink: ['administration/organizations/users/list']
+                    routerLink: ['administration/organizations/users/list'],
                 },
-            ]
-        }
-    ]);
+            ],
+        },
+    ];
 
-    constructor(private organizationService: OrganizationService, private authService: AuthService) { }
+    constructor(
+        private organizationService: OrganizationService,
+        private authService: AuthService,
+    ) {}
 
     ngOnInit() {
         this.buildMenu(this.authService);
 
-        this.organizationService.currentOrganization$.pipe(
-            map((org) => {
-                if (org) {
-                    this.buildMenuForOrganization(org, this.authService);
-                }
-            }),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe();
+        this.organizationService.currentOrganization$
+            .pipe(
+                map((org) => {
+                    if (org) {
+                        this.buildMenuForOrganization(org, this.authService);
+                    }
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
     }
 
     buildMenu(authService: AuthService) {
-        this.model = [
-            ...this.helpMenu,
-            ...this.superAdminMenu(authService)
-        ];
+        this.model = [...this.helpMenu, ...this.superAdminMenu(authService)];
     }
 
     buildMenuForOrganization(org: Organization, authService: AuthService) {
         this.model = [
-            ...this.dashboardMenu(org),
+            ...this.dashboardMenu(),
             ...this.contentsMenu(org, authService),
             ...this.organizationMenu(org, authService),
             ...this.helpMenu,
-            ...this.superAdminMenu(authService)
+            ...this.superAdminMenu(authService),
         ];
     }
 }

@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
 })
 export class IconService {
-
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     icons: any[] = [];
 
@@ -16,9 +15,11 @@ export class IconService {
     apiUrl = 'assets/demo/data/icons.json';
 
     getIcons() {
-        return this.http.get(this.apiUrl).pipe(map((response: any) => {
-            this.icons = response.icons;
-            return this.icons;
-        }));
+        return this.http.get(this.apiUrl).pipe(
+            map((response: any) => {
+                this.icons = response.icons;
+                return this.icons;
+            }),
+        );
     }
 }

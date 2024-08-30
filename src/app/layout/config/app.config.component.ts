@@ -20,7 +20,7 @@ export class AppConfigComponent implements OnInit {
 
     constructor(
         public layoutService: LayoutService,
-        public menuService: MenuService
+        public menuService: MenuService,
     ) {}
 
     get visible(): boolean {

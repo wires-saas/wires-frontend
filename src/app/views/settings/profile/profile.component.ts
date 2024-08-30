@@ -1,4 +1,10 @@
-import { Component, DestroyRef, inject, OnInit, ViewChild } from '@angular/core';
+import {
+    Component,
+    DestroyRef,
+    inject,
+    OnInit,
+    ViewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrganizationService } from '../../../services/organization.service';
 import { User, UserProfile, UserService } from '../../../services/user.service';
@@ -11,12 +17,10 @@ import { MessageUtils } from '../../../utils/message.utils';
 import { deepEquals } from '../../../utils/deep-equals';
 import { FileSelectEvent, FileUpload } from 'primeng/fileupload';
 
-
 @Component({
     templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit {
-
     @ViewChild('fileUploadInput') fileUploadInput: FileUpload | undefined;
 
     private destroyRef = inject(DestroyRef);
@@ -40,17 +44,17 @@ export class ProfileComponent implements OnInit {
 
     saving: boolean = false;
 
-
     currentUser: User | undefined;
 
-    constructor(private authService: AuthService,
-                private organizationService: OrganizationService,
-                private userService: UserService,
-                private router: Router,
-                private confirmationService: ConfirmationService,
-                private messageService: MessageService,
-                private activatedRoute: ActivatedRoute) {
-    }
+    constructor(
+        private authService: AuthService,
+        private organizationService: OrganizationService,
+        private userService: UserService,
+        private router: Router,
+        private confirmationService: ConfirmationService,
+        private messageService: MessageService,
+        private activatedRoute: ActivatedRoute,
+    ) {}
 
     async ngOnInit() {
         this.countries = CountriesUtils.countries;
@@ -58,7 +62,6 @@ export class ProfileComponent implements OnInit {
     }
 
     private async buildUserForm() {
-
         await this.authService.getProfile();
         this.currentUser = await firstValueFrom(this.authService.currentUser$);
 
@@ -74,9 +77,12 @@ export class ProfileComponent implements OnInit {
     }
 
     canSaveProfile() {
-        return this.userForm.valid
-            && this.userForm.dirty
-            && !deepEquals(this.userForm.value, this.userSavedState) && !this.saving;
+        return (
+            this.userForm.valid &&
+            this.userForm.dirty &&
+            !deepEquals(this.userForm.value, this.userSavedState) &&
+            !this.saving
+        );
     }
 
     async avatarSelection(e: FileSelectEvent) {
@@ -108,68 +114,71 @@ export class ProfileComponent implements OnInit {
 
         // If saving avatar is relevant
         if (this.nextAvatar) {
+            await this.userService
+                .uploadAvatar(this.currentUser._id, this.nextAvatar)
+                .then(() => {
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: $localize`Success updating avatar`,
+                        detail: $localize`It may not be visible immediately for other users.`,
+                        life: 5000,
+                    });
+                })
+                .catch((err) => {
+                    console.error(err);
 
-            await this.userService.uploadAvatar(this.currentUser._id, this.nextAvatar).then((avatar) => {
-
-                this.messageService.add({
-                    severity: 'success',
-                    summary: $localize`Success updating avatar`,
-                    detail: $localize`It may not be visible immediately for other users.`,
-                    life: 5000
+                    MessageUtils.parseServerError(this.messageService, err, {
+                        summary: $localize`Error updating avatar`,
+                    });
                 });
-
-            }).catch((err) => {
-                console.error(err);
-
-                MessageUtils.parseServerError(this.messageService, err, {
-                    summary: $localize`Error updating avatar`,
-                });
-            });
         }
 
         // If saving profile is relevant
         if (this.canSaveProfile()) {
+            await this.userService
+                .updateUser(this.currentUser._id, this.userForm.value)
+                .then(() => {
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: $localize`Success updating profile`,
+                        detail: $localize`Some changes may not be visible until next login.`,
+                        life: 5000,
+                    });
 
-            await this.userService.updateUser(this.currentUser._id, this.userForm.value).then((user) => {
+                    this.userSavedState = this.userForm.value;
+                })
+                .catch((err) => {
+                    console.error(err);
 
-                this.messageService.add({
-                    severity: 'success',
-                    summary: $localize`Success updating profile`,
-                    detail: $localize`Some changes may not be visible until next login.`,
-                    life: 5000
+                    MessageUtils.parseServerError(this.messageService, err, {
+                        summary: $localize`Error updating profile`,
+                    });
                 });
-
-                this.userSavedState = this.userForm.value;
-
-            }).catch((err) => {
-                console.error(err);
-
-                MessageUtils.parseServerError(this.messageService, err, {
-                    summary: $localize`Error updating profile`,
-                });
-            });
-
         }
 
         // Refreshing profile to fetch avatar url
-        await this.authService.getProfile().then(async () => {
-            this.currentUser = await firstValueFrom(this.authService.currentUser$);
+        await this.authService
+            .getProfile()
+            .then(async () => {
+                this.currentUser = await firstValueFrom(
+                    this.authService.currentUser$,
+                );
 
-            // resetting avatar
-            if (this.nextAvatar) {
-                this.nextAvatar = undefined;
-                this.nextAvatarPreview = '';
-                this.fileUploadInput?.clear();
-            }
-        }).catch((err) => {
-            console.error(err);
+                // resetting avatar
+                if (this.nextAvatar) {
+                    this.nextAvatar = undefined;
+                    this.nextAvatarPreview = '';
+                    this.fileUploadInput?.clear();
+                }
+            })
+            .catch((err) => {
+                console.error(err);
 
-            MessageUtils.parseServerError(this.messageService, err, {
-                summary: $localize`Error refreshing profile`,
+                MessageUtils.parseServerError(this.messageService, err, {
+                    summary: $localize`Error refreshing profile`,
+                });
             });
-        });
 
         this.saving = false;
     }
-
 }

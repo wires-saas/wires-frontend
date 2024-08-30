@@ -24,7 +24,7 @@ export class BankingDashboardComponent implements OnInit, OnDestroy {
     constructor(private layoutService: LayoutService) {
         this.subscription = this.layoutService.configUpdate$
             .pipe(debounceTime(25))
-            .subscribe((config) => {
+            .subscribe(() => {
                 this.initChart();
             });
     }
@@ -65,7 +65,7 @@ export class BankingDashboardComponent implements OnInit, OnDestroy {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue(
-            '--text-color-secondary'
+            '--text-color-secondary',
         );
         const surfaceBorder =
             documentStyle.getPropertyValue('--surface-border');

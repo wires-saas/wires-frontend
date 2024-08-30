@@ -38,9 +38,9 @@ import { FeedService } from '../../../services/feed.service';
         ToastModule,
         TooltipModule,
         ArticlesViewModule,
-        ArticlesTableModule
+        ArticlesTableModule,
     ],
-	declarations: [ArticlesComponent],
-    providers: [ArticleService, FeedService]
+    declarations: [ArticlesComponent],
+    providers: [ArticleService, FeedService],
 })
-export class ArticlesModule { }
+export class ArticlesModule {}

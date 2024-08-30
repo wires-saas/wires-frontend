@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesUtils } from '../../../../utils/countries.utils';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Organization, OrganizationService } from '../../../../services/organization.service';
+import { OrganizationService } from '../../../../services/organization.service';
 import { Router } from '@angular/router';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { MessageService } from 'primeng/api';
 
 @Component({
-    templateUrl: './create-organization.component.html'
+    templateUrl: './create-organization.component.html',
 })
 export class CreateOrganizationComponent implements OnInit {
-
     countries: any[] = [];
 
     creationForm: FormGroup = new FormGroup({
@@ -19,14 +18,21 @@ export class CreateOrganizationComponent implements OnInit {
         country: new FormControl('', [Validators.required]),
     });
 
-    constructor(private organizationService: OrganizationService, private messageService: MessageService, private router: Router) {
-    }
+    constructor(
+        private organizationService: OrganizationService,
+        private messageService: MessageService,
+        private router: Router,
+    ) {}
 
     ngOnInit() {
         this.countries = CountriesUtils.countries;
     }
 
-    private mapCreationFormToDto(): { name: string; slug: string; country?: string; } {
+    private mapCreationFormToDto(): {
+        name: string;
+        slug: string;
+        country?: string;
+    } {
         return {
             name: this.creationForm.value.name,
             slug: this.creationForm.value.slug,
@@ -35,22 +41,23 @@ export class CreateOrganizationComponent implements OnInit {
     }
 
     async createOrganization() {
-        await this.organizationService.create(this.mapCreationFormToDto()).then((org) => {
-            this.router.navigate(
-                ['/administration/organizations/list'],
-                { state: { created: this.creationForm.value.name } }
-            );
-        }).catch((err) => {
-            console.error(err);
+        await this.organizationService
+            .create(this.mapCreationFormToDto())
+            .then(() => {
+                this.router.navigate(['/administration/organizations/list'], {
+                    state: { created: this.creationForm.value.name },
+                });
+            })
+            .catch((err) => {
+                console.error(err);
 
-            MessageUtils.parseServerError(this.messageService, err, {
-                summary: $localize `Error creating organization`,
+                MessageUtils.parseServerError(this.messageService, err, {
+                    summary: $localize`Error creating organization`,
+                });
             });
-        });
     }
 
     canCreateOrganization() {
         return this.creationForm.valid;
     }
-
 }

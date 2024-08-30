@@ -1,14 +1,14 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { ButtonModule } from "primeng/button";
-import { ChipModule } from "primeng/chip";
-import { EditorModule } from "primeng/editor";
-import { FileUploadModule } from "primeng/fileupload";
-import { InputTextModule } from "primeng/inputtext";
-import { InputTextareaModule } from "primeng/inputtextarea";
-import { RippleModule } from "primeng/ripple";
-import { BlogEditRoutingModule } from "./blog-edit-routing.module";
-import { BlogEditComponent } from "./blog-edit.component";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { ChipModule } from 'primeng/chip';
+import { EditorModule } from 'primeng/editor';
+import { FileUploadModule } from 'primeng/fileupload';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { RippleModule } from 'primeng/ripple';
+import { BlogEditRoutingModule } from './blog-edit-routing.module';
+import { BlogEditComponent } from './blog-edit.component';
 
 @NgModule({
     imports: [
@@ -20,8 +20,8 @@ import { BlogEditComponent } from "./blog-edit.component";
         RippleModule,
         ChipModule,
         EditorModule,
-        BlogEditRoutingModule
+        BlogEditRoutingModule,
     ],
-    declarations: [BlogEditComponent]
+    declarations: [BlogEditComponent],
 })
-export class BlogEditModule { }
+export class BlogEditModule {}

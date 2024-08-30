@@ -7,16 +7,8 @@ import { LogoComponent } from './logo.component';
 import { LogoTextlessComponent } from './logo-textless.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        StyleClassModule,
-        AppConfigModule,
-    ],
-    exports: [
-        LogoPhraseComponent,
-        LogoTextlessComponent,
-        LogoComponent
-    ],
-    declarations: [LogoPhraseComponent, LogoTextlessComponent, LogoComponent]
+    imports: [CommonModule, StyleClassModule, AppConfigModule],
+    exports: [LogoPhraseComponent, LogoTextlessComponent, LogoComponent],
+    declarations: [LogoPhraseComponent, LogoTextlessComponent, LogoComponent],
 })
-export class LogosModule { }
+export class LogosModule {}

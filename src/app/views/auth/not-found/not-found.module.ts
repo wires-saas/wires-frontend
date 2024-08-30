@@ -5,11 +5,7 @@ import { NotFoundComponent } from './not-found.component';
 import { ButtonModule } from 'primeng/button';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        NotFoundRoutingModule,
-        ButtonModule
-    ],
-    declarations: [NotFoundComponent]
+    imports: [CommonModule, NotFoundRoutingModule, ButtonModule],
+    declarations: [NotFoundComponent],
 })
-export class NotFoundModule { }
+export class NotFoundModule {}

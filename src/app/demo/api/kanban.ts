@@ -9,7 +9,7 @@ export interface KanbanCard {
     startDate?: string;
     dueDate?: string;
     completed?: boolean;
-    priority?: Object;
+    priority?: any;
     taskList: TaskList;
 }
 

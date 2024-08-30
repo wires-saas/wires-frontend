@@ -31,7 +31,7 @@ export class ChartsDemoComponent implements OnInit, OnDestroy {
     constructor(public layoutService: LayoutService) {
         this.subscription = this.layoutService.configUpdate$
             .pipe(debounceTime(25))
-            .subscribe((config) => {
+            .subscribe(() => {
                 this.initCharts();
             });
     }
@@ -44,7 +44,7 @@ export class ChartsDemoComponent implements OnInit, OnDestroy {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue(
-            '--text-color-secondary'
+            '--text-color-secondary',
         );
         const surfaceBorder =
             documentStyle.getPropertyValue('--surface-border');

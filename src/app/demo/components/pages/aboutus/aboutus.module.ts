@@ -4,10 +4,7 @@ import { AboutUsRoutingModule } from './aboutus-routing.module';
 import { AboutUsComponent } from './aboutus.component';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		AboutUsRoutingModule
-	],
-	declarations: [AboutUsComponent]
+    imports: [CommonModule, AboutUsRoutingModule],
+    declarations: [AboutUsComponent],
 })
-export class AboutUsModule { }
+export class AboutUsModule {}

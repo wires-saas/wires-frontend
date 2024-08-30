@@ -3,9 +3,9 @@ import { RouterModule } from '@angular/router';
 import { FileAppComponent } from './file.app.component';
 
 @NgModule({
-    imports: [RouterModule.forChild([
-        { path: '', component: FileAppComponent }
-    ])],
-    exports: [RouterModule]
+    imports: [
+        RouterModule.forChild([{ path: '', component: FileAppComponent }]),
+    ],
+    exports: [RouterModule],
 })
-export class FileAppRoutingModule { }
+export class FileAppRoutingModule {}

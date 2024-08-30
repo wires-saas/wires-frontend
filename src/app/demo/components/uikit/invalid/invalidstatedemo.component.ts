@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CountryService } from 'src/app/demo/service/country.service';
 
 @Component({
-    templateUrl: './invalidstatedemo.component.html'
+    templateUrl: './invalidstatedemo.component.html',
 })
 export class InvalidStateDemoComponent implements OnInit {
-
     countries: any[] = [];
 
     cities: any[];
@@ -38,12 +37,12 @@ export class InvalidStateDemoComponent implements OnInit {
             { name: 'Rome', code: 'RM' },
             { name: 'London', code: 'LDN' },
             { name: 'Istanbul', code: 'IST' },
-            { name: 'Paris', code: 'PRS' }
+            { name: 'Paris', code: 'PRS' },
         ];
     }
 
     ngOnInit() {
-        this.countryService.getCountries().then(countries => {
+        this.countryService.getCountries().then((countries) => {
             this.countries = countries;
         });
     }
@@ -62,5 +61,4 @@ export class InvalidStateDemoComponent implements OnInit {
 
         this.filteredCountries = filtered;
     }
-    
 }

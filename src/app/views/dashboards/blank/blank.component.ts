@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-    templateUrl: './blank.component.html'
+    templateUrl: './blank.component.html',
 })
-export class BlankComponent { }
+export class BlankComponent {}

@@ -12,22 +12,62 @@ import { MailStarredComponent } from './mail-starred/mail-starred.component';
 import { MailTrashComponent } from './mail-trash/mail-trash.component';
 
 @NgModule({
-    imports: [RouterModule.forChild([
-        {
-            path: '', component: MailAppComponent, children: [
-                { path: '', redirectTo: 'inbox', pathMatch: 'full' },
-                { path: 'inbox', data: { breadcrumb: 'Inbox' }, component: MailInboxComponent },
-                { path: 'detail/:id', data: { breadcrumb: 'Detail' }, component: MailDetailComponent },
-                { path: 'compose', data: { breadcrumb: 'Compose' }, component: MailComposeComponent },
-                { path: 'archived', data: { breadcrumb: 'Archived' }, component: MailArchiveComponent },
-                { path: 'important', data: { breadcrumb: 'Important' }, component: MailImportantComponent },
-                { path: 'sent', data: { breadcrumb: 'Sent' }, component: MailSentComponent },
-                { path: 'spam', data: { breadcrumb: 'Spam' }, component: MailSpamComponent },
-                { path: 'starred', data: { breadcrumb: 'Starred' }, component: MailStarredComponent },
-                { path: 'trash', data: { breadcrumb: 'Trash' }, component: MailTrashComponent }
-            ]
-        }
-    ])],
-    exports: [RouterModule]
+    imports: [
+        RouterModule.forChild([
+            {
+                path: '',
+                component: MailAppComponent,
+                children: [
+                    { path: '', redirectTo: 'inbox', pathMatch: 'full' },
+                    {
+                        path: 'inbox',
+                        data: { breadcrumb: 'Inbox' },
+                        component: MailInboxComponent,
+                    },
+                    {
+                        path: 'detail/:id',
+                        data: { breadcrumb: 'Detail' },
+                        component: MailDetailComponent,
+                    },
+                    {
+                        path: 'compose',
+                        data: { breadcrumb: 'Compose' },
+                        component: MailComposeComponent,
+                    },
+                    {
+                        path: 'archived',
+                        data: { breadcrumb: 'Archived' },
+                        component: MailArchiveComponent,
+                    },
+                    {
+                        path: 'important',
+                        data: { breadcrumb: 'Important' },
+                        component: MailImportantComponent,
+                    },
+                    {
+                        path: 'sent',
+                        data: { breadcrumb: 'Sent' },
+                        component: MailSentComponent,
+                    },
+                    {
+                        path: 'spam',
+                        data: { breadcrumb: 'Spam' },
+                        component: MailSpamComponent,
+                    },
+                    {
+                        path: 'starred',
+                        data: { breadcrumb: 'Starred' },
+                        component: MailStarredComponent,
+                    },
+                    {
+                        path: 'trash',
+                        data: { breadcrumb: 'Trash' },
+                        component: MailTrashComponent,
+                    },
+                ],
+            },
+        ]),
+    ],
+    exports: [RouterModule],
 })
-export class MailAppRoutingModule { }
+export class MailAppRoutingModule {}

@@ -50,14 +50,14 @@ import { KanbanService } from './service/kanban.service';
         TooltipModule,
         TieredMenuModule,
         OverlayPanelModule,
-        CheckboxModule
+        CheckboxModule,
     ],
     declarations: [
         KanbanAppComponent,
         KanbanListComponent,
         KanbanSidebarComponent,
-        KanbanCardComponent
+        KanbanCardComponent,
     ],
-    providers: [KanbanService]
+    providers: [KanbanService],
 })
-export class KanbanAppModule { }
+export class KanbanAppModule {}

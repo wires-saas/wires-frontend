@@ -7,7 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { AppConfigModule } from 'src/app/layout/config/app.config.module';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -18,8 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         RequestPasswordResetRoutingModule,
         MessagesModule,
         MessageModule,
-        AppConfigModule
+        AppConfigModule,
     ],
-    declarations: [RequestPasswordResetComponent]
+    declarations: [RequestPasswordResetComponent],
 })
-export class RequestPasswordResetModule { }
+export class RequestPasswordResetModule {}

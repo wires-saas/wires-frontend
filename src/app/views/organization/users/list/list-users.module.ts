@@ -26,8 +26,8 @@ import { StatusPipe } from '../../../../utils/pipes/status.pipe';
         ConfirmDialogModule,
         ToastModule,
         RolePipe,
-        StatusPipe
+        StatusPipe,
     ],
-	declarations: [ListUsersComponent]
+    declarations: [ListUsersComponent],
 })
-export class ListUsersModule { }
+export class ListUsersModule {}

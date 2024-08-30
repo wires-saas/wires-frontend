@@ -14,7 +14,7 @@ export class MailImportantComponent implements OnDestroy {
     constructor(private mailService: MailService) {
         this.subscription = this.mailService.mails$.subscribe((data) => {
             this.importantMails = data.filter(
-                (d) => d.important && !d.spam && !d.trash && !d.archived
+                (d) => d.important && !d.spam && !d.trash && !d.archived,
             );
         });
     }

@@ -3,23 +3,23 @@ import { Role } from '../role.utils';
 
 @Pipe({
     name: 'role',
-    standalone: true
+    standalone: true,
 })
 export class RolePipe implements PipeTransform {
-    transform(role: Role, ...args: unknown[]): string {
+    transform(role: Role): string {
         switch (role) {
             case Role.SUPER_ADMIN:
-                return $localize `Super Admin`;
+                return $localize`Super Admin`;
             case Role.ADMIN:
-                return $localize `Admin`;
+                return $localize`Admin`;
             case Role.MANAGER:
-                return $localize `Manager`;
+                return $localize`Manager`;
             case Role.USER:
-                return $localize `User`;
+                return $localize`User`;
             case Role.GUEST:
-                return $localize `Guest`;
+                return $localize`Guest`;
             default:
-                return $localize `N/A`;
+                return $localize`N/A`;
         }
     }
 }

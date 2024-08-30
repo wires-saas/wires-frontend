@@ -18,8 +18,8 @@ import { PasswordModule } from 'primeng/password';
         InputTextModule,
         RippleModule,
         AppConfigModule,
-        PasswordModule
+        PasswordModule,
     ],
-    declarations: [ResetPasswordComponent]
+    declarations: [ResetPasswordComponent],
 })
-export class ResetPasswordModule { }
+export class ResetPasswordModule {}

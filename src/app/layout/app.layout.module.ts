@@ -35,7 +35,7 @@ import { ArrayFilterPipe } from '../utils/pipes/array-filter.pipe';
         AppTopbarComponent,
         AppProfileSidebarComponent,
         AppMenuComponent,
-        AppMenuitemComponent
+        AppMenuitemComponent,
     ],
     imports: [
         BrowserModule,
@@ -57,7 +57,7 @@ import { ArrayFilterPipe } from '../utils/pipes/array-filter.pipe';
         MenuModule,
         LogosModule,
         FullNamePipe,
-        ArrayFilterPipe
-    ]
+        ArrayFilterPipe,
+    ],
 })
-export class AppLayoutModule { }
+export class AppLayoutModule {}

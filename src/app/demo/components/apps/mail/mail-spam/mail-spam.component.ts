@@ -19,7 +19,7 @@ export class MailSpamComponent implements OnDestroy {
                     d.spam &&
                     !d.archived &&
                     !d.trash &&
-                    !d.hasOwnProperty('sent')
+                    !d.hasOwnProperty('sent'),
             );
         });
     }

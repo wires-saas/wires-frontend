@@ -20,8 +20,8 @@ import { BankingDashboardRoutingModule } from './banking.dashboard-routing.modul
         TableModule,
         InputNumberModule,
         ChartModule,
-        BankingDashboardRoutingModule
+        BankingDashboardRoutingModule,
     ],
-    declarations: [BankingDashboardComponent]
+    declarations: [BankingDashboardComponent],
 })
-export class BankingDashboardModule { }
+export class BankingDashboardModule {}

@@ -29,13 +29,7 @@ import { TagModule } from 'primeng/tag';
         BadgeModule,
         TagModule,
     ],
-    exports: [
-        ArticlesViewComponent,
-        ArticleCardComponent
-    ],
-    declarations: [
-        ArticlesViewComponent,
-        ArticleCardComponent
-    ]
+    exports: [ArticlesViewComponent, ArticleCardComponent],
+    declarations: [ArticlesViewComponent, ArticleCardComponent],
 })
-export class ArticlesViewModule { }
+export class ArticlesViewModule {}

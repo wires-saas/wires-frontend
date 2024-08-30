@@ -16,8 +16,8 @@ import { AppConfigModule } from 'src/app/layout/config/app.config.module';
         InputTextModule,
         CheckboxModule,
         FormsModule,
-        AppConfigModule
+        AppConfigModule,
     ],
-    declarations: [LoginComponent]
+    declarations: [LoginComponent],
 })
-export class LoginModule { }
+export class LoginModule {}

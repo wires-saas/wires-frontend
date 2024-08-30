@@ -1,8 +1,21 @@
-import { Component, DestroyRef, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
-import { ColorScheme, LayoutService } from 'src/app/layout/service/app.layout.service';
+import {
+    Component,
+    DestroyRef,
+    ElementRef,
+    inject,
+    OnInit,
+    ViewChild,
+} from '@angular/core';
+import {
+    ColorScheme,
+    LayoutService,
+} from 'src/app/layout/service/app.layout.service';
 import { MenuItem } from 'primeng/api';
 import { I18nService, SupportedLocales } from '../services/i18n.service';
-import { Notification, NotificationService } from '../services/notification.service';
+import {
+    Notification,
+    NotificationService,
+} from '../services/notification.service';
 import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AuthService } from '../services/auth.service';
@@ -10,10 +23,9 @@ import { User } from '../services/user.service';
 
 @Component({
     selector: 'app-topbar',
-    templateUrl: './app.topbar.component.html'
+    templateUrl: './app.topbar.component.html',
 })
 export class AppTopbarComponent implements OnInit {
-
     @ViewChild('menubutton') menuButton!: ElementRef;
 
     languages: MenuItem[] = [];
@@ -34,30 +46,38 @@ export class AppTopbarComponent implements OnInit {
     }
 
     get notificationsBadge(): string {
-        return this.notifications.length > 9 ? '' : this.notifications.length.toString(10);
+        return this.notifications.length > 9
+            ? ''
+            : this.notifications.length.toString(10);
     }
 
-    constructor(public layoutService: LayoutService,
-                private authService: AuthService,
-                private i18nService: I18nService,
-                private notificationService: NotificationService) { }
+    constructor(
+        public layoutService: LayoutService,
+        private authService: AuthService,
+        private i18nService: I18nService,
+        private notificationService: NotificationService,
+    ) {}
 
     ngOnInit() {
         this.buildLanguagesMenu();
 
-        this.notificationService.currentUserNotifications$.pipe(
-            map((notifications) => {
-                this.notifications = notifications;
-            }),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe();
+        this.notificationService.currentUserNotifications$
+            .pipe(
+                map((notifications) => {
+                    this.notifications = notifications;
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
 
-        this.authService.currentUser$.pipe(
-            map((user: User | undefined) => {
-                this.avatarImage = user?.avatarUrl || this.DEFAULT_AVATAR;
-            }),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe();
+        this.authService.currentUser$
+            .pipe(
+                map((user: User | undefined) => {
+                    this.avatarImage = user?.avatarUrl || this.DEFAULT_AVATAR;
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
     }
 
     private buildLanguagesMenu() {
@@ -70,7 +90,7 @@ export class AppTopbarComponent implements OnInit {
                 command: async () => {
                     await this.i18nService.setLocale(SupportedLocales.FR, true);
                     this.buildLanguagesMenu();
-                }
+                },
             },
             {
                 label: 'English',
@@ -80,8 +100,8 @@ export class AppTopbarComponent implements OnInit {
                 command: async () => {
                     await this.i18nService.setLocale(SupportedLocales.EN, true);
                     this.buildLanguagesMenu();
-                }
-            }
+                },
+            },
         ];
     }
 
@@ -103,5 +123,4 @@ export class AppTopbarComponent implements OnInit {
     setDimMode() {
         this.layoutService.switchToDimMode();
     }
-
 }

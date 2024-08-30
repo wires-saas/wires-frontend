@@ -1,12 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FeedRun } from '../../../../services/feed.service';
 
 @Component({
     selector: 'app-feed-run-list',
-    templateUrl: './feed-run-list.component.html'
+    templateUrl: './feed-run-list.component.html',
 })
 export class FeedRunListComponent {
-
     @Input() loading: boolean = true;
 
     @Input() runs: FeedRun[] = [];
@@ -16,5 +15,4 @@ export class FeedRunListComponent {
     onRowSelect(run: FeedRun) {
         this.runSelect.emit(run);
     }
-
 }

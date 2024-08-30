@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class MailService {
-
     private _mails: Mail[] = [];
 
     private mails = new BehaviorSubject<Mail[]>(this._mails);
@@ -13,10 +12,11 @@ export class MailService {
     mails$ = this.mails.asObservable();
 
     constructor(private http: HttpClient) {
-        this.http.get<any>('assets/demo/data/mail.json')
+        this.http
+            .get<any>('assets/demo/data/mail.json')
             .toPromise()
-            .then(res => res.data as Mail[])
-            .then(data => {
+            .then((res) => res.data as Mail[])
+            .then((data) => {
                 this.updateMails(data);
             });
     }
@@ -27,36 +27,42 @@ export class MailService {
     }
 
     onStar(id: number) {
-        this._mails = this._mails.map(m => m.id === id ? ({ ...m, starred: !m.starred }) : m);
+        this._mails = this._mails.map((m) =>
+            m.id === id ? { ...m, starred: !m.starred } : m,
+        );
         this.mails.next(this._mails);
     }
 
     onArchive(id: number) {
-        this._mails = this._mails.map(m => m.id === id ? ({ ...m, archived: !m.archived }) : m);
+        this._mails = this._mails.map((m) =>
+            m.id === id ? { ...m, archived: !m.archived } : m,
+        );
         this.mails.next(this._mails);
     }
 
     onBookmark(id: number) {
-        this._mails = this._mails.map(m => m.id === id ? ({ ...m, important: !m.important }) : m);
+        this._mails = this._mails.map((m) =>
+            m.id === id ? { ...m, important: !m.important } : m,
+        );
         this.mails.next(this._mails);
     }
 
     onDelete(id: number) {
-        this._mails = this._mails.filter(m => m.id !== id);
+        this._mails = this._mails.filter((m) => m.id !== id);
         this.mails.next(this._mails);
     }
 
     onDeleteMultiple(mails: Mail[]) {
-        let idArray = mails.map(m => Number(m.id));
-        this._mails = this._mails.filter(m => idArray.indexOf(m.id) == -1);
+        const idArray = mails.map((m) => Number(m.id));
+        this._mails = this._mails.filter((m) => idArray.indexOf(m.id) == -1);
         this.mails.next(this._mails);
     }
 
     onArchiveMultiple(mails: Mail[]) {
-        let idArray = mails.map(m => m.id);
+        const idArray = mails.map((m) => m.id);
 
         for (let i = 0; i < this._mails.length; i++) {
-            let mail = this._mails[i];
+            const mail = this._mails[i];
 
             if (idArray.indexOf(mail.id) !== -1) {
                 mail.archived = true;
@@ -68,13 +74,19 @@ export class MailService {
     }
 
     onSpamMultiple(mails: Mail[]) {
-        let idArray = mails.map(m => m.id);
+        const idArray = mails.map((m) => m.id);
 
         for (let i = 0; i < this._mails.length; i++) {
             let mail = this._mails[i];
 
             if (idArray.indexOf(mail.id) !== -1) {
-                mail = { ...mail, spam: true, important: false, starred: false, archived: false };
+                mail = {
+                    ...mail,
+                    spam: true,
+                    important: false,
+                    starred: false,
+                    archived: false,
+                };
                 this._mails[i] = mail;
             }
         }
@@ -83,7 +95,9 @@ export class MailService {
     }
 
     onTrash(id: number) {
-        this._mails = this._mails.map(m => m.id === id ? ({ ...m, trash: true }) : m);
+        this._mails = this._mails.map((m) =>
+            m.id === id ? { ...m, trash: true } : m,
+        );
         this.mails.next(this._mails);
     }
 
@@ -100,13 +114,15 @@ export class MailService {
         this.mails.next(this._mails);
     }
 
-
     generateId() {
-        let text = "";
-        let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let text = '';
+        const possible =
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-        for (var i = 0; i < 5; i++) {
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        for (let i = 0; i < 5; i++) {
+            text += possible.charAt(
+                Math.floor(Math.random() * possible.length),
+            );
         }
 
         return text;

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Slug } from '../utils/types.utils';
 import { firstValueFrom } from 'rxjs';
 import { Role } from '../utils/role.utils';
-
 
 export enum PermissionAction {
     Create = 'create',
@@ -39,19 +37,18 @@ export class Permission {
         // Special translations (more explicit)
         if (this.subject === PermissionSubject.FeedRun) {
             if (this.action === PermissionAction.Create) {
-                customLabel = $localize `Execute Feed`;
+                customLabel = $localize`Execute Feed`;
             }
         }
 
         if (this.subject === PermissionSubject.Billing) {
             if (this.action === PermissionAction.Delete) {
-                customLabel = $localize `Resiliate Subscription`;
+                customLabel = $localize`Resiliate Subscription`;
             }
         }
 
         // Default translation "Action Subject"
         if (!customLabel) {
-
             let actionI18N;
 
             switch (this.action) {
@@ -110,35 +107,54 @@ export class Permission {
     }
 }
 
-interface RolePermissions { name: Role, permissions: Permission[] }
+interface RolePermissions {
+    name: Role;
+    permissions: Permission[];
+}
 
 @Injectable({
     providedIn: 'root',
 })
 export class PermissionService {
-
     private readonly domain: string;
 
-    constructor(
-        private http: HttpClient
-    ) {
+    constructor(private http: HttpClient) {
         this.domain = environment.backend;
     }
 
-    async getPermissions(organization?: Slug): Promise<Permission[]> {
-        return firstValueFrom(this.http.get<Permission[]>(`${this.domain}/permissions`)).then((permissions) => {
-            return permissions.map((permission) => new Permission(permission.subject, permission.action));
+    async getPermissions(): Promise<Permission[]> {
+        return firstValueFrom(
+            this.http.get<Permission[]>(`${this.domain}/permissions`),
+        ).then((permissions) => {
+            return permissions.map(
+                (permission) =>
+                    new Permission(permission.subject, permission.action),
+            );
         });
     }
 
-    async getRoles(organization?: Slug): Promise<Record<Role, Permission[]>> {
-        return firstValueFrom(this.http.get<RolePermissions[]>(`${this.domain}/roles`))
-            .then((roles: RolePermissions[]) => {
-                return roles.reduce((acc: Record<Role, Permission[]>, currentRole: RolePermissions) => {
-                    acc[currentRole.name] = currentRole.permissions.map((permission) => new Permission(permission.subject, permission.action));
+    // In the future, we may get the permissions for a specific organization
+    // Allowing overrides
+    async getRoles(): Promise<Record<Role, Permission[]>> {
+        return firstValueFrom(
+            this.http.get<RolePermissions[]>(`${this.domain}/roles`),
+        ).then((roles: RolePermissions[]) => {
+            return roles.reduce(
+                (
+                    acc: Record<Role, Permission[]>,
+                    currentRole: RolePermissions,
+                ) => {
+                    acc[currentRole.name] = currentRole.permissions.map(
+                        (permission) =>
+                            new Permission(
+                                permission.subject,
+                                permission.action,
+                            ),
+                    );
                     return acc;
-                }, {} as Record<Role, Permission[]>);
+                },
+                {} as Record<Role, Permission[]>,
+            );
         });
     }
-
 }

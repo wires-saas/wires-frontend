@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
     name: 'duration',
     standalone: true,
-    pure: true
+    pure: true,
 })
 export class DurationPipe implements PipeTransform {
     transform(duration: number, unit: 'ms' | 's' = 'ms'): string {
@@ -19,5 +19,4 @@ export class DurationPipe implements PipeTransform {
             return `${(duration / 3600000).toFixed(0)}h`;
         }
     }
-
 }

@@ -25,8 +25,8 @@ import { ToastModule } from 'primeng/toast';
         InputTextModule,
         ReactiveFormsModule,
         ToastModule,
-        FormsModule
+        FormsModule,
     ],
-    declarations: [ProfileComponent]
+    declarations: [ProfileComponent],
 })
-export class ProfileModule { }
+export class ProfileModule {}

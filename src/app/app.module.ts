@@ -11,24 +11,22 @@ export function tokenGetter() {
 }
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
+    declarations: [AppComponent],
     imports: [
         AppRoutingModule,
         AppLayoutModule,
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter,
-                allowedDomains: [ ...environment.jwt.allowedDomains ],
-                disallowedRoutes: [ ...environment.jwt.disallowedRoutes ],
+                allowedDomains: [...environment.jwt.allowedDomains],
+                disallowedRoutes: [...environment.jwt.disallowedRoutes],
             },
         }),
     ],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
-        { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' }
+        { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

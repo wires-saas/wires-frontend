@@ -100,13 +100,14 @@
                         <span i18n>Tags</span>
                         <p-columnFilter field="tags" matchMode="equals" display="menu">
                             <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
+                                <p-dropdown [ngModel]="value" [options]="[]" (onChange)="filter($event.value)"
                                             i18n-placeholder placeholder="Any" [style]="{'min-width': '12rem'}" >
                                     <ng-template let-option pTemplate="item">
-                                        <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+                                        {{ option.displayName }}
                                     </ng-template>
                                 </p-dropdown>
                             </ng-template>
+
                         </p-columnFilter>
                     </div>
                 </th>

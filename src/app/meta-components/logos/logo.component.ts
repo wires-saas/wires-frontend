@@ -6,15 +6,11 @@ import { LayoutService } from '../../layout/service/app.layout.service';
     selector: 'app-logo',
 })
 export class LogoComponent {
-
     @Input() withBorder: boolean = false;
 
     get lightMode(): boolean {
         return this.layoutService.isLightMode();
     }
 
-    constructor(private layoutService: LayoutService) {
-    }
-
-
+    constructor(private layoutService: LayoutService) {}
 }

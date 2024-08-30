@@ -55,64 +55,84 @@ export interface UserProfile {
     providedIn: 'root',
 })
 export class UserService {
-
     private readonly domain: string;
 
-    constructor(
-        private http: HttpClient
-    ) {
+    constructor(private http: HttpClient) {
         this.domain = environment.backend;
     }
 
     async getUsers(organizations?: Slug[]): Promise<User[]> {
-
         if (organizations?.length) {
-            return firstValueFrom(this.http.get<User[]>(`${this.domain}/users`, {
-                params: {
-                    organizations
-                }
-            }));
+            return firstValueFrom(
+                this.http.get<User[]>(`${this.domain}/users`, {
+                    params: {
+                        organizations,
+                    },
+                }),
+            );
         }
 
         return firstValueFrom(this.http.get<User[]>(`${this.domain}/users`));
     }
 
     async getUserById(id: string): Promise<User> {
-        return firstValueFrom(this.http.get<User>(`${this.domain}/users/${id}`));
+        return firstValueFrom(
+            this.http.get<User>(`${this.domain}/users/${id}`),
+        );
     }
 
     async createUser(user: Partial<User>): Promise<User> {
-        return firstValueFrom(this.http.post<User>(`${this.domain}/users`, user));
+        return firstValueFrom(
+            this.http.post<User>(`${this.domain}/users`, user),
+        );
     }
 
-    async uploadAvatar(userId: string, file: File): Promise<{ fileName: string; }> {
+    async uploadAvatar(
+        userId: string,
+        file: File,
+    ): Promise<{ fileName: string }> {
         const formData = new FormData();
         formData.append('avatar', file);
 
-        return firstValueFrom(this.http.post<{ fileName: string; }>(`${this.domain}/users/${userId}/avatar`, formData));
+        return firstValueFrom(
+            this.http.post<{ fileName: string }>(
+                `${this.domain}/users/${userId}/avatar`,
+                formData,
+            ),
+        );
     }
 
     async updateUser(userId: string, user: Partial<User>): Promise<User> {
-        return firstValueFrom(this.http.patch<User>(`${this.domain}/users/${userId}`, user));
+        return firstValueFrom(
+            this.http.patch<User>(`${this.domain}/users/${userId}`, user),
+        );
     }
 
     async deleteUser(userId: string, orgSlug: Slug): Promise<void> {
-        return firstValueFrom(this.http.delete<void>(`${this.domain}/users/${userId}`, {
-            params: {
-                organization: orgSlug
-            }
-        }));
+        return firstValueFrom(
+            this.http.delete<void>(`${this.domain}/users/${userId}`, {
+                params: {
+                    organization: orgSlug,
+                },
+            }),
+        );
     }
 
     async resendInvite(userId: string): Promise<void> {
-        return firstValueFrom(this.http.post<void>(`${this.domain}/users/${userId}/invite`, {}));
+        return firstValueFrom(
+            this.http.post<void>(`${this.domain}/users/${userId}/invite`, {}),
+        );
     }
 
-    async addUserRole(userId: string, orgSlug: Slug, role: Role): Promise<UserRole[]> {
-        return firstValueFrom(this.http.post<UserRole[]>(
-            `${this.domain}/users/${userId}/roles`,
-            [{ organization: orgSlug, role }]
-        ));
+    async addUserRole(
+        userId: string,
+        orgSlug: Slug,
+        role: Role,
+    ): Promise<UserRole[]> {
+        return firstValueFrom(
+            this.http.post<UserRole[]>(`${this.domain}/users/${userId}/roles`, [
+                { organization: orgSlug, role },
+            ]),
+        );
     }
-
 }

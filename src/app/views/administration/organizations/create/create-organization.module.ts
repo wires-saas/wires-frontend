@@ -27,8 +27,8 @@ import { ToastModule } from 'primeng/toast';
         InputGroupModule,
         InputGroupAddonModule,
         ReactiveFormsModule,
-        ToastModule
+        ToastModule,
     ],
-	declarations: [CreateOrganizationComponent]
+    declarations: [CreateOrganizationComponent],
 })
-export class CreateOrganizationModule { }
+export class CreateOrganizationModule {}

@@ -25,7 +25,7 @@ export class AppLayoutComponent implements OnDestroy {
         private menuService: MenuService,
         public layoutService: LayoutService,
         public renderer: Renderer2,
-        public router: Router
+        public router: Router,
     ) {
         this.overlayMenuOpenSubscription =
             this.layoutService.overlayOpen$.subscribe(() => {
@@ -36,22 +36,22 @@ export class AppLayoutComponent implements OnDestroy {
                         (event) => {
                             const isOutsideClicked = !(
                                 this.appSidebar.el.nativeElement.isSameNode(
-                                    event.target
+                                    event.target,
                                 ) ||
                                 this.appSidebar.el.nativeElement.contains(
-                                    event.target
+                                    event.target,
                                 ) ||
                                 this.appTopbar.menuButton.nativeElement.isSameNode(
-                                    event.target
+                                    event.target,
                                 ) ||
                                 this.appTopbar.menuButton.nativeElement.contains(
-                                    event.target
+                                    event.target,
                                 )
                             );
                             if (isOutsideClicked) {
                                 this.hideMenu();
                             }
-                        }
+                        },
                     );
                 }
 
@@ -64,11 +64,11 @@ export class AppLayoutComponent implements OnDestroy {
                     this.menuScrollListener = this.renderer.listen(
                         this.appSidebar.menuContainer.nativeElement,
                         'scroll',
-                        (event) => {
+                        () => {
                             if (this.layoutService.isDesktop()) {
                                 this.hideMenu();
                             }
-                        }
+                        },
                     );
                 }
 
@@ -101,9 +101,9 @@ export class AppLayoutComponent implements OnDestroy {
                     '(^|\\b)' +
                         'blocked-scroll'.split(' ').join('|') +
                         '(\\b|$)',
-                    'gi'
+                    'gi',
                 ),
-                ' '
+                ' ',
             );
         }
     }

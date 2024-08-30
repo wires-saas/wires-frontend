@@ -24,16 +24,14 @@ import { RippleModule } from 'primeng/ripple';
         ButtonModule,
         BadgeModule,
         OverlayPanelModule,
-        RippleModule
+        RippleModule,
     ],
     declarations: [
         ChatSidebarComponent,
         ChatAppComponent,
         UserCardComponent,
-        ChatBoxComponent
+        ChatBoxComponent,
     ],
-    providers: [
-        ChatService
-    ]
+    providers: [ChatService],
 })
-export class ChatAppModule { }
+export class ChatAppModule {}

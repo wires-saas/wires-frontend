@@ -8,8 +8,6 @@ import { PasswordUtils } from '../../../utils/password.utils';
     templateUrl: './reset-password.component.html',
 })
 export class ResetPasswordComponent implements OnInit {
-
-
     welcomeNewUser: boolean = false;
 
     token: string = '';
@@ -22,7 +20,6 @@ export class ResetPasswordComponent implements OnInit {
 
     mediumRegex: string = PasswordUtils.MEDIUM_STRING;
     strongRegex: string = PasswordUtils.STRONG_STRING;
-
 
     get passwordLengthOK(): boolean {
         return this.password.length >= 12;
@@ -45,55 +42,70 @@ export class ResetPasswordComponent implements OnInit {
     }
 
     get canSubmit(): boolean {
-        return this.password === this.passwordConfirmation
-            && this.passwordLengthOK
-            && this.passwordUppercaseOK
-            && this.passwordLowercaseOK
-            && this.passwordDigitOK
-            && this.passwordSpecialCharOK;
+        return (
+            this.password === this.passwordConfirmation &&
+            this.passwordLengthOK &&
+            this.passwordUppercaseOK &&
+            this.passwordLowercaseOK &&
+            this.passwordDigitOK &&
+            this.passwordSpecialCharOK
+        );
     }
 
-    constructor(private layoutService: LayoutService, private router: Router,
-                private activatedRoute: ActivatedRoute, private authService: AuthService) {}
+    constructor(
+        private layoutService: LayoutService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private authService: AuthService,
+    ) {}
 
     get dark(): boolean {
         return this.layoutService.config().colorScheme !== 'light';
     }
 
     async ngOnInit() {
-
-        this.welcomeNewUser = !!this.activatedRoute.snapshot.data['welcomeNewUser'];
+        this.welcomeNewUser =
+            !!this.activatedRoute.snapshot.data['welcomeNewUser'];
 
         this.token = this.activatedRoute.snapshot.queryParams['token'];
 
         if (this.welcomeNewUser) {
-
             this.authService.checkInviteToken(this.token).then((data) => {
                 this.firstName = data.firstName;
                 this.organizationName = data.organization;
             });
-
         } else {
-
-            this.authService.checkPasswordResetToken(this.token).then((data) => {
-                this.firstName = data.firstName;
-            });
-
+            this.authService
+                .checkPasswordResetToken(this.token)
+                .then((data) => {
+                    this.firstName = data.firstName;
+                });
         }
-
     }
 
     async submitPassword() {
-        if (this.token && this.password && this.passwordConfirmation === this.password) {
-
+        if (
+            this.token &&
+            this.password &&
+            this.passwordConfirmation === this.password
+        ) {
             if (this.welcomeNewUser) {
-                await this.authService.useInviteToken(this.token, this.password);
-                await this.router.navigate(['/auth/login'], { state: { inviteConfirmation: true } });
+                await this.authService.useInviteToken(
+                    this.token,
+                    this.password,
+                );
+                await this.router.navigate(['/auth/login'], {
+                    state: { inviteConfirmation: true },
+                });
             } else {
-                await this.authService.usePasswordResetToken(this.token, this.password);
-                await this.router.navigate(['/auth/login'], { state: { passwordReset: true } });
+                await this.authService.usePasswordResetToken(
+                    this.token,
+                    this.password,
+                );
+                await this.router.navigate(['/auth/login'], {
+                    state: { passwordReset: true },
+                });
             }
-
         }
     }
 }

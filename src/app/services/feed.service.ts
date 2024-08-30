@@ -52,14 +52,32 @@ export interface FeedRunPopulated extends Omit<FeedRun, 'feed'> {
     feed: Feed;
 }
 
-export interface CreateFeedDto extends Pick<Feed, 'displayName' | 'description' | 'urls' | 'scrapingInterval' | 'scrapingGranularity' > {}
-export interface UpdateFeedDto extends Partial<Pick<Feed, 'displayName' | 'description' | 'urls' | 'scrapingInterval' | 'scrapingGranularity'>> {}
+export interface CreateFeedDto
+    extends Pick<
+        Feed,
+        | 'displayName'
+        | 'description'
+        | 'urls'
+        | 'scrapingInterval'
+        | 'scrapingGranularity'
+    > {}
+export interface UpdateFeedDto
+    extends Partial<
+        Pick<
+            Feed,
+            | 'displayName'
+            | 'description'
+            | 'urls'
+            | 'scrapingInterval'
+            | 'scrapingGranularity'
+        >
+    > {}
 
 export enum AuthorizationType {
     NONE = 'none',
     BASIC = 'basic',
     BEARER = 'bearer',
-    API_KEY = 'apikey'
+    API_KEY = 'apikey',
 }
 
 export interface DialogConfig {
@@ -70,13 +88,12 @@ export interface DialogConfig {
 
 @Injectable()
 export class FeedService {
-
     private domain: string;
 
     dialogConfig: DialogConfig = {
         visible: false,
         header: '',
-        newFeed: false
+        newFeed: false,
     };
 
     public autoSchedule: boolean = true;
@@ -85,28 +102,37 @@ export class FeedService {
 
     private selectedFeed$$: Subject<Feed> = new Subject<Feed>();
 
-    private dialogSource$$: BehaviorSubject<DialogConfig> = new BehaviorSubject<DialogConfig>(this.dialogConfig);
+    private dialogSource$$: BehaviorSubject<DialogConfig> =
+        new BehaviorSubject<DialogConfig>(this.dialogConfig);
 
     public feeds$: Observable<Feed[]> = this.feeds$$.asObservable();
 
     selectedFeed$: Observable<Feed> = this.selectedFeed$$.asObservable();
 
-    dialogSource$: Observable<DialogConfig> = this.dialogSource$$.asObservable();
+    dialogSource$: Observable<DialogConfig> =
+        this.dialogSource$$.asObservable();
 
     constructor(private http: HttpClient) {
         this.domain = environment.backend;
     }
 
     async getFeeds(organizationId: string): Promise<Feed[]> {
-        return firstValueFrom(this.http.get<Feed[]>(`${this.domain}/organizations/${organizationId}/feeds`))
-            .then((feeds) => {
-                this.feeds$$.next(feeds);
-                return feeds;
-            });
+        return firstValueFrom(
+            this.http.get<Feed[]>(
+                `${this.domain}/organizations/${organizationId}/feeds`,
+            ),
+        ).then((feeds) => {
+            this.feeds$$.next(feeds);
+            return feeds;
+        });
     }
 
     async getFeed(organizationId: string, feedId: string): Promise<Feed> {
-        return firstValueFrom(this.http.get<Feed>(`${this.domain}/organizations/${organizationId}/feeds/${feedId}`))
+        return firstValueFrom(
+            this.http.get<Feed>(
+                `${this.domain}/organizations/${organizationId}/feeds/${feedId}`,
+            ),
+        );
     }
 
     // TODO not implemented yet
@@ -116,28 +142,47 @@ export class FeedService {
         // this.fetchFeeds();
     }
 
-    async createFeed(organizationId: string, feedRequest: CreateFeedDto): Promise<Feed> {
-
+    async createFeed(
+        organizationId: string,
+        feedRequest: CreateFeedDto,
+    ): Promise<Feed> {
         // cleaning urls
-        feedRequest['urls'] = feedRequest['urls'].map(_ => _?.trim()).filter(_ => !!_);
+        feedRequest['urls'] = feedRequest['urls']
+            .map((_) => _?.trim())
+            .filter((_) => !!_);
 
-        return firstValueFrom(this.http.post<Feed>(`${this.domain}/organizations/${organizationId}/feeds`, feedRequest))
-            .then((createdFeed) => {
-                const feeds = this.feeds$$.getValue();
-                this.feeds$$.next([...feeds, createdFeed]);
-                return createdFeed;
-            });
+        return firstValueFrom(
+            this.http.post<Feed>(
+                `${this.domain}/organizations/${organizationId}/feeds`,
+                feedRequest,
+            ),
+        ).then((createdFeed) => {
+            const feeds = this.feeds$$.getValue();
+            this.feeds$$.next([...feeds, createdFeed]);
+            return createdFeed;
+        });
     }
 
-    private convertPartialFeedToUpdateFeedDto(feed: Partial<Feed>): UpdateFeedDto {
-        const updatableKeys: Array<keyof UpdateFeedDto> = ['displayName', 'description', 'urls', 'scrapingInterval', 'scrapingGranularity'];
+    private convertPartialFeedToUpdateFeedDto(
+        feed: Partial<Feed>,
+    ): UpdateFeedDto {
+        const updatableKeys: Array<keyof UpdateFeedDto> = [
+            'displayName',
+            'description',
+            'urls',
+            'scrapingInterval',
+            'scrapingGranularity',
+        ];
 
         const dto: UpdateFeedDto = {};
 
         updatableKeys.forEach((key: keyof UpdateFeedDto) => {
             if (feed[key] !== undefined) {
                 // cleaning urls
-                if (key === 'urls') dto['urls'] = feed['urls']?.map(_ => _?.trim()).filter(_ => !!_);
+                if (key === 'urls')
+                    dto['urls'] = feed['urls']
+                        ?.map((_) => _?.trim())
+                        .filter((_) => !!_);
                 else dto[key] = feed[key] as any;
             }
         });
@@ -145,46 +190,86 @@ export class FeedService {
         return dto;
     }
 
-    async updateFeed(organizationId: string, feed: Partial<Feed>): Promise<Feed> {
+    async updateFeed(
+        organizationId: string,
+        feed: Partial<Feed>,
+    ): Promise<Feed> {
         const dto: UpdateFeedDto = this.convertPartialFeedToUpdateFeedDto(feed);
 
-        return firstValueFrom(this.http.patch<Feed>(`${this.domain}/organizations/${organizationId}/feeds/${feed._id}`, {
-            ...dto
-        }))
-            .then((updatedFeed) => {
-                const feeds = this.feeds$$.getValue().map(f => updatedFeed._id === f._id ? updatedFeed : f);
-                this.feeds$$.next([...feeds]);
-                return updatedFeed;
-            });
+        return firstValueFrom(
+            this.http.patch<Feed>(
+                `${this.domain}/organizations/${organizationId}/feeds/${feed._id}`,
+                {
+                    ...dto,
+                },
+            ),
+        ).then((updatedFeed) => {
+            const feeds = this.feeds$$
+                .getValue()
+                .map((f) => (updatedFeed._id === f._id ? updatedFeed : f));
+            this.feeds$$.next([...feeds]);
+            return updatedFeed;
+        });
     }
 
     async runFeed(organizationId: string, feed: Partial<Feed>): Promise<any> {
-        return firstValueFrom(this.http.post<any>(`${this.domain}/organizations/${organizationId}/feeds/${feed._id}/runs`, {}));
+        return firstValueFrom(
+            this.http.post<any>(
+                `${this.domain}/organizations/${organizationId}/feeds/${feed._id}/runs`,
+                {},
+            ),
+        );
     }
 
-    async getFeedRun(organizationId: string, feedId: string, runId: string): Promise<FeedRun> {
-        return firstValueFrom(this.http.get<FeedRun>(`${this.domain}/organizations/${organizationId}/feeds/${feedId}/runs/${runId}`));
+    async getFeedRun(
+        organizationId: string,
+        feedId: string,
+        runId: string,
+    ): Promise<FeedRun> {
+        return firstValueFrom(
+            this.http.get<FeedRun>(
+                `${this.domain}/organizations/${organizationId}/feeds/${feedId}/runs/${runId}`,
+            ),
+        );
     }
 
     async getFeedRuns(organizationId: string): Promise<FeedRun[]> {
-        return firstValueFrom(this.http.get<FeedRun[]>(`${this.domain}/organizations/${organizationId}/feeds/runs`));
+        return firstValueFrom(
+            this.http.get<FeedRun[]>(
+                `${this.domain}/organizations/${organizationId}/feeds/runs`,
+            ),
+        );
     }
 
-    async toggleFeed(organizationId: string, feedId: string, scrapingEnabled: boolean) {
-        return firstValueFrom(this.http.patch<Feed>(`${this.domain}/organizations/${organizationId}/feeds/${feedId}`,
-            { scrapingEnabled }))
-            .then((feed) => {
-                const feeds = this.feeds$$.getValue().map(f => f._id === feedId ? feed : f);
-                this.feeds$$.next(feeds);
-            });
+    async toggleFeed(
+        organizationId: string,
+        feedId: string,
+        scrapingEnabled: boolean,
+    ) {
+        return firstValueFrom(
+            this.http.patch<Feed>(
+                `${this.domain}/organizations/${organizationId}/feeds/${feedId}`,
+                { scrapingEnabled },
+            ),
+        ).then((feed) => {
+            const feeds = this.feeds$$
+                .getValue()
+                .map((f) => (f._id === feedId ? feed : f));
+            this.feeds$$.next(feeds);
+        });
     }
 
     async removeFeed(organizationId: string, feedId: string): Promise<void> {
-        return firstValueFrom(this.http.delete<Feed>(`${this.domain}/organizations/${organizationId}/feeds/${feedId}`))
-            .then(() => {
-                const feeds: Feed[] = this.feeds$$.getValue().filter(f => f._id !== feedId);
-                this.feeds$$.next(feeds);
-            });
+        return firstValueFrom(
+            this.http.delete<Feed>(
+                `${this.domain}/organizations/${organizationId}/feeds/${feedId}`,
+            ),
+        ).then(() => {
+            const feeds: Feed[] = this.feeds$$
+                .getValue()
+                .filter((f) => f._id !== feedId);
+            this.feeds$$.next(feeds);
+        });
     }
 
     onFeedSelect(feed: Feed) {
@@ -195,7 +280,7 @@ export class FeedService {
         this.dialogConfig = {
             visible: true,
             header: header,
-            newFeed: newFeed
+            newFeed: newFeed,
         };
 
         this.dialogSource$$.next(this.dialogConfig);
@@ -205,5 +290,4 @@ export class FeedService {
         this.dialogConfig = { visible: false };
         this.dialogSource$$.next(this.dialogConfig);
     }
-
 }

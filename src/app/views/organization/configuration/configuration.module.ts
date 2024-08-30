@@ -39,8 +39,8 @@ import { RolePipe } from '../../../utils/pipes/role.pipe';
         ReactiveFormsModule,
         ToastModule,
         MultiSelectModule,
-        RolePipe
+        RolePipe,
     ],
-    declarations: [ConfigurationComponent]
+    declarations: [ConfigurationComponent],
 })
-export class ConfigurationModule { }
+export class ConfigurationModule {}

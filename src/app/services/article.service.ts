@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Customer } from '../demo/api/customer';
 
 export interface ArticleMetadata {
     title: string;
@@ -39,24 +38,28 @@ export interface DialogConfig {
 
 @Injectable()
 export class ArticleService {
-
     private domain: string;
 
     dialogConfig: DialogConfig = {
         visible: false,
     };
 
-    private articles$$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>([]);
+    private articles$$: BehaviorSubject<Article[]> = new BehaviorSubject<
+        Article[]
+    >([]);
 
     private selectedArticle$$: Subject<Article> = new Subject<Article>();
 
-    private dialogSource$$: BehaviorSubject<DialogConfig> = new BehaviorSubject<DialogConfig>(this.dialogConfig);
+    private dialogSource$$: BehaviorSubject<DialogConfig> =
+        new BehaviorSubject<DialogConfig>(this.dialogConfig);
 
     public articles$: Observable<Article[]> = this.articles$$.asObservable();
 
-    selectedArticle$: Observable<Article> = this.selectedArticle$$.asObservable();
+    selectedArticle$: Observable<Article> =
+        this.selectedArticle$$.asObservable();
 
-    dialogSource$: Observable<DialogConfig> = this.dialogSource$$.asObservable();
+    dialogSource$: Observable<DialogConfig> =
+        this.dialogSource$$.asObservable();
 
     constructor(private http: HttpClient) {
         this.domain = environment.backend;
@@ -64,11 +67,14 @@ export class ArticleService {
 
     // TODO pagination
     async getArticles(organizationId: string): Promise<Article[]> {
-        return firstValueFrom(this.http.get<Article[]>(`${this.domain}/organizations/${organizationId}/articles`))
-            .then((articles) => {
-                this.articles$$.next(articles);
-                return articles;
-            });
+        return firstValueFrom(
+            this.http.get<Article[]>(
+                `${this.domain}/organizations/${organizationId}/articles`,
+            ),
+        ).then((articles) => {
+            this.articles$$.next(articles);
+            return articles;
+        });
     }
 
     onArticleSelect(article: Article) {
@@ -89,8 +95,8 @@ export class ArticleService {
     }
 
     async getFakeArticles(): Promise<Article[]> {
-        return firstValueFrom(this.http.get<any>('assets/mocks/articles.json'))
-            .then(res => res.data as Article[]);
+        return firstValueFrom(
+            this.http.get<any>('assets/mocks/articles.json'),
+        ).then((res) => res.data as Article[]);
     }
-
 }

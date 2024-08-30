@@ -8,7 +8,6 @@ import { MailService } from '../service/mail.service';
     templateUrl: './mail-reply.component.html',
 })
 export class MailReplyComponent {
-
     newMail: Mail = {
         id: '',
         to: '',
@@ -22,8 +21,8 @@ export class MailReplyComponent {
         trash: false,
         spam: false,
         archived: false,
-        sent: true
-    }
+        sent: true,
+    };
 
     displayMessage: boolean = false;
 
@@ -31,13 +30,25 @@ export class MailReplyComponent {
 
     @Output() hide: EventEmitter<any> = new EventEmitter();
 
-    constructor(private messageService: MessageService, private mailService: MailService) { }
+    constructor(
+        private messageService: MessageService,
+        private mailService: MailService,
+    ) {}
 
     sendMail() {
-        let { image, from, title } = this.content
-        this.newMail = { ...this.newMail, to: from, title: title, image: image };
+        const { image, from, title } = this.content;
+        this.newMail = {
+            ...this.newMail,
+            to: from,
+            title: title,
+            image: image,
+        };
         this.mailService.onSend(this.newMail);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Mail sent' });
+        this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Mail sent',
+        });
         this.hide.emit();
     }
 

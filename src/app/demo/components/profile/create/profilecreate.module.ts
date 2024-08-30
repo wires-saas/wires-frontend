@@ -13,19 +13,19 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputGroupModule } from 'primeng/inputgroup';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ProfileCreateRoutingModule,
-		ButtonModule,
-		RippleModule,
-		InputTextModule,
-		DropdownModule,
-		FileUploadModule,
-		InputTextareaModule,
-		InputGroupModule,
-        InputGroupAddonModule
-	],
-	declarations: [ProfileCreateComponent]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ProfileCreateRoutingModule,
+        ButtonModule,
+        RippleModule,
+        InputTextModule,
+        DropdownModule,
+        FileUploadModule,
+        InputTextareaModule,
+        InputGroupModule,
+        InputGroupAddonModule,
+    ],
+    declarations: [ProfileCreateComponent],
 })
-export class ProfileCreateModule { }
+export class ProfileCreateModule {}

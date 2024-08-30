@@ -3,10 +3,18 @@ import { Organization } from '../../services/organization.service';
 
 @Pipe({
     name: 'address',
-    standalone: true
+    standalone: true,
 })
 export class AddressPipe implements PipeTransform {
-    transform(org: Organization, ...args: unknown[]): string {
-        return org.address.street + ', ' + org.address.city + ', ' + org.address.zip + ', ' + org.address.country;
+    transform(org: Organization): string {
+        return (
+            org.address.street +
+            ', ' +
+            org.address.city +
+            ', ' +
+            org.address.zip +
+            ', ' +
+            org.address.country
+        );
     }
 }

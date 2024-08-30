@@ -14,9 +14,7 @@ import { PlansComponent } from './plans.component';
         StyleClassModule,
         AppConfigModule,
     ],
-    exports: [
-        PlansComponent
-    ],
-    declarations: [PlansComponent]
+    exports: [PlansComponent],
+    declarations: [PlansComponent],
 })
-export class PlansModule { }
+export class PlansModule {}

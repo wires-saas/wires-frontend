@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-    templateUrl: './blocks.component.html'
+    templateUrl: './blocks.component.html',
 })
-export class BlocksComponent{
-
+export class BlocksComponent {
     block1: string = `
 <div class="grid grid-nogutter surface-section text-800">
     <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
@@ -403,5 +402,4 @@ export class BlocksComponent{
     <div class="font-medium text-500 mb-3">Vivamus id nisl interdum, blandit augue sit amet, eleifend mi.</div>
     <div style="height: 150px" class="border-2 border-dashed surface-border"></div>
 </div>`;
-    
 }

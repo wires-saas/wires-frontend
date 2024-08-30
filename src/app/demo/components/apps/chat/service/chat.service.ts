@@ -6,43 +6,43 @@ import { User } from 'src/app/demo/api/user';
 
 @Injectable()
 export class ChatService {
-
     _activeUser: User = {
-        "id": 1,
-        "name": "Ioni Bowcher",
-        "image": "ionibowcher.png",
-        "status": "active",
-        "messages": [
+        id: 1,
+        name: 'Ioni Bowcher',
+        image: 'ionibowcher.png',
+        status: 'active',
+        messages: [
             {
-                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-                "ownerId": 1,
-                "createdAt": 1652646338240
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                ownerId: 1,
+                createdAt: 1652646338240,
             },
             {
-                "text": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                "ownerId": 1,
-                "createdAt": 1652646368718
+                text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+                ownerId: 1,
+                createdAt: 1652646368718,
             },
             {
-                "text": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                "ownerId": 123,
-                "createdAt": 1652646368718
+                text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+                ownerId: 123,
+                createdAt: 1652646368718,
             },
         ],
-        "lastSeen": "2d"
-    }
+        lastSeen: '2d',
+    };
 
     private activeUser = new BehaviorSubject<User>(this._activeUser);
 
     activeUser$ = this.activeUser.asObservable();
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     getChatData() {
-        return this.http.get<any>('assets/demo/data/chat.json')
+        return this.http
+            .get<any>('assets/demo/data/chat.json')
             .toPromise()
-            .then(res => res.data as any[])
-            .then(data => data);
+            .then((res) => res.data as any[])
+            .then((data) => data);
     }
 
     changeActiveChat(user: User) {

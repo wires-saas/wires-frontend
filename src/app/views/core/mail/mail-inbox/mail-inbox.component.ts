@@ -12,14 +12,17 @@ export class MailInboxComponent implements OnDestroy {
 
     subscription: Subscription;
 
-    constructor(private mailService: MailService, private router: Router) {
+    constructor(
+        private mailService: MailService,
+        private router: Router,
+    ) {
         this.subscription = this.mailService.mails$.subscribe((data) => {
             this.mails = data.filter(
                 (d) =>
                     !d.archived &&
                     !d.spam &&
                     !d.trash &&
-                    !d.hasOwnProperty('sent')
+                    !d.hasOwnProperty('sent'),
             );
         });
     }

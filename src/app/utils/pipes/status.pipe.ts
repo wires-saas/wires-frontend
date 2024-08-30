@@ -3,19 +3,19 @@ import { UserStatus } from '../../services/user.service';
 
 @Pipe({
     name: 'status',
-    standalone: true
+    standalone: true,
 })
 export class StatusPipe implements PipeTransform {
-    transform(status: UserStatus, ...args: unknown[]): string {
+    transform(status: UserStatus): string {
         switch (status) {
             case UserStatus.ACTIVE:
-                return $localize `Active`;
+                return $localize`Active`;
             case UserStatus.INACTIVE:
-                return $localize `Inactive`;
+                return $localize`Inactive`;
             case UserStatus.PENDING:
-                return $localize `Pending`;
+                return $localize`Pending`;
             default:
-                return $localize `N/A`;
+                return $localize`N/A`;
         }
     }
 }

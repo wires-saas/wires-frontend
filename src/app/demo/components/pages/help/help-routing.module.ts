@@ -3,9 +3,7 @@ import { RouterModule } from '@angular/router';
 import { HelpComponent } from './help.component';
 
 @NgModule({
-	imports: [RouterModule.forChild([
-		{ path: '', component: HelpComponent }
-	])],
-	exports: [RouterModule]
+    imports: [RouterModule.forChild([{ path: '', component: HelpComponent }])],
+    exports: [RouterModule],
 })
-export class HelpRoutingModule { }
+export class HelpRoutingModule {}
