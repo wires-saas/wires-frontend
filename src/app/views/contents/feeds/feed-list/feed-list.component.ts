@@ -53,21 +53,9 @@ export class FeedListComponent implements OnInit {
             .pipe(
                 map(async (org) => {
                     if (org) {
-                        let canDelete = false;
-                        const currentUser = await firstValueFrom(
-                            this.authService.currentUser$,
+                        let canDelete: boolean = await firstValueFrom(
+                            this.authService.hasPermission$('delete_feed', org?.slug)
                         );
-
-                        if (currentUser) {
-                            const currentUserRole =
-                                RoleUtils.getRoleForOrganization(
-                                    currentUser,
-                                    org?.slug,
-                                );
-                            canDelete =
-                                currentUserRole === Role.ADMIN ||
-                                currentUserRole === Role.SUPER_ADMIN;
-                        }
 
                         this.menuItems = [
                             {

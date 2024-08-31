@@ -2,10 +2,18 @@
 	<div class="col-12">
 
         <app-articles-table #table
-                            [articles]="articles" [feeds]="feeds" [categories]="categories"
+                            [articles]="articles" [feeds]="feeds" [categories]="categories" [tags]="tags"
                             [loading]="loading"
                             (onCreateTag)="openCreateTagDialog()"
                             class="block mb-4"></app-articles-table>
 
 	</div>
 </div>
+
+<app-create-or-update-tag [organizationSlug]="organizationSlug"
+                          [visible]="createOrUpdateTagDialog.visible"
+                          [header]="createOrUpdateTagDialog.header"
+                          [tag]="createOrUpdateTagDialog.tag"
+                          [creatingTag]="createOrUpdateTagDialog.newTag"
+                          (closeDialog)="createOrUpdateTagDialog.visible = false">
+</app-create-or-update-tag>

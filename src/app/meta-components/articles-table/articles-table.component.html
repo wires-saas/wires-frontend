@@ -1,4 +1,12 @@
+<button (click)="logFilters()">log filters</button>
 <div class="card">
+
+    <ul>
+        <li *ngFor="let tag of tags">
+            {{ tag.displayName }}
+        </li>
+    </ul>
+
     <p-table #dt1 [value]="articles" dataKey="id" [rows]="10"
              [loading]="loading" [showLoader]="false"
              sortField="metadata.publishedAt" [sortOrder]="-1"
@@ -197,6 +205,4 @@
             </tr>
         </ng-template>
     </p-table>
-
-    <button (click)="logFilters()">log filters</button>
 </div>

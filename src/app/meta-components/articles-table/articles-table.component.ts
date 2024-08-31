@@ -17,6 +17,7 @@ import { Article } from '../../services/article.service';
 import { Feed } from '../../services/feed.service';
 import { TableFilterUtils, TableUtils } from '../../utils/table.utils';
 import { deepClone } from '../../utils/deep-clone';
+import { Tag } from '../../services/tag.service';
 
 @Component({
     selector: 'app-articles-table',
@@ -31,6 +32,7 @@ export class ArticlesTableComponent {
     @Input() categories: string[] = [];
 
     @Input() feeds: Feed[] = [];
+    @Input() tags: Tag[] = [];
 
     textMatchModeOptions: any[] = TableUtils.matchModesOptionsForText();
     urlMatchModeOptions: any[] = TableUtils.matchModesOptionsForUrl();

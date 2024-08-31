@@ -1,3 +1,6 @@
+import { FilterMetadata } from 'primeng/api';
+import { TagRule } from '../services/tag.service';
+
 export class TableUtils {
     static matchModesOptionsForText = () => {
         return [
@@ -28,6 +31,30 @@ export class TableUtils {
 }
 
 export class TableFilterUtils {
+
+    static convertFiltersToTagRules = (filters: { [p: string]: FilterMetadata[] }): TagRule[] => {
+        const ruleset: TagRule[] = [];
+
+        Object.keys(filters).forEach((field) => {
+            const filter = filters[field];
+            if (filter && filter.length) {
+                console.log(filter[0].operator);
+                ruleset.push({
+                    field: field,
+                    operator: filter[0].operator || 'and',
+                    filters: filter.map((f) => {
+                        return {
+                            filterValue: f.value,
+                            filterType: f.matchMode as string,
+                        };
+                    })
+                });
+            }
+        });
+
+        return ruleset;
+    }
+
     static hasFeed = (value: string[], filter: string[]): boolean => {
         if (filter === undefined || filter === null || !filter.length) {
             return true;

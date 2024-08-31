@@ -19,6 +19,12 @@ import { ArticlesViewModule } from '../../../meta-components/articles-view/artic
 import { ArticlesTableModule } from '../../../meta-components/articles-table/articles-table.module';
 import { ArticleService } from '../../../services/article.service';
 import { FeedService } from '../../../services/feed.service';
+import { CreateOrUpdateTagComponent } from './create-or-update-tag/create-or-update-tag.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ChipsModule } from 'primeng/chips';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TagService } from '../../../services/tag.service';
 
 @NgModule({
     imports: [
@@ -28,6 +34,8 @@ import { FeedService } from '../../../services/feed.service';
         TableModule,
         RatingModule,
         ButtonModule,
+        InputNumberModule,
+        InputTextareaModule,
         SliderModule,
         InputTextModule,
         ToggleButtonModule,
@@ -39,8 +47,10 @@ import { FeedService } from '../../../services/feed.service';
         TooltipModule,
         ArticlesViewModule,
         ArticlesTableModule,
+        ChipsModule,
+        DialogModule,
     ],
-    declarations: [ArticlesComponent],
-    providers: [ArticleService, FeedService],
+    declarations: [ArticlesComponent, CreateOrUpdateTagComponent],
+    providers: [ArticleService, FeedService, TagService],
 })
 export class ArticlesModule {}
