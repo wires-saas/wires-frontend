@@ -14,10 +14,29 @@ export interface Tag {
     ruleset: TagRule[];
 }
 
+export enum FilterType {
+    equals = 'equals',
+    notEquals = 'notEquals',
+    contains = 'contains',
+    notContains = 'notContains',
+    startsWith = 'startsWith',
+    endsWith = 'endsWith',
+    dateIs = 'dateIs',
+    dateIsNot = 'dateIsNot',
+    dateBefore = 'dateBefore',
+    dateAfter = 'dateAfter',
+    greaterThan = 'gt',
+    lessThan = 'lt',
+    greaterThanOrEqual = 'gte',
+    lessThanOrEqual = 'lte',
+    in = 'in',
+    notIn = 'nin',
+}
+
 export interface TagRule {
     field: string;
-    operator: string;
-    filters: Array<{ filterValue: any; filterType: string; }>;
+    operator: 'or' | 'and';
+    filters: Array<{ filterValue: any; filterType: FilterType; }>;
 }
 
 @Injectable()

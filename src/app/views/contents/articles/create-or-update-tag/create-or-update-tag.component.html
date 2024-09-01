@@ -1,7 +1,13 @@
 <p-toast position="bottom-right"></p-toast>
 
-DIALOG
-<p-dialog [header]="header || ''" [(visible)]="visible" [modal]="true" [dismissableMask]="true" styleClass="mx-3 sm:mx-0 sm:w-full md:w-8 lg:w-6" contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
+{{ visible }}
+<p-dialog [header]="header || ''"
+          [(visible)]="visible"
+          [modal]="true"
+          [closable]="true"
+          [dismissableMask]="true"
+          (onHide)="closeDialog.emit()"
+          styleClass="mx-3 sm:mx-0 sm:w-full md:w-8 lg:w-6" contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
     <div class="p-4">
         <div class="grid p-fluid formgrid">
             <div class="col-12 field">
@@ -12,6 +18,12 @@ DIALOG
                 <label for="feed-description" class="text-900 font-semibold" i18n>Description (optional)</label>
                 <textarea id="feed-description" [(ngModel)]="tag.description" rows="2" pInputTextarea style="resize: vertical;" i18n-placeholder placeholder="A small description can come handy"></textarea>
             </div>
+
+            <div class="col-12 field">
+                <label for="feed-description" class="text-900 font-semibold" i18n>Règles</label>
+                <app-tag-rule *ngFor="let rule of tag.ruleset" [rule]="rule"></app-tag-rule>
+            </div>
+
             <div class="col-12 flex justify-content-end mt-4">
                 <button (click)="cancel()" [disabled]="saving" pButton pRipple class="p-button-outlined w-10rem mr-3" icon="pi pi-times" i18n-label label="Cancel"></button>
 

@@ -25,6 +25,10 @@ import { ChipsModule } from 'primeng/chips';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TagService } from '../../../services/tag.service';
+import { TagRulePipe } from '../../../utils/pipes/tag-rule.pipe';
+import { TagRuleComponent } from './tag-rule/tag-rule.component';
+import { TagRuleTypePipe } from '../../../utils/pipes/tag-rule-type.pipe';
+import { TagRuleOperatorPipe } from '../../../utils/pipes/tag-rule-operator.pipe';
 
 @NgModule({
     imports: [
@@ -49,8 +53,11 @@ import { TagService } from '../../../services/tag.service';
         ArticlesTableModule,
         ChipsModule,
         DialogModule,
+        TagRulePipe,
+        TagRuleTypePipe,
+        TagRuleOperatorPipe,
     ],
-    declarations: [ArticlesComponent, CreateOrUpdateTagComponent],
+    declarations: [ArticlesComponent, CreateOrUpdateTagComponent, TagRuleComponent],
     providers: [ArticleService, FeedService, TagService],
 })
 export class ArticlesModule {}

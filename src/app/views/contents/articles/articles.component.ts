@@ -136,5 +136,15 @@ export class ArticlesComponent implements OnInit {
         // TODO pretty display filters part of created tag
     }
 
+    closeCreateTagDialog() {
+        console.log('closing');
+        this.createOrUpdateTagDialog = {
+            visible: false,
+            header: '',
+            newTag: false,
+            tag: {} as Tag,
+        };
+    }
+
     static permissions = ['read_article'];
 }

@@ -85,7 +85,7 @@ export class CreateOrUpdateTagComponent implements OnInit {
 
     cancel() {
         this.resetTag();
-        this.closeDialog.emit();
+        this.visible = false;
     }
 
     resetTag() {

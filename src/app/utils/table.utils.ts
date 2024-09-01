@@ -1,5 +1,5 @@
 import { FilterMetadata } from 'primeng/api';
-import { TagRule } from '../services/tag.service';
+import { FilterType, TagRule } from '../services/tag.service';
 
 export class TableUtils {
     static matchModesOptionsForText = () => {
@@ -32,20 +32,39 @@ export class TableUtils {
 
 export class TableFilterUtils {
 
+    static filterTypesLocalized: Record<FilterType, string> = {
+        'equals': $localize `=`,
+        'notEquals': $localize `!=`,
+        'contains': $localize `contains`,
+        'notContains': $localize `not contains`,
+        'startsWith': $localize `starts with`,
+        'endsWith': $localize `ends with`,
+        'gt': $localize `>`,
+        'gte': $localize `>=`,
+        'lt': $localize `<`,
+        'lte': $localize `<=`,
+        'in': $localize `in`,
+        'nin': $localize `not in`,
+        'dateIs': $localize `is`,
+        'dateIsNot': $localize `is not`,
+        'dateBefore': $localize `before`,
+        'dateAfter': $localize `after`,
+    };
+
     static convertFiltersToTagRules = (filters: { [p: string]: FilterMetadata[] }): TagRule[] => {
         const ruleset: TagRule[] = [];
 
         Object.keys(filters).forEach((field) => {
             const filter = filters[field];
             if (filter && filter.length) {
-                console.log(filter[0].operator);
+                if (filter[0].operator !== 'or' && filter[0].operator !== 'and') throw new Error('Invalid operator');
                 ruleset.push({
                     field: field,
-                    operator: filter[0].operator || 'and',
+                    operator: filter[0].operator,
                     filters: filter.map((f) => {
                         return {
                             filterValue: f.value,
-                            filterType: f.matchMode as string,
+                            filterType: f.matchMode as FilterType,
                         };
                     })
                 });

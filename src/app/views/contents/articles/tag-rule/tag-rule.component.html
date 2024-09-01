@@ -1,0 +1,21 @@
+<p *ngIf="isMetadata">
+
+    <span i18n>Metadata <b>{{ metadataName }}</b> : </span>
+
+    <ng-container *ngFor="let filter of rule.filters; let first = first; let last = last;">
+        <span>{{ filter.filterType | tagRuleType }} </span>
+
+            <ng-container [ngSwitch]="getValueType(filter.filterValue)">
+                <span *ngSwitchCase="'string'" class="font-bold">"{{ filter.filterValue }}"</span>
+                <span *ngSwitchCase="'number'" class="font-bold">{{ filter.filterValue }}</span>
+                <span *ngSwitchCase="'boolean'" class="font-bold">{{ filter.filterValue }}</span>
+                <span *ngSwitchCase="'date'" class="font-bold">{{ filter.filterValue | date: 'short' }}</span>
+                <span *ngSwitchCase="'array'" class="font-bold">{{ filter.filterValue | json }}</span>
+                <span *ngSwitchDefault class="font-bold">{{ filter.filterValue }}</span>
+            </ng-container>
+
+        <span *ngIf="!last"> {{ rule.operator | tagRuleOperator }} </span>
+    </ng-container>
+
+
+</p>

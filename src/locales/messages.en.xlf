@@ -1844,6 +1844,87 @@
       <trans-unit id="2029737240354327278" datatype="html">
         <source>Resiliate Subscription</source>
       </trans-unit>
+      <trans-unit id="1133128660345479374" datatype="html">
+        <source>!=</source>
+      </trans-unit>
+      <trans-unit id="1153920186584544874" datatype="html">
+        <source>Tag &quot;<x id="PH" equiv-text="this.tag.displayName"/>&quot; updated successfully.</source>
+      </trans-unit>
+      <trans-unit id="1343970294702297913" datatype="html">
+        <source>Update Tag</source>
+      </trans-unit>
+      <trans-unit id="1484399419096735032" datatype="html">
+        <source>=</source>
+      </trans-unit>
+      <trans-unit id="1524560840117162766" datatype="html">
+        <source>&lt;=</source>
+      </trans-unit>
+      <trans-unit id="298890993184598526" datatype="html">
+        <source>Tag &quot;<x id="PH" equiv-text="this.tag.displayName"/>&quot; created successfully.</source>
+      </trans-unit>
+      <trans-unit id="30770591672061123" datatype="html">
+        <source>Règles</source>
+      </trans-unit>
+      <trans-unit id="3195412850271307750" datatype="html">
+        <source>Create Tag</source>
+      </trans-unit>
+      <trans-unit id="326106955650253946" datatype="html">
+        <source>contains</source>
+      </trans-unit>
+      <trans-unit id="3676095562960762035" datatype="html">
+        <source>is</source>
+      </trans-unit>
+      <trans-unit id="3867296814892340617" datatype="html">
+        <source>Tag Name</source>
+      </trans-unit>
+      <trans-unit id="3929281485914893910" datatype="html">
+        <source>and</source>
+      </trans-unit>
+      <trans-unit id="3971949003366430322" datatype="html">
+        <source>is not</source>
+      </trans-unit>
+      <trans-unit id="4255966804020587417" datatype="html">
+        <source>before</source>
+      </trans-unit>
+      <trans-unit id="4258713601788630653" datatype="html">
+        <source>Metadata <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="{{ metadataName }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> : </source>
+      </trans-unit>
+      <trans-unit id="4881906595102870497" datatype="html">
+        <source>not contains</source>
+      </trans-unit>
+      <trans-unit id="5550602152330196622" datatype="html">
+        <source>&gt;=</source>
+      </trans-unit>
+      <trans-unit id="5840053709154100532" datatype="html">
+        <source>starts with</source>
+      </trans-unit>
+      <trans-unit id="6334092464207199213" datatype="html">
+        <source>after</source>
+      </trans-unit>
+      <trans-unit id="6387705929814330940" datatype="html">
+        <source>ends with</source>
+      </trans-unit>
+      <trans-unit id="6403268630448655679" datatype="html">
+        <source>Create Article Tag</source>
+      </trans-unit>
+      <trans-unit id="6627551976444260400" datatype="html">
+        <source>or</source>
+      </trans-unit>
+      <trans-unit id="7136018875175606726" datatype="html">
+        <source>in</source>
+      </trans-unit>
+      <trans-unit id="7523174673360960464" datatype="html">
+        <source>Error creating tag</source>
+      </trans-unit>
+      <trans-unit id="7613133238167034379" datatype="html">
+        <source>not in</source>
+      </trans-unit>
+      <trans-unit id="805574151537916061" datatype="html">
+        <source>&lt;</source>
+      </trans-unit>
+      <trans-unit id="913894439838061589" datatype="html">
+        <source>&gt;</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
