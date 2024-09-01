@@ -29,6 +29,7 @@ import { TagRulePipe } from '../../../utils/pipes/tag-rule.pipe';
 import { TagRuleComponent } from './tag-rule/tag-rule.component';
 import { TagRuleTypePipe } from '../../../utils/pipes/tag-rule-type.pipe';
 import { TagRuleOperatorPipe } from '../../../utils/pipes/tag-rule-operator.pipe';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
     imports: [
@@ -56,6 +57,7 @@ import { TagRuleOperatorPipe } from '../../../utils/pipes/tag-rule-operator.pipe
         TagRulePipe,
         TagRuleTypePipe,
         TagRuleOperatorPipe,
+        TagModule,
     ],
     declarations: [ArticlesComponent, CreateOrUpdateTagComponent, TagRuleComponent],
     providers: [ArticleService, FeedService, TagService],

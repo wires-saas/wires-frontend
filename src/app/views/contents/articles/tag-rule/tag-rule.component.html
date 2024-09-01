@@ -9,7 +9,7 @@
                 <span *ngSwitchCase="'string'" class="font-bold">"{{ filter.filterValue }}"</span>
                 <span *ngSwitchCase="'number'" class="font-bold">{{ filter.filterValue }}</span>
                 <span *ngSwitchCase="'boolean'" class="font-bold">{{ filter.filterValue }}</span>
-                <span *ngSwitchCase="'date'" class="font-bold">{{ filter.filterValue | date: 'short' }}</span>
+                <span *ngSwitchCase="'date'" class="font-bold">{{ filter.filterValue | date: 'dd/MM/YYYY' }}</span>
                 <span *ngSwitchCase="'array'" class="font-bold">{{ filter.filterValue | json }}</span>
                 <span *ngSwitchDefault class="font-bold">{{ filter.filterValue }}</span>
             </ng-container>

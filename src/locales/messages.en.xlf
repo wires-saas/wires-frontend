@@ -1925,6 +1925,27 @@
       <trans-unit id="913894439838061589" datatype="html">
         <source>&gt;</source>
       </trans-unit>
+      <trans-unit id="119581980963263815" datatype="html">
+        <source>Green</source>
+      </trans-unit>
+      <trans-unit id="3623818903326968730" datatype="html">
+        <source>Couleur</source>
+      </trans-unit>
+      <trans-unit id="4046446611860328467" datatype="html">
+        <source>Red</source>
+      </trans-unit>
+      <trans-unit id="4082253113407591781" datatype="html">
+        <source>Blue</source>
+      </trans-unit>
+      <trans-unit id="5607669932062416162" datatype="html">
+        <source>Default</source>
+      </trans-unit>
+      <trans-unit id="7729914124556803411" datatype="html">
+        <source>No rule found. Use table filters with icon <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-filter&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/p&gt;"/></source>
+      </trans-unit>
+      <trans-unit id="8598918991528773310" datatype="html">
+        <source>Orange</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

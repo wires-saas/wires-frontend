@@ -109,7 +109,6 @@ export class ArticlesComponent implements OnInit {
     }
 
     async openCreateTagDialog() {
-        console.log('Create article tag', this.table.getFilters());
         const filtersFromFrontend = this.table.getFilters();
         const filtersForBackend = TableFilterUtils.convertFiltersToTagRules(filtersFromFrontend);
 
@@ -120,6 +119,7 @@ export class ArticlesComponent implements OnInit {
         const tag: Tag = {
             organization: organization.slug,
             displayName: '',
+            color: '',
             description: '',
             ruleset: filtersForBackend,
         };
@@ -137,7 +137,6 @@ export class ArticlesComponent implements OnInit {
     }
 
     closeCreateTagDialog() {
-        console.log('closing');
         this.createOrUpdateTagDialog = {
             visible: false,
             header: '',

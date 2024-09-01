@@ -22,7 +22,7 @@ export class TagRuleComponent implements OnInit {
     getValueType(value: any): string {
 
         try {
-            const date = new Date(value);
+            new Date(value);
             return 'date';
         } catch (e) {
             // nothing

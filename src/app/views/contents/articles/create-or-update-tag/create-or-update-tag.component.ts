@@ -17,6 +17,33 @@ export class CreateOrUpdateTagComponent implements OnInit {
 
     @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
 
+    availableSeverities = [
+        {
+            label: $localize `Default`,
+            value: ''
+        },
+        {
+            label: $localize `Blue`,
+            value: 'info',
+        },
+        {
+            label: $localize `Green`,
+            value: 'success',
+        },
+        {
+            label: $localize `Orange`,
+            value: 'warning',
+        },
+        {
+            label: $localize `Red`,
+            value: 'danger',
+        },
+    ];
+
+    get selectedSeverityLabel() {
+        return this.availableSeverities.find(severity => severity.value === this.tag.color)?.label;
+    }
+
     private destroyRef = inject(DestroyRef);
 
     saving: boolean = false;
@@ -92,6 +119,7 @@ export class CreateOrUpdateTagComponent implements OnInit {
         this.tag = {
             displayName: '',
             description: '',
+            color: '',
             organization: this.organizationSlug,
             ruleset: [],
         };

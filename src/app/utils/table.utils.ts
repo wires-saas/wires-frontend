@@ -51,6 +51,13 @@ export class TableFilterUtils {
         'dateAfter': $localize `after`,
     };
 
+    static dateFilterTypes: FilterType[] = [
+        FilterType.dateIs,
+        FilterType.dateIsNot,
+        FilterType.dateBefore,
+        FilterType.dateAfter,
+    ];
+
     static convertFiltersToTagRules = (filters: { [p: string]: FilterMetadata[] }): TagRule[] => {
         const ruleset: TagRule[] = [];
 
@@ -62,8 +69,15 @@ export class TableFilterUtils {
                     field: field,
                     operator: filter[0].operator,
                     filters: filter.map((f) => {
+
+                        let value = f.value;
+
+                        if (TableFilterUtils.dateFilterTypes.includes(f.matchMode as FilterType)) {
+                            value = new Date(value).getTime(); // Convert date to timestamp
+                        }
+
                         return {
-                            filterValue: f.value,
+                            filterValue: value,
                             filterType: f.matchMode as FilterType,
                         };
                     })

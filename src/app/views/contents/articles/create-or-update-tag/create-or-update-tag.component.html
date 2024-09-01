@@ -10,18 +10,38 @@
           styleClass="mx-3 sm:mx-0 sm:w-full md:w-8 lg:w-6" contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
     <div class="p-4">
         <div class="grid p-fluid formgrid">
-            <div class="col-12 field">
+            <div class="col-12 md:col-8 field">
                 <label for="feed-name" class="text-900 font-semibold" i18n>Tag Name</label>
                 <input id="feed-name" type="text" i18n-placeholder placeholder="Sitemap, top articles, fun facts..." pInputText [(ngModel)]="tag.displayName" />
             </div>
+
+            <div class="col-12 md:col-4 field">
+                <label for="color" class="text-900 font-semibold" i18n>Couleur</label>
+                <p-dropdown inputId="color" [autoDisplayFirst]="false" [options]="availableSeverities" [(ngModel)]="tag.color">
+
+                    <ng-template pTemplate="selectedItem">
+                        <p-tag [severity]="tag.color" [value]="selectedSeverityLabel" styleClass="w-full"></p-tag>
+                    </ng-template>
+                    <ng-template let-color pTemplate="item">
+                        <p-tag [severity]="color.value" [value]="color.label" styleClass="w-full"></p-tag>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+
             <div class="col-12 field">
                 <label for="feed-description" class="text-900 font-semibold" i18n>Description (optional)</label>
                 <textarea id="feed-description" [(ngModel)]="tag.description" rows="2" pInputTextarea style="resize: vertical;" i18n-placeholder placeholder="A small description can come handy"></textarea>
             </div>
 
+
+
             <div class="col-12 field">
                 <label for="feed-description" class="text-900 font-semibold" i18n>Règles</label>
                 <app-tag-rule *ngFor="let rule of tag.ruleset" [rule]="rule"></app-tag-rule>
+
+                <ng-container *ngIf="tag.ruleset?.length === 0">
+                    <p class="text-900" i18n>No rule found. Use table filters with icon <i class="pi pi-filter"></i></p>
+                </ng-container>
             </div>
 
             <div class="col-12 flex justify-content-end mt-4">

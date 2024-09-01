@@ -2531,7 +2531,7 @@
       </trans-unit>
       <trans-unit id="6403268630448655679" datatype="html">
         <source>Create Article Tag</source>
-        <target state="new">Créer un tag d'articles</target>
+        <target state="new">Créer un tag d&apos;articles</target>
       </trans-unit>
       <trans-unit id="3867296814892340617" datatype="html">
         <source>Tag Name</source>
@@ -2564,6 +2564,34 @@
       <trans-unit id="4258713601788630653" datatype="html">
         <source>Metadata <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="{{ metadataName }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> : </source>
         <target state="new">La métadonnée <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="{{ metadataName }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> : </target>
+      </trans-unit>
+      <trans-unit id="3623818903326968730" datatype="html">
+        <source>Couleur</source>
+        <target state="new">Couleur</target>
+      </trans-unit>
+      <trans-unit id="7729914124556803411" datatype="html">
+        <source>No rule found. Use table filters with icon <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-filter&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/p&gt;"/></source>
+        <target state="new">Aucune règle. Utilisez les filtres du tableau avec l'icône <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-filter&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/p&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="5607669932062416162" datatype="html">
+        <source>Default</source>
+        <target state="new">Défaut</target>
+      </trans-unit>
+      <trans-unit id="4082253113407591781" datatype="html">
+        <source>Blue</source>
+        <target state="new">Bleu</target>
+      </trans-unit>
+      <trans-unit id="119581980963263815" datatype="html">
+        <source>Green</source>
+        <target state="new">Vert</target>
+      </trans-unit>
+      <trans-unit id="8598918991528773310" datatype="html">
+        <source>Orange</source>
+        <target state="new">Orange</target>
+      </trans-unit>
+      <trans-unit id="4046446611860328467" datatype="html">
+        <source>Red</source>
+        <target state="new">Rouge</target>
       </trans-unit>
     </body>
   </file>

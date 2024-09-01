@@ -8,6 +8,8 @@ export interface Tag {
 
     organization: string;
 
+    color: string;
+
     displayName: string;
     description: string;
 
