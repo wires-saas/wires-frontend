@@ -1,11 +1,19 @@
-<button (click)="logFilters()">log filters</button>
+<p-toast position="bottom-right"></p-toast>
 <div class="card">
 
-    <ul>
-        <li *ngFor="let tag of tags">
-            {{ tag.displayName }}
-        </li>
-    </ul>
+    <h5>Available Tags</h5>
+
+    <div class="flex mb-5">
+        <p-tag *ngFor="let tag of tags"
+               (click)="loadTag(tag)"
+               [severity]="tag.color"
+               [value]="tag.displayName"
+               [pTooltip]="tag.description"
+               tooltipPosition="bottom"
+               class="inline-block mx-2 cursor-pointer w-4rem" styleClass="p-2 w-full"></p-tag>
+    </div>
+
+
 
     <p-table #dt1 [value]="articles" dataKey="id" [rows]="10"
              [loading]="loading" [showLoader]="false"
@@ -196,7 +204,10 @@
                     <p-chip *ngFor="let feed of article.feeds" [label]="feed" class="inline-block m-1"></p-chip>
                 </td>
                 <td class="text-center">
-                    <p-tag *ngFor="let tag of article.tags; let k = index" [severity]="getTagSeverity(k)" [value]="tag" class="inline-block m-1"></p-tag>
+                    <p-tag *ngFor="let tag of article.tags"
+                           (click)="loadTagById(tag)"
+                           [severity]="getTagSeverity(tag)"
+                           [value]="getTagDisplayName(tag)" class="inline-block m-1 cursor-pointer"></p-tag>
                 </td>
                 <!--<td>
                     <p-progressBar [value]="article.stats.clicked / article.stats.displayed * 100"

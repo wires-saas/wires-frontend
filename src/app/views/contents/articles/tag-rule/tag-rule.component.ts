@@ -22,8 +22,10 @@ export class TagRuleComponent implements OnInit {
     getValueType(value: any): string {
 
         try {
-            new Date(value);
-            return 'date';
+
+            const dateParsed = new Date(value).getTime();
+
+            if (dateParsed && !isNaN(dateParsed)) return 'date';
         } catch (e) {
             // nothing
         }

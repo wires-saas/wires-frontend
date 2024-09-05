@@ -46,12 +46,10 @@ export class ArticlesTableComponent {
 
     @ViewChild('filter') filter!: ElementRef;
 
-    constructor(private filterService: FilterService) {
+    constructor(private filterService: FilterService, private messageService: MessageService) {
         // [matchModeOptions]="[{ value: 'hasFeed', label: 'Has Feed' }]"
 
         // TODO get matchModeOptions factorized, within table.utils.ts
-
-        this.filterService.register('hasFeed', TableFilterUtils.hasFeed);
 
         this.filterService.register('dateIs', TableFilterUtils.dateIs);
 
@@ -63,6 +61,8 @@ export class ArticlesTableComponent {
 
         // this.filterService.filters['isPrimeNumber'](3);
     }
+
+
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal(
@@ -76,12 +76,13 @@ export class ArticlesTableComponent {
         this.filter.nativeElement.value = '';
     }
 
-    getTagSeverity(index: number) {
-        const severities = ['', 'success', 'info', 'warning', 'danger'];
+    getTagDisplayName(tagId: string) {
+        const tag = this.tags.find((tag) => tag._id === tagId);
+        return tag ? tag.displayName : 'Unknown tag';
+    }
 
-        const safeIndex = index % severities.length;
-
-        return severities[safeIndex];
+    getTagSeverity(tagId: string) {
+        return this.tags.find((tag) => tag._id === tagId)?.color;
     }
 
     getFilters() {
@@ -109,7 +110,48 @@ export class ArticlesTableComponent {
         return filters;
     }
 
-    logFilters() {
+    loadTagById(tagId: string) {
+        const tag = this.tags.find((tag) => tag._id === tagId);
+        if (tag) {
+            this.loadTag(tag);
+        } else {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Tag not found',
+                detail: `Tag with id "${tagId}" not found`,
+            });
+        }
+    }
+
+    loadTag(tag: Tag) {
+        console.log(tag.ruleset);
+
         console.log(this.table.filters);
+        const filters = TableFilterUtils.convertTagRulesToFilters(tag.ruleset);
+        console.log(filters);
+
+        // Apply table filters
+        // this.table.filter('place', 'metadata.title', 'contains');
+
+
+        Object.entries(filters).forEach(([field, filterMetadata]) => {
+            if (filterMetadata.length > 0) {
+                console.log('filtering', field, filterMetadata);
+                this.table.filters[field] = filterMetadata.map((metadata) => ({
+                    value: metadata.value,
+                    matchMode: metadata.matchMode,
+                    operator: metadata.operator,
+                }));
+            }
+        });
+
+        this.table['_filter']();
+
+        this.messageService.add({
+            severity: 'info',
+            summary: 'Tag loaded',
+            detail: `Tag "${tag.displayName}" has been loaded`,
+        });
+
     }
 }

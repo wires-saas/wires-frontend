@@ -88,17 +88,27 @@ export class TableFilterUtils {
         return ruleset;
     }
 
-    static hasFeed = (value: string[], filter: string[]): boolean => {
-        if (filter === undefined || filter === null || !filter.length) {
-            return true;
-        }
+    static convertTagRulesToFilters = (ruleset: TagRule[]): { [p: string]: FilterMetadata[] } => {
+        const filters: { [p: string]: FilterMetadata[] } = {};
 
-        if (value === undefined || value === null) {
-            return false;
-        }
+        ruleset.forEach((rule) => {
+            filters[rule.field] = rule.filters.map((f) => {
+                let value = f.filterValue;
 
-        return filter.every((f) => value.includes(f));
-    };
+                if (TableFilterUtils.dateFilterTypes.includes(f.filterType)) {
+                    value = new Date(value);
+                }
+
+                return {
+                    value: value,
+                    matchMode: f.filterType,
+                    operator: rule.operator,
+                };
+            });
+        });
+
+        return filters;
+    }
 
     static dateIs = (value: any, filter: any): boolean => {
         if (!filter) {

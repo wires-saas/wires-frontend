@@ -1,6 +1,5 @@
 <p-toast position="bottom-right"></p-toast>
 
-{{ visible }}
 <p-dialog [header]="header || ''"
           [(visible)]="visible"
           [modal]="true"
@@ -10,13 +9,13 @@
           styleClass="mx-3 sm:mx-0 sm:w-full md:w-8 lg:w-6" contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
     <div class="p-4">
         <div class="grid p-fluid formgrid">
-            <div class="col-12 md:col-8 field">
+            <div class="col-12 md:col-8 xl:col-9 field">
                 <label for="feed-name" class="text-900 font-semibold" i18n>Tag Name</label>
                 <input id="feed-name" type="text" i18n-placeholder placeholder="Sitemap, top articles, fun facts..." pInputText [(ngModel)]="tag.displayName" />
             </div>
 
-            <div class="col-12 md:col-4 field">
-                <label for="color" class="text-900 font-semibold" i18n>Couleur</label>
+            <div class="col-12 md:col-4 xl:col-3 field">
+                <label for="color" class="text-900 font-semibold" i18n>Color</label>
                 <p-dropdown inputId="color" [autoDisplayFirst]="false" [options]="availableSeverities" [(ngModel)]="tag.color">
 
                     <ng-template pTemplate="selectedItem">
