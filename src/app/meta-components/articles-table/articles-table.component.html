@@ -1,34 +1,38 @@
 <p-toast position="bottom-right"></p-toast>
 <div class="card">
 
-    <h5>Available Tags</h5>
+    <h5 i18n>Available Tags</h5>
 
     <div class="flex mb-5">
         <p-tag *ngFor="let tag of tags"
-               (click)="loadTag(tag)"
+               (click)="selectedTag && selectedTag._id === tag._id ? clear(dataTable) : loadTag(tag)"
                [severity]="tag.color"
                [value]="tag.displayName"
                [pTooltip]="tag.description"
                tooltipPosition="bottom"
-               class="inline-block mx-2 cursor-pointer w-4rem" styleClass="p-2 w-full"></p-tag>
+               class="inline-block mx-2 cursor-pointer select-none"
+               [class.opacity-20]="selectedTag && tag._id !== selectedTag._id" styleClass="p-2 w-full"></p-tag>
     </div>
 
 
-
-    <p-table #dt1 [value]="articles" dataKey="id" [rows]="10"
+    <h5 i18n>Articles ({{ articles.length }})</h5>
+    <p-table #dataTable [value]="articles" dataKey="id" [rows]="10"
              [loading]="loading" [showLoader]="false"
              sortField="metadata.publishedAt" [sortOrder]="-1"
              [rowHover]="true" styleClass="p-datatable-gridlines"
              [paginator]="true" [globalFilterFields]="['metadata.title','metadata.description', 'metadata.categories']" responsiveLayout="scroll">
         <ng-template pTemplate="caption">
             <div class="flex justify-content-between flex-column sm:flex-row">
-                <button pButton i18n-label label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                <button pButton i18n-label label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dataTable)"></button>
 
                 <div class="flex flex-wrap gap-2 mb-2">
                     <div class="flex">
-                        <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)"
+                        <input pInputText type="text" #filter (input)="onGlobalFilter(dataTable, $event)"
                                i18n-placeholder placeholder="Search Keyword" class="w-full"/>
                     </div>
+
+                    <button *ngIf="selectedTag" (click)="onCreateTag.emit()" pButton class="p-button-outlined flex w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-tag"
+                            i18n-label label="Edit Selected Tag"></button>
 
                     <button (click)="onCreateTag.emit()" pButton class="flex w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-tag"
                             i18n-label label="Create Tag From Filters"></button>
@@ -114,7 +118,7 @@
                 <th style="min-width: 12rem">
                     <div class="flex justify-content-between align-items-center">
                         <span i18n>Tags</span>
-                        <p-columnFilter field="tags" matchMode="equals" display="menu">
+                        <!--<p-columnFilter field="tags" matchMode="equals" display="menu">
                             <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                                 <p-dropdown [ngModel]="value" [options]="[]" (onChange)="filter($event.value)"
                                             i18n-placeholder placeholder="Any" [style]="{'min-width': '12rem'}" >
@@ -124,7 +128,7 @@
                                 </p-dropdown>
                             </ng-template>
 
-                        </p-columnFilter>
+                        </p-columnFilter> -->
                     </div>
                 </th>
                 <!--
@@ -192,10 +196,8 @@
                     {{ article.metadata.description }}
                 </td>
                 <td>
-                    {{ article.metadata.publishedAt | date: 'dd/MM/yyyy'}}<br/>
-                    {{ article.metadata.publishedAt | date: 'HH:mm'}}<br/>
-
-                    {{ article.metadata.publishedAt }}
+                    {{ article.metadata.publishedAt | date: 'dd/MM/yyyy'}}
+                    {{ article.metadata.publishedAt | date: 'HH:mm'}}
                 </td>
                 <td class="text-center">
                     <p-chip *ngFor="let category of article.metadata.categories" [label]="category" class="inline-block m-1"></p-chip>

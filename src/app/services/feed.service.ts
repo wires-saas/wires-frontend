@@ -44,6 +44,7 @@ export interface FeedRun {
     updatedAt: string;
     articles: Article[];
     newArticles: string[];
+    tagsApplied: number;
     scrapingDurationMs: number;
     articlesCreationMs: number;
 }

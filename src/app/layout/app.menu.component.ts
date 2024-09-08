@@ -43,6 +43,11 @@ export class AppMenuComponent implements OnInit {
                     icon: 'pi pi-fw pi-circle-off',
                     routerLink: ['/blank'],
                 },
+                {
+                    label: $localize `Studio`,
+                    icon: 'pi pi-fw pi-objects-column',
+                    routerLink: ['/studio']
+                },
                 /* {
                     label: $localize `Overview`,
                     icon: 'pi pi-fw pi-file',

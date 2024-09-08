@@ -221,18 +221,6 @@
         <source>$200</source>
         <target state="new">200€</target>
       </trans-unit>
-      <trans-unit id="4024923294743236805" datatype="html">
-        <source>Up to 3 Active Users</source>
-        <target state="new">Jusqu&apos;à 3 utilisateurs actifs</target>
-      </trans-unit>
-      <trans-unit id="6426378511798929134" datatype="html">
-        <source>Up to 10 Project Integrations</source>
-        <target state="new">Jusqu&apos;à 10 projets</target>
-      </trans-unit>
-      <trans-unit id="62349588862483851" datatype="html">
-        <source>Analytics Module</source>
-        <target state="new">Module Statistiques</target>
-      </trans-unit>
       <trans-unit id="2173081621523524547" datatype="html">
         <source>Dedicated Support</source>
         <target state="new">Support dédié</target>
@@ -257,14 +245,6 @@
         <source>$500</source>
         <target state="new">500€</target>
       </trans-unit>
-      <trans-unit id="2276110414358547668" datatype="html">
-        <source>Up to 10 Active Users</source>
-        <target state="new">Jusqu&apos;à 10 utilisateurs actifs</target>
-      </trans-unit>
-      <trans-unit id="4310204894294721884" datatype="html">
-        <source>Up to 50 Project Integrations</source>
-        <target state="new">Jusqu&apos;à 50 projets</target>
-      </trans-unit>
       <trans-unit id="5499742151525073097" datatype="html">
         <source>Upgrade Plan</source>
         <target state="new">Améliorer la formule</target>
@@ -280,10 +260,6 @@
       <trans-unit id="8501231313853023509" datatype="html">
         <source>Unlimited Users</source>
         <target state="new">Utilisateurs illimités</target>
-      </trans-unit>
-      <trans-unit id="5394735073306242149" datatype="html">
-        <source>Unlimited Project Integrations</source>
-        <target state="new">Projets illimités</target>
       </trans-unit>
       <trans-unit id="187187500641108332" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ data.title || &apos;ERROR&apos; }}"/></source>
@@ -1903,7 +1879,7 @@
       </trans-unit>
       <trans-unit id="8615671782880239984" datatype="html">
         <source>Fine-grained Access Control</source>
-        <target state="new">Fine-grained Access Control</target>
+        <target state="new">Gestion d&apos;accès avancée</target>
       </trans-unit>
       <trans-unit id="4388879716045736175" datatype="html">
         <source>Note</source>
@@ -2565,13 +2541,9 @@
         <source>Metadata <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="{{ metadataName }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> : </source>
         <target state="new">La métadonnée <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="{{ metadataName }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> : </target>
       </trans-unit>
-      <trans-unit id="3623818903326968730" datatype="html">
-        <source>Couleur</source>
-        <target state="new">Couleur</target>
-      </trans-unit>
       <trans-unit id="7729914124556803411" datatype="html">
         <source>No rule found. Use table filters with icon <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-filter&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/p&gt;"/></source>
-        <target state="new">Aucune règle. Utilisez les filtres du tableau avec l'icône <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-filter&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/p&gt;"/></target>
+        <target state="new">Aucune règle. Utilisez les filtres du tableau avec l&apos;icône <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-filter&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/p&gt;"/></target>
       </trans-unit>
       <trans-unit id="5607669932062416162" datatype="html">
         <source>Default</source>
@@ -2592,6 +2564,54 @@
       <trans-unit id="4046446611860328467" datatype="html">
         <source>Red</source>
         <target state="new">Rouge</target>
+      </trans-unit>
+      <trans-unit id="8468205239657673278" datatype="html">
+        <source>Up to 10 Active Campaigns</source>
+        <target state="new">Jusqu&apos;à 10 campagnes actives</target>
+      </trans-unit>
+      <trans-unit id="754999041405377993" datatype="html">
+        <source>Detailed Analytics</source>
+        <target state="new">Statistiques avancées</target>
+      </trans-unit>
+      <trans-unit id="9094243530569939293" datatype="html">
+        <source>AI Features</source>
+        <target state="new">Fonctionnalités IA</target>
+      </trans-unit>
+      <trans-unit id="7067657595397984532" datatype="html">
+        <source>Developers Access</source>
+        <target state="new">Accès développeur (API)</target>
+      </trans-unit>
+      <trans-unit id="7152861806742769059" datatype="html">
+        <source>Up to 30 Active Campaigns</source>
+        <target state="new">Jusqu&apos;à 30 campagnes actives</target>
+      </trans-unit>
+      <trans-unit id="2019223084075970796" datatype="html">
+        <source>Unlimited Active Campaigns</source>
+        <target state="new">Campagnes illimitées</target>
+      </trans-unit>
+      <trans-unit id="2793215558135547135" datatype="html">
+        <source>SLA / White Label</source>
+        <target state="new">SLA / Marque blanche</target>
+      </trans-unit>
+      <trans-unit id="7067563863134088641" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="class=&quot;pi pi-microchip-ai text-xl mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="Analytics&lt;/h5&gt;"/> Analytics</source>
+        <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="class=&quot;pi pi-microchip-ai text-xl mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="Analytics&lt;/h5&gt;"/> Analytics</target>
+      </trans-unit>
+      <trans-unit id="9103863669478204589" datatype="html">
+        <source> We can suggest tags based on all your articles. This will help you to faster setup your contents. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Or we can analyze your contents and try to find uncovered areas. </source>
+        <target state="new"> We can suggest tags based on all your articles. This will help you to faster setup your contents. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Or we can analyze your contents and try to find uncovered areas. </target>
+      </trans-unit>
+      <trans-unit id="9011959596901584887" datatype="html">
+        <source>Color</source>
+        <target state="new">Couleur</target>
+      </trans-unit>
+      <trans-unit id="7012957764426719868" datatype="html">
+        <source>Service Level Agreement</source>
+        <target state="new">Niveau de service</target>
+      </trans-unit>
+      <trans-unit id="7995928274976820365" datatype="html">
+        <source>Available Tags</source>
+        <target state="new">Tags définis</target>
       </trans-unit>
     </body>
   </file>

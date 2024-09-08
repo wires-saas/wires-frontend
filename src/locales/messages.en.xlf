@@ -173,32 +173,14 @@
       <trans-unit id="2173081621523524547" datatype="html">
         <source>Dedicated Support</source>
       </trans-unit>
-      <trans-unit id="2276110414358547668" datatype="html">
-        <source>Up to 10 Active Users</source>
-      </trans-unit>
       <trans-unit id="3472163900154820979" datatype="html">
         <source>$500</source>
       </trans-unit>
       <trans-unit id="3788974316770322919" datatype="html">
         <source>Basic Licence</source>
       </trans-unit>
-      <trans-unit id="4024923294743236805" datatype="html">
-        <source>Up to 3 Active Users</source>
-      </trans-unit>
-      <trans-unit id="4310204894294721884" datatype="html">
-        <source>Up to 50 Project Integrations</source>
-      </trans-unit>
-      <trans-unit id="5394735073306242149" datatype="html">
-        <source>Unlimited Project Integrations</source>
-      </trans-unit>
       <trans-unit id="5499742151525073097" datatype="html">
         <source>Upgrade Plan</source>
-      </trans-unit>
-      <trans-unit id="62349588862483851" datatype="html">
-        <source>Analytics Module</source>
-      </trans-unit>
-      <trans-unit id="6426378511798929134" datatype="html">
-        <source>Up to 10 Project Integrations</source>
       </trans-unit>
       <trans-unit id="6675646304085290803" datatype="html">
         <source>$200</source>
@@ -1928,9 +1910,6 @@
       <trans-unit id="119581980963263815" datatype="html">
         <source>Green</source>
       </trans-unit>
-      <trans-unit id="3623818903326968730" datatype="html">
-        <source>Couleur</source>
-      </trans-unit>
       <trans-unit id="4046446611860328467" datatype="html">
         <source>Red</source>
       </trans-unit>
@@ -1945,6 +1924,42 @@
       </trans-unit>
       <trans-unit id="8598918991528773310" datatype="html">
         <source>Orange</source>
+      </trans-unit>
+      <trans-unit id="2019223084075970796" datatype="html">
+        <source>Unlimited Active Campaigns</source>
+      </trans-unit>
+      <trans-unit id="2793215558135547135" datatype="html">
+        <source>SLA / White Label</source>
+      </trans-unit>
+      <trans-unit id="7067563863134088641" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="class=&quot;pi pi-microchip-ai text-xl mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="Analytics&lt;/h5&gt;"/> Analytics</source>
+      </trans-unit>
+      <trans-unit id="7067657595397984532" datatype="html">
+        <source>Developers Access</source>
+      </trans-unit>
+      <trans-unit id="7152861806742769059" datatype="html">
+        <source>Up to 30 Active Campaigns</source>
+      </trans-unit>
+      <trans-unit id="754999041405377993" datatype="html">
+        <source>Detailed Analytics</source>
+      </trans-unit>
+      <trans-unit id="8468205239657673278" datatype="html">
+        <source>Up to 10 Active Campaigns</source>
+      </trans-unit>
+      <trans-unit id="9011959596901584887" datatype="html">
+        <source>Color</source>
+      </trans-unit>
+      <trans-unit id="9094243530569939293" datatype="html">
+        <source>AI Features</source>
+      </trans-unit>
+      <trans-unit id="9103863669478204589" datatype="html">
+        <source> We can suggest tags based on all your articles. This will help you to faster setup your contents. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Or we can analyze your contents and try to find uncovered areas. </source>
+      </trans-unit>
+      <trans-unit id="7012957764426719868" datatype="html">
+        <source>Service Level Agreement</source>
+      </trans-unit>
+      <trans-unit id="7995928274976820365" datatype="html">
+        <source>Available Tags</source>
       </trans-unit>
     </body>
   </file>

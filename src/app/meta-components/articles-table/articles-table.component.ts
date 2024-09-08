@@ -25,7 +25,7 @@ import { Tag } from '../../services/tag.service';
     providers: [MessageService, ConfirmationService],
 })
 export class ArticlesTableComponent {
-    @ViewChild('dt1') table!: Table;
+    @ViewChild('dataTable') table!: Table;
 
     @Input() articles: Article[] = [];
 
@@ -33,6 +33,8 @@ export class ArticlesTableComponent {
 
     @Input() feeds: Feed[] = [];
     @Input() tags: Tag[] = [];
+
+    selectedTag: Tag | undefined = undefined;
 
     textMatchModeOptions: any[] = TableUtils.matchModesOptionsForText();
     urlMatchModeOptions: any[] = TableUtils.matchModesOptionsForUrl();
@@ -72,6 +74,7 @@ export class ArticlesTableComponent {
     }
 
     clear(table: Table) {
+        this.selectedTag = undefined;
         table.clear();
         this.filter.nativeElement.value = '';
     }
@@ -124,6 +127,9 @@ export class ArticlesTableComponent {
     }
 
     loadTag(tag: Tag) {
+
+        this.selectedTag = tag;
+
         console.log(tag.ruleset);
 
         console.log(this.table.filters);
@@ -147,11 +153,12 @@ export class ArticlesTableComponent {
 
         this.table['_filter']();
 
+        /*
         this.messageService.add({
             severity: 'info',
             summary: 'Tag loaded',
             detail: `Tag "${tag.displayName}" has been loaded`,
-        });
+        }); */
 
     }
 }
