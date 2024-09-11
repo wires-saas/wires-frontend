@@ -18,12 +18,6 @@ import { RouterModule } from '@angular/router';
                 loadChildren: () =>
                     import('./blank/blank.module').then((m) => m.BlankModule),
             },
-            {
-                path: 'studio',
-                data: { breadcrumb: $localize`Studio` },
-                loadChildren: () =>
-                    import('./studio/studio.module').then((m) => m.StudioModule),
-            },
             { path: '', redirectTo: 'overview', pathMatch: 'full' },
         ]),
     ],

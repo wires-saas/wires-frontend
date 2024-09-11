@@ -4,11 +4,11 @@ import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 export interface Tag {
-    _id?: string;
+    _id?: string; // do not generate
 
-    organization: string;
+    organization: string; // do not generate
 
-    color: string;
+    color: string; // do not generate
 
     displayName: string;
     description: string;
@@ -23,10 +23,10 @@ export enum FilterType {
     notContains = 'notContains',
     startsWith = 'startsWith',
     endsWith = 'endsWith',
-    dateIs = 'dateIs',
-    dateIsNot = 'dateIsNot',
-    dateBefore = 'dateBefore',
-    dateAfter = 'dateAfter',
+    dateIs = 'dateIs', // timestamp
+    dateIsNot = 'dateIsNot', // timestamp
+    dateBefore = 'dateBefore', // timestamp
+    dateAfter = 'dateAfter', // timestamp
     greaterThan = 'gt',
     lessThan = 'lt',
     greaterThanOrEqual = 'gte',

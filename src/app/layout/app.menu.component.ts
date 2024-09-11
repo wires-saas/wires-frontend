@@ -43,11 +43,6 @@ export class AppMenuComponent implements OnInit {
                     icon: 'pi pi-fw pi-circle-off',
                     routerLink: ['/blank'],
                 },
-                {
-                    label: $localize `Studio`,
-                    icon: 'pi pi-fw pi-objects-column',
-                    routerLink: ['/studio']
-                },
                 /* {
                     label: $localize `Overview`,
                     icon: 'pi pi-fw pi-file',
@@ -56,6 +51,27 @@ export class AppMenuComponent implements OnInit {
             ],
         },
     ];
+
+
+    private studioMenu: (
+        org: Organization,
+        authService: AuthService,
+    ) => any[] = (org, authService) => [
+        {
+            label: 'Studio',
+            items: [
+                {
+                    label: $localize`Blocks`,
+                    icon: 'pi pi-fw pi-objects-column',
+                    routerLink: ['/studio/blocks']
+                },
+                {
+                    label: $localize`Templates`,
+                    icon: 'pi pi-fw pi-file',
+                    routerLink: ['/studio/templates']
+                }
+            ]
+        }];
 
     private contentsMenu: (
         org: Organization,
@@ -229,6 +245,7 @@ export class AppMenuComponent implements OnInit {
     buildMenuForOrganization(org: Organization, authService: AuthService) {
         this.model = [
             ...this.dashboardMenu(),
+            ...this.studioMenu(org, authService),
             ...this.contentsMenu(org, authService),
             ...this.organizationMenu(org, authService),
             ...this.helpMenu,

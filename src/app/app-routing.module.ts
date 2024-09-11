@@ -72,6 +72,14 @@ const routes: Routes = [
                     ),
             },
             {
+                path: 'studio',
+                canActivate: [AuthenticatedGuard],
+                loadChildren: () =>
+                    import('./views/studio/studio.module').then(
+                        (m) => m.StudioModule,
+                    ),
+            },
+            {
                 path: 'organization/:slug/contents',
                 data: { breadcrumb: $localize`Contents` },
                 canActivate: [AuthenticatedGuard],
