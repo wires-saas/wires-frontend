@@ -20,6 +20,9 @@ export enum PermissionSubject {
     FeedRun = 'feedRun',
     Article = 'article',
     Billing = 'billing',
+    Tag = 'tag',
+    Gpt = 'gpt',
+    GptRequest = 'gptRequest',
 }
 
 export class Permission {
@@ -44,6 +47,26 @@ export class Permission {
         if (this.subject === PermissionSubject.Billing) {
             if (this.action === PermissionAction.Delete) {
                 customLabel = $localize`Resiliate Subscription`;
+            }
+        }
+
+        if (this.subject === PermissionSubject.Gpt) {
+            if (this.action === PermissionAction.Update) {
+                customLabel = $localize`Modify AI`;
+            } else if (this.action === PermissionAction.Delete) {
+                customLabel = $localize`Disable AI`;
+            } else if (this.action === PermissionAction.Read) {
+                customLabel = $localize`Read AI`;
+            }
+        }
+
+        if (this.subject === PermissionSubject.GptRequest) {
+            if (this.action === PermissionAction.Create) {
+                customLabel = $localize`Send AI Request`;
+            } else if (this.action === PermissionAction.Read) {
+                customLabel = $localize`View AI Requests`;
+            } else if (this.action === PermissionAction.Manage) {
+                customLabel = $localize`Manage AI Requests`;
             }
         }
 
@@ -94,6 +117,15 @@ export class Permission {
                     break;
                 case PermissionSubject.Billing:
                     subjectI18N = $localize`Billing`;
+                    break;
+                case PermissionSubject.Tag:
+                    subjectI18N = $localize`Tag`;
+                    break;
+                case PermissionSubject.Gpt:
+                    subjectI18N = $localize`GPT`;
+                    break;
+                case PermissionSubject.GptRequest:
+                    subjectI18N = $localize`GPT Request`;
                     break;
                 default:
                     subjectI18N = $localize`N/A`;

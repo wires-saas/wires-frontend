@@ -49,6 +49,10 @@ export class ConfigurationComponent implements OnInit {
     });
     securitySavedState: OrganizationSecurity | undefined;
 
+    aiForm: FormGroup = new FormGroup({
+        enabled: new FormControl({ value: false, disabled: true }),
+    });
+
     currentOrgSlug: string | undefined;
     public currentUser: User | undefined = undefined;
 
@@ -78,6 +82,8 @@ export class ConfigurationComponent implements OnInit {
                         );
 
                         this.securitySavedState = this.securityForm.value;
+
+                        this.aiForm.get('enabled')?.setValue(!!organization.gpt);
 
                         // TODO fetch permissions
                         const rolesWithPermissions =

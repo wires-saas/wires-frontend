@@ -49,6 +49,8 @@ export interface Organization {
         willExpireAt?: number;
     };
 
+    gpt?: string;
+
     _nbMembers?: number;
 
     createdAt: number;

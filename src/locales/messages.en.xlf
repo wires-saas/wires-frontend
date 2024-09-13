@@ -1961,6 +1961,69 @@
       <trans-unit id="7995928274976820365" datatype="html">
         <source>Available Tags</source>
       </trans-unit>
+      <trans-unit id="1077134741310346564" datatype="html">
+        <source>Build newsletter template with custom blocks or </source>
+      </trans-unit>
+      <trans-unit id="1695196787436653758" datatype="html">
+        <source>Build custom blocks to use in newsletters</source>
+      </trans-unit>
+      <trans-unit id="1991658734729171343" datatype="html">
+        <source>GPT</source>
+      </trans-unit>
+      <trans-unit id="2266832780444914056" datatype="html">
+        <source>Newsletter Builder</source>
+      </trans-unit>
+      <trans-unit id="3729420419682425974" datatype="html">
+        <source>Edit Selected Tag</source>
+      </trans-unit>
+      <trans-unit id="4435559557075443029" datatype="html">
+        <source> Unlock AI features for your organization and <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>improve your productivity now<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> ! <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Contact us for more options regarding AI model and privacy concerns (providing your own model) </source>
+      </trans-unit>
+      <trans-unit id="5433675495457939071" datatype="html">
+        <source>Templates</source>
+      </trans-unit>
+      <trans-unit id="6355879299550301158" datatype="html">
+        <source>Artificial Intelligence</source>
+      </trans-unit>
+      <trans-unit id="6948786787037977434" datatype="html">
+        <source>Blocks</source>
+      </trans-unit>
+      <trans-unit id="7452616401194180577" datatype="html">
+        <source>Enable AI features for all organization members</source>
+      </trans-unit>
+      <trans-unit id="7538936629651216317" datatype="html">
+        <source>Block Builder</source>
+      </trans-unit>
+      <trans-unit id="895385602659607392" datatype="html">
+        <source>Articles (<x id="INTERPOLATION" equiv-text="{{ articles.length }}"/>)</source>
+      </trans-unit>
+      <trans-unit id="4141439173134373109" datatype="html">
+        <source>AI features require premium plan or better</source>
+      </trans-unit>
+      <trans-unit id="1280596318001368534" datatype="html">
+        <source>Modify AI</source>
+      </trans-unit>
+      <trans-unit id="180026138083884616" datatype="html">
+        <source>Manage AI Requests</source>
+      </trans-unit>
+      <trans-unit id="1825829511397926879" datatype="html">
+        <source>Tag</source>
+      </trans-unit>
+      <trans-unit id="4041882357749245738" datatype="html">
+        <source>Read AI</source>
+      </trans-unit>
+      <trans-unit id="4988505124414584854" datatype="html">
+        <source>View AI Requests</source>
+      </trans-unit>
+      <trans-unit id="5335449536920494631" datatype="html">
+        <source>Disable AI</source>
+      </trans-unit>
+      <trans-unit id="5848280630211379488" datatype="html">
+        <source>Send AI Request</source>
+      </trans-unit>
+      <trans-unit id="7046706426984157824" datatype="html">
+        <source>GPT Request</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -57,4 +57,38 @@
     </div>
 </div>
 
+<div class="card">
+    <span class="text-900 text-xl font-bold mb-4 block" i18n>Artificial Intelligence</span>
+
+    <div class="grid">
+        <div class="col-12 lg:col-2">
+            <div class="text-900 font-medium text-xl mb-3" i18n>GPT</div>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3" i18n>AI features require premium plan or better</p>
+        </div>
+        <div class="col-12 lg:col-10">
+
+            <form [formGroup]="aiForm" class="grid formgrid p-fluid">
+                <div class="field col-12">
+                    <h5 i18n>AI Features</h5>
+
+                    <p-inputSwitch formControlName="enabled"></p-inputSwitch>
+                    <span class="text-900 p-3" i18n>Enable AI features for all organization members</span>
+
+                    <p class="text-900 mt-3" i18n>
+                        Unlock AI features for your organization and <b>improve your productivity now</b> !
+                        <br/>
+                        Contact us for more options regarding AI model and privacy concerns (providing your own model)
+                    </p>
+                </div>
+            </form>
+
+            <!--
+            <div class="col-12 flex md:justify-content-end justify-content-center">
+                <button [disabled]="true"
+                        pButton pRipple i18n-label label="Update Settings" icon="pi pi-save" class="w-auto mt-3"></button>
+            </div> -->
+        </div>
+    </div>
+</div>
+
 <p-toast position="bottom-right" />
