@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { AppLayoutModule } from './layout/app.layout.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '../environments/environment';
+import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 
 export function tokenGetter() {
     return localStorage.getItem('access_token');
@@ -15,6 +16,7 @@ export function tokenGetter() {
     imports: [
         AppRoutingModule,
         AppLayoutModule,
+        MonacoEditorModule.forRoot(),
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter,

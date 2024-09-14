@@ -2697,6 +2697,14 @@
         <source>GPT Request</source>
         <target state="new">Requête GPT</target>
       </trans-unit>
+      <trans-unit id="5865693415736748791" datatype="html">
+        <source>WIP</source>
+        <target state="new">WIP</target>
+      </trans-unit>
+      <trans-unit id="7935276987885058089" datatype="html">
+        <source>Reach us if you are interested in 2FA</source>
+        <target state="new">Contactez-nous si vous êtes intéressé par le 2FA</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

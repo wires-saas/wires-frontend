@@ -2024,6 +2024,12 @@
       <trans-unit id="7046706426984157824" datatype="html">
         <source>GPT Request</source>
       </trans-unit>
+      <trans-unit id="5865693415736748791" datatype="html">
+        <source>WIP</source>
+      </trans-unit>
+      <trans-unit id="7935276987885058089" datatype="html">
+        <source>Reach us if you are interested in 2FA</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
