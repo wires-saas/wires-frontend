@@ -11,7 +11,7 @@ import {
     Organization,
     OrganizationService,
 } from '../services/organization.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -67,7 +67,7 @@ export class AppSidebarComponent implements OnInit {
             } else if (this.availableOrganizations?.length > 1) {
                 // if multiple organizations, select the one in the URL
                 const url = this.router.url;
-                const regex = /organization\/([^\/]+)/;
+                const regex = /\/organization\/([^\/]+)/;
                 const match = url.match(regex);
                 const slugInUrl = match && match[1];
 
@@ -79,6 +79,7 @@ export class AppSidebarComponent implements OnInit {
                 if (!this.selectedOrganization) {
                     this.selectedOrganization = this.availableOrganizations[0];
                 }
+
             } else {
                 // if no organization, redirect to unauthorized
                 this.router.navigate(['/auth/unauthorized']);

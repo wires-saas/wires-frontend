@@ -23,31 +23,34 @@ export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
 
-    private dashboardMenu: () => any[] = () => [
+    private dashboardMenu: (
+        org: Organization,
+        authService: AuthService,
+    ) => any[] = (org, authService) => [
         {
             label: 'Dashboards',
             items: [
                 {
                     label: $localize`Home`,
                     icon: 'pi pi-fw pi-home',
-                    routerLink: ['/files'],
+                    routerLink: [`/organization/${org.slug}/files`],
                 },
                 {
                     label: $localize`Inbox`,
                     icon: 'pi pi-fw pi-inbox',
-                    routerLink: ['/mail'],
+                    routerLink: [`/organization/${org.slug}/mail`],
                     routerLinkActiveOptions: { exact: false },
                 },
                 {
                     label: $localize`Empty`,
                     icon: 'pi pi-fw pi-circle-off',
-                    routerLink: ['/blank'],
+                    routerLink: [`/organization/${org.slug}/dashboards/blank`],
                 },
-                /* {
-                    label: $localize `Overview`,
+                {
+                    label: $localize `Stats`,
                     icon: 'pi pi-fw pi-file',
-                    routerLink: ['/overview']
-                } */
+                    routerLink: [`/organization/${org.slug}/dashboards/overview`],
+                }
             ],
         },
     ];
@@ -63,12 +66,13 @@ export class AppMenuComponent implements OnInit {
                 {
                     label: $localize`Blocks`,
                     icon: 'pi pi-fw pi-objects-column',
-                    routerLink: ['/studio/blocks']
+                    routerLink: [`/organization/${org.slug}/studio/blocks`],
+                    routerLinkActiveOptions: { exact: false },
                 },
                 {
                     label: $localize`Templates`,
                     icon: 'pi pi-fw pi-file',
-                    routerLink: ['/studio/templates']
+                    routerLink: [`/organization/${org.slug}/studio/templates`]
                 }
             ]
         }];
@@ -244,7 +248,7 @@ export class AppMenuComponent implements OnInit {
 
     buildMenuForOrganization(org: Organization, authService: AuthService) {
         this.model = [
-            ...this.dashboardMenu(),
+            ...this.dashboardMenu(org, authService),
             ...this.studioMenu(org, authService),
             ...this.contentsMenu(org, authService),
             ...this.organizationMenu(org, authService),

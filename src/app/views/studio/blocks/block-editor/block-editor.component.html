@@ -1,7 +1,22 @@
+<div *ngIf="loadingBlock" class="flex justify-content-between align-items-start mb-2">
+
+    <div>
+        <h1 class="m-0">
+            <p-skeleton width="30rem" height="4rem" styleClass="mb-2" />
+        </h1>
+
+        <div class="flex align-items-center">
+            <p-skeleton width="20rem" height="2rem" styleClass="mb-2" />
+        </div>
+
+    </div>
+
+</div>
+
 <ng-container *ngIf="block">
 
-
-    <div class="flex justify-content-between align-items-start mb-2">
+    <!-- Display name and description -->
+    <div class="flex justify-content-between align-items-start mb-2 fadein animation-duration-200">
 
         <div>
             <h1 class="m-0">
@@ -42,9 +57,8 @@
         </div>
     </div>
 
-
-
-    <div class="grid">
+    <!-- Block editor sections -->
+    <div class="grid fadein animation-duration-200">
 
 
 
@@ -75,5 +89,6 @@
                                 class="col-12 md:col-12 xl:col-6 flex-order-3">
         </app-block-editor-debug>
     </div>
+
 
 </ng-container>

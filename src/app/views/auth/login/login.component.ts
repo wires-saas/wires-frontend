@@ -3,6 +3,7 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { AuthService } from '../../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { OrganizationService } from '../../../services/organization.service';
 
 @Component({
     templateUrl: './login.component.html',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     constructor(
         private layoutService: LayoutService,
         private authService: AuthService,
+        private organizationService: OrganizationService,
         private messageService: MessageService,
         private router: Router,
         private route: ActivatedRoute,

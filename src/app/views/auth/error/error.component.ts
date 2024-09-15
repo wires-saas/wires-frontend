@@ -10,6 +10,7 @@ export class ErrorComponent implements OnInit {
         message?: string;
         button?: string;
     } = {};
+
     constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import pretty from 'pretty';
 import { deepClone } from '../utils/deep-clone';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 export interface BlockRef extends Pick<Block, '_id' | 'organization' | 'version'> {}
 
@@ -90,7 +92,6 @@ export class BlockWithHistory extends Block {
     }
 
     override convertToPureHTML(): void {
-        console.log('convertToPureHTML', this);
         super.convertToPureHTML();
         this.save();
     }
@@ -198,10 +199,16 @@ export interface BlockParameters {
 export class BlockService {
     private domain: string;
 
-    private block!: Block;
-
-    constructor() {
+    constructor(private http: HttpClient) {
         this.domain = environment.backend;
+    }
+
+    async getBlock(organizationId: string, blockId: string): Promise<Block> {
+        return new Promise((res, _) => {
+            setTimeout(async () => {
+                res(firstValueFrom(this.http.get<Block>(`${this.domain}/organizations/${organizationId}/blocks/${blockId}`)));
+            }, 3000);
+        });
     }
 
     getNewBlock(wysiwygEnabled: boolean): Block {

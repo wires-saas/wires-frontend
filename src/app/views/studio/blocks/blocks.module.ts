@@ -22,6 +22,7 @@ import {
 import { BlockEditorCodeComponent } from './block-editor/block-editor-code/block-editor-code.component';
 import { BlockEditorPreviewComponent } from './block-editor/block-editor-preview/block-editor-preview.component';
 import { BlockEditorWysiwygComponent } from './block-editor/block-editor-wysiwyg/block-editor-wysiwyg.component';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
     imports: [
@@ -36,7 +37,8 @@ import { BlockEditorWysiwygComponent } from './block-editor/block-editor-wysiwyg
         RippleModule,
         TooltipModule,
         TagModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        SkeletonModule
     ],
     declarations: [
         BlocksComponent,

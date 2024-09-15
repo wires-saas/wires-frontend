@@ -63,9 +63,11 @@ export interface Organization {
 export class OrganizationService {
     private readonly domain: string;
 
-    private currentOrganization$$: Subject<Organization | undefined> =
+    private currentOrganization$$: BehaviorSubject<Organization | undefined> =
         new BehaviorSubject<Organization | undefined>(undefined);
     public currentOrganization$ = this.currentOrganization$$.asObservable();
+
+    private getAllPromise: Promise<Organization[]> | undefined;
 
     constructor(
         private http: HttpClient,
@@ -75,11 +77,20 @@ export class OrganizationService {
     }
 
     // Get all organizations
-    getAll(): Promise<Organization[]> {
-        return firstValueFrom(
+    async getAll(): Promise<Organization[]> {
+        // avoiding double fetch
+        if (this.getAllPromise) {
+            return this.getAllPromise;
+        }
+
+        this.getAllPromise = firstValueFrom(
             this.http.get<any[]>(`${this.domain}/organizations`),
-        );
-        // return firstValueFrom(this.http.get<any[]>('assets/demo/data/organizations.json'));
+        ).then((organizations) => {
+            this.getAllPromise = undefined;
+            return organizations;
+        });
+
+        return this.getAllPromise;
     }
 
     create(organization: {
@@ -130,6 +141,8 @@ export class OrganizationService {
     }
 
     setCurrentOrganization(organization: Organization) {
-        this.currentOrganization$$.next(organization);
+        if (organization.slug !== this.currentOrganization$$?.value?.slug) {
+            this.currentOrganization$$.next(organization);
+        }
     }
 }
