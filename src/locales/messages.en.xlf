@@ -2030,6 +2030,42 @@
       <trans-unit id="7935276987885058089" datatype="html">
         <source>Reach us if you are interested in 2FA</source>
       </trans-unit>
+      <trans-unit id="2013221796169004215" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-code mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> JSON Model</source>
+      </trans-unit>
+      <trans-unit id="2101446211121725559" datatype="html">
+        <source>Create HTML Block</source>
+      </trans-unit>
+      <trans-unit id="2291867117302125126" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-cog mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Parameters</source>
+      </trans-unit>
+      <trans-unit id="3969386696509617452" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-bolt mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Preview</source>
+      </trans-unit>
+      <trans-unit id="4236093155995646765" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-code mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> HTML Code</source>
+      </trans-unit>
+      <trans-unit id="4689907478165612369" datatype="html">
+        <source> * Direct HTML code editing is disabled when WYSIWYG editor is enabled. </source>
+      </trans-unit>
+      <trans-unit id="5806345799950867487" datatype="html">
+        <source>Switching to HTML block will disable the WYSIWYG editor. Are you sure you want to proceed ?</source>
+      </trans-unit>
+      <trans-unit id="6861186531718840539" datatype="html">
+        <source>Caution</source>
+      </trans-unit>
+      <trans-unit id="7996801569936302010" datatype="html">
+        <source>Create Block</source>
+      </trans-unit>
+      <trans-unit id="8443638620326574514" datatype="html">
+        <source>Convert to HTML Block</source>
+      </trans-unit>
+      <trans-unit id="1260628939642265740" datatype="html">
+        <source>New Block</source>
+      </trans-unit>
+      <trans-unit id="7834305962144525741" datatype="html">
+        <source>Edit description here</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

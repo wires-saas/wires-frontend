@@ -6,7 +6,8 @@ import { BlockEditorComponent } from './block-editor/block-editor.component';
 @NgModule({
     imports: [RouterModule.forChild([
         { path: '', component: BlocksComponent },
-        { path: 'editor', component: BlockEditorComponent }
+        { path: 'editor', component: BlockEditorComponent },
+        { path: 'editor/html', component: BlockEditorComponent, data: { pureHTML: true } },
     ])],
     exports: [RouterModule],
 })

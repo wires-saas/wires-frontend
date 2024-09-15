@@ -3,7 +3,9 @@ import { environment } from '../../environments/environment';
 import pretty from 'pretty';
 import { deepClone } from '../utils/deep-clone';
 
-export class AbstractBlock {
+export interface BlockRef extends Pick<Block, '_id' | 'organization' | 'version'> {}
+
+export class Block {
 
     _id?: string;
     organization: string;
@@ -12,7 +14,11 @@ export class AbstractBlock {
 
     parameters: BlockParameters;
 
+    model: BlockRef[];
     code: string;
+
+    wysiwygEnabled: boolean; // if set to true, disable model to code compilation, allowing direct code modification
+
     version: number;
 
     parametersList(): BlockParameter<any>[] {
@@ -35,24 +41,30 @@ export class AbstractBlock {
         this.description = description;
     }
 
-    constructor(properties: Partial<AbstractBlock>) {
+    convertToPureHTML(): void {
+        this.wysiwygEnabled = false;
+    }
+
+    constructor(properties: Partial<Block>) {
         this._id = '';
         this.organization = '';
         this.displayName = '';
         this.description = '';
         this.parameters = {};
+        this.model = [];
         this.code = '';
+        this.wysiwygEnabled = true;
         this.version = 0;
 
         Object.assign(this, properties);
     }
 }
 
-export class AbstractBlockWithHistory extends AbstractBlock {
-    $$history: AbstractBlock[] = [];
+export class BlockWithHistory extends Block {
+    $$history: Block[] = [];
     $$index = 0;
 
-    constructor(properties: Partial<AbstractBlock>) {
+    constructor(properties: Partial<Block>) {
         super(properties);
         this.saveInitialState();
     }
@@ -75,6 +87,12 @@ export class AbstractBlockWithHistory extends AbstractBlock {
     override removeParameter(key: string) {
         super.removeParameter(key);
         this.save(); // saving after as current state is always part of history
+    }
+
+    override convertToPureHTML(): void {
+        console.log('convertToPureHTML', this);
+        super.convertToPureHTML();
+        this.save();
     }
 
     saveInitialState() {
@@ -180,19 +198,22 @@ export interface BlockParameters {
 export class BlockService {
     private domain: string;
 
-    private block!: AbstractBlock;
+    private block!: Block;
 
     constructor() {
         this.domain = environment.backend;
+    }
 
+    getNewBlock(wysiwygEnabled: boolean): Block {
 
         const formattedCode = pretty('<div><h1>{{ #leftArticle.title }}</h1></div>');
 
-        this.block = new AbstractBlock({
+        return new Block({
             _id: '1',
             organization: '1',
-            displayName: 'test',
-            description: 'test',
+            displayName: $localize `New Block`,
+            description: $localize `Edit description here`,
+            wysiwygEnabled: wysiwygEnabled,
             parameters: {
                 'test': {
                     key: 'test',
@@ -212,10 +233,6 @@ export class BlockService {
             code: formattedCode,
             version: 0
         });
-    }
-
-    getBlock(): AbstractBlock {
-        return this.block;
     }
 
 }

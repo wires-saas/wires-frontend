@@ -12,10 +12,41 @@ import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { TooltipModule } from 'primeng/tooltip';
+import { TagModule } from 'primeng/tag';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { BlockEditorDebugComponent } from './block-editor/block-editor-debug/block-editor-debug.component';
+import {
+    BlockEditorParametersComponent
+} from './block-editor/block-editor-parameters/block-editor-parameters.component';
+import { BlockEditorCodeComponent } from './block-editor/block-editor-code/block-editor-code.component';
+import { BlockEditorPreviewComponent } from './block-editor/block-editor-preview/block-editor-preview.component';
+import { BlockEditorWysiwygComponent } from './block-editor/block-editor-wysiwyg/block-editor-wysiwyg.component';
 
 @NgModule({
-    imports: [CommonModule, BlocksRoutingModule, MonacoEditorModule, FormsModule, PrettyJsonPipe, InputTextModule, PanelModule, ButtonModule, RippleModule, TooltipModule],
-    declarations: [BlocksComponent, BlockEditorComponent],
-    providers: [BlockService]
+    imports: [
+        CommonModule,
+        BlocksRoutingModule,
+        MonacoEditorModule,
+        FormsModule,
+        PrettyJsonPipe,
+        InputTextModule,
+        PanelModule,
+        ButtonModule,
+        RippleModule,
+        TooltipModule,
+        TagModule,
+        ConfirmDialogModule
+    ],
+    declarations: [
+        BlocksComponent,
+        BlockEditorComponent,
+        BlockEditorDebugComponent,
+        BlockEditorParametersComponent,
+        BlockEditorCodeComponent,
+        BlockEditorPreviewComponent,
+        BlockEditorWysiwygComponent
+    ],
+    providers: [BlockService, ConfirmationService]
 })
 export class BlocksModule {}

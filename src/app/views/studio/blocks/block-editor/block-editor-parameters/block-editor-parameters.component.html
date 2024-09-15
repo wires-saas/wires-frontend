@@ -1,0 +1,31 @@
+<div class="flex justify-content-between align-items-center mb-2">
+    <span class="text-900 text-xl font-semibold" i18n><i class="pi pi-cog mr-1"></i> Parameters</span>
+</div>
+<div class="card">
+
+    <p-panel *ngFor="let parameter of block.parametersList()"
+             [collapsed]="false"
+             [toggleable]="true"
+             styleClass="border-round"
+             class="border-round line-height-3 block m-0 mb-3">
+        <ng-template pTemplate="header">
+            <div class="flex justify-content-between align-items-center">
+                <span><b>{{ parameter.key }}</b> - {{ parameter.displayName }}</span>
+            </div>
+        </ng-template>
+        {{ parameter.description }}
+
+        <ng-template pTemplate="footer">
+            <div class="flex justify-content-end">
+                <button pButton (click)="removeParameter(parameter.key)" type="button" label="Remove" icon="pi pi-trash" class="p-button-danger mr-2">
+                </button>
+                <button pButton type="button" label="Save" icon="pi pi-save" class="p-button-success mr-2">
+                </button>
+            </div>
+        </ng-template>
+
+    </p-panel>
+
+
+
+</div>

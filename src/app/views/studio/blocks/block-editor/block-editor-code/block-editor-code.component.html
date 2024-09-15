@@ -1,0 +1,40 @@
+<div class="flex justify-content-start align-items-center mb-2">
+    <span class="text-900 text-xl font-semibold" i18n><i class="pi pi-code mr-1"></i> HTML Code</span>
+    <p-tag *ngIf="block.wysiwygEnabled; else editableTag" severity="warning" value="Readonly" class="ml-3"></p-tag>
+    <ng-template #editableTag>
+        <p-tag severity="success" value="Editable" class="ml-3"></p-tag>
+    </ng-template>
+</div>
+<div class="card">
+
+    <ngx-monaco-editor *ngIf="block.wysiwygEnabled; else htmlEditor"
+                       [options]="editorOptions"
+                       [ngModel]="block.code"
+                       class="w-full"></ngx-monaco-editor>
+
+    <ng-template #htmlEditor>
+        <ngx-monaco-editor (change)="editorChange(block.code)"
+                           [options]="editorOptions"
+                           [(ngModel)]="block.code"
+                           class="w-full"></ngx-monaco-editor>
+    </ng-template>
+
+    <span *ngIf="block.wysiwygEnabled" class="text-900 text-sm font-semibold" i18n>
+        * Direct HTML code editing is disabled when WYSIWYG editor is enabled.
+    </span>
+
+    <div *ngIf="block.wysiwygEnabled" class="flex justify-content-end">
+        <button pButton pRipple type="button"
+                (click)="openSwitchHTMLDialog()"
+                i18n-label label="Convert to HTML Block"
+                icon="pi pi-exclamation-triangle"
+                class="p-button-text p-button-danger mt-3"></button>
+    </div>
+
+    <p-confirmDialog i18n-header header="Caution"
+                     key="convertBlock" icon="pi pi-exclamation-triangle"
+                     i18n-message message="Switching to HTML block will disable the WYSIWYG editor. Are you sure you want to proceed ?"
+                     [style]="{width: '350px'}" acceptButtonStyleClass="p-button-text p-button-danger" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+
+
+</div>

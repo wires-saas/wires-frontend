@@ -2705,6 +2705,54 @@
         <source>Reach us if you are interested in 2FA</source>
         <target state="new">Contactez-nous si vous êtes intéressé par le 2FA</target>
       </trans-unit>
+      <trans-unit id="4236093155995646765" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-code mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> HTML Code</source>
+        <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-code mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Code HTML</target>
+      </trans-unit>
+      <trans-unit id="4689907478165612369" datatype="html">
+        <source> * Direct HTML code editing is disabled when WYSIWYG editor is enabled. </source>
+        <target state="new"> * La modification du code HTML est désactivée sur ce type de bloc. </target>
+      </trans-unit>
+      <trans-unit id="8443638620326574514" datatype="html">
+        <source>Convert to HTML Block</source>
+        <target state="new">Convertir en bloc HTML</target>
+      </trans-unit>
+      <trans-unit id="6861186531718840539" datatype="html">
+        <source>Caution</source>
+        <target state="new">Prudence</target>
+      </trans-unit>
+      <trans-unit id="5806345799950867487" datatype="html">
+        <source>Switching to HTML block will disable the WYSIWYG editor. Are you sure you want to proceed ?</source>
+        <target state="new">Convertir un bloc en bloc HTML désactivera l&apos;éditeur interactif. Êtes-vous certain de vouloir continuer ?</target>
+      </trans-unit>
+      <trans-unit id="2013221796169004215" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-code mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> JSON Model</source>
+        <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-code mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Modèle JSON</target>
+      </trans-unit>
+      <trans-unit id="2291867117302125126" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-cog mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Parameters</source>
+        <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-cog mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Paramètres</target>
+      </trans-unit>
+      <trans-unit id="3969386696509617452" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-bolt mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Preview</source>
+        <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-bolt mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Prévisualisation</target>
+      </trans-unit>
+      <trans-unit id="7996801569936302010" datatype="html">
+        <source>Create Block</source>
+        <target state="new">Créer un bloc</target>
+      </trans-unit>
+      <trans-unit id="2101446211121725559" datatype="html">
+        <source>Create HTML Block</source>
+        <target state="new">Créer bloc HTML</target>
+      </trans-unit>
+      <trans-unit id="1260628939642265740" datatype="html">
+        <source>New Block</source>
+        <target state="new">Nouveau bloc</target>
+      </trans-unit>
+      <trans-unit id="7834305962144525741" datatype="html">
+        <source>Edit description here</source>
+        <target state="new">Modifier la description du bloc</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
