@@ -58,6 +58,8 @@ export class BlockEditorComponent implements OnInit {
             takeUntilDestroyed(this.destroyRef)
         ).subscribe();
 
+        this.darkMode = !this.layoutService.isLightMode();
+
         this.layoutService.configUpdate$.pipe(
             map((config) => {
                     this.darkMode =
@@ -71,17 +73,28 @@ export class BlockEditorComponent implements OnInit {
 
     undo() {
         this.block?.undo();
+        this.cloneBlock();
     }
 
     redo() {
         this.block?.redo();
+        this.cloneBlock();
     }
 
     openDisplayNameDialog() {
         const nextDisplayName = prompt('Enter new display name');
         if (nextDisplayName) {
             this.block?.setDisplayName(nextDisplayName);
+            this.cloneBlock();
         }
+    }
+
+    cloneBlock() {
+        this.block = this.block?.clone();
+    }
+
+    saveBlock() {
+        // ...
     }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Block } from '../../../../../services/block.service';
 
 @Component({
@@ -9,8 +9,11 @@ export class BlockEditorParametersComponent {
 
     @Input() block!: Block;
 
+    @Output() blockChange = new EventEmitter<void>();
+
     removeParameter(key: string) {
         this.block.removeParameter(key);
+        this.blockChange.emit();
     }
 
 

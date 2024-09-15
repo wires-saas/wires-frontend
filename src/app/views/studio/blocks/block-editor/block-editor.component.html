@@ -37,6 +37,16 @@
 
 
         <div>
+
+            <!-- save block button -->
+            <button pButton pRipple type="button"
+                    (click)="saveBlock()"
+                    label="Save Block"
+                    icon="pi pi-save"
+                    class="p-button p-button-primary p-button-raised mb-2"></button>
+
+
+            <div class="flex justify-content-end">
             <button pButton pRipple type="button"
                     [disabled]="!block.canUndo()"
                     (click)="undo()"
@@ -45,8 +55,6 @@
                     icon="pi pi-arrow-left"
                     class="p-button-icon-only p-button-secondary p-button-text"></button>
 
-            <!-- <button pButton pRipple type="button" [disabled]="true" [label]="(block.$$index + 1).toString() + '/' + block.$$history.length" class="p-button-text p-button-plain"></button> -->
-
             <button pButton pRipple type="button"
                     [disabled]="!block.canRedo()"
                     (click)="redo()"
@@ -54,6 +62,9 @@
                     tooltipPosition="bottom"
                     icon="pi pi-arrow-right"
                     class="p-button-icon-only p-button-secondary p-button-text"></button>
+            </div>
+
+
         </div>
     </div>
 
@@ -74,12 +85,14 @@
         </ng-template>
 
         <app-block-editor-code [block]="block"
+                               (blockChange)="cloneBlock()"
                                class="col-12 md:col-12 xl:col-6"
                                [class.flex-order-2]="block.wysiwygEnabled"
                                [class.flex-order-0]="!block.wysiwygEnabled">
         </app-block-editor-code>
 
         <app-block-editor-parameters [block]="block"
+                                     (blockChange)="cloneBlock()"
                                      class="col-12 md:col-12 xl:col-6 flex-order-2"
                                      [class.flex-order-1]="block.wysiwygEnabled"
                                      [class.flex-order-2]="!block.wysiwygEnabled">

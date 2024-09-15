@@ -63,12 +63,22 @@ export class Block {
 }
 
 export class BlockWithHistory extends Block {
-    $$history: Block[] = [];
-    $$index = 0;
+    $$history: Block[];
+    $$index: number;
 
-    constructor(properties: Partial<Block>) {
+    constructor(properties: Partial<Block>, history: Block[] = [], index = 0) {
         super(properties);
-        this.saveInitialState();
+        this.$$history = history;
+        this.$$index = index;
+        if (history.length === 0) this.saveInitialState();
+    }
+
+    clone(): BlockWithHistory {
+        return new BlockWithHistory(
+            deepClone(this),
+            this.$$history.map(_ => deepClone(_)),
+            this.$$index
+        );
     }
 
     override setCode(code: string) {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Block } from '../../../../../services/block.service';
 import { ConfirmationService } from 'primeng/api';
 
@@ -9,6 +9,8 @@ import { ConfirmationService } from 'primeng/api';
 export class BlockEditorCodeComponent implements OnInit {
 
     @Input() block!: Block;
+
+    @Output() blockChange = new EventEmitter<void>();
 
     editorOptions = {
         theme: 'vs-dark',
@@ -47,6 +49,7 @@ export class BlockEditorCodeComponent implements OnInit {
                     ...this.editorOptions,
                     readOnly: false,
                 };
+                this.blockChange.emit();
             }
         });
     }
