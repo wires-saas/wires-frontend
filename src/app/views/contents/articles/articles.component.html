@@ -5,6 +5,7 @@
                             [articles]="articles" [feeds]="feeds" [categories]="categories" [tags]="tags"
                             [loading]="loading"
                             (onCreateTag)="openCreateTagDialog()"
+                            (onDeleteTag)="handleTagDeletion()"
                             class="block mb-4"></app-articles-table>
 
 	</div>

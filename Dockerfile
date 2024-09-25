@@ -1,4 +1,4 @@
-FROM nginx:1.26
+FROM nginx:latest
 
 COPY --chown=65534:65534 dist/ /usr/share/nginx/html
 

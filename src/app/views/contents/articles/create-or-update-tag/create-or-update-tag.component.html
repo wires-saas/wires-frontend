@@ -5,7 +5,7 @@
           [modal]="true"
           [closable]="true"
           [dismissableMask]="true"
-          (onHide)="closeDialog.emit()"
+          (onHide)="closeDialog.emit(false)"
           styleClass="mx-3 sm:mx-0 sm:w-full md:w-8 lg:w-6" contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
     <div class="p-4">
         <div class="grid p-fluid formgrid">

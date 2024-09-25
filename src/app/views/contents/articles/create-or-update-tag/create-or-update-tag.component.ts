@@ -15,7 +15,7 @@ export class CreateOrUpdateTagComponent implements OnInit {
     @Input() creatingTag: boolean = false;
     @Input() tag!: Tag;
 
-    @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
+    @Output() closeDialog: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     availableSeverities = [
         {
@@ -98,7 +98,7 @@ export class CreateOrUpdateTagComponent implements OnInit {
                     detail: $localize`Tag "${this.tag.displayName}" created successfully.`,
                 });
 
-                this.closeDialog.emit();
+                this.closeDialog.emit(true);
             })
             .catch((err) => {
                 console.error(err);

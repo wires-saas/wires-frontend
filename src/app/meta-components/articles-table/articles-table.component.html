@@ -1,10 +1,10 @@
 <p-toast position="bottom-right"></p-toast>
 <div class="card">
 
-    <h5 i18n>Available Tags</h5>
+    <h5 i18n>Available Tags ({{ tags.length }})</h5>
 
     <div class="flex mb-5">
-        <p-tag *ngFor="let tag of tags"
+        <p-tag *ngFor="let tag of tags | arraySort:{'displayName': 'asc'}"
                (click)="selectedTag && selectedTag._id === tag._id ? clear(dataTable) : loadTag(tag)"
                [severity]="tag.color"
                [value]="tag.displayName"
@@ -30,6 +30,10 @@
                         <input pInputText type="text" #filter (input)="onGlobalFilter(dataTable, $event)"
                                i18n-placeholder placeholder="Search Keyword" class="w-full"/>
                     </div>
+
+                    <button *ngIf="selectedTag" (click)="openDeleteTagDialog(selectedTag, $event)" pButton class="p-button-outlined p-button-danger flex w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-tag"
+                            i18n-label label="Delete Selected Tag"></button>
+                    <p-confirmPopup key="confirmTagDeletion"></p-confirmPopup>
 
                     <button *ngIf="selectedTag" (click)="onCreateTag.emit()" pButton class="p-button-outlined flex w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-tag"
                             i18n-label label="Edit Selected Tag"></button>

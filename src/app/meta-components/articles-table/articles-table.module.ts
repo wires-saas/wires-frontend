@@ -19,6 +19,8 @@ import { ToastModule } from 'primeng/toast';
 import { ChipModule } from 'primeng/chip';
 import { TagModule } from 'primeng/tag';
 import { SkeletonModule } from 'primeng/skeleton';
+import { ArraySortPipe } from '../../utils/pipes/array-sort.pipe';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
     imports: [
@@ -41,6 +43,8 @@ import { SkeletonModule } from 'primeng/skeleton';
         ChipModule,
         TagModule,
         SkeletonModule,
+        ArraySortPipe,
+        ConfirmPopupModule,
     ],
     exports: [ArticlesTableComponent],
     declarations: [ArticlesTableComponent],

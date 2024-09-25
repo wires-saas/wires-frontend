@@ -17,7 +17,7 @@ import { Article } from '../../services/article.service';
 import { Feed } from '../../services/feed.service';
 import { TableFilterUtils, TableUtils } from '../../utils/table.utils';
 import { deepClone } from '../../utils/deep-clone';
-import { Tag } from '../../services/tag.service';
+import { Tag, TagService } from '../../services/tag.service';
 
 @Component({
     selector: 'app-articles-table',
@@ -45,10 +45,14 @@ export class ArticlesTableComponent {
     @Input() loading: boolean = true;
 
     @Output() onCreateTag: EventEmitter<void> = new EventEmitter<void>();
+    @Output() onDeleteTag: EventEmitter<Tag> = new EventEmitter<Tag>();
 
     @ViewChild('filter') filter!: ElementRef;
 
-    constructor(private filterService: FilterService, private messageService: MessageService) {
+    constructor(private filterService: FilterService,
+                private messageService: MessageService,
+                private tagService: TagService,
+                private confirmationService: ConfirmationService) {
         // [matchModeOptions]="[{ value: 'hasFeed', label: 'Has Feed' }]"
 
         // TODO get matchModeOptions factorized, within table.utils.ts
@@ -160,5 +164,31 @@ export class ArticlesTableComponent {
             detail: `Tag "${tag.displayName}" has been loaded`,
         }); */
 
+    }
+
+    async openDeleteTagDialog(tag: Tag, e: Event) {
+
+        this.confirmationService.confirm({
+            key: 'confirmTagDeletion',
+            target: e.target || new EventTarget(),
+            message: 'Are you sure that you want to proceed?',
+            icon: 'pi pi-exclamation-triangle',
+            acceptButtonStyleClass: 'p-button-danger',
+            accept: async () => {
+
+                if (!tag._id) throw new Error('Tag id not found');
+                await this.tagService.deleteTag(tag.organization, tag._id);
+
+                this.clear(this.table);
+
+                this.onDeleteTag.emit(tag);
+
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Tag Deleted',
+                    detail: `You have successfully deleted tag "${tag.displayName}"`,
+                });
+            },
+        });
     }
 }

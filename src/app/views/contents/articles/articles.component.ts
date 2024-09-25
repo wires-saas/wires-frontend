@@ -132,7 +132,6 @@ export class ArticlesComponent implements OnInit {
         };
 
         // TODO eliminate some filters (tags)
-        // TODO open dialog
         // TODO pretty display filters part of created tag
     }
 
@@ -143,6 +142,11 @@ export class ArticlesComponent implements OnInit {
             newTag: false,
             tag: {} as Tag,
         };
+    }
+
+    async handleTagDeletion() {
+        this.tags = await this.tagService.getTags(this.organizationSlug);
+        this.articles = await this.articleService.getArticles(this.organizationSlug);
     }
 
     static permissions = ['read_article'];
