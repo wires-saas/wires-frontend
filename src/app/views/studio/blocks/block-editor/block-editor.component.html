@@ -38,6 +38,13 @@
 
         <div>
 
+            <!-- delete block button -->
+            <button pButton pRipple type="button"
+                    (click)="openDeleteBlockDialog()"
+                    label="Delete Block"
+                    icon="pi pi-trash"
+                    class="p-button-outlined p-button-danger mb-2 mr-2"></button>
+
             <!-- save block button -->
             <button pButton pRipple type="button"
                     (click)="saveBlock()"
@@ -106,5 +113,11 @@
 
 
 </ng-container>
+
+<p-confirmDialog i18n-header header="Delete Block" key="confirm-delete" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to delete block ? Templates relying on this block will be affected. This action cannot be undone."
+                 [style]="{width: '600px'}" defaultFocus="none"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
 
 <p-toast key="block-editor" position="bottom-right"></p-toast>

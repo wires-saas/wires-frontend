@@ -23,6 +23,8 @@ export class Block {
 
     version: number;
 
+    updatedAt?: Date;
+
     parametersList(): BlockParameter<any>[] {
         return Object.values(this.parameters);
     }
@@ -236,8 +238,7 @@ export class BlockService {
         const formattedCode = pretty('<div><h1>{{ #leftArticle.title }}</h1></div>');
 
         return new Block({
-            _id: '1',
-            organization: '1',
+            organization: 'alphabet',
             displayName: $localize `New Block`,
             description: $localize `Empty description`,
             wysiwygEnabled: wysiwygEnabled,
@@ -266,6 +267,7 @@ export class BlockService {
         return new Promise((res, _) => {
             setTimeout(async () => {
                 res(firstValueFrom(this.http.post<Block>(`${this.domain}/organizations/${organizationId}/blocks`, {
+                    _id: block._id,
                     organization: organizationId,
                     displayName: block.displayName,
                     description: block.description,
@@ -277,8 +279,16 @@ export class BlockService {
 
                     wysiwygEnabled: block.wysiwygEnabled,
 
-                    version: block.version,
+                    // version: block.version,
                 })));
+            }, this.timeout);
+        });
+    }
+
+    async deleteBlock(organizationId: string, blockId: string): Promise<void> {
+        return new Promise((res, _) => {
+            setTimeout(async () => {
+                res(firstValueFrom(this.http.delete<void>(`${this.domain}/organizations/${organizationId}/blocks/${blockId}`)));
             }, this.timeout);
         });
     }

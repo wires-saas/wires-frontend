@@ -1,5 +1,5 @@
 <li (click)="selectBlock.emit(block)"
-    class="p-2 hover:surface-200 cursor-pointer border-round border-1 border-transparent transition-all transition-duration-200">
+    class="p-2 hover:surface-100 cursor-pointer border-round border-1 border-transparent transition-all transition-duration-200">
     <div class="flex flex-wrap p-2 align-items-center gap-3">
         <img
             class="w-4rem flex-shrink-0 border-round"
@@ -11,12 +11,12 @@
             </span>
             <div class="flex align-items-center gap-2">
                 <span>
-                    {{ block.description }}
+                    <p-tag *ngIf="!block.wysiwygEnabled" severity="success" value="HTML" class="mr-1"></p-tag> {{ block.description }}
                 </span>
             </div>
         </div>
         <span class="font-bold text-900 ml-5">
-            &#36;{{ block.version }}
+            {{ block.updatedAt | date:'short' }}
         </span>
     </div>
 </li>

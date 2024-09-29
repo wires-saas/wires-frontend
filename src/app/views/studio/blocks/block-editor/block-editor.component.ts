@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { zip } from 'rxjs';
 import { OrganizationService } from '../../../../services/organization.service';
+import { MessageUtils } from '../../../../utils/message.utils';
 
 @Component({
     selector: 'app-block-editor',
@@ -33,6 +34,7 @@ export class BlockEditorComponent implements OnInit {
                 private activatedRoute: ActivatedRoute,
                 private organizationService: OrganizationService,
                 private messageService: MessageService,
+                private confirmationService: ConfirmationService,
                 private router: Router) {
     }
 
@@ -114,22 +116,64 @@ export class BlockEditorComponent implements OnInit {
         this.block = this.block?.clone();
     }
 
+    async openDeleteBlockDialog() {
+
+        const onDelete = () => {
+            this.blockService.deleteBlock(this.currentOrgSlug!, this.block!._id!).then(() => {
+                this.messageService.add({
+                    key: 'block-editor',
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: 'Block deleted successfully'
+                });
+                // this.router.navigate(['/studio/blocks']);
+            }).catch((err) => {
+                console.error(err);
+
+                MessageUtils.parseServerError(
+                    this.messageService,
+                    err,
+                    {
+                        summary: $localize`Error deleting block`,
+                    },
+                );
+            });
+        }
+
+        this.confirmationService.confirm({
+            key: 'confirm-delete',
+            accept: onDelete,
+        });
+
+    }
+
     async saveBlock() {
         // ...
         this.savingBlock = true;
         await this.blockService.saveBlock(this.currentOrgSlug!, this.block!)
             .then(() => {
                 this.savingBlock = false;
-
-                // TODO success message
+                if (!this.block?._id) {
+                    this.messageService.add({
+                        key: 'block-editor',
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: 'Block created successfully'
+                    });
+                } else {
+                    this.messageService.add({
+                        key: 'block-editor',
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: 'Block updated successfully'
+                    });
+                }
             })
             .catch((err) => {
                 console.error(err);
                 this.savingBlock = false;
 
                 this.messageService.add({key: 'block-editor', severity: 'error', summary: 'Error', detail: 'Failed to save block'});
-
-                // TODO error message
             });
     }
 
