@@ -209,15 +209,25 @@ export interface BlockParameters {
 export class BlockService {
     private domain: string;
 
+    private timeout: number = 0;
+
     constructor(private http: HttpClient) {
         this.domain = environment.backend;
+    }
+
+    async getBlocks(organizationId: string): Promise<Block[]> {
+        return new Promise((res, _) => {
+            setTimeout(async () => {
+                res(firstValueFrom(this.http.get<Block[]>(`${this.domain}/organizations/${organizationId}/blocks`)));
+            }, this.timeout);
+        });
     }
 
     async getBlock(organizationId: string, blockId: string): Promise<Block> {
         return new Promise((res, _) => {
             setTimeout(async () => {
                 res(firstValueFrom(this.http.get<Block>(`${this.domain}/organizations/${organizationId}/blocks/${blockId}`)));
-            }, 3000);
+            }, this.timeout);
         });
     }
 
@@ -229,7 +239,7 @@ export class BlockService {
             _id: '1',
             organization: '1',
             displayName: $localize `New Block`,
-            description: $localize `Edit description here`,
+            description: $localize `Empty description`,
             wysiwygEnabled: wysiwygEnabled,
             parameters: {
                 'test': {
@@ -249,6 +259,27 @@ export class BlockService {
             },
             code: formattedCode,
             version: 0
+        });
+    }
+
+    async saveBlock(organizationId: string, block: Block): Promise<Block> {
+        return new Promise((res, _) => {
+            setTimeout(async () => {
+                res(firstValueFrom(this.http.post<Block>(`${this.domain}/organizations/${organizationId}/blocks`, {
+                    organization: organizationId,
+                    displayName: block.displayName,
+                    description: block.description,
+
+                    parameters: Object.values(block.parameters),
+
+                    model: block.model,
+                    code: block.code,
+
+                    wysiwygEnabled: block.wysiwygEnabled,
+
+                    version: block.version,
+                })));
+            }, this.timeout);
         });
     }
 

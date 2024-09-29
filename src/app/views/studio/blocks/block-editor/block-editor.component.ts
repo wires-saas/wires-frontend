@@ -7,8 +7,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LayoutService } from '../../../../layout/service/app.layout.service';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { zip } from 'rxjs';
+import { OrganizationService } from '../../../../services/organization.service';
 
 @Component({
     selector: 'app-block-editor',
@@ -19,18 +20,30 @@ export class BlockEditorComponent implements OnInit {
     private destroyRef = inject(DestroyRef);
 
     loadingBlock: boolean = false;
+    savingBlock: boolean = false;
 
     block: BlockWithHistory | undefined = undefined;
 
     darkMode: boolean = false;
 
+    private currentOrgSlug: string | undefined;
+
     constructor(private blockService: BlockService,
                 private layoutService: LayoutService,
                 private activatedRoute: ActivatedRoute,
+                private organizationService: OrganizationService,
+                private messageService: MessageService,
                 private router: Router) {
     }
 
     ngOnInit() {
+
+        this.organizationService.currentOrganization$.pipe(
+            map(async (org) => {
+                this.currentOrgSlug = org?.slug;
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
 
 
         zip(this.activatedRoute.params, this.activatedRoute.data).pipe(
@@ -89,12 +102,35 @@ export class BlockEditorComponent implements OnInit {
         }
     }
 
+    openDescriptionDialog() {
+        const nextDescription = prompt('Enter new description');
+        if (nextDescription) {
+            this.block?.setDescription(nextDescription);
+            this.cloneBlock();
+        }
+    }
+
     cloneBlock() {
         this.block = this.block?.clone();
     }
 
-    saveBlock() {
+    async saveBlock() {
         // ...
+        this.savingBlock = true;
+        await this.blockService.saveBlock(this.currentOrgSlug!, this.block!)
+            .then(() => {
+                this.savingBlock = false;
+
+                // TODO success message
+            })
+            .catch((err) => {
+                console.error(err);
+                this.savingBlock = false;
+
+                this.messageService.add({key: 'block-editor', severity: 'error', summary: 'Error', detail: 'Failed to save block'});
+
+                // TODO error message
+            });
     }
 
 }

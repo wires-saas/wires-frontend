@@ -1,19 +1,29 @@
-<h1>Blocks</h1>
 
+<div class="grid">
+    <div class="col-3">
+        <app-explorer></app-explorer>
+    </div>
 
-<app-explorer></app-explorer>
+    <div class="col-6">
 
+        <app-blocks-list [blocks]="blocks" (selectBlock)="openEditor($event)"></app-blocks-list>
 
-<ul>
-    <li>
-        <a class="btn btn-primary" [routerLink]="['editor']" i18n>Create Block</a>
-    </li>
+    </div>
 
-    <li>
-        <a class="btn btn-primary" [routerLink]="['editor/html']" i18n>Create HTML Block</a>
-    </li>
+    <div class="col-3">
 
-    <li>
-        <a class="btn btn-primary" [routerLink]="['bidule/editor']" i18n>Go to imaginary block</a>
-    </li>
-</ul>
+        <!-- button to create block -->
+        <a [routerLink]="['editor']">
+            <button pButton pRipple type="button" i18n-label label="Create Block" class="p-button-primary w-full"></button>
+        </a>
+
+        <a [routerLink]="['editor/html']">
+            <button pButton pRipple type="button" i18n-label label="Create HTML Block" class="p-button-secondary w-full mt-2"></button>
+        </a>
+
+        <a [routerLink]="['bidule/editor']">
+            <button pButton pRipple type="button" i18n-label label="Go to fake block" class="p-button-text w-full mt-2"></button>
+        </a>
+
+    </div>
+</div>

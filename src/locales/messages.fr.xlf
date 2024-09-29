@@ -321,14 +321,6 @@
         <source>Go to Dashboard</source>
         <target state="new">Accueil</target>
       </trans-unit>
-      <trans-unit id="8766840274158243690" datatype="html">
-        <source>Oops!</source>
-        <target state="new">Oups !</target>
-      </trans-unit>
-      <trans-unit id="693027650393741132" datatype="html">
-        <source>There is nothing here</source>
-        <target state="new">Il n&apos;y rien ici</target>
-      </trans-unit>
       <trans-unit id="7197870580140559288" datatype="html">
         <source>Sales</source>
         <target state="new">Ventes</target>
@@ -692,22 +684,6 @@
       <trans-unit id="6288082678754862274" datatype="html">
         <source>Upload Image</source>
         <target state="new">Choisir une image</target>
-      </trans-unit>
-      <trans-unit id="1102670394574478320" datatype="html">
-        <source>UI Kit</source>
-        <target state="new">Design</target>
-      </trans-unit>
-      <trans-unit id="3848479214898655176" datatype="html">
-        <source>Utilities</source>
-        <target state="new">Utilitaires</target>
-      </trans-unit>
-      <trans-unit id="2549712342933889320" datatype="html">
-        <source>Prime Blocks</source>
-        <target state="new">Blocs Prime</target>
-      </trans-unit>
-      <trans-unit id="1486515619927301272" datatype="html">
-        <source>E-Commerce</source>
-        <target state="new">E-Commerce</target>
       </trans-unit>
       <trans-unit id="6215970478390263685" datatype="html">
         <source>My Organization</source>
@@ -2609,10 +2585,6 @@
         <source>Service Level Agreement</source>
         <target state="new">Niveau de service</target>
       </trans-unit>
-      <trans-unit id="7995928274976820365" datatype="html">
-        <source>Available Tags</source>
-        <target state="new">Tags définis</target>
-      </trans-unit>
       <trans-unit id="6948786787037977434" datatype="html">
         <source>Blocks</source>
         <target state="new">Blocs</target>
@@ -2734,7 +2706,7 @@
         <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-cog mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Paramètres</target>
       </trans-unit>
       <trans-unit id="3969386696509617452" datatype="html">
-        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-bolt mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Preview</source>
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-eye mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Preview</source>
         <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-bolt mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Prévisualisation</target>
       </trans-unit>
       <trans-unit id="7996801569936302010" datatype="html">
@@ -2752,6 +2724,50 @@
       <trans-unit id="7834305962144525741" datatype="html">
         <source>Edit description here</source>
         <target state="new">Modifier la description du bloc</target>
+      </trans-unit>
+      <trans-unit id="6389312883797462351" datatype="html">
+        <source>Studio</source>
+        <target state="new">Studio</target>
+      </trans-unit>
+      <trans-unit id="2215142474086264059" datatype="html">
+        <source>Block Not Found</source>
+        <target state="new">Bloc introuvable</target>
+      </trans-unit>
+      <trans-unit id="6795213363439635555" datatype="html">
+        <source>Cannot find the block you are looking for</source>
+        <target state="new">Ce bloc ne semble pas exister</target>
+      </trans-unit>
+      <trans-unit id="2662549973004331916" datatype="html">
+        <source>Return To Dashboard</source>
+        <target state="new">Retourner au dashboard</target>
+      </trans-unit>
+      <trans-unit id="4088311569349098646" datatype="html">
+        <source>Stats</source>
+        <target state="new">Stats</target>
+      </trans-unit>
+      <trans-unit id="8162749505658246767" datatype="html">
+        <source>Available Tags (<x id="INTERPOLATION" equiv-text="{{ tags.length }}"/>)</source>
+        <target state="new">Tags disponibles (<x id="INTERPOLATION" equiv-text="{{ tags.length }}"/>)</target>
+      </trans-unit>
+      <trans-unit id="5169457753679401075" datatype="html">
+        <source>Delete Selected Tag</source>
+        <target state="new">Supprimer tag sélectionné</target>
+      </trans-unit>
+      <trans-unit id="2812208926273686149" datatype="html">
+        <source>Create Folder</source>
+        <target state="new">Créer un dossier</target>
+      </trans-unit>
+      <trans-unit id="8106901743058975483" datatype="html">
+        <source>Empty description</source>
+        <target state="new">Aucune description</target>
+      </trans-unit>
+      <trans-unit id="3758471740601548370" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-bolt mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Interactive Editor</source>
+        <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-bolt mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Éditeur interactif</target>
+      </trans-unit>
+      <trans-unit id="7689622306401829574" datatype="html">
+        <source>Go to fake block</source>
+        <target state="new">Bloc inexistant</target>
       </trans-unit>
     </body>
   </file>

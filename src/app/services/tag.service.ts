@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
+export type TagColor = 'success' | 'secondary' | 'info' | 'warning' | 'danger' | 'contrast' | undefined;
+
 export interface Tag {
     _id?: string; // do not generate
 
     organization: string; // do not generate
 
-    color: string; // do not generate
+    color: TagColor; // do not generate
 
     displayName: string;
     description: string;

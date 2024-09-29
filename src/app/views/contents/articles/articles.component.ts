@@ -119,7 +119,7 @@ export class ArticlesComponent implements OnInit {
         const tag: Tag = {
             organization: organization.slug,
             displayName: '',
-            color: '',
+            color: undefined,
             description: '',
             ruleset: filtersForBackend,
         };

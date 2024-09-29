@@ -119,7 +119,7 @@ export class CreateOrUpdateTagComponent implements OnInit {
         this.tag = {
             displayName: '',
             description: '',
-            color: '',
+            color: undefined,
             organization: this.organizationSlug,
             ruleset: [],
         };

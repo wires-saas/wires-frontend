@@ -7,6 +7,8 @@ import { NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Menu, MenuModule } from 'primeng/menu';
 import { ContextMenuModule } from 'primeng/contextmenu';
+import { FolderService } from '../../services/folder.service';
+import { FolderUtils } from '../../utils/folder.utils';
 
 @Component({
     selector: 'app-explorer',
@@ -37,10 +39,27 @@ export class ExplorerComponent implements OnInit {
     newFolderLabel: string = 'New Folder';
     newSubFolderLabel: string = 'New Subfolder';
 
-    ngOnInit() {
+    constructor(private folderService: FolderService) {
+    }
+
+    async ngOnInit() {
+
+        const folders = await this.folderService.getFolders();
+        this.items = FolderUtils.foldersToMenuItems(folders);
+
+        this.items = [
+            {
+                label: 'All',
+                icon: this.allIcon,
+                command: () => {
+                    // ...
+                }
+            },
+            ...this.items
+        ];
 
 
-
+/*
         this.items = [
             {
                 label: 'All',
@@ -52,6 +71,7 @@ export class ExplorerComponent implements OnInit {
             {
                 label: 'Headers',
                 icon: this.folderIcon,
+                id: '1',
                 items: [
                     {
                         label: 'Documents',
@@ -61,18 +81,12 @@ export class ExplorerComponent implements OnInit {
                         label: 'Images',
                         icon: this.folderIcon,
                     },
-                    {
-                        label: this.newSubFolderLabel,
-                        icon: 'pi pi-plus',
-                        command: () => {
-                            // ...
-                        }
-                    }
                 ]
             },
             {
                 label: 'Body',
                 icon: 'pi pi-folder',
+                id: '2',
                 items: [
                     {
                         label: 'Upload',
@@ -91,6 +105,7 @@ export class ExplorerComponent implements OnInit {
             {
                 label: 'Footers',
                 icon: 'pi pi-folder',
+                id: '3',
                 items: [
                     {
                         label: 'Phone',
@@ -106,36 +121,9 @@ export class ExplorerComponent implements OnInit {
                     }
                 ]
             },
-            {
-                label: 'New Folder',
-                icon: 'pi pi-plus',
-                command: () => {
-                    // this.messageService.add({ severity: 'info', summary: 'Signed out', detail: 'User logged out', life: 3000 });
-                }
-            }
-        ];
+        ];*/
 
-        this.folderMenu = [
-            {
-                label: 'Rename',
-                icon: 'pi pi-pen-to-square',
-            },
-            {
-                label: 'Delete',
-                icon: 'pi pi-fw pi-trash',
-            },
-            {
-                separator: true,
-            },
-            {
-                label: 'Move to',
-                icon: 'pi pi-fw pi-home',
-                items: [
-                    ...this.items.map(item => ({ ...item, items: undefined }))
-                        .slice(-1) // removing the add folder item
-                ]
-            },
-        ];
+        this.folderMenu = [];
 
         this.toggleAll();
     }
@@ -159,11 +147,46 @@ export class ExplorerComponent implements OnInit {
         });
     }
 
+    private buildFolderMenu(folder: MenuItem): void {
+        this.folderMenu = [
+            {
+                label: 'Rename',
+                icon: 'pi pi-pen-to-square',
+            },
+            {
+                label: 'Delete',
+                icon: 'pi pi-fw pi-trash',
+            },
+            {
+                label: 'Add Folder',
+                icon: 'pi pi-fw pi-plus',
+            },
+            {
+                separator: true,
+            },
+            {
+                label: 'Move to',
+                icon: 'pi pi-fw pi-arrows-alt',
+                items: [
+                    {
+                      label: 'Root', items: undefined,
+                    },
+                    ...this.items.map(item => ({...item, items: undefined, visible: item.id !== folder.id }))
+                        .slice(1) // removing the root folder item
+                ]
+            }
+        ];
+    }
+
     showFolderMenu(event: any, folder: MenuItem) {
 
         if (folder.label === this.newSubFolderLabel) {
             return;
         }
+
+        console.log(folder.id);
+
+        this.buildFolderMenu(folder);
 
         this.selectedItem = folder;
 

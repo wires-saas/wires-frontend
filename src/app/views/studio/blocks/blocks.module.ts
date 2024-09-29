@@ -14,7 +14,7 @@ import { RippleModule } from 'primeng/ripple';
 import { TooltipModule } from 'primeng/tooltip';
 import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { BlockEditorDebugComponent } from './block-editor/block-editor-debug/block-editor-debug.component';
 import {
     BlockEditorParametersComponent
@@ -24,6 +24,10 @@ import { BlockEditorPreviewComponent } from './block-editor/block-editor-preview
 import { BlockEditorWysiwygComponent } from './block-editor/block-editor-wysiwyg/block-editor-wysiwyg.component';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ExplorerComponent } from '../../../meta-components/explorer/explorer.component';
+import { BlocksListComponent } from '../../../meta-components/blocks-list/blocks-list.component';
+import { ToastModule } from 'primeng/toast';
+import { EmptyBlockDisplayNamePipe } from '../../../utils/pipes/empty-block-display-name.pipe';
+import { EmptyBlockDescriptionPipe } from '../../../utils/pipes/empty-block-description.pipe';
 
 @NgModule({
     imports: [
@@ -40,7 +44,11 @@ import { ExplorerComponent } from '../../../meta-components/explorer/explorer.co
         TagModule,
         ConfirmDialogModule,
         SkeletonModule,
-        ExplorerComponent
+        ExplorerComponent,
+        BlocksListComponent,
+        ToastModule,
+        EmptyBlockDisplayNamePipe,
+        EmptyBlockDescriptionPipe
     ],
     declarations: [
         BlocksComponent,
@@ -51,6 +59,6 @@ import { ExplorerComponent } from '../../../meta-components/explorer/explorer.co
         BlockEditorPreviewComponent,
         BlockEditorWysiwygComponent
     ],
-    providers: [BlockService, ConfirmationService]
+    providers: [BlockService, ConfirmationService, MessageService]
 })
 export class BlocksModule {}

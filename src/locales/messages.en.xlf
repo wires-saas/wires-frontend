@@ -272,9 +272,6 @@
       <trans-unit id="5757937685699742652" datatype="html">
         <source>Price <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;price&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></source>
       </trans-unit>
-      <trans-unit id="693027650393741132" datatype="html">
-        <source>There is nothing here</source>
-      </trans-unit>
       <trans-unit id="7197870580140559288" datatype="html">
         <source>Sales</source>
       </trans-unit>
@@ -283,9 +280,6 @@
       </trans-unit>
       <trans-unit id="8386621951042608841" datatype="html">
         <source>Category <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;category&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></source>
-      </trans-unit>
-      <trans-unit id="8766840274158243690" datatype="html">
-        <source>Oops!</source>
       </trans-unit>
       <trans-unit id="8885733122031268618" datatype="html">
         <source>Sales by Category</source>
@@ -521,20 +515,8 @@
       <trans-unit id="6288082678754862274" datatype="html">
         <source>Upload Image</source>
       </trans-unit>
-      <trans-unit id="1102670394574478320" datatype="html">
-        <source>UI Kit</source>
-      </trans-unit>
-      <trans-unit id="1486515619927301272" datatype="html">
-        <source>E-Commerce</source>
-      </trans-unit>
       <trans-unit id="1699748585121922983" datatype="html">
         <source>Auth</source>
-      </trans-unit>
-      <trans-unit id="2549712342933889320" datatype="html">
-        <source>Prime Blocks</source>
-      </trans-unit>
-      <trans-unit id="3848479214898655176" datatype="html">
-        <source>Utilities</source>
       </trans-unit>
       <trans-unit id="6215970478390263685" datatype="html">
         <source>My Organization</source>
@@ -1958,9 +1940,6 @@
       <trans-unit id="7012957764426719868" datatype="html">
         <source>Service Level Agreement</source>
       </trans-unit>
-      <trans-unit id="7995928274976820365" datatype="html">
-        <source>Available Tags</source>
-      </trans-unit>
       <trans-unit id="1077134741310346564" datatype="html">
         <source>Build newsletter template with custom blocks or </source>
       </trans-unit>
@@ -2040,7 +2019,7 @@
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-cog mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Parameters</source>
       </trans-unit>
       <trans-unit id="3969386696509617452" datatype="html">
-        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-bolt mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Preview</source>
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-eye mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Preview</source>
       </trans-unit>
       <trans-unit id="4236093155995646765" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-code mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> HTML Code</source>
@@ -2065,6 +2044,39 @@
       </trans-unit>
       <trans-unit id="7834305962144525741" datatype="html">
         <source>Edit description here</source>
+      </trans-unit>
+      <trans-unit id="2215142474086264059" datatype="html">
+        <source>Block Not Found</source>
+      </trans-unit>
+      <trans-unit id="2662549973004331916" datatype="html">
+        <source>Return To Dashboard</source>
+      </trans-unit>
+      <trans-unit id="2812208926273686149" datatype="html">
+        <source>Create Folder</source>
+      </trans-unit>
+      <trans-unit id="3758471740601548370" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-bolt mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Interactive Editor</source>
+      </trans-unit>
+      <trans-unit id="4088311569349098646" datatype="html">
+        <source>Stats</source>
+      </trans-unit>
+      <trans-unit id="5169457753679401075" datatype="html">
+        <source>Delete Selected Tag</source>
+      </trans-unit>
+      <trans-unit id="6389312883797462351" datatype="html">
+        <source>Studio</source>
+      </trans-unit>
+      <trans-unit id="6795213363439635555" datatype="html">
+        <source>Cannot find the block you are looking for</source>
+      </trans-unit>
+      <trans-unit id="7689622306401829574" datatype="html">
+        <source>Go to fake block</source>
+      </trans-unit>
+      <trans-unit id="8106901743058975483" datatype="html">
+        <source>Empty description</source>
+      </trans-unit>
+      <trans-unit id="8162749505658246767" datatype="html">
+        <source>Available Tags (<x id="INTERPOLATION" equiv-text="{{ tags.length }}"/>)</source>
       </trans-unit>
     </body>
   </file>

@@ -1,21 +1,23 @@
-<p-panelMenu #panel [model]="items" [style]="{'width':'300px'}" [multiple]="true">
+<p-panelMenu #panel [model]="items">
+
 
     <ng-template pTemplate="item" let-item>
-        <a pRipple class="flex align-items-center px-3 py-2 cursor-pointer select-none" [class.surface-200]="selectedItem?.label === item.label" (contextmenu)="showFolderMenu($event, item)">
-
-            <i *ngIf="item.items?.length"
-               class="pi"
-               [class.pi-angle-right]="item.expanded === false" [class.pi-angle-down]="item.expanded"></i>
-
-            <i [class]="item.icon + ' text-primary'"></i>
+        <a pRipple class="flex align-items-center px-3 py-2 cursor-pointer" (contextmenu)="showFolderMenu($event, item)">
+            <i [class]="(item.icon || 'pi pi-folder') + ' text-primary'"></i>
             <span class="ml-2">
-                {{ item.label }}
-            </span>
-
-            <button *ngIf="item.automationId" (click)="showFolderMenu($event, item)" pButton pRipple class="p-button-rounded p-button-text m-0 shadow-none" icon="pi pi-ellipsis-v"></button>
+                    {{ item.label }}
+                </span>
+            <span *ngIf="item.shortcut" class="ml-auto border-1 surface-border
+                border-round surface-100 text-xs p-1">
+                    {{ item.shortcut }}
+                </span>
         </a>
     </ng-template>
+
 </p-panelMenu>
+
+<!-- button to add root folder -->
+<button pButton pRipple type="button" i18n-label label="Create Folder" class="w-full"></button>
 
 <p-contextMenu #menu [model]="folderMenu" (onHide)="selectedItem = undefined">
     <ng-template pTemplate="item" let-item>

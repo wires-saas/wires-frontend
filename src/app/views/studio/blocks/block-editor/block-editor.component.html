@@ -20,16 +20,16 @@
 
         <div>
             <h1 class="m-0">
-                {{ block.displayName }}
+                {{ block.displayName | emptyBlockDisplayName }}
                 <button pButton pRipple type="button"
                         (click)="openDisplayNameDialog()"
                         icon="pi pi-pencil" class="p-button-rounded p-button-secondary p-button-text"></button>
             </h1>
 
             <div class="flex align-items-center">
-                <span class="text-900">{{ block.description }}</span>
+                <span class="text-900">{{ block.description | emptyBlockDescription }}</span>
                 <button pButton pRipple type="button"
-                    (click)="openDisplayNameDialog()"
+                    (click)="openDescriptionDialog()"
                     icon="pi pi-pencil" class="p-button-rounded p-button-secondary p-button-text ml-2"></button>
             </div>
 
@@ -41,9 +41,10 @@
             <!-- save block button -->
             <button pButton pRipple type="button"
                     (click)="saveBlock()"
+                    [loading]="savingBlock"
                     label="Save Block"
                     icon="pi pi-save"
-                    class="p-button p-button-primary p-button-raised mb-2"></button>
+                    class="p-button p-button-primary mb-2"></button>
 
 
             <div class="flex justify-content-end">
@@ -105,3 +106,5 @@
 
 
 </ng-container>
+
+<p-toast key="block-editor" position="bottom-right"></p-toast>
