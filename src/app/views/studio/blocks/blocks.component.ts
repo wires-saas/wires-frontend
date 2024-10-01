@@ -39,8 +39,8 @@ export class BlocksComponent implements OnInit {
     async openEditor(block: Block) {
         // open editor
         console.log('open editor', block);
-        console.log('/organization', this.currentOrgSlug, 'studio/blocks', block._id, 'editor');
-        await this.router.navigate(['/organization', this.currentOrgSlug, 'studio', 'blocks', block._id, 'editor']);
+        console.log('/organization', this.currentOrgSlug, 'studio/blocks', block.id, 'editor');
+        await this.router.navigate(['/organization', this.currentOrgSlug, 'studio', 'blocks', block.id, 'editor']);
     }
 
 }

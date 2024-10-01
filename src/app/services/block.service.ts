@@ -5,11 +5,11 @@ import { deepClone } from '../utils/deep-clone';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
-export interface BlockRef extends Pick<Block, '_id' | 'organization' | 'version'> {}
+export interface BlockRef extends Pick<Block, 'id' | 'organization' | 'version'> {}
 
 export class Block {
 
-    _id?: string;
+    id?: string;
     organization: string;
     displayName: string;
     description: string;
@@ -50,7 +50,7 @@ export class Block {
     }
 
     constructor(properties: Partial<Block>) {
-        this._id = '';
+        this.id = '';
         this.organization = '';
         this.displayName = '';
         this.description = '';
@@ -263,26 +263,38 @@ export class BlockService {
         });
     }
 
-    async saveBlock(organizationId: string, block: Block): Promise<Block> {
-        return new Promise((res, _) => {
-            setTimeout(async () => {
-                res(firstValueFrom(this.http.post<Block>(`${this.domain}/organizations/${organizationId}/blocks`, {
-                    _id: block._id,
-                    organization: organizationId,
-                    displayName: block.displayName,
-                    description: block.description,
 
-                    parameters: Object.values(block.parameters),
 
-                    model: block.model,
-                    code: block.code,
+    async createBlock(organizationId: string, block: Block): Promise<Block> {
+         return firstValueFrom(this.http.post<Block>(`${this.domain}/organizations/${organizationId}/blocks`, {
+             id: block.id,
+             organization: organizationId,
+             displayName: block.displayName,
+             description: block.description,
 
-                    wysiwygEnabled: block.wysiwygEnabled,
+             parameters: Object.values(block.parameters),
 
-                    // version: block.version,
-                })));
-            }, this.timeout);
-        });
+             model: block.model,
+             code: block.code,
+
+             wysiwygEnabled: block.wysiwygEnabled,
+         }));
+    }
+
+    async updateBlock(organizationId: string, block: Block): Promise<Block> {
+        return firstValueFrom(this.http.put<Block>(`${this.domain}/organizations/${organizationId}/blocks/${block.id}`, {
+            id: block.id,
+            organization: organizationId,
+            displayName: block.displayName,
+            description: block.description,
+
+            parameters: Object.values(block.parameters),
+
+            model: block.model,
+            code: block.code,
+
+            wysiwygEnabled: block.wysiwygEnabled,
+        }));
     }
 
     async deleteBlock(organizationId: string, blockId: string): Promise<void> {

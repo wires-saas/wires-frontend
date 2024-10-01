@@ -119,7 +119,7 @@ export class BlockEditorComponent implements OnInit {
     async openDeleteBlockDialog() {
 
         const onDelete = () => {
-            this.blockService.deleteBlock(this.currentOrgSlug!, this.block!._id!).then(() => {
+            this.blockService.deleteBlock(this.currentOrgSlug!, this.block!.id!).then(() => {
                 this.messageService.add({
                     key: 'block-editor',
                     severity: 'success',
@@ -148,12 +148,19 @@ export class BlockEditorComponent implements OnInit {
     }
 
     async saveBlock() {
-        // ...
         this.savingBlock = true;
-        await this.blockService.saveBlock(this.currentOrgSlug!, this.block!)
+
+        if (!this.block) throw new Error('Block is not defined');
+
+        const creatingNewBlock = !this.block.id;
+        const save = creatingNewBlock ?
+            this.blockService.createBlock(this.currentOrgSlug!, this.block)
+            : this.blockService.updateBlock(this.currentOrgSlug!, this.block);
+
+        await save
             .then(() => {
                 this.savingBlock = false;
-                if (!this.block?._id) {
+                if (creatingNewBlock) {
                     this.messageService.add({
                         key: 'block-editor',
                         severity: 'success',
