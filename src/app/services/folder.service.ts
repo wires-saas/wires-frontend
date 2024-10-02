@@ -2,22 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
-
-export enum FolderContentType {
-    Block = 'block',
-    Template = 'template',
-}
+import { Block } from './block.service';
 
 
-// Folder is generic over the type of content it contains
 export interface Folder {
-    label: string;
     id: string;
-    contentType: FolderContentType;
-    parentId?: string;
+    organization: string;
+    displayName: string;
+    description: string;
+    parentFolder: string | null;
 }
 
-
+export enum FolderItemType {
+    Block = 'block',
+}
 
 @Injectable({
     providedIn: 'root',
@@ -29,31 +27,17 @@ export class FolderService {
         this.domain = environment.backend;
     }
 
-    getFolders(): Promise<Folder[]> {
-
-        return new Promise((res, _) => res([
-            {
-                label: 'Headers',
-                id: '1',
-                contentType: FolderContentType.Block,
-            },
-            {
-                label: 'Contents',
-                id: '2',
-                contentType: FolderContentType.Block,
-            },
-            {
-                label: 'Footers',
-                id: '3',
-                contentType: FolderContentType.Block,
-            },
-        ]));
-
-
-        // return firstValueFrom(this.http.get<Folder<any>[]>(`${this.domain}/folders`));
+    getFolders(organizationId: string): Promise<Folder[]> {
+        return firstValueFrom(this.http.get<Folder[]>(`${this.domain}/organizations/${organizationId}/folders`));
     }
 
+    getFolderContent<T>(organizationId: string, folderId: string, itemType?: FolderItemType): Promise<T[]> {
 
+        let endpoint = `${this.domain}/organizations/${organizationId}/folders/${folderId}/items`;
 
+        if (itemType) endpoint += `?type=${itemType}`;
+
+        return firstValueFrom(this.http.get<T[]>(endpoint));
+    }
 
 }

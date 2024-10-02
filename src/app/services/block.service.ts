@@ -267,7 +267,6 @@ export class BlockService {
 
     async createBlock(organizationId: string, block: Block): Promise<Block> {
          return firstValueFrom(this.http.post<Block>(`${this.domain}/organizations/${organizationId}/blocks`, {
-             id: block.id,
              organization: organizationId,
              displayName: block.displayName,
              description: block.description,

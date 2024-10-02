@@ -1,7 +1,7 @@
 
 <div class="grid">
     <div class="col-3">
-        <app-explorer></app-explorer>
+        <app-explorer (selectFolder)="loadBlocks($event)"></app-explorer>
     </div>
 
     <div class="col-6">

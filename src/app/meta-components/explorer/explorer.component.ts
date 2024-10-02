@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MenuItem, SelectItem } from 'primeng/api';
+import { Component, DestroyRef, EventEmitter, inject, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MenuItem, MenuItemCommandEvent, SelectItem } from 'primeng/api';
 import { Article } from '../../services/article.service';
 import { PanelMenu, PanelMenuModule } from 'primeng/panelmenu';
 import { RippleModule } from 'primeng/ripple';
@@ -7,8 +7,12 @@ import { NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Menu, MenuModule } from 'primeng/menu';
 import { ContextMenuModule } from 'primeng/contextmenu';
-import { FolderService } from '../../services/folder.service';
+import { Folder, FolderService } from '../../services/folder.service';
 import { FolderUtils } from '../../utils/folder.utils';
+import { OrganizationService } from '../../services/organization.service';
+import { map } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Slug } from '../../utils/types.utils';
 
 @Component({
     selector: 'app-explorer',
@@ -24,6 +28,8 @@ import { FolderUtils } from '../../utils/folder.utils';
     ]
 })
 export class ExplorerComponent implements OnInit {
+    @Inject(DestroyRef) private destroyRef: DestroyRef = inject(DestroyRef);
+
     @ViewChild('menu') menu!: Menu;
     @ViewChild('panel') panel!: PanelMenu;
     @Input() items: MenuItem[] = [];
@@ -34,94 +40,51 @@ export class ExplorerComponent implements OnInit {
 
     @Input() folderMenu: MenuItem[] = [];
 
+    @Output() selectFolder: EventEmitter<Folder['id'] | null> = new EventEmitter<Folder['id'] | null>();
+
     selectedItem: MenuItem | undefined;
 
     newFolderLabel: string = 'New Folder';
     newSubFolderLabel: string = 'New Subfolder';
 
-    constructor(private folderService: FolderService) {
+    currentOrgSlug: Slug | undefined;
+
+    constructor(private organizationService: OrganizationService, private folderService: FolderService) {
     }
 
     async ngOnInit() {
 
-        const folders = await this.folderService.getFolders();
-        this.items = FolderUtils.foldersToMenuItems(folders);
 
-        this.items = [
-            {
-                label: 'All',
-                icon: this.allIcon,
-                command: () => {
-                    // ...
-                }
-            },
-            ...this.items
-        ];
+        this.organizationService.currentOrganization$.pipe(
+            map(async (organization) => {
+                this.currentOrgSlug = organization?.slug;
+                if (organization) {
+                    console.log('explorer > organization', organization);
+                    const folders = await this.folderService.getFolders(organization.slug);
 
-
-/*
-        this.items = [
-            {
-                label: 'All',
-                icon: this.allIcon,
-                command: () => {
-                    // ...
-                }
-            },
-            {
-                label: 'Headers',
-                icon: this.folderIcon,
-                id: '1',
-                items: [
-                    {
-                        label: 'Documents',
-                        icon: this.folderIcon,
-                    },
-                    {
-                        label: 'Images',
-                        icon: this.folderIcon,
-                    },
-                ]
-            },
-            {
-                label: 'Body',
-                icon: 'pi pi-folder',
-                id: '2',
-                items: [
-                    {
-                        label: 'Upload',
-                        icon: 'pi pi-cloud-upload'
-                    },
-                    {
-                        label: 'Download',
-                        icon: 'pi pi-cloud-download'
-                    },
-                    {
-                        label: 'Sync',
-                        icon: 'pi pi-refresh'
+                    // Handler for folder click
+                    const onFolderClick = async (event: MenuItemCommandEvent) => {
+                        this.selectFolder.emit(event?.item?.id);
                     }
-                ]
-            },
-            {
-                label: 'Footers',
-                icon: 'pi pi-folder',
-                id: '3',
-                items: [
-                    {
-                        label: 'Phone',
-                        icon: 'pi pi-mobile'
-                    },
-                    {
-                        label: 'Desktop',
-                        icon: 'pi pi-desktop'
-                    },
-                    {
-                        label: 'Tablet',
-                        icon: 'pi pi-tablet'
-                    }
-                ]
-            },
-        ];*/
+
+                    // Dynamic instantiation of the menu items
+                    this.items = FolderUtils.foldersToMenuItems(folders, onFolderClick);
+
+                    this.items = [
+                        {
+                            label: 'All',
+                            icon: this.allIcon,
+                            command: () => {
+                                this.selectFolder.emit(null);
+                            }
+                        },
+                        ...this.items
+                    ];
+                    console.log(this.items);
+                }
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
 
         this.folderMenu = [];
 

@@ -1,14 +1,15 @@
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
 import { Folder } from '../services/folder.service';
 
 export class FolderUtils {
 
-    static foldersToMenuItems = (folders: Folder[]): MenuItem[] => {
+    static foldersToMenuItems = (folders: Folder[], command?: (event: MenuItemCommandEvent) => void): MenuItem[] => {
         return folders.map((folder) => {
             return {
-                label: folder.label,
+                label: folder.displayName,
                 id: folder.id,
-                items: FolderUtils.foldersToMenuItems(folders.filter((f) => f.parentId === folder.id)),
+                items: FolderUtils.foldersToMenuItems(folders.filter((f) => f.parentFolder === folder.id)),
+                command
             };
         });
     }
