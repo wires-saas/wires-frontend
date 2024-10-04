@@ -1,6 +1,7 @@
 import { MessageService } from 'primeng/api';
 import { Message } from 'primeng/api/message';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorUtils } from './error.utils';
 
 export class MessageUtils {
     static parseServerError(
@@ -8,17 +9,7 @@ export class MessageUtils {
         err: HttpErrorResponse,
         overrides: Partial<Message>,
     ) {
-        let detail: string = `${err.statusText} (${err.status})`;
-
-        switch (err.status) {
-            case 0:
-                detail = 'Server is unreachable';
-                break;
-            default:
-                if (err.error.message)
-                    detail += JSON.stringify(err.error.message);
-                break;
-        }
+        const detail = ErrorUtils.getErrorMessage(err);
 
         messageService.add({
             severity: 'error',
