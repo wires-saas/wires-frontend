@@ -134,11 +134,7 @@ export class ArticlesTableComponent {
 
         this.selectedTag = tag;
 
-        console.log(tag.ruleset);
-
-        console.log(this.table.filters);
         const filters = TableFilterUtils.convertTagRulesToFilters(tag.ruleset);
-        console.log(filters);
 
         // Apply table filters
         // this.table.filter('place', 'metadata.title', 'contains');
@@ -146,7 +142,6 @@ export class ArticlesTableComponent {
 
         Object.entries(filters).forEach(([field, filterMetadata]) => {
             if (filterMetadata.length > 0) {
-                console.log('filtering', field, filterMetadata);
                 this.table.filters[field] = filterMetadata.map((metadata) => ({
                     value: metadata.value,
                     matchMode: metadata.matchMode,

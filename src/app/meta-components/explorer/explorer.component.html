@@ -5,7 +5,7 @@
         <a pRipple
            class="flex align-items-center px-3 py-2 cursor-pointer border-round"
            [class.font-bold]="(!selectedItem && item.id === allFoldersId) || selectedItem?.id === item.id"
-           (contextmenu)="showFolderMenu($event, item)">
+           (contextmenu)="item.id !== allFoldersId ? showFolderMenu($event, item) : null">
             <i [class]="(item.icon || 'pi pi-folder') + ' text-primary'"></i>
             <span class="ml-2">
                 {{ item.label }}
@@ -16,9 +16,9 @@
 </p-panelMenu>
 
 <!-- button to add root folder -->
-<button (click)="openCreateFolderDialog(null)" pButton pRipple type="button" i18n-label label="Create Folder" class="w-full"></button>
+<button (click)="createFolderDialogVisible = true" pButton pRipple type="button" i18n-label label="Create Folder" class="w-full"></button>
 
-<p-contextMenu #menu [model]="folderMenu" (onHide)="selectedItem = undefined">
+<p-contextMenu #menu [model]="folderMenu">
     <ng-template pTemplate="item" let-item>
         <a pRipple class="flex align-items-center p-menuitem-link">
             <span [class]="item.icon"></span>
@@ -28,53 +28,13 @@
     </ng-template>
 </p-contextMenu>
 
+<app-explorer-create-dialog [visible]="createFolderDialogVisible"
+                            [selectedFolder]="selectedFolder"
+                            [organization]="currentOrgSlug"
+                            (cancel)="onCancelCreate()" (confirm)="onConfirmCreate()">
+</app-explorer-create-dialog>
 
-<p-dialog i18n-header header="Create Folder" [modal]="true" [(visible)]="createFolderDialogVisible" [style]="{ 'min-width': '25rem' }">
-    <span class="p-text-secondary block mb-5" i18n>
-        {{ createFolderDialogOptions.parentFolderDisplayName ? 'Create a subfolder inside "' + createFolderDialogOptions.parentFolderDisplayName + '"' : 'Create a top level folder'}}
-    </span>
-    <form [formGroup]="createFolderForm">
-        <div class="flex align-items-center gap-3 mb-3">
-            <label for="create-displayName" class="font-semibold w-6rem" i18n>Name</label>
-            <input pInputText id="create-displayName" class="flex-auto" formControlName="displayName" autocomplete="off" />
-        </div>
-        <div class="flex align-items-center gap-3 mb-5">
-            <label for="create-description" class="font-semibold w-6rem" i18n>Description</label>
-            <input pInputText id="create-description" class="flex-auto" formControlName="description" autocomplete="off" />
-        </div>
-    </form>
-    <div class="flex justify-content-end gap-2">
-        <button pButton i18n-label label="Cancel" class="p-button-text" (click)="cancelFolderCreation()"></button>
-        <button pButton i18n-label label="Create" [disabled]="!createFolderForm.valid" (click)="confirmFolderCreation()"></button>
-    </div>
-</p-dialog>
-
-<p-dialog i18n-header header="Edit Folder" styleClass="shake" [modal]="true" [(visible)]="editFolderDialogVisible" [style]="{ 'min-width': '25rem' }">
-    <span class="p-text-secondary block mb-5" i18n>
-        Edit folder information
-    </span>
-    <form [formGroup]="editFolderForm">
-        <div class="flex align-items-center gap-3 mb-3">
-            <label for="edit-displayName" class="font-semibold w-6rem" i18n>Name</label>
-            <input pInputText id="edit-displayName" class="flex-auto" formControlName="displayName" autocomplete="off" />
-        </div>
-        <div class="flex align-items-center gap-3 mb-5">
-            <label for="edit-description" class="font-semibold w-6rem" i18n>Description</label>
-            <input pInputText id="edit-description" class="flex-auto" formControlName="description" autocomplete="off" />
-        </div>
-    </form>
-
-    <p-message *ngIf="editFolderDialogOptions.error"
-               [text]="editFolderDialogOptions.error"
-               severity="error" styleClass="mb-5">
-    </p-message>
-
-    <div class="flex justify-content-end gap-2">
-        <button pButton i18n-label label="Cancel" class="p-button-text" (click)="cancelFolderEdition()"></button>
-        <button pButton i18n-label label="Edit"
-                [loading]="editFolderDialogOptions.loading"
-                [disabled]="!editFolderForm.valid"
-                (click)="confirmFolderEdition()"></button>
-    </div>
-</p-dialog>
-
+<app-explorer-edit-dialog [visible]="editFolderDialogVisible"
+                          [selectedFolder]="selectedFolder"
+                          (cancel)="onCancelEdit()" (confirm)="onConfirmEdit()">
+</app-explorer-edit-dialog>

@@ -1,0 +1,32 @@
+<p-dialog i18n-header header="Edit Folder"
+          [modal]="true"
+          [(visible)]="visible"
+          [style]="{ 'min-width': '25rem' }"
+          (onHide)="cancel.emit()">
+    <span class="p-text-secondary block mb-5" i18n>
+        Edit folder information
+    </span>
+    <form [formGroup]="editFolderForm">
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="edit-displayName" class="font-semibold w-6rem" i18n>Name</label>
+            <input pInputText id="edit-displayName" class="flex-auto" formControlName="displayName" autocomplete="off" />
+        </div>
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="edit-description" class="font-semibold w-6rem" i18n>Description</label>
+            <input pInputText id="edit-description" class="flex-auto" formControlName="description" autocomplete="off" />
+        </div>
+    </form>
+
+    <p-message *ngIf="editFolderDialogOptions.error"
+               [text]="editFolderDialogOptions.error"
+               severity="error" styleClass="mb-5">
+    </p-message>
+
+    <div class="flex justify-content-end gap-2">
+        <button pButton i18n-label label="Cancel" class="p-button-text" (click)="cancelFolderEdition()"></button>
+        <button pButton i18n-label label="Edit"
+                [loading]="editFolderDialogOptions.loading"
+                [disabled]="!editFolderForm.valid"
+                (click)="confirmFolderEdition()"></button>
+    </div>
+</p-dialog>

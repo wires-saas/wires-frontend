@@ -18,6 +18,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
 import { ErrorUtils } from '../../utils/error.utils';
+import { ExplorerEditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { ExplorerCreateDialogComponent } from './create-dialog/create-dialog.component';
 
 @Component({
     selector: 'app-explorer',
@@ -33,7 +35,9 @@ import { ErrorUtils } from '../../utils/error.utils';
         DialogModule,
         InputTextModule,
         ReactiveFormsModule,
-        MessageModule
+        MessageModule,
+        ExplorerEditDialogComponent,
+        ExplorerCreateDialogComponent
     ]
 })
 export class ExplorerComponent implements OnInit {
@@ -55,30 +59,13 @@ export class ExplorerComponent implements OnInit {
     selectedItem: MenuItem | undefined;
 
     allFoldersId: string = 'all';
-    newFolderLabel: string = 'New Folder';
-    newSubFolderLabel: string = 'New Subfolder';
 
     createFolderDialogVisible: boolean = false;
-    createFolderDialogOptions: { parentFolderDisplayName: string, parentFolderId: string | null } = {
-        parentFolderDisplayName: '',
-        parentFolderId: null,
-    };
-    createFolderForm: FormGroup = new FormGroup({
-        displayName: new FormControl<string>('', Validators.required),
-        description: new FormControl<string>('')
-    });
 
     editFolderDialogVisible: boolean = false;
-    editFolderDialogOptions: {
-        folderId: Folder['id'] | null;
-        loading: boolean;
-        error?: string;
-    } = { folderId: null, loading: false }
 
-    editFolderForm: FormGroup = new FormGroup({
-        displayName: new FormControl<string>('', Validators.required),
-        description: new FormControl<string>('')
-    });
+    selectedFolder: Folder | undefined;
+
 
     currentOrgSlug: Slug | undefined;
 
@@ -87,14 +74,11 @@ export class ExplorerComponent implements OnInit {
 
     async ngOnInit() {
 
-
         this.organizationService.currentOrganization$.pipe(
             map(async (organization) => {
                 this.currentOrgSlug = organization?.slug;
                 if (organization) {
-                    console.log('explorer > organization', organization);
-                    this.loadFoldersAndCreateMenu(organization.slug);
-
+                    await this.loadFoldersAndCreateMenu(organization.slug);
                 }
             }),
             takeUntilDestroyed(this.destroyRef)
@@ -129,7 +113,6 @@ export class ExplorerComponent implements OnInit {
             },
             ...this.items
         ];
-        console.log(this.items);
     }
 
     private areAllItemsExpanded(): boolean {
@@ -160,7 +143,9 @@ export class ExplorerComponent implements OnInit {
                     if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
                     if (!folder.id) throw new Error('Folder id is not set');
 
-                    this.openEditFolderDialog(folder.id, folder['data'].displayName, folder['data'].description);
+                    this.selectedFolder = folder['data'];
+                    this.editFolderDialogVisible = true;
+                    // TODO handle backdrop/cross click
                 }
             },
             {
@@ -182,9 +167,12 @@ export class ExplorerComponent implements OnInit {
                 label: 'Add Folder',
                 icon: 'pi pi-fw pi-plus',
                 command: async () => {
-                    this.openCreateFolderDialog(folder.id || null, folder.label);
-                }
+                    if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
+                    if (!folder.id) throw new Error('Folder id is not set');
 
+                    this.selectedFolder = folder['data'];
+                    this.createFolderDialogVisible = true;
+                }
             },
             {
                 separator: true,
@@ -205,106 +193,35 @@ export class ExplorerComponent implements OnInit {
 
     showFolderMenu(event: any, folder: MenuItem) {
 
-        if (folder.label === this.newSubFolderLabel) {
-            return;
-        }
-
-        console.log(folder.id);
-
         this.buildFolderMenu(folder);
 
-        this.selectedItem = folder;
+        if (folder.id === this.allFoldersId) this.selectedItem = undefined;
+        else this.selectedItem = folder;
 
         event.preventDefault();
         event.stopPropagation();
         event.stopImmediatePropagation();
         this.menu.toggle(event);
-        folder.styleClass = 'p-menuitem-active';
-
-        console.log(folder);
     }
 
-    openCreateFolderDialog(parentFolderId: Folder['id'] | null, parentFolderDisplayName?: string) {
-        this.createFolderDialogOptions = {
-            parentFolderDisplayName: parentFolderDisplayName || '',
-            parentFolderId: parentFolderId || null,
-        };
-
-        this.createFolderDialogVisible = true;
-        console.log('create folder', parentFolderId);
-    }
-
-    cancelFolderCreation() {
+    onCancelCreate() {
         this.createFolderDialogVisible = false;
+        this.selectedFolder = undefined;
     }
 
-    async confirmFolderCreation() {
+    async onConfirmCreate() {
         this.createFolderDialogVisible = false;
-
-        const displayName = this.createFolderForm.get('displayName')?.value;
-        const description = this.createFolderForm.get('description')?.value;
-
-        if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
-        if (!displayName) throw new Error('Display name is required');
-
-        await this.folderService.createFolder(
-            this.currentOrgSlug,
-            displayName,
-            description,
-            this.createFolderDialogOptions.parentFolderId
-        );
-        await this.loadFoldersAndCreateMenu(this.currentOrgSlug);
+        await this.loadFoldersAndCreateMenu(this.currentOrgSlug!);
     }
 
-
-    openEditFolderDialog(folderId: Folder['id'], folderDisplayName: string, folderDescription: string) {
-        this.editFolderForm.setValue({
-            displayName: folderDisplayName,
-            description: folderDescription
-        });
-
-        this.editFolderDialogOptions = { folderId, loading: false };
-
-        this.editFolderDialogVisible = true;
-    }
-
-    cancelFolderEdition() {
+    onCancelEdit() {
         this.editFolderDialogVisible = false;
-        this.editFolderForm.reset();
-        this.editFolderDialogOptions = { folderId: null, loading: false };
+        this.selectedFolder = undefined;
     }
 
-    async confirmFolderEdition() {
-
-        const displayName = this.editFolderForm.get('displayName')?.value;
-        const description = this.editFolderForm.get('description')?.value;
-
-        if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
-        if (!this.editFolderDialogOptions.folderId) throw new Error('Folder id is not set');
-        if (!displayName) throw new Error('Display name is required');
-
-        this.editFolderDialogOptions.loading = true;
-
-        setTimeout(async () => {
-            if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
-            if (!this.editFolderDialogOptions.folderId) throw new Error('Folder id is not set');
-            if (!displayName) throw new Error('Display name is required');
-
-            await this.folderService.updateFolder(
-                this.currentOrgSlug,
-                this.editFolderDialogOptions.folderId,
-                displayName,
-                description
-            ).then(() => {
-                this.cancelFolderEdition();
-                return this.loadFoldersAndCreateMenu(this.currentOrgSlug!);
-            }).catch (err => {
-                console.error(err);
-                this.editFolderDialogOptions.error = ErrorUtils.getErrorMessage(err);
-                this.editFolderDialogOptions.loading = false;
-                console.log(this.editFolderDialogOptions);
-            });
-
-        }, 1000);
+    async onConfirmEdit() {
+        this.editFolderDialogVisible = false;
+        await this.loadFoldersAndCreateMenu(this.currentOrgSlug!);
     }
+
 }
