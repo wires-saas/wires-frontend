@@ -1,11 +1,11 @@
-<p-panelMenu #panel [model]="items">
+<p-panelMenu #panel [model]="items" (select)="debug($event)" [multiple]="true">
 
 
     <ng-template pTemplate="item" let-item>
         <a pRipple
            class="flex align-items-center px-3 py-2 cursor-pointer border-round"
-           [class.font-bold]="(!selectedItem && item.id === allFoldersId) || selectedItem?.id === item.id"
-           (contextmenu)="item.id !== allFoldersId ? showFolderMenu($event, item) : null">
+           [class.font-bold]="(!selectedFolder && item.id === allFoldersId) || selectedFolder?.id === item.id"
+           (contextmenu)="item.id !== allFoldersId ? showFolderContextualMenu($event, item) : null">
             <i [class]="(item.icon || 'pi pi-folder') + ' text-primary'"></i>
             <span class="ml-2">
                 {{ item.label }}
@@ -38,3 +38,11 @@
                           [selectedFolder]="selectedFolder"
                           (cancel)="onCancelEdit()" (confirm)="onConfirmEdit()">
 </app-explorer-edit-dialog>
+
+<p-confirmDialog i18n-header header="Delete Folder" key="confirm-delete-folder" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to delete folder ? This will delete all subfolders but not folders content."
+                 defaultFocus="none"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
+
+<p-toast position="bottom-right"/>

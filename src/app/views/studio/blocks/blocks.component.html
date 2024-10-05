@@ -6,7 +6,9 @@
 
     <div class="col-6">
 
-        <app-blocks-list *ngIf="blocks.length; else noBlock" [blocks]="blocks" (selectBlock)="openEditor($event)"></app-blocks-list>
+        <app-blocks-list *ngIf="blocks.length; else noBlock"
+                         [blocks]="blocks"
+                         (selectBlock)="openEditor($event)"></app-blocks-list>
 
         <ng-template #noBlock>
             <div class="m-0 p-0 list-none border-1 border-dashed surface-border border-round p-3 flex flex-column gap-2 w-full">

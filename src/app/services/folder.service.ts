@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
-import { Block } from './block.service';
 
 
 export interface Folder {
@@ -40,6 +39,12 @@ export class FolderService {
         return firstValueFrom(this.http.patch<Folder>(`${this.domain}/organizations/${organizationId}/folders/${folderId}`, {
             displayName: displayName,
             description: description
+        }));
+    }
+
+    updateFolderParent(organizationId: string, folderId: string, folderParentId: string | null): Promise<Folder> {
+        return firstValueFrom(this.http.patch<Folder>(`${this.domain}/organizations/${organizationId}/folders/${folderId}`, {
+            parentFolder: folderParentId
         }));
     }
 

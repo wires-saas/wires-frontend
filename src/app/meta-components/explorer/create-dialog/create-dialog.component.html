@@ -15,8 +15,14 @@
             <input pInputText id="create-description" class="flex-auto" formControlName="description" autocomplete="off" />
         </div>
     </form>
+
+    <p-message *ngIf="createFolderDialogOptions.error"
+               [text]="createFolderDialogOptions.error"
+               severity="error" styleClass="mb-5">
+    </p-message>
+
     <div class="flex justify-content-end gap-2">
         <button pButton i18n-label label="Cancel" class="p-button-text" (click)="cancelFolderCreation()"></button>
-        <button pButton i18n-label label="Create" [disabled]="!createFolderForm.valid" (click)="confirmFolderCreation()"></button>
+        <button pButton i18n-label label="Create" [disabled]="!createFolderForm.valid" [loading]="createFolderDialogOptions.loading" (click)="confirmFolderCreation()"></button>
     </div>
 </p-dialog>
