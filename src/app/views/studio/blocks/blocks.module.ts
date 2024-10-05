@@ -28,6 +28,7 @@ import { BlocksListComponent } from '../../../meta-components/blocks-list/blocks
 import { ToastModule } from 'primeng/toast';
 import { EmptyBlockDisplayNamePipe } from '../../../utils/pipes/empty-block-display-name.pipe';
 import { EmptyBlockDescriptionPipe } from '../../../utils/pipes/empty-block-description.pipe';
+import { EmptyCardComponent } from '../../../meta-components/empty-card/empty-card.component';
 
 @NgModule({
     imports: [
@@ -48,7 +49,8 @@ import { EmptyBlockDescriptionPipe } from '../../../utils/pipes/empty-block-desc
         BlocksListComponent,
         ToastModule,
         EmptyBlockDisplayNamePipe,
-        EmptyBlockDescriptionPipe
+        EmptyBlockDescriptionPipe,
+        EmptyCardComponent
     ],
     declarations: [
         BlocksComponent,

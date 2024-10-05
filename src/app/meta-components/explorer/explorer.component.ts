@@ -61,8 +61,6 @@ export class ExplorerComponent implements OnInit {
     @Output() selectFolder: EventEmitter<Folder['id'] | null> = new EventEmitter<Folder['id'] | null>();
     @Output() removeFolder: EventEmitter<Folder['id'] | null> = new EventEmitter<Folder['id'] | null>();
 
-    allFoldersId: string = 'all';
-
     createFolderDialogVisible: boolean = false;
 
     editFolderDialogVisible: boolean = false;
@@ -96,27 +94,23 @@ export class ExplorerComponent implements OnInit {
     }
 
     private async loadFoldersAndCreateMenu(organizationSlug: Slug) {
-        const folders = await this.folderService.getFolders(organizationSlug);
-
-        // Handler for folder click
-        const onFolderClick = async (event: MenuItemCommandEvent) => {
-            console.log('folder click');
-            this.selectFolder.emit(event?.item?.id);
-            this.selectedFolder = event?.item ? event?.item['data'] : undefined;
-        }
-
-        // Dynamic instantiation of the menu items
-        this.items = FolderUtils.foldersToMenuItems(null, folders, onFolderClick);
 
         this.items = [
             {
                 label: 'All',
-                id: this.allFoldersId,
                 icon: this.allIcon,
-                command: () => {
-                    this.selectFolder.emit(null);
-                    this.selectedFolder = undefined;
-                }
+            }
+        ];
+
+        const folders = await this.folderService.getFolders(organizationSlug);
+
+        // Dynamic instantiation of the menu items
+        this.items = FolderUtils.foldersToMenuItems(null, folders);
+
+        this.items = [
+            {
+                label: 'All',
+                icon: this.allIcon,
             },
             ...this.items
         ];
@@ -214,12 +208,13 @@ export class ExplorerComponent implements OnInit {
 
     showFolderContextualMenu(event: any, folder: MenuItem) {
 
+        if (!folder['data']) return; // no contextual menu for root folder
+
         this.buildFolderMenu(folder);
 
-        if (folder.id === this.allFoldersId) this.selectedFolder = undefined;
-        else this.selectedFolder = folder['data'];
+        this.selectedFolder = folder['data'];
 
-        this.selectFolder.emit(this.selectedFolder?.id);
+        this.selectFolder.emit(this.selectedFolder?.id || null);
 
         event.preventDefault();
         event.stopPropagation();
@@ -312,8 +307,12 @@ export class ExplorerComponent implements OnInit {
             });
     }
 
-    debug(e: any) {
-        console.log(e);
+    handleFolderClick(e: any, item: MenuItem) {
+        this.selectFolder.emit(item?.id || null);
+        this.selectedFolder = item ? item['data'] : undefined;
+
+        e.stopPropagation();
+        e.preventDefault();
     }
 
 }

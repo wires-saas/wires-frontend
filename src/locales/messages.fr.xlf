@@ -2769,6 +2769,70 @@
         <source>Go to fake block</source>
         <target state="new">Bloc inexistant</target>
       </trans-unit>
+      <trans-unit id="7708270344948043036" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="{{ selectedFolder?.displayName ? &apos;Create a subfolder inside &quot;&apos; + selectedFolder?.displayName + &apos;&quot;&apos; : &apos;Create a top level folder&apos;}}"/> </source>
+        <target state="new"> <x id="INTERPOLATION" equiv-text="{{ selectedFolder?.displayName ? &apos;Créer un sous-dossier de &quot;&apos; + selectedFolder?.displayName + &apos;&quot;&apos; : &apos;Créer un dossier racine&apos;}}"/> </target>
+      </trans-unit>
+      <trans-unit id="8953033926734869941" datatype="html">
+        <source>Name</source>
+        <target state="new">Nom</target>
+      </trans-unit>
+      <trans-unit id="8324515548446579673" datatype="html">
+        <source>Edit Folder</source>
+        <target state="new">Modifier le dossier</target>
+      </trans-unit>
+      <trans-unit id="1233225345164080375" datatype="html">
+        <source> Edit folder information </source>
+        <target state="new"> Modifier les informations du dossier </target>
+      </trans-unit>
+      <trans-unit id="2075279880931649711" datatype="html">
+        <source>Delete Folder</source>
+        <target state="new">Supprimer le dossier</target>
+      </trans-unit>
+      <trans-unit id="4752463512337246299" datatype="html">
+        <source>Are you sure you want to delete folder ? This will delete all subfolders but not folders content.</source>
+        <target state="new">Êtes-vous certain de vouloir supprimer ce dossier ? Les sous-dossiers qu&apos;il contient seront également supprimés, mais pas le contenu.</target>
+      </trans-unit>
+      <trans-unit id="1274885909221881267" datatype="html">
+        <source>Folder has been deleted successfully.</source>
+        <target state="new">Dossier supprimé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="8318468910178251068" datatype="html">
+        <source>Error deleting folder</source>
+        <target state="new">Erreur lors de la suppression</target>
+      </trans-unit>
+      <trans-unit id="5449773773405064116" datatype="html">
+        <source>Folder has been moved successfully.</source>
+        <target state="new">Dossier déplacé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="1374651895395519805" datatype="html">
+        <source>Error moving folder</source>
+        <target state="new">Erreur lors du déplacement</target>
+      </trans-unit>
+      <trans-unit id="9161741026824165784" datatype="html">
+        <source>Server is unreachable</source>
+        <target state="new">Serveur indisponible</target>
+      </trans-unit>
+      <trans-unit id="2181982464506234232" datatype="html">
+        <source>Delete Block</source>
+        <target state="new">Supprimer le bloc</target>
+      </trans-unit>
+      <trans-unit id="1265995668284581132" datatype="html">
+        <source>Are you sure you want to delete block ? Templates relying on this block will be affected. This action cannot be undone.</source>
+        <target state="new">Êtes-vous certain de vouloir supprimer ce bloc ? Les maquettes utilisant celui-ci seront impactées. Cette action est irréversible.</target>
+      </trans-unit>
+      <trans-unit id="4264869466172520700" datatype="html">
+        <source>Error deleting block</source>
+        <target state="new">Erreur lors de la suppression du bloc</target>
+      </trans-unit>
+      <trans-unit id="5967405700423317571" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-info-circle text-xl mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> No <x id="INTERPOLATION" equiv-text="{{ entity }}"/> found here </source>
+        <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-info-circle text-xl mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Aucun <x id="INTERPOLATION" equiv-text="{{ entity }}"/> trouvé ici </target>
+      </trans-unit>
+      <trans-unit id="5520007132745336628" datatype="html">
+        <source>block</source>
+        <target state="new">bloc</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
