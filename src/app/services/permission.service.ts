@@ -165,11 +165,9 @@ export class PermissionService {
         });
     }
 
-    // In the future, we may get the permissions for a specific organization
-    // Allowing overrides
-    async getRoles(): Promise<Record<Role, Permission[]>> {
+    async getRoles(organizationId: string): Promise<Record<Role, Permission[]>> {
         return firstValueFrom(
-            this.http.get<RolePermissions[]>(`${this.domain}/roles`),
+            this.http.get<RolePermissions[]>(`${this.domain}/organizations/${organizationId}/roles`),
         ).then((roles: RolePermissions[]) => {
             return roles.reduce(
                 (
