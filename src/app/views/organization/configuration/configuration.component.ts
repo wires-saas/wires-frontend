@@ -17,6 +17,7 @@ import { Role } from '../../../utils/role.utils';
 import { User } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
+import { UpdateOrganization, UpdateUserRole } from '../../../utils/permission.utils';
 
 interface OrganizationSecurity {
     twoFactorAuthenticationEnabled: boolean;
@@ -175,5 +176,5 @@ export class ConfigurationComponent implements OnInit {
             });
     }
 
-    static permissions = ['update_organization', 'update_userRole'];
+    static permissions = [UpdateOrganization, UpdateUserRole];
 }

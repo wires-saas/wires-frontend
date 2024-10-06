@@ -1,10 +1,11 @@
 import { User } from '../services/user.service';
+import { Permission, PermissionAction } from '../services/permission.service';
 
 export interface UserRole {
     organization: string;
     user: string;
     role: Role;
-    permissions: string[];
+    permissions: Permission[];
 }
 
 export enum Role {
@@ -33,7 +34,7 @@ export class RoleUtils {
 
     static hasPermission(
         user: User,
-        permission: string,
+        permission: Permission,
         organization?: string,
     ): boolean {
         if (user.isSuperAdmin) return true;
@@ -42,10 +43,10 @@ export class RoleUtils {
             if (organization) {
                 return (
                     userRole.organization === organization &&
-                    userRole.permissions?.includes(permission)
+                    userRole.permissions?.find(p => p.action === permission.action && p.subject === permission.subject)
                 );
             } else {
-                return userRole.permissions?.includes(permission);
+                return userRole.permissions?.find(p => p.action === permission.action && p.subject === permission.subject);
             }
         });
     }
@@ -87,19 +88,23 @@ export class RoleUtils {
         return Role.GUEST;
     }
 
-    static convertManagePermissions(permissions: string[]): string[] {
+    static convertManagePermissions(permissions: Permission[]): Permission[] {
         // Maybe this would be more relevant in server side
         return permissions.reduce(
-            (acc: string[], permission: string): string[] => {
-                const subject = permission.split('_')[1];
+            (acc: Permission[], permission: Permission): Permission[] => {
 
-                if (permission.startsWith('manage')) {
-                    const implicits = ['create', 'read', 'update', 'delete'];
+                if (permission.action === PermissionAction.Manage) {
+                    const implicits = [
+                        PermissionAction.Create,
+                        PermissionAction.Read,
+                        PermissionAction.Update,
+                        PermissionAction.Delete
+                    ];
 
                     return [
                         ...acc,
                         ...implicits.map(
-                            (implicit) => `${implicit}_${subject}`,
+                            (implicit) => new Permission(permission.subject, implicit)
                         ),
                     ];
                 }

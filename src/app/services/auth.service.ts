@@ -7,6 +7,7 @@ import { Role, RoleUtils } from '../utils/role.utils';
 import { map } from 'rxjs/operators';
 import { NotificationService } from './notification.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Permission } from './permission.service';
 
 interface ProfileData {
     jwt: {
@@ -161,7 +162,7 @@ export class AuthService {
         );
     }
 
-    hasPermission$(permission: string, slug?: string): Observable<boolean> {
+    hasPermission$(permission: Permission, slug?: string): Observable<boolean> {
         return this.currentUser$.pipe(
             map((user) => {
                 if (!user) return false;
@@ -171,7 +172,7 @@ export class AuthService {
         );
     }
 
-    hasAtLeast$(permissions: string[], slug?: string): Observable<boolean> {
+    hasAtLeast$(permissions: Permission[], slug?: string): Observable<boolean> {
         return this.currentUser$.pipe(
             map((user) => {
                 if (!user) return false;
@@ -183,7 +184,7 @@ export class AuthService {
         );
     }
 
-    hasAll$(permissions: string[], slug?: string): Observable<boolean> {
+    hasAll$(permissions: Permission[], slug?: string): Observable<boolean> {
         return this.currentUser$.pipe(
             map((user) => {
                 if (!user) return false;

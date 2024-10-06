@@ -11,6 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { Slug } from '../../../utils/types.utils';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CreateFeed, ReadFeedRun, UpdateFeed } from '../../../utils/permission.utils';
 
 @Component({
     templateUrl: './feeds.component.html',
@@ -80,5 +81,5 @@ export class FeedsComponent implements OnInit {
         });
     }
 
-    static permissions = ['create_feed', 'update_feed', 'read_feedRun'];
+    static permissions = [CreateFeed, UpdateFeed, ReadFeedRun];
 }

@@ -18,6 +18,7 @@ import { MessageUtils } from '../../../../utils/message.utils';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { DeleteFeed } from '../../../../utils/permission.utils';
 
 @Component({
     selector: 'app-feed-list',
@@ -54,7 +55,7 @@ export class FeedListComponent implements OnInit {
                 map(async (org) => {
                     if (org) {
                         let canDelete: boolean = await firstValueFrom(
-                            this.authService.hasPermission$('delete_feed', org?.slug)
+                            this.authService.hasPermission$(DeleteFeed, org?.slug)
                         );
 
                         this.menuItems = [

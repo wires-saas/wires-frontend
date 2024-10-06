@@ -15,6 +15,7 @@ import { ArticlesTableComponent } from '../../../meta-components/articles-table/
 import { firstValueFrom } from 'rxjs';
 import { Tag, TagService } from '../../../services/tag.service';
 import { TableFilterUtils } from '../../../utils/table.utils';
+import { ReadArticle } from '../../../utils/permission.utils';
 
 export interface TagDialogConfig {
     visible: boolean;
@@ -149,5 +150,5 @@ export class ArticlesComponent implements OnInit {
         this.articles = await this.articleService.getArticles(this.organizationSlug);
     }
 
-    static permissions = ['read_article'];
+    static permissions = [ReadArticle];
 }

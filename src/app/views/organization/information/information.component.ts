@@ -11,6 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { deepEquals } from '../../../utils/deep-equals';
 import { MessageUtils } from '../../../utils/message.utils';
 import { MessageService } from 'primeng/api';
+import { UpdateOrganization } from '../../../utils/permission.utils';
 
 interface OrganizationIdentity {
     name: string;
@@ -256,5 +257,5 @@ export class InformationComponent implements OnInit {
             });
     }
 
-    static permissions = ['update_organization'];
+    static permissions = [UpdateOrganization];
 }

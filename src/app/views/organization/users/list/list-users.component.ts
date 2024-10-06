@@ -27,6 +27,7 @@ import { Slug } from '../../../../utils/types.utils';
 import { AuthService } from '../../../../services/auth.service';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { CsvUtils } from '../../../../utils/csv.utils';
+import { UpdateUser } from '../../../../utils/permission.utils';
 
 @Component({
     templateUrl: './list-users.component.html',
@@ -437,5 +438,5 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
 
     protected readonly RoleUtils = RoleUtils;
 
-    static permissions = ['update_user'];
+    static permissions = [UpdateUser];
 }
