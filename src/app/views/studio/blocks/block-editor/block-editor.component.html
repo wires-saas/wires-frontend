@@ -37,21 +37,21 @@
 
 
         <div>
+            <p-menu #menu [popup]="true" [model]="actionsMenu"></p-menu>
+            <button type="button" pButton
+                    class="p-button-rounded p-button-text mb-2 mr-2"
+                    icon="pi pi-ellipsis-v"
+                    (click)="menu.toggle($event)"></button>
 
-            <!-- delete block button -->
-            <button pButton pRipple type="button"
-                    (click)="openDeleteBlockDialog()"
-                    label="Delete Block"
-                    icon="pi pi-trash"
-                    class="p-button-outlined p-button-danger mb-2 mr-2"></button>
-
-            <!-- save block button -->
             <button pButton pRipple type="button"
                     (click)="saveBlock()"
                     [loading]="savingBlock"
+                    [disabled]="block.isArchived"
                     label="Save Block"
                     icon="pi pi-save"
                     class="p-button p-button-primary mb-2"></button>
+
+
 
 
             <div class="flex justify-content-end">
@@ -117,6 +117,16 @@
 <p-confirmDialog i18n-header header="Delete Block" key="confirm-delete" icon="pi pi-exclamation-triangle"
                  i18n-message message="Are you sure you want to delete block ? Templates relying on this block will be affected. This action cannot be undone."
                  [style]="{width: '600px'}" defaultFocus="none"
+                 i18n-acceptLabel acceptLabel="Yes, delete"
+                 i18n-rejectLabel rejectLabel="No"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
+
+<p-confirmDialog i18n-header header="Archive Block" key="confirm-archive" icon="pi pi-exclamation-triangle"
+                 i18n-message message="For safety concerns you're only allowed to archive blocks. Are you sure you want to archive block ?"
+                 [style]="{width: '600px'}" defaultFocus="none"
+                 i18n-acceptLabel acceptLabel="Yes, archive"
+                 i18n-rejectLabel rejectLabel="No"
                  acceptButtonStyleClass="p-button-danger"
                  rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
 

@@ -97,7 +97,7 @@ export class ExplorerComponent implements OnInit {
 
         this.items = [
             {
-                label: 'All',
+                label: $localize `All`,
                 icon: this.allIcon,
             }
         ];
@@ -109,7 +109,7 @@ export class ExplorerComponent implements OnInit {
 
         this.items = [
             {
-                label: 'All',
+                label: $localize `All`,
                 icon: this.allIcon,
             },
             ...this.items

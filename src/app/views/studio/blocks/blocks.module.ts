@@ -29,6 +29,7 @@ import { ToastModule } from 'primeng/toast';
 import { EmptyBlockDisplayNamePipe } from '../../../utils/pipes/empty-block-display-name.pipe';
 import { EmptyBlockDescriptionPipe } from '../../../utils/pipes/empty-block-description.pipe';
 import { EmptyCardComponent } from '../../../meta-components/empty-card/empty-card.component';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
     imports: [
@@ -50,7 +51,8 @@ import { EmptyCardComponent } from '../../../meta-components/empty-card/empty-ca
         ToastModule,
         EmptyBlockDisplayNamePipe,
         EmptyBlockDescriptionPipe,
-        EmptyCardComponent
+        EmptyCardComponent,
+        MenuModule
     ],
     declarations: [
         BlocksComponent,

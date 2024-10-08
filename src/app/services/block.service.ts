@@ -21,6 +21,8 @@ export class Block {
 
     wysiwygEnabled: boolean; // if set to true, disable model to code compilation, allowing direct code modification
 
+    isArchived: boolean;
+
     version: number;
 
     updatedAt?: Date;
@@ -49,6 +51,10 @@ export class Block {
         this.wysiwygEnabled = false;
     }
 
+    archive() {
+        this.isArchived = true;
+    }
+
     constructor(properties: Partial<Block>) {
         this.id = '';
         this.organization = '';
@@ -58,6 +64,7 @@ export class Block {
         this.model = [];
         this.code = '';
         this.wysiwygEnabled = true;
+        this.isArchived = false;
         this.version = 0;
 
         Object.assign(this, properties);
@@ -233,12 +240,12 @@ export class BlockService {
         });
     }
 
-    getNewBlock(wysiwygEnabled: boolean): Block {
+    getNewBlock(organizationId: string, wysiwygEnabled: boolean): Block {
 
         const formattedCode = pretty('<div><h1>{{ #leftArticle.title }}</h1></div>');
 
         return new Block({
-            organization: 'alphabet',
+            organization: organizationId,
             displayName: $localize `New Block`,
             description: $localize `Empty description`,
             wysiwygEnabled: wysiwygEnabled,
@@ -277,6 +284,7 @@ export class BlockService {
              code: block.code,
 
              wysiwygEnabled: block.wysiwygEnabled,
+             isArchived: block.isArchived,
          }));
     }
 
@@ -293,6 +301,7 @@ export class BlockService {
             code: block.code,
 
             wysiwygEnabled: block.wysiwygEnabled,
+            isArchived: block.isArchived,
         }));
     }
 
@@ -302,6 +311,15 @@ export class BlockService {
                 res(firstValueFrom(this.http.delete<void>(`${this.domain}/organizations/${organizationId}/blocks/${blockId}`)));
             }, this.timeout);
         });
+    }
+
+    async archiveBlock(organizationId: string, blockId: string): Promise<void> {
+        return firstValueFrom(
+            this.http.patch<void>(
+                `${this.domain}/organizations/${organizationId}/blocks/${blockId}`,
+                { isArchived: true }
+            )
+        );
     }
 
 }
