@@ -5,6 +5,9 @@ import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { FolderService } from '../../../services/folder.service';
+import { CreateBlock, ReadBlock, UpdateBlock } from '../../../utils/permission.utils';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
     templateUrl: './blocks.component.html',
@@ -15,9 +18,13 @@ export class BlocksComponent implements OnInit {
 
     blocks: Block[] = [];
 
+    canCreateBlock: boolean = false;
+    canUpdateBlock: boolean = false;
+
     private currentOrgSlug: string | undefined;
 
-    constructor(private blockService: BlockService,
+    constructor(private authService: AuthService,
+                private blockService: BlockService,
                 private organizationService: OrganizationService,
                 private folderService: FolderService,
                 private router: Router) { }
@@ -30,6 +37,16 @@ export class BlocksComponent implements OnInit {
                     this.currentOrgSlug = org?.slug;
                     if (org) {
                         this.blocks = await this.blockService.getBlocks(org.slug);
+
+                        this.canCreateBlock = await firstValueFrom(
+                            this.authService.hasPermission$(CreateBlock, org.slug)
+                        );
+
+                        this.canUpdateBlock = await firstValueFrom(
+                            this.authService.hasPermission$(UpdateBlock, org.slug)
+                        );
+
+
                     }
                 }),
                 takeUntilDestroyed(this.destroyRef),
@@ -39,6 +56,7 @@ export class BlocksComponent implements OnInit {
     }
 
     async openEditor(block: Block) {
+        // if (!this.canUpdateBlock) return;
         await this.router.navigate(['/organization', this.currentOrgSlug, 'studio', 'blocks', block.id, 'editor']);
     }
 
@@ -51,5 +69,7 @@ export class BlocksComponent implements OnInit {
             this.blocks = await this.folderService.getFolderContent<Block>(this.currentOrgSlug, folderId);
         }
     }
+
+    static permissions = [ReadBlock];
 
 }

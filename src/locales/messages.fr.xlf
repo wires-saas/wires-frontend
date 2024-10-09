@@ -2833,6 +2833,42 @@
         <source>block</source>
         <target state="new">bloc</target>
       </trans-unit>
+      <trans-unit id="3725668259413859247" datatype="html">
+        <source>ARCHIVED</source>
+        <target state="new">ARCHIVÉ</target>
+      </trans-unit>
+      <trans-unit id="1616102757855967475" datatype="html">
+        <source>All</source>
+        <target state="new">Tout</target>
+      </trans-unit>
+      <trans-unit id="7442929916086166398" datatype="html">
+        <source>Yes, delete</source>
+        <target state="new">Oui, supprimer</target>
+      </trans-unit>
+      <trans-unit id="3542042671420335679" datatype="html">
+        <source>No</source>
+        <target state="new">Non</target>
+      </trans-unit>
+      <trans-unit id="2079588745215879730" datatype="html">
+        <source>Archive Block</source>
+        <target state="new">Archiver le bloc</target>
+      </trans-unit>
+      <trans-unit id="5402313370981838619" datatype="html">
+        <source>For safety concerns you&apos;re only allowed to archive blocks. Are you sure you want to archive block ?</source>
+        <target state="new">Par sécurité seulement l'archivage des blocs est possible. Êtes-vous certain de vouloir archiver le bloc ?</target>
+      </trans-unit>
+      <trans-unit id="1934834356187007083" datatype="html">
+        <source>Yes, archive</source>
+        <target state="new">Oui, archiver</target>
+      </trans-unit>
+      <trans-unit id="6127174462819098220" datatype="html">
+        <source>Error archiving block</source>
+        <target state="new">Erreur lors de l'archivage du bloc</target>
+      </trans-unit>
+      <trans-unit id="1055686627716339120" datatype="html">
+        <source>Archive</source>
+        <target state="new">Archiver</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

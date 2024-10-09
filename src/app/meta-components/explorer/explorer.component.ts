@@ -1,6 +1,5 @@
 import { Component, DestroyRef, EventEmitter, inject, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ConfirmationService, MenuItem, MenuItemCommandEvent, MessageService, SelectItem } from 'primeng/api';
-import { Article } from '../../services/article.service';
+import { ConfirmationService, MenuItem, MenuItemCommandEvent, MessageService } from 'primeng/api';
 import { PanelMenu, PanelMenuModule } from 'primeng/panelmenu';
 import { RippleModule } from 'primeng/ripple';
 import { NgIf } from '@angular/common';
@@ -15,14 +14,16 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Slug } from '../../utils/types.utils';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
-import { ErrorUtils } from '../../utils/error.utils';
 import { ExplorerEditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { ExplorerCreateDialogComponent } from './create-dialog/create-dialog.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessageUtils } from '../../utils/message.utils';
 import { ToastModule } from 'primeng/toast';
+import { firstValueFrom } from 'rxjs';
+import { CreateFolder, DeleteFolder, UpdateFolder } from '../../utils/permission.utils';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-explorer',
@@ -67,10 +68,14 @@ export class ExplorerComponent implements OnInit {
 
     selectedFolder: Folder | undefined;
 
+    canCreateFolder: boolean = false;
+    canUpdateFolder: boolean = false;
+    canDeleteFolder: boolean = false;
 
     currentOrgSlug: Slug | undefined;
 
-    constructor(private organizationService: OrganizationService,
+    constructor(private authService: AuthService,
+                private organizationService: OrganizationService,
                 private folderService: FolderService,
                 private confirmationService: ConfirmationService,
                 private messageService: MessageService) {
@@ -82,6 +87,19 @@ export class ExplorerComponent implements OnInit {
             map(async (organization) => {
                 this.currentOrgSlug = organization?.slug;
                 if (organization) {
+
+                    this.canCreateFolder = await firstValueFrom(
+                        this.authService.hasPermission$(CreateFolder, organization.slug)
+                    );
+
+                    this.canUpdateFolder = await firstValueFrom(
+                        this.authService.hasPermission$(UpdateFolder, organization.slug)
+                    );
+
+                    this.canDeleteFolder = await firstValueFrom(
+                        this.authService.hasPermission$(DeleteFolder, organization.slug)
+                    );
+
                     await this.loadFoldersAndCreateMenu(organization.slug);
                 }
             }),
@@ -142,6 +160,7 @@ export class ExplorerComponent implements OnInit {
             {
                 label: 'Edit',
                 icon: 'pi pi-pencil',
+                visible: this.canUpdateFolder,
                 command: async () => {
                     if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
                     if (!folder.id) throw new Error('Folder id is not set');
@@ -154,6 +173,7 @@ export class ExplorerComponent implements OnInit {
             {
                 label: 'Delete',
                 icon: 'pi pi-fw pi-trash',
+                visible: this.canDeleteFolder,
                 command: async () => {
                     if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
                     if (!folder.id) throw new Error('Folder id is not set');
@@ -166,6 +186,7 @@ export class ExplorerComponent implements OnInit {
             {
                 label: 'Add Folder',
                 icon: 'pi pi-fw pi-plus',
+                visible: this.canCreateFolder,
                 command: async () => {
                     if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
                     if (!folder.id) throw new Error('Folder id is not set');
@@ -177,6 +198,7 @@ export class ExplorerComponent implements OnInit {
             {
                 label: 'Move to',
                 icon: 'pi pi-fw pi-arrows-alt',
+                visible: this.canUpdateFolder,
                 items: [
                     {
                         label: 'Root',
@@ -207,6 +229,8 @@ export class ExplorerComponent implements OnInit {
     }
 
     showFolderContextualMenu(event: any, folder: MenuItem) {
+
+        if (!this.canCreateFolder && !this.canUpdateFolder && !this.canDeleteFolder) return;
 
         if (!folder['data']) return; // no contextual menu for root folder
 

@@ -18,3 +18,12 @@ export const DeleteFeed = new Permission(PermissionSubject.Feed, PermissionActio
 export const ReadFeedRun = new Permission(PermissionSubject.FeedRun, PermissionAction.Read);
 
 export const ReadArticle = new Permission(PermissionSubject.Article, PermissionAction.Read);
+
+export const ReadBlock = new Permission(PermissionSubject.Block, PermissionAction.Read);
+export const CreateBlock = new Permission(PermissionSubject.Block, PermissionAction.Create);
+export const UpdateBlock = new Permission(PermissionSubject.Block, PermissionAction.Update);
+
+export const CreateFolder = new Permission(PermissionSubject.Folder, PermissionAction.Create);
+export const UpdateFolder = new Permission(PermissionSubject.Folder, PermissionAction.Update);
+export const DeleteFolder = new Permission(PermissionSubject.Folder, PermissionAction.Delete);
+

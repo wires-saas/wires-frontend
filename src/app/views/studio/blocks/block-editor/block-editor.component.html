@@ -36,7 +36,7 @@
         </div>
 
 
-        <div>
+        <div *ngIf="canUpdateBlock">
             <p-menu #menu [popup]="true" [model]="actionsMenu"></p-menu>
             <button type="button" pButton
                     class="p-button-rounded p-button-text mb-2 mr-2"
@@ -55,21 +55,21 @@
 
 
             <div class="flex justify-content-end">
-            <button pButton pRipple type="button"
-                    [disabled]="!block.canUndo()"
-                    (click)="undo()"
-                    pTooltip="Undo"
-                    tooltipPosition="bottom"
-                    icon="pi pi-arrow-left"
-                    class="p-button-icon-only p-button-secondary p-button-text"></button>
+                <button pButton pRipple type="button"
+                        [disabled]="!block.canUndo()"
+                        (click)="undo()"
+                        pTooltip="Undo"
+                        tooltipPosition="bottom"
+                        icon="pi pi-arrow-left"
+                        class="p-button-icon-only p-button-secondary p-button-text"></button>
 
-            <button pButton pRipple type="button"
-                    [disabled]="!block.canRedo()"
-                    (click)="redo()"
-                    pTooltip="Redo"
-                    tooltipPosition="bottom"
-                    icon="pi pi-arrow-right"
-                    class="p-button-icon-only p-button-secondary p-button-text"></button>
+                <button pButton pRipple type="button"
+                        [disabled]="!block.canRedo()"
+                        (click)="redo()"
+                        pTooltip="Redo"
+                        tooltipPosition="bottom"
+                        icon="pi pi-arrow-right"
+                        class="p-button-icon-only p-button-secondary p-button-text"></button>
             </div>
 
 
@@ -81,7 +81,7 @@
 
 
 
-        <app-block-editor-wysiwyg *ngIf="block.wysiwygEnabled; else previewOnly"
+        <app-block-editor-wysiwyg *ngIf="block.wysiwygEnabled && canUpdateBlock; else previewOnly"
                                   [block]="block"
                                   class="col-12 md:col-12 xl:col-6 flex-order-0">
         </app-block-editor-wysiwyg>
@@ -92,7 +92,8 @@
             </app-block-editor-preview>
         </ng-template>
 
-        <app-block-editor-code [block]="block"
+        <app-block-editor-code [readonly]="!canUpdateBlock"
+                               [block]="block"
                                (blockChange)="cloneBlock()"
                                class="col-12 md:col-12 xl:col-6"
                                [class.flex-order-2]="block.wysiwygEnabled"

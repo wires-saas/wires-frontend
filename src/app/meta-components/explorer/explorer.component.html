@@ -16,7 +16,7 @@
 </p-panelMenu>
 
 <!-- button to add root folder -->
-<button (click)="createFolderDialogVisible = true" pButton pRipple type="button" i18n-label label="Create Folder" class="w-full"></button>
+<button *ngIf="canCreateFolder" (click)="createFolderDialogVisible = true" pButton pRipple type="button" i18n-label label="Create Folder" class="w-full"></button>
 
 <p-contextMenu #menu [model]="folderMenu">
     <ng-template pTemplate="item" let-item>

@@ -11,12 +11,13 @@
             </span>
             <div class="flex align-items-center gap-2">
                 <span>
-                    <p-tag *ngIf="!block.wysiwygEnabled" severity="success" value="HTML" class="mr-1"></p-tag> {{ block.description }}
+                    {{ block.description }}
                 </span>
             </div>
+
         </div>
         <span class="font-bold text-900 ml-5">
-            {{ block.updatedAt | date:'short' }}
+            <p-tag *ngIf="!block.wysiwygEnabled" severity="success" value="HTML" class="mr-2"></p-tag> {{ block.updatedAt | date:'short' }}
         </span>
     </div>
 </li>

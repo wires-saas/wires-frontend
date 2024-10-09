@@ -1,6 +1,6 @@
 <div class="flex justify-content-start align-items-center mb-2">
     <span class="text-900 text-xl font-semibold" i18n><i class="pi pi-code mr-1"></i> HTML Code</span>
-    <p-tag *ngIf="block.wysiwygEnabled; else editableTag" severity="warning" value="Readonly" class="ml-3"></p-tag>
+    <p-tag *ngIf="block.wysiwygEnabled || readonly; else editableTag" severity="warning" value="Readonly" class="ml-3"></p-tag>
     <ng-template #editableTag>
         <p-tag severity="success" value="Editable" class="ml-3"></p-tag>
     </ng-template>
@@ -23,7 +23,7 @@
         * Direct HTML code editing is disabled when WYSIWYG editor is enabled.
     </span>
 
-    <div *ngIf="block.wysiwygEnabled" class="flex justify-content-end">
+    <div *ngIf="block.wysiwygEnabled && !readonly" class="flex justify-content-end">
         <button pButton pRipple type="button"
                 (click)="openSwitchHTMLDialog()"
                 i18n-label label="Convert to HTML Block"

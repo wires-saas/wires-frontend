@@ -2126,6 +2126,33 @@
       <trans-unit id="5520007132745336628" datatype="html">
         <source>block</source>
       </trans-unit>
+      <trans-unit id="1055686627716339120" datatype="html">
+        <source>Archive</source>
+      </trans-unit>
+      <trans-unit id="1616102757855967475" datatype="html">
+        <source>All</source>
+      </trans-unit>
+      <trans-unit id="1934834356187007083" datatype="html">
+        <source>Yes, archive</source>
+      </trans-unit>
+      <trans-unit id="2079588745215879730" datatype="html">
+        <source>Archive Block</source>
+      </trans-unit>
+      <trans-unit id="3542042671420335679" datatype="html">
+        <source>No</source>
+      </trans-unit>
+      <trans-unit id="3725668259413859247" datatype="html">
+        <source>ARCHIVED</source>
+      </trans-unit>
+      <trans-unit id="5402313370981838619" datatype="html">
+        <source>For safety concerns you&apos;re only allowed to archive blocks. Are you sure you want to archive block ?</source>
+      </trans-unit>
+      <trans-unit id="6127174462819098220" datatype="html">
+        <source>Error archiving block</source>
+      </trans-unit>
+      <trans-unit id="7442929916086166398" datatype="html">
+        <source>Yes, delete</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

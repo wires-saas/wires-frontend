@@ -18,14 +18,17 @@
 
     <div class="col-3">
 
-        <!-- button to create block -->
-        <a [routerLink]="['editor']">
-            <button pButton pRipple type="button" i18n-label label="Create Block" class="p-button-primary w-full"></button>
-        </a>
+        <ng-container *ngIf="canCreateBlock">
 
-        <a [routerLink]="['editor/html']">
-            <button pButton pRipple type="button" i18n-label label="Create HTML Block" class="p-button-secondary w-full mt-2"></button>
-        </a>
+            <a [routerLink]="['editor']">
+                <button pButton pRipple type="button" i18n-label label="Create Block" class="p-button-primary w-full"></button>
+            </a>
+
+            <a [routerLink]="['editor/html']">
+                <button pButton pRipple type="button" i18n-label label="Create HTML Block" class="p-button-secondary w-full mt-2"></button>
+            </a>
+
+        </ng-container>
 
         <a [routerLink]="['bidule/editor']">
             <button pButton pRipple type="button" i18n-label label="Go to fake block" class="p-button-text w-full mt-2"></button>

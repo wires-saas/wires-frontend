@@ -8,9 +8,11 @@ import { LayoutService } from '../../../../layout/service/app.layout.service';
 import { map, take } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { zip } from 'rxjs';
+import { firstValueFrom, zip } from 'rxjs';
 import { OrganizationService } from '../../../../services/organization.service';
 import { MessageUtils } from '../../../../utils/message.utils';
+import { UpdateBlock } from '../../../../utils/permission.utils';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     selector: 'app-block-editor',
@@ -29,9 +31,12 @@ export class BlockEditorComponent implements OnInit {
 
     actionsMenu: MenuItem[] = [];
 
+    canUpdateBlock: boolean = false;
+
     private currentOrgSlug: string | undefined;
 
-    constructor(private blockService: BlockService,
+    constructor(private authService: AuthService,
+                private blockService: BlockService,
                 private layoutService: LayoutService,
                 private activatedRoute: ActivatedRoute,
                 private organizationService: OrganizationService,
@@ -47,6 +52,10 @@ export class BlockEditorComponent implements OnInit {
                 this.currentOrgSlug = org?.slug;
 
                 if (this.currentOrgSlug) {
+
+                    this.canUpdateBlock = await firstValueFrom(
+                        this.authService.hasPermission$(UpdateBlock, this.currentOrgSlug)
+                    );
 
                     zip(this.activatedRoute.params, this.activatedRoute.data).pipe(
                         map(([params, data]) => {

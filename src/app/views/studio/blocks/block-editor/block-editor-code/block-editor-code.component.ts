@@ -18,20 +18,33 @@ export class BlockEditorCodeComponent implements OnInit {
         readOnly: true,
     };
 
+    @Input() readonly: boolean = false;
+
     constructor(private confirmationService: ConfirmationService) {}
 
     ngOnInit() {
 
-        if (this.block.wysiwygEnabled) {
+        // if component is forced to be readonly
+        if (this.readonly) {
             this.editorOptions = {
                 ...this.editorOptions,
                 readOnly: true,
             };
         } else {
-            this.editorOptions = {
-                ...this.editorOptions,
-                readOnly: false,
-            };
+
+            // else depends on block behavior
+            if (this.block.wysiwygEnabled) {
+                this.editorOptions = {
+                    ...this.editorOptions,
+                    readOnly: true,
+                };
+            } else {
+                this.editorOptions = {
+                    ...this.editorOptions,
+                    readOnly: false,
+                };
+            }
+
         }
 
     }

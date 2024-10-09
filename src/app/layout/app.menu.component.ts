@@ -13,6 +13,7 @@ import { BillingComponent } from '../views/organization/billing/billing.componen
 import { ConfigurationComponent } from '../views/organization/configuration/configuration.component';
 import { InformationComponent } from '../views/organization/information/information.component';
 import { ListUsersComponent } from '../views/organization/users/list/list-users.component';
+import { BlocksComponent } from '../views/studio/blocks/blocks.component';
 
 @Component({
     selector: 'app-menu',
@@ -68,6 +69,10 @@ export class AppMenuComponent implements OnInit {
                     icon: 'pi pi-fw pi-objects-column',
                     routerLink: [`/organization/${org.slug}/studio/blocks`],
                     routerLinkActiveOptions: { exact: false },
+                    restriction: authService.hasAtLeast$(
+                        BlocksComponent.permissions,
+                        org.slug,
+                    ),
                 },
                 {
                     label: $localize`Templates`,

@@ -23,6 +23,8 @@ export enum PermissionSubject {
     Tag = 'tag',
     Gpt = 'gpt',
     GptRequest = 'gptRequest',
+    Block = 'block',
+    Folder = 'folder',
 }
 
 export class Permission {
