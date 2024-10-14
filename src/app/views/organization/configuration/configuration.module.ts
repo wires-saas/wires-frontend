@@ -18,6 +18,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ToastModule } from 'primeng/toast';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { RolePipe } from '../../../utils/pipes/role.pipe';
+import { RolesComponent } from './roles/roles.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
     imports: [
@@ -40,7 +42,8 @@ import { RolePipe } from '../../../utils/pipes/role.pipe';
         ToastModule,
         MultiSelectModule,
         RolePipe,
+        ConfirmDialogModule,
     ],
-    declarations: [ConfigurationComponent],
+    declarations: [ConfigurationComponent, RolesComponent],
 })
 export class ConfigurationModule {}

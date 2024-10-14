@@ -7,6 +7,9 @@ export const UpdateOrganization = new Permission(PermissionSubject.Organization,
 
 export const UpdateUserRole = new Permission(PermissionSubject.UserRole, PermissionAction.Update);
 
+export const CreateRole = new Permission(PermissionSubject.Role, PermissionAction.Create);
+export const UpdateRole = new Permission(PermissionSubject.Role, PermissionAction.Update);
+
 export const UpdateUser = new Permission(PermissionSubject.User, PermissionAction.Update);
 
 export const ReadBilling = new Permission(PermissionSubject.Billing, PermissionAction.Read);

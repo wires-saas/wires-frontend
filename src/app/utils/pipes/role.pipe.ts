@@ -1,25 +1,25 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Role } from '../role.utils';
+import { RoleName } from '../role.utils';
 
 @Pipe({
     name: 'role',
     standalone: true,
 })
 export class RolePipe implements PipeTransform {
-    transform(role: Role): string {
+    transform(role: RoleName | string): string {
         switch (role) {
-            case Role.SUPER_ADMIN:
+            case RoleName.SUPER_ADMIN:
                 return $localize`Super Admin`;
-            case Role.ADMIN:
+            case RoleName.ADMIN:
                 return $localize`Admin`;
-            case Role.MANAGER:
+            case RoleName.MANAGER:
                 return $localize`Manager`;
-            case Role.USER:
+            case RoleName.USER:
                 return $localize`User`;
-            case Role.GUEST:
+            case RoleName.GUEST:
                 return $localize`Guest`;
             default:
-                return $localize`N/A`;
+                return role.charAt(0).toUpperCase() + role.slice(1);
         }
     }
 }

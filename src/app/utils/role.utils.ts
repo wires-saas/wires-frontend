@@ -4,11 +4,11 @@ import { Permission, PermissionAction } from '../services/permission.service';
 export interface UserRole {
     organization: string;
     user: string;
-    role: Role;
+    role: string;
     permissions: Permission[];
 }
 
-export enum Role {
+export enum RoleName {
     SUPER_ADMIN = 'super_admin',
     ADMIN = 'admin',
     MANAGER = 'manager',
@@ -17,17 +17,17 @@ export enum Role {
 }
 
 export class RoleUtils {
-    static hasRole(user: User, role: Role, organization?: string): boolean {
+    static hasRole(user: User, role: RoleName, organization?: string): boolean {
         if (user.isSuperAdmin) return true;
 
         return user.roles.some((userRole) => {
             if (organization) {
                 return (
-                    RoleUtils.isRoleOrGreater(userRole.role, role) &&
+                    RoleUtils.isRoleOrGreater(userRole.role as RoleName, role) &&
                     userRole.organization === organization
                 );
             } else {
-                return RoleUtils.isRoleOrGreater(userRole.role, role);
+                return RoleUtils.isRoleOrGreater(userRole.role as RoleName, role);
             }
         });
     }
@@ -51,41 +51,41 @@ export class RoleUtils {
         });
     }
 
-    static isRoleOrGreater(roleTested: Role, roleRequired: Role): boolean {
+    static isRoleOrGreater(roleTested: RoleName, roleRequired: RoleName): boolean {
         return (
             RoleUtils.getRoleHierarchy(roleTested) >=
             RoleUtils.getRoleHierarchy(roleRequired)
         );
     }
 
-    static getRoleHierarchy(role: Role): number {
+    static getRoleHierarchy(role: RoleName): number {
         switch (role) {
-            case Role.SUPER_ADMIN:
+            case RoleName.SUPER_ADMIN:
                 return 4;
-            case Role.ADMIN:
+            case RoleName.ADMIN:
                 return 3;
-            case Role.MANAGER:
+            case RoleName.MANAGER:
                 return 2;
-            case Role.USER:
+            case RoleName.USER:
                 return 1;
             default:
                 return 0;
         }
     }
 
-    static getRoleForOrganization(user: User, organizationSlug?: string): Role {
-        if (user?.isSuperAdmin) return Role.SUPER_ADMIN;
+    static getRoleForOrganization(user: User, organizationSlug?: string): RoleName {
+        if (user?.isSuperAdmin) return RoleName.SUPER_ADMIN;
 
         if (user?.roles?.length) {
             if (organizationSlug)
                 return (
                     user.roles.find((_) => _.organization === organizationSlug)
-                        ?.role || Role.GUEST
+                        ?.role as RoleName || RoleName.GUEST
                 );
-            else return user.roles[0].role;
+            else return user.roles[0].role as RoleName;
         }
 
-        return Role.GUEST;
+        return RoleName.GUEST;
     }
 
     static convertManagePermissions(permissions: Permission[]): Permission[] {

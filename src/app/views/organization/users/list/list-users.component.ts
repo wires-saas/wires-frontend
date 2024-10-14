@@ -22,7 +22,7 @@ import {
     MessageService,
     SortEvent,
 } from 'primeng/api';
-import { Role, RoleUtils } from '../../../../utils/role.utils';
+import { RoleName, RoleUtils } from '../../../../utils/role.utils';
 import { Slug } from '../../../../utils/types.utils';
 import { AuthService } from '../../../../services/auth.service';
 import { MessageUtils } from '../../../../utils/message.utils';
@@ -132,15 +132,15 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
 
         const visibleForManagersOrAdmins =
             !isCurrentUser &&
-            (currentUserRole === Role.ADMIN ||
-                currentUserRole === Role.MANAGER ||
-                currentUserRole === Role.SUPER_ADMIN);
+            (currentUserRole === RoleName.ADMIN ||
+                currentUserRole === RoleName.MANAGER ||
+                currentUserRole === RoleName.SUPER_ADMIN);
         const visibleForAdmins =
             !isCurrentUser &&
-            (currentUserRole === Role.ADMIN ||
-                currentUserRole === Role.SUPER_ADMIN);
+            (currentUserRole === RoleName.ADMIN ||
+                currentUserRole === RoleName.SUPER_ADMIN);
 
-        const setRoleAndReflectChangeOnUser = async (role: Role) => {
+        const setRoleAndReflectChangeOnUser = async (role: RoleName) => {
             if (!this.currentOrgSlug)
                 throw new Error('No current organization slug');
             await this.userService
@@ -264,9 +264,9 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                             RoleUtils.getRoleForOrganization(
                                 user,
                                 this.currentOrgSlug,
-                            ) === Role.ADMIN,
+                            ) === RoleName.ADMIN,
                         command: async () => {
-                            await setRoleAndReflectChangeOnUser(Role.ADMIN)
+                            await setRoleAndReflectChangeOnUser(RoleName.ADMIN)
                                 .then(() => {
                                     this.messageService.add({
                                         severity: 'success',
@@ -296,9 +296,9 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                             RoleUtils.getRoleForOrganization(
                                 user,
                                 this.currentOrgSlug,
-                            ) === Role.MANAGER,
+                            ) === RoleName.MANAGER,
                         command: async () => {
-                            await setRoleAndReflectChangeOnUser(Role.MANAGER)
+                            await setRoleAndReflectChangeOnUser(RoleName.MANAGER)
                                 .then(() => {
                                     this.messageService.add({
                                         severity: 'success',
@@ -328,9 +328,9 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                             RoleUtils.getRoleForOrganization(
                                 user,
                                 this.currentOrgSlug,
-                            ) === Role.USER,
+                            ) === RoleName.USER,
                         command: async () => {
-                            await setRoleAndReflectChangeOnUser(Role.USER)
+                            await setRoleAndReflectChangeOnUser(RoleName.USER)
                                 .then(() => {
                                     this.messageService.add({
                                         severity: 'success',
@@ -362,8 +362,8 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                 // Disabling possibility to set same role user already has
                 _.disabled = role === _['data'];
 
-                if (currentUserRole === Role.MANAGER) {
-                    if (_['data'] === Role.ADMIN) {
+                if (currentUserRole === RoleName.MANAGER) {
+                    if (_['data'] === RoleName.ADMIN) {
                         _.visible = false;
                     }
                 }

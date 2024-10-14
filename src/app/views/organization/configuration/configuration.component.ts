@@ -9,11 +9,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { deepEquals } from '../../../utils/deep-equals';
 import { MessageUtils } from '../../../utils/message.utils';
 import { MessageService } from 'primeng/api';
-import {
-    Permission,
-    PermissionService,
-} from '../../../services/permission.service';
-import { Role } from '../../../utils/role.utils';
 import { User } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
@@ -28,12 +23,6 @@ interface OrganizationSecurity {
     templateUrl: './configuration.component.html',
 })
 export class ConfigurationComponent implements OnInit {
-    permissionsList: any[] = [];
-    permissionsForm: FormGroup = new FormGroup({});
-
-    roleNamesForm: FormGroup = new FormGroup({});
-
-    permissionsRoles: Role[] = [];
 
     optionsFor2FA = [
         { name: $localize`Email`, id: 'email' },
@@ -60,7 +49,6 @@ export class ConfigurationComponent implements OnInit {
     private destroyRef = inject(DestroyRef);
 
     constructor(
-        private permissionService: PermissionService,
         private organizationService: OrganizationService,
         private authService: AuthService,
         private messageService: MessageService,
@@ -86,61 +74,14 @@ export class ConfigurationComponent implements OnInit {
 
                         this.aiForm.get('enabled')?.setValue(!!organization.gpt);
 
-                        // TODO fetch permissions
-                        const rolesWithPermissions =
-                            await this.permissionService.getRoles(organization.slug);
-
-                        this.permissionsList =
-                            await this.permissionService.getPermissions();
-
                         this.currentUser = await firstValueFrom(
                             this.authService.currentUser$,
-                        );
-                        const isSuperAdmin = !!this.currentUser?.isSuperAdmin;
-                        this.buildPermissionsForm(
-                            rolesWithPermissions,
-                            isSuperAdmin,
-                            isSuperAdmin,
                         );
                     }
                 }),
                 takeUntilDestroyed(this.destroyRef),
             )
             .subscribe();
-    }
-
-    private buildPermissionsForm(
-        rolesWithPermissions: Record<Role, Permission[]>,
-        canUpdateRoleName: boolean,
-        canUpdatePermissions: boolean,
-    ) {
-        const permissionsControls: any = {};
-        Object.entries(rolesWithPermissions).forEach(([role, permissions]) => {
-            permissionsControls[role] = new FormControl({
-                value: permissions,
-                disabled: !canUpdatePermissions,
-            });
-        });
-
-        const roleNamesControls: any = {};
-        Object.keys(rolesWithPermissions).forEach((role) => {
-            roleNamesControls[role] = new FormControl({
-                value: '',
-                disabled: !canUpdateRoleName,
-            });
-        });
-
-        this.permissionsRoles = Object.keys(rolesWithPermissions) as Role[];
-
-        this.permissionsForm = new FormGroup(permissionsControls);
-        this.roleNamesForm = new FormGroup(roleNamesControls);
-    }
-
-    canSavePermissions() {
-        return (
-            (this.permissionsForm.valid && this.permissionsForm.dirty) ||
-            (this.roleNamesForm.valid && this.roleNamesForm.dirty)
-        );
     }
 
     canSaveSecurity() {

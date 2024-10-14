@@ -12,7 +12,6 @@ import { Menu } from 'primeng/menu';
 import { Feed, FeedService } from '../../../../services/feed.service';
 import { AuthService } from '../../../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
-import { Role, RoleUtils } from '../../../../utils/role.utils';
 import { OrganizationService } from '../../../../services/organization.service';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';

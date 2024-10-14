@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { User } from './user.service';
-import { Role, RoleUtils } from '../utils/role.utils';
+import { RoleName, RoleUtils } from '../utils/role.utils';
 import { map } from 'rxjs/operators';
 import { NotificationService } from './notification.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -152,7 +152,7 @@ export class AuthService {
         );
     }
 
-    hasRole$(role: Role, slug?: string): Observable<boolean> {
+    hasRole$(role: RoleName, slug?: string): Observable<boolean> {
         return this.currentUser$.pipe(
             map((user) => {
                 if (!user) return false;

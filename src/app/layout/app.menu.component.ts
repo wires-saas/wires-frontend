@@ -4,7 +4,7 @@ import {
     OrganizationService,
 } from '../services/organization.service';
 import { AuthService } from '../services/auth.service';
-import { Role } from '../utils/role.utils';
+import { RoleName } from '../utils/role.utils';
 import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FeedsComponent } from '../views/contents/feeds/feeds.component';
@@ -206,7 +206,7 @@ export class AppMenuComponent implements OnInit {
         {
             label: $localize`Administration`,
             icon: 'pi pi-fw pi-shield',
-            restriction: authService.hasRole$(Role.SUPER_ADMIN),
+            restriction: authService.hasRole$(RoleName.SUPER_ADMIN),
             items: [
                 {
                     label: $localize`All Organizations`,

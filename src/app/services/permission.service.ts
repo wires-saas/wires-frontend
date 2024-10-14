@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
-import { Role } from '../utils/role.utils';
+import { RoleName } from '../utils/role.utils';
 
 export enum PermissionAction {
     Create = 'create',
@@ -14,6 +14,7 @@ export enum PermissionAction {
 
 export enum PermissionSubject {
     Organization = 'organization',
+    Role = 'role',
     UserRole = 'userRole',
     User = 'user',
     Feed = 'feed',
@@ -102,6 +103,9 @@ export class Permission {
                 case PermissionSubject.Organization:
                     subjectI18N = $localize`Organization`;
                     break;
+                case PermissionSubject.Role:
+                    subjectI18N = $localize`Role`;
+                    break;
                 case PermissionSubject.UserRole:
                     subjectI18N = $localize`User Role`;
                     break;
@@ -129,6 +133,12 @@ export class Permission {
                 case PermissionSubject.GptRequest:
                     subjectI18N = $localize`GPT Request`;
                     break;
+                case PermissionSubject.Block:
+                    subjectI18N = $localize`Block`;
+                    break;
+                case PermissionSubject.Folder:
+                    subjectI18N = $localize`Folder`;
+                    break;
                 default:
                     subjectI18N = $localize`N/A`;
                     break;
@@ -141,8 +151,9 @@ export class Permission {
     }
 }
 
-interface RolePermissions {
-    name: Role;
+export interface RolePermissions {
+    previousName?: RoleName | string;
+    name: RoleName | string;
     permissions: Permission[];
 }
 
@@ -167,13 +178,13 @@ export class PermissionService {
         });
     }
 
-    async getRoles(organizationId: string): Promise<Record<Role, Permission[]>> {
+    async getRoles(organizationId: string): Promise<Record<RoleName|string, Permission[]>> {
         return firstValueFrom(
             this.http.get<RolePermissions[]>(`${this.domain}/organizations/${organizationId}/roles`),
         ).then((roles: RolePermissions[]) => {
             return roles.reduce(
                 (
-                    acc: Record<Role, Permission[]>,
+                    acc: Record<RoleName|string, Permission[]>,
                     currentRole: RolePermissions,
                 ) => {
                     acc[currentRole.name] = currentRole.permissions.map(
@@ -185,8 +196,14 @@ export class PermissionService {
                     );
                     return acc;
                 },
-                {} as Record<Role, Permission[]>,
+                {} as Record<RoleName, Permission[]>,
             );
         });
+    }
+
+    async updateRoles(organizationId: string, roles: RolePermissions[]): Promise<void> {
+        return firstValueFrom(
+            this.http.put<void>(`${this.domain}/organizations/${organizationId}/roles`, roles),
+        );
     }
 }
