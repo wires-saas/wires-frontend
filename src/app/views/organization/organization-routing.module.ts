@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HasRoleGuard } from '../../guards/has-role.guard';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
                 path: 'users/list',
-                data: { breadcrumb: $localize`Users`, requiredRole: 'manager' },
-                canActivate: [HasRoleGuard],
+                data: { breadcrumb: $localize`Users` },
                 loadChildren: () =>
                     import('./users/list/list-users.module').then(
                         (m) => m.ListUsersModule,
@@ -16,8 +14,7 @@ import { HasRoleGuard } from '../../guards/has-role.guard';
             },
             {
                 path: 'users/create',
-                data: { breadcrumb: $localize`Users`, requiredRole: 'manager' },
-                canActivate: [HasRoleGuard],
+                data: { breadcrumb: $localize`Users` },
                 loadChildren: () =>
                     import(
                         './users/create-or-edit/create-or-edit-user.module'
@@ -25,8 +22,7 @@ import { HasRoleGuard } from '../../guards/has-role.guard';
             },
             {
                 path: 'users/:user/edit',
-                data: { breadcrumb: $localize`Users`, requiredRole: 'manager' },
-                canActivate: [HasRoleGuard],
+                data: { breadcrumb: $localize`Users` },
                 loadChildren: () =>
                     import(
                         './users/create-or-edit/create-or-edit-user.module'
@@ -34,8 +30,7 @@ import { HasRoleGuard } from '../../guards/has-role.guard';
             },
             {
                 path: 'information',
-                data: { breadcrumb: $localize`General`, requiredRole: 'admin' },
-                canActivate: [HasRoleGuard],
+                data: { breadcrumb: $localize`General` },
                 loadChildren: () =>
                     import('./information/information.module').then(
                         (m) => m.InformationModule,
@@ -45,9 +40,7 @@ import { HasRoleGuard } from '../../guards/has-role.guard';
                 path: 'configuration',
                 data: {
                     breadcrumb: $localize`Configuration`,
-                    requiredRole: 'admin',
                 },
-                canActivate: [HasRoleGuard],
                 loadChildren: () =>
                     import('./configuration/configuration.module').then(
                         (m) => m.ConfigurationModule,
@@ -55,8 +48,7 @@ import { HasRoleGuard } from '../../guards/has-role.guard';
             },
             {
                 path: 'billing',
-                data: { breadcrumb: $localize`Billing`, requiredRole: 'admin' },
-                canActivate: [HasRoleGuard],
+                data: { breadcrumb: $localize`Billing` },
                 loadChildren: () =>
                     import('./billing/billing.module').then(
                         (m) => m.BillingModule,
@@ -66,6 +58,6 @@ import { HasRoleGuard } from '../../guards/has-role.guard';
         ]),
     ],
     exports: [RouterModule],
-    providers: [HasRoleGuard],
+    providers: [],
 })
 export class OrganizationRoutingModule {}
