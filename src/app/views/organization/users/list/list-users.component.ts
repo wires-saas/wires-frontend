@@ -22,18 +22,21 @@ import {
     MessageService,
     SortEvent,
 } from 'primeng/api';
-import { RoleName, RoleUtils } from '../../../../utils/role.utils';
+import { ExtendedRoleName, RoleName, RoleUtils } from '../../../../utils/role.utils';
 import { Slug } from '../../../../utils/types.utils';
 import { AuthService } from '../../../../services/auth.service';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { CsvUtils } from '../../../../utils/csv.utils';
-import { UpdateUser } from '../../../../utils/permission.utils';
+import { CreateUser, DeleteUser, UpdateUser, UpdateUserRole } from '../../../../utils/permission.utils';
+import { Permission, PermissionService } from '../../../../services/permission.service';
+import { RolePipe } from '../../../../utils/pipes/role.pipe';
 
 @Component({
     templateUrl: './list-users.component.html',
 })
 export class ListUsersComponent implements OnInit, AfterViewInit {
     users: User[] = [];
+    roles:  Record<ExtendedRoleName, Permission[]> = {};
 
     actionsMenuItems: MenuItem[] = [];
 
@@ -45,12 +48,18 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
 
     showUserInvitedConfirmation: boolean = false;
 
+    canCreateUser: boolean = false;
+    canUpdateUser: boolean = false;
+    canUpdateUserRole: boolean = false;
+    canDeleteUser: boolean = false;
+
     private destroyRef = inject(DestroyRef);
 
     constructor(
         private authService: AuthService,
         private userService: UserService,
         private organizationService: OrganizationService,
+        private permissionService: PermissionService,
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
         private route: ActivatedRoute,
@@ -71,9 +80,13 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                 map(async (org) => {
                     this.currentOrgSlug = org?.slug;
                     if (org?.slug && !this.multiOrganizations) {
+                        this.loadPermissions();
+
                         this.users = await this.userService.getUsers([
                             org.slug,
                         ]);
+
+                        this.roles = await this.permissionService.getRoles(org.slug);
                     } else {
                         this.users = await this.userService.getUsers();
                     }
@@ -92,6 +105,13 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                 life: 5000,
             });
         }
+    }
+
+    private async loadPermissions() {
+        this.canCreateUser = await firstValueFrom(this.authService.hasPermission$(CreateUser));
+        this.canUpdateUser = await firstValueFrom(this.authService.hasPermission$(UpdateUser));
+        this.canUpdateUserRole = await firstValueFrom(this.authService.hasPermission$(UpdateUserRole));
+        this.canDeleteUser = await firstValueFrom(this.authService.hasPermission$(DeleteUser));
     }
 
     onGlobalFilter(table: Table, event: Event) {
@@ -117,30 +137,52 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
         const currentUser = await firstValueFrom(this.authService.currentUser$);
 
         if (!currentUser) throw new Error('No current user');
-
-        const currentUserRole = RoleUtils.getRoleForOrganization(
-            currentUser,
-            this.currentOrgSlug,
-        );
-
-        const role = RoleUtils.getRoleForOrganization(
-            user,
-            this.currentOrgSlug,
-        );
+        if (!this.currentOrgSlug) throw new Error('No current organization slug');
 
         const isCurrentUser = currentUser._id === user._id;
 
-        const visibleForManagersOrAdmins =
-            !isCurrentUser &&
-            (currentUserRole === RoleName.ADMIN ||
-                currentUserRole === RoleName.MANAGER ||
-                currentUserRole === RoleName.SUPER_ADMIN);
-        const visibleForAdmins =
-            !isCurrentUser &&
-            (currentUserRole === RoleName.ADMIN ||
-                currentUserRole === RoleName.SUPER_ADMIN);
+        const rolesMenuItems = Object.keys(this.roles).map((role, index, arr) => {
+            const first = index === 0;
+            const last = index === arr.length - 1;
 
-        const setRoleAndReflectChangeOnUser = async (role: RoleName) => {
+            const icon = first ? 'pi-sort-up' : last ? 'pi-sort-down' : 'pi-sort';
+
+            const roleLabel = RolePipe.transform(role);
+
+            return {
+                label: roleLabel,
+                icon: 'pi pi-fw ' + icon,
+                visible: true,
+                disabled: RoleUtils.getRoleForOrganization(
+                    user,
+                    this.currentOrgSlug,
+                ) === role,
+                command: async () => {
+                    await setRoleAndReflectChangeOnUser(role)
+                        .then(() => {
+                            this.messageService.add({
+                                severity: 'success',
+                                summary: $localize`Success setting role`,
+                                detail: $localize`${user.firstName} has been set as "${roleLabel}"`,
+                                life: 5000,
+                            });
+                        })
+                        .catch((err) => {
+                            console.error(err);
+
+                            MessageUtils.parseServerError(
+                                this.messageService,
+                                err,
+                                {
+                                    summary: $localize`Error setting role`,
+                                },
+                            );
+                        });
+                }
+            };
+        });
+
+        const setRoleAndReflectChangeOnUser = async (role: ExtendedRoleName) => {
             if (!this.currentOrgSlug)
                 throw new Error('No current organization slug');
             await this.userService
@@ -166,6 +208,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                     {
                         label: $localize`Edit`,
                         icon: 'pi pi-fw pi-pencil',
+                        disabled: !this.canUpdateUser,
                         routerLink: [
                             '/organization',
                             this.currentOrgSlug,
@@ -178,7 +221,6 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                         label: $localize`Re-send Invite`,
                         icon: 'pi pi-fw pi-envelope',
                         disabled: user.status !== UserStatus.PENDING,
-                        visible: visibleForManagersOrAdmins,
                         command: () => {
                             if (!this.currentOrgSlug)
                                 throw new Error('No current organization slug');
@@ -208,7 +250,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                     {
                         label: $localize`Remove`,
                         icon: 'pi pi-fw pi-user-minus',
-                        visible: visibleForManagersOrAdmins,
+                        disabled: !this.canDeleteUser,
                         command: () => {
                             this.confirmationService.confirm({
                                 key: 'confirm-delete',
@@ -251,111 +293,18 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                     },
                 ],
             },
-            { separator: true, visible: visibleForAdmins && !isCurrentUser },
+            { separator: true, visible: this.canUpdateUserRole && !isCurrentUser },
+            // TODO iterate over roles and add them to menu
             {
                 label: $localize`Roles`,
-                visible: visibleForAdmins && !isCurrentUser,
+                visible: this.canUpdateUserRole && !isCurrentUser,
                 items: [
-                    {
-                        label: $localize`Set Admin`,
-                        icon: 'pi pi-fw pi-sort-up',
-                        visible: !isCurrentUser,
-                        disabled:
-                            RoleUtils.getRoleForOrganization(
-                                user,
-                                this.currentOrgSlug,
-                            ) === RoleName.ADMIN,
-                        command: async () => {
-                            await setRoleAndReflectChangeOnUser(RoleName.ADMIN)
-                                .then(() => {
-                                    this.messageService.add({
-                                        severity: 'success',
-                                        summary: $localize`Success setting role`,
-                                        detail: $localize`${user.firstName} has been set as Admin`,
-                                        life: 5000,
-                                    });
-                                })
-                                .catch((err) => {
-                                    console.error(err);
-
-                                    MessageUtils.parseServerError(
-                                        this.messageService,
-                                        err,
-                                        {
-                                            summary: $localize`Error setting role`,
-                                        },
-                                    );
-                                });
-                        },
-                    },
-                    {
-                        label: $localize`Set Manager`,
-                        icon: 'pi pi-fw pi-sort',
-                        visible: visibleForAdmins && !isCurrentUser,
-                        disabled:
-                            RoleUtils.getRoleForOrganization(
-                                user,
-                                this.currentOrgSlug,
-                            ) === RoleName.MANAGER,
-                        command: async () => {
-                            await setRoleAndReflectChangeOnUser(RoleName.MANAGER)
-                                .then(() => {
-                                    this.messageService.add({
-                                        severity: 'success',
-                                        summary: $localize`Success setting role`,
-                                        detail: $localize`${user.firstName} has been set as Manager`,
-                                        life: 5000,
-                                    });
-                                })
-                                .catch((err) => {
-                                    console.error(err);
-
-                                    MessageUtils.parseServerError(
-                                        this.messageService,
-                                        err,
-                                        {
-                                            summary: $localize`Error setting role`,
-                                        },
-                                    );
-                                });
-                        },
-                    },
-                    {
-                        label: $localize`Set User`,
-                        icon: 'pi pi-fw pi-sort-down',
-                        visible: visibleForAdmins && !isCurrentUser,
-                        disabled:
-                            RoleUtils.getRoleForOrganization(
-                                user,
-                                this.currentOrgSlug,
-                            ) === RoleName.USER,
-                        command: async () => {
-                            await setRoleAndReflectChangeOnUser(RoleName.USER)
-                                .then(() => {
-                                    this.messageService.add({
-                                        severity: 'success',
-                                        summary: $localize`Success setting role`,
-                                        detail: $localize`${user.firstName} has been set as User`,
-                                        life: 5000,
-                                    });
-                                })
-                                .catch((err) => {
-                                    console.error(err);
-
-                                    MessageUtils.parseServerError(
-                                        this.messageService,
-                                        err,
-                                        {
-                                            summary: $localize`Error setting role`,
-                                        },
-                                    );
-                                });
-                        },
-                    },
+                    ...rolesMenuItems,
                 ],
             },
         ];
 
+        /*
         this.actionsMenuItems
             .filter((_) => !!_['data'])
             .forEach((_) => {
@@ -367,7 +316,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                         _.visible = false;
                     }
                 }
-            });
+            }); */
 
         menu.toggle(event);
     }

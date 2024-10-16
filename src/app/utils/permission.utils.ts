@@ -10,7 +10,10 @@ export const UpdateUserRole = new Permission(PermissionSubject.UserRole, Permiss
 export const CreateRole = new Permission(PermissionSubject.Role, PermissionAction.Create);
 export const UpdateRole = new Permission(PermissionSubject.Role, PermissionAction.Update);
 
+export const CreateUser = new Permission(PermissionSubject.User, PermissionAction.Create);
+export const ReadUser = new Permission(PermissionSubject.User, PermissionAction.Read);
 export const UpdateUser = new Permission(PermissionSubject.User, PermissionAction.Update);
+export const DeleteUser = new Permission(PermissionSubject.User, PermissionAction.Delete);
 
 export const ReadBilling = new Permission(PermissionSubject.Billing, PermissionAction.Read);
 

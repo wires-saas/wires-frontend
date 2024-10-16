@@ -16,6 +16,8 @@ export enum RoleName {
     GUEST = 'guest',
 }
 
+export type ExtendedRoleName = RoleName | string;
+
 export class RoleUtils {
     static hasRole(user: User, role: RoleName, organization?: string): boolean {
         if (user.isSuperAdmin) return true;

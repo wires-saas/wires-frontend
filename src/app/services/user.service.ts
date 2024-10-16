@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
-import { RoleName, UserRole } from '../utils/role.utils';
+import { ExtendedRoleName, RoleName, UserRole } from '../utils/role.utils';
 import { Slug } from '../utils/types.utils';
 
 export enum UserEmailStatus {
@@ -127,7 +127,7 @@ export class UserService {
     async addUserRole(
         userId: string,
         orgSlug: Slug,
-        role: RoleName,
+        role: ExtendedRoleName,
     ): Promise<UserRole[]> {
         return firstValueFrom(
             this.http.post<UserRole[]>(`${this.domain}/users/${userId}/roles`, [

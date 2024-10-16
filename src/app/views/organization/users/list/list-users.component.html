@@ -1,3 +1,7 @@
+{{ canCreateUser }}
+{{ canUpdateUser }}
+{{ canUpdateUserRole }}
+{{ canDeleteUser }}
 <div class="card">
 
     <p-menu #actionsMenu [popup]="true" [model]="actionsMenuItems"></p-menu>
@@ -16,7 +20,7 @@
 
                 <div *ngIf="!multiOrganizations" class="flex flex-wrap gap-2">
                     <a [routerLink]="['/organization/' + currentOrgSlug + '/users/create']">
-                        <button pButton class="w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" i18n-label label="Invite New User"></button>
+                        <button [disabled]="!canCreateUser" pButton class="w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" i18n-label label="Invite New User"></button>
                     </a>
 
                     <button (click)="exportUsersToCSV()" pButton pRipple type="button"
