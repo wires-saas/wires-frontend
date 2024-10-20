@@ -35,3 +35,6 @@ export const CreateFolder = new Permission(PermissionSubject.Folder, PermissionA
 export const UpdateFolder = new Permission(PermissionSubject.Folder, PermissionAction.Update);
 export const DeleteFolder = new Permission(PermissionSubject.Folder, PermissionAction.Delete);
 
+export const CreateContactsProvider = new Permission(PermissionSubject.ContactsProvider, PermissionAction.Create);
+export const UpdateContactsProvider = new Permission(PermissionSubject.ContactsProvider, PermissionAction.Update);
+export const DeleteContactsProvider = new Permission(PermissionSubject.ContactsProvider, PermissionAction.Delete);

@@ -24,6 +24,15 @@ const routes: Routes = [
                     ),
             },
             {
+                path: 'organization/:slug/audience',
+                data: { breadcrumb: $localize`Audience` },
+                canActivate: [AuthenticatedGuard],
+                loadChildren: () =>
+                    import('./views/audience/audience.module').then(
+                        (m) => m.AudienceModule,
+                    ),
+            },
+            {
                 path: 'organization/:slug/contents',
                 data: { breadcrumb: $localize`Contents` },
                 canActivate: [AuthenticatedGuard],

@@ -1,135 +1,141 @@
 <div class="grid grid-nogutter justify-content-center mt-4" [class.mt-8]="forLanding">
-                    <div class="col-12 lg:col-6 xl:col-4">
-                        <div class="p-3 h-full">
-                            <div class="shadow-1 p-6 h-full flex flex-column surface-card" [class.shadow-2]="forLanding" style="border-radius: 6px">
-                                <span class="text-900 block font-medium text-xl mb-2 text-center" i18n>Basic Licence</span>
-                                <span class="font-bold block text-2xl text-900 text-center" i18n>$200</span>
-
-                                <ul class="list-none p-0 m-0 flex-grow-1 mt-6">
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span i18n>Unlimited Users</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span i18n>Up to 10 Active Campaigns</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span i18n>Detailed Analytics</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-times text-red-500 mr-2"></i>
-                                        <span i18n>Dedicated Support</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-times text-red-500 mr-2"></i>
-                                        <span i18n>AI Features</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-times text-red-500 mr-2"></i>
-                                        <span i18n>Fine-grained Access Control</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-times text-red-500 mr-2"></i>
-                                        <span i18n>Developers Access</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-times text-red-500 mr-2"></i>
-                                        <span i18n>Service Level Agreement</span>
-                                    </li>
-                                </ul>
-
-                                <button *ngIf="planEnabled === PlanType.BASIC"
-                                        pButton pRipple i18n-label label="Current Plan" [disabled]="true" class="px-5 w-full mt-6 p-button-outlined"></button>
-
-                                <button *ngIf="planEnabled === PlanType.EXTENDED || planEnabled === PlanType.ENTERPRISE"
-                                        (click)="selectPlan(PlanType.BASIC)"
-                                        pButton pRipple i18n-label label="Downgrade Plan" class="px-5 w-full mt-6 p-button-outlined p-button-danger"
-                                        icon="pi pi-arrow-right" iconPos="right"></button>
-
-                                <button *ngIf="!planEnabled"
-                                        (click)="selectPlan(PlanType.BASIC)"
-                                        pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
-                                        icon="pi pi-arrow-right" iconPos="right"></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 lg:col-6 xl:col-4">
-                        <div class="p-3 h-full">
-                            <div class="shadow-1 p-6 h-full flex flex-column surface-card" [class.shadow-2]="forLanding" style="border-radius: 6px">
-                                <span class="text-900 block font-medium text-xl mb-2 text-center" i18n>Extended
-                                    Licence</span>
-                                <span class="font-bold block text-2xl text-900 text-center" i18n>$500</span>
-
-                                <ul class="list-none p-0 m-0 flex-grow-1 mt-6">
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span i18n>Unlimited Users</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span i18n>Up to 30 Active Campaigns</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span i18n>Detailed Analytics</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span i18n>Dedicated Support</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-check text-green-500 mr-2"></i>
-                                        <span i18n>AI Features</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-times text-red-500 mr-2"></i>
-                                        <span i18n>Fine-grained Access Control</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-times text-red-500 mr-2"></i>
-                                        <span i18n>Developers Access</span>
-                                    </li>
-                                    <li class="flex align-items-center mb-3">
-                                        <i class="pi pi-times text-red-500 mr-2"></i>
-                                        <span i18n>Service Level Agreement</span>
-                                    </li>
-                                </ul>
-
-
-                                <button *ngIf="planEnabled === PlanType.EXTENDED"
-                                        pButton pRipple i18n-label label="Current Plan" [disabled]="true" class="px-5 w-full mt-6 p-button-outlined"></button>
-
-                                <button *ngIf="planEnabled === PlanType.ENTERPRISE"
-                                        (click)="selectPlan(PlanType.EXTENDED)"
-                                        pButton pRipple i18n-label label="Downgrade Plan" class="px-5 w-full mt-6 p-button-outlined p-button-danger"
-                                        icon="pi pi-arrow-right" iconPos="right"></button>
-
-                                <button *ngIf="planEnabled === PlanType.BASIC"
-                                        (click)="selectPlan(PlanType.EXTENDED)"
-                                        pButton pRipple i18n-label label="Upgrade Plan" class="px-5 w-full mt-6 p-button"
-                                        icon="pi pi-arrow-right" iconPos="right"></button>
-
-                                <button *ngIf="!planEnabled"
-                                        (click)="selectPlan(PlanType.EXTENDED)"
-                                        pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
-                                        icon="pi pi-arrow-right" iconPos="right"></button>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 lg:col-6 xl:col-4">
+    <div class="col-12 lg:col-6 xl:col-4">
         <div class="p-3 h-full">
-            <div class="shadow-1 p-6 h-full flex flex-column surface-card" [class.shadow-2]="forLanding" style="border-radius: 6px">
-                                <span class="text-900 block font-medium text-xl mb-2 text-center" i18n>
-                                    Entreprise Licence
-                                </span>
+            <div class="shadow-1 p-6 h-full flex flex-column surface-card border-round border-3 border-transparent"
+                 [class.shadow-2]="forLanding"
+                 [class.border-primary]="planEnabled === PlanType.BASIC">
+                <span class="text-900 block font-medium text-2xl mb-2 text-center" i18n>Basic Licence</span>
+                <span class="font-bold block text-2xl text-900 text-center" i18n>$200</span>
+                <ul class="list-none p-0 m-0 flex-grow-1 mt-6 text-lg text-900">
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span i18n>Unlimited Users</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span i18n>Up to 10 Active Campaigns</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span i18n>Detailed Analytics</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-times text-red-500 mr-2"></i>
+                        <span i18n>Dedicated Support</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-times text-red-500 mr-2"></i>
+                        <span i18n>AI Features</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-times text-red-500 mr-2"></i>
+                        <span i18n>Fine-grained Access Control</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-times text-red-500 mr-2"></i>
+                        <span i18n>Developers Access</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-times text-red-500 mr-2"></i>
+                        <span i18n>Service Level Agreement</span>
+                    </li>
+                </ul>
+
+                <button *ngIf="planEnabled === PlanType.EXTENDED || planEnabled === PlanType.ENTERPRISE"
+                        (click)="selectPlan(PlanType.BASIC)"
+                        pButton pRipple i18n-label label="Downgrade Plan" class="px-5 w-full mt-6 p-button-outlined p-button-danger"
+                        icon="pi pi-arrow-right" iconPos="right"></button>
+                <button *ngIf="!planEnabled"
+                        (click)="selectPlan(PlanType.BASIC)"
+                        pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
+                        icon="pi pi-arrow-right" iconPos="right"></button>
+
+                <button *ngIf="canCancelPlan && planEnabled === PlanType.BASIC"
+                        (click)="cancelPlan()"
+                        pButton pRipple type="button"
+                        i18n-label label="Cancel Subscription"
+                        class="p-button-danger p-button-text text-sm"></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 lg:col-6 xl:col-4">
+        <div class="p-3 h-full">
+            <div class="shadow-1 p-6 h-full flex flex-column surface-card border-round border-3 border-transparent"
+                 [class.shadow-2]="forLanding"
+                 [class.border-primary]="planEnabled === PlanType.EXTENDED">
+                <span class="text-900 block font-medium text-2xl mb-2 text-center" i18n>Extended
+                    Licence</span>
+                <span class="font-bold block text-2xl text-900 text-center" i18n>$500</span>
+                <ul class="list-none p-0 m-0 flex-grow-1 mt-6 text-lg text-900">
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span i18n>Unlimited Users</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span i18n>Up to 30 Active Campaigns</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span i18n>Detailed Analytics</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span i18n>Dedicated Support</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-check text-green-500 mr-2"></i>
+                        <span i18n>AI Features</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-times text-red-500 mr-2"></i>
+                        <span i18n>Fine-grained Access Control</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-times text-red-500 mr-2"></i>
+                        <span i18n>Developers Access</span>
+                    </li>
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-times text-red-500 mr-2"></i>
+                        <span i18n>Service Level Agreement</span>
+                    </li>
+                </ul>
+
+                <button *ngIf="planEnabled === PlanType.ENTERPRISE"
+                        (click)="selectPlan(PlanType.EXTENDED)"
+                        pButton pRipple i18n-label label="Downgrade Plan" class="px-5 w-full mt-6 p-button-outlined p-button-danger"
+                        icon="pi pi-arrow-right" iconPos="right"></button>
+
+                <button *ngIf="planEnabled === PlanType.BASIC"
+                        (click)="selectPlan(PlanType.EXTENDED)"
+                        pButton pRipple i18n-label label="Upgrade Plan" class="px-5 w-full mt-6 p-button"
+                        icon="pi pi-arrow-right" iconPos="right"></button>
+                <button *ngIf="!planEnabled"
+                        (click)="selectPlan(PlanType.EXTENDED)"
+                        pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
+                        icon="pi pi-arrow-right" iconPos="right"></button>
+
+                <button *ngIf="canCancelPlan && planEnabled === PlanType.EXTENDED"
+                        (click)="cancelPlan()"
+                        pButton pRipple type="button"
+                        i18n-label label="Cancel Subscription"
+                        class="p-button-danger p-button-text text-sm"></button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-6 xl:col-4">
+        <div class="p-3 h-full">
+            <div class="shadow-1 p-6 h-full flex flex-column surface-card border-round border-3 border-transparent"
+                 [class.shadow-2]="forLanding"
+                 [class.border-primary]="planEnabled === PlanType.ENTERPRISE">
+                <span class="text-900 block font-medium text-2xl mb-2 text-center" i18n>
+                    Entreprise Licence
+                </span>
                 <span class="font-bold block text-2xl text-900 text-center" i18n>Custom Price</span>
 
-                <ul class="list-none p-0 m-0 flex-grow-1 mt-6">
+                <ul class="list-none p-0 m-0 flex-grow-1 mt-6 text-lg text-900">
                     <li class="flex align-items-center mb-3">
                         <i class="pi pi-check text-green-500 mr-2"></i>
                         <span i18n>Unlimited Users</span>
@@ -164,10 +170,6 @@
                     </li>
                 </ul>
 
-
-                <button *ngIf="planEnabled === PlanType.ENTERPRISE"
-                        pButton pRipple i18n-label label="Current Plan" [disabled]="true" class="px-5 w-full mt-6 p-button-outlined"></button>
-
                 <button *ngIf="planEnabled === PlanType.BASIC || planEnabled === PlanType.EXTENDED"
                         (click)="selectPlan(PlanType.ENTERPRISE)"
                         pButton pRipple i18n-label label="Upgrade Plan" class="px-5 w-full mt-6 p-button"
@@ -177,6 +179,12 @@
                         (click)="selectPlan(PlanType.ENTERPRISE)"
                         pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
                         icon="pi pi-arrow-right" iconPos="right"></button>
+
+                <button *ngIf="canCancelPlan && planEnabled === PlanType.ENTERPRISE"
+                        (click)="cancelPlan()"
+                        pButton pRipple type="button"
+                        i18n-label label="Cancel Subscription"
+                        class="p-button-danger p-button-text text-sm"></button>
 
             </div>
         </div>

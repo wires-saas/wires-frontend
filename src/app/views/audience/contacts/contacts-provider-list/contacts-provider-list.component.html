@@ -1,0 +1,30 @@
+<app-generic-data-list
+    [title]="'Available Providers'"
+    [items]="providers"
+    [loading]="loading"
+    [itemTemplate]="providerTemplate"
+    [emptyMessage]="'No contacts provider found, create your first provider or contact us for a custom integration'"
+    [withItemMenu]="true"
+    [canEdit]="canEditProvider"
+    (onEdit)="onEditProvider.emit($event)"
+    [canDelete]="canDeleteProvider"
+    (onDelete)="onDeleteProvider.emit($event)"
+>
+
+    <!-- Template for each provider item -->
+    <ng-template #providerTemplate let-provider let-index="index">
+
+            <div class="flex align-items-center">
+                <div class="flex align-items-center"
+                     style="flex-grow: 1 !important; flex-shrink: 1 !important; flex-basis:33% !important;">
+                    <label [for]="index" class="font-medium ml-2">{{ provider.displayName }}</label>
+                </div>
+            </div>
+
+
+    </ng-template>
+</app-generic-data-list>
+
+{{ providers | json }}
+
+<p-toast position="bottom-right"/>

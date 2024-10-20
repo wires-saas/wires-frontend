@@ -26,6 +26,7 @@ export enum PermissionSubject {
     GptRequest = 'gptRequest',
     Block = 'block',
     Folder = 'folder',
+    ContactsProvider = 'contactsProvider',
 }
 
 export class Permission {

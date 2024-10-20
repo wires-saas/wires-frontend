@@ -13,6 +13,9 @@ export class PlansComponent implements OnDestroy {
 
     darkMode: boolean = false;
 
+    @Input() canCancelPlan: boolean = true;
+    @Input() canUpdatePlan: boolean = false;
+
     @Input() planEnabled: PlanType | undefined;
     @Input() forLanding: boolean = false;
 
@@ -31,6 +34,10 @@ export class PlansComponent implements OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+    }
+
+    cancelPlan() {
+        // TODO
     }
 
     selectPlan(plan: PlanType) {

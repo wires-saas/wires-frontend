@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="flex justify-content-between align-items-center mb-5">
+        <span class="text-900 text-xl font-semibold">{{ title }}</span>
+        <button (click)="onButtonClick()"
+                pButton pRipple class="p-button font-semibold" [icon]="buttonIcon"
+                label="{{ buttonLabel }}"></button>
+    </div>
+
+    <!-- Content Projection -->
+    <ng-content></ng-content>
+</div>

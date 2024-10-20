@@ -1,30 +1,29 @@
-import { Component, OnInit, inject, DestroyRef, Input } from '@angular/core';
+import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import {
-    CreateFeedDto,
-    DialogConfig,
-    Feed,
-    FeedService,
-} from '../../../../services/feed.service';
+import { DialogConfig, } from '../../../../services/feed.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { deepClone } from '../../../../utils/deep-clone';
+import {
+    ContactsProvider,
+    ContactsProviderType,
+    ContactsService,
+    CreateProviderDto
+} from '../../../../services/contacts.service';
 
 @Component({
-    selector: 'app-create-or-update-feed',
-    templateUrl: './create-or-update-feed.component.html',
+    selector: 'app-create-or-update-contacts-provider',
+    templateUrl: './create-or-update-contacts-provider.component.html',
 })
-export class CreateOrUpdateFeedComponent implements OnInit {
+export class CreateOrUpdateContactsProviderComponent implements OnInit {
     @Input() organizationSlug!: string;
 
     private destroyRef = inject(DestroyRef);
 
-    feed!: Required<CreateFeedDto> | Feed;
+    provider!: ContactsProvider;
 
     dialogConfig: DialogConfig = { header: '', visible: false };
-
-    availableGranularity: any[] = [];
 
     saving: boolean = false;
 
@@ -34,61 +33,50 @@ export class CreateOrUpdateFeedComponent implements OnInit {
 
     constructor(
         private messageService: MessageService,
-        private feedService: FeedService,
+        private contactsService: ContactsService,
     ) {}
 
     ngOnInit(): void {
-        this.feedService.selectedFeed$
+        this.contactsService.selectedProvider$
             .pipe(
-                map((data) => (this.feed = deepClone(data))),
+                map((data) => (this.provider = deepClone(data))),
                 takeUntilDestroyed(this.destroyRef),
             )
             .subscribe();
 
-        this.feedService.dialogSource$
+        this.contactsService.dialogSource$
             .pipe(
                 map((data) => {
                     this.dialogConfig = data;
 
                     if (this.dialogConfig.isNew) {
-                        this.resetFeed();
+                        this.resetProvider();
                     }
                 }),
                 takeUntilDestroyed(this.destroyRef),
             )
             .subscribe();
 
-        this.availableGranularity = [
-            { label: $localize`Minute(s)`, value: 'minute' },
-            { label: $localize`Hour(s)`, value: 'hour' },
-            { label: $localize`Day(s)`, value: 'day' },
-        ];
-
-        this.resetFeed();
+        this.resetProvider();
     }
 
     canSave(): boolean {
-        return !!(
-            this.feed.displayName &&
-            this.feed.urls?.length &&
-            this.feed.scrapingInterval &&
-            this.feed.scrapingGranularity
-        );
+        return true;
     }
 
-    async updateFeed() {
+    async updateProvider() {
         this.saving = true;
 
-        await this.feedService
-            .updateFeed(this.organizationSlug, this.feed)
+        await this.contactsService
+            .updateContactsProvider(this.organizationSlug, this.provider)
             .then(() => {
                 this.messageService.add({
                     severity: 'success',
                     summary: $localize`Success`,
-                    detail: $localize`Feed "${this.feed.displayName}" updated successfully.`,
+                    detail: $localize`Provider "${this.provider.displayName}" updated successfully.`,
                 });
 
-                this.feedService.closeDialog();
+                this.contactsService.closeDialog();
             })
             .catch((err) => {
                 console.error(err);
@@ -100,20 +88,20 @@ export class CreateOrUpdateFeedComponent implements OnInit {
             .finally(() => (this.saving = false));
     }
 
-    async testAndCreateFeed() {
+    async createProvider() {
         // TODO preview some articles fetched from the feed
         this.saving = true;
 
-        await this.feedService
-            .createFeed(this.organizationSlug, this.feed)
+        await this.contactsService
+            .createContactsProvider(this.organizationSlug, this.provider as any as CreateProviderDto)
             .then(() => {
                 this.messageService.add({
                     severity: 'success',
                     summary: $localize`Success`,
-                    detail: $localize`Feed "${this.feed.displayName}" created successfully.`,
+                    detail: $localize`Provider "${this.provider.displayName}" created successfully.`,
                 });
 
-                this.feedService.closeDialog();
+                this.contactsService.closeDialog();
             })
             .catch((err) => {
                 console.error(err);
@@ -125,18 +113,19 @@ export class CreateOrUpdateFeedComponent implements OnInit {
             .finally(() => (this.saving = false));
     }
 
-    cancelFeed() {
-        this.resetFeed();
-        this.feedService.closeDialog();
+    cancelProvider() {
+        this.resetProvider();
+        this.contactsService.closeDialog();
     }
 
-    resetFeed() {
-        this.feed = {
+    resetProvider() {
+        this.provider = {
+            _id: '',
+            isFavorite: false,
+            organization: '',
+            type: ContactsProviderType.Brevo,
             displayName: '',
-            description: '',
-            scrapingInterval: 30,
-            scrapingGranularity: 'minute',
-            urls: [],
+            description: ''
         };
     }
 

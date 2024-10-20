@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ArraySortPipe implements PipeTransform {
     transform(array: any[], args: { [key: string]: 'asc' | 'desc' }): any[] {
 
-        if (!array || !args) {
+        if (!array || !args || !array.length) {
             return array;
         }
 

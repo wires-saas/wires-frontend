@@ -84,32 +84,29 @@ export enum AuthorizationType {
 export interface DialogConfig {
     visible: boolean;
     header?: string;
-    newFeed?: boolean;
+    isNew?: boolean;
 }
 
 @Injectable()
 export class FeedService {
-    private domain: string;
+    private readonly domain: string;
 
     dialogConfig: DialogConfig = {
         visible: false,
         header: '',
-        newFeed: false,
+        isNew: false,
     };
 
     public autoSchedule: boolean = true;
 
     private feeds$$: BehaviorSubject<Feed[]> = new BehaviorSubject<Feed[]>([]);
+    feeds$: Observable<Feed[]> = this.feeds$$.asObservable();
 
     private selectedFeed$$: Subject<Feed> = new Subject<Feed>();
+    selectedFeed$: Observable<Feed> = this.selectedFeed$$.asObservable();
 
     private dialogSource$$: BehaviorSubject<DialogConfig> =
         new BehaviorSubject<DialogConfig>(this.dialogConfig);
-
-    public feeds$: Observable<Feed[]> = this.feeds$$.asObservable();
-
-    selectedFeed$: Observable<Feed> = this.selectedFeed$$.asObservable();
-
     dialogSource$: Observable<DialogConfig> =
         this.dialogSource$$.asObservable();
 
@@ -281,7 +278,7 @@ export class FeedService {
         this.dialogConfig = {
             visible: true,
             header: header,
-            newFeed: newFeed,
+            isNew: newFeed,
         };
 
         this.dialogSource$$.next(this.dialogConfig);

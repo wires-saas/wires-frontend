@@ -82,6 +82,43 @@ export class AppMenuComponent implements OnInit {
             ]
         }];
 
+    private audienceMenu: (
+        org: Organization,
+        authService: AuthService,
+    ) => any[] = (org, authService) => [
+        {
+            label: $localize`Audience`,
+            restriction: authService.hasAtLeast$(
+                [
+                    ...FeedsComponent.permissions,
+                    ...ArticlesComponent.permissions,
+                ],
+                org.slug,
+            ),
+            items: [
+                {
+                    label: $localize`Contacts`,
+                    icon: 'pi pi-fw pi-address-book',
+                    routerLink: [`/organization/${org.slug}/audience/contacts`],
+                    restriction: authService.hasAtLeast$(
+                        ArticlesComponent.permissions,
+                        org.slug,
+                    ),
+                },
+                {
+                    label: $localize`Delivery`,
+                    icon: 'pi pi-fw pi-send',
+                    routerLink: [`/organization/${org.slug}/audience/delivery`],
+                    routerLinkActiveOptions: { exact: false },
+                    restriction: authService.hasAtLeast$(
+                        FeedsComponent.permissions,
+                        org.slug,
+                    ),
+                },
+            ],
+        },
+    ];
+
     private contentsMenu: (
         org: Organization,
         authService: AuthService,
@@ -255,6 +292,7 @@ export class AppMenuComponent implements OnInit {
         this.model = [
             ...this.dashboardMenu(org, authService),
             ...this.studioMenu(org, authService),
+            ...this.audienceMenu(org, authService),
             ...this.contentsMenu(org, authService),
             ...this.organizationMenu(org, authService),
             ...this.helpMenu,

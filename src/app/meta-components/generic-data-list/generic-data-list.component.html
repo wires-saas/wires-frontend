@@ -1,0 +1,35 @@
+<div>
+    <!-- Title -->
+    <div class="text-900 font-semibold text-lg mt-5 border-bottom-1 surface-border py-3">{{ title }}</div>
+
+    <!-- List of items -->
+    <ul class="list-none p-0 m-0">
+
+        <!-- Loading State -->
+        <ng-container *ngIf="!items.length && loading">
+            <li>
+                <p-skeleton width="100%" height="4rem" class="mb-3"></p-skeleton>
+            </li>
+        </ng-container>
+
+        <!-- Empty State -->
+        <ng-container *ngIf="!items.length && !loading">
+            <li>
+                <p class="text-center">{{ emptyMessage }}</p>
+            </li>
+        </ng-container>
+
+        <!-- List Items with Template Projection -->
+        <app-generic-data-list-item *ngFor="let item of items; let index = index;"
+                                    [item]="item"
+                                    [showMenu]="withItemMenu"
+                                    [canEdit]="canEdit"
+                                    (onEdit)="onEdit.emit($event)"
+                                    [canDelete]="canDelete"
+                                    (onDelete)="onDelete.emit($event)">
+            <ng-container
+                *ngTemplateOutlet="itemTemplate; context: {$implicit: item, index: index}">
+            </ng-container>
+        </app-generic-data-list-item>
+    </ul>
+</div>

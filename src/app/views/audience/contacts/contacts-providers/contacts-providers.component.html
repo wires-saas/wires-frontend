@@ -1,0 +1,29 @@
+<div class="grid">
+    <div class="col-12 md:col-12 xl:col-12 ">
+
+        <app-generic-data-card i18n-title title="Contacts Providers"
+                               [buttonLabel]="'Add Provider'"
+                               [buttonIcon]="'pi pi-plus'"
+                               (buttonClick)="showDialog()">
+            <app-contacts-provider-list i18n-title title="Available Providers"
+                                        [loading]="loadingProviders"
+                                        [providers]="providers"
+                                        [canEditProvider]="canUpdateProvider"
+                                        (onEditProvider)="onEditProvider($event)"
+                                        [canDeleteProvider]="canDeleteProvider"
+                                        (onDeleteProvider)="onDeleteProvider($event)"
+            ></app-contacts-provider-list>
+        </app-generic-data-card>
+
+    </div>
+</div>
+
+<app-create-or-update-contacts-provider *ngIf="currentOrgSlug" [organizationSlug]="currentOrgSlug">
+</app-create-or-update-contacts-provider>
+
+
+<p-confirmDialog i18n-header header="Permanently Delete Feed" key="confirm-delete-feed" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to permanently delete feed and not disable it ? Note this will not delete any article."
+                 defaultFocus="none"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>

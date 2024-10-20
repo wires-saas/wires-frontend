@@ -1,0 +1,18 @@
+<li class="flex flex-column gap-3 md:flex-row md:align-items-center p-2 border-bottom-1 surface-border">
+
+    <div class="flex gap-3 flex-column sm:flex-row sm:justify-content-between"
+         style="flex-grow: 1 !important; flex-shrink: 1 !important; flex-basis:67% !important;">
+
+        <ng-content></ng-content>
+
+        <div *ngIf="showMenu" class="flex align-items-center sm:justify-content-end">
+            <button pButton pRipple type="button" icon="pi pi-ellipsis-v"
+                    class="p-button-rounded p-button-text z-3 ml-auto sm:ml-0"
+                    (click)="emitShowMenu($event)">
+            </button>
+            <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
+        </div>
+
+    </div>
+
+</li>
