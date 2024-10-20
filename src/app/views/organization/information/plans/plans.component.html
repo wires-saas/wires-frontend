@@ -1,0 +1,20 @@
+<app-plans [planEnabled]="plan?.type"></app-plans>
+
+<div class="card">
+    <span class="text-900 text-xl font-bold mb-4 block" i18n>Available Plans</span>
+    <div class="grid">
+        <div class="col-12 lg:col-2">
+            <div class="text-900 font-medium text-xl mb-3" i18n>Note</div>
+            <p class="m-0 p-0 text-600 line-height-3 mr-3" i18n>Each plan is billed for 30 days, change of plan mid period will be billed accordingly</p>
+        </div>
+        <div class="col-12 lg:col-10">
+
+
+            <div class="col-12 flex md:justify-content-end justify-content-center">
+                <button pButton pRipple i18n-label label="Resiliate Plan" icon="pi pi-save" class="w-auto mt-3 p-button-danger p-button-outlined"></button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

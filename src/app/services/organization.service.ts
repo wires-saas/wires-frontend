@@ -3,12 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, firstValueFrom, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
+import { Slug } from '../utils/types.utils';
 
-export enum Plan {
+export enum PlanType {
     FREE = 'free',
     BASIC = 'basic',
     EXTENDED = 'extended',
     ENTERPRISE = 'custom',
+}
+
+export interface Plan {
+    organization: Slug;
+    type: PlanType;
+    permissions: any[];
 }
 
 export interface OrganizationContact {
@@ -42,11 +49,6 @@ export interface Organization {
     security: {
         twoFactorAuthenticationEnabled: boolean;
         twoFactorAuthenticationMethods: string[];
-    };
-
-    subscription: {
-        type: Plan;
-        willExpireAt?: number;
     };
 
     gpt?: string;
@@ -91,6 +93,12 @@ export class OrganizationService {
         });
 
         return this.getAllPromise;
+    }
+
+    async getPlan(organizationSlug: string): Promise<Plan> {
+        return firstValueFrom(
+            this.http.get<Plan>(`${this.domain}/organizations/${organizationSlug}/plan`),
+        );
     }
 
     create(organization: {

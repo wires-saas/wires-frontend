@@ -16,6 +16,7 @@ import { PlansModule } from '../../../meta-components/plans/plans.module';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ToastModule } from 'primeng/toast';
+import { PlansComponent } from './plans/plans.component';
 
 @NgModule({
     imports: [
@@ -37,6 +38,6 @@ import { ToastModule } from 'primeng/toast';
         ReactiveFormsModule,
         ToastModule,
     ],
-    declarations: [InformationComponent],
+    declarations: [InformationComponent, PlansComponent],
 })
 export class InformationModule {}

@@ -1,20 +1,20 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Plan } from '../../services/organization.service';
+import { PlanType } from '../../services/organization.service';
 
 @Pipe({
     name: 'planDesignation',
     standalone: true,
 })
 export class PlanDesignationPipe implements PipeTransform {
-    transform(plan: Plan): string {
+    transform(plan: PlanType): string {
         switch (plan) {
-            case 'basic':
+            case PlanType.BASIC:
                 return $localize`Basic Plan`;
-            case 'extended':
+            case PlanType.EXTENDED:
                 return $localize`Extended Plan`;
-            case 'custom':
+            case PlanType.ENTERPRISE:
                 return $localize`Enterprise Plan`;
-            case 'free':
+            case PlanType.FREE:
                 return $localize`Free Plan`;
             default:
                 console.warn('Unknown plan', plan);

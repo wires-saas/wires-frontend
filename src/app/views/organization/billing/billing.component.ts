@@ -48,33 +48,13 @@ export class BillingComponent implements OnInit {
     }
 
     private initializeBill(organization: Organization) {
-        this.amount = this.getPlanPrice(organization);
-        this.taxes = this.getTaxes(organization);
+        this.amount = 200;
+        this.taxes = 40;
         this.totalAmount = this.amount + this.taxes;
 
         const paddedMonth = this.today.getMonth().toString().padStart(2, '0');
         const paddedYear = this.today.getFullYear().toString().slice(-2);
         this.reference = `${organization.slug}${paddedYear}${paddedMonth}`;
-    }
-
-    private getPlanPrice(organization: Organization): number {
-        const planPricePipe = new PlanPricePipe();
-        const planPrice = planPricePipe.transform(
-            organization.subscription.type,
-        );
-        return typeof planPrice === 'number' ? planPrice : 0;
-    }
-
-    private getTaxes(organization: Organization): number {
-        const planPricePipe = new PlanPricePipe();
-        const planPrice = planPricePipe.transform(
-            organization.subscription.type,
-        );
-        if (typeof planPrice === 'number') {
-            return planPrice * 0.2;
-        } else {
-            return 0;
-        }
     }
 
     static permissions = [ReadBilling];

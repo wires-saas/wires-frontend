@@ -70,7 +70,7 @@ export class ListOrganizationsComponent implements OnInit {
                     {
                         label: $localize`Delete org`,
                         icon: 'pi pi-fw pi-trash',
-                        disabled: organization.subscription.type !== 'free',
+                        disabled: true,
                         command: () => {
                             this.confirmationService.confirm({
                                 key: 'confirm-delete',

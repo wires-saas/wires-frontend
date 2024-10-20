@@ -16,6 +16,8 @@ export const UpdateUser = new Permission(PermissionSubject.User, PermissionActio
 export const DeleteUser = new Permission(PermissionSubject.User, PermissionAction.Delete);
 
 export const ReadBilling = new Permission(PermissionSubject.Billing, PermissionAction.Read);
+export const UpdateBilling = new Permission(PermissionSubject.Billing, PermissionAction.Update);
+export const DeleteBilling = new Permission(PermissionSubject.Billing, PermissionAction.Delete);
 
 export const CreateFeed = new Permission(PermissionSubject.Feed, PermissionAction.Create);
 export const UpdateFeed = new Permission(PermissionSubject.Feed, PermissionAction.Update);

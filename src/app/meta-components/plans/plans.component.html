@@ -40,16 +40,16 @@
                                     </li>
                                 </ul>
 
-                                <button *ngIf="planEnabled === 'basic'"
+                                <button *ngIf="planEnabled === PlanType.BASIC"
                                         pButton pRipple i18n-label label="Current Plan" [disabled]="true" class="px-5 w-full mt-6 p-button-outlined"></button>
 
-                                <button *ngIf="planEnabled === 'extended' || planEnabled === 'entreprise'"
-                                        (click)="selectPlan('basic')"
+                                <button *ngIf="planEnabled === PlanType.EXTENDED || planEnabled === PlanType.ENTERPRISE"
+                                        (click)="selectPlan(PlanType.BASIC)"
                                         pButton pRipple i18n-label label="Downgrade Plan" class="px-5 w-full mt-6 p-button-outlined p-button-danger"
                                         icon="pi pi-arrow-right" iconPos="right"></button>
 
-                                <button *ngIf="planEnabled === 'none'"
-                                        (click)="selectPlan('basic')"
+                                <button *ngIf="!planEnabled"
+                                        (click)="selectPlan(PlanType.BASIC)"
                                         pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
                                         icon="pi pi-arrow-right" iconPos="right"></button>
                             </div>
@@ -99,21 +99,21 @@
                                 </ul>
 
 
-                                <button *ngIf="planEnabled === 'extended'"
+                                <button *ngIf="planEnabled === PlanType.EXTENDED"
                                         pButton pRipple i18n-label label="Current Plan" [disabled]="true" class="px-5 w-full mt-6 p-button-outlined"></button>
 
-                                <button *ngIf="planEnabled === 'entreprise'"
-                                        (click)="selectPlan('extended')"
+                                <button *ngIf="planEnabled === PlanType.ENTERPRISE"
+                                        (click)="selectPlan(PlanType.EXTENDED)"
                                         pButton pRipple i18n-label label="Downgrade Plan" class="px-5 w-full mt-6 p-button-outlined p-button-danger"
                                         icon="pi pi-arrow-right" iconPos="right"></button>
 
-                                <button *ngIf="planEnabled === 'basic'"
-                                        (click)="selectPlan('extended')"
+                                <button *ngIf="planEnabled === PlanType.BASIC"
+                                        (click)="selectPlan(PlanType.EXTENDED)"
                                         pButton pRipple i18n-label label="Upgrade Plan" class="px-5 w-full mt-6 p-button"
                                         icon="pi pi-arrow-right" iconPos="right"></button>
 
-                                <button *ngIf="planEnabled === 'none'"
-                                        (click)="selectPlan('extended')"
+                                <button *ngIf="!planEnabled"
+                                        (click)="selectPlan(PlanType.EXTENDED)"
                                         pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
                                         icon="pi pi-arrow-right" iconPos="right"></button>
 
@@ -165,16 +165,16 @@
                 </ul>
 
 
-                <button *ngIf="planEnabled === 'entreprise'"
+                <button *ngIf="planEnabled === PlanType.ENTERPRISE"
                         pButton pRipple i18n-label label="Current Plan" [disabled]="true" class="px-5 w-full mt-6 p-button-outlined"></button>
 
-                <button *ngIf="planEnabled === 'basic' || planEnabled === 'extended'"
-                        (click)="selectPlan('entreprise')"
+                <button *ngIf="planEnabled === PlanType.BASIC || planEnabled === PlanType.EXTENDED"
+                        (click)="selectPlan(PlanType.ENTERPRISE)"
                         pButton pRipple i18n-label label="Upgrade Plan" class="px-5 w-full mt-6 p-button"
                         icon="pi pi-arrow-right" iconPos="right"></button>
 
-                <button *ngIf="planEnabled === 'none'"
-                        (click)="selectPlan('entreprise')"
+                <button *ngIf="!planEnabled"
+                        (click)="selectPlan(PlanType.ENTERPRISE)"
                         pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
                         icon="pi pi-arrow-right" iconPos="right"></button>
 
