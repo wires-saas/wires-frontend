@@ -43,13 +43,15 @@ export class ContactsProviderComponent implements OnInit {
         this.organizationService.currentOrganization$.pipe(
             map(async(organization) => {
                 if (organization) {
+                    this.loadingProviders = true;
+                    await this.loadPermissions(organization);
                     this.currentOrgSlug = organization.slug;
                     this.providers = await this.contactsService.getContactsProviders(organization.slug);
-                    console.log(this.providers);
-                    await this.loadPermissions(organization);
-
+                    this.loadingProviders = false;
                 } else {
                     this.providers = [];
+                    this.canCreateProvider = false;
+                    this.canUpdateProvider = false;
                     this.canDeleteProvider = false;
                 }
             }),

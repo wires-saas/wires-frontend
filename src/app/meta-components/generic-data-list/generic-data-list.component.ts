@@ -26,6 +26,11 @@ export class GenericDataListComponent {
     @Input() itemTemplate: TemplateRef<any> | null = null; // Template for each item
     @Input() emptyMessage: string = 'No items found'; // Message when the list is empty
 
+    @Input() inspectLabel: string = ''; // Label for inspect button
+    @Input() inspectIcon: string = 'pi pi-search'; // Icon for inspect button
+    @Input() canInspect: boolean = false; // Can inspect item
+    @Output() onInspect: EventEmitter<any> = new EventEmitter<any>(); // Inspect facultative item event
+
     @Output() onEdit: EventEmitter<any> = new EventEmitter<any>(); // Edit item event
     @Output() onDelete: EventEmitter<any> = new EventEmitter<any>(); // Delete item event
 }

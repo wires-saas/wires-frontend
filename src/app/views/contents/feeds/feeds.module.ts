@@ -37,6 +37,8 @@ import { TableModule } from 'primeng/table';
 import { StatusBadgeModule } from '../../../meta-components/status-badge/status-badge.module';
 import { DurationPipe } from '../../../utils/pipes/duration.pipe';
 import { SkeletonModule } from 'primeng/skeleton';
+import { GenericDataCardComponent } from '../../../meta-components/generic-data-card/generic-data-card.component';
+import { GenericDataListComponent } from '../../../meta-components/generic-data-list/generic-data-list.component';
 
 @NgModule({
     imports: [
@@ -71,6 +73,8 @@ import { SkeletonModule } from 'primeng/skeleton';
         StatusBadgeModule,
         DurationPipe,
         SkeletonModule,
+        GenericDataCardComponent,
+        GenericDataListComponent,
     ],
     declarations: [
         FeedsComponent,

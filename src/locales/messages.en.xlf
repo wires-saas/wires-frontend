@@ -188,9 +188,6 @@
       <trans-unit id="7127329929373239791" datatype="html">
         <source>Choose Plan</source>
       </trans-unit>
-      <trans-unit id="7193306592661382402" datatype="html">
-        <source>Current Plan</source>
-      </trans-unit>
       <trans-unit id="8501231313853023509" datatype="html">
         <source>Unlimited Users</source>
       </trans-unit>
@@ -383,9 +380,6 @@
       <trans-unit id="8944407613319550114" datatype="html">
         <source>Last Name <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;lastName&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
       </trans-unit>
-      <trans-unit id="181268056502376150" datatype="html">
-        <source>Set Manager</source>
-      </trans-unit>
       <trans-unit id="1842581728291163418" datatype="html">
         <source>User has been removed from your organization</source>
       </trans-unit>
@@ -404,14 +398,8 @@
       <trans-unit id="4814285799071780083" datatype="html">
         <source>Remove</source>
       </trans-unit>
-      <trans-unit id="7259588108463219079" datatype="html">
-        <source>Set User</source>
-      </trans-unit>
       <trans-unit id="7585826646011739428" datatype="html">
         <source>Edit</source>
-      </trans-unit>
-      <trans-unit id="7840796531248419924" datatype="html">
-        <source>Set Admin</source>
       </trans-unit>
       <trans-unit id="8170885557369261178" datatype="html">
         <source>Re-send Invite</source>
@@ -595,9 +583,6 @@
       </trans-unit>
       <trans-unit id="6902479610229316341" datatype="html">
         <source>Update Administrator</source>
-      </trans-unit>
-      <trans-unit id="8374796251902184629" datatype="html">
-        <source>Resiliate Plan</source>
       </trans-unit>
       <trans-unit id="8565215218121579926" datatype="html">
         <source>User explicitly granted permission to receive mails</source>
@@ -1367,32 +1352,14 @@
       <trans-unit id="4281228730646725704" datatype="html">
         <source>Success setting role</source>
       </trans-unit>
-      <trans-unit id="4303536589755256552" datatype="html">
-        <source><x id="PH" equiv-text="user.firstName"/> has been set as Admin</source>
-      </trans-unit>
-      <trans-unit id="5355205116662167518" datatype="html">
-        <source><x id="PH" equiv-text="user.firstName"/> has been set as Manager</source>
-      </trans-unit>
       <trans-unit id="5501027451953367639" datatype="html">
         <source>Error setting role</source>
-      </trans-unit>
-      <trans-unit id="5946931270378231999" datatype="html">
-        <source><x id="PH" equiv-text="user.firstName"/> has been set as User</source>
       </trans-unit>
       <trans-unit id="3008420115644088420" datatype="html">
         <source>Configuration</source>
       </trans-unit>
       <trans-unit id="3893786420868776954" datatype="html">
         <source>Authorizations</source>
-      </trans-unit>
-      <trans-unit id="6379936207886923216" datatype="html">
-        <source>Each plan is billed for 30 days, change of plan mid period will be billed accordingly</source>
-      </trans-unit>
-      <trans-unit id="6950911552017826263" datatype="html">
-        <source>Available Plans</source>
-      </trans-unit>
-      <trans-unit id="4388879716045736175" datatype="html">
-        <source>Note</source>
       </trans-unit>
       <trans-unit id="8615671782880239984" datatype="html">
         <source>Fine-grained Access Control</source>
@@ -1498,9 +1465,6 @@
       </trans-unit>
       <trans-unit id="1078991528530548709" datatype="html">
         <source>Edit Feed</source>
-      </trans-unit>
-      <trans-unit id="2089102847927816834" datatype="html">
-        <source>Existing Feeds</source>
       </trans-unit>
       <trans-unit id="2365388243339409921" datatype="html">
         <source>Minute(s)</source>
@@ -2152,6 +2116,75 @@
       </trans-unit>
       <trans-unit id="7442929916086166398" datatype="html">
         <source>Yes, delete</source>
+      </trans-unit>
+      <trans-unit id="1360111064698838191" datatype="html">
+        <source><x id="PH" equiv-text="user.firstName"/> has been set as &quot;<x id="PH_1" equiv-text="roleLabel"/>&quot;</source>
+      </trans-unit>
+      <trans-unit id="2930670270689339000" datatype="html">
+        <source>Provider &quot;<x id="PH" equiv-text="this.provider.displayName"/>&quot; created successfully.</source>
+      </trans-unit>
+      <trans-unit id="3137981787940934103" datatype="html">
+        <source>Yes, update</source>
+      </trans-unit>
+      <trans-unit id="3199248689173362877" datatype="html">
+        <source>Provider &quot;<x id="PH" equiv-text="this.provider.displayName"/>&quot; updated successfully.</source>
+      </trans-unit>
+      <trans-unit id="3488652094973484634" datatype="html">
+        <source>Updating roles and permissions presents risk. It requires a precise understanding of permission scope. Are you sure you want to proceed? If you are unsure, please contact support.</source>
+      </trans-unit>
+      <trans-unit id="4145496584631696119" datatype="html">
+        <source>Role</source>
+      </trans-unit>
+      <trans-unit id="420763834450076269" datatype="html">
+        <source>Block</source>
+      </trans-unit>
+      <trans-unit id="4903990276959589585" datatype="html">
+        <source>Contacts Providers</source>
+      </trans-unit>
+      <trans-unit id="5226553105367870595" datatype="html">
+        <source>Update Roles</source>
+      </trans-unit>
+      <trans-unit id="5267348549512089042" datatype="html">
+        <source>Error updating roles</source>
+      </trans-unit>
+      <trans-unit id="528627461426513636" datatype="html">
+        <source>No contacts provider found, create your first provider or contact us for a custom integration</source>
+      </trans-unit>
+      <trans-unit id="5405365159944308520" datatype="html">
+        <source>Available Providers</source>
+      </trans-unit>
+      <trans-unit id="6072502043812321238" datatype="html">
+        <source>Edit Provider</source>
+      </trans-unit>
+      <trans-unit id="6571771365080617267" datatype="html">
+        <source>Provider Name</source>
+      </trans-unit>
+      <trans-unit id="6662668317849165163" datatype="html">
+        <source>Error deleting provider</source>
+      </trans-unit>
+      <trans-unit id="6937512671900042056" datatype="html">
+        <source>Available Feeds</source>
+      </trans-unit>
+      <trans-unit id="7046259383943324039" datatype="html">
+        <source>Folder</source>
+      </trans-unit>
+      <trans-unit id="7372755454773589030" datatype="html">
+        <source>Delivery</source>
+      </trans-unit>
+      <trans-unit id="7677119540596449384" datatype="html">
+        <source>Cancel Subscription</source>
+      </trans-unit>
+      <trans-unit id="7760596385783446373" datatype="html">
+        <source>Audience</source>
+      </trans-unit>
+      <trans-unit id="7796908693546549014" datatype="html">
+        <source>Create Provider</source>
+      </trans-unit>
+      <trans-unit id="7849472334077922791" datatype="html">
+        <source>Provider has been deleted successfully.</source>
+      </trans-unit>
+      <trans-unit id="8518056943986977149" datatype="html">
+        <source>Only alphabetic characters allowed</source>
       </trans-unit>
     </body>
   </file>

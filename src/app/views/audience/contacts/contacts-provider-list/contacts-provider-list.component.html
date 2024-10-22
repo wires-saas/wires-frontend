@@ -1,9 +1,9 @@
 <app-generic-data-list
-    [title]="'Available Providers'"
+    i18n-title title="Available Providers"
+    i18n-emptyMessage emptyMessage="No contacts provider found, create your first provider or contact us for a custom integration"
     [items]="providers"
     [loading]="loading"
     [itemTemplate]="providerTemplate"
-    [emptyMessage]="'No contacts provider found, create your first provider or contact us for a custom integration'"
     [withItemMenu]="true"
     [canEdit]="canEditProvider"
     (onEdit)="onEditProvider.emit($event)"
@@ -24,7 +24,5 @@
 
     </ng-template>
 </app-generic-data-list>
-
-{{ providers | json }}
 
 <p-toast position="bottom-right"/>

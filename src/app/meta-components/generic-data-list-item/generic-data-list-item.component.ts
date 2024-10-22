@@ -22,6 +22,11 @@ export class GenericDataListItemComponent implements OnInit {
     @Input() showMenu: boolean = false;
     @Input() menuItems: any[] = [];
 
+    @Input() inspectLabel: string = '';
+    @Input() inspectIcon: string = 'pi pi-search';
+    @Input() canInspect: boolean = false;
+    @Output() onInspect: EventEmitter<any> = new EventEmitter<any>();
+
     @Input() canEdit: boolean = false;
     @Output() onEdit: EventEmitter<any> = new EventEmitter<any>();
 
@@ -43,6 +48,17 @@ export class GenericDataListItemComponent implements OnInit {
                 command: () => this.onDelete.emit(this.item),
             },
         ];
+
+        if (this.canInspect) {
+            this.menuItems = [
+                {
+                    label: this.inspectLabel,
+                    icon: this.inspectIcon,
+                    command: () => this.onInspect.emit(this.item),
+                },
+                ...this.menuItems,
+            ];
+        }
     }
 
     emitShowMenu(event: MouseEvent) {

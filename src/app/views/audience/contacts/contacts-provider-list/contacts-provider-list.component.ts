@@ -16,8 +16,6 @@ export class ContactsProviderListComponent {
 
     @Input() providers!: ContactsProvider[];
 
-    @Input() title!: string;
-
     @Input() canDeleteProvider: boolean = false;
     @Output() onDeleteProvider: EventEmitter<ContactsProvider> = new EventEmitter<ContactsProvider>();
 

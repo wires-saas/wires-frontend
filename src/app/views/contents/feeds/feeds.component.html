@@ -1,13 +1,19 @@
 <div class="grid">
     <div class="col-12 md:col-12 xl:col-12 ">
 
-        <div class="card">
-            <div class="flex justify-content-between align-items-center mb-5">
-                <span class="text-900 text-xl font-semibold" i18n>Feeds Management</span>
-                <button pButton pRipple class="p-button font-semibold" icon="pi pi-plus" i18n-label label="Add Feed" (click)="showDialog()"></button>
-            </div>
-            <app-feed-list [loading]="loading" [feeds]="feeds" i18n-title title="Existing Feeds"></app-feed-list>
-        </div>
+        <app-generic-data-card i18n-title title="Feeds Management" i18n-buttonLabel buttonLabel="Add Feed" [buttonIcon]="'pi pi-plus'" (buttonClick)="showDialog()">
+            <app-feed-list [loading]="loading"
+                           [feeds]="feeds"
+                           (onEnableFeed)="onEnableFeed($event)"
+                           (onDisableFeed)="onDisableFeed($event)"
+                           [canRunFeed]="canRunFeed"
+                           (onRunFeed)="onRunFeed($event)"
+                           [canEditFeed]="canEditFeed"
+                           (onEditFeed)="onEditFeed($event)"
+                           [canDeleteFeed]="canDeleteFeed"
+                           (onDeleteFeed)="onDeleteFeed($event)"
+            ></app-feed-list>
+        </app-generic-data-card>
 
     </div>
 
@@ -40,3 +46,10 @@
 </div>
 
 <app-create-or-update-feed *ngIf="currentOrgSlug" [organizationSlug]="currentOrgSlug"></app-create-or-update-feed>
+
+
+<p-confirmDialog i18n-header header="Permanently Delete Feed" key="confirm-delete-feed" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to permanently delete feed and not disable it ? Note this will not delete any article."
+                 defaultFocus="none"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>

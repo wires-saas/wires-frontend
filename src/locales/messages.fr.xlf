@@ -225,10 +225,6 @@
         <source>Dedicated Support</source>
         <target state="new">Support dédié</target>
       </trans-unit>
-      <trans-unit id="7193306592661382402" datatype="html">
-        <source>Current Plan</source>
-        <target state="new">Formule actuelle</target>
-      </trans-unit>
       <trans-unit id="2050544676907877559" datatype="html">
         <source>Downgrade Plan</source>
         <target state="new">Rétrograder la formule</target>
@@ -545,18 +541,6 @@
         <source>Error removing user</source>
         <target state="new">Utilisateur non retiré</target>
       </trans-unit>
-      <trans-unit id="7840796531248419924" datatype="html">
-        <source>Set Admin</source>
-        <target state="new">Administrateur</target>
-      </trans-unit>
-      <trans-unit id="181268056502376150" datatype="html">
-        <source>Set Manager</source>
-        <target state="new">Manager</target>
-      </trans-unit>
-      <trans-unit id="7259588108463219079" datatype="html">
-        <source>Set User</source>
-        <target state="new">Utilisateur</target>
-      </trans-unit>
       <trans-unit id="1211169124143348857" datatype="html">
         <source>Edit User</source>
         <target state="new">Modifier l&apos;utilisateur</target>
@@ -784,10 +768,6 @@
       <trans-unit id="4799374982120043626" datatype="html">
         <source>Update Billing</source>
         <target state="new">Mettre à jour le contact de facturation</target>
-      </trans-unit>
-      <trans-unit id="8374796251902184629" datatype="html">
-        <source>Resiliate Plan</source>
-        <target state="new">Résilier la souscription</target>
       </trans-unit>
       <trans-unit id="8878700331247603166" datatype="html">
         <source>Security</source>
@@ -1821,21 +1801,9 @@
         <source>Success setting role</source>
         <target state="new">Rôle modifié avec succès</target>
       </trans-unit>
-      <trans-unit id="4303536589755256552" datatype="html">
-        <source><x id="PH" equiv-text="user.firstName"/> has been set as Admin</source>
-        <target state="new"><x id="PH" equiv-text="user.firstName"/> est désormais Admin</target>
-      </trans-unit>
       <trans-unit id="5501027451953367639" datatype="html">
         <source>Error setting role</source>
         <target state="new">Erreur lors du changement de rôle</target>
-      </trans-unit>
-      <trans-unit id="5355205116662167518" datatype="html">
-        <source><x id="PH" equiv-text="user.firstName"/> has been set as Manager</source>
-        <target state="new"><x id="PH" equiv-text="user.firstName"/> est désormais Manager</target>
-      </trans-unit>
-      <trans-unit id="5946931270378231999" datatype="html">
-        <source><x id="PH" equiv-text="user.firstName"/> has been set as User</source>
-        <target state="new"><x id="PH" equiv-text="user.firstName"/> est désormais Utilisateur</target>
       </trans-unit>
       <trans-unit id="3008420115644088420" datatype="html">
         <source>Configuration</source>
@@ -1845,21 +1813,9 @@
         <source>Authorizations</source>
         <target state="new">Autorisations</target>
       </trans-unit>
-      <trans-unit id="6950911552017826263" datatype="html">
-        <source>Available Plans</source>
-        <target state="new">Formules Disponibles</target>
-      </trans-unit>
-      <trans-unit id="6379936207886923216" datatype="html">
-        <source>Each plan is billed for 30 days, change of plan mid period will be billed accordingly</source>
-        <target state="new">Chaque formule couvre 30 jours renouvelables, un changement de formule impactera la facturation au prorata du nombre de jours</target>
-      </trans-unit>
       <trans-unit id="8615671782880239984" datatype="html">
         <source>Fine-grained Access Control</source>
         <target state="new">Gestion d&apos;accès avancée</target>
-      </trans-unit>
-      <trans-unit id="4388879716045736175" datatype="html">
-        <source>Note</source>
-        <target state="new">Note</target>
       </trans-unit>
       <trans-unit id="832810147659938940" datatype="html">
         <source>Role Name</source>
@@ -2084,10 +2040,6 @@
       <trans-unit id="6372201297165580832" datatype="html">
         <source>Add Feed</source>
         <target state="new">Créer un nouveau flux</target>
-      </trans-unit>
-      <trans-unit id="2089102847927816834" datatype="html">
-        <source>Existing Feeds</source>
-        <target state="new">Flux existants</target>
       </trans-unit>
       <trans-unit id="949018238395520482" datatype="html">
         <source>Auto Scheduling</source>
@@ -2855,7 +2807,7 @@
       </trans-unit>
       <trans-unit id="5402313370981838619" datatype="html">
         <source>For safety concerns you&apos;re only allowed to archive blocks. Are you sure you want to archive block ?</source>
-        <target state="new">Par sécurité seulement l'archivage des blocs est possible. Êtes-vous certain de vouloir archiver le bloc ?</target>
+        <target state="new">Par sécurité seulement l&apos;archivage des blocs est possible. Êtes-vous certain de vouloir archiver le bloc ?</target>
       </trans-unit>
       <trans-unit id="1934834356187007083" datatype="html">
         <source>Yes, archive</source>
@@ -2863,11 +2815,103 @@
       </trans-unit>
       <trans-unit id="6127174462819098220" datatype="html">
         <source>Error archiving block</source>
-        <target state="new">Erreur lors de l'archivage du bloc</target>
+        <target state="new">Erreur lors de l&apos;archivage du bloc</target>
       </trans-unit>
       <trans-unit id="1055686627716339120" datatype="html">
         <source>Archive</source>
         <target state="new">Archiver</target>
+      </trans-unit>
+      <trans-unit id="7760596385783446373" datatype="html">
+        <source>Audience</source>
+        <target state="new">Audience</target>
+      </trans-unit>
+      <trans-unit id="7372755454773589030" datatype="html">
+        <source>Delivery</source>
+        <target state="new">Livraison</target>
+      </trans-unit>
+      <trans-unit id="7677119540596449384" datatype="html">
+        <source>Cancel Subscription</source>
+        <target state="new">Annuler la souscription</target>
+      </trans-unit>
+      <trans-unit id="4145496584631696119" datatype="html">
+        <source>Role</source>
+        <target state="new">Rôle</target>
+      </trans-unit>
+      <trans-unit id="420763834450076269" datatype="html">
+        <source>Block</source>
+        <target state="new">Bloc</target>
+      </trans-unit>
+      <trans-unit id="7046259383943324039" datatype="html">
+        <source>Folder</source>
+        <target state="new">Dossier</target>
+      </trans-unit>
+      <trans-unit id="5405365159944308520" datatype="html">
+        <source>Available Providers</source>
+        <target state="new">Connecteurs disponibles</target>
+      </trans-unit>
+      <trans-unit id="528627461426513636" datatype="html">
+        <source>No contacts provider found, create your first provider or contact us for a custom integration</source>
+        <target state="new">Aucune façon de récupérer des contacts, créez votre premier connecteur de contacts dès maintenant</target>
+      </trans-unit>
+      <trans-unit id="4903990276959589585" datatype="html">
+        <source>Contacts Providers</source>
+        <target state="new">Connecteurs de contacts</target>
+      </trans-unit>
+      <trans-unit id="7849472334077922791" datatype="html">
+        <source>Provider has been deleted successfully.</source>
+        <target state="new">Connecteur supprimé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="6662668317849165163" datatype="html">
+        <source>Error deleting provider</source>
+        <target state="new">Erreur lors de la suppression du connecteur</target>
+      </trans-unit>
+      <trans-unit id="6072502043812321238" datatype="html">
+        <source>Edit Provider</source>
+        <target state="new">Modifier le connecteur</target>
+      </trans-unit>
+      <trans-unit id="7796908693546549014" datatype="html">
+        <source>Create Provider</source>
+        <target state="new">Créer un connecteur</target>
+      </trans-unit>
+      <trans-unit id="6571771365080617267" datatype="html">
+        <source>Provider Name</source>
+        <target state="new">Nom du connecteur</target>
+      </trans-unit>
+      <trans-unit id="3199248689173362877" datatype="html">
+        <source>Provider &quot;<x id="PH" equiv-text="this.provider.displayName"/>&quot; updated successfully.</source>
+        <target state="new">Connecteur &quot;<x id="PH" equiv-text="this.provider.displayName"/>&quot; mis à jour avec succès.</target>
+      </trans-unit>
+      <trans-unit id="2930670270689339000" datatype="html">
+        <source>Provider &quot;<x id="PH" equiv-text="this.provider.displayName"/>&quot; created successfully.</source>
+        <target state="new">Connecteur &quot;<x id="PH" equiv-text="this.provider.displayName"/>&quot; créé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="6937512671900042056" datatype="html">
+        <source>Available Feeds</source>
+        <target state="new">Flux disponibles</target>
+      </trans-unit>
+      <trans-unit id="8518056943986977149" datatype="html">
+        <source>Only alphabetic characters allowed</source>
+        <target state="new">Uniquement les lettres de l'alphabet autorisées</target>
+      </trans-unit>
+      <trans-unit id="5226553105367870595" datatype="html">
+        <source>Update Roles</source>
+        <target state="new">Mettre à jour les rôles</target>
+      </trans-unit>
+      <trans-unit id="3488652094973484634" datatype="html">
+        <source>Updating roles and permissions presents risk. It requires a precise understanding of permission scope. Are you sure you want to proceed? If you are unsure, please contact support.</source>
+        <target state="new">Modifier les rôles n'est pas sans risque. Êtes-vous sûr de vos modifications ? En cas de doute vous pouvez contacter notre support.</target>
+      </trans-unit>
+      <trans-unit id="3137981787940934103" datatype="html">
+        <source>Yes, update</source>
+        <target state="new">Oui, sauvegarder</target>
+      </trans-unit>
+      <trans-unit id="5267348549512089042" datatype="html">
+        <source>Error updating roles</source>
+        <target state="new">Erreur lors de la mise à jour des rôles</target>
+      </trans-unit>
+      <trans-unit id="1360111064698838191" datatype="html">
+        <source><x id="PH" equiv-text="user.firstName"/> has been set as &quot;<x id="PH_1" equiv-text="roleLabel"/>&quot;</source>
+        <target state="new"><x id="PH" equiv-text="user.firstName"/> has been set as &quot;<x id="PH_1" equiv-text="roleLabel"/>&quot;</target>
       </trans-unit>
     </body>
   </file>

@@ -5,8 +5,7 @@
                                [buttonLabel]="'Add Provider'"
                                [buttonIcon]="'pi pi-plus'"
                                (buttonClick)="showDialog()">
-            <app-contacts-provider-list i18n-title title="Available Providers"
-                                        [loading]="loadingProviders"
+            <app-contacts-provider-list [loading]="loadingProviders"
                                         [providers]="providers"
                                         [canEditProvider]="canUpdateProvider"
                                         (onEditProvider)="onEditProvider($event)"

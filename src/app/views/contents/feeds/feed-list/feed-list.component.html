@@ -1,64 +1,55 @@
-<div>
-    <div class="text-900 font-semibold text-lg mt-5 mb-3 border-bottom-1 surface-border py-3">{{ title }}</div>
-    <ul class="list-none p-0 m-0">
+<app-generic-data-list
+    i18n-title title="Available Feeds"
+    i18n-emptyMessage emptyMessage="No feed found, create your first feed to start fetching articles"
+    [items]="feeds"
+    [loading]="loading"
+    [itemTemplate]="feedTemplate"
+    [withItemMenu]="true"
 
-        <ng-container *ngIf="!feeds.length && loading">
-            <li>
-                <p-skeleton width="100%" height="4rem" class="mb-3"></p-skeleton>
-            </li>
-        </ng-container>
+    i18n-inspectLabel inspectLabel="Fetch Articles"
+    inspectIcon="pi pi-play-circle"
+    [canInspect]="canRunFeed"
+    (onInspect)="onRunFeed.emit($event)"
 
-        <ng-container *ngIf="!feeds.length && !loading">
-            <li>
-                <p class="text-center" i18n>No feed found, create your first feed to start fetching articles</p>
-            </li>
-        </ng-container>
+    [canEdit]="canEditFeed"
+    (onEdit)="onEditFeed.emit($event)"
+    [canDelete]="canDeleteFeed"
+    (onDelete)="onDeleteFeed.emit($event)"
+>
 
-        <li *ngFor="let feed of feeds | arraySort:{'totalArticles':'desc'}; let k = index;"
-            class="flex flex-column gap-3 md:flex-row md:align-items-center p-2 border-bottom-1 surface-border">
+    <!-- Template for each provider item -->
+    <ng-template #feedTemplate let-feed let-index="index">
 
-            <div class="flex align-items-center" style="flex-grow: 1 !important; flex-shrink: 1 !important; flex-basis:33% !important;">
-                <p-checkbox [binary]="true" (onChange)="onCheckboxChange($event, feed)" [(ngModel)]="feed.scrapingEnabled" [inputId]="k.toString(10)"></p-checkbox>
-                <label [for]="k" style="word-break: break-word;" class="font-medium ml-2" [ngClass]="{'line-through': !feed.scrapingEnabled}">{{ feed.displayName }}</label>
+        <div class="flex align-items-center justify-content-between">
+
+            <div class="flex align-items-center mr-5" style="flex-grow: 1 !important; flex-shrink: 1 !important; flex-basis:33% !important;">
+                <p-checkbox [disabled]="!canEditFeed" [binary]="true" (onChange)="onCheckboxChange($event, feed)" [(ngModel)]="feed.scrapingEnabled" [inputId]="index.toString(10)"></p-checkbox>
+                <label [for]="index" style="word-break: break-word;" class="font-semibold ml-2" [ngClass]="{'line-through': !feed.scrapingEnabled}">{{ feed.displayName }}</label>
             </div>
 
-            <div class="flex gap-3 flex-column sm:flex-row sm:justify-content-between" style="flex-grow: 1 !important; flex-shrink: 1 !important; flex-basis:67% !important;">
-                <div class="flex align-items-center">
-                    <span class="flex align-items-center font-semibold mr-3" i18n-pTooltip pTooltip="Fetched Articles" tooltipPosition="bottom">
-                        <i class="pi pi-box mr-2"></i>{{ feed.totalArticles || 0 }}
-                    </span>
+            <span class="flex align-items-center font-semibold mr-3" i18n-pTooltip pTooltip="Fetched Articles" tooltipPosition="bottom">
+                <i class="pi pi-box mr-2"></i>{{ feed.totalArticles || 0 }}
+            </span>
 
-                    <!-- user scheduling -->
-                    <span *ngIf="feed.scrapingEnabled" [class.line-through]="autoScrapingRelevant(feed)" class="flex align-items-center font-semibold white-space-nowrap mr-3">
-                        <i class="pi pi-clock mr-2"></i>{{ feed | frequency:'manual' }}
-                    </span>
+            <!-- user scheduling -->
+            <span *ngIf="feed.scrapingEnabled" [class.line-through]="autoScrapingRelevant(feed)" class="flex align-items-center font-medium white-space-nowrap mr-3">
+                <i class="pi pi-clock mr-2"></i>{{ feed | frequency:'manual' }}
+            </span>
 
-                    <!-- if auto scheduler erased user config -->
-                    <span *ngIf="autoScrapingRelevant(feed)" class="flex align-items-center font-semibold white-space-nowrap mr-3">
-                        {{ feed | frequency:'auto' }}
-                    </span>
+            <!-- if auto scheduler erased user config -->
+            <span *ngIf="autoScrapingRelevant(feed)" class="flex align-items-center font-medium white-space-nowrap mr-3">
+                {{ feed | frequency:'auto' }}
+            </span>
 
-                    <span *ngIf="feed.scrapingEnabled && feed.lastWeekArticles === 0" class="flex align-items-center font-semibold">
-                        <i class="pi pi-exclamation-triangle mr-2"></i><span i18n>No article in last 7 days</span>
-                    </span>
+            <span *ngIf="feed.scrapingEnabled && feed.lastWeekArticles === 0" class="flex align-items-center font-medium">
+                <i class="pi pi-exclamation-triangle mr-2"></i><span i18n>No article in last 7 days</span>
+            </span>
 
-                    <span *ngIf="!feed.scrapingEnabled" class="flex align-items-center font-semibold">
-                        <i class="pi pi-info-circle mr-2"></i><span i18n>Scraping disabled</span>
-                    </span>
-                </div>
-                <div class="flex align-items-center sm:justify-content-end">
-                    <button pButton pRipple type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text z-3 ml-auto sm:ml-0" (click)="toggleMenu($event, feed)"></button>
-                    <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
+            <span *ngIf="!feed.scrapingEnabled" class="flex align-items-center font-medium">
+                <i class="pi pi-info-circle mr-2"></i><span i18n>Scraping disabled</span>
+            </span>
 
-<p-toast position="bottom-right"/>
+        </div>
 
-<p-confirmDialog i18n-header header="Permanently Delete Feed" key="confirm-delete-feed" icon="pi pi-exclamation-triangle"
-                 i18n-message message="Are you sure you want to permanently delete feed and not disable it ? Note this will not delete any article."
-                 defaultFocus="none"
-                 acceptButtonStyleClass="p-button-danger"
-                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
+    </ng-template>
+</app-generic-data-list>
