@@ -56,12 +56,34 @@ export class ContactsService {
         this.domain = environment.backend;
     }
 
+    async getContactsProvider(organizationId: string, providerId: string): Promise<ContactsProvider> {
+        return new Promise((resolve, reject) => {
+                return resolve(
+                    {
+                        _id: providerId,
+                        organization: organizationId,
+                        displayName: 'Provider 1',
+                        description: 'Provider 1 description',
+                        type: ContactsProviderType.Brevo,
+                        isFavorite: true,
+                    }
+                )
+            }
+        );
+
+        // return firstValueFrom(
+        //    this.http.get<ContactsProvider>(
+        //        `${this.domain}/organizations/${organizationId}/providers/contacts/${providerId}`,
+        //    ),
+        //);
+    }
+
     async getContactsProviders(organizationId: string): Promise<ContactsProvider[]> {
         return new Promise((resolve, reject) => {
             return resolve([
                 {
                     _id: '1',
-                    organization: '1',
+                    organization: organizationId,
                     displayName: 'Provider 1',
                     description: 'Provider 1 description',
                     type: ContactsProviderType.Brevo,
@@ -69,7 +91,7 @@ export class ContactsService {
                 },
                 {
                     _id: '2',
-                    organization: '1',
+                    organization: organizationId,
                     displayName: 'Provider 2',
                     description: 'Provider 2 description',
                     type: ContactsProviderType.Sendgrid,
@@ -77,7 +99,7 @@ export class ContactsService {
                 },
                 {
                     _id: '3',
-                    organization: '1',
+                    organization: organizationId,
                     displayName: 'Provider 3',
                     description: 'Provider 3 description',
                     type: ContactsProviderType.ElasticEmail,

@@ -2,11 +2,12 @@
     <div class="col-12 md:col-12 xl:col-12 ">
 
         <app-generic-data-card i18n-title title="Contacts Providers"
-                               [buttonLabel]="'Add Provider'"
+                               i18n-buttonLabel buttonLabel="Add Provider"
                                [buttonIcon]="'pi pi-plus'"
                                (buttonClick)="showDialog()">
             <app-contacts-provider-list [loading]="loadingProviders"
                                         [providers]="providers"
+                                        (onInspectProvider)="onInspectProvider($event)"
                                         [canEditProvider]="canUpdateProvider"
                                         (onEditProvider)="onEditProvider($event)"
                                         [canDeleteProvider]="canDeleteProvider"
@@ -21,8 +22,8 @@
 </app-create-or-update-contacts-provider>
 
 
-<p-confirmDialog i18n-header header="Permanently Delete Feed" key="confirm-delete-feed" icon="pi pi-exclamation-triangle"
-                 i18n-message message="Are you sure you want to permanently delete feed and not disable it ? Note this will not delete any article."
+<p-confirmDialog i18n-header header="Permanently Delete Provider" key="confirm-delete-provider" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to permanently delete this contacts provider ? It will prevent sendings relying on it."
                  defaultFocus="none"
                  acceptButtonStyleClass="p-button-danger"
                  rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>

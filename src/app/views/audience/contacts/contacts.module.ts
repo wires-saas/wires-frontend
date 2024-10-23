@@ -19,7 +19,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ContactsComponent } from './contacts.component';
 import { ContactsRoutingModule } from './contacts-routing.module';
-import { ContactsProviderListComponent } from './contacts-provider-list/contacts-provider-list.component';
+import { ContactsProviderListComponent } from './contacts-providers/contacts-provider-list/contacts-provider-list.component';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ArraySortPipe } from '../../../utils/pipes/array-sort.pipe';
 import { MenuModule } from 'primeng/menu';
@@ -29,10 +29,16 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ContactsService } from '../../../services/contacts.service';
 import {
     CreateOrUpdateContactsProviderComponent
-} from './create-or-update-contacts-provider/create-or-update-contacts-provider.component';
-import { ContactsProviderComponent } from './contacts-providers/contacts-providers.component';
+} from './contacts-providers/create-or-update-contacts-provider/create-or-update-contacts-provider.component';
+import {
+    ContactsProvidersComponent
+} from './contacts-providers/contacts-providers.component';
 import { GenericDataCardComponent } from '../../../meta-components/generic-data-card/generic-data-card.component';
 import { GenericDataListComponent } from '../../../meta-components/generic-data-list/generic-data-list.component';
+import { ContactsProviderComponent } from './contacts-providers/contacts-provider/contacts-provider.component';
+import {
+    GenericLayoutSingleInstanceComponent
+} from '../../../meta-components/generic-layout-single-instance/generic-layout-single-instance.component';
 
 @NgModule({
     imports: [
@@ -62,8 +68,14 @@ import { GenericDataListComponent } from '../../../meta-components/generic-data-
         ConfirmDialogModule,
         GenericDataCardComponent,
         GenericDataListComponent,
+        GenericLayoutSingleInstanceComponent,
     ],
-    declarations: [ContactsComponent, ContactsProviderComponent, ContactsProviderListComponent, CreateOrUpdateContactsProviderComponent],
+    declarations: [
+        ContactsComponent,
+        ContactsProvidersComponent,
+        ContactsProviderComponent,
+        ContactsProviderListComponent,
+        CreateOrUpdateContactsProviderComponent],
     providers: [MessageService, ContactsService, ConfirmationService],
 })
 export class ContactsModule {}

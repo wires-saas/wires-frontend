@@ -1,0 +1,7 @@
+<app-generic-square-card *ngFor="let card of cards; let index = index"
+                         [icon]="card.icon"
+                         [title]="card.title"
+                         [description]="card.description"
+                         [animationClass]="index < 4 ? 'animation-duration-500' : 'animation-duration-1000'"
+                         class="col-12 md:col-6 xl:col-2">
+</app-generic-square-card>

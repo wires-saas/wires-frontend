@@ -1,16 +1,16 @@
 import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { DialogConfig, } from '../../../../services/feed.service';
+import { DialogConfig, } from '../../../../../services/feed.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import { MessageUtils } from '../../../../utils/message.utils';
-import { deepClone } from '../../../../utils/deep-clone';
+import { MessageUtils } from '../../../../../utils/message.utils';
+import { deepClone } from '../../../../../utils/deep-clone';
 import {
     ContactsProvider,
     ContactsProviderType,
     ContactsService,
     CreateProviderDto
-} from '../../../../services/contacts.service';
+} from '../../../../../services/contacts.service';
 
 @Component({
     selector: 'app-create-or-update-contacts-provider',

@@ -195,7 +195,7 @@
         <source>Extended Licence</source>
       </trans-unit>
       <trans-unit id="187187500641108332" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ data.title || &apos;ERROR&apos; }}"/></source>
+        <source><x id="INTERPOLATION" equiv-text="{{ title }}"/></source>
       </trans-unit>
       <trans-unit id="1324562044865604828" datatype="html">
         <source>Expired Invite</source>
@@ -1640,26 +1640,8 @@
       <trans-unit id="7373254601261965618" datatype="html">
         <source>Permanently Delete Feed</source>
       </trans-unit>
-      <trans-unit id="2277053553712740734" datatype="html">
-        <source>Tags Impacted</source>
-      </trans-unit>
-      <trans-unit id="2335431074080486693" datatype="html">
-        <source>Total Time</source>
-      </trans-unit>
-      <trans-unit id="3124108299936099643" datatype="html">
-        <source>New Articles</source>
-      </trans-unit>
-      <trans-unit id="3865935952968834510" datatype="html">
-        <source>Run of feed &quot;<x id="INTERPOLATION" equiv-text="{{ feed.displayName }}"/>&quot;</source>
-      </trans-unit>
       <trans-unit id="6205355627445317276" datatype="html">
         <source>Content</source>
-      </trans-unit>
-      <trans-unit id="8441647245285315737" datatype="html">
-        <source>Articles Found</source>
-      </trans-unit>
-      <trans-unit id="8802433277842246383" datatype="html">
-        <source>Started At</source>
       </trans-unit>
       <trans-unit id="1161299114153631702" datatype="html">
         <source>Completed</source>
@@ -2185,6 +2167,27 @@
       </trans-unit>
       <trans-unit id="8518056943986977149" datatype="html">
         <source>Only alphabetic characters allowed</source>
+      </trans-unit>
+      <trans-unit id="8187890838584612716" datatype="html">
+        <source>Run of feed &quot;<x id="PH" equiv-text="this.feed?.displayName"/>&quot;</source>
+      </trans-unit>
+      <trans-unit id="1375793600860080702" datatype="html">
+        <source>Inspect</source>
+      </trans-unit>
+      <trans-unit id="1604102229052837523" datatype="html">
+        <source>Return to providers list</source>
+      </trans-unit>
+      <trans-unit id="3546392795845484442" datatype="html">
+        <source>Are you sure you want to permanently delete this contacts provider ? It will prevent sendings relying on it.</source>
+      </trans-unit>
+      <trans-unit id="6688657423210322785" datatype="html">
+        <source>Permanently Delete Provider</source>
+      </trans-unit>
+      <trans-unit id="7133597967238695324" datatype="html">
+        <source>Add Provider</source>
+      </trans-unit>
+      <trans-unit id="5787759453544857381" datatype="html">
+        <source>Contacts Provider &quot;<x id="PH" equiv-text="this.provider?.displayName"/>&quot;</source>
       </trans-unit>
     </body>
   </file>

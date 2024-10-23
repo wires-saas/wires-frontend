@@ -12,12 +12,13 @@ import {
     DeleteContactsProvider,
     UpdateContactsProvider
 } from '../../../../utils/permission.utils';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-contacts-providers',
     templateUrl: './contacts-providers.component.html',
 })
-export class ContactsProviderComponent implements OnInit {
+export class ContactsProvidersComponent implements OnInit {
     private destroyRef = inject(DestroyRef);
 
     loadingProviders: boolean = false;
@@ -37,6 +38,7 @@ export class ContactsProviderComponent implements OnInit {
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
         private organizationService: OrganizationService,
+        private router: Router,
     ) {}
 
     ngOnInit() {
@@ -83,7 +85,7 @@ export class ContactsProviderComponent implements OnInit {
         if (!this.canDeleteProvider) return;
 
         this.confirmationService.confirm({
-            key: 'confirm-delete-feed',
+            key: 'confirm-delete-provider',
             acceptLabel: $localize`Confirm`,
             rejectLabel: $localize`Cancel`,
             accept: async () => {
@@ -111,6 +113,10 @@ export class ContactsProviderComponent implements OnInit {
                     });
             },
         });
+    }
+
+    async onInspectProvider(provider: ContactsProvider) {
+        await this.router.navigate([`/organization/${provider.organization}/audience/contacts/providers/${provider._id}`]);
     }
 
     onEditProvider(provider: ContactsProvider) {

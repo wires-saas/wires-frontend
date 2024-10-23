@@ -258,7 +258,7 @@
         <target state="new">Utilisateurs illimités</target>
       </trans-unit>
       <trans-unit id="187187500641108332" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ data.title || &apos;ERROR&apos; }}"/></source>
+        <source><x id="INTERPOLATION" equiv-text="{{ title }}"/></source>
         <target state="new"><x id="INTERPOLATION" equiv-text="{{ data.title || &apos;ERREUR&apos; }}"/></target>
       </trans-unit>
       <trans-unit id="464749780222721589" datatype="html">
@@ -2185,30 +2185,6 @@
         <source>Permanently Delete Feed</source>
         <target state="new">Supprimer définitivement le flux</target>
       </trans-unit>
-      <trans-unit id="3865935952968834510" datatype="html">
-        <source>Run of feed &quot;<x id="INTERPOLATION" equiv-text="{{ feed.displayName }}"/>&quot;</source>
-        <target state="new">Récupération du flux &quot;<x id="INTERPOLATION" equiv-text="{{ feed.displayName }}"/>&quot;</target>
-      </trans-unit>
-      <trans-unit id="8802433277842246383" datatype="html">
-        <source>Started At</source>
-        <target state="new">Début</target>
-      </trans-unit>
-      <trans-unit id="8441647245285315737" datatype="html">
-        <source>Articles Found</source>
-        <target state="new">Articles trouvés</target>
-      </trans-unit>
-      <trans-unit id="3124108299936099643" datatype="html">
-        <source>New Articles</source>
-        <target state="new">Nouveaux articles</target>
-      </trans-unit>
-      <trans-unit id="2277053553712740734" datatype="html">
-        <source>Tags Impacted</source>
-        <target state="new">Tags impactés</target>
-      </trans-unit>
-      <trans-unit id="2335431074080486693" datatype="html">
-        <source>Total Time</source>
-        <target state="new">Temps total</target>
-      </trans-unit>
       <trans-unit id="6205355627445317276" datatype="html">
         <source>Content</source>
         <target state="new">Contenu récupéré</target>
@@ -2891,7 +2867,7 @@
       </trans-unit>
       <trans-unit id="8518056943986977149" datatype="html">
         <source>Only alphabetic characters allowed</source>
-        <target state="new">Uniquement les lettres de l'alphabet autorisées</target>
+        <target state="new">Uniquement les lettres de l&apos;alphabet autorisées</target>
       </trans-unit>
       <trans-unit id="5226553105367870595" datatype="html">
         <source>Update Roles</source>
@@ -2899,7 +2875,7 @@
       </trans-unit>
       <trans-unit id="3488652094973484634" datatype="html">
         <source>Updating roles and permissions presents risk. It requires a precise understanding of permission scope. Are you sure you want to proceed? If you are unsure, please contact support.</source>
-        <target state="new">Modifier les rôles n'est pas sans risque. Êtes-vous sûr de vos modifications ? En cas de doute vous pouvez contacter notre support.</target>
+        <target state="new">Modifier les rôles n&apos;est pas sans risque. Êtes-vous sûr de vos modifications ? En cas de doute vous pouvez contacter notre support.</target>
       </trans-unit>
       <trans-unit id="3137981787940934103" datatype="html">
         <source>Yes, update</source>
@@ -2912,6 +2888,34 @@
       <trans-unit id="1360111064698838191" datatype="html">
         <source><x id="PH" equiv-text="user.firstName"/> has been set as &quot;<x id="PH_1" equiv-text="roleLabel"/>&quot;</source>
         <target state="new"><x id="PH" equiv-text="user.firstName"/> has been set as &quot;<x id="PH_1" equiv-text="roleLabel"/>&quot;</target>
+      </trans-unit>
+      <trans-unit id="8187890838584612716" datatype="html">
+        <source>Run of feed &quot;<x id="PH" equiv-text="this.feed?.displayName"/>&quot;</source>
+        <target state="new">Récupération du flux &quot;<x id="PH" equiv-text="this.feed?.displayName"/>&quot;</target>
+      </trans-unit>
+      <trans-unit id="1375793600860080702" datatype="html">
+        <source>Inspect</source>
+        <target state="new">Inspecter</target>
+      </trans-unit>
+      <trans-unit id="1604102229052837523" datatype="html">
+        <source>Return to providers list</source>
+        <target state="new">Revenir à la liste des connecteurs</target>
+      </trans-unit>
+      <trans-unit id="7133597967238695324" datatype="html">
+        <source>Add Provider</source>
+        <target state="new">Ajouter un connecteur</target>
+      </trans-unit>
+      <trans-unit id="6688657423210322785" datatype="html">
+        <source>Permanently Delete Provider</source>
+        <target state="new">Suppression permanente</target>
+      </trans-unit>
+      <trans-unit id="3546392795845484442" datatype="html">
+        <source>Are you sure you want to permanently delete this contacts provider ? It will prevent sendings relying on it.</source>
+        <target state="new">Êtes-vous certain de vouloir supprimer ce connecteur ? Si des envois l&apos;utilisent, ceux-ci seront impossibles.</target>
+      </trans-unit>
+      <trans-unit id="5787759453544857381" datatype="html">
+        <source>Contacts Provider &quot;<x id="PH" equiv-text="this.provider?.displayName"/>&quot;</source>
+        <target state="new">Connecteur de contacts &quot;<x id="PH" equiv-text="this.provider?.displayName"/>&quot;</target>
       </trans-unit>
     </body>
   </file>

@@ -16,6 +16,10 @@ export class FeedRunComponent implements OnInit {
     feed: Feed | undefined;
     feedRun: FeedRun | undefined;
 
+    get title() {
+        return $localize`Run of feed "${this.feed?.displayName}"`;
+    }
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -42,11 +46,5 @@ export class FeedRunComponent implements OnInit {
                 this.router.navigateByUrl('/not-found');
                 return undefined;
             });
-    }
-
-    async goBackToFeedList() {
-        await this.router.navigateByUrl(
-            `/organizations/${this.organizationSlug}/contents/feeds`,
-        );
     }
 }

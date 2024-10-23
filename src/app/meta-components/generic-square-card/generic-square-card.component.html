@@ -1,0 +1,5 @@
+<div class="card h-full flex flex-column align-items-center justify-content-center fadein {{ animationClass}}">
+    <i *ngIf="icon" class="{{ icon }} text-primary text-4xl mb-4"></i>
+    <span *ngIf="title !== undefined" class="text-900 text-lg mb-4 font-medium">{{ title }}</span>
+    <span *ngIf="description !== undefined" class="text-900 text-2xl text-primary font-bold">{{ description }}</span>
+</div>

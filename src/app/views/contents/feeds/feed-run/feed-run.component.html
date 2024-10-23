@@ -1,18 +1,39 @@
-<div class="grid" *ngIf="feed && feedRun">
-    <div class="col-12">
+<app-generic-layout-single-instance *ngIf="feed && feedRun"
+                                    [title]="title"
+                                    i18n-buttonLabel buttonLabel="Return to feed list"
+                                    [buttonLink]="['/organization', organizationSlug, 'contents', 'feeds']">
 
-        <div class="flex justify-content-between">
-            <div>
-                <span class="text-900 font-bold text-4xl" i18n>Run of feed "{{ feed.displayName }}"</span>
-            </div>
+    <app-generic-square-cards-row class="grid col-12" [cards]="[
+                                    {
+                                        icon: 'pi pi-calendar-clock',
+                                        title: 'Started At',
+                                        description: (feedRun.createdAt | date: 'HH:mm, dd/MM') || ''
+                                    },
+                                    {
+                                        icon: 'pi pi-th-large',
+                                        title: 'Articles Found',
+                                        description: feedRun.articles.length
+                                    }, {
+                                        icon: 'pi pi-database',
+                                        title: 'New Articles',
+                                        description: feedRun.newArticles.length
+                                    }, {
+                                        icon: 'pi pi-tags',
+                                        title: 'Tags Impacted',
+                                        description: feedRun.tagsApplied
+                                    }, {
+                                        icon: 'pi pi-clock',
+                                        title: 'Total Time',
+                                        description: feedRun.scrapingDurationMs + feedRun.articlesCreationMs + 'ms'
+                                    }, {
+                                        icon: 'pi pi-check',
+                                        title: 'Status',
+                                        description: feedRun | feedRunStatus
+                                    }]">
+    </app-generic-square-cards-row>
 
-            <a [routerLink]="['/organization', organizationSlug, 'contents', 'feeds']">
-                <button pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1"
-                        i18n-label label="Return to feed list"></button>
-            </a>
-        </div>
+    <!--
 
-    </div>
 
     <div class="col-12 md:col-6 xl:col-2">
         <div class=" card h-full flex flex-column align-items-center justify-content-center fadein animation-duration-500">
@@ -22,15 +43,6 @@
         </div>
     </div>
 
-    <!--
-    <div class="col-12 md:col-6 xl:col-2">
-        <div class="card h-full flex flex-column align-items-center justify-content-center">
-            <i class="pi pi-clock text-primary text-4xl mb-4"></i>
-            <span class="text-900 text-lg mb-4 font-medium">Scraping Duration</span>
-            <span class="text-900 text-2xl text-primary font-bold">{{ feedRun?.scrapingDurationMs }}ms</span>
-        </div>
-    </div> -->
-
     <div class="col-12 md:col-6 xl:col-2">
         <div class="card h-full flex flex-column align-items-center justify-content-center fadein animation-duration-500">
             <i class="pi pi-th-large text-primary text-4xl mb-4"></i>
@@ -38,15 +50,6 @@
             <span class="text-900 text-2xl text-primary font-bold">{{ feedRun.articles.length }}</span>
         </div>
     </div>
-
-    <!--
-    <div class="col-12 md:col-6 xl:col-2">
-        <div class="card h-full flex flex-column align-items-center justify-content-center">
-            <i class="pi pi-database text-primary text-4xl mb-4"></i>
-            <span class="text-900 text-lg mb-4 font-medium">Save Duration</span>
-            <span class="text-900 text-2xl text-primary font-bold">{{ feedRun?.articlesCreationMs }}ms</span>
-        </div>
-    </div> -->
 
     <div class="col-12 md:col-6 xl:col-2">
         <div class="card h-full flex flex-column align-items-center justify-content-center fadein animation-duration-500">
@@ -82,7 +85,7 @@
             <span class="text-900 text-lg mb-4 font-medium" i18n>Status</span>
             <span class="text-900 text-2xl text-primary font-bold">{{ feedRun | feedRunStatus  }}</span>
         </div>
-    </div>
+    </div> -->
 
     <div class="col-12">
         <div class="card">
@@ -90,4 +93,5 @@
             <app-articles-view [allArticles]="feedRun.articles" [newArticles]="feedRun.newArticles" [articlesPerPage]="6"></app-articles-view>
         </div>
     </div>
-</div>
+
+</app-generic-layout-single-instance>

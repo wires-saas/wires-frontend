@@ -5,6 +5,11 @@
     [loading]="loading"
     [itemTemplate]="providerTemplate"
     [withItemMenu]="true"
+
+    [canInspect]="true"
+    i18n-inspectLabel inspectLabel="Inspect"
+    (onInspect)="onInspectProvider.emit($event)"
+
     [canEdit]="canEditProvider"
     (onEdit)="onEditProvider.emit($event)"
     [canDelete]="canDeleteProvider"

@@ -1,0 +1,18 @@
+<div class="grid">
+    <div class="col-12">
+
+        <div class="flex justify-content-between">
+            <div>
+                <span class="text-900 font-bold text-4xl" i18n>{{ title }}</span>
+            </div>
+
+            <a [routerLink]="buttonLink">
+                <button pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1"
+                        [label]="buttonLabel"></button>
+            </a>
+        </div>
+
+    </div>
+
+    <ng-content></ng-content>
+</div>
