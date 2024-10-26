@@ -5,9 +5,13 @@ import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 export enum ContactsProviderType {
+    Internal = 'internal',
+
     Brevo = 'brevo',
-    Sendgrid = 'sendgrid',
     ElasticEmail = 'elasticemail',
+    Sendgrid = 'sendgrid',
+    Mailjet = 'mailjet',
+    Mailchimp = 'mailchimp',
 }
 
 export interface ContactsProvider {

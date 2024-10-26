@@ -39,6 +39,11 @@ import { ContactsProviderComponent } from './contacts-providers/contacts-provide
 import {
     GenericLayoutSingleInstanceComponent
 } from '../../../meta-components/generic-layout-single-instance/generic-layout-single-instance.component';
+import { FeedRunStatusPipe } from '../../../utils/pipes/feed-run-status.pipe';
+import {
+    GenericSquareCardsRowComponent
+} from '../../../meta-components/generic-square-cards-row/generic-square-cards-row.component';
+import { CapitalizePipe } from '../../../utils/pipes/capitalize.pipe';
 
 @NgModule({
     imports: [
@@ -69,6 +74,9 @@ import {
         GenericDataCardComponent,
         GenericDataListComponent,
         GenericLayoutSingleInstanceComponent,
+        FeedRunStatusPipe,
+        GenericSquareCardsRowComponent,
+        CapitalizePipe,
     ],
     declarations: [
         ContactsComponent,
