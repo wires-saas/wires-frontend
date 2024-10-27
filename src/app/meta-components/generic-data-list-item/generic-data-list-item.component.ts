@@ -3,6 +3,7 @@ import { NgForOf, NgIf } from '@angular/common';
 import { ButtonDirective } from 'primeng/button';
 import { Menu, MenuModule } from 'primeng/menu';
 import { Ripple } from 'primeng/ripple';
+import { MenuItemCommandEvent } from 'primeng/api';
 
 @Component({
     selector: 'app-generic-data-list-item',
@@ -33,19 +34,27 @@ export class GenericDataListItemComponent implements OnInit {
     @Input() canDelete: boolean = false;
     @Output() onDelete: EventEmitter<any> = new EventEmitter<any>();
 
+    @Output() onItemClick: EventEmitter<any> = new EventEmitter<any>();
+
     ngOnInit() {
         this.menuItems = [
             {
                 label: $localize`Edit`,
                 icon: 'pi pi-pencil',
                 disabled: !this.canEdit,
-                command: () => this.onEdit.emit(this.item),
+                command: (e: MenuItemCommandEvent) => {
+                    e.originalEvent?.stopPropagation();
+                    this.onEdit.emit(this.item)
+                },
             },
             {
                 label: $localize`Delete`,
                 icon: 'pi pi-trash',
                 disabled: !this.canDelete,
-                command: () => this.onDelete.emit(this.item),
+                command: (e: MenuItemCommandEvent) => {
+                    e.originalEvent?.stopPropagation();
+                    this.onDelete.emit(this.item);
+                },
             },
         ];
 
@@ -54,14 +63,18 @@ export class GenericDataListItemComponent implements OnInit {
                 {
                     label: this.inspectLabel,
                     icon: this.inspectIcon,
-                    command: () => this.onInspect.emit(this.item),
+                    command: (e: MenuItemCommandEvent) => {
+                        e.originalEvent?.stopPropagation();
+                        this.onInspect.emit(this.item)
+                    },
                 },
                 ...this.menuItems,
             ];
         }
     }
 
-    emitShowMenu(event: MouseEvent) {
+    emitShowMenu(event: Event) {
+        event.stopPropagation();
         this.menu.toggle(event);
     }
 }

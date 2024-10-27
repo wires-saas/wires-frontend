@@ -37,5 +37,11 @@ export const UpdateFolder = new Permission(PermissionSubject.Folder, PermissionA
 export const DeleteFolder = new Permission(PermissionSubject.Folder, PermissionAction.Delete);
 
 export const CreateContactsProvider = new Permission(PermissionSubject.ContactsProvider, PermissionAction.Create);
+export const ReadContactsProvider = new Permission(PermissionSubject.ContactsProvider, PermissionAction.Read);
 export const UpdateContactsProvider = new Permission(PermissionSubject.ContactsProvider, PermissionAction.Update);
 export const DeleteContactsProvider = new Permission(PermissionSubject.ContactsProvider, PermissionAction.Delete);
+
+export const CreateEmailsProvider = new Permission(PermissionSubject.EmailsProvider, PermissionAction.Create);
+export const ReadEmailsProvider = new Permission(PermissionSubject.EmailsProvider, PermissionAction.Read);
+export const UpdateEmailsProvider = new Permission(PermissionSubject.EmailsProvider, PermissionAction.Update);
+export const DeleteEmailsProvider = new Permission(PermissionSubject.EmailsProvider, PermissionAction.Delete);

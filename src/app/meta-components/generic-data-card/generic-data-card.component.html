@@ -1,6 +1,10 @@
 <div class="card">
     <div class="flex justify-content-between align-items-center mb-5">
-        <span class="text-900 text-xl font-semibold">{{ title }}</span>
+        <p>
+            <span class="text-900 text-xl font-semibold">{{ title }}</span><br/>
+            <span *ngIf="subtitle" [innerHTML]="subtitle"></span>
+        </p>
+
         <button (click)="onButtonClick()"
                 pButton pRipple class="p-button font-semibold" [icon]="buttonIcon"
                 label="{{ buttonLabel }}"></button>

@@ -2917,6 +2917,54 @@
         <source>Contacts Provider &quot;<x id="PH" equiv-text="this.provider?.displayName"/>&quot;</source>
         <target state="new">Connecteur de contacts &quot;<x id="PH" equiv-text="this.provider?.displayName"/>&quot;</target>
       </trans-unit>
+      <trans-unit id="4991388630977836345" datatype="html">
+        <source>Currently under construction</source>
+        <target state="new">En construction</target>
+      </trans-unit>
+      <trans-unit id="2158438346121873476" datatype="html">
+        <source>This feature is not yet available. Contact us for more information.</source>
+        <target state="new">Cette fonctionnalité n&apos;est pas encore disponible. Contactez-nous si celle-ci vous intéresse !</target>
+      </trans-unit>
+      <trans-unit id="6621259098473080307" datatype="html">
+        <source>If you need to use your own provider, please contact us for a custom integration - free of charge</source>
+        <target state="new">Si vous souhaitez utiliser votre propre connecteur, merci de nous contacter pour une intégration spécifique - gratuite</target>
+      </trans-unit>
+      <trans-unit id="5787671382322865445" datatype="html">
+        <source>Favorite</source>
+        <target state="new">Favori</target>
+      </trans-unit>
+      <trans-unit id="2807800733729323332" datatype="html">
+        <source>Yes</source>
+        <target state="new">Oui</target>
+      </trans-unit>
+      <trans-unit id="8650499415827640724" datatype="html">
+        <source>Type</source>
+        <target state="new">Type</target>
+      </trans-unit>
+      <trans-unit id="6270062947237377314" datatype="html">
+        <source>Contacts Lists</source>
+        <target state="new">Listes de contacts</target>
+      </trans-unit>
+      <trans-unit id="2265441591613873394" datatype="html">
+        <source>Distinct Contacts</source>
+        <target state="new">Contacts distincts</target>
+      </trans-unit>
+      <trans-unit id="6205462816527090942" datatype="html">
+        <source>Default provider</source>
+        <target state="new">Default provider</target>
+      </trans-unit>
+      <trans-unit id="8542165674704180150" datatype="html">
+        <source>Operational</source>
+        <target state="new">Operational</target>
+      </trans-unit>
+      <trans-unit id="5575779203851439913" datatype="html">
+        <source>Use our default provider or plug your own to manage contacts</source>
+        <target state="new">Use our default provider or plug your own to manage contacts</target>
+      </trans-unit>
+      <trans-unit id="5839905127417078496" datatype="html">
+        <source>Create feeds to fetch articles from different sources</source>
+        <target state="new">Create feeds to fetch articles from different sources</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

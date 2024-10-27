@@ -1,7 +1,5 @@
-<p-toast position="bottom-right"></p-toast>
-{{ dialogConfig | json }}
 <p-dialog [header]="dialogConfig.header || ''" [(visible)]="dialogConfig.visible" [modal]="true" [dismissableMask]="true" styleClass="mx-3 sm:mx-0 sm:w-full md:w-8 lg:w-6" contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
-    <div class="p-4">
+    <div class="p-4" *ngIf="!dialogConfig.isNew; else creationNotSupported">
         <div class="grid p-fluid formgrid">
             <div class="col-12 field">
                 <label for="feed-name" class="text-900 font-semibold" i18n>Provider Name</label>
@@ -24,4 +22,10 @@
             </div>
         </div>
     </div>
+
+    <ng-template #creationNotSupported>
+        <div class="p-6 text-center">
+            <app-wip i18n-description description="If you need to use your own provider, please contact us for a custom integration - free of charge"></app-wip>
+        </div>
+    </ng-template>
 </p-dialog>

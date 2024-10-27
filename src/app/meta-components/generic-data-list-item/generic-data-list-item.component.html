@@ -1,4 +1,5 @@
-<li class="flex flex-column gap-3 md:flex-row md:align-items-center p-2 border-bottom-1 surface-border">
+<li class="flex flex-column gap-3 md:flex-row md:align-items-center p-2 border-bottom-1 surface-border hover:surface-100 cursor-pointer"
+    (click)="onItemClick.emit(item)">
 
     <div class="flex gap-3 flex-column sm:flex-row sm:justify-content-between"
          style="flex-grow: 1 !important; flex-shrink: 1 !important; flex-basis:67% !important;">

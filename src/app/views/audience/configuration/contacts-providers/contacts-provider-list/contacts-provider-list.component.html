@@ -14,6 +14,8 @@
     (onEdit)="onEditProvider.emit($event)"
     [canDelete]="canDeleteProvider"
     (onDelete)="onDeleteProvider.emit($event)"
+
+    (onItemClick)="onInspectProvider.emit($event)"
 >
 
     <!-- Template for each provider item -->
@@ -22,10 +24,10 @@
         <div class="flex align-items-center">
             <div class="flex align-items-center"
                  style="flex-grow: 1 !important; flex-shrink: 1 !important; flex-basis:33% !important;">
-                <label [for]="index" class="font-medium ml-2">
+                <label [for]="index" class="font-medium ml-2 cursor-pointer">
                     {{ provider.displayName }}
-                    <i *ngIf="provider.isDefault" pTooltip="Default provider" tooltipPosition="bottom" class="pi pi-star cursor-pointer"></i>
-                    <i *ngIf="provider.isVerified" pTooltip="Operational" tooltipPosition="bottom" class="pi pi-verified"></i>
+                    <i *ngIf="provider.isDefault" i18n-pTooltip pTooltip="Default provider" tooltipPosition="bottom" class="pi pi-star-fill cursor-pointer"></i>
+                    <i *ngIf="provider.isVerified" i18n-pTooltip pTooltip="Operational" tooltipPosition="bottom" class="pi pi-verified cursor-pointer"></i>
                 </label>
             </div>
         </div>

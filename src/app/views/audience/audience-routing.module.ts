@@ -18,6 +18,12 @@ import { RouterModule } from '@angular/router';
                 loadChildren: () =>
                     import('./delivery/delivery.module').then((m) => m.DeliveryModule),
             },
+            {
+                path: 'configuration',
+                data: { breadcrumb: $localize`Configuration` },
+                loadChildren: () =>
+                    import('./configuration/configuration.module').then((m) => m.ConfigurationModule),
+            },
         ]),
     ],
     exports: [RouterModule],

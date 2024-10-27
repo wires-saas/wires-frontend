@@ -30,7 +30,8 @@
                                     [canEdit]="canEdit"
                                     (onEdit)="onEdit.emit($event)"
                                     [canDelete]="canDelete"
-                                    (onDelete)="onDelete.emit($event)">
+                                    (onDelete)="onDelete.emit($event)"
+                                    (onItemClick)="onItemClick.emit($event)">
             <ng-container
                 *ngTemplateOutlet="itemTemplate; context: {$implicit: item, index: index}">
             </ng-container>

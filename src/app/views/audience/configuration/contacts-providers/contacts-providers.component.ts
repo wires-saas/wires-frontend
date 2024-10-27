@@ -8,9 +8,9 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { firstValueFrom } from 'rxjs';
 import {
-    CreateContactsProvider,
-    DeleteContactsProvider,
-    UpdateContactsProvider
+    CreateContactsProvider, CreateFeed,
+    DeleteContactsProvider, ReadContactsProvider, ReadFeedRun,
+    UpdateContactsProvider, UpdateFeed
 } from '../../../../utils/permission.utils';
 import { Router } from '@angular/router';
 
@@ -74,11 +74,6 @@ export class ContactsProvidersComponent implements OnInit {
         this.canDeleteProvider = await firstValueFrom(
             this.authService.hasPermission$(DeleteContactsProvider, organization.slug)
         );
-
-        // TODO: Implement the following methods
-        this.canCreateProvider = true;
-        this.canUpdateProvider = true;
-        this.canDeleteProvider = true;
     }
 
     onDeleteProvider(provider: ContactsProvider) {
@@ -116,7 +111,7 @@ export class ContactsProvidersComponent implements OnInit {
     }
 
     async onInspectProvider(provider: ContactsProvider) {
-        await this.router.navigate([`/organization/${provider.organization}/audience/contacts/providers/${provider.id}`]);
+        await this.router.navigate([`/organization/${provider.organization}/audience/configuration/contacts-providers/${provider.id}`]);
     }
 
     onEditProvider(provider: ContactsProvider) {
@@ -127,5 +122,7 @@ export class ContactsProvidersComponent implements OnInit {
     showDialog() {
         this.contactsService.showDialog($localize`Create Provider`, true);
     }
+
+    static permissions = [ReadContactsProvider];
 
 }

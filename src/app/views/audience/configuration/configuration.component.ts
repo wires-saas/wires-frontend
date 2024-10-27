@@ -3,11 +3,12 @@ import { OrganizationService } from '../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { ContactsService } from '../../../services/contacts.service';
+import { ReadContactsProvider, ReadEmailsProvider } from '../../../utils/permission.utils';
 
 @Component({
-    templateUrl: './contacts.component.html',
+    templateUrl: './configuration.component.html',
 })
-export class ContactsComponent implements OnInit {
+export class AudienceConfigurationComponent implements OnInit {
 
     private destroyRef = inject(DestroyRef);
 
@@ -31,5 +32,5 @@ export class ContactsComponent implements OnInit {
         this.contactsService.showDialog($localize`Create Provider`, true);
     }
 
-    static permissions = [];
+    static permissions = [ReadContactsProvider, ReadEmailsProvider];
 }

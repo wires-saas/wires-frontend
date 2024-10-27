@@ -2,8 +2,9 @@
     <div class="col-12 md:col-12 xl:col-12 ">
 
         <app-generic-data-card i18n-title title="Contacts Providers"
+                               i18n-subtitle subtitle="Use our default provider or plug your own to manage contacts"
                                i18n-buttonLabel buttonLabel="Add Provider"
-                               [buttonIcon]="'pi pi-plus'"
+                               buttonIcon="pi pi-plus"
                                (buttonClick)="showDialog()">
             <app-contacts-provider-list [loading]="loadingProviders"
                                         [providers]="providers"

@@ -27,6 +27,7 @@ export enum PermissionSubject {
     Block = 'block',
     Folder = 'folder',
     ContactsProvider = 'contactsProvider',
+    EmailsProvider = 'emailsProvider',
 }
 
 export class Permission {

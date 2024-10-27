@@ -33,4 +33,6 @@ export class GenericDataListComponent {
 
     @Output() onEdit: EventEmitter<any> = new EventEmitter<any>(); // Edit item event
     @Output() onDelete: EventEmitter<any> = new EventEmitter<any>(); // Delete item event
+
+    @Output() onItemClick: EventEmitter<any> = new EventEmitter<any>();
 }

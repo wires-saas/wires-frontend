@@ -1,7 +1,10 @@
 <div class="grid">
     <div class="col-12 md:col-12 xl:col-12 ">
 
-        <app-generic-data-card i18n-title title="Feeds Management" i18n-buttonLabel buttonLabel="Add Feed" [buttonIcon]="'pi pi-plus'" (buttonClick)="showDialog()">
+        <app-generic-data-card i18n-title title="Feeds Management"
+                               i18n-subtitle subtitle="Create feeds to fetch articles from different sources"
+                               i18n-buttonLabel buttonLabel="Add Feed"
+                               buttonIcon="pi pi-plus" (buttonClick)="showDialog()">
             <app-feed-list [loading]="loading"
                            [feeds]="feeds"
                            (onEnableFeed)="onEnableFeed($event)"

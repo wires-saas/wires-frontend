@@ -14,6 +14,9 @@ import { ConfigurationComponent } from '../views/organization/configuration/conf
 import { InformationComponent } from '../views/organization/information/information.component';
 import { ListUsersComponent } from '../views/organization/users/list/list-users.component';
 import { BlocksComponent } from '../views/studio/blocks/blocks.component';
+import { AudienceConfigurationComponent } from '../views/audience/configuration/configuration.component';
+import { ContactsComponent } from '../views/audience/contacts/contacts.component';
+import { DeliveryComponent } from '../views/audience/delivery/delivery.component';
 
 @Component({
     selector: 'app-menu',
@@ -90,8 +93,9 @@ export class AppMenuComponent implements OnInit {
             label: $localize`Audience`,
             restriction: authService.hasAtLeast$(
                 [
-                    ...FeedsComponent.permissions,
-                    ...ArticlesComponent.permissions,
+                    ...AudienceConfigurationComponent.permissions,
+                    ...ContactsComponent.permissions,
+                    ...DeliveryComponent.permissions,
                 ],
                 org.slug,
             ),
@@ -100,21 +104,31 @@ export class AppMenuComponent implements OnInit {
                     label: $localize`Contacts`,
                     icon: 'pi pi-fw pi-address-book',
                     routerLink: [`/organization/${org.slug}/audience/contacts`],
-                    restriction: authService.hasAtLeast$(
-                        ArticlesComponent.permissions,
+                    /* restriction: authService.hasAtLeast$(
+                        ContactsComponent.permissions,
                         org.slug,
-                    ),
+                    ), */
                 },
                 {
                     label: $localize`Delivery`,
                     icon: 'pi pi-fw pi-send',
                     routerLink: [`/organization/${org.slug}/audience/delivery`],
                     routerLinkActiveOptions: { exact: false },
+                    /* restriction: authService.hasAtLeast$(
+                        DeliveryComponent.permissions,
+                        org.slug,
+                    ), */
+                },
+                {
+                    label: $localize`Configuration`,
+                    icon: 'pi pi-fw pi-cog',
+                    routerLink: [`/organization/${org.slug}/audience/configuration`],
+                    routerLinkActiveOptions: { exact: false },
                     restriction: authService.hasAtLeast$(
-                        FeedsComponent.permissions,
+                        AudienceConfigurationComponent.permissions,
                         org.slug,
                     ),
-                },
+                }
             ],
         },
     ];
