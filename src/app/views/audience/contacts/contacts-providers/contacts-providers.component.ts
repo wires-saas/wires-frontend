@@ -92,7 +92,7 @@ export class ContactsProvidersComponent implements OnInit {
                 await this.contactsService
                     .removeContactsProvider(
                         provider.organization,
-                        provider._id,
+                        provider.id,
                     )
                     .then(() => {
                         this.messageService.add({
@@ -116,7 +116,7 @@ export class ContactsProvidersComponent implements OnInit {
     }
 
     async onInspectProvider(provider: ContactsProvider) {
-        await this.router.navigate([`/organization/${provider.organization}/audience/contacts/providers/${provider._id}`]);
+        await this.router.navigate([`/organization/${provider.organization}/audience/contacts/providers/${provider.id}`]);
     }
 
     onEditProvider(provider: ContactsProvider) {

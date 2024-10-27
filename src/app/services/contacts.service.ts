@@ -15,7 +15,7 @@ export enum ContactsProviderType {
 }
 
 export interface ContactsProvider {
-    _id: string;
+    id: string;
 
     organization: string;
 
@@ -24,7 +24,8 @@ export interface ContactsProvider {
 
     type: ContactsProviderType;
 
-    isFavorite: boolean;
+    isDefault: boolean;
+    isVerified: boolean;
 
     authorizationType?: AuthorizationType;
     authorizationUsername?: string;
@@ -61,63 +62,19 @@ export class ContactsService {
     }
 
     async getContactsProvider(organizationId: string, providerId: string): Promise<ContactsProvider> {
-        return new Promise((resolve, reject) => {
-                return resolve(
-                    {
-                        _id: providerId,
-                        organization: organizationId,
-                        displayName: 'Provider 1',
-                        description: 'Provider 1 description',
-                        type: ContactsProviderType.Brevo,
-                        isFavorite: true,
-                    }
-                )
-            }
+        return firstValueFrom(
+            this.http.get<ContactsProvider>(
+                `${this.domain}/organizations/${organizationId}/providers/contacts/${providerId}`,
+            ),
         );
-
-        // return firstValueFrom(
-        //    this.http.get<ContactsProvider>(
-        //        `${this.domain}/organizations/${organizationId}/providers/contacts/${providerId}`,
-        //    ),
-        //);
     }
 
     async getContactsProviders(organizationId: string): Promise<ContactsProvider[]> {
-        return new Promise((resolve, reject) => {
-            return resolve([
-                {
-                    _id: '1',
-                    organization: organizationId,
-                    displayName: 'Provider 1',
-                    description: 'Provider 1 description',
-                    type: ContactsProviderType.Brevo,
-                    isFavorite: true,
-                },
-                {
-                    _id: '2',
-                    organization: organizationId,
-                    displayName: 'Provider 2',
-                    description: 'Provider 2 description',
-                    type: ContactsProviderType.Sendgrid,
-                    isFavorite: false,
-                },
-                {
-                    _id: '3',
-                    organization: organizationId,
-                    displayName: 'Provider 3',
-                    description: 'Provider 3 description',
-                    type: ContactsProviderType.ElasticEmail,
-                    isFavorite: false,
-                }
-            ]);
-        });
-
-        /*
         return firstValueFrom(
             this.http.get<ContactsProvider[]>(
                 `${this.domain}/organizations/${organizationId}/providers/contacts`,
             ),
-        );*/
+        );
     }
 
     async createContactsProvider(organizationId: string, provider: CreateProviderDto): Promise<ContactsProvider> {
@@ -130,10 +87,17 @@ export class ContactsService {
     }
 
     async updateContactsProvider(organizationId: string, provider: ContactsProvider): Promise<ContactsProvider> {
+        const updatableFields: Partial<ContactsProvider> = {
+            displayName: provider.displayName,
+            description: provider.description,
+        };
+
+        // TODO emit update to providers$$
+
         return firstValueFrom(
-            this.http.put<ContactsProvider>(
-                `${this.domain}/organizations/${organizationId}/providers/contacts/${provider._id}`,
-                provider,
+            this.http.patch<ContactsProvider>(
+                `${this.domain}/organizations/${organizationId}/providers/contacts/${provider.id}`,
+                updatableFields,
             ),
         );
     }

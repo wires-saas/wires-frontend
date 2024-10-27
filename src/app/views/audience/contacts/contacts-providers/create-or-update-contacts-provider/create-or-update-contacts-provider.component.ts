@@ -120,8 +120,9 @@ export class CreateOrUpdateContactsProviderComponent implements OnInit {
 
     resetProvider() {
         this.provider = {
-            _id: '',
-            isFavorite: false,
+            id: '',
+            isDefault: false,
+            isVerified: false,
             organization: '',
             type: ContactsProviderType.Brevo,
             displayName: '',

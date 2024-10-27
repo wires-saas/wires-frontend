@@ -78,7 +78,8 @@ export enum AuthorizationType {
     NONE = 'none',
     BASIC = 'basic',
     BEARER = 'bearer',
-    API_KEY = 'apikey',
+    API_KEY = 'apiKey',
+    API_KEY_SECRET = 'apiKeyWithSecret',
 }
 
 export interface DialogConfig {
