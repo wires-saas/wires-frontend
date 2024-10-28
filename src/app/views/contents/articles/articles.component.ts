@@ -71,7 +71,9 @@ export class ArticlesComponent implements OnInit {
                             organization.slug,
                         );
 
-                        this.tags = await this.tagService.getTags(organization.slug);
+                        this.tags = await this.tagService.getTags(
+                            organization.slug,
+                        );
 
                         this.articles = await this.articleService
                             .getArticles(organization.slug)
@@ -111,9 +113,12 @@ export class ArticlesComponent implements OnInit {
 
     async openCreateTagDialog() {
         const filtersFromFrontend = this.table.getFilters();
-        const filtersForBackend = TableFilterUtils.convertFiltersToTagRules(filtersFromFrontend);
+        const filtersForBackend =
+            TableFilterUtils.convertFiltersToTagRules(filtersFromFrontend);
 
-        const organization = await firstValueFrom(this.organizationService.currentOrganization$);
+        const organization = await firstValueFrom(
+            this.organizationService.currentOrganization$,
+        );
 
         if (!organization) throw new Error('Organization not found');
 
@@ -127,7 +132,7 @@ export class ArticlesComponent implements OnInit {
 
         this.createOrUpdateTagDialog = {
             visible: true,
-            header: $localize `Create Article Tag`,
+            header: $localize`Create Article Tag`,
             newTag: true,
             tag: tag,
         };
@@ -147,7 +152,9 @@ export class ArticlesComponent implements OnInit {
 
     async handleTagDeletion() {
         this.tags = await this.tagService.getTags(this.organizationSlug);
-        this.articles = await this.articleService.getArticles(this.organizationSlug);
+        this.articles = await this.articleService.getArticles(
+            this.organizationSlug,
+        );
     }
 
     static permissions = [ReadArticle];

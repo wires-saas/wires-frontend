@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { AuthorizationType, DialogConfig, Feed } from './feed.service';
+import { AuthorizationType, DialogConfig } from './feed.service';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,6 +12,11 @@ export enum EmailsProviderType {
     Sendgrid = 'sendgrid',
     Mailjet = 'mailjet',
     Mailchimp = 'mailchimp',
+}
+
+export interface Sender {
+    email: string;
+    name: string;
 }
 
 export interface EmailsProvider {
@@ -27,24 +32,26 @@ export interface EmailsProvider {
     isDefault: boolean;
     isVerified: boolean;
 
+    senders: Sender[];
+
+    domains: string[];
+
     authorizationType?: AuthorizationType;
     authorizationUsername?: string;
     authorizationToken?: string;
 }
 
 export interface CreateEmailsProviderDto
-    extends Pick<
-        EmailsProvider,
-        | 'displayName'
-        | 'description'
-        | 'type'> {}
+    extends Pick<EmailsProvider, 'displayName' | 'description' | 'type'> {}
 
 @Injectable()
 export class EmailsService {
     private readonly domain: string;
 
-    private selectedProvider$$: Subject<EmailsProvider> = new Subject<EmailsProvider>();
-    selectedProvider$: Observable<EmailsProvider> = this.selectedProvider$$.asObservable();
+    private selectedProvider$$: Subject<EmailsProvider> =
+        new Subject<EmailsProvider>();
+    selectedProvider$: Observable<EmailsProvider> =
+        this.selectedProvider$$.asObservable();
 
     dialogConfig: DialogConfig = {
         visible: false,
@@ -54,13 +61,17 @@ export class EmailsService {
 
     private dialogSource$$: BehaviorSubject<DialogConfig> =
         new BehaviorSubject<DialogConfig>(this.dialogConfig);
-    dialogSource$: Observable<DialogConfig> = this.dialogSource$$.asObservable();
+    dialogSource$: Observable<DialogConfig> =
+        this.dialogSource$$.asObservable();
 
     constructor(private http: HttpClient) {
         this.domain = environment.backend;
     }
 
-    async getEmailsProvider(organizationId: string, providerId: string): Promise<EmailsProvider> {
+    async getEmailsProvider(
+        organizationId: string,
+        providerId: string,
+    ): Promise<EmailsProvider> {
         return firstValueFrom(
             this.http.get<EmailsProvider>(
                 `${this.domain}/organizations/${organizationId}/providers/emails/${providerId}`,
@@ -68,7 +79,9 @@ export class EmailsService {
         );
     }
 
-    async getEmailsProviders(organizationId: string): Promise<EmailsProvider[]> {
+    async getEmailsProviders(
+        organizationId: string,
+    ): Promise<EmailsProvider[]> {
         return firstValueFrom(
             this.http.get<EmailsProvider[]>(
                 `${this.domain}/organizations/${organizationId}/providers/emails`,
@@ -76,7 +89,10 @@ export class EmailsService {
         );
     }
 
-    async createEmailsProvider(organizationId: string, provider: CreateEmailsProviderDto): Promise<EmailsProvider> {
+    async createEmailsProvider(
+        organizationId: string,
+        provider: CreateEmailsProviderDto,
+    ): Promise<EmailsProvider> {
         return firstValueFrom(
             this.http.post<EmailsProvider>(
                 `${this.domain}/organizations/${organizationId}/providers/emails`,
@@ -85,7 +101,10 @@ export class EmailsService {
         );
     }
 
-    async updateEmailsProvider(organizationId: string, provider: EmailsProvider): Promise<EmailsProvider> {
+    async updateEmailsProvider(
+        organizationId: string,
+        provider: EmailsProvider,
+    ): Promise<EmailsProvider> {
         const updatableFields: Partial<EmailsProvider> = {
             displayName: provider.displayName,
             description: provider.description,
@@ -101,14 +120,16 @@ export class EmailsService {
         );
     }
 
-    async removeEmailsProvider(organizationId: string, providerId: string): Promise<void> {
+    async removeEmailsProvider(
+        organizationId: string,
+        providerId: string,
+    ): Promise<void> {
         return firstValueFrom(
             this.http.delete<void>(
                 `${this.domain}/organizations/${organizationId}/providers/emails/${providerId}`,
             ),
         );
     }
-
 
     // UI
 
@@ -130,5 +151,4 @@ export class EmailsService {
         this.dialogConfig = { visible: false };
         this.dialogSource$$.next(this.dialogConfig);
     }
-
 }

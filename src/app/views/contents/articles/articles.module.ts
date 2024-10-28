@@ -59,7 +59,11 @@ import { TagModule } from 'primeng/tag';
         TagRuleOperatorPipe,
         TagModule,
     ],
-    declarations: [ArticlesComponent, CreateOrUpdateTagComponent, TagRuleComponent],
+    declarations: [
+        ArticlesComponent,
+        CreateOrUpdateTagComponent,
+        TagRuleComponent,
+    ],
     providers: [ArticleService, FeedService, TagService],
 })
 export class ArticlesModule {}

@@ -7,12 +7,8 @@ import { RouterLink } from '@angular/router';
 @Component({
     selector: 'app-blocks-list',
     templateUrl: './blocks-list.component.html',
-    imports: [
-        BlockCardComponent,
-        NgForOf,
-        RouterLink
-    ],
-    standalone: true
+    imports: [BlockCardComponent, NgForOf, RouterLink],
+    standalone: true,
 })
 export class BlocksListComponent {
     @Input() blocks: Block[] = [];

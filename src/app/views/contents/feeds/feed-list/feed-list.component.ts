@@ -1,9 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Feed } from '../../../../services/feed.service';
 import { CheckboxChangeEvent } from 'primeng/checkbox';
 
@@ -12,7 +7,6 @@ import { CheckboxChangeEvent } from 'primeng/checkbox';
     templateUrl: './feed-list.component.html',
 })
 export class FeedListComponent {
-
     @Input() loading: boolean = true;
 
     @Input() feeds!: Feed[];

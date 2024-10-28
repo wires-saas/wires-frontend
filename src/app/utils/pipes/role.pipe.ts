@@ -6,7 +6,6 @@ import { ExtendedRoleName, RoleName } from '../role.utils';
     standalone: true,
 })
 export class RolePipe implements PipeTransform {
-
     static transform(role: ExtendedRoleName): string {
         switch (role) {
             case RoleName.SUPER_ADMIN:

@@ -4,11 +4,8 @@ import { Component, Input } from '@angular/core';
     selector: 'app-empty-card',
     templateUrl: './empty-card.component.html',
     standalone: true,
-    imports: [
-    ]
+    imports: [],
 })
 export class EmptyCardComponent {
-
     @Input() entity!: string;
-
 }

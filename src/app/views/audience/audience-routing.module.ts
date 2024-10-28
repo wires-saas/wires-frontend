@@ -16,13 +16,17 @@ import { RouterModule } from '@angular/router';
                 path: 'delivery',
                 data: { breadcrumb: $localize`Delivery` },
                 loadChildren: () =>
-                    import('./delivery/delivery.module').then((m) => m.DeliveryModule),
+                    import('./delivery/delivery.module').then(
+                        (m) => m.DeliveryModule,
+                    ),
             },
             {
                 path: 'configuration',
                 data: { breadcrumb: $localize`Configuration` },
                 loadChildren: () =>
-                    import('./configuration/configuration.module').then((m) => m.ConfigurationModule),
+                    import('./configuration/configuration.module').then(
+                        (m) => m.ConfigurationModule,
+                    ),
             },
         ]),
     ],

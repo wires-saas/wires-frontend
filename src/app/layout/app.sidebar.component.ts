@@ -11,7 +11,7 @@ import {
     Organization,
     OrganizationService,
 } from '../services/organization.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -79,7 +79,6 @@ export class AppSidebarComponent implements OnInit {
                 if (!this.selectedOrganization) {
                     this.selectedOrganization = this.availableOrganizations[0];
                 }
-
             } else {
                 // if no organization, redirect to unauthorized
                 this.router.navigate(['/auth/unauthorized']);

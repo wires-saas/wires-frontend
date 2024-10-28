@@ -1,16 +1,16 @@
 import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { DialogConfig, } from '../../../../../services/feed.service';
+import { DialogConfig } from '../../../../../services/feed.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { MessageUtils } from '../../../../../utils/message.utils';
 import { deepClone } from '../../../../../utils/deep-clone';
 import {
-    ContactsProvider,
-    ContactsProviderType,
-    ContactsService,
-    CreateProviderDto
-} from '../../../../../services/contacts.service';
+    CreateEmailsProviderDto,
+    EmailsProvider,
+    EmailsProviderType,
+    EmailsService,
+} from '../../../../../services/emails.service';
 
 @Component({
     selector: 'app-create-or-update-emails-provider',
@@ -21,7 +21,7 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
 
     private destroyRef = inject(DestroyRef);
 
-    provider!: ContactsProvider;
+    provider!: EmailsProvider;
 
     dialogConfig: DialogConfig = { header: '', visible: false };
 
@@ -33,18 +33,18 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
 
     constructor(
         private messageService: MessageService,
-        private contactsService: ContactsService,
+        private emailsService: EmailsService,
     ) {}
 
     ngOnInit(): void {
-        this.contactsService.selectedProvider$
+        this.emailsService.selectedProvider$
             .pipe(
                 map((data) => (this.provider = deepClone(data))),
                 takeUntilDestroyed(this.destroyRef),
             )
             .subscribe();
 
-        this.contactsService.dialogSource$
+        this.emailsService.dialogSource$
             .pipe(
                 map((data) => {
                     this.dialogConfig = data;
@@ -67,8 +67,8 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
     async updateProvider() {
         this.saving = true;
 
-        await this.contactsService
-            .updateContactsProvider(this.organizationSlug, this.provider)
+        await this.emailsService
+            .updateEmailsProvider(this.organizationSlug, this.provider)
             .then(() => {
                 this.messageService.add({
                     severity: 'success',
@@ -76,7 +76,7 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
                     detail: $localize`Provider "${this.provider.displayName}" updated successfully.`,
                 });
 
-                this.contactsService.closeDialog();
+                this.emailsService.closeDialog();
             })
             .catch((err) => {
                 console.error(err);
@@ -89,11 +89,13 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
     }
 
     async createProvider() {
-        // TODO preview some articles fetched from the feed
         this.saving = true;
 
-        await this.contactsService
-            .createContactsProvider(this.organizationSlug, this.provider as any as CreateProviderDto)
+        await this.emailsService
+            .createEmailsProvider(
+                this.organizationSlug,
+                this.provider as any as CreateEmailsProviderDto,
+            )
             .then(() => {
                 this.messageService.add({
                     severity: 'success',
@@ -101,7 +103,7 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
                     detail: $localize`Provider "${this.provider.displayName}" created successfully.`,
                 });
 
-                this.contactsService.closeDialog();
+                this.emailsService.closeDialog();
             })
             .catch((err) => {
                 console.error(err);
@@ -115,7 +117,7 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
 
     cancelProvider() {
         this.resetProvider();
-        this.contactsService.closeDialog();
+        this.emailsService.closeDialog();
     }
 
     resetProvider() {
@@ -124,10 +126,11 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
             isDefault: false,
             isVerified: false,
             organization: '',
-            type: ContactsProviderType.Brevo,
-            externallyManaged: true,
+            type: EmailsProviderType.Mailjet,
             displayName: '',
-            description: ''
+            description: '',
+            senders: [],
+            domains: [],
         };
     }
 

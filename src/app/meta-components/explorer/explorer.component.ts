@@ -1,5 +1,20 @@
-import { Component, DestroyRef, EventEmitter, inject, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ConfirmationService, MenuItem, MenuItemCommandEvent, MessageService } from 'primeng/api';
+import {
+    Component,
+    DestroyRef,
+    EventEmitter,
+    inject,
+    Inject,
+    Input,
+    OnInit,
+    Output,
+    ViewChild,
+} from '@angular/core';
+import {
+    ConfirmationService,
+    MenuItem,
+    MenuItemCommandEvent,
+    MessageService,
+} from 'primeng/api';
 import { PanelMenu, PanelMenuModule } from 'primeng/panelmenu';
 import { RippleModule } from 'primeng/ripple';
 import { NgIf } from '@angular/common';
@@ -22,7 +37,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessageUtils } from '../../utils/message.utils';
 import { ToastModule } from 'primeng/toast';
 import { firstValueFrom } from 'rxjs';
-import { CreateFolder, DeleteFolder, UpdateFolder } from '../../utils/permission.utils';
+import {
+    CreateFolder,
+    DeleteFolder,
+    UpdateFolder,
+} from '../../utils/permission.utils';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -43,8 +62,8 @@ import { AuthService } from '../../services/auth.service';
         ExplorerEditDialogComponent,
         ExplorerCreateDialogComponent,
         ConfirmDialogModule,
-        ToastModule
-    ]
+        ToastModule,
+    ],
 })
 export class ExplorerComponent implements OnInit {
     @Inject(DestroyRef) private destroyRef: DestroyRef = inject(DestroyRef);
@@ -59,8 +78,10 @@ export class ExplorerComponent implements OnInit {
 
     @Input() folderMenu: MenuItem[] = [];
 
-    @Output() selectFolder: EventEmitter<Folder['id'] | null> = new EventEmitter<Folder['id'] | null>();
-    @Output() removeFolder: EventEmitter<Folder['id'] | null> = new EventEmitter<Folder['id'] | null>();
+    @Output() selectFolder: EventEmitter<Folder['id'] | null> =
+        new EventEmitter<Folder['id'] | null>();
+    @Output() removeFolder: EventEmitter<Folder['id'] | null> =
+        new EventEmitter<Folder['id'] | null>();
 
     createFolderDialogVisible: boolean = false;
 
@@ -74,37 +95,47 @@ export class ExplorerComponent implements OnInit {
 
     currentOrgSlug: Slug | undefined;
 
-    constructor(private authService: AuthService,
-                private organizationService: OrganizationService,
-                private folderService: FolderService,
-                private confirmationService: ConfirmationService,
-                private messageService: MessageService) {
-    }
+    constructor(
+        private authService: AuthService,
+        private organizationService: OrganizationService,
+        private folderService: FolderService,
+        private confirmationService: ConfirmationService,
+        private messageService: MessageService,
+    ) {}
 
     async ngOnInit() {
+        this.organizationService.currentOrganization$
+            .pipe(
+                map(async (organization) => {
+                    this.currentOrgSlug = organization?.slug;
+                    if (organization) {
+                        this.canCreateFolder = await firstValueFrom(
+                            this.authService.hasPermission$(
+                                CreateFolder,
+                                organization.slug,
+                            ),
+                        );
 
-        this.organizationService.currentOrganization$.pipe(
-            map(async (organization) => {
-                this.currentOrgSlug = organization?.slug;
-                if (organization) {
+                        this.canUpdateFolder = await firstValueFrom(
+                            this.authService.hasPermission$(
+                                UpdateFolder,
+                                organization.slug,
+                            ),
+                        );
 
-                    this.canCreateFolder = await firstValueFrom(
-                        this.authService.hasPermission$(CreateFolder, organization.slug)
-                    );
+                        this.canDeleteFolder = await firstValueFrom(
+                            this.authService.hasPermission$(
+                                DeleteFolder,
+                                organization.slug,
+                            ),
+                        );
 
-                    this.canUpdateFolder = await firstValueFrom(
-                        this.authService.hasPermission$(UpdateFolder, organization.slug)
-                    );
-
-                    this.canDeleteFolder = await firstValueFrom(
-                        this.authService.hasPermission$(DeleteFolder, organization.slug)
-                    );
-
-                    await this.loadFoldersAndCreateMenu(organization.slug);
-                }
-            }),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe();
+                        await this.loadFoldersAndCreateMenu(organization.slug);
+                    }
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
 
         this.folderMenu = [];
 
@@ -112,12 +143,11 @@ export class ExplorerComponent implements OnInit {
     }
 
     private async loadFoldersAndCreateMenu(organizationSlug: Slug) {
-
         this.items = [
             {
-                label: $localize `All`,
+                label: $localize`All`,
                 icon: this.allIcon,
-            }
+            },
         ];
 
         const folders = await this.folderService.getFolders(organizationSlug);
@@ -127,10 +157,10 @@ export class ExplorerComponent implements OnInit {
 
         this.items = [
             {
-                label: $localize `All`,
+                label: $localize`All`,
                 icon: this.allIcon,
             },
-            ...this.items
+            ...this.items,
         ];
 
         this.toggleAll();
@@ -145,11 +175,17 @@ export class ExplorerComponent implements OnInit {
         this.items = this.toggleAllRecursive(this.items, expanded);
     }
 
-    private toggleAllRecursive(items: MenuItem[], expanded: boolean): MenuItem[] {
+    private toggleAllRecursive(
+        items: MenuItem[],
+        expanded: boolean,
+    ): MenuItem[] {
         return items.map((menuItem) => {
             menuItem.expanded = expanded;
             if (menuItem.items) {
-                menuItem.items = this.toggleAllRecursive(menuItem.items, expanded);
+                menuItem.items = this.toggleAllRecursive(
+                    menuItem.items,
+                    expanded,
+                );
             }
             return menuItem;
         });
@@ -162,38 +198,41 @@ export class ExplorerComponent implements OnInit {
                 icon: 'pi pi-pencil',
                 visible: this.canUpdateFolder,
                 command: async () => {
-                    if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
+                    if (!this.currentOrgSlug)
+                        throw new Error('Organization slug is not set');
                     if (!folder.id) throw new Error('Folder id is not set');
 
                     this.selectedFolder = folder['data'];
                     this.editFolderDialogVisible = true;
                     // TODO handle backdrop/cross click
-                }
+                },
             },
             {
                 label: 'Delete',
                 icon: 'pi pi-fw pi-trash',
                 visible: this.canDeleteFolder,
                 command: async () => {
-                    if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
+                    if (!this.currentOrgSlug)
+                        throw new Error('Organization slug is not set');
                     if (!folder.id) throw new Error('Folder id is not set');
 
                     this.selectedFolder = folder['data'];
 
                     await this.deleteFolder(this.currentOrgSlug, folder.id);
-                }
+                },
             },
             {
                 label: 'Add Folder',
                 icon: 'pi pi-fw pi-plus',
                 visible: this.canCreateFolder,
                 command: async () => {
-                    if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
+                    if (!this.currentOrgSlug)
+                        throw new Error('Organization slug is not set');
                     if (!folder.id) throw new Error('Folder id is not set');
 
                     this.selectedFolder = folder['data'];
                     this.createFolderDialogVisible = true;
-                }
+                },
             },
             {
                 label: 'Move to',
@@ -205,32 +244,51 @@ export class ExplorerComponent implements OnInit {
                         items: undefined,
                         visible: folder['data'].parentFolder !== null,
                         command: async (event: MenuItemCommandEvent) => {
-                            if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
-                            if (!folder.id) throw new Error('Folder id is not set');
+                            if (!this.currentOrgSlug)
+                                throw new Error('Organization slug is not set');
+                            if (!folder.id)
+                                throw new Error('Folder id is not set');
                             console.log(event);
-                            await this.moveFolder(this.currentOrgSlug!, folder.id, null);
-                        }
+                            await this.moveFolder(
+                                this.currentOrgSlug!,
+                                folder.id,
+                                null,
+                            );
+                        },
                     },
-                    ...this.items.map(item => ({
-                        ...item,
-                        items: undefined,
-                        visible: item.id !== folder.id,
-                        command: async (event: MenuItemCommandEvent) => {
-                            if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
-                            if (!folder.id) throw new Error('Folder id is not set');
-                            console.log(event, item);
-                            await this.moveFolder(this.currentOrgSlug!, folder.id, item.id || null);
-                        }
-                    }))
-                        .slice(1) // removing the root folder item
-                ]
-            }
+                    ...this.items
+                        .map((item) => ({
+                            ...item,
+                            items: undefined,
+                            visible: item.id !== folder.id,
+                            command: async (event: MenuItemCommandEvent) => {
+                                if (!this.currentOrgSlug)
+                                    throw new Error(
+                                        'Organization slug is not set',
+                                    );
+                                if (!folder.id)
+                                    throw new Error('Folder id is not set');
+                                console.log(event, item);
+                                await this.moveFolder(
+                                    this.currentOrgSlug!,
+                                    folder.id,
+                                    item.id || null,
+                                );
+                            },
+                        }))
+                        .slice(1), // removing the root folder item
+                ],
+            },
         ];
     }
 
     showFolderContextualMenu(event: any, folder: MenuItem) {
-
-        if (!this.canCreateFolder && !this.canUpdateFolder && !this.canDeleteFolder) return;
+        if (
+            !this.canCreateFolder &&
+            !this.canUpdateFolder &&
+            !this.canDeleteFolder
+        )
+            return;
 
         if (!folder['data']) return; // no contextual menu for root folder
 
@@ -271,10 +329,7 @@ export class ExplorerComponent implements OnInit {
             rejectLabel: $localize`Cancel`,
             accept: async () => {
                 await this.folderService
-                    .removeFolder(
-                        organizationSlug,
-                        folderId,
-                    )
+                    .removeFolder(organizationSlug, folderId)
                     .then(async () => {
                         this.messageService.add({
                             severity: 'success',
@@ -303,13 +358,13 @@ export class ExplorerComponent implements OnInit {
         });
     }
 
-    async moveFolder(organizationSlug: Slug, folderId: string, folderParentId: string | null) {
+    async moveFolder(
+        organizationSlug: Slug,
+        folderId: string,
+        folderParentId: string | null,
+    ) {
         await this.folderService
-            .updateFolderParent(
-                organizationSlug,
-                folderId,
-                folderParentId
-            )
+            .updateFolderParent(organizationSlug, folderId, folderParentId)
             .then(async () => {
                 this.messageService.add({
                     severity: 'success',
@@ -321,13 +376,9 @@ export class ExplorerComponent implements OnInit {
             })
             .catch((err) => {
                 console.error(err);
-                MessageUtils.parseServerError(
-                    this.messageService,
-                    err,
-                    {
-                        summary: $localize`Error moving folder`,
-                    },
-                );
+                MessageUtils.parseServerError(this.messageService, err, {
+                    summary: $localize`Error moving folder`,
+                });
             });
     }
 
@@ -338,5 +389,4 @@ export class ExplorerComponent implements OnInit {
         e.stopPropagation();
         e.preventDefault();
     }
-
 }

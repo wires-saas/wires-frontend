@@ -6,14 +6,13 @@ export class ErrorUtils {
 
         switch (err.status) {
             case 0:
-                message = $localize `Server is unreachable`;
+                message = $localize`Server is unreachable`;
                 break;
             default:
-                if (err.error.message)
-                    message += ` - ${err.error.message}`;
+                if (err.error.message) message += ` - ${err.error.message}`;
                 break;
         }
 
         return message;
-    }
+    };
 }

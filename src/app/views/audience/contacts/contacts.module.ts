@@ -1,56 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { ToggleButtonModule } from 'primeng/togglebutton';
-import { RippleModule } from 'primeng/ripple';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { DropdownModule } from 'primeng/dropdown';
-import { ProgressBarModule } from 'primeng/progressbar';
-import { ToastModule } from 'primeng/toast';
-import { SliderModule } from 'primeng/slider';
-import { RatingModule } from 'primeng/rating';
-import { TooltipModule } from 'primeng/tooltip';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { ChipsModule } from 'primeng/chips';
-import { DialogModule } from 'primeng/dialog';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ContactsComponent } from './contacts.component';
 import { ContactsRoutingModule } from './contacts-routing.module';
-import { ContactsProviderListComponent } from '../configuration/contacts-providers/contacts-provider-list/contacts-provider-list.component';
-import { SkeletonModule } from 'primeng/skeleton';
-import { ArraySortPipe } from '../../../utils/pipes/array-sort.pipe';
-import { MenuModule } from 'primeng/menu';
-import { CheckboxModule } from 'primeng/checkbox';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ContactsService } from '../../../services/contacts.service';
-import {
-    CreateOrUpdateContactsProviderComponent
-} from '../configuration/contacts-providers/create-or-update-contacts-provider/create-or-update-contacts-provider.component';
-import {
-    ContactsProvidersComponent
-} from '../configuration/contacts-providers/contacts-providers.component';
-import { GenericDataCardComponent } from '../../../meta-components/generic-data-card/generic-data-card.component';
-import { GenericDataListComponent } from '../../../meta-components/generic-data-list/generic-data-list.component';
-import { ContactsProviderComponent } from '../configuration/contacts-providers/contacts-provider/contacts-provider.component';
-import {
-    GenericLayoutSingleInstanceComponent
-} from '../../../meta-components/generic-layout-single-instance/generic-layout-single-instance.component';
-import { FeedRunStatusPipe } from '../../../utils/pipes/feed-run-status.pipe';
-import {
-    GenericSquareCardsRowComponent
-} from '../../../meta-components/generic-square-cards-row/generic-square-cards-row.component';
-import { CapitalizePipe } from '../../../utils/pipes/capitalize.pipe';
-import { WipComponent } from '../../../meta-components/wip/wip.component';
 
 @NgModule({
-    imports: [
-        ContactsRoutingModule,
-        CommonModule,
-    ],
+    imports: [ContactsRoutingModule, CommonModule],
     declarations: [ContactsComponent],
     providers: [MessageService, ContactsService, ConfirmationService],
 })

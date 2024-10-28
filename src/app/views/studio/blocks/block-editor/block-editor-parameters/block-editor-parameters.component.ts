@@ -6,7 +6,6 @@ import { Block } from '../../../../../services/block.service';
     templateUrl: './block-editor-parameters.component.html',
 })
 export class BlockEditorParametersComponent {
-
     @Input() block!: Block;
 
     @Output() blockChange = new EventEmitter<void>();
@@ -15,6 +14,4 @@ export class BlockEditorParametersComponent {
         this.block.removeParameter(key);
         this.blockChange.emit();
     }
-
-
 }

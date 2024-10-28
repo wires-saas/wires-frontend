@@ -6,9 +6,6 @@ import { Block } from '../../../../../services/block.service';
     templateUrl: './block-editor-debug.component.html',
 })
 export class BlockEditorDebugComponent {
-
     @Input() block!: Block;
     @Input() darkMode!: boolean;
-
-
 }

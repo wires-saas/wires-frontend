@@ -5,7 +5,8 @@
             <span *ngIf="subtitle" [innerHTML]="subtitle"></span>
         </p>
 
-        <button (click)="onButtonClick()"
+        <button *ngIf="buttonLabel"
+                (click)="onButtonClick()"
                 pButton pRipple class="p-button font-semibold" [icon]="buttonIcon"
                 label="{{ buttonLabel }}"></button>
     </div>

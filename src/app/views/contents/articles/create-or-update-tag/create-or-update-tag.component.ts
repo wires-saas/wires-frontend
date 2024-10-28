@@ -1,4 +1,12 @@
-import { Component, OnInit, inject, DestroyRef, Input, EventEmitter, Output } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    inject,
+    DestroyRef,
+    Input,
+    EventEmitter,
+    Output,
+} from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { Tag, TagService } from '../../../../services/tag.service';
@@ -19,29 +27,31 @@ export class CreateOrUpdateTagComponent implements OnInit {
 
     availableSeverities = [
         {
-            label: $localize `Default`,
-            value: ''
+            label: $localize`Default`,
+            value: '',
         },
         {
-            label: $localize `Blue`,
+            label: $localize`Blue`,
             value: 'info',
         },
         {
-            label: $localize `Green`,
+            label: $localize`Green`,
             value: 'success',
         },
         {
-            label: $localize `Orange`,
+            label: $localize`Orange`,
             value: 'warning',
         },
         {
-            label: $localize `Red`,
+            label: $localize`Red`,
             value: 'danger',
         },
     ];
 
     get selectedSeverityLabel() {
-        return this.availableSeverities.find(severity => severity.value === this.tag.color)?.label;
+        return this.availableSeverities.find(
+            (severity) => severity.value === this.tag.color,
+        )?.label;
     }
 
     private destroyRef = inject(DestroyRef);
@@ -72,8 +82,6 @@ export class CreateOrUpdateTagComponent implements OnInit {
                     summary: $localize`Success`,
                     detail: $localize`Tag "${this.tag.displayName}" updated successfully.`,
                 });
-
-
             })
             .catch((err) => {
                 console.error(err);

@@ -6,6 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class EmptyBlockDescriptionPipe implements PipeTransform {
     transform(value: string): string {
-        return value || $localize `Edit description here`;
+        return value || $localize`Edit description here`;
     }
 }

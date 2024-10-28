@@ -16,9 +16,7 @@ import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BlockEditorDebugComponent } from './block-editor/block-editor-debug/block-editor-debug.component';
-import {
-    BlockEditorParametersComponent
-} from './block-editor/block-editor-parameters/block-editor-parameters.component';
+import { BlockEditorParametersComponent } from './block-editor/block-editor-parameters/block-editor-parameters.component';
 import { BlockEditorCodeComponent } from './block-editor/block-editor-code/block-editor-code.component';
 import { BlockEditorPreviewComponent } from './block-editor/block-editor-preview/block-editor-preview.component';
 import { BlockEditorWysiwygComponent } from './block-editor/block-editor-wysiwyg/block-editor-wysiwyg.component';
@@ -52,7 +50,7 @@ import { MenuModule } from 'primeng/menu';
         EmptyBlockDisplayNamePipe,
         EmptyBlockDescriptionPipe,
         EmptyCardComponent,
-        MenuModule
+        MenuModule,
     ],
     declarations: [
         BlocksComponent,
@@ -61,8 +59,8 @@ import { MenuModule } from 'primeng/menu';
         BlockEditorParametersComponent,
         BlockEditorCodeComponent,
         BlockEditorPreviewComponent,
-        BlockEditorWysiwygComponent
+        BlockEditorWysiwygComponent,
     ],
-    providers: [BlockService, ConfirmationService, MessageService]
+    providers: [BlockService, ConfirmationService, MessageService],
 })
 export class BlocksModule {}

@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewChild,
+} from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { ButtonDirective } from 'primeng/button';
 import { Menu, MenuModule } from 'primeng/menu';
@@ -9,13 +16,7 @@ import { MenuItemCommandEvent } from 'primeng/api';
     selector: 'app-generic-data-list-item',
     templateUrl: './generic-data-list-item.component.html',
     standalone: true,
-    imports: [
-        NgForOf,
-        ButtonDirective,
-        MenuModule,
-        Ripple,
-        NgIf
-    ]
+    imports: [NgForOf, ButtonDirective, MenuModule, Ripple, NgIf],
 })
 export class GenericDataListItemComponent implements OnInit {
     @ViewChild('menu') menu!: Menu;
@@ -44,7 +45,7 @@ export class GenericDataListItemComponent implements OnInit {
                 disabled: !this.canEdit,
                 command: (e: MenuItemCommandEvent) => {
                     e.originalEvent?.stopPropagation();
-                    this.onEdit.emit(this.item)
+                    this.onEdit.emit(this.item);
                 },
             },
             {
@@ -65,7 +66,7 @@ export class GenericDataListItemComponent implements OnInit {
                     icon: this.inspectIcon,
                     command: (e: MenuItemCommandEvent) => {
                         e.originalEvent?.stopPropagation();
-                        this.onInspect.emit(this.item)
+                        this.onInspect.emit(this.item);
                     },
                 },
                 ...this.menuItems,

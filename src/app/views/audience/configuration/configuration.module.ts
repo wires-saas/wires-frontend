@@ -26,32 +26,26 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ContactsService } from '../../../services/contacts.service';
 import { GenericDataCardComponent } from '../../../meta-components/generic-data-card/generic-data-card.component';
 import { GenericDataListComponent } from '../../../meta-components/generic-data-list/generic-data-list.component';
-import {
-    GenericLayoutSingleInstanceComponent
-} from '../../../meta-components/generic-layout-single-instance/generic-layout-single-instance.component';
+import { GenericLayoutSingleInstanceComponent } from '../../../meta-components/generic-layout-single-instance/generic-layout-single-instance.component';
 import { FeedRunStatusPipe } from '../../../utils/pipes/feed-run-status.pipe';
-import {
-    GenericSquareCardsRowComponent
-} from '../../../meta-components/generic-square-cards-row/generic-square-cards-row.component';
+import { GenericSquareCardsRowComponent } from '../../../meta-components/generic-square-cards-row/generic-square-cards-row.component';
 import { CapitalizePipe } from '../../../utils/pipes/capitalize.pipe';
 import { WipComponent } from '../../../meta-components/wip/wip.component';
 import { AudienceConfigurationComponent } from './configuration.component';
 import { ContactsProvidersComponent } from './contacts-providers/contacts-providers.component';
 import { ContactsProviderComponent } from './contacts-providers/contacts-provider/contacts-provider.component';
-import {
-    ContactsProviderListComponent
-} from './contacts-providers/contacts-provider-list/contacts-provider-list.component';
-import {
-    CreateOrUpdateContactsProviderComponent
-} from './contacts-providers/create-or-update-contacts-provider/create-or-update-contacts-provider.component';
+import { ContactsProviderListComponent } from './contacts-providers/contacts-provider-list/contacts-provider-list.component';
+import { CreateOrUpdateContactsProviderComponent } from './contacts-providers/create-or-update-contacts-provider/create-or-update-contacts-provider.component';
 import { ConfigurationRoutingModule } from './configuration-routing.module';
 import { EmailsProviderComponent } from './emails-providers/emails-provider/emails-provider.component';
 import { EmailsProviderListComponent } from './emails-providers/emails-provider-list/emails-provider-list.component';
-import {
-    CreateOrUpdateEmailsProviderComponent
-} from './emails-providers/create-or-update-emails-provider/create-or-update-emails-provider.component';
+import { CreateOrUpdateEmailsProviderComponent } from './emails-providers/create-or-update-emails-provider/create-or-update-emails-provider.component';
 import { EmailsProvidersComponent } from './emails-providers/emails-providers.component';
 import { EmailsService } from '../../../services/emails.service';
+import { SenderListComponent } from './emails-providers/emails-provider/sender-list/sender-list.component';
+import { DurationPipe } from '../../../utils/pipes/duration.pipe';
+import { GenericDataTableComponent } from '../../../meta-components/generic-data-table/generic-data-table.component';
+import { StatusBadgeModule } from '../../../meta-components/status-badge/status-badge.module';
 
 @NgModule({
     imports: [
@@ -86,6 +80,9 @@ import { EmailsService } from '../../../services/emails.service';
         GenericSquareCardsRowComponent,
         CapitalizePipe,
         WipComponent,
+        DurationPipe,
+        GenericDataTableComponent,
+        StatusBadgeModule,
     ],
     declarations: [
         AudienceConfigurationComponent,
@@ -98,12 +95,14 @@ import { EmailsService } from '../../../services/emails.service';
         EmailsProviderComponent,
         EmailsProviderListComponent,
         CreateOrUpdateEmailsProviderComponent,
+
+        SenderListComponent,
     ],
     providers: [
         MessageService,
         ContactsService,
         EmailsService,
-        ConfirmationService
+        ConfirmationService,
     ],
 })
 export class ConfigurationModule {}

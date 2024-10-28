@@ -2,8 +2,15 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoleName } from '../../../../utils/role.utils';
 import { User } from '../../../../services/user.service';
-import { Permission, PermissionService, RolePermissions } from '../../../../services/permission.service';
-import { Organization, OrganizationService } from '../../../../services/organization.service';
+import {
+    Permission,
+    PermissionService,
+    RolePermissions,
+} from '../../../../services/permission.service';
+import {
+    Organization,
+    OrganizationService,
+} from '../../../../services/organization.service';
 import { AuthService } from '../../../../services/auth.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { map } from 'rxjs/operators';
@@ -62,19 +69,15 @@ export class RolesComponent implements OnInit {
         const rolesWithPermissions =
             await this.permissionService.getRoles(organizationSlug);
 
-        this.permissionsList =
-            await this.permissionService.getPermissions();
+        this.permissionsList = await this.permissionService.getPermissions();
 
-        this.currentUser = await firstValueFrom(
-            this.authService.currentUser$,
+        this.currentUser = await firstValueFrom(this.authService.currentUser$);
+
+        this.canUpdateRole = await firstValueFrom(
+            this.authService.hasPermission$(UpdateRole),
         );
 
-        this.canUpdateRole = await firstValueFrom(this.authService.hasPermission$(UpdateRole));
-
-        this.buildPermissionsForm(
-            rolesWithPermissions,
-            this.canUpdateRole,
-        );
+        this.buildPermissionsForm(rolesWithPermissions, this.canUpdateRole);
     }
 
     private buildPermissionsForm(
@@ -91,10 +94,13 @@ export class RolesComponent implements OnInit {
 
         const roleNamesControls: any = {};
         Object.keys(rolesWithPermissions).forEach((role) => {
-            roleNamesControls[role] = new FormControl({
-                value: '',
-                disabled: !canUpdateRole,
-            }, [Validators.pattern(/^[a-zA-Z]*$/)]);
+            roleNamesControls[role] = new FormControl(
+                {
+                    value: '',
+                    disabled: !canUpdateRole,
+                },
+                [Validators.pattern(/^[a-zA-Z]*$/)],
+            );
         });
 
         this.permissionsRoles = Object.keys(rolesWithPermissions) as RoleName[];
@@ -111,7 +117,9 @@ export class RolesComponent implements OnInit {
     }
 
     private getRoles(): RolePermissions[] {
-        const roles: RolePermissions[] = Object.entries(this.permissionsForm.value).map(([role, permissions]: [string, any]) => {
+        const roles: RolePermissions[] = Object.entries(
+            this.permissionsForm.value,
+        ).map(([role, permissions]: [string, any]) => {
             return {
                 name: role as RoleName,
                 permissions: permissions.map((permission: Permission) => {
@@ -143,36 +151,33 @@ export class RolesComponent implements OnInit {
 
         const onConfirm = () => {
             this.loading = true;
-            this.permissionService.updateRoles(organizationSlug, rolesForBackend).then(async () => {
-                this.messageService.add({
-                    key: 'roles',
-                    severity: 'success',
-                    summary: 'Success',
-                    detail: 'Roles updated successfully'
-                });
+            this.permissionService
+                .updateRoles(organizationSlug, rolesForBackend)
+                .then(async () => {
+                    this.messageService.add({
+                        key: 'roles',
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: 'Roles updated successfully',
+                    });
 
-                await this.load(organizationSlug);
-                this.loading = false;
-            }).catch((err) => {
-                console.error(err);
+                    await this.load(organizationSlug);
+                    this.loading = false;
+                })
+                .catch((err) => {
+                    console.error(err);
 
-                MessageUtils.parseServerError(
-                    this.messageService,
-                    err,
-                    {
+                    MessageUtils.parseServerError(this.messageService, err, {
                         summary: $localize`Error updating roles`,
-                    },
-                );
+                    });
 
-                this.loading = false;
-            });
-        }
+                    this.loading = false;
+                });
+        };
 
         this.confirmationService.confirm({
             key: 'confirm-update-roles',
             accept: onConfirm,
         });
-
     }
-
 }

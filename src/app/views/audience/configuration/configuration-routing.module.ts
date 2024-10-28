@@ -8,8 +8,14 @@ import { EmailsProviderComponent } from './emails-providers/emails-provider/emai
     imports: [
         RouterModule.forChild([
             { path: '', component: AudienceConfigurationComponent },
-            { path: 'contacts-providers/:providerId', component: ContactsProviderComponent },
-            { path: 'emails-providers/:providerId', component: EmailsProviderComponent },
+            {
+                path: 'contacts-providers/:providerId',
+                component: ContactsProviderComponent,
+            },
+            {
+                path: 'emails-providers/:providerId',
+                component: EmailsProviderComponent,
+            },
         ]),
     ],
     exports: [RouterModule],

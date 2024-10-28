@@ -22,10 +22,12 @@
 
     <div class="col-12">
 
-        <div class="card">
-            <h5 i18n>Last Executions</h5>
-            <app-feed-run-list [loading]="loading" [runs]="feedRuns" (runSelect)="navigateToFeedRun($event)"></app-feed-run-list>
-        </div>
+        <app-generic-data-card i18n-title title="Last Executions">
+            <app-feed-run-list [loading]="loading"
+                               [runs]="feedRuns"
+                               (runSelect)="navigateToFeedRun($event)">
+            </app-feed-run-list>
+        </app-generic-data-card>
 
     </div>
 

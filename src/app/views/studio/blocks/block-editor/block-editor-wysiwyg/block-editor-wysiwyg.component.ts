@@ -6,7 +6,5 @@ import { Block } from '../../../../../services/block.service';
     templateUrl: './block-editor-wysiwyg.component.html',
 })
 export class BlockEditorWysiwygComponent {
-
     @Input() block!: Block;
-
 }

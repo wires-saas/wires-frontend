@@ -12,6 +12,15 @@ export class FeedRunListComponent {
 
     @Output() runSelect = new EventEmitter<FeedRun>();
 
+    columns: string[] = [
+        $localize`Date`,
+        $localize`Feed`,
+        $localize`Articles`,
+        $localize`New Articles`,
+        $localize`Duration`,
+        $localize`Status`,
+    ];
+
     onRowSelect(run: FeedRun) {
         this.runSelect.emit(run);
     }

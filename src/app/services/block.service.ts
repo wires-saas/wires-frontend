@@ -5,10 +5,10 @@ import { deepClone } from '../utils/deep-clone';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
-export interface BlockRef extends Pick<Block, 'id' | 'organization' | 'version'> {}
+export interface BlockRef
+    extends Pick<Block, 'id' | 'organization' | 'version'> {}
 
 export class Block {
-
     id?: string;
     organization: string;
     displayName: string;
@@ -85,8 +85,8 @@ export class BlockWithHistory extends Block {
     clone(): BlockWithHistory {
         return new BlockWithHistory(
             deepClone(this),
-            this.$$history.map(_ => deepClone(_)),
-            this.$$index
+            this.$$history.map((_) => deepClone(_)),
+            this.$$index,
         );
     }
 
@@ -124,7 +124,6 @@ export class BlockWithHistory extends Block {
     }
 
     save() {
-
         // When saving, we remove all future states
         // (undo/redo doesn't make sense after a new state change + save)
         this.$$history = this.$$history.slice(0, this.$$index + 1);
@@ -139,7 +138,6 @@ export class BlockWithHistory extends Block {
             $$history: undefined,
             $$index: undefined,
         });
-
     }
 
     undo() {
@@ -147,7 +145,7 @@ export class BlockWithHistory extends Block {
             this.$$index--;
 
             // Current state is saved in history for redo
-            if (!this.$$history.find(_ => _.version === this.version)) {
+            if (!this.$$history.find((_) => _.version === this.version)) {
                 this.$$history.push({
                     ...deepClone(this),
                     $$history: undefined,
@@ -155,14 +153,10 @@ export class BlockWithHistory extends Block {
                 });
             }
 
-            Object.assign(
-                this,
-                deepClone(this.$$history[this.$$index]),
-                {
-                    $$history: this.$$history,
-                    $$index: this.$$index,
-                }
-            );
+            Object.assign(this, deepClone(this.$$history[this.$$index]), {
+                $$history: this.$$history,
+                $$index: this.$$index,
+            });
         }
     }
 
@@ -184,7 +178,11 @@ export class BlockWithHistory extends Block {
     }
 
     canRedo(): boolean {
-        return !!(this.$$history && this.$$history.length && this.$$index < this.$$history.length - 1);
+        return !!(
+            this.$$history &&
+            this.$$history.length &&
+            this.$$index < this.$$history.length - 1
+        );
     }
 }
 
@@ -212,8 +210,6 @@ export interface BlockParameters {
     [key: string]: any;
 }
 
-
-
 @Injectable()
 export class BlockService {
     private domain: string;
@@ -227,7 +223,13 @@ export class BlockService {
     async getBlocks(organizationId: string): Promise<Block[]> {
         return new Promise((res, _) => {
             setTimeout(async () => {
-                res(firstValueFrom(this.http.get<Block[]>(`${this.domain}/organizations/${organizationId}/blocks`)));
+                res(
+                    firstValueFrom(
+                        this.http.get<Block[]>(
+                            `${this.domain}/organizations/${organizationId}/blocks`,
+                        ),
+                    ),
+                );
             }, this.timeout);
         });
     }
@@ -235,29 +237,36 @@ export class BlockService {
     async getBlock(organizationId: string, blockId: string): Promise<Block> {
         return new Promise((res, _) => {
             setTimeout(async () => {
-                res(firstValueFrom(this.http.get<Block>(`${this.domain}/organizations/${organizationId}/blocks/${blockId}`)));
+                res(
+                    firstValueFrom(
+                        this.http.get<Block>(
+                            `${this.domain}/organizations/${organizationId}/blocks/${blockId}`,
+                        ),
+                    ),
+                );
             }, this.timeout);
         });
     }
 
     getNewBlock(organizationId: string, wysiwygEnabled: boolean): Block {
-
-        const formattedCode = pretty('<div><h1>{{ #leftArticle.title }}</h1></div>');
+        const formattedCode = pretty(
+            '<div><h1>{{ #leftArticle.title }}</h1></div>',
+        );
 
         return new Block({
             organization: organizationId,
-            displayName: $localize `New Block`,
-            description: $localize `Empty description`,
+            displayName: $localize`New Block`,
+            description: $localize`Empty description`,
             wysiwygEnabled: wysiwygEnabled,
             parameters: {
-                'test': {
+                test: {
                     key: 'test',
                     type: ParameterType.STRING,
                     displayName: 'test',
                     description: 'test',
                     required: true,
                 },
-                'leftArticle': {
+                leftArticle: {
                     key: 'leftArticle',
                     type: ParameterType.ARTICLE,
                     displayName: 'Bloc Article (gauche)',
@@ -266,49 +275,63 @@ export class BlockService {
                 },
             },
             code: formattedCode,
-            version: 0
+            version: 0,
         });
     }
 
-
-
     async createBlock(organizationId: string, block: Block): Promise<Block> {
-         return firstValueFrom(this.http.post<Block>(`${this.domain}/organizations/${organizationId}/blocks`, {
-             organization: organizationId,
-             displayName: block.displayName,
-             description: block.description,
+        return firstValueFrom(
+            this.http.post<Block>(
+                `${this.domain}/organizations/${organizationId}/blocks`,
+                {
+                    organization: organizationId,
+                    displayName: block.displayName,
+                    description: block.description,
 
-             parameters: Object.values(block.parameters),
+                    parameters: Object.values(block.parameters),
 
-             model: block.model,
-             code: block.code,
+                    model: block.model,
+                    code: block.code,
 
-             wysiwygEnabled: block.wysiwygEnabled,
-             isArchived: block.isArchived,
-         }));
+                    wysiwygEnabled: block.wysiwygEnabled,
+                    isArchived: block.isArchived,
+                },
+            ),
+        );
     }
 
     async updateBlock(organizationId: string, block: Block): Promise<Block> {
-        return firstValueFrom(this.http.put<Block>(`${this.domain}/organizations/${organizationId}/blocks/${block.id}`, {
-            id: block.id,
-            organization: organizationId,
-            displayName: block.displayName,
-            description: block.description,
+        return firstValueFrom(
+            this.http.put<Block>(
+                `${this.domain}/organizations/${organizationId}/blocks/${block.id}`,
+                {
+                    id: block.id,
+                    organization: organizationId,
+                    displayName: block.displayName,
+                    description: block.description,
 
-            parameters: Object.values(block.parameters),
+                    parameters: Object.values(block.parameters),
 
-            model: block.model,
-            code: block.code,
+                    model: block.model,
+                    code: block.code,
 
-            wysiwygEnabled: block.wysiwygEnabled,
-            isArchived: block.isArchived,
-        }));
+                    wysiwygEnabled: block.wysiwygEnabled,
+                    isArchived: block.isArchived,
+                },
+            ),
+        );
     }
 
     async deleteBlock(organizationId: string, blockId: string): Promise<void> {
         return new Promise((res, _) => {
             setTimeout(async () => {
-                res(firstValueFrom(this.http.delete<void>(`${this.domain}/organizations/${organizationId}/blocks/${blockId}`)));
+                res(
+                    firstValueFrom(
+                        this.http.delete<void>(
+                            `${this.domain}/organizations/${organizationId}/blocks/${blockId}`,
+                        ),
+                    ),
+                );
             }, this.timeout);
         });
     }
@@ -317,9 +340,8 @@ export class BlockService {
         return firstValueFrom(
             this.http.patch<void>(
                 `${this.domain}/organizations/${organizationId}/blocks/${blockId}`,
-                { isArchived: true }
-            )
+                { isArchived: true },
+            ),
         );
     }
-
 }

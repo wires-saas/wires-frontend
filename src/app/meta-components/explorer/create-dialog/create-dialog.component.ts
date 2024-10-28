@@ -4,7 +4,12 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { NgIf } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+    FormControl,
+    FormGroup,
+    ReactiveFormsModule,
+    Validators,
+} from '@angular/forms';
 import { Folder, FolderService } from '../../../services/folder.service';
 import { Slug } from '../../../utils/types.utils';
 import { ErrorUtils } from '../../../utils/error.utils';
@@ -19,11 +24,10 @@ import { ErrorUtils } from '../../../utils/error.utils';
         InputTextModule,
         MessageModule,
         NgIf,
-        ReactiveFormsModule
-    ]
+        ReactiveFormsModule,
+    ],
 })
 export class ExplorerCreateDialogComponent {
-
     @Input() visible: boolean = false;
     @Input() selectedFolder: Folder | undefined;
     @Input() organization: Slug | undefined;
@@ -34,14 +38,14 @@ export class ExplorerCreateDialogComponent {
     createFolderDialogOptions: {
         loading: boolean;
         error?: string;
-    } = { loading: false }
+    } = { loading: false };
 
     createFolderForm: FormGroup = new FormGroup({
         displayName: new FormControl<string>('', Validators.required),
-        description: new FormControl<string>('')
+        description: new FormControl<string>(''),
     });
 
-    constructor(private folderService: FolderService) { }
+    constructor(private folderService: FolderService) {}
 
     private reset() {
         this.createFolderForm.reset();
@@ -54,7 +58,6 @@ export class ExplorerCreateDialogComponent {
     }
 
     async confirmFolderCreation() {
-
         const displayName = this.createFolderForm.get('displayName')?.value;
         const description = this.createFolderForm.get('description')?.value;
 
@@ -67,22 +70,23 @@ export class ExplorerCreateDialogComponent {
             if (!displayName) throw new Error('Display name is required');
             if (!this.organization) throw new Error('Organization is not set');
 
-            await this.folderService.createFolder(
-                this.organization!,
-                displayName,
-                description,
-                this.selectedFolder?.id || null
-            ).then(() => {
-                this.confirm.emit();
-                this.reset();
-            }).catch (err => {
-                console.error(err);
-                this.createFolderDialogOptions.error = ErrorUtils.getErrorMessage(err);
-                this.createFolderDialogOptions.loading = false;
-            });
-
+            await this.folderService
+                .createFolder(
+                    this.organization!,
+                    displayName,
+                    description,
+                    this.selectedFolder?.id || null,
+                )
+                .then(() => {
+                    this.confirm.emit();
+                    this.reset();
+                })
+                .catch((err) => {
+                    console.error(err);
+                    this.createFolderDialogOptions.error =
+                        ErrorUtils.getErrorMessage(err);
+                    this.createFolderDialogOptions.loading = false;
+                });
         }, 1000);
     }
-
-
 }

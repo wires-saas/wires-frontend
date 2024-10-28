@@ -7,7 +7,6 @@ import { ConfirmationService } from 'primeng/api';
     templateUrl: './block-editor-code.component.html',
 })
 export class BlockEditorCodeComponent implements OnInit {
-
     @Input() block!: Block;
 
     @Output() blockChange = new EventEmitter<void>();
@@ -23,7 +22,6 @@ export class BlockEditorCodeComponent implements OnInit {
     constructor(private confirmationService: ConfirmationService) {}
 
     ngOnInit() {
-
         // if component is forced to be readonly
         if (this.readonly) {
             this.editorOptions = {
@@ -31,7 +29,6 @@ export class BlockEditorCodeComponent implements OnInit {
                 readOnly: true,
             };
         } else {
-
             // else depends on block behavior
             if (this.block.wysiwygEnabled) {
                 this.editorOptions = {
@@ -44,9 +41,7 @@ export class BlockEditorCodeComponent implements OnInit {
                     readOnly: false,
                 };
             }
-
         }
-
     }
 
     editorChange(e: any) {
@@ -63,9 +58,7 @@ export class BlockEditorCodeComponent implements OnInit {
                     readOnly: false,
                 };
                 this.blockChange.emit();
-            }
+            },
         });
     }
-
-
 }

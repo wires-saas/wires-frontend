@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ArraySortPipe implements PipeTransform {
     transform(array: any[], args: { [key: string]: 'asc' | 'desc' }): any[] {
-
         if (!array || !args || !array.length) {
             return array;
         }
@@ -16,7 +15,6 @@ export class ArraySortPipe implements PipeTransform {
         return array.sort((a, b) => {
             return Object.keys(args)
                 .map((key) => {
-
                     let result: number;
 
                     switch (type) {
@@ -32,7 +30,6 @@ export class ArraySortPipe implements PipeTransform {
                     }
 
                     return args[key] === 'asc' ? result : -result;
-
                 })
                 .reduce((p, n) => (p ? p : n), 0);
         });

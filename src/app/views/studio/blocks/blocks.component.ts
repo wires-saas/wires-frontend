@@ -5,7 +5,11 @@ import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { FolderService } from '../../../services/folder.service';
-import { CreateBlock, ReadBlock, UpdateBlock } from '../../../utils/permission.utils';
+import {
+    CreateBlock,
+    ReadBlock,
+    UpdateBlock,
+} from '../../../utils/permission.utils';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
 
@@ -13,7 +17,6 @@ import { AuthService } from '../../../services/auth.service';
     templateUrl: './blocks.component.html',
 })
 export class BlocksComponent implements OnInit {
-
     private destroyRef = inject(DestroyRef);
 
     blocks: Block[] = [];
@@ -23,53 +26,71 @@ export class BlocksComponent implements OnInit {
 
     private currentOrgSlug: string | undefined;
 
-    constructor(private authService: AuthService,
-                private blockService: BlockService,
-                private organizationService: OrganizationService,
-                private folderService: FolderService,
-                private router: Router) { }
+    constructor(
+        private authService: AuthService,
+        private blockService: BlockService,
+        private organizationService: OrganizationService,
+        private folderService: FolderService,
+        private router: Router,
+    ) {}
 
     ngOnInit() {
-
         this.organizationService.currentOrganization$
             .pipe(
                 map(async (org) => {
                     this.currentOrgSlug = org?.slug;
                     if (org) {
-                        this.blocks = await this.blockService.getBlocks(org.slug);
+                        this.blocks = await this.blockService.getBlocks(
+                            org.slug,
+                        );
 
                         this.canCreateBlock = await firstValueFrom(
-                            this.authService.hasPermission$(CreateBlock, org.slug)
+                            this.authService.hasPermission$(
+                                CreateBlock,
+                                org.slug,
+                            ),
                         );
 
                         this.canUpdateBlock = await firstValueFrom(
-                            this.authService.hasPermission$(UpdateBlock, org.slug)
+                            this.authService.hasPermission$(
+                                UpdateBlock,
+                                org.slug,
+                            ),
                         );
-
-
                     }
                 }),
                 takeUntilDestroyed(this.destroyRef),
             )
             .subscribe();
-
     }
 
     async openEditor(block: Block) {
         // if (!this.canUpdateBlock) return;
-        await this.router.navigate(['/organization', this.currentOrgSlug, 'studio', 'blocks', block.id, 'editor']);
+        await this.router.navigate([
+            '/organization',
+            this.currentOrgSlug,
+            'studio',
+            'blocks',
+            block.id,
+            'editor',
+        ]);
     }
 
     async loadBlocks(folderId: string | null) {
-        if (!this.currentOrgSlug) throw new Error('Organization slug is not set');
+        if (!this.currentOrgSlug)
+            throw new Error('Organization slug is not set');
 
         if (!folderId) {
-            this.blocks = await this.blockService.getBlocks(this.currentOrgSlug);
+            this.blocks = await this.blockService.getBlocks(
+                this.currentOrgSlug,
+            );
         } else {
-            this.blocks = await this.folderService.getFolderContent<Block>(this.currentOrgSlug, folderId);
+            this.blocks = await this.folderService.getFolderContent<Block>(
+                this.currentOrgSlug,
+                folderId,
+            );
         }
     }
 
     static permissions = [ReadBlock];
-
 }

@@ -5,7 +5,6 @@ import {
 } from '../../../services/organization.service';
 import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { PlanPricePipe } from '../../../utils/plans/plan-price.pipe';
 import { ReadBilling } from '../../../utils/permission.utils';
 
 @Component({

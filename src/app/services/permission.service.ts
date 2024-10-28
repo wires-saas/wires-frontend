@@ -180,13 +180,17 @@ export class PermissionService {
         });
     }
 
-    async getRoles(organizationId: string): Promise<Record<RoleName|string, Permission[]>> {
+    async getRoles(
+        organizationId: string,
+    ): Promise<Record<RoleName | string, Permission[]>> {
         return firstValueFrom(
-            this.http.get<RolePermissions[]>(`${this.domain}/organizations/${organizationId}/roles`),
+            this.http.get<RolePermissions[]>(
+                `${this.domain}/organizations/${organizationId}/roles`,
+            ),
         ).then((roles: RolePermissions[]) => {
             return roles.reduce(
                 (
-                    acc: Record<RoleName|string, Permission[]>,
+                    acc: Record<RoleName | string, Permission[]>,
                     currentRole: RolePermissions,
                 ) => {
                     acc[currentRole.name] = currentRole.permissions.map(
@@ -203,9 +207,15 @@ export class PermissionService {
         });
     }
 
-    async updateRoles(organizationId: string, roles: RolePermissions[]): Promise<void> {
+    async updateRoles(
+        organizationId: string,
+        roles: RolePermissions[],
+    ): Promise<void> {
         return firstValueFrom(
-            this.http.put<void>(`${this.domain}/organizations/${organizationId}/roles`, roles),
+            this.http.put<void>(
+                `${this.domain}/organizations/${organizationId}/roles`,
+                roles,
+            ),
         );
     }
 }

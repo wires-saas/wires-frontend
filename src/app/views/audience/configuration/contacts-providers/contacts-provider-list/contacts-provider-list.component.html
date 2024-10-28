@@ -27,7 +27,7 @@
                 <label [for]="index" class="font-medium ml-2 cursor-pointer">
                     {{ provider.displayName }}
                     <i *ngIf="provider.isDefault" i18n-pTooltip pTooltip="Default provider" tooltipPosition="bottom" class="pi pi-star-fill cursor-pointer"></i>
-                    <i *ngIf="provider.isVerified" i18n-pTooltip pTooltip="Operational" tooltipPosition="bottom" class="pi pi-verified cursor-pointer"></i>
+                    <i *ngIf="!provider.isVerified" i18n-pTooltip pTooltip="Authentication failed" tooltipPosition="bottom" class="pi pi-exclamation-triangle cursor-pointer ml-2"></i>
                 </label>
             </div>
         </div>

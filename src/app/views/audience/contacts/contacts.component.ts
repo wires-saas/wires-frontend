@@ -8,23 +8,26 @@ import { ContactsService } from '../../../services/contacts.service';
     templateUrl: './contacts.component.html',
 })
 export class ContactsComponent implements OnInit {
-
     private destroyRef = inject(DestroyRef);
 
     currentOrgSlug!: string;
 
-    constructor(private organizationService: OrganizationService,
-                private contactsService: ContactsService) {}
+    constructor(
+        private organizationService: OrganizationService,
+        private contactsService: ContactsService,
+    ) {}
 
     ngOnInit(): void {
-        this.organizationService.currentOrganization$.pipe(
-            map((organization) => {
-                if (organization) {
-                    this.currentOrgSlug = organization.slug;
-                }
-            }),
-            takeUntilDestroyed(this.destroyRef),
-        ).subscribe();
+        this.organizationService.currentOrganization$
+            .pipe(
+                map((organization) => {
+                    if (organization) {
+                        this.currentOrgSlug = organization.slug;
+                    }
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
     }
 
     showDialog() {

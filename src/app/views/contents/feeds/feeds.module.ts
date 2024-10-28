@@ -39,13 +39,10 @@ import { DurationPipe } from '../../../utils/pipes/duration.pipe';
 import { SkeletonModule } from 'primeng/skeleton';
 import { GenericDataCardComponent } from '../../../meta-components/generic-data-card/generic-data-card.component';
 import { GenericDataListComponent } from '../../../meta-components/generic-data-list/generic-data-list.component';
-import {
-    GenericLayoutSingleInstanceComponent
-} from '../../../meta-components/generic-layout-single-instance/generic-layout-single-instance.component';
+import { GenericLayoutSingleInstanceComponent } from '../../../meta-components/generic-layout-single-instance/generic-layout-single-instance.component';
 import { GenericSquareCardComponent } from '../../../meta-components/generic-square-card/generic-square-card.component';
-import {
-    GenericSquareCardsRowComponent
-} from '../../../meta-components/generic-square-cards-row/generic-square-cards-row.component';
+import { GenericSquareCardsRowComponent } from '../../../meta-components/generic-square-cards-row/generic-square-cards-row.component';
+import { GenericDataTableComponent } from '../../../meta-components/generic-data-table/generic-data-table.component';
 
 @NgModule({
     imports: [
@@ -85,6 +82,7 @@ import {
         GenericLayoutSingleInstanceComponent,
         GenericSquareCardComponent,
         GenericSquareCardsRowComponent,
+        GenericDataTableComponent,
     ],
     declarations: [
         FeedsComponent,

@@ -1,0 +1,34 @@
+<p-table [value]="items" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,25,50]"
+         [loading]="loading" [showLoader]="false"
+         sortField="createdAt" [sortOrder]="-1" sortMode="single" [rowHover]="true">
+    <ng-template pTemplate="header">
+        <tr>
+            <th *ngFor="let column of columns">
+                {{ column }}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+        <tr (click)="itemSelect.emit(item)" class="cursor-pointer">
+
+            <ng-container
+                *ngTemplateOutlet="itemRowTemplate; context: {$implicit: item}">
+            </ng-container>
+
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td [attr.colspan]="columns.length" class="text-center m-5">-</td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="loadingbody">
+        <tr>
+            <td *ngFor="let column of columns">
+                <p-skeleton width="100%"></p-skeleton>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

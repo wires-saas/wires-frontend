@@ -12,7 +12,10 @@ import { MessageService } from 'primeng/api';
 import { User } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
-import { UpdateOrganization, UpdateUserRole } from '../../../utils/permission.utils';
+import {
+    UpdateOrganization,
+    UpdateUserRole,
+} from '../../../utils/permission.utils';
 
 interface OrganizationSecurity {
     twoFactorAuthenticationEnabled: boolean;
@@ -23,7 +26,6 @@ interface OrganizationSecurity {
     templateUrl: './configuration.component.html',
 })
 export class ConfigurationComponent implements OnInit {
-
     optionsFor2FA = [
         { name: $localize`Email`, id: 'email' },
         {
@@ -72,7 +74,9 @@ export class ConfigurationComponent implements OnInit {
 
                         this.securitySavedState = this.securityForm.value;
 
-                        this.aiForm.get('enabled')?.setValue(!!organization.gpt);
+                        this.aiForm
+                            .get('enabled')
+                            ?.setValue(!!organization.gpt);
 
                         this.currentUser = await firstValueFrom(
                             this.authService.currentUser$,

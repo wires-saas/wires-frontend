@@ -1703,24 +1703,6 @@
       <trans-unit id="959537888660873016" datatype="html">
         <source>Clicks / Displays</source>
       </trans-unit>
-      <trans-unit id="1058337748709569011" datatype="html">
-        <source> Articles </source>
-      </trans-unit>
-      <trans-unit id="1216445956577529579" datatype="html">
-        <source> Date </source>
-      </trans-unit>
-      <trans-unit id="2364085097539181633" datatype="html">
-        <source> New </source>
-      </trans-unit>
-      <trans-unit id="4282587102956396340" datatype="html">
-        <source> Status </source>
-      </trans-unit>
-      <trans-unit id="8576166194482756163" datatype="html">
-        <source> Duration </source>
-      </trans-unit>
-      <trans-unit id="8633473411198809958" datatype="html">
-        <source> Feed </source>
-      </trans-unit>
       <trans-unit id="4168929439779327448" datatype="html">
         <source>No feed found, create your first feed to start fetching articles</source>
       </trans-unit>
@@ -2174,17 +2156,11 @@
       <trans-unit id="1375793600860080702" datatype="html">
         <source>Inspect</source>
       </trans-unit>
-      <trans-unit id="1604102229052837523" datatype="html">
-        <source>Return to providers list</source>
-      </trans-unit>
       <trans-unit id="3546392795845484442" datatype="html">
         <source>Are you sure you want to permanently delete this contacts provider ? It will prevent sendings relying on it.</source>
       </trans-unit>
       <trans-unit id="6688657423210322785" datatype="html">
         <source>Permanently Delete Provider</source>
-      </trans-unit>
-      <trans-unit id="7133597967238695324" datatype="html">
-        <source>Add Provider</source>
       </trans-unit>
       <trans-unit id="5787759453544857381" datatype="html">
         <source>Contacts Provider &quot;<x id="PH" equiv-text="this.provider?.displayName"/>&quot;</source>
@@ -2222,8 +2198,65 @@
       <trans-unit id="6205462816527090942" datatype="html">
         <source>Default provider</source>
       </trans-unit>
-      <trans-unit id="8542165674704180150" datatype="html">
-        <source>Operational</source>
+      <trans-unit id="1033744519204735280" datatype="html">
+        <source>Emails Provider &quot;<x id="PH" equiv-text="this.provider?.displayName"/>&quot;</source>
+      </trans-unit>
+      <trans-unit id="1342509806558018677" datatype="html">
+        <source>No senders, create your first sender and start sending emails</source>
+      </trans-unit>
+      <trans-unit id="3124108299936099643" datatype="html">
+        <source>New Articles</source>
+      </trans-unit>
+      <trans-unit id="3959422294831496607" datatype="html">
+        <source>Authentication failed</source>
+      </trans-unit>
+      <trans-unit id="3973931101896534797" datatype="html">
+        <source>Date</source>
+      </trans-unit>
+      <trans-unit id="5159814115056353668" datatype="html">
+        <source>Addresses</source>
+      </trans-unit>
+      <trans-unit id="5849050804432577516" datatype="html">
+        <source>Use our default router or plug your own to start sending emails</source>
+      </trans-unit>
+      <trans-unit id="6042672126434617854" datatype="html">
+        <source>Return to configuration</source>
+      </trans-unit>
+      <trans-unit id="6120801934685583137" datatype="html">
+        <source>Send emails</source>
+      </trans-unit>
+      <trans-unit id="6125327932124131019" datatype="html">
+        <source>Emails Routers</source>
+      </trans-unit>
+      <trans-unit id="6496309967639997351" datatype="html">
+        <source>Available Senders</source>
+      </trans-unit>
+      <trans-unit id="6847279131889822968" datatype="html">
+        <source>No emails provider found, create your first provider or contact us for a custom integration</source>
+      </trans-unit>
+      <trans-unit id="7118706367796651208" datatype="html">
+        <source>Fetch contacts</source>
+      </trans-unit>
+      <trans-unit id="7410432243549869948" datatype="html">
+        <source>Duration</source>
+      </trans-unit>
+      <trans-unit id="7535628778033915322" datatype="html">
+        <source>Senders</source>
+      </trans-unit>
+      <trans-unit id="8143267823133938052" datatype="html">
+        <source>Domains</source>
+      </trans-unit>
+      <trans-unit id="8204333615894603716" datatype="html">
+        <source>If you need to use your own router, please contact us for a custom integration - free of charge</source>
+      </trans-unit>
+      <trans-unit id="8350328608750250407" datatype="html">
+        <source>Create sender</source>
+      </trans-unit>
+      <trans-unit id="8787137766358169227" datatype="html">
+        <source>Define senders to send emails</source>
+      </trans-unit>
+      <trans-unit id="8817030491989103092" datatype="html">
+        <source>Are you sure you want to permanently delete this emails provider ? It will prevent sendings relying on it.</source>
       </trans-unit>
     </body>
   </file>

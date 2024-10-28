@@ -1,65 +1,25 @@
-<p-table [value]="runs" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,25,50]"
-         [loading]="loading" [showLoader]="false"
-         sortField="createdAt" [sortOrder]="-1" sortMode="single" [rowHover]="true">
-    <ng-template pTemplate="header">
-        <tr>
-            <th i18n> Date </th>
-            <th i18n> Feed </th>
-            <th i18n> Articles </th>
-            <th i18n> New </th>
-            <th i18n> Duration </th>
-            <th i18n> Status </th>
-        </tr>
+<app-generic-data-table [columns]="columns"
+                        [loading]="loading"
+                        [itemRowTemplate]="itemRowTemplate"
+                        [items]="runs" (itemSelect)="onRowSelect($event)">
+    <ng-template #itemRowTemplate let-run>
+        <td>
+            {{ run.createdAt | date: 'dd/MM/YY - HH:mm' }}
+        </td>
+        <td>
+            {{ run.feed.displayName }}
+        </td>
+        <td>
+            {{ run.articles.length }}
+        </td>
+        <td>
+            {{ run.newArticles.length }}
+        </td>
+        <td>
+            {{ (run.scrapingDurationMs + run.articlesCreationMs) | duration }}
+        </td>
+        <td>
+            <app-status-badge [value]="run"></app-status-badge>
+        </td>
     </ng-template>
-    <ng-template pTemplate="body" let-run>
-        <tr (click)="onRowSelect(run)" class="cursor-pointer">
-            <td>
-                {{ run.createdAt | date: 'dd/MM/YY - HH:mm' }}
-            </td>
-            <td>
-                {{ run.feed.displayName }}
-            </td>
-            <td>
-                {{ run.articles.length }}
-            </td>
-            <td>
-                {{ run.newArticles.length }}
-            </td>
-            <td>
-                {{ (run.scrapingDurationMs + run.articlesCreationMs) | duration }}
-            </td>
-            <td>
-                <app-status-badge [value]="run"></app-status-badge>
-            </td>
-        </tr>
-    </ng-template>
-
-    <ng-template pTemplate="emptymessage">
-        <tr>
-            <td colspan="6" class="text-center m-5">-</td>
-        </tr>
-    </ng-template>
-
-    <ng-template pTemplate="loadingbody">
-        <tr>
-            <td>
-                <p-skeleton width="100%"></p-skeleton>
-            </td>
-            <td>
-                <p-skeleton width="100%"></p-skeleton>
-            </td>
-            <td>
-                <p-skeleton width="100%"></p-skeleton>
-            </td>
-            <td>
-                <p-skeleton width="100%"></p-skeleton>
-            </td>
-            <td>
-                <p-skeleton width="100%"></p-skeleton>
-            </td>
-            <td>
-                <p-skeleton width="100%"></p-skeleton>
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+</app-generic-data-table>

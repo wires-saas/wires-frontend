@@ -31,24 +31,23 @@ export class TableUtils {
 }
 
 export class TableFilterUtils {
-
     static filterTypesLocalized: Record<FilterType, string> = {
-        'equals': $localize `=`,
-        'notEquals': $localize `!=`,
-        'contains': $localize `contains`,
-        'notContains': $localize `not contains`,
-        'startsWith': $localize `starts with`,
-        'endsWith': $localize `ends with`,
-        'gt': $localize `>`,
-        'gte': $localize `>=`,
-        'lt': $localize `<`,
-        'lte': $localize `<=`,
-        'in': $localize `in`,
-        'nin': $localize `not in`,
-        'dateIs': $localize `is`,
-        'dateIsNot': $localize `is not`,
-        'dateBefore': $localize `before`,
-        'dateAfter': $localize `after`,
+        equals: $localize`=`,
+        notEquals: $localize`!=`,
+        contains: $localize`contains`,
+        notContains: $localize`not contains`,
+        startsWith: $localize`starts with`,
+        endsWith: $localize`ends with`,
+        gt: $localize`>`,
+        gte: $localize`>=`,
+        lt: $localize`<`,
+        lte: $localize`<=`,
+        in: $localize`in`,
+        nin: $localize`not in`,
+        dateIs: $localize`is`,
+        dateIsNot: $localize`is not`,
+        dateBefore: $localize`before`,
+        dateAfter: $localize`after`,
     };
 
     static dateFilterTypes: FilterType[] = [
@@ -58,21 +57,27 @@ export class TableFilterUtils {
         FilterType.dateAfter,
     ];
 
-    static convertFiltersToTagRules = (filters: { [p: string]: FilterMetadata[] }): TagRule[] => {
+    static convertFiltersToTagRules = (filters: {
+        [p: string]: FilterMetadata[];
+    }): TagRule[] => {
         const ruleset: TagRule[] = [];
 
         Object.keys(filters).forEach((field) => {
             const filter = filters[field];
             if (filter && filter.length) {
-                if (filter[0].operator !== 'or' && filter[0].operator !== 'and') throw new Error('Invalid operator');
+                if (filter[0].operator !== 'or' && filter[0].operator !== 'and')
+                    throw new Error('Invalid operator');
                 ruleset.push({
                     field: field,
                     operator: filter[0].operator,
                     filters: filter.map((f) => {
-
                         let value = f.value;
 
-                        if (TableFilterUtils.dateFilterTypes.includes(f.matchMode as FilterType)) {
+                        if (
+                            TableFilterUtils.dateFilterTypes.includes(
+                                f.matchMode as FilterType,
+                            )
+                        ) {
                             value = new Date(value).getTime(); // Convert date to timestamp
                         }
 
@@ -80,15 +85,17 @@ export class TableFilterUtils {
                             filterValue: value,
                             filterType: f.matchMode as FilterType,
                         };
-                    })
+                    }),
                 });
             }
         });
 
         return ruleset;
-    }
+    };
 
-    static convertTagRulesToFilters = (ruleset: TagRule[]): { [p: string]: FilterMetadata[] } => {
+    static convertTagRulesToFilters = (
+        ruleset: TagRule[],
+    ): { [p: string]: FilterMetadata[] } => {
         const filters: { [p: string]: FilterMetadata[] } = {};
 
         ruleset.forEach((rule) => {
@@ -108,7 +115,7 @@ export class TableFilterUtils {
         });
 
         return filters;
-    }
+    };
 
     static dateIs = (value: any, filter: any): boolean => {
         if (!filter) {

@@ -6,6 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class EmptyBlockDisplayNamePipe implements PipeTransform {
     transform(value: string): string {
-        return value || $localize `New Block`;
+        return value || $localize`New Block`;
     }
 }

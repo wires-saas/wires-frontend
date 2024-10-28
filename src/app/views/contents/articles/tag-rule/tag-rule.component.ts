@@ -6,7 +6,6 @@ import { TagRule } from '../../../../services/tag.service';
     templateUrl: './tag-rule.component.html',
 })
 export class TagRuleComponent implements OnInit {
-
     @Input() rule!: TagRule;
 
     isMetadata: boolean = false;
@@ -20,9 +19,7 @@ export class TagRuleComponent implements OnInit {
     }
 
     getValueType(value: any): string {
-
         try {
-
             const dateParsed = new Date(value).getTime();
 
             if (dateParsed && !isNaN(dateParsed)) return 'date';

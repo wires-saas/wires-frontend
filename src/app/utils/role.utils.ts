@@ -25,11 +25,16 @@ export class RoleUtils {
         return user.roles.some((userRole) => {
             if (organization) {
                 return (
-                    RoleUtils.isRoleOrGreater(userRole.role as RoleName, role) &&
-                    userRole.organization === organization
+                    RoleUtils.isRoleOrGreater(
+                        userRole.role as RoleName,
+                        role,
+                    ) && userRole.organization === organization
                 );
             } else {
-                return RoleUtils.isRoleOrGreater(userRole.role as RoleName, role);
+                return RoleUtils.isRoleOrGreater(
+                    userRole.role as RoleName,
+                    role,
+                );
             }
         });
     }
@@ -45,15 +50,26 @@ export class RoleUtils {
             if (organization) {
                 return (
                     userRole.organization === organization &&
-                    userRole.permissions?.find(p => p.action === permission.action && p.subject === permission.subject)
+                    userRole.permissions?.find(
+                        (p) =>
+                            p.action === permission.action &&
+                            p.subject === permission.subject,
+                    )
                 );
             } else {
-                return userRole.permissions?.find(p => p.action === permission.action && p.subject === permission.subject);
+                return userRole.permissions?.find(
+                    (p) =>
+                        p.action === permission.action &&
+                        p.subject === permission.subject,
+                );
             }
         });
     }
 
-    static isRoleOrGreater(roleTested: RoleName, roleRequired: RoleName): boolean {
+    static isRoleOrGreater(
+        roleTested: RoleName,
+        roleRequired: RoleName,
+    ): boolean {
         return (
             RoleUtils.getRoleHierarchy(roleTested) >=
             RoleUtils.getRoleHierarchy(roleRequired)
@@ -75,14 +91,17 @@ export class RoleUtils {
         }
     }
 
-    static getRoleForOrganization(user: User, organizationSlug?: string): RoleName {
+    static getRoleForOrganization(
+        user: User,
+        organizationSlug?: string,
+    ): RoleName {
         if (user?.isSuperAdmin) return RoleName.SUPER_ADMIN;
 
         if (user?.roles?.length) {
             if (organizationSlug)
                 return (
-                    user.roles.find((_) => _.organization === organizationSlug)
-                        ?.role as RoleName || RoleName.GUEST
+                    (user.roles.find((_) => _.organization === organizationSlug)
+                        ?.role as RoleName) || RoleName.GUEST
                 );
             else return user.roles[0].role as RoleName;
         }
@@ -94,19 +113,19 @@ export class RoleUtils {
         // Maybe this would be more relevant in server side
         return permissions.reduce(
             (acc: Permission[], permission: Permission): Permission[] => {
-
                 if (permission.action === PermissionAction.Manage) {
                     const implicits = [
                         PermissionAction.Create,
                         PermissionAction.Read,
                         PermissionAction.Update,
-                        PermissionAction.Delete
+                        PermissionAction.Delete,
                     ];
 
                     return [
                         ...acc,
                         ...implicits.map(
-                            (implicit) => new Permission(permission.subject, implicit)
+                            (implicit) =>
+                                new Permission(permission.subject, implicit),
                         ),
                     ];
                 }

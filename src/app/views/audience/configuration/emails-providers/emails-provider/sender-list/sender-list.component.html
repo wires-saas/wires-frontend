@@ -1,0 +1,16 @@
+<app-generic-data-table [columns]="columns"
+                        [loading]="loading"
+                        [itemRowTemplate]="itemRowTemplate"
+                        [items]="senders" (itemSelect)="onEditSender.emit($event)">
+    <ng-template #itemRowTemplate let-sender>
+        <td>
+            {{ sender.name }}
+        </td>
+        <td>
+            {{ sender.email }}
+        </td>
+        <td>
+            <app-status-badge [value]="sender"></app-status-badge>
+        </td>
+    </ng-template>
+</app-generic-data-table>

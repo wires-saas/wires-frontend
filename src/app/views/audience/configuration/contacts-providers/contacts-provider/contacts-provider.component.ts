@@ -1,5 +1,8 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { ContactsProvider, ContactsService } from '../../../../../services/contacts.service';
+import {
+    ContactsProvider,
+    ContactsService,
+} from '../../../../../services/contacts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CapitalizePipe } from '../../../../../utils/pipes/capitalize.pipe';
 
@@ -41,24 +44,31 @@ export class ContactsProviderComponent implements OnInit {
         if (this.provider) {
             this.cards = [
                 {
-                    icon: this.provider.isDefault ? 'pi pi-star-fill' : 'pi pi-star',
-                    title: $localize `Favorite`,
-                    description: this.provider.isDefault ? $localize `Yes` : $localize `No`
+                    icon: this.provider.isDefault
+                        ? 'pi pi-star-fill'
+                        : 'pi pi-star',
+                    title: $localize`Favorite`,
+                    description: this.provider.isDefault
+                        ? $localize`Yes`
+                        : $localize`No`,
                 },
                 {
                     icon: 'pi pi-cog',
-                    title: $localize `Type`,
-                    description: new CapitalizePipe().transform(this.provider.type)
+                    title: $localize`Type`,
+                    description: new CapitalizePipe().transform(
+                        this.provider.type,
+                    ),
                 },
                 {
                     icon: 'pi pi-list',
-                    title: $localize `Sender Domains`,
-                    description: 3
-                }, {
+                    title: $localize`Contacts Lists`,
+                    description: 3,
+                },
+                {
                     icon: 'pi pi-users',
-                    title: $localize `Distinct Contacts`,
-                    description: 283
-                }
+                    title: $localize`Distinct Contacts`,
+                    description: 283,
+                },
             ];
         }
     }

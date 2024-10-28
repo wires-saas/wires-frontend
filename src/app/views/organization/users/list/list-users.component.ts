@@ -22,13 +22,24 @@ import {
     MessageService,
     SortEvent,
 } from 'primeng/api';
-import { ExtendedRoleName, RoleName, RoleUtils } from '../../../../utils/role.utils';
+import {
+    ExtendedRoleName,
+    RoleUtils,
+} from '../../../../utils/role.utils';
 import { Slug } from '../../../../utils/types.utils';
 import { AuthService } from '../../../../services/auth.service';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { CsvUtils } from '../../../../utils/csv.utils';
-import { CreateUser, DeleteUser, UpdateUser, UpdateUserRole } from '../../../../utils/permission.utils';
-import { Permission, PermissionService } from '../../../../services/permission.service';
+import {
+    CreateUser,
+    DeleteUser,
+    UpdateUser,
+    UpdateUserRole,
+} from '../../../../utils/permission.utils';
+import {
+    Permission,
+    PermissionService,
+} from '../../../../services/permission.service';
 import { RolePipe } from '../../../../utils/pipes/role.pipe';
 
 @Component({
@@ -36,7 +47,7 @@ import { RolePipe } from '../../../../utils/pipes/role.pipe';
 })
 export class ListUsersComponent implements OnInit, AfterViewInit {
     users: User[] = [];
-    roles:  Record<ExtendedRoleName, Permission[]> = {};
+    roles: Record<ExtendedRoleName, Permission[]> = {};
 
     actionsMenuItems: MenuItem[] = [];
 
@@ -86,7 +97,9 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                             org.slug,
                         ]);
 
-                        this.roles = await this.permissionService.getRoles(org.slug);
+                        this.roles = await this.permissionService.getRoles(
+                            org.slug,
+                        );
                     } else {
                         this.users = await this.userService.getUsers();
                     }
@@ -108,10 +121,18 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
     }
 
     private async loadPermissions() {
-        this.canCreateUser = await firstValueFrom(this.authService.hasPermission$(CreateUser));
-        this.canUpdateUser = await firstValueFrom(this.authService.hasPermission$(UpdateUser));
-        this.canUpdateUserRole = await firstValueFrom(this.authService.hasPermission$(UpdateUserRole));
-        this.canDeleteUser = await firstValueFrom(this.authService.hasPermission$(DeleteUser));
+        this.canCreateUser = await firstValueFrom(
+            this.authService.hasPermission$(CreateUser),
+        );
+        this.canUpdateUser = await firstValueFrom(
+            this.authService.hasPermission$(UpdateUser),
+        );
+        this.canUpdateUserRole = await firstValueFrom(
+            this.authService.hasPermission$(UpdateUserRole),
+        );
+        this.canDeleteUser = await firstValueFrom(
+            this.authService.hasPermission$(DeleteUser),
+        );
     }
 
     onGlobalFilter(table: Table, event: Event) {
@@ -137,52 +158,62 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
         const currentUser = await firstValueFrom(this.authService.currentUser$);
 
         if (!currentUser) throw new Error('No current user');
-        if (!this.currentOrgSlug) throw new Error('No current organization slug');
+        if (!this.currentOrgSlug)
+            throw new Error('No current organization slug');
 
         const isCurrentUser = currentUser._id === user._id;
 
-        const rolesMenuItems = Object.keys(this.roles).map((role, index, arr) => {
-            const first = index === 0;
-            const last = index === arr.length - 1;
+        const rolesMenuItems = Object.keys(this.roles).map(
+            (role, index, arr) => {
+                const first = index === 0;
+                const last = index === arr.length - 1;
 
-            const icon = first ? 'pi-sort-up' : last ? 'pi-sort-down' : 'pi-sort';
+                const icon = first
+                    ? 'pi-sort-up'
+                    : last
+                      ? 'pi-sort-down'
+                      : 'pi-sort';
 
-            const roleLabel = RolePipe.transform(role);
+                const roleLabel = RolePipe.transform(role);
 
-            return {
-                label: roleLabel,
-                icon: 'pi pi-fw ' + icon,
-                visible: true,
-                disabled: RoleUtils.getRoleForOrganization(
-                    user,
-                    this.currentOrgSlug,
-                ) === role,
-                command: async () => {
-                    await setRoleAndReflectChangeOnUser(role)
-                        .then(() => {
-                            this.messageService.add({
-                                severity: 'success',
-                                summary: $localize`Success setting role`,
-                                detail: $localize`${user.firstName} has been set as "${roleLabel}"`,
-                                life: 5000,
+                return {
+                    label: roleLabel,
+                    icon: 'pi pi-fw ' + icon,
+                    visible: true,
+                    disabled:
+                        RoleUtils.getRoleForOrganization(
+                            user,
+                            this.currentOrgSlug,
+                        ) === role,
+                    command: async () => {
+                        await setRoleAndReflectChangeOnUser(role)
+                            .then(() => {
+                                this.messageService.add({
+                                    severity: 'success',
+                                    summary: $localize`Success setting role`,
+                                    detail: $localize`${user.firstName} has been set as "${roleLabel}"`,
+                                    life: 5000,
+                                });
+                            })
+                            .catch((err) => {
+                                console.error(err);
+
+                                MessageUtils.parseServerError(
+                                    this.messageService,
+                                    err,
+                                    {
+                                        summary: $localize`Error setting role`,
+                                    },
+                                );
                             });
-                        })
-                        .catch((err) => {
-                            console.error(err);
+                    },
+                };
+            },
+        );
 
-                            MessageUtils.parseServerError(
-                                this.messageService,
-                                err,
-                                {
-                                    summary: $localize`Error setting role`,
-                                },
-                            );
-                        });
-                }
-            };
-        });
-
-        const setRoleAndReflectChangeOnUser = async (role: ExtendedRoleName) => {
+        const setRoleAndReflectChangeOnUser = async (
+            role: ExtendedRoleName,
+        ) => {
             if (!this.currentOrgSlug)
                 throw new Error('No current organization slug');
             await this.userService
@@ -293,14 +324,15 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
                     },
                 ],
             },
-            { separator: true, visible: this.canUpdateUserRole && !isCurrentUser },
+            {
+                separator: true,
+                visible: this.canUpdateUserRole && !isCurrentUser,
+            },
             // TODO iterate over roles and add them to menu
             {
                 label: $localize`Roles`,
                 visible: this.canUpdateUserRole && !isCurrentUser,
-                items: [
-                    ...rolesMenuItems,
-                ],
+                items: [...rolesMenuItems],
             },
         ];
 

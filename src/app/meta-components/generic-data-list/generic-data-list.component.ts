@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    TemplateRef,
+} from '@angular/core';
 import { SkeletonModule } from 'primeng/skeleton';
 import { JsonPipe, NgForOf, NgIf, NgTemplateOutlet } from '@angular/common';
 import { GenericDataListItemComponent } from '../generic-data-list-item/generic-data-list-item.component';
@@ -13,12 +19,12 @@ import { GenericDataListItemComponent } from '../generic-data-list-item/generic-
         NgForOf,
         NgIf,
         JsonPipe,
-        GenericDataListItemComponent
-    ]
+        GenericDataListItemComponent,
+    ],
 })
 export class GenericDataListComponent {
-    @Input() title: string = '';       // Title of the list
-    @Input() items: any[] = [];        // List of items to display
+    @Input() title: string = ''; // Title of the list
+    @Input() items: any[] = []; // List of items to display
     @Input() withItemMenu: boolean = false; // Show item menu
     @Input() canEdit: boolean = false; // Can edit item
     @Input() canDelete: boolean = false; // Can delete item

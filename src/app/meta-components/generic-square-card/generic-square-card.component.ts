@@ -5,10 +5,7 @@ import { DatePipe, NgIf } from '@angular/common';
     selector: 'app-generic-square-card',
     templateUrl: './generic-square-card.component.html',
     standalone: true,
-    imports: [
-        DatePipe,
-        NgIf
-    ]
+    imports: [DatePipe, NgIf],
 })
 export class GenericSquareCardComponent {
     @Input() title: string | undefined = '';

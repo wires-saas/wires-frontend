@@ -1,6 +1,6 @@
 import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { DialogConfig, } from '../../../../../services/feed.service';
+import { DialogConfig } from '../../../../../services/feed.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { MessageUtils } from '../../../../../utils/message.utils';
@@ -9,7 +9,7 @@ import {
     ContactsProvider,
     ContactsProviderType,
     ContactsService,
-    CreateProviderDto
+    CreateProviderDto,
 } from '../../../../../services/contacts.service';
 
 @Component({
@@ -93,7 +93,10 @@ export class CreateOrUpdateContactsProviderComponent implements OnInit {
         this.saving = true;
 
         await this.contactsService
-            .createContactsProvider(this.organizationSlug, this.provider as any as CreateProviderDto)
+            .createContactsProvider(
+                this.organizationSlug,
+                this.provider as any as CreateProviderDto,
+            )
             .then(() => {
                 this.messageService.add({
                     severity: 'success',
@@ -127,7 +130,7 @@ export class CreateOrUpdateContactsProviderComponent implements OnInit {
             type: ContactsProviderType.Brevo,
             externallyManaged: true,
             displayName: '',
-            description: ''
+            description: '',
         };
     }
 

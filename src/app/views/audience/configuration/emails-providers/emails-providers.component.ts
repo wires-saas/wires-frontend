@@ -1,5 +1,8 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { Organization, OrganizationService } from '../../../../services/organization.service';
+import {
+    Organization,
+    OrganizationService,
+} from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../../../../services/auth.service';
@@ -7,10 +10,16 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { firstValueFrom } from 'rxjs';
 import {
-    CreateEmailsProvider, DeleteEmailsProvider, ReadEmailsProvider, UpdateEmailsProvider
+    CreateEmailsProvider,
+    DeleteEmailsProvider,
+    ReadEmailsProvider,
+    UpdateEmailsProvider,
 } from '../../../../utils/permission.utils';
 import { Router } from '@angular/router';
-import { EmailsProvider, EmailsService } from '../../../../services/emails.service';
+import {
+    EmailsProvider,
+    EmailsService,
+} from '../../../../services/emails.service';
 
 @Component({
     selector: 'app-emails-providers',
@@ -22,7 +31,6 @@ export class EmailsProvidersComponent implements OnInit {
     loadingProviders: boolean = false;
 
     providers: EmailsProvider[] = [];
-
 
     canCreateProvider: boolean = false;
     canUpdateProvider: boolean = false;
@@ -40,37 +48,50 @@ export class EmailsProvidersComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.organizationService.currentOrganization$.pipe(
-            map(async(organization) => {
-                if (organization) {
-                    this.loadingProviders = true;
-                    await this.loadPermissions(organization);
-                    this.currentOrgSlug = organization.slug;
-                    this.providers = await this.emailsService.getEmailsProviders(organization.slug);
-                    this.loadingProviders = false;
-                } else {
-                    this.providers = [];
-                    this.canCreateProvider = false;
-                    this.canUpdateProvider = false;
-                    this.canDeleteProvider = false;
-                }
-            }),
-            takeUntilDestroyed(this.destroyRef),
-        ).subscribe();
+        this.organizationService.currentOrganization$
+            .pipe(
+                map(async (organization) => {
+                    if (organization) {
+                        this.loadingProviders = true;
+                        await this.loadPermissions(organization);
+                        this.currentOrgSlug = organization.slug;
+                        this.providers =
+                            await this.emailsService.getEmailsProviders(
+                                organization.slug,
+                            );
+                        this.loadingProviders = false;
+                    } else {
+                        this.providers = [];
+                        this.canCreateProvider = false;
+                        this.canUpdateProvider = false;
+                        this.canDeleteProvider = false;
+                    }
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
     }
 
     private async loadPermissions(organization: Organization) {
-
         this.canCreateProvider = await firstValueFrom(
-            this.authService.hasPermission$(CreateEmailsProvider, organization.slug)
+            this.authService.hasPermission$(
+                CreateEmailsProvider,
+                organization.slug,
+            ),
         );
 
         this.canUpdateProvider = await firstValueFrom(
-            this.authService.hasPermission$(UpdateEmailsProvider, organization.slug)
+            this.authService.hasPermission$(
+                UpdateEmailsProvider,
+                organization.slug,
+            ),
         );
 
         this.canDeleteProvider = await firstValueFrom(
-            this.authService.hasPermission$(DeleteEmailsProvider, organization.slug)
+            this.authService.hasPermission$(
+                DeleteEmailsProvider,
+                organization.slug,
+            ),
         );
     }
 
@@ -83,10 +104,7 @@ export class EmailsProvidersComponent implements OnInit {
             rejectLabel: $localize`Cancel`,
             accept: async () => {
                 await this.emailsService
-                    .removeEmailsProvider(
-                        provider.organization,
-                        provider.id,
-                    )
+                    .removeEmailsProvider(provider.organization, provider.id)
                     .then(() => {
                         this.messageService.add({
                             severity: 'success',
@@ -109,7 +127,9 @@ export class EmailsProvidersComponent implements OnInit {
     }
 
     async onInspectProvider(provider: EmailsProvider) {
-        await this.router.navigate([`/organization/${provider.organization}/audience/configuration/emails-providers/${provider.id}`]);
+        await this.router.navigate([
+            `/organization/${provider.organization}/audience/configuration/emails-providers/${provider.id}`,
+        ]);
     }
 
     onEditProvider(provider: EmailsProvider) {
@@ -122,5 +142,4 @@ export class EmailsProvidersComponent implements OnInit {
     }
 
     static permissions = [ReadEmailsProvider];
-
 }

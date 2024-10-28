@@ -3,7 +3,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-export type TagColor = 'success' | 'secondary' | 'info' | 'warning' | 'danger' | 'contrast' | undefined;
+export type TagColor =
+    | 'success'
+    | 'secondary'
+    | 'info'
+    | 'warning'
+    | 'danger'
+    | 'contrast'
+    | undefined;
 
 export interface Tag {
     _id?: string; // do not generate
@@ -40,7 +47,7 @@ export enum FilterType {
 export interface TagRule {
     field: string;
     operator: 'or' | 'and';
-    filters: Array<{ filterValue: any; filterType: FilterType; }>;
+    filters: Array<{ filterValue: any; filterType: FilterType }>;
 }
 
 @Injectable()
@@ -74,11 +81,7 @@ export class TagService {
         );
     }
 
-    async putTag(
-        organizationId: string,
-        tag: Tag,
-    ): Promise<Tag> {
-
+    async putTag(organizationId: string, tag: Tag): Promise<Tag> {
         return firstValueFrom(
             this.http.put<Tag>(
                 `${this.domain}/organizations/${organizationId}/tags`,

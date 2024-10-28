@@ -12,12 +12,7 @@ export interface SquareCard {
     selector: 'app-generic-square-cards-row',
     templateUrl: './generic-square-cards-row.component.html',
     standalone: true,
-    imports: [
-        DatePipe,
-        NgIf,
-        GenericSquareCardComponent,
-        NgForOf,
-    ]
+    imports: [DatePipe, NgIf, GenericSquareCardComponent, NgForOf],
 })
 export class GenericSquareCardsRowComponent {
     @Input() cards: SquareCard[] = [];

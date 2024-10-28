@@ -35,19 +35,16 @@ export interface ContactsProvider {
 }
 
 export interface CreateProviderDto
-    extends Pick<
-        ContactsProvider,
-        | 'displayName'
-        | 'description'
-        | 'type'> {}
+    extends Pick<ContactsProvider, 'displayName' | 'description' | 'type'> {}
 
 @Injectable()
 export class ContactsService {
     private readonly domain: string;
 
-    private selectedProvider$$: Subject<ContactsProvider> = new Subject<ContactsProvider>();
-    selectedProvider$: Observable<ContactsProvider> = this.selectedProvider$$.asObservable();
-
+    private selectedProvider$$: Subject<ContactsProvider> =
+        new Subject<ContactsProvider>();
+    selectedProvider$: Observable<ContactsProvider> =
+        this.selectedProvider$$.asObservable();
 
     dialogConfig: DialogConfig = {
         visible: false,
@@ -57,13 +54,17 @@ export class ContactsService {
 
     private dialogSource$$: BehaviorSubject<DialogConfig> =
         new BehaviorSubject<DialogConfig>(this.dialogConfig);
-    dialogSource$: Observable<DialogConfig> = this.dialogSource$$.asObservable();
+    dialogSource$: Observable<DialogConfig> =
+        this.dialogSource$$.asObservable();
 
     constructor(private http: HttpClient) {
         this.domain = environment.backend;
     }
 
-    async getContactsProvider(organizationId: string, providerId: string): Promise<ContactsProvider> {
+    async getContactsProvider(
+        organizationId: string,
+        providerId: string,
+    ): Promise<ContactsProvider> {
         return firstValueFrom(
             this.http.get<ContactsProvider>(
                 `${this.domain}/organizations/${organizationId}/providers/contacts/${providerId}`,
@@ -71,7 +72,9 @@ export class ContactsService {
         );
     }
 
-    async getContactsProviders(organizationId: string): Promise<ContactsProvider[]> {
+    async getContactsProviders(
+        organizationId: string,
+    ): Promise<ContactsProvider[]> {
         return firstValueFrom(
             this.http.get<ContactsProvider[]>(
                 `${this.domain}/organizations/${organizationId}/providers/contacts`,
@@ -79,7 +82,10 @@ export class ContactsService {
         );
     }
 
-    async createContactsProvider(organizationId: string, provider: CreateProviderDto): Promise<ContactsProvider> {
+    async createContactsProvider(
+        organizationId: string,
+        provider: CreateProviderDto,
+    ): Promise<ContactsProvider> {
         return firstValueFrom(
             this.http.post<ContactsProvider>(
                 `${this.domain}/organizations/${organizationId}/providers/contacts`,
@@ -88,7 +94,10 @@ export class ContactsService {
         );
     }
 
-    async updateContactsProvider(organizationId: string, provider: ContactsProvider): Promise<ContactsProvider> {
+    async updateContactsProvider(
+        organizationId: string,
+        provider: ContactsProvider,
+    ): Promise<ContactsProvider> {
         const updatableFields: Partial<ContactsProvider> = {
             displayName: provider.displayName,
             description: provider.description,
@@ -104,14 +113,16 @@ export class ContactsService {
         );
     }
 
-    async removeContactsProvider(organizationId: string, providerId: string): Promise<void> {
+    async removeContactsProvider(
+        organizationId: string,
+        providerId: string,
+    ): Promise<void> {
         return firstValueFrom(
             this.http.delete<void>(
                 `${this.domain}/organizations/${organizationId}/providers/contacts/${providerId}`,
             ),
         );
     }
-
 
     // UI
 
@@ -133,5 +144,4 @@ export class ContactsService {
         this.dialogConfig = { visible: false };
         this.dialogSource$$.next(this.dialogConfig);
     }
-
 }

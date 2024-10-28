@@ -1,6 +1,12 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { ContactsProvider, ContactsService } from '../../../../services/contacts.service';
-import { Organization, OrganizationService } from '../../../../services/organization.service';
+import {
+    ContactsProvider,
+    ContactsService,
+} from '../../../../services/contacts.service';
+import {
+    Organization,
+    OrganizationService,
+} from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../../../../services/auth.service';
@@ -9,8 +15,9 @@ import { MessageUtils } from '../../../../utils/message.utils';
 import { firstValueFrom } from 'rxjs';
 import {
     CreateContactsProvider,
-    DeleteContactsProvider, ReadContactsProvider,
-    UpdateContactsProvider
+    DeleteContactsProvider,
+    ReadContactsProvider,
+    UpdateContactsProvider,
 } from '../../../../utils/permission.utils';
 import { Router } from '@angular/router';
 
@@ -24,7 +31,6 @@ export class ContactsProvidersComponent implements OnInit {
     loadingProviders: boolean = false;
 
     providers: ContactsProvider[] = [];
-
 
     canCreateProvider: boolean = false;
     canUpdateProvider: boolean = false;
@@ -42,37 +48,50 @@ export class ContactsProvidersComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.organizationService.currentOrganization$.pipe(
-            map(async(organization) => {
-                if (organization) {
-                    this.loadingProviders = true;
-                    await this.loadPermissions(organization);
-                    this.currentOrgSlug = organization.slug;
-                    this.providers = await this.contactsService.getContactsProviders(organization.slug);
-                    this.loadingProviders = false;
-                } else {
-                    this.providers = [];
-                    this.canCreateProvider = false;
-                    this.canUpdateProvider = false;
-                    this.canDeleteProvider = false;
-                }
-            }),
-            takeUntilDestroyed(this.destroyRef),
-        ).subscribe();
+        this.organizationService.currentOrganization$
+            .pipe(
+                map(async (organization) => {
+                    if (organization) {
+                        this.loadingProviders = true;
+                        await this.loadPermissions(organization);
+                        this.currentOrgSlug = organization.slug;
+                        this.providers =
+                            await this.contactsService.getContactsProviders(
+                                organization.slug,
+                            );
+                        this.loadingProviders = false;
+                    } else {
+                        this.providers = [];
+                        this.canCreateProvider = false;
+                        this.canUpdateProvider = false;
+                        this.canDeleteProvider = false;
+                    }
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
     }
 
     private async loadPermissions(organization: Organization) {
-
         this.canCreateProvider = await firstValueFrom(
-            this.authService.hasPermission$(CreateContactsProvider, organization.slug)
+            this.authService.hasPermission$(
+                CreateContactsProvider,
+                organization.slug,
+            ),
         );
 
         this.canUpdateProvider = await firstValueFrom(
-            this.authService.hasPermission$(UpdateContactsProvider, organization.slug)
+            this.authService.hasPermission$(
+                UpdateContactsProvider,
+                organization.slug,
+            ),
         );
 
         this.canDeleteProvider = await firstValueFrom(
-            this.authService.hasPermission$(DeleteContactsProvider, organization.slug)
+            this.authService.hasPermission$(
+                DeleteContactsProvider,
+                organization.slug,
+            ),
         );
     }
 
@@ -85,10 +104,7 @@ export class ContactsProvidersComponent implements OnInit {
             rejectLabel: $localize`Cancel`,
             accept: async () => {
                 await this.contactsService
-                    .removeContactsProvider(
-                        provider.organization,
-                        provider.id,
-                    )
+                    .removeContactsProvider(provider.organization, provider.id)
                     .then(() => {
                         this.messageService.add({
                             severity: 'success',
@@ -111,7 +127,9 @@ export class ContactsProvidersComponent implements OnInit {
     }
 
     async onInspectProvider(provider: ContactsProvider) {
-        await this.router.navigate([`/organization/${provider.organization}/audience/configuration/contacts-providers/${provider.id}`]);
+        await this.router.navigate([
+            `/organization/${provider.organization}/audience/configuration/contacts-providers/${provider.id}`,
+        ]);
     }
 
     onEditProvider(provider: ContactsProvider) {
@@ -124,5 +142,4 @@ export class ContactsProvidersComponent implements OnInit {
     }
 
     static permissions = [ReadContactsProvider];
-
 }

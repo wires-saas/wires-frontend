@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, firstValueFrom, Subject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { Slug } from '../utils/types.utils';
@@ -97,7 +97,9 @@ export class OrganizationService {
 
     async getPlan(organizationSlug: string): Promise<Plan> {
         return firstValueFrom(
-            this.http.get<Plan>(`${this.domain}/organizations/${organizationSlug}/plan`),
+            this.http.get<Plan>(
+                `${this.domain}/organizations/${organizationSlug}/plan`,
+            ),
         );
     }
 

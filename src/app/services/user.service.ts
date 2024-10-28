@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
-import { ExtendedRoleName, RoleName, UserRole } from '../utils/role.utils';
+import { ExtendedRoleName, UserRole } from '../utils/role.utils';
 import { Slug } from '../utils/types.utils';
 
 export enum UserEmailStatus {

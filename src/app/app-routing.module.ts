@@ -13,7 +13,6 @@ const routes: Routes = [
         path: '',
         component: AppLayoutComponent,
         children: [
-
             {
                 path: 'organization/:slug/studio',
                 data: { breadcrumb: $localize`Studio` },
@@ -112,7 +111,7 @@ const routes: Routes = [
                     import('./views/home/home.module').then(
                         (m) => m.HomeModule,
                     ),
-            }
+            },
         ],
     },
 

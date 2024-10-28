@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
     templateUrl: './not-found.component.html',
 })
 export class NotFoundComponent implements OnInit {
-
     data: {
         title?: string;
         message?: string;
@@ -17,5 +16,4 @@ export class NotFoundComponent implements OnInit {
     async ngOnInit() {
         this.data = this.activatedRoute.snapshot.data;
     }
-
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Block } from '../../../../../services/block.service';
 
 @Component({
@@ -6,7 +6,5 @@ import { Block } from '../../../../../services/block.service';
     templateUrl: './block-editor-preview.component.html',
 })
 export class BlockEditorPreviewComponent {
-
     @Input() block!: Block;
-
 }

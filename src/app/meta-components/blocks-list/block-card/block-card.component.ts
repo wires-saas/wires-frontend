@@ -6,12 +6,8 @@ import { DatePipe, NgIf } from '@angular/common';
 @Component({
     selector: 'app-block-card',
     templateUrl: './block-card.component.html',
-    imports: [
-        TagModule,
-        NgIf,
-        DatePipe
-    ],
-    standalone: true
+    imports: [TagModule, NgIf, DatePipe],
+    standalone: true,
 })
 export class BlockCardComponent {
     @Input() block!: Block;

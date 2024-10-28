@@ -6,17 +6,20 @@ import {
     FeedService,
 } from '../../../services/feed.service';
 import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
-import { Organization, OrganizationService } from '../../../services/organization.service';
+import {
+    Organization,
+    OrganizationService,
+} from '../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { Slug } from '../../../utils/types.utils';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
-    CreateContactsProvider,
-    CreateFeed, CreateFeedRun, DeleteContactsProvider, DeleteFeed,
+    CreateFeed,
+    CreateFeedRun,
+    DeleteFeed,
     ReadFeedRun,
-    UpdateContactsProvider,
-    UpdateFeed
+    UpdateFeed,
 } from '../../../utils/permission.utils';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
@@ -43,7 +46,6 @@ export class FeedsComponent implements OnInit {
     canRunFeed: boolean = false;
     canEditFeed: boolean = false;
     canDeleteFeed: boolean = false;
-
 
     constructor(
         private authService: AuthService,
@@ -85,21 +87,20 @@ export class FeedsComponent implements OnInit {
     }
 
     private async loadPermissions(organization: Organization) {
-
         this.canCreateFeed = await firstValueFrom(
-            this.authService.hasPermission$(CreateFeed, organization.slug)
+            this.authService.hasPermission$(CreateFeed, organization.slug),
         );
 
         this.canRunFeed = await firstValueFrom(
-            this.authService.hasPermission$(CreateFeedRun, organization.slug)
+            this.authService.hasPermission$(CreateFeedRun, organization.slug),
         );
 
         this.canEditFeed = await firstValueFrom(
-            this.authService.hasPermission$(UpdateFeed, organization.slug)
+            this.authService.hasPermission$(UpdateFeed, organization.slug),
         );
 
         this.canDeleteFeed = await firstValueFrom(
-            this.authService.hasPermission$(DeleteFeed, organization.slug)
+            this.authService.hasPermission$(DeleteFeed, organization.slug),
         );
 
         // TODO: Implement the following methods
@@ -127,33 +128,39 @@ export class FeedsComponent implements OnInit {
     }
 
     async onEnableFeed(feed: Feed) {
-        this.feedService.toggleFeed(feed.organization, feed._id, true).then(() => {
-            this.messageService.add({
-                severity: 'info',
-                summary: $localize`Success`,
-                detail: $localize`Feed "${feed.displayName}" enabled.`,
+        this.feedService
+            .toggleFeed(feed.organization, feed._id, true)
+            .then(() => {
+                this.messageService.add({
+                    severity: 'info',
+                    summary: $localize`Success`,
+                    detail: $localize`Feed "${feed.displayName}" enabled.`,
+                });
+            })
+            .catch((err) => {
+                console.error(err);
+                MessageUtils.parseServerError(this.messageService, err, {
+                    summary: $localize`Error enabling feed`,
+                });
             });
-        }).catch((err) => {
-            console.error(err);
-            MessageUtils.parseServerError(this.messageService, err, {
-                summary: $localize`Error enabling feed`,
-            });
-        });
     }
 
     async onDisableFeed(feed: Feed) {
-        this.feedService.toggleFeed(feed.organization, feed._id, false).then(() => {
-            this.messageService.add({
-                severity: 'info',
-                summary: $localize`Success`,
-                detail: $localize`Feed "${feed.displayName}" disabled.`,
+        this.feedService
+            .toggleFeed(feed.organization, feed._id, false)
+            .then(() => {
+                this.messageService.add({
+                    severity: 'info',
+                    summary: $localize`Success`,
+                    detail: $localize`Feed "${feed.displayName}" disabled.`,
+                });
+            })
+            .catch((err) => {
+                console.error(err);
+                MessageUtils.parseServerError(this.messageService, err, {
+                    summary: $localize`Error disabling feed`,
+                });
             });
-        }).catch((err) => {
-            console.error(err);
-            MessageUtils.parseServerError(this.messageService, err, {
-                summary: $localize`Error disabling feed`,
-            });
-        });
     }
 
     async onRunFeed(feed: Feed) {
@@ -187,7 +194,6 @@ export class FeedsComponent implements OnInit {
             });
     }
 
-
     onEditFeed(feed: Feed) {
         this.feedService.onFeedSelect(feed);
         this.feedService.showDialog($localize`Edit Feed`, false);
@@ -200,10 +206,7 @@ export class FeedsComponent implements OnInit {
             rejectLabel: $localize`Cancel`,
             accept: async () => {
                 await this.feedService
-                    .removeFeed(
-                        feed.organization,
-                        feed._id,
-                    )
+                    .removeFeed(feed.organization, feed._id)
                     .then(() => {
                         this.messageService.add({
                             severity: 'success',

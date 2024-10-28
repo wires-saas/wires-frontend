@@ -49,10 +49,12 @@ export class ArticlesTableComponent {
 
     @ViewChild('filter') filter!: ElementRef;
 
-    constructor(private filterService: FilterService,
-                private messageService: MessageService,
-                private tagService: TagService,
-                private confirmationService: ConfirmationService) {
+    constructor(
+        private filterService: FilterService,
+        private messageService: MessageService,
+        private tagService: TagService,
+        private confirmationService: ConfirmationService,
+    ) {
         // [matchModeOptions]="[{ value: 'hasFeed', label: 'Has Feed' }]"
 
         // TODO get matchModeOptions factorized, within table.utils.ts
@@ -67,8 +69,6 @@ export class ArticlesTableComponent {
 
         // this.filterService.filters['isPrimeNumber'](3);
     }
-
-
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal(
@@ -131,14 +131,12 @@ export class ArticlesTableComponent {
     }
 
     loadTag(tag: Tag) {
-
         this.selectedTag = tag;
 
         const filters = TableFilterUtils.convertTagRulesToFilters(tag.ruleset);
 
         // Apply table filters
         // this.table.filter('place', 'metadata.title', 'contains');
-
 
         Object.entries(filters).forEach(([field, filterMetadata]) => {
             if (filterMetadata.length > 0) {
@@ -158,11 +156,9 @@ export class ArticlesTableComponent {
             summary: 'Tag loaded',
             detail: `Tag "${tag.displayName}" has been loaded`,
         }); */
-
     }
 
     async openDeleteTagDialog(tag: Tag, e: Event) {
-
         this.confirmationService.confirm({
             key: 'confirmTagDeletion',
             target: e.target || new EventTarget(),
@@ -170,7 +166,6 @@ export class ArticlesTableComponent {
             icon: 'pi pi-exclamation-triangle',
             acceptButtonStyleClass: 'p-button-danger',
             accept: async () => {
-
                 if (!tag._id) throw new Error('Tag id not found');
                 await this.tagService.deleteTag(tag.organization, tag._id);
 

@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
     name: 'prettyjson',
     pure: true, // needs a new object reference to detect changes
-    standalone: true
+    standalone: true,
 })
 export class PrettyJsonPipe implements PipeTransform {
     transform(value: any, args: any[]): any {
@@ -20,11 +20,21 @@ export class PrettyJsonPipe implements PipeTransform {
             );
         } catch (e) {
             console.error(e);
-            return this.applyColors({ error: 'Invalid JSON' }, args[0], args[1], args[2]);
+            return this.applyColors(
+                { error: 'Invalid JSON' },
+                args[0],
+                args[1],
+                args[2],
+            );
         }
     }
 
-    applyColors(obj: any, showNumebrLine: boolean = false, padding: number = 4, darkMode: boolean = false) {
+    applyColors(
+        obj: any,
+        showNumebrLine: boolean = false,
+        padding: number = 4,
+        darkMode: boolean = false,
+    ) {
         // line number start from 1
         let line = 1;
 
@@ -35,7 +45,10 @@ export class PrettyJsonPipe implements PipeTransform {
         /**
          * Converts special charaters like &, <, > to equivalent HTML code of it
          */
-        obj = obj.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        obj = obj
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
         /* taken from https://stackoverflow.com/a/7220510 */
 
         /**
@@ -52,9 +65,13 @@ export class PrettyJsonPipe implements PipeTransform {
                 let themeClass = 'text-orange-300';
                 if (/^"/.test(match)) {
                     if (/:$/.test(match)) {
-                        themeClass = darkMode ? 'text-white font-bold' : 'text-gray-800 font-bold';
+                        themeClass = darkMode
+                            ? 'text-white font-bold'
+                            : 'text-gray-800 font-bold';
                     } else {
-                        themeClass = darkMode ? 'text-green-300' : 'text-green-600';
+                        themeClass = darkMode
+                            ? 'text-green-300'
+                            : 'text-green-600';
                     }
                 } else if (/true|false/.test(match)) {
                     themeClass = darkMode ? 'text-blue-300' : 'text-blue-600';
@@ -62,7 +79,7 @@ export class PrettyJsonPipe implements PipeTransform {
                     themeClass = 'text-gray-300';
                 }
                 return '<span class="' + themeClass + '">' + match + '</span>';
-            }
+            },
         );
 
         /**
@@ -70,10 +87,10 @@ export class PrettyJsonPipe implements PipeTransform {
          */
         return showNumebrLine
             ? obj.replace(
-                /^/gm,
-                () =>
-                    `<span class="text-gray-400 pl-3 select-none" >${String(line++).padEnd(padding)}</span>`
-            )
+                  /^/gm,
+                  () =>
+                      `<span class="text-gray-400 pl-3 select-none" >${String(line++).padEnd(padding)}</span>`,
+              )
             : obj;
     }
 }

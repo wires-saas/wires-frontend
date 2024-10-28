@@ -7,17 +7,25 @@ import { firstValueFrom } from 'rxjs';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-
-    constructor(private router: Router, private organizationService: OrganizationService) {
-    }
+    constructor(
+        private router: Router,
+        private organizationService: OrganizationService,
+    ) {}
 
     async ngOnInit() {
-
         // try to redirect to the last known organization
-        const lastOrg = await firstValueFrom(this.organizationService.currentOrganization$);
+        const lastOrg = await firstValueFrom(
+            this.organizationService.currentOrganization$,
+        );
         if (lastOrg) {
-            console.debug(`Redirecting to default organization page: /organization/${lastOrg.slug}/files`);
-            await this.router.navigate(['/organization', lastOrg.slug, 'files']);
+            console.debug(
+                `Redirecting to default organization page: /organization/${lastOrg.slug}/files`,
+            );
+            await this.router.navigate([
+                '/organization',
+                lastOrg.slug,
+                'files',
+            ]);
             return;
         }
 
@@ -25,11 +33,13 @@ export class HomeComponent implements OnInit {
         const organizations = await this.organizationService.getAll();
 
         if (organizations.length > 0) {
-            await this.router.navigate(['/organization', organizations[0].slug, 'files']);
+            await this.router.navigate([
+                '/organization',
+                organizations[0].slug,
+                'files',
+            ]);
         }
 
         // TODO else throw message that no organization is available
-
     }
-
 }

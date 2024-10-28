@@ -51,39 +51,41 @@ export class AppMenuComponent implements OnInit {
                     routerLink: [`/organization/${org.slug}/dashboards/blank`],
                 },
                 {
-                    label: $localize `Stats`,
+                    label: $localize`Stats`,
                     icon: 'pi pi-fw pi-file',
-                    routerLink: [`/organization/${org.slug}/dashboards/overview`],
-                }
+                    routerLink: [
+                        `/organization/${org.slug}/dashboards/overview`,
+                    ],
+                },
             ],
         },
     ];
 
-
-    private studioMenu: (
-        org: Organization,
-        authService: AuthService,
-    ) => any[] = (org, authService) => [
-        {
-            label: 'Studio',
-            items: [
-                {
-                    label: $localize`Blocks`,
-                    icon: 'pi pi-fw pi-objects-column',
-                    routerLink: [`/organization/${org.slug}/studio/blocks`],
-                    routerLinkActiveOptions: { exact: false },
-                    restriction: authService.hasAtLeast$(
-                        BlocksComponent.permissions,
-                        org.slug,
-                    ),
-                },
-                {
-                    label: $localize`Templates`,
-                    icon: 'pi pi-fw pi-file',
-                    routerLink: [`/organization/${org.slug}/studio/templates`]
-                }
-            ]
-        }];
+    private studioMenu: (org: Organization, authService: AuthService) => any[] =
+        (org, authService) => [
+            {
+                label: 'Studio',
+                items: [
+                    {
+                        label: $localize`Blocks`,
+                        icon: 'pi pi-fw pi-objects-column',
+                        routerLink: [`/organization/${org.slug}/studio/blocks`],
+                        routerLinkActiveOptions: { exact: false },
+                        restriction: authService.hasAtLeast$(
+                            BlocksComponent.permissions,
+                            org.slug,
+                        ),
+                    },
+                    {
+                        label: $localize`Templates`,
+                        icon: 'pi pi-fw pi-file',
+                        routerLink: [
+                            `/organization/${org.slug}/studio/templates`,
+                        ],
+                    },
+                ],
+            },
+        ];
 
     private audienceMenu: (
         org: Organization,
@@ -122,13 +124,15 @@ export class AppMenuComponent implements OnInit {
                 {
                     label: $localize`Configuration`,
                     icon: 'pi pi-fw pi-cog',
-                    routerLink: [`/organization/${org.slug}/audience/configuration`],
+                    routerLink: [
+                        `/organization/${org.slug}/audience/configuration`,
+                    ],
                     routerLinkActiveOptions: { exact: false },
                     restriction: authService.hasAtLeast$(
                         AudienceConfigurationComponent.permissions,
                         org.slug,
                     ),
-                }
+                },
             ],
         },
     ];
