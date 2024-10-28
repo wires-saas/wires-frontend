@@ -1,10 +1,10 @@
 import { Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import { EmailsProvider, Sender } from '../../../../../../services/emails.service';
-import { SendersService } from '../../../../../../services/senders.service';
-import { DialogConfig } from '../../../../../../services/feed.service';
-import { deepClone } from '../../../../../../utils/deep-clone';
+import { EmailsProvider, Sender } from '../../../../../../../services/emails.service';
+import { SenderService } from '../../../../../../../services/sender.service';
+import { DialogConfig } from '../../../../../../../services/feed.service';
+import { deepClone } from '../../../../../../../utils/deep-clone';
 
 @Component({
     selector: 'app-create-or-update-sender',
@@ -31,7 +31,7 @@ export class CreateOrUpdateSenderComponent implements OnInit {
     }
 
     constructor(
-        private sendersService: SendersService,
+        private sendersService: SenderService,
     ) {}
 
     ngOnInit(): void {

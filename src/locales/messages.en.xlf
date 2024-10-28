@@ -2306,6 +2306,42 @@
       <trans-unit id="7863305956986028878" datatype="html">
         <source>Edit Emails Provider</source>
       </trans-unit>
+      <trans-unit id="2483358638836463475" datatype="html">
+        <source>Ownership</source>
+      </trans-unit>
+      <trans-unit id="2798094361131252150" datatype="html">
+        <source>Add domain</source>
+      </trans-unit>
+      <trans-unit id="2956272170596607478" datatype="html">
+        <source>Error deleting domain</source>
+      </trans-unit>
+      <trans-unit id="3724258118318333315" datatype="html">
+        <source>Are you sure you want to permanently delete this domain ? It will prevent you from using any sender with this domain.</source>
+      </trans-unit>
+      <trans-unit id="3830666717087670529" datatype="html">
+        <source>SPF</source>
+      </trans-unit>
+      <trans-unit id="4613447774294875903" datatype="html">
+        <source>Create Domain</source>
+      </trans-unit>
+      <trans-unit id="5131102322166856386" datatype="html">
+        <source>Domain <x id="PH" equiv-text="domain"/></source>
+      </trans-unit>
+      <trans-unit id="5974304788136943605" datatype="html">
+        <source>Add domains for sending compliance</source>
+      </trans-unit>
+      <trans-unit id="6329004472625393198" datatype="html">
+        <source>Domain &quot;<x id="PH" equiv-text="domain"/>&quot; deleted successfully.</source>
+      </trans-unit>
+      <trans-unit id="6989105420146666473" datatype="html">
+        <source>Delete Domain &quot;<x id="PH" equiv-text="domain.domain"/>&quot;</source>
+      </trans-unit>
+      <trans-unit id="8590866686979801424" datatype="html">
+        <source>DKIM</source>
+      </trans-unit>
+      <trans-unit id="966975180773840600" datatype="html">
+        <source>Domain</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

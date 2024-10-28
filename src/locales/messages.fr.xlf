@@ -2959,7 +2959,7 @@
       </trans-unit>
       <trans-unit id="5159814115056353668" datatype="html">
         <source>Addresses</source>
-        <target state="new">Adresses</target>
+        <target state="new">Expéditeurs</target>
       </trans-unit>
       <trans-unit id="7535628778033915322" datatype="html">
         <source>Senders</source>
@@ -3072,6 +3072,54 @@
       <trans-unit id="4301510965414577066" datatype="html">
         <source>Create Emails Provider</source>
         <target state="new">Créer un nouveau routeur</target>
+      </trans-unit>
+      <trans-unit id="966975180773840600" datatype="html">
+        <source>Domain</source>
+        <target state="new">Domaine</target>
+      </trans-unit>
+      <trans-unit id="2483358638836463475" datatype="html">
+        <source>Ownership</source>
+        <target state="new">Propriété</target>
+      </trans-unit>
+      <trans-unit id="8590866686979801424" datatype="html">
+        <source>DKIM</source>
+        <target state="new">DKIM</target>
+      </trans-unit>
+      <trans-unit id="3830666717087670529" datatype="html">
+        <source>SPF</source>
+        <target state="new">SPF</target>
+      </trans-unit>
+      <trans-unit id="5974304788136943605" datatype="html">
+        <source>Add domains for sending compliance</source>
+        <target state="new">Ajoutez des domaines pour ne pas finir en spam</target>
+      </trans-unit>
+      <trans-unit id="2798094361131252150" datatype="html">
+        <source>Add domain</source>
+        <target state="new">Ajouter un domaine</target>
+      </trans-unit>
+      <trans-unit id="3724258118318333315" datatype="html">
+        <source>Are you sure you want to permanently delete this domain ? It will prevent you from using any sender with this domain.</source>
+        <target state="new">Êtes-vous certain de vouloir supprimer ce domaine ? Les expéditeurs l'utilisant seront désactivés.</target>
+      </trans-unit>
+      <trans-unit id="4613447774294875903" datatype="html">
+        <source>Create Domain</source>
+        <target state="new">Ajouter un nouveau domaine</target>
+      </trans-unit>
+      <trans-unit id="5131102322166856386" datatype="html">
+        <source>Domain <x id="PH" equiv-text="domain"/></source>
+        <target state="new">Domaine <x id="PH" equiv-text="domain"/></target>
+      </trans-unit>
+      <trans-unit id="6989105420146666473" datatype="html">
+        <source>Delete Domain &quot;<x id="PH" equiv-text="domain.domain"/>&quot;</source>
+        <target state="new">Supprimer le domaine &quot;<x id="PH" equiv-text="domain.domain"/>&quot;</target>
+      </trans-unit>
+      <trans-unit id="6329004472625393198" datatype="html">
+        <source>Domain &quot;<x id="PH" equiv-text="domain"/>&quot; deleted successfully.</source>
+        <target state="new">Domaine &quot;<x id="PH" equiv-text="domain"/>&quot; supprimé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="2956272170596607478" datatype="html">
+        <source>Error deleting domain</source>
+        <target state="new">Erreur lors de la suppression</target>
       </trans-unit>
     </body>
   </file>

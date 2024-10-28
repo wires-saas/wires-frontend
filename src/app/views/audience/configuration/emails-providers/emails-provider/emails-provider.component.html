@@ -7,6 +7,21 @@
     </app-generic-square-cards-row>
 
 
+    <div class="col-6">
+        <app-generic-data-card i18n-title title="Domains"
+                               i18n-subtitle subtitle="Add domains for sending compliance"
+                               i18n-buttonLabel buttonLabel="Add domain"
+                               buttonIcon="pi pi-plus"
+                               (buttonClick)="openCreateDomain()">
+            <app-domain-list [domains]="provider.domains"
+                             [loading]="loading"
+                             [canInspectDomain]="canUpdateProvider"
+                             (onInspectDomain)="openInspectDomain($event)"
+                             [canDeleteDomain]="canUpdateProvider"
+                             (onDeleteDomain)="openDeleteDomain($event)">
+            </app-domain-list>
+        </app-generic-data-card>
+    </div>
 
     <div class="col-6">
         <app-generic-data-card i18n-title title="Senders"
@@ -36,6 +51,12 @@
 
 <p-confirmDialog key="confirm-delete-sender" icon="pi pi-exclamation-triangle"
                  i18n-message message="Are you sure you want to permanently delete this sender ? It will prevent sendings relying on it."
+                 defaultFocus="none"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
+
+<p-confirmDialog key="confirm-delete-domain" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to permanently delete this domain ? It will prevent you from using any sender with this domain."
                  defaultFocus="none"
                  acceptButtonStyleClass="p-button-danger"
                  rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>

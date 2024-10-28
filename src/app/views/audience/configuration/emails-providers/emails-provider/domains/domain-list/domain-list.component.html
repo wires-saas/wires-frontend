@@ -1,0 +1,23 @@
+<app-generic-data-table [columns]="columns"
+                        [loading]="loading"
+                        [itemRowTemplate]="itemRowTemplate"
+                        [items]="domains" (itemSelect)="onInspectDomain.emit($event)">
+    <ng-template #itemRowTemplate let-domain>
+        <td>
+            {{ domain.domain }}
+        </td>
+        <td>
+            {{ domain.ownership }}
+        </td>
+        <td>
+            {{ domain.dkim }}
+        </td>
+        <td>
+            {{ domain.spf }}
+        </td>
+        <td>
+            <!-- TODO status based on DNS approval -->
+            <app-status-badge [value]="domain"></app-status-badge>
+        </td>
+    </ng-template>
+</app-generic-data-table>

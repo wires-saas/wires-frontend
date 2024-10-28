@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
-export class SendersService {
+export class SenderService {
     private readonly domain: string;
 
     private selectedSender$$: Subject<Sender> =

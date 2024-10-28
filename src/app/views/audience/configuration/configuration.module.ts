@@ -42,15 +42,17 @@ import { EmailsProviderListComponent } from './emails-providers/emails-provider-
 import { CreateOrUpdateEmailsProviderComponent } from './emails-providers/create-or-update-emails-provider/create-or-update-emails-provider.component';
 import { EmailsProvidersComponent } from './emails-providers/emails-providers.component';
 import { EmailsService } from '../../../services/emails.service';
-import { SenderListComponent } from './emails-providers/emails-provider/sender-list/sender-list.component';
+import { SenderListComponent } from './emails-providers/emails-provider/senders/sender-list/sender-list.component';
 import { DurationPipe } from '../../../utils/pipes/duration.pipe';
 import { GenericDataTableComponent } from '../../../meta-components/generic-data-table/generic-data-table.component';
 import { StatusBadgeModule } from '../../../meta-components/status-badge/status-badge.module';
 import {
     CreateOrUpdateSenderComponent
-} from './emails-providers/emails-provider/create-or-update-sender/create-or-update-sender.component';
+} from './emails-providers/emails-provider/senders/create-or-update-sender/create-or-update-sender.component';
 import { ApiService } from '../../../services/api.service';
-import { SendersService } from '../../../services/senders.service';
+import { SenderService } from '../../../services/sender.service';
+import { DomainListComponent } from './emails-providers/emails-provider/domains/domain-list/domain-list.component';
+import { DomainService } from '../../../services/domain.service';
 
 @NgModule({
     imports: [
@@ -103,6 +105,8 @@ import { SendersService } from '../../../services/senders.service';
 
         SenderListComponent,
         CreateOrUpdateSenderComponent,
+
+        DomainListComponent,
     ],
     providers: [
         ApiService,
@@ -110,7 +114,8 @@ import { SendersService } from '../../../services/senders.service';
         ConfirmationService,
         ContactsService,
         EmailsService,
-        SendersService,
+        DomainService,
+        SenderService,
     ],
 })
 export class ConfigurationModule {}

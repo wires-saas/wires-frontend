@@ -19,6 +19,23 @@ export interface Sender {
     name: string;
 }
 
+export interface Domain {
+    domain: string;
+    status: string;
+
+    ownership: boolean;
+    ownershipRecordName: string;
+    ownershipRecordValue: string;
+
+    dkim: boolean;
+    dkimRecordName: string;
+    dkimRecordValue: string;
+
+    spf: boolean;
+    spfRecordName: string;
+    spfRecordValue: string;
+}
+
 export interface EmailsProvider {
     id: string;
 
@@ -34,7 +51,7 @@ export interface EmailsProvider {
 
     senders: Sender[];
 
-    domains: string[];
+    domains: Domain[];
 
     authorizationType?: AuthorizationType;
     authorizationUsername?: string;

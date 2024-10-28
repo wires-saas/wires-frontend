@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CapitalizePipe } from '../../../../../utils/pipes/capitalize.pipe';
 import {
+    Domain,
     EmailsProvider,
     EmailsService, Sender,
 } from '../../../../../services/emails.service';
@@ -13,9 +14,10 @@ import {
 } from '../../../../../utils/permission.utils';
 import { AuthService } from '../../../../../services/auth.service';
 import { Slug } from '../../../../../utils/types.utils';
-import { SendersService } from '../../../../../services/senders.service';
+import { SenderService } from '../../../../../services/sender.service';
 import { ApiService } from '../../../../../services/api.service';
 import { ConfirmationService } from 'primeng/api';
+import { DomainService } from '../../../../../services/domain.service';
 
 @Component({
     selector: 'app-emails-provider',
@@ -45,7 +47,8 @@ export class EmailsProviderComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private emailsService: EmailsService,
-        private sendersService: SendersService,
+        private senderService: SenderService,
+        private domainService: DomainService,
         private confirmationService: ConfirmationService,
     ) {}
 
@@ -84,12 +87,12 @@ export class EmailsProviderComponent implements OnInit {
                 {
                     icon: 'pi pi-globe',
                     title: $localize`Domains`,
-                    description: 3,
+                    description: this.provider.domains.length,
                 },
                 {
                     icon: 'pi pi-at',
                     title: $localize`Addresses`,
-                    description: 2,
+                    description: this.provider.senders.length,
                 },
             ];
 
@@ -120,21 +123,22 @@ export class EmailsProviderComponent implements OnInit {
                 organizationSlug,
             ),
         );
+
+        // TODO distinct permissions for senders and domains ?
     }
 
     openCreateSender() {
-        this.sendersService.showDialog($localize`Create Sender`, true);
+        this.senderService.showDialog($localize`Create Sender`, true);
     }
 
     openEditSender(sender: any) {
-        this.sendersService.selectSender(sender);
-        this.sendersService.showDialog($localize`Edit Sender`, false);
+        this.senderService.selectSender(sender);
+        this.senderService.showDialog($localize`Edit Sender`, false);
     }
 
     openDeleteSender(sender: any) {
-        if (!this.canUpdateProvider) return;
 
-        this.sendersService.closeDialog();
+        this.senderService.closeDialog();
 
         this.confirmationService.confirm({
             header: $localize `Delete Sender "${sender.email}"`,
@@ -143,7 +147,7 @@ export class EmailsProviderComponent implements OnInit {
             rejectLabel: $localize`Cancel`,
             accept: async () => {
                 await this.apiService.wrap(
-                    this.sendersService
+                    this.senderService
                         .removeSender(this.organizationSlug, this.providerId, sender),
                     $localize`Sender "${sender.email}" deleted successfully.`,
                     $localize`Error deleting sender`,
@@ -155,23 +159,56 @@ export class EmailsProviderComponent implements OnInit {
     async onCreateSender(sender: Sender) {
 
         await this.apiService.wrap(
-            this.sendersService
+            this.senderService
                 .createSender(this.organizationSlug, this.providerId, sender),
             $localize`Sender "${sender.email}" created successfully.`,
             $localize`Error creating sender`,
         );
 
-        this.sendersService.closeDialog();
+        this.senderService.closeDialog();
     }
 
     async onEditSender(sender: Sender) {
         await this.apiService.wrap(
-            this.sendersService
+            this.senderService
                 .updateSenders(this.organizationSlug, this.providerId, [sender]),
             $localize`Sender "${sender.email}" updated successfully.`,
             $localize`Error updating sender`,
         );
 
-        this.sendersService.closeDialog();
+        this.senderService.closeDialog();
+    }
+
+
+
+    // For domains
+
+    openCreateDomain() {
+        this.domainService.showDialog($localize`Create Domain`, true);
+    }
+
+    openInspectDomain(domain: Domain) {
+        this.domainService.selectDomain(domain);
+        this.domainService.showDialog($localize`Domain ${domain}`, false);
+    }
+
+    openDeleteDomain(domain: Domain) {
+
+        this.domainService.closeDialog();
+
+        this.confirmationService.confirm({
+            header: $localize `Delete Domain "${domain.domain}"`,
+            key: 'confirm-delete-domain',
+            acceptLabel: $localize`Confirm`,
+            rejectLabel: $localize`Cancel`,
+            accept: async () => {
+                await this.apiService.wrap(
+                    this.domainService
+                        .removeDomain(this.organizationSlug, this.providerId, domain),
+                    $localize`Domain "${domain}" deleted successfully.`,
+                    $localize`Error deleting domain`,
+                );
+            },
+        });
     }
 }
