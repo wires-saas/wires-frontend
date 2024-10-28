@@ -1,30 +1,30 @@
 <div class="grid">
     <div class="col-12 md:col-12 xl:col-12 ">
 
-        <app-generic-data-card i18n-title title="Contacts Providers"
-                               i18n-subtitle subtitle="Use our default provider or plug your own to manage contacts"
-                               i18n-buttonLabel buttonLabel="Fetch contacts"
+        <app-generic-data-card i18n-title title="Emails Routers"
+                               i18n-subtitle subtitle="Use our default router or plug your own to start sending emails"
+                               i18n-buttonLabel buttonLabel="Send emails"
                                buttonIcon="pi pi-plus"
                                (buttonClick)="showDialog()">
-            <app-contacts-provider-list [loading]="loadingProviders"
+            <app-emails-provider-list [loading]="loadingProviders"
                                         [providers]="providers"
                                         (onInspectProvider)="onInspectProvider($event)"
                                         [canEditProvider]="canUpdateProvider"
                                         (onEditProvider)="onEditProvider($event)"
                                         [canDeleteProvider]="canDeleteProvider"
                                         (onDeleteProvider)="onDeleteProvider($event)"
-            ></app-contacts-provider-list>
+            ></app-emails-provider-list>
         </app-generic-data-card>
 
     </div>
 </div>
 
-<app-create-or-update-contacts-provider *ngIf="currentOrgSlug" [organizationSlug]="currentOrgSlug">
-</app-create-or-update-contacts-provider>
+<app-create-or-update-emails-provider *ngIf="currentOrgSlug" [organizationSlug]="currentOrgSlug">
+</app-create-or-update-emails-provider>
 
 
-<p-confirmDialog i18n-header header="Permanently Delete Provider" key="confirm-delete-contacts-provider" icon="pi pi-exclamation-triangle"
-                 i18n-message message="Are you sure you want to permanently delete this contacts provider ? It will prevent sendings relying on it."
+<p-confirmDialog i18n-header header="Permanently Delete Provider" key="confirm-delete-emails-provider" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to permanently delete this emails provider ? It will prevent sendings relying on it."
                  defaultFocus="none"
                  acceptButtonStyleClass="p-button-danger"
                  rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>

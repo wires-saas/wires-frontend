@@ -13,10 +13,10 @@ import {
 } from '../../../../../services/contacts.service';
 
 @Component({
-    selector: 'app-create-or-update-contacts-provider',
-    templateUrl: './create-or-update-contacts-provider.component.html',
+    selector: 'app-create-or-update-emails-provider',
+    templateUrl: './create-or-update-emails-provider.component.html',
 })
-export class CreateOrUpdateContactsProviderComponent implements OnInit {
+export class CreateOrUpdateEmailsProviderComponent implements OnInit {
     @Input() organizationSlug!: string;
 
     private destroyRef = inject(DestroyRef);

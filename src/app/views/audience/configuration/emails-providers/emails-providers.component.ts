@@ -1,5 +1,4 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { ContactsProvider, ContactsService } from '../../../../services/contacts.service';
 import { Organization, OrganizationService } from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
@@ -8,22 +7,21 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { firstValueFrom } from 'rxjs';
 import {
-    CreateContactsProvider,
-    DeleteContactsProvider, ReadContactsProvider,
-    UpdateContactsProvider
+    CreateEmailsProvider, DeleteEmailsProvider, ReadEmailsProvider, UpdateEmailsProvider
 } from '../../../../utils/permission.utils';
 import { Router } from '@angular/router';
+import { EmailsProvider, EmailsService } from '../../../../services/emails.service';
 
 @Component({
-    selector: 'app-contacts-providers',
-    templateUrl: './contacts-providers.component.html',
+    selector: 'app-emails-providers',
+    templateUrl: './emails-providers.component.html',
 })
-export class ContactsProvidersComponent implements OnInit {
+export class EmailsProvidersComponent implements OnInit {
     private destroyRef = inject(DestroyRef);
 
     loadingProviders: boolean = false;
 
-    providers: ContactsProvider[] = [];
+    providers: EmailsProvider[] = [];
 
 
     canCreateProvider: boolean = false;
@@ -34,7 +32,7 @@ export class ContactsProvidersComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
-        private contactsService: ContactsService,
+        private emailsService: EmailsService,
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
         private organizationService: OrganizationService,
@@ -48,7 +46,7 @@ export class ContactsProvidersComponent implements OnInit {
                     this.loadingProviders = true;
                     await this.loadPermissions(organization);
                     this.currentOrgSlug = organization.slug;
-                    this.providers = await this.contactsService.getContactsProviders(organization.slug);
+                    this.providers = await this.emailsService.getEmailsProviders(organization.slug);
                     this.loadingProviders = false;
                 } else {
                     this.providers = [];
@@ -64,28 +62,28 @@ export class ContactsProvidersComponent implements OnInit {
     private async loadPermissions(organization: Organization) {
 
         this.canCreateProvider = await firstValueFrom(
-            this.authService.hasPermission$(CreateContactsProvider, organization.slug)
+            this.authService.hasPermission$(CreateEmailsProvider, organization.slug)
         );
 
         this.canUpdateProvider = await firstValueFrom(
-            this.authService.hasPermission$(UpdateContactsProvider, organization.slug)
+            this.authService.hasPermission$(UpdateEmailsProvider, organization.slug)
         );
 
         this.canDeleteProvider = await firstValueFrom(
-            this.authService.hasPermission$(DeleteContactsProvider, organization.slug)
+            this.authService.hasPermission$(DeleteEmailsProvider, organization.slug)
         );
     }
 
-    onDeleteProvider(provider: ContactsProvider) {
+    onDeleteProvider(provider: EmailsProvider) {
         if (!this.canDeleteProvider) return;
 
         this.confirmationService.confirm({
-            key: 'confirm-delete-contacts-provider',
+            key: 'confirm-delete-emails-provider',
             acceptLabel: $localize`Confirm`,
             rejectLabel: $localize`Cancel`,
             accept: async () => {
-                await this.contactsService
-                    .removeContactsProvider(
+                await this.emailsService
+                    .removeEmailsProvider(
                         provider.organization,
                         provider.id,
                     )
@@ -110,19 +108,19 @@ export class ContactsProvidersComponent implements OnInit {
         });
     }
 
-    async onInspectProvider(provider: ContactsProvider) {
-        await this.router.navigate([`/organization/${provider.organization}/audience/configuration/contacts-providers/${provider.id}`]);
+    async onInspectProvider(provider: EmailsProvider) {
+        await this.router.navigate([`/organization/${provider.organization}/audience/configuration/emails-providers/${provider.id}`]);
     }
 
-    onEditProvider(provider: ContactsProvider) {
-        this.contactsService.selectContactsProvider(provider);
-        this.contactsService.showDialog($localize`Edit Provider`, false);
+    onEditProvider(provider: EmailsProvider) {
+        this.emailsService.selectEmailsProvider(provider);
+        this.emailsService.showDialog($localize`Edit Provider`, false);
     }
 
     showDialog() {
-        this.contactsService.showDialog($localize`Create Provider`, true);
+        this.emailsService.showDialog($localize`Create Provider`, true);
     }
 
-    static permissions = [ReadContactsProvider];
+    static permissions = [ReadEmailsProvider];
 
 }

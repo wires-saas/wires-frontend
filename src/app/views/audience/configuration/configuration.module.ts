@@ -45,6 +45,13 @@ import {
     CreateOrUpdateContactsProviderComponent
 } from './contacts-providers/create-or-update-contacts-provider/create-or-update-contacts-provider.component';
 import { ConfigurationRoutingModule } from './configuration-routing.module';
+import { EmailsProviderComponent } from './emails-providers/emails-provider/emails-provider.component';
+import { EmailsProviderListComponent } from './emails-providers/emails-provider-list/emails-provider-list.component';
+import {
+    CreateOrUpdateEmailsProviderComponent
+} from './emails-providers/create-or-update-emails-provider/create-or-update-emails-provider.component';
+import { EmailsProvidersComponent } from './emails-providers/emails-providers.component';
+import { EmailsService } from '../../../services/emails.service';
 
 @NgModule({
     imports: [
@@ -85,7 +92,18 @@ import { ConfigurationRoutingModule } from './configuration-routing.module';
         ContactsProvidersComponent,
         ContactsProviderComponent,
         ContactsProviderListComponent,
-        CreateOrUpdateContactsProviderComponent],
-    providers: [MessageService, ContactsService, ConfirmationService],
+        CreateOrUpdateContactsProviderComponent,
+
+        EmailsProvidersComponent,
+        EmailsProviderComponent,
+        EmailsProviderListComponent,
+        CreateOrUpdateEmailsProviderComponent,
+    ],
+    providers: [
+        MessageService,
+        ContactsService,
+        EmailsService,
+        ConfirmationService
+    ],
 })
 export class ConfigurationModule {}

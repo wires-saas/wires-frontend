@@ -1,0 +1,11 @@
+<app-generic-layout-single-instance *ngIf="provider"
+                                    [title]="title"
+                                    i18n-buttonLabel buttonLabel="Return to providers list"
+                                    [buttonLink]="['/organization', organizationSlug, 'audience', 'configuration']">
+
+    <app-generic-square-cards-row class="grid col-12" [cards]="cards">
+    </app-generic-square-cards-row>
+
+    {{ provider | json }}
+
+</app-generic-layout-single-instance>

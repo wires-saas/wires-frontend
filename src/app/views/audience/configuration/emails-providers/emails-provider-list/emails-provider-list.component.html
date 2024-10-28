@@ -1,0 +1,39 @@
+<app-generic-data-list
+    i18n-title title="Available Providers"
+    i18n-emptyMessage emptyMessage="No emails provider found, create your first provider or contact us for a custom integration"
+    [items]="providers"
+    [loading]="loading"
+    [itemTemplate]="providerTemplate"
+    [withItemMenu]="true"
+
+    [canInspect]="true"
+    i18n-inspectLabel inspectLabel="Inspect"
+    (onInspect)="onInspectProvider.emit($event)"
+
+    [canEdit]="canEditProvider"
+    (onEdit)="onEditProvider.emit($event)"
+    [canDelete]="canDeleteProvider"
+    (onDelete)="onDeleteProvider.emit($event)"
+
+    (onItemClick)="onInspectProvider.emit($event)"
+>
+
+    <!-- Template for each provider item -->
+    <ng-template #providerTemplate let-provider let-index="index">
+
+        <div class="flex align-items-center">
+            <div class="flex align-items-center"
+                 style="flex-grow: 1 !important; flex-shrink: 1 !important; flex-basis:33% !important;">
+                <label [for]="index" class="font-medium ml-2 cursor-pointer">
+                    {{ provider.displayName }}
+                    <i *ngIf="provider.isDefault" i18n-pTooltip pTooltip="Default provider" tooltipPosition="bottom" class="pi pi-star-fill cursor-pointer"></i>
+                    <i *ngIf="provider.isVerified" i18n-pTooltip pTooltip="Operational" tooltipPosition="bottom" class="pi pi-verified cursor-pointer"></i>
+                </label>
+            </div>
+        </div>
+
+
+    </ng-template>
+</app-generic-data-list>
+
+<p-toast position="bottom-right"/>

@@ -4,7 +4,7 @@ import { AuthorizationType, DialogConfig, Feed } from './feed.service';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-export enum ContactsProviderType {
+export enum EmailsProviderType {
     Internal = 'internal',
 
     Brevo = 'brevo',
@@ -14,7 +14,7 @@ export enum ContactsProviderType {
     Mailchimp = 'mailchimp',
 }
 
-export interface ContactsProvider {
+export interface EmailsProvider {
     id: string;
 
     organization: string;
@@ -22,32 +22,29 @@ export interface ContactsProvider {
     displayName: string;
     description: string;
 
-    type: ContactsProviderType;
+    type: EmailsProviderType;
 
     isDefault: boolean;
     isVerified: boolean;
-
-    externallyManaged: boolean;
 
     authorizationType?: AuthorizationType;
     authorizationUsername?: string;
     authorizationToken?: string;
 }
 
-export interface CreateProviderDto
+export interface CreateEmailsProviderDto
     extends Pick<
-        ContactsProvider,
+        EmailsProvider,
         | 'displayName'
         | 'description'
         | 'type'> {}
 
 @Injectable()
-export class ContactsService {
+export class EmailsService {
     private readonly domain: string;
 
-    private selectedProvider$$: Subject<ContactsProvider> = new Subject<ContactsProvider>();
-    selectedProvider$: Observable<ContactsProvider> = this.selectedProvider$$.asObservable();
-
+    private selectedProvider$$: Subject<EmailsProvider> = new Subject<EmailsProvider>();
+    selectedProvider$: Observable<EmailsProvider> = this.selectedProvider$$.asObservable();
 
     dialogConfig: DialogConfig = {
         visible: false,
@@ -63,33 +60,33 @@ export class ContactsService {
         this.domain = environment.backend;
     }
 
-    async getContactsProvider(organizationId: string, providerId: string): Promise<ContactsProvider> {
+    async getEmailsProvider(organizationId: string, providerId: string): Promise<EmailsProvider> {
         return firstValueFrom(
-            this.http.get<ContactsProvider>(
-                `${this.domain}/organizations/${organizationId}/providers/contacts/${providerId}`,
+            this.http.get<EmailsProvider>(
+                `${this.domain}/organizations/${organizationId}/providers/emails/${providerId}`,
             ),
         );
     }
 
-    async getContactsProviders(organizationId: string): Promise<ContactsProvider[]> {
+    async getEmailsProviders(organizationId: string): Promise<EmailsProvider[]> {
         return firstValueFrom(
-            this.http.get<ContactsProvider[]>(
-                `${this.domain}/organizations/${organizationId}/providers/contacts`,
+            this.http.get<EmailsProvider[]>(
+                `${this.domain}/organizations/${organizationId}/providers/emails`,
             ),
         );
     }
 
-    async createContactsProvider(organizationId: string, provider: CreateProviderDto): Promise<ContactsProvider> {
+    async createEmailsProvider(organizationId: string, provider: CreateEmailsProviderDto): Promise<EmailsProvider> {
         return firstValueFrom(
-            this.http.post<ContactsProvider>(
-                `${this.domain}/organizations/${organizationId}/providers/contacts`,
+            this.http.post<EmailsProvider>(
+                `${this.domain}/organizations/${organizationId}/providers/emails`,
                 provider,
             ),
         );
     }
 
-    async updateContactsProvider(organizationId: string, provider: ContactsProvider): Promise<ContactsProvider> {
-        const updatableFields: Partial<ContactsProvider> = {
+    async updateEmailsProvider(organizationId: string, provider: EmailsProvider): Promise<EmailsProvider> {
+        const updatableFields: Partial<EmailsProvider> = {
             displayName: provider.displayName,
             description: provider.description,
         };
@@ -97,17 +94,17 @@ export class ContactsService {
         // TODO emit update to providers$$
 
         return firstValueFrom(
-            this.http.patch<ContactsProvider>(
-                `${this.domain}/organizations/${organizationId}/providers/contacts/${provider.id}`,
+            this.http.patch<EmailsProvider>(
+                `${this.domain}/organizations/${organizationId}/providers/emails/${provider.id}`,
                 updatableFields,
             ),
         );
     }
 
-    async removeContactsProvider(organizationId: string, providerId: string): Promise<void> {
+    async removeEmailsProvider(organizationId: string, providerId: string): Promise<void> {
         return firstValueFrom(
             this.http.delete<void>(
-                `${this.domain}/organizations/${organizationId}/providers/contacts/${providerId}`,
+                `${this.domain}/organizations/${organizationId}/providers/emails/${providerId}`,
             ),
         );
     }
@@ -115,7 +112,7 @@ export class ContactsService {
 
     // UI
 
-    selectContactsProvider(provider: ContactsProvider) {
+    selectEmailsProvider(provider: EmailsProvider) {
         this.selectedProvider$$.next(provider);
     }
 

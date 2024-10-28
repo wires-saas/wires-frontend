@@ -2,36 +2,37 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ContactsProvider, ContactsService } from '../../../../../services/contacts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CapitalizePipe } from '../../../../../utils/pipes/capitalize.pipe';
+import { EmailsProvider, EmailsService } from '../../../../../services/emails.service';
 
 @Component({
-    selector: 'app-contacts-provider',
-    templateUrl: './contacts-provider.component.html',
+    selector: 'app-emails-provider',
+    templateUrl: './emails-provider.component.html',
 })
-export class ContactsProviderComponent implements OnInit {
+export class EmailsProviderComponent implements OnInit {
     private destroyRef = inject(DestroyRef);
 
     organizationSlug!: string;
     providerId!: string;
 
-    provider: ContactsProvider | undefined;
+    provider: EmailsProvider | undefined;
     cards: any[] = []; // TODO type
 
     get title() {
-        return $localize`Contacts Provider "${this.provider?.displayName}"`;
+        return $localize`Emails Provider "${this.provider?.displayName}"`;
     }
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private contactsService: ContactsService,
+        private emailsService: EmailsService,
     ) {}
 
     async ngOnInit() {
         this.organizationSlug = this.route.snapshot.params['slug'];
         this.providerId = this.route.snapshot.params['providerId'];
 
-        this.provider = await this.contactsService
-            .getContactsProvider(this.organizationSlug, this.providerId)
+        this.provider = await this.emailsService
+            .getEmailsProvider(this.organizationSlug, this.providerId)
             .catch((error) => {
                 console.error(error);
                 this.router.navigateByUrl('/not-found');
@@ -52,7 +53,7 @@ export class ContactsProviderComponent implements OnInit {
                 },
                 {
                     icon: 'pi pi-list',
-                    title: $localize `Sender Domains`,
+                    title: $localize `Contacts Lists`,
                     description: 3
                 }, {
                     icon: 'pi pi-users',
