@@ -82,14 +82,13 @@ export class CreateOrUpdateContactsProviderComponent implements OnInit {
                 console.error(err);
 
                 MessageUtils.parseServerError(this.messageService, err, {
-                    summary: $localize`Error updating feed`,
+                    summary: $localize`Error updating provider`,
                 });
             })
             .finally(() => (this.saving = false));
     }
 
     async createProvider() {
-        // TODO preview some articles fetched from the feed
         this.saving = true;
 
         await this.contactsService
@@ -110,7 +109,7 @@ export class CreateOrUpdateContactsProviderComponent implements OnInit {
                 console.error(err);
 
                 MessageUtils.parseServerError(this.messageService, err, {
-                    summary: $localize`Error creating feed`,
+                    summary: $localize`Error creating provider`,
                 });
             })
             .finally(() => (this.saving = false));
@@ -132,9 +131,5 @@ export class CreateOrUpdateContactsProviderComponent implements OnInit {
             displayName: '',
             description: '',
         };
-    }
-
-    onClickURL(e: { value: string }) {
-        window.open(e.value, '_blank');
     }
 }

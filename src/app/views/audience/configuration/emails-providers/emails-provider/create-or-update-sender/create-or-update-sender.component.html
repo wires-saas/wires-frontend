@@ -1,0 +1,38 @@
+<p-dialog [header]="dialogConfig.header || ''"
+          [(visible)]="dialogConfig.visible"
+          [modal]="true"
+          [dismissableMask]="true"
+          styleClass="mx-3 sm:mx-0 sm:w-full md:w-8 lg:w-6"
+          contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
+    <div class="p-4">
+        <div class="grid p-fluid formgrid">
+            <div class="col-12 field">
+                <label for="sender-name" class="text-900 font-semibold" i18n>Sender Name</label>
+                <input id="sender-name" type="text" i18n-placeholder placeholder="John Doe" pInputText [(ngModel)]="sender.name" />
+            </div>
+            <div class="col-12 field">
+                <label for="sender-email" class="text-900 font-semibold" i18n>Sender Email</label>
+                <input id="sender-email" type="text" i18n-placeholder placeholder="johndoe@domain.com" pInputText [(ngModel)]="sender.email" />
+            </div>
+            <div class="col-12 flex justify-content-between mt-4">
+
+                <div>
+                    <button *ngIf="!creation && sender.email" (click)="onDeleteSender.emit(sender)"
+                            pButton pRipple class="p-button-outlined p-button-danger w-12rem" icon="pi pi-trash" i18n-label label="Delete"></button>
+                </div>
+
+                <div>
+                    <button (click)="cancel()" [disabled]="saving" pButton pRipple class="p-button-outlined w-10rem mr-3" icon="pi pi-times" i18n-label label="Cancel"></button>
+
+                    <button *ngIf="creation; else onlySave" (click)="onCreateSender.emit(sender)" [disabled]="!canSave()" [loading]="saving"
+                            pButton pRipple class="p-button-primary w-20rem" icon="pi pi-check" i18n-label label="Save"></button>
+                </div>
+
+                <ng-template #onlySave>
+                    <button (click)="onEditSender.emit(sender)" [disabled]="!canSave()" [loading]="saving"
+                            pButton pRipple class="p-button-primary w-12rem" icon="pi pi-check" i18n-label label="Save"></button>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</p-dialog>

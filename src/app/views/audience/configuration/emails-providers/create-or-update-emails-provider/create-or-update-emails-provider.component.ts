@@ -82,7 +82,7 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
                 console.error(err);
 
                 MessageUtils.parseServerError(this.messageService, err, {
-                    summary: $localize`Error updating feed`,
+                    summary: $localize`Error updating provider`,
                 });
             })
             .finally(() => (this.saving = false));
@@ -109,7 +109,7 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
                 console.error(err);
 
                 MessageUtils.parseServerError(this.messageService, err, {
-                    summary: $localize`Error creating feed`,
+                    summary: $localize`Error creating provider`,
                 });
             })
             .finally(() => (this.saving = false));
@@ -132,9 +132,5 @@ export class CreateOrUpdateEmailsProviderComponent implements OnInit {
             senders: [],
             domains: [],
         };
-    }
-
-    onClickURL(e: { value: string }) {
-        window.open(e.value, '_blank');
     }
 }

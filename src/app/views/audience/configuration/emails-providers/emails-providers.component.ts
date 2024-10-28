@@ -134,11 +134,11 @@ export class EmailsProvidersComponent implements OnInit {
 
     onEditProvider(provider: EmailsProvider) {
         this.emailsService.selectEmailsProvider(provider);
-        this.emailsService.showDialog($localize`Edit Provider`, false);
+        this.emailsService.showDialog($localize`Edit Emails Provider`, false);
     }
 
-    showDialog() {
-        this.emailsService.showDialog($localize`Create Provider`, true);
+    onCreateProvider() {
+        this.emailsService.showDialog($localize`Create Emails Provider`, true);
     }
 
     static permissions = [ReadEmailsProvider];

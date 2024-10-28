@@ -46,6 +46,11 @@ import { SenderListComponent } from './emails-providers/emails-provider/sender-l
 import { DurationPipe } from '../../../utils/pipes/duration.pipe';
 import { GenericDataTableComponent } from '../../../meta-components/generic-data-table/generic-data-table.component';
 import { StatusBadgeModule } from '../../../meta-components/status-badge/status-badge.module';
+import {
+    CreateOrUpdateSenderComponent
+} from './emails-providers/emails-provider/create-or-update-sender/create-or-update-sender.component';
+import { ApiService } from '../../../services/api.service';
+import { SendersService } from '../../../services/senders.service';
 
 @NgModule({
     imports: [
@@ -97,12 +102,15 @@ import { StatusBadgeModule } from '../../../meta-components/status-badge/status-
         CreateOrUpdateEmailsProviderComponent,
 
         SenderListComponent,
+        CreateOrUpdateSenderComponent,
     ],
     providers: [
+        ApiService,
         MessageService,
+        ConfirmationService,
         ContactsService,
         EmailsService,
-        ConfirmationService,
+        SendersService,
     ],
 })
 export class ConfigurationModule {}

@@ -13,14 +13,11 @@
                                i18n-subtitle subtitle="Define senders to send emails"
                                i18n-buttonLabel buttonLabel="Create sender"
                                buttonIcon="pi pi-plus"
-                               (buttonClick)="onCreateSender()">
+                               (buttonClick)="openCreateSender()">
             <app-sender-list [senders]="provider.senders"
                              [loading]="loading"
                              [canEditSender]="canUpdateProvider"
-                             [canDeleteSender]="canDeleteProvider"
-                             (onEditSender)="onEditSender($event)"
-                             (onDeleteSender)="onDeleteSender($event)"
-                             (onCreateSender)="onCreateSender()">
+                             (onEditSender)="openEditSender($event)">
             </app-sender-list>
         </app-generic-data-card>
     </div>
@@ -28,3 +25,17 @@
     {{ provider | json }}
 
 </app-generic-layout-single-instance>
+
+<app-create-or-update-sender *ngIf="organizationSlug && provider"
+                             (onCreateSender)="onCreateSender($event)"
+                             (onEditSender)="onEditSender($event)"
+                             (onDeleteSender)="openDeleteSender($event)"
+                             [organizationSlug]="organizationSlug"
+                             [provider]="provider">
+</app-create-or-update-sender>
+
+<p-confirmDialog key="confirm-delete-sender" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to permanently delete this sender ? It will prevent sendings relying on it."
+                 defaultFocus="none"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>

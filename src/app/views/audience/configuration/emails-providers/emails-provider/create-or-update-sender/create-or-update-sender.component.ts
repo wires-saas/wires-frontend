@@ -1,0 +1,76 @@
+import { Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs/operators';
+import { EmailsProvider, Sender } from '../../../../../../services/emails.service';
+import { SendersService } from '../../../../../../services/senders.service';
+import { DialogConfig } from '../../../../../../services/feed.service';
+import { deepClone } from '../../../../../../utils/deep-clone';
+
+@Component({
+    selector: 'app-create-or-update-sender',
+    templateUrl: './create-or-update-sender.component.html',
+})
+export class CreateOrUpdateSenderComponent implements OnInit {
+    @Input() organizationSlug!: string;
+    @Input() provider!: EmailsProvider;
+
+    @Output() onCreateSender: EventEmitter<Sender> = new EventEmitter<Sender>();
+    @Output() onEditSender: EventEmitter<Sender> = new EventEmitter<Sender>();
+    @Output() onDeleteSender: EventEmitter<Sender> = new EventEmitter<Sender>();
+
+    private destroyRef = inject(DestroyRef);
+
+    sender!: Sender;
+
+    dialogConfig: DialogConfig = { header: '', visible: false };
+
+    saving: boolean = false;
+
+    get creation(): boolean {
+        return !!this.dialogConfig.isNew;
+    }
+
+    constructor(
+        private sendersService: SendersService,
+    ) {}
+
+    ngOnInit(): void {
+        this.sendersService.selectedSender$
+            .pipe(
+                map((data) => (this.sender = deepClone(data))),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
+
+        this.sendersService.dialogSource$
+            .pipe(
+                map((data) => {
+                    this.dialogConfig = data;
+
+                    if (this.dialogConfig.isNew) {
+                        this.resetSender();
+                    }
+                }),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
+
+        this.resetSender();
+    }
+
+    canSave(): boolean {
+        return true;
+    }
+
+    cancel() {
+        this.resetSender();
+        this.sendersService.closeDialog();
+    }
+
+    resetSender() {
+        this.sender = {
+            email: '',
+            name: '',
+        };
+    }
+}

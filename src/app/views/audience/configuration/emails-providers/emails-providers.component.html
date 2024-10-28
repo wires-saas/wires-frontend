@@ -5,7 +5,7 @@
                                i18n-subtitle subtitle="Use our default router or plug your own to start sending emails"
                                i18n-buttonLabel buttonLabel="Send emails"
                                buttonIcon="pi pi-plus"
-                               (buttonClick)="showDialog()">
+                               (buttonClick)="onCreateProvider()">
             <app-emails-provider-list [loading]="loadingProviders"
                                         [providers]="providers"
                                         (onInspectProvider)="onInspectProvider($event)"
