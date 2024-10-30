@@ -2321,12 +2321,6 @@
       <trans-unit id="3830666717087670529" datatype="html">
         <source>SPF</source>
       </trans-unit>
-      <trans-unit id="4613447774294875903" datatype="html">
-        <source>Create Domain</source>
-      </trans-unit>
-      <trans-unit id="5131102322166856386" datatype="html">
-        <source>Domain <x id="PH" equiv-text="domain"/></source>
-      </trans-unit>
       <trans-unit id="5974304788136943605" datatype="html">
         <source>Add domains for sending compliance</source>
       </trans-unit>
@@ -2341,6 +2335,27 @@
       </trans-unit>
       <trans-unit id="966975180773840600" datatype="html">
         <source>Domain</source>
+      </trans-unit>
+      <trans-unit id="3141789220531589997" datatype="html">
+        <source>Add New Domain</source>
+      </trans-unit>
+      <trans-unit id="3955868613858648955" datatype="html">
+        <source>Available</source>
+      </trans-unit>
+      <trans-unit id="4860882649434175632" datatype="html">
+        <source>Pending Domain</source>
+      </trans-unit>
+      <trans-unit id="5179996904811533203" datatype="html">
+        <source>Domain &quot;<x id="PH" equiv-text="domain.domain"/>&quot; added successfully.</source>
+      </trans-unit>
+      <trans-unit id="6193732324134958865" datatype="html">
+        <source>Add Domain</source>
+      </trans-unit>
+      <trans-unit id="6418061220363981651" datatype="html">
+        <source>Error adding domain</source>
+      </trans-unit>
+      <trans-unit id="7959853880957650762" datatype="html">
+        <source>example.com</source>
       </trans-unit>
     </body>
   </file>

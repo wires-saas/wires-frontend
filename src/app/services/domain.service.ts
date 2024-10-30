@@ -15,16 +15,17 @@ export class DomainService {
     selectedDomain$: Observable<Domain> =
         this.selectedDomain$$.asObservable();
 
-    dialogConfig: DialogConfig = {
-        visible: false,
-        header: '',
-        isNew: false,
-    };
+    createDialogVisible: boolean = false;
+    private createDialogVisible$$: BehaviorSubject<boolean> =
+        new BehaviorSubject<boolean>(this.createDialogVisible);
+    createDialogVisible$: Observable<boolean> =
+        this.createDialogVisible$$.asObservable();
 
-    private dialogSource$$: BehaviorSubject<DialogConfig> =
-        new BehaviorSubject<DialogConfig>(this.dialogConfig);
-    dialogSource$: Observable<DialogConfig> =
-        this.dialogSource$$.asObservable();
+    verifyDialogVisible: boolean = false;
+    private verifyDialogVisible$$: BehaviorSubject<boolean> =
+        new BehaviorSubject<boolean>(this.verifyDialogVisible);
+    verifyDialogVisible$: Observable<boolean> =
+        this.verifyDialogVisible$$.asObservable();
 
     constructor(private http: HttpClient) {
         this.domain = environment.backend;
@@ -33,12 +34,12 @@ export class DomainService {
     async createDomain(
         organizationId: string,
         providerId: string,
-        domain: Domain,
+        domain: string,
     ): Promise<EmailsProvider> {
         return firstValueFrom(
             this.http.post<EmailsProvider>(
                 `${this.domain}/organizations/${organizationId}/providers/emails/${providerId}/domains`,
-                domain,
+                { domain },
             ),
         );
     }
@@ -74,19 +75,24 @@ export class DomainService {
         this.selectedDomain$$.next(domain);
     }
 
-    showDialog(header: string, newDomain: boolean) {
-        this.dialogConfig = {
-            visible: true,
-            header: header,
-            isNew: newDomain,
-        };
-
-        this.dialogSource$$.next(this.dialogConfig);
+    showCreateDialog() {
+        this.createDialogVisible = true;
+        this.createDialogVisible$$.next(true);
     }
 
-    closeDialog() {
-        this.dialogConfig = { visible: false };
-        this.dialogSource$$.next(this.dialogConfig);
+    closeCreateDialog() {
+        this.createDialogVisible = false;
+        this.createDialogVisible$$.next(false);
+    }
+
+    showVerifyDialog() {
+        this.verifyDialogVisible = true;
+        this.verifyDialogVisible$$.next(true);
+    }
+
+    closeVerifyDialog() {
+        this.verifyDialogVisible = false;
+        this.verifyDialogVisible$$.next(false);
     }
 
 }

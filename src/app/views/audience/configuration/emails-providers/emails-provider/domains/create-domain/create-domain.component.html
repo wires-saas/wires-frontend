@@ -1,0 +1,24 @@
+<p-dialog i18n-header header="Add New Domain"
+          [(visible)]="visible"
+          [modal]="true"
+          [dismissableMask]="true"
+          styleClass="mx-3 sm:mx-0 sm:w-full md:w-6 lg:w-4"
+          contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
+    <div class="p-4">
+        <div class="grid p-fluid formgrid">
+            <div class="col-12 field">
+                <label for="domain" class="text-900 font-semibold" i18n>Domain</label>
+                <input id="domain" type="text" i18n-placeholder placeholder="example.com" pInputText [(ngModel)]="domain.domain" />
+            </div>
+            <div class="col-12 flex justify-content-end mt-4">
+
+                <div>
+                    <button (click)="cancel()" [disabled]="saving" pButton pRipple class="p-button-outlined w-10rem mr-3" icon="pi pi-times" i18n-label label="Cancel"></button>
+
+                    <button (click)="onCreateDomain.emit(domain)" [disabled]="!canSave()" [loading]="saving"
+                            pButton pRipple class="p-button-primary w-20rem" icon="pi pi-check" i18n-label label="Add Domain"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>

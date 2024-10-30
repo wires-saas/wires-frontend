@@ -2,9 +2,20 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { DialogConfig } from './feed.service';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
-import { EmailsProvider, Sender } from './emails.service';
+import { EmailsProvider } from './emails.service';
 import { HttpClient } from '@angular/common/http';
 
+
+export enum SenderStatus {
+    Available = 'available',
+    Unavailable = 'unavailable',
+}
+
+export interface Sender {
+    email: string;
+    name: string;
+    status?: SenderStatus;
+}
 
 @Injectable()
 export class SenderService {

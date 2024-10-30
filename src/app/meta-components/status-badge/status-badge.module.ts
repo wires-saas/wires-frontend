@@ -3,6 +3,7 @@ import { StatusBadgeComponent } from './status-badge.component';
 import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { TagModule } from 'primeng/tag';
 import { FeedRunStatusPipe } from '../../utils/pipes/feed-run-status.pipe';
+import { SenderStatusPipe } from '../../utils/pipes/sender-status.pipe';
 
 @NgModule({
     imports: [
@@ -11,6 +12,7 @@ import { FeedRunStatusPipe } from '../../utils/pipes/feed-run-status.pipe';
         FeedRunStatusPipe,
         NgSwitchCase,
         NgSwitchDefault,
+        SenderStatusPipe,
     ],
     exports: [StatusBadgeComponent],
     declarations: [StatusBadgeComponent],

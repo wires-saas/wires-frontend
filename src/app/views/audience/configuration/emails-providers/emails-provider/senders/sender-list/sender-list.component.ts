@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Sender } from '../../../../../../../services/emails.service';
+import { Sender } from '../../../../../../../services/sender.service';
 
 @Component({
     selector: 'app-sender-list',

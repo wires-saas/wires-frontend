@@ -53,6 +53,9 @@ import { ApiService } from '../../../services/api.service';
 import { SenderService } from '../../../services/sender.service';
 import { DomainListComponent } from './emails-providers/emails-provider/domains/domain-list/domain-list.component';
 import { DomainService } from '../../../services/domain.service';
+import {
+    CreateDomainComponent
+} from './emails-providers/emails-provider/domains/create-domain/create-domain.component';
 
 @NgModule({
     imports: [
@@ -107,6 +110,7 @@ import { DomainService } from '../../../services/domain.service';
         CreateOrUpdateSenderComponent,
 
         DomainListComponent,
+        CreateDomainComponent,
     ],
     providers: [
         ApiService,

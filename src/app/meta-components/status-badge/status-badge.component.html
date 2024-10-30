@@ -1,7 +1,21 @@
-<ng-container [ngSwitch]="value.status">
-    <p-tag *ngSwitchCase="'completed'" severity="success" [value]="value | feedRunStatus"></p-tag>
-    <p-tag *ngSwitchCase="'failed'" severity="danger" [value]="value | feedRunStatus"></p-tag>
-    <p-tag *ngSwitchCase="'running'" severity="info" [value]="value | feedRunStatus"></p-tag>
-    <p-tag *ngSwitchCase="'pending'" [value]="value | feedRunStatus"></p-tag>
-    <p-tag *ngSwitchDefault [value]="value | feedRunStatus"></p-tag>
+<ng-container [ngSwitch]="entity">
+    <ng-container *ngSwitchCase="'FeedRun'">
+        <ng-container [ngSwitch]="value.status">
+            <p-tag *ngSwitchCase="'completed'" severity="success" [value]="value | feedRunStatus"></p-tag>
+            <p-tag *ngSwitchCase="'failed'" severity="danger" [value]="value | feedRunStatus"></p-tag>
+            <p-tag *ngSwitchCase="'running'" severity="info" [value]="value | feedRunStatus"></p-tag>
+            <p-tag *ngSwitchCase="'pending'" [value]="value | feedRunStatus"></p-tag>
+            <p-tag *ngSwitchDefault [value]="value | feedRunStatus"></p-tag>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'Sender'">
+        <ng-container [ngSwitch]="value.status">
+            <p-tag *ngSwitchCase="SenderStatus.Available" severity="success" [value]="value | senderStatus"></p-tag>
+            <p-tag *ngSwitchCase="SenderStatus.Unavailable" severity="danger" [value]="value | senderStatus"></p-tag>
+            <p-tag *ngSwitchDefault [value]="value | feedRunStatus"></p-tag>
+        </ng-container>
+    </ng-container>
+
+    <p-tag *ngSwitchDefault value="NOT IMPLEMENTED"></p-tag>
 </ng-container>

@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { AuthorizationType, DialogConfig } from './feed.service';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Sender } from './sender.service';
 
 export enum EmailsProviderType {
     Internal = 'internal',
@@ -14,10 +15,7 @@ export enum EmailsProviderType {
     Mailchimp = 'mailchimp',
 }
 
-export interface Sender {
-    email: string;
-    name: string;
-}
+
 
 export interface Domain {
     domain: string;
@@ -35,6 +33,8 @@ export interface Domain {
     spfRecordName: string;
     spfRecordValue: string;
 }
+
+export type CreateDomainDto = Pick<Domain, 'domain'>;
 
 export interface EmailsProvider {
     id: string;

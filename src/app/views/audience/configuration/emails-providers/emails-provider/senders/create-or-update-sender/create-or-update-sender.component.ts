@@ -1,8 +1,8 @@
 import { Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import { EmailsProvider, Sender } from '../../../../../../../services/emails.service';
-import { SenderService } from '../../../../../../../services/sender.service';
+import { EmailsProvider } from '../../../../../../../services/emails.service';
+import { Sender, SenderService } from '../../../../../../../services/sender.service';
 import { DialogConfig } from '../../../../../../../services/feed.service';
 import { deepClone } from '../../../../../../../utils/deep-clone';
 
@@ -31,18 +31,18 @@ export class CreateOrUpdateSenderComponent implements OnInit {
     }
 
     constructor(
-        private sendersService: SenderService,
+        private senderService: SenderService,
     ) {}
 
     ngOnInit(): void {
-        this.sendersService.selectedSender$
+        this.senderService.selectedSender$
             .pipe(
                 map((data) => (this.sender = deepClone(data))),
                 takeUntilDestroyed(this.destroyRef),
             )
             .subscribe();
 
-        this.sendersService.dialogSource$
+        this.senderService.dialogSource$
             .pipe(
                 map((data) => {
                     this.dialogConfig = data;
@@ -64,7 +64,7 @@ export class CreateOrUpdateSenderComponent implements OnInit {
 
     cancel() {
         this.resetSender();
-        this.sendersService.closeDialog();
+        this.senderService.closeDialog();
     }
 
     resetSender() {

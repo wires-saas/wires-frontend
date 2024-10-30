@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CapitalizePipe } from '../../../../../utils/pipes/capitalize.pipe';
 import {
+    CreateDomainDto,
     Domain,
     EmailsProvider,
-    EmailsService, Sender,
+    EmailsService,
 } from '../../../../../services/emails.service';
 import { firstValueFrom } from 'rxjs';
 import {
@@ -14,7 +15,7 @@ import {
 } from '../../../../../utils/permission.utils';
 import { AuthService } from '../../../../../services/auth.service';
 import { Slug } from '../../../../../utils/types.utils';
-import { SenderService } from '../../../../../services/sender.service';
+import { Sender, SenderService } from '../../../../../services/sender.service';
 import { ApiService } from '../../../../../services/api.service';
 import { ConfirmationService } from 'primeng/api';
 import { DomainService } from '../../../../../services/domain.service';
@@ -184,17 +185,30 @@ export class EmailsProviderComponent implements OnInit {
     // For domains
 
     openCreateDomain() {
-        this.domainService.showDialog($localize`Create Domain`, true);
+        console.log('openCreateDomain');
+        this.domainService.showCreateDialog();
+    }
+
+    async onCreateDomain(domain: CreateDomainDto) {
+
+        await this.apiService.wrap(
+            this.domainService
+                .createDomain(this.organizationSlug, this.providerId, domain.domain),
+            $localize`Domain "${domain.domain}" added successfully.`,
+            $localize`Error adding domain`,
+        );
+
+        this.domainService.closeCreateDialog();
     }
 
     openInspectDomain(domain: Domain) {
         this.domainService.selectDomain(domain);
-        this.domainService.showDialog($localize`Domain ${domain}`, false);
+        this.domainService.showVerifyDialog();
     }
 
     openDeleteDomain(domain: Domain) {
 
-        this.domainService.closeDialog();
+        this.domainService.closeVerifyDialog();
 
         this.confirmationService.confirm({
             header: $localize `Delete Domain "${domain.domain}"`,

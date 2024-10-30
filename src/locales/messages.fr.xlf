@@ -3091,7 +3091,7 @@
       </trans-unit>
       <trans-unit id="5974304788136943605" datatype="html">
         <source>Add domains for sending compliance</source>
-        <target state="new">Ajoutez des domaines pour ne pas finir en spam</target>
+        <target state="new">Ajouter des domaines pour ne pas finir en spam</target>
       </trans-unit>
       <trans-unit id="2798094361131252150" datatype="html">
         <source>Add domain</source>
@@ -3099,15 +3099,7 @@
       </trans-unit>
       <trans-unit id="3724258118318333315" datatype="html">
         <source>Are you sure you want to permanently delete this domain ? It will prevent you from using any sender with this domain.</source>
-        <target state="new">Êtes-vous certain de vouloir supprimer ce domaine ? Les expéditeurs l'utilisant seront désactivés.</target>
-      </trans-unit>
-      <trans-unit id="4613447774294875903" datatype="html">
-        <source>Create Domain</source>
-        <target state="new">Ajouter un nouveau domaine</target>
-      </trans-unit>
-      <trans-unit id="5131102322166856386" datatype="html">
-        <source>Domain <x id="PH" equiv-text="domain"/></source>
-        <target state="new">Domaine <x id="PH" equiv-text="domain"/></target>
+        <target state="new">Êtes-vous certain de vouloir supprimer ce domaine ? Les expéditeurs l&apos;utilisant seront désactivés.</target>
       </trans-unit>
       <trans-unit id="6989105420146666473" datatype="html">
         <source>Delete Domain &quot;<x id="PH" equiv-text="domain.domain"/>&quot;</source>
@@ -3120,6 +3112,34 @@
       <trans-unit id="2956272170596607478" datatype="html">
         <source>Error deleting domain</source>
         <target state="new">Erreur lors de la suppression</target>
+      </trans-unit>
+      <trans-unit id="3955868613858648955" datatype="html">
+        <source>Available</source>
+        <target state="new">Validé</target>
+      </trans-unit>
+      <trans-unit id="4860882649434175632" datatype="html">
+        <source>Pending Domain</source>
+        <target state="new">Domaine en attente</target>
+      </trans-unit>
+      <trans-unit id="3141789220531589997" datatype="html">
+        <source>Add New Domain</source>
+        <target state="new">Ajouter un nouveau domaine</target>
+      </trans-unit>
+      <trans-unit id="7959853880957650762" datatype="html">
+        <source>example.com</source>
+        <target state="new">exemple.com</target>
+      </trans-unit>
+      <trans-unit id="6193732324134958865" datatype="html">
+        <source>Add Domain</source>
+        <target state="new">Ajouter le domaine</target>
+      </trans-unit>
+      <trans-unit id="5179996904811533203" datatype="html">
+        <source>Domain &quot;<x id="PH" equiv-text="domain.domain"/>&quot; added successfully.</source>
+        <target state="new">Domaine &quot;<x id="PH" equiv-text="domain.domain"/>&quot; ajouté avec succès.</target>
+      </trans-unit>
+      <trans-unit id="6418061220363981651" datatype="html">
+        <source>Error adding domain</source>
+        <target state="new">Erreur lors de l'ajout</target>
       </trans-unit>
     </body>
   </file>

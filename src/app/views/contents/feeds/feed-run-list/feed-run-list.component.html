@@ -19,7 +19,7 @@
             {{ (run.scrapingDurationMs + run.articlesCreationMs) | duration }}
         </td>
         <td>
-            <app-status-badge [value]="run"></app-status-badge>
+            <app-status-badge [value]="run" entity="FeedRun"></app-status-badge>
         </td>
     </ng-template>
 </app-generic-data-table>
