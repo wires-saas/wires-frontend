@@ -7,17 +7,26 @@
             {{ domain.domain }}
         </td>
         <td>
-            {{ domain.ownership }}
+            <ng-container *ngIf="domain.ownership; else ko">
+                <span i18n>OK</span>
+            </ng-container>
         </td>
         <td>
-            {{ domain.dkim }}
+            <ng-container *ngIf="domain.dkim; else ko">
+                <span i18n>OK</span>
+            </ng-container>
         </td>
         <td>
-            {{ domain.spf }}
+            <ng-container *ngIf="domain.spf; else ko">
+                <span i18n>OK</span>
+            </ng-container>
         </td>
         <td>
-            <!-- TODO status based on DNS approval -->
-            <app-status-badge [value]="domain"></app-status-badge>
+            <app-status-badge [value]="domain" entity="Domain"></app-status-badge>
         </td>
     </ng-template>
 </app-generic-data-table>
+
+<ng-template #ko>
+    <span i18n>KO</span>
+</ng-template>

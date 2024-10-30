@@ -4,6 +4,7 @@ import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { TagModule } from 'primeng/tag';
 import { FeedRunStatusPipe } from '../../utils/pipes/feed-run-status.pipe';
 import { SenderStatusPipe } from '../../utils/pipes/sender-status.pipe';
+import { DomainStatusPipe } from '../../utils/pipes/domain-status.pipe';
 
 @NgModule({
     imports: [
@@ -13,6 +14,7 @@ import { SenderStatusPipe } from '../../utils/pipes/sender-status.pipe';
         NgSwitchCase,
         NgSwitchDefault,
         SenderStatusPipe,
+        DomainStatusPipe,
     ],
     exports: [StatusBadgeComponent],
     declarations: [StatusBadgeComponent],

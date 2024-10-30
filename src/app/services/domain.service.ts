@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { DialogConfig } from './feed.service';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { Domain, EmailsProvider } from './emails.service';
 import { HttpClient } from '@angular/common/http';
 
+
+export enum DomainStatus {
+    Verified = 'verified',
+    Pending = 'pending',
+}
 
 @Injectable()
 export class DomainService {

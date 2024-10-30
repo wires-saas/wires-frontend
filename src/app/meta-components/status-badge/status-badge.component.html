@@ -17,5 +17,13 @@
         </ng-container>
     </ng-container>
 
+    <ng-container *ngSwitchCase="'Domain'">
+        <ng-container [ngSwitch]="value.status">
+            <p-tag *ngSwitchCase="DomainStatus.Verified" severity="success" [value]="value | domainStatus"></p-tag>
+            <p-tag *ngSwitchCase="DomainStatus.Pending" severity="warning" [value]="value | domainStatus"></p-tag>
+            <p-tag *ngSwitchDefault [value]="value | feedRunStatus"></p-tag>
+        </ng-container>
+    </ng-container>
+
     <p-tag *ngSwitchDefault value="NOT IMPLEMENTED"></p-tag>
 </ng-container>

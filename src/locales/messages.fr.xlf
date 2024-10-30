@@ -3119,7 +3119,7 @@
       </trans-unit>
       <trans-unit id="4860882649434175632" datatype="html">
         <source>Pending Domain</source>
-        <target state="new">Domaine en attente</target>
+        <target state="new">Domaine non vérifié</target>
       </trans-unit>
       <trans-unit id="3141789220531589997" datatype="html">
         <source>Add New Domain</source>

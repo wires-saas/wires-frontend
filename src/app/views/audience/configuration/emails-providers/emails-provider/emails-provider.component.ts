@@ -199,6 +199,9 @@ export class EmailsProviderComponent implements OnInit {
         );
 
         this.domainService.closeCreateDialog();
+
+        // Re-fetch provider
+        await this.ngOnInit();
     }
 
     openInspectDomain(domain: Domain) {
