@@ -50,10 +50,13 @@
 </app-create-or-update-sender>
 
 <app-create-domain *ngIf="organizationSlug && provider"
-                   (onCreateDomain)="onCreateDomain($event)"
-                   [organizationSlug]="organizationSlug"
-                   [provider]="provider">
+                   (onCreateDomain)="onCreateDomain($event)">
 </app-create-domain>
+
+<app-inspect-domain *ngIf="organizationSlug && provider"
+                    (onVerifyDomain)="onVerifyDomain($event)"
+                    (onDeleteDomain)="openDeleteDomain($event)">
+</app-inspect-domain>
 
 <p-confirmDialog key="confirm-delete-sender" icon="pi pi-exclamation-triangle"
                  i18n-message message="Are you sure you want to permanently delete this sender ? It will prevent sendings relying on it."

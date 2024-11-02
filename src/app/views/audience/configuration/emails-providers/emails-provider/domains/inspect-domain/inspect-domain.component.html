@@ -1,0 +1,90 @@
+<p-dialog i18n-header header="Inspect Domain"
+          [(visible)]="visible"
+          [modal]="true"
+          [dismissableMask]="true"
+          styleClass="mx-3 sm:mx-0 sm:w-full md:w-8 lg:w-6"
+          contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
+    <div class="p-4">
+        <div class="grid p-fluid formgrid justify-content-center">
+
+            <div class="col-5">
+                <div class="col-12 field pb-4">
+                    <span class="font-bold text-900">DKIM</span>
+                    <p>
+                        Requires creation of a TXT record to ensure you own the domain. Mail clients will reject emails with failed DKIM.
+                    </p>
+                </div>
+
+                <div class="col-12 field">
+                    <label for="domain-dkim-name" class="text-900 font-semibold" i18n>DNS Zone</label>
+                    <p-inputGroup>
+                        <button type="button" pButton icon="pi pi-copy"></button>
+                        <input id="domain-dkim-name" type="text" pInputText [ngModel]="domain.dkimRecordName" [disabled]="true" />
+                    </p-inputGroup>
+                </div>
+
+                <div class="col-12 field">
+                    <label for="domain-dkim-value" class="text-900 font-semibold" i18n>TXT Record Value</label>
+                    <p-inputGroup>
+                        <button type="button" pButton icon="pi pi-copy"></button>
+                        <input id="domain-dkim-value" type="text" pInputText [ngModel]="domain.dkimRecordValue" [disabled]="true" />
+                    </p-inputGroup>
+                </div>
+            </div>
+
+            <div class="col-1">
+                <p-divider layout="vertical">
+                </p-divider>
+            </div>
+
+            <div class="col-5">
+
+                <div class="col-12 field pb-4">
+                    <span class="font-bold text-900">SPF</span>
+                    <p>
+                        Requires creation of a TXT record to explicitly allow servers to use your domain name for sending emails.
+                    </p>
+                </div>
+
+                <div class="col-12 field">
+                    <label for="domain-dkim-name" class="text-900 font-semibold" i18n>DNS Zone</label>
+                    <p-inputGroup>
+                        <button type="button" pButton icon="pi pi-copy"></button>
+                        <input id="domain-spf-name" type="text" pInputText [ngModel]="domain.spfRecordName" [disabled]="true" />
+                    </p-inputGroup>
+                </div>
+
+                <div class="col-12 field">
+                    <label for="domain-spf-value" class="text-900 font-semibold" i18n>TXT Record Value</label>
+                    <p-inputGroup>
+                        <button type="button" pButton icon="pi pi-copy"></button>
+                        <input id="domain-spf-value" type="text" pInputText [ngModel]="domain.spfRecordValue" [disabled]="true" />
+                    </p-inputGroup>
+                </div>
+
+            </div>
+
+            <div class="col-12">
+                <p class="text-right text-sm mt-2">
+                    To go further, check
+                    <a href="https://documentation.mailjet.com/hc/en-us/articles/20531905163419-Understanding-DMARC" target="_blank">Mailjet documentation about DMARC here</a>
+                </p>
+            </div>
+
+            <div class="col-12 flex justify-content-between mt-4">
+
+                <div>
+                    <button (click)="onDeleteDomain.emit(domain)"
+                            pButton pRipple class="p-button-outlined p-button-danger" icon="pi pi-trash" i18n-label label="Remove"></button>
+                </div>
+
+                <div>
+                    <button (click)="cancel()" [disabled]="saving" pButton pRipple class="p-button-outlined w-10rem mr-3" icon="pi pi-times" i18n-label label="Close"></button>
+
+                    <button (click)="onVerifyDomain.emit(domain)" [disabled]="!canSave()" [loading]="saving"
+                            pButton pRipple class="p-button-primary w-10rem" icon="pi pi-check" i18n-label label="Verify"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>

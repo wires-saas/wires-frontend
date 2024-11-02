@@ -206,12 +206,27 @@ export class EmailsProviderComponent implements OnInit {
 
     openInspectDomain(domain: Domain) {
         this.domainService.selectDomain(domain);
-        this.domainService.showVerifyDialog();
+        this.domainService.showInspectDialog();
+    }
+
+    async onVerifyDomain(domain: Domain) {
+
+        await this.apiService.wrap(
+            this.domainService
+                .checkDomain(this.organizationSlug, this.providerId, domain),
+            $localize`Domain "${domain.domain}" verified successfully.`,
+            $localize`Domain verification failed`,
+        );
+
+        this.domainService.closeInspectDialog();
+
+        // Re-fetch provider
+        await this.ngOnInit();
     }
 
     openDeleteDomain(domain: Domain) {
 
-        this.domainService.closeVerifyDialog();
+        this.domainService.closeInspectDialog();
 
         this.confirmationService.confirm({
             header: $localize `Delete Domain "${domain.domain}"`,

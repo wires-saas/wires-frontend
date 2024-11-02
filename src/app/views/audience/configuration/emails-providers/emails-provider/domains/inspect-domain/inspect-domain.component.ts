@@ -1,19 +1,21 @@
 import { Component, DestroyRef, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import { CreateDomainDto } from '../../../../../../../services/emails.service';
+import { Domain } from '../../../../../../../services/emails.service';
+import { deepClone } from '../../../../../../../utils/deep-clone';
 import { DomainService } from '../../../../../../../services/domain.service';
 
 @Component({
-    selector: 'app-create-domain',
-    templateUrl: './create-domain.component.html',
+    selector: 'app-inspect-domain',
+    templateUrl: './inspect-domain.component.html',
 })
-export class CreateDomainComponent implements OnInit {
-    @Output() onCreateDomain: EventEmitter<CreateDomainDto> = new EventEmitter<CreateDomainDto>();
+export class InspectDomainComponent implements OnInit {
+    @Output() onVerifyDomain: EventEmitter<Domain> = new EventEmitter<Domain>();
+    @Output() onDeleteDomain: EventEmitter<Domain> = new EventEmitter<Domain>();
 
     private destroyRef = inject(DestroyRef);
 
-    domain!: CreateDomainDto;
+    domain!: Domain;
 
     visible: boolean = false;
 
@@ -24,13 +26,18 @@ export class CreateDomainComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.resetDomain();
 
-        this.domainService.createDialogVisible$
+        this.domainService.selectedDomain$
+            .pipe(
+                map((data) => (this.domain = deepClone(data))),
+                takeUntilDestroyed(this.destroyRef),
+            )
+            .subscribe();
+
+        this.domainService.inspectDialogVisible$
             .pipe(
                 map((visible) => {
                     this.visible = visible;
-                    this.resetDomain();
                 }),
                 takeUntilDestroyed(this.destroyRef),
             )
@@ -42,13 +49,6 @@ export class CreateDomainComponent implements OnInit {
     }
 
     cancel() {
-        this.resetDomain();
-        this.domainService.closeCreateDialog();
-    }
-
-    resetDomain() {
-        this.domain = {
-            domain: '',
-        };
+        this.domainService.closeInspectDialog();
     }
 }

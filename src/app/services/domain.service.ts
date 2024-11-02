@@ -25,11 +25,11 @@ export class DomainService {
     createDialogVisible$: Observable<boolean> =
         this.createDialogVisible$$.asObservable();
 
-    verifyDialogVisible: boolean = false;
-    private verifyDialogVisible$$: BehaviorSubject<boolean> =
-        new BehaviorSubject<boolean>(this.verifyDialogVisible);
-    verifyDialogVisible$: Observable<boolean> =
-        this.verifyDialogVisible$$.asObservable();
+    inspectDialogVisible: boolean = false;
+    private inspectDialogVisible$$: BehaviorSubject<boolean> =
+        new BehaviorSubject<boolean>(this.inspectDialogVisible);
+    inspectDialogVisible$: Observable<boolean> =
+        this.inspectDialogVisible$$.asObservable();
 
     constructor(private http: HttpClient) {
         this.domain = environment.backend;
@@ -89,14 +89,14 @@ export class DomainService {
         this.createDialogVisible$$.next(false);
     }
 
-    showVerifyDialog() {
-        this.verifyDialogVisible = true;
-        this.verifyDialogVisible$$.next(true);
+    showInspectDialog() {
+        this.inspectDialogVisible = true;
+        this.inspectDialogVisible$$.next(true);
     }
 
-    closeVerifyDialog() {
-        this.verifyDialogVisible = false;
-        this.verifyDialogVisible$$.next(false);
+    closeInspectDialog() {
+        this.inspectDialogVisible = false;
+        this.inspectDialogVisible$$.next(false);
     }
 
 }

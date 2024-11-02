@@ -18,19 +18,19 @@
 
                 <div>
                     <button *ngIf="!creation && sender.email" (click)="onDeleteSender.emit(sender)"
-                            pButton pRipple class="p-button-outlined p-button-danger w-12rem" icon="pi pi-trash" i18n-label label="Delete"></button>
+                            pButton pRipple class="p-button-outlined p-button-danger" icon="pi pi-trash" i18n-label label="Delete"></button>
                 </div>
 
                 <div>
                     <button (click)="cancel()" [disabled]="saving" pButton pRipple class="p-button-outlined w-10rem mr-3" icon="pi pi-times" i18n-label label="Cancel"></button>
 
                     <button *ngIf="creation; else onlySave" (click)="onCreateSender.emit(sender)" [disabled]="!canSave()" [loading]="saving"
-                            pButton pRipple class="p-button-primary w-20rem" icon="pi pi-check" i18n-label label="Save"></button>
+                            pButton pRipple class="p-button-primary w-12rem" icon="pi pi-check" i18n-label label="Save"></button>
                 </div>
 
                 <ng-template #onlySave>
                     <button (click)="onEditSender.emit(sender)" [disabled]="!canSave()" [loading]="saving"
-                            pButton pRipple class="p-button-primary w-12rem" icon="pi pi-check" i18n-label label="Save"></button>
+                            pButton pRipple class="p-button-primary w-10rem" icon="pi pi-check" i18n-label label="Save"></button>
                 </ng-template>
             </div>
         </div>

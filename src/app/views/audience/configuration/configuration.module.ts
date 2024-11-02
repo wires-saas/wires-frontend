@@ -56,6 +56,11 @@ import { DomainService } from '../../../services/domain.service';
 import {
     CreateDomainComponent
 } from './emails-providers/emails-provider/domains/create-domain/create-domain.component';
+import {
+    InspectDomainComponent
+} from './emails-providers/emails-provider/domains/inspect-domain/inspect-domain.component';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
     imports: [
@@ -93,6 +98,8 @@ import {
         DurationPipe,
         GenericDataTableComponent,
         StatusBadgeModule,
+        InputGroupModule,
+        DividerModule,
     ],
     declarations: [
         AudienceConfigurationComponent,
@@ -111,6 +118,7 @@ import {
 
         DomainListComponent,
         CreateDomainComponent,
+        InspectDomainComponent
     ],
     providers: [
         ApiService,
