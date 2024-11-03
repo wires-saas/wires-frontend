@@ -21,9 +21,9 @@ export interface Sender {
 export class SenderService {
     private readonly domain: string;
 
-    private selectedSender$$: Subject<Sender> =
-        new Subject<Sender>();
-    selectedSender$: Observable<Sender> =
+    private selectedSender$$: Subject<Sender | undefined> =
+        new BehaviorSubject<Sender | undefined>(undefined);
+    selectedSender$: Observable<Sender | undefined> =
         this.selectedSender$$.asObservable();
 
     dialogConfig: DialogConfig = {
@@ -62,7 +62,7 @@ export class SenderService {
         return firstValueFrom(
             this.http.put<EmailsProvider>(
                 `${this.domain}/organizations/${organizationId}/providers/emails/${providerId}/senders`,
-                senders,
+                { senders },
             ),
         );
     }

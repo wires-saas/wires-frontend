@@ -3,11 +3,11 @@
                                     i18n-buttonLabel buttonLabel="Return to configuration"
                                     [buttonLink]="['/organization', organizationSlug, 'audience', 'configuration']">
 
-    <app-generic-square-cards-row class="grid col-12" [cards]="cards">
+    <app-generic-square-cards-row class="grid grid-nogutter col-12 pb-0" [cards]="cards">
     </app-generic-square-cards-row>
 
 
-    <div class="col-6">
+    <div class="col-12 xl:col-6">
         <app-generic-data-card i18n-title title="Domains"
                                i18n-subtitle subtitle="Add domains for sending compliance"
                                i18n-buttonLabel buttonLabel="Add domain"
@@ -23,7 +23,7 @@
         </app-generic-data-card>
     </div>
 
-    <div class="col-6">
+    <div class="col-12 xl:col-6">
         <app-generic-data-card i18n-title title="Senders"
                                i18n-subtitle subtitle="Define senders to send emails"
                                i18n-buttonLabel buttonLabel="Create sender"
@@ -36,8 +36,6 @@
             </app-sender-list>
         </app-generic-data-card>
     </div>
-
-    {{ provider | json }}
 
 </app-generic-layout-single-instance>
 

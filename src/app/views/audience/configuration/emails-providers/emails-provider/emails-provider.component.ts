@@ -120,8 +120,6 @@ export class EmailsProviderComponent implements OnInit {
                 organizationSlug,
             ),
         );
-
-        // TODO distinct permissions for senders and domains ?
     }
 
     openCreateSender() {
@@ -133,7 +131,12 @@ export class EmailsProviderComponent implements OnInit {
         this.senderService.showDialog($localize`Edit Sender`, false);
     }
 
-    openDeleteSender(sender: any) {
+    async openDeleteSender(sender: Sender) {
+
+        const otherSenders = this.provider?.senders || [];
+        const selectedSender = await firstValueFrom(this.senderService.selectedSender$);
+
+        const sendersWithDelete = otherSenders.filter((s) => s.email !== selectedSender?.email);
 
         this.senderService.closeDialog();
 
@@ -145,35 +148,59 @@ export class EmailsProviderComponent implements OnInit {
             accept: async () => {
                 await this.apiService.wrap(
                     this.senderService
-                        .removeSender(this.organizationSlug, this.providerId, sender),
+                        .updateSenders(this.organizationSlug, this.providerId, sendersWithDelete),
                     $localize`Sender "${sender.email}" deleted successfully.`,
                     $localize`Error deleting sender`,
                 );
+
+                await this.ngOnInit();
             },
         });
     }
 
     async onCreateSender(sender: Sender) {
 
+        const otherSenders = this.provider?.senders || [];
+
+        const senders = [
+            ...otherSenders,
+            sender
+        ];
+
         await this.apiService.wrap(
             this.senderService
-                .createSender(this.organizationSlug, this.providerId, sender),
+                .updateSenders(this.organizationSlug, this.providerId, senders),
             $localize`Sender "${sender.email}" created successfully.`,
             $localize`Error creating sender`,
         );
 
         this.senderService.closeDialog();
+
+        await this.ngOnInit();
     }
 
     async onEditSender(sender: Sender) {
+
+        const otherSenders = this.provider?.senders || [];
+        const selectedSender = await firstValueFrom(this.senderService.selectedSender$);
+
+        const sendersWithUpdate = otherSenders.map((s) => {
+            if (s.email === selectedSender?.email) {
+                return sender;
+            }
+            return s;
+        });
+
         await this.apiService.wrap(
             this.senderService
-                .updateSenders(this.organizationSlug, this.providerId, [sender]),
+                .updateSenders(this.organizationSlug, this.providerId, sendersWithUpdate),
             $localize`Sender "${sender.email}" updated successfully.`,
             $localize`Error updating sender`,
         );
 
         this.senderService.closeDialog();
+
+        await this.ngOnInit();
     }
 
 
@@ -181,7 +208,6 @@ export class EmailsProviderComponent implements OnInit {
     // For domains
 
     openCreateDomain() {
-        console.log('openCreateDomain');
         this.domainService.showCreateDialog();
     }
 
@@ -196,7 +222,6 @@ export class EmailsProviderComponent implements OnInit {
 
         this.domainService.closeCreateDialog();
 
-        // Re-fetch provider
         await this.ngOnInit();
     }
 
@@ -288,7 +313,6 @@ export class EmailsProviderComponent implements OnInit {
                     $localize`Error deleting domain`,
                 );
 
-                // Re-fetch provider
                 await this.ngOnInit();
             },
         });

@@ -1,7 +1,9 @@
-<p-dialog [header]="header"
+<p-dialog *ngIf="domain"
+          [header]="header"
           [(visible)]="visible"
           [modal]="true"
           [dismissableMask]="true"
+          [focusOnShow]="false"
           styleClass="mx-3 sm:mx-0 sm:w-full md:w-10 lg:w-8"
           contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
     <div class="p-4">
@@ -53,7 +55,7 @@
 
             <!-- second row -->
 
-            <div class="col-3">
+            <div class="col-3" [class.opacity-30]="domain.ownership">
 
                 <div class="col-12 field">
                     <app-generic-copy-input i18n-label label="DNS Zone"
@@ -75,7 +77,7 @@
                 </p-divider>
             </div>
 
-            <div class="col-3">
+            <div class="col-3" [class.opacity-30]="domain.dkim">
 
                 <div class="col-12 field">
                     <app-generic-copy-input i18n-label label="DNS Zone"
@@ -97,7 +99,7 @@
                 </p-divider>
             </div>
 
-            <div class="col-3">
+            <div class="col-3" [class.opacity-30]="domain.spf">
                 <div class="col-12 field">
                     <app-generic-copy-input i18n-label label="DNS Zone"
                                             inputId="domain-spf-name"

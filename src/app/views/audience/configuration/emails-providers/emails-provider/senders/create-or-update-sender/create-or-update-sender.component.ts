@@ -37,7 +37,9 @@ export class CreateOrUpdateSenderComponent implements OnInit {
     ngOnInit(): void {
         this.senderService.selectedSender$
             .pipe(
-                map((data) => (this.sender = deepClone(data))),
+                map((sender) => {
+                    if (sender) this.sender = deepClone(sender);
+                }),
                 takeUntilDestroyed(this.destroyRef),
             )
             .subscribe();
