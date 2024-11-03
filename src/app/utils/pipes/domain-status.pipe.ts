@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Domain } from '../../services/emails.service';
-import { DomainStatus } from '../../services/domain.service';
+import { Domain, DomainStatus } from '../../services/domain.service';
 
 @Pipe({
     name: 'domainStatus',

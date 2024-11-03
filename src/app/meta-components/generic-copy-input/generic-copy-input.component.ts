@@ -26,6 +26,6 @@ export class GenericCopyInputComponent {
         this.copied = true;
         setTimeout(() => {
             this.copied = false;
-        }, 2000);
+        }, 1500);
     }
 }

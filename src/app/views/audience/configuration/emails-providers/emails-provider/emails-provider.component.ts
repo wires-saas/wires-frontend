@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CapitalizePipe } from '../../../../../utils/pipes/capitalize.pipe';
-import {
-    CreateDomainDto,
-    Domain,
-    EmailsProvider,
-    EmailsService,
-} from '../../../../../services/emails.service';
+import { EmailsProvider, EmailsService, } from '../../../../../services/emails.service';
 import { firstValueFrom } from 'rxjs';
 import {
     CreateEmailsProvider,
@@ -17,8 +12,8 @@ import { AuthService } from '../../../../../services/auth.service';
 import { Slug } from '../../../../../utils/types.utils';
 import { Sender, SenderService } from '../../../../../services/sender.service';
 import { ApiService } from '../../../../../services/api.service';
-import { ConfirmationService } from 'primeng/api';
-import { DomainService } from '../../../../../services/domain.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { CreateDomainDto, Domain, DomainService, DomainStatus } from '../../../../../services/domain.service';
 
 @Component({
     selector: 'app-emails-provider',
@@ -51,6 +46,7 @@ export class EmailsProviderComponent implements OnInit {
         private senderService: SenderService,
         private domainService: DomainService,
         private confirmationService: ConfirmationService,
+        private messageService: MessageService,
     ) {}
 
     async ngOnInit() {
@@ -211,17 +207,68 @@ export class EmailsProviderComponent implements OnInit {
 
     async onVerifyDomain(domain: Domain) {
 
-        await this.apiService.wrap(
-            this.domainService
-                .checkDomain(this.organizationSlug, this.providerId, domain),
-            $localize`Domain "${domain.domain}" verified successfully.`,
-            $localize`Domain verification failed`,
-        );
+        const domainPostVerification = await this.domainService
+            .checkDomain(this.organizationSlug, this.providerId, domain);
 
-        // this.domainService.closeInspectDialog();
+        if (!domain.ownership) {
+            if (domainPostVerification.ownership) {
+                this.messageService.add({
+                    severity: 'success',
+                    summary: $localize`Ownership`,
+                    detail: $localize`Ownership verified successfully.`,
+                });
+            } else {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: $localize`Ownership`,
+                    detail: $localize`Ownership verification failed.`,
+                });
+            }
+        }
 
-        // Re-fetch provider
-        // await this.ngOnInit();
+        if (!domain.dkim) {
+            if (domainPostVerification.dkim) {
+                this.messageService.add({
+                    severity: 'success',
+                    summary: $localize`DKIM`,
+                    detail: $localize`DKIM verified successfully.`,
+                });
+            } else {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: $localize`DKIM`,
+                    detail: $localize`DKIM verification failed.`,
+                });
+            }
+        }
+
+        if (!domain.spf) {
+            if (domainPostVerification.spf) {
+                this.messageService.add({
+                    severity: 'success',
+                    summary: $localize`SPF`,
+                    detail: $localize`SPF verified successfully.`,
+                });
+            } else {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: $localize`SPF`,
+                    detail: $localize`SPF verification failed.`,
+                });
+            }
+        }
+
+        if (domainPostVerification.status === DomainStatus.Verified) {
+            this.messageService.add({
+                severity: 'success',
+                summary: $localize`Domain`,
+                detail: $localize`Domain verified successfully.`,
+            });
+
+            this.domainService.closeInspectDialog();
+
+            await this.ngOnInit();
+        }
     }
 
     openDeleteDomain(domain: Domain) {
@@ -237,9 +284,12 @@ export class EmailsProviderComponent implements OnInit {
                 await this.apiService.wrap(
                     this.domainService
                         .removeDomain(this.organizationSlug, this.providerId, domain),
-                    $localize`Domain "${domain}" deleted successfully.`,
+                    $localize`Domain "${domain.domain}" deleted successfully.`,
                     $localize`Error deleting domain`,
                 );
+
+                // Re-fetch provider
+                await this.ngOnInit();
             },
         });
     }

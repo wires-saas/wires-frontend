@@ -2357,6 +2357,57 @@
       <trans-unit id="7959853880957650762" datatype="html">
         <source>example.com</source>
       </trans-unit>
+      <trans-unit id="1211793026848081674" datatype="html">
+        <source>Ownership verified successfully.</source>
+      </trans-unit>
+      <trans-unit id="1788627141334201526" datatype="html">
+        <source>SPF verification failed.</source>
+      </trans-unit>
+      <trans-unit id="2463394901814311691" datatype="html">
+        <source>SPF verified successfully.</source>
+      </trans-unit>
+      <trans-unit id="4255211416377576291" datatype="html">
+        <source>DKIM verification failed.</source>
+      </trans-unit>
+      <trans-unit id="5014960004929658159" datatype="html">
+        <source>Verified</source>
+      </trans-unit>
+      <trans-unit id="6229198351392391561" datatype="html">
+        <source>DKIM verified successfully.</source>
+      </trans-unit>
+      <trans-unit id="6749778728545929952" datatype="html">
+        <source>Domain verified successfully.</source>
+      </trans-unit>
+      <trans-unit id="7094977029506213707" datatype="html">
+        <source>DNS Zone</source>
+      </trans-unit>
+      <trans-unit id="7413820465239898516" datatype="html">
+        <source> (Copied !) </source>
+      </trans-unit>
+      <trans-unit id="7819314041543176992" datatype="html">
+        <source>Close</source>
+      </trans-unit>
+      <trans-unit id="8772198585391386939" datatype="html">
+        <source>Ownership verification failed.</source>
+      </trans-unit>
+      <trans-unit id="8913794084097958305" datatype="html">
+        <source>Verify</source>
+      </trans-unit>
+      <trans-unit id="8975170695528013065" datatype="html">
+        <source>TXT Record Value</source>
+      </trans-unit>
+      <trans-unit id="1348799503276274914" datatype="html">
+        <source> TXT record to ensure you own the domain. </source>
+      </trans-unit>
+      <trans-unit id="3248758198822474485" datatype="html">
+        <source> TXT record used by email clients to verify the authenticity of your emails. </source>
+      </trans-unit>
+      <trans-unit id="4978703706800327343" datatype="html">
+        <source> TXT record to explicitly allow servers to use your domain name for sending emails. </source>
+      </trans-unit>
+      <trans-unit id="2112807725736321157" datatype="html">
+        <source>Domain &quot;<x id="PH" equiv-text="this.domain?.domain"/>&quot;</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

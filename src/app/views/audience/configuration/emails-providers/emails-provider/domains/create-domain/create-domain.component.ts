@@ -1,8 +1,7 @@
 import { Component, DestroyRef, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import { CreateDomainDto } from '../../../../../../../services/emails.service';
-import { DomainService } from '../../../../../../../services/domain.service';
+import { CreateDomainDto, DomainService } from '../../../../../../../services/domain.service';
 
 @Component({
     selector: 'app-create-domain',

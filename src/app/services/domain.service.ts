@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
-import { Domain, EmailsProvider } from './emails.service';
+import { EmailsProvider } from './emails.service';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -9,6 +9,25 @@ export enum DomainStatus {
     Verified = 'verified',
     Pending = 'pending',
 }
+
+export interface Domain {
+    domain: string;
+    status: DomainStatus;
+
+    ownership: boolean;
+    ownershipRecordName: string;
+    ownershipRecordValue: string;
+
+    dkim: boolean;
+    dkimRecordName: string;
+    dkimRecordValue: string;
+
+    spf: boolean;
+    spfRecordName: string;
+    spfRecordValue: string;
+}
+
+export type CreateDomainDto = Pick<Domain, 'domain'>;
 
 @Injectable()
 export class DomainService {
@@ -52,22 +71,25 @@ export class DomainService {
         organizationId: string,
         providerId: string,
         domain: Domain,
-    ): Promise<boolean> {
-        return firstValueFrom(
-            this.http.post<boolean>(
+    ): Promise<Domain> {
+        const domainPostCheck = await firstValueFrom(
+            this.http.post<Domain>(
                 `${this.domain}/organizations/${organizationId}/providers/emails/${providerId}/domains/${domain.domain}/dns`,
                 domain,
             ),
         );
+
+        this.selectedDomain$$.next(domainPostCheck);
+        return domainPostCheck;
     }
 
     async removeDomain(
         organizationId: string,
         providerId: string,
         domain: Domain,
-    ): Promise<EmailsProvider> {
+    ): Promise<void> {
         return firstValueFrom(
-            this.http.delete<EmailsProvider>(
+            this.http.delete<void>(
                 `${this.domain}/organizations/${organizationId}/providers/emails/${providerId}/domains/${domain.domain}`,
             ),
         );

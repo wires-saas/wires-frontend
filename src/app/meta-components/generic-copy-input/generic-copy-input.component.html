@@ -1,4 +1,9 @@
-<label [for]="inputId" class="text-900 font-semibold">{{ label }}</label>
+<label [for]="inputId" class="text-900 font-semibold">
+    {{ label }}
+    <span class="font-normal text-color-secondary opacity-0 transition-duration-100" [class.opacity-100]="copied" i18n>
+        (Copied !)
+    </span>
+</label>
 <p-inputGroup class="mt-1 mb-4">
     <button *ngIf="!copied; else buttonPostCopy" (click)="copy()" class="p-button-secondary" type="button" pButton [icon]="buttonIcon"></button>
     <ng-template #buttonPostCopy>

@@ -1,9 +1,8 @@
 import { Component, DestroyRef, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import { Domain } from '../../../../../../../services/emails.service';
 import { deepClone } from '../../../../../../../utils/deep-clone';
-import { DomainService } from '../../../../../../../services/domain.service';
+import { Domain, DomainService, DomainStatus } from '../../../../../../../services/domain.service';
 
 @Component({
     selector: 'app-inspect-domain',
@@ -19,7 +18,11 @@ export class InspectDomainComponent implements OnInit {
 
     visible: boolean = false;
 
-    saving: boolean = false;
+    verifying: boolean = false;
+
+    get header() {
+        return $localize`Domain "${this.domain?.domain}"`;
+    }
 
     constructor(
         private domainService: DomainService,
@@ -29,7 +32,10 @@ export class InspectDomainComponent implements OnInit {
 
         this.domainService.selectedDomain$
             .pipe(
-                map((data) => (this.domain = deepClone(data))),
+                map((data) => {
+                    this.domain = deepClone(data);
+                    this.verifying = false;
+                }),
                 takeUntilDestroyed(this.destroyRef),
             )
             .subscribe();
@@ -44,8 +50,13 @@ export class InspectDomainComponent implements OnInit {
             .subscribe();
     }
 
-    canSave(): boolean {
-        return true;
+    canVerify(): boolean {
+        return this.domain.status === DomainStatus.Pending;
+    }
+
+    verify() {
+        this.verifying = true;
+        this.onVerifyDomain.emit(this.domain);
     }
 
     cancel() {

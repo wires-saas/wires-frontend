@@ -4,6 +4,7 @@ import { AuthorizationType, DialogConfig } from './feed.service';
 import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Sender } from './sender.service';
+import { Domain } from './domain.service';
 
 export enum EmailsProviderType {
     Internal = 'internal',
@@ -14,27 +15,6 @@ export enum EmailsProviderType {
     Mailjet = 'mailjet',
     Mailchimp = 'mailchimp',
 }
-
-
-
-export interface Domain {
-    domain: string;
-    status: string;
-
-    ownership: boolean;
-    ownershipRecordName: string;
-    ownershipRecordValue: string;
-
-    dkim: boolean;
-    dkimRecordName: string;
-    dkimRecordValue: string;
-
-    spf: boolean;
-    spfRecordName: string;
-    spfRecordValue: string;
-}
-
-export type CreateDomainDto = Pick<Domain, 'domain'>;
 
 export interface EmailsProvider {
     id: string;

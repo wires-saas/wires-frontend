@@ -1,4 +1,4 @@
-<p-dialog i18n-header header="Inspect Domain"
+<p-dialog [header]="header"
           [(visible)]="visible"
           [modal]="true"
           [dismissableMask]="true"
@@ -10,9 +10,9 @@
             <div class="col-3">
                 <div class="col-12 field">
                     <p class="font-bold text-900 mb-2">
-                        <app-status-badge [value]="domain.ownership" entity="Boolean" class="mr-1"></app-status-badge> Ownership
+                        <app-status-badge [value]="domain.ownership" entity="Boolean" class="mr-1"></app-status-badge> <span i18n>Ownership</span>
                     </p>
-                    <p>
+                    <p i18n>
                         TXT record to ensure you own the domain.
                     </p>
                 </div>
@@ -28,7 +28,7 @@
                     <p class="font-bold text-900 mb-2">
                         <app-status-badge [value]="domain.dkim" entity="Boolean" class="mr-1"></app-status-badge> DKIM
                     </p>
-                    <p>
+                    <p i18n>
                         TXT record used by email clients to verify the authenticity of your emails.
                     </p>
                 </div>
@@ -45,7 +45,7 @@
                     <p class="font-bold text-900 mb-2">
                         <app-status-badge [value]="domain.spf" entity="Boolean" class="mr-1"></app-status-badge> SPF
                     </p>
-                    <p>
+                    <p i18n>
                         TXT record to explicitly allow servers to use your domain name for sending emails.
                     </p>
                 </div>
@@ -125,14 +125,14 @@
             <div class="col-12 flex justify-content-between mt-4">
 
                 <div>
-                    <button (click)="onDeleteDomain.emit(domain)"
+                    <button (click)="onDeleteDomain.emit(domain)" [disabled]="verifying"
                             pButton pRipple class="p-button-outlined p-button-danger" icon="pi pi-trash" i18n-label label="Remove"></button>
                 </div>
 
                 <div>
-                    <button (click)="cancel()" [disabled]="saving" pButton pRipple class="p-button-outlined w-10rem mr-3" icon="pi pi-times" i18n-label label="Close"></button>
+                    <button (click)="cancel()" [disabled]="verifying" pButton pRipple class="p-button-outlined w-10rem mr-3" icon="pi pi-times" i18n-label label="Close"></button>
 
-                    <button (click)="onVerifyDomain.emit(domain)" [disabled]="!canSave()" [loading]="saving"
+                    <button *ngIf="canVerify()" (click)="verify()" [loading]="verifying"
                             pButton pRipple class="p-button-primary w-10rem" icon="pi pi-check" i18n-label label="Verify"></button>
                 </div>
             </div>

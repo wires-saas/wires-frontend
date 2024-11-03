@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Domain } from '../../../../../../../services/emails.service';
+import { Domain } from '../../../../../../../services/domain.service';
 
 @Component({
     selector: 'app-domain-list',
