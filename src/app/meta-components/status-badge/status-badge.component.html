@@ -25,5 +25,9 @@
         </ng-container>
     </ng-container>
 
+    <ng-container *ngSwitchCase="'Boolean'">
+        <p-tag [severity]="value ? 'success' : 'danger'" [value]="value ? 'OK' : 'KO'"></p-tag>
+    </ng-container>
+
     <p-tag *ngSwitchDefault value="NOT IMPLEMENTED"></p-tag>
 </ng-container>

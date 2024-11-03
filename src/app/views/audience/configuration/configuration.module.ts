@@ -61,6 +61,8 @@ import {
 } from './emails-providers/emails-provider/domains/inspect-domain/inspect-domain.component';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { DividerModule } from 'primeng/divider';
+import { GenericCopyInputComponent } from '../../../meta-components/generic-copy-input/generic-copy-input.component';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
     imports: [
@@ -100,6 +102,8 @@ import { DividerModule } from 'primeng/divider';
         StatusBadgeModule,
         InputGroupModule,
         DividerModule,
+        GenericCopyInputComponent,
+        TagModule,
     ],
     declarations: [
         AudienceConfigurationComponent,

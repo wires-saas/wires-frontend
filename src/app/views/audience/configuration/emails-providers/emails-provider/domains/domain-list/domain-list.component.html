@@ -7,26 +7,16 @@
             {{ domain.domain }}
         </td>
         <td>
-            <ng-container *ngIf="domain.ownership; else ko">
-                <span i18n>OK</span>
-            </ng-container>
+            <app-status-badge [value]="domain.ownership" entity="Boolean"></app-status-badge>
         </td>
         <td>
-            <ng-container *ngIf="domain.dkim; else ko">
-                <span i18n>OK</span>
-            </ng-container>
+            <app-status-badge [value]="domain.dkim" entity="Boolean"></app-status-badge>
         </td>
         <td>
-            <ng-container *ngIf="domain.spf; else ko">
-                <span i18n>OK</span>
-            </ng-container>
+            <app-status-badge [value]="domain.spf" entity="Boolean"></app-status-badge>
         </td>
         <td>
             <app-status-badge [value]="domain" entity="Domain"></app-status-badge>
         </td>
     </ng-template>
 </app-generic-data-table>
-
-<ng-template #ko>
-    <span i18n>KO</span>
-</ng-template>

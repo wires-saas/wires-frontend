@@ -8,7 +8,7 @@ import { DomainStatus } from '../../services/domain.service';
     templateUrl: './status-badge.component.html',
 })
 export class StatusBadgeComponent {
-    @Input() entity: 'FeedRun' | 'Domain' | 'Sender' | '' = '';
+    @Input() entity: 'FeedRun' | 'Domain' | 'Sender' | 'Boolean' | '' = '';
     @Input() value!: any;
     protected readonly SenderStatus = SenderStatus;
     protected readonly DomainStatus = DomainStatus;

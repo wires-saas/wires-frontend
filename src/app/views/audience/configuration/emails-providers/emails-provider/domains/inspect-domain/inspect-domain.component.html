@@ -2,33 +2,19 @@
           [(visible)]="visible"
           [modal]="true"
           [dismissableMask]="true"
-          styleClass="mx-3 sm:mx-0 sm:w-full md:w-8 lg:w-6"
+          styleClass="mx-3 sm:mx-0 sm:w-full md:w-10 lg:w-8"
           contentStyleClass="border-round-bottom border-top-1 surface-border p-0">
     <div class="p-4">
         <div class="grid p-fluid formgrid justify-content-center">
 
-            <div class="col-5">
-                <div class="col-12 field pb-4">
-                    <span class="font-bold text-900">DKIM</span>
-                    <p>
-                        Requires creation of a TXT record to ensure you own the domain. Mail clients will reject emails with failed DKIM.
+            <div class="col-3">
+                <div class="col-12 field">
+                    <p class="font-bold text-900 mb-2">
+                        <app-status-badge [value]="domain.ownership" entity="Boolean" class="mr-1"></app-status-badge> Ownership
                     </p>
-                </div>
-
-                <div class="col-12 field">
-                    <label for="domain-dkim-name" class="text-900 font-semibold" i18n>DNS Zone</label>
-                    <p-inputGroup>
-                        <button type="button" pButton icon="pi pi-copy"></button>
-                        <input id="domain-dkim-name" type="text" pInputText [ngModel]="domain.dkimRecordName" [disabled]="true" />
-                    </p-inputGroup>
-                </div>
-
-                <div class="col-12 field">
-                    <label for="domain-dkim-value" class="text-900 font-semibold" i18n>TXT Record Value</label>
-                    <p-inputGroup>
-                        <button type="button" pButton icon="pi pi-copy"></button>
-                        <input id="domain-dkim-value" type="text" pInputText [ngModel]="domain.dkimRecordValue" [disabled]="true" />
-                    </p-inputGroup>
+                    <p>
+                        TXT record to ensure you own the domain.
+                    </p>
                 </div>
             </div>
 
@@ -37,39 +23,104 @@
                 </p-divider>
             </div>
 
-            <div class="col-5">
-
-                <div class="col-12 field pb-4">
-                    <span class="font-bold text-900">SPF</span>
+            <div class="col-3">
+                <div class="col-12 field">
+                    <p class="font-bold text-900 mb-2">
+                        <app-status-badge [value]="domain.dkim" entity="Boolean" class="mr-1"></app-status-badge> DKIM
+                    </p>
                     <p>
-                        Requires creation of a TXT record to explicitly allow servers to use your domain name for sending emails.
+                        TXT record used by email clients to verify the authenticity of your emails.
                     </p>
                 </div>
+            </div>
+
+            <div class="col-1">
+                <p-divider layout="vertical">
+                </p-divider>
+            </div>
+
+            <div class="col-3">
 
                 <div class="col-12 field">
-                    <label for="domain-dkim-name" class="text-900 font-semibold" i18n>DNS Zone</label>
-                    <p-inputGroup>
-                        <button type="button" pButton icon="pi pi-copy"></button>
-                        <input id="domain-spf-name" type="text" pInputText [ngModel]="domain.spfRecordName" [disabled]="true" />
-                    </p-inputGroup>
+                    <p class="font-bold text-900 mb-2">
+                        <app-status-badge [value]="domain.spf" entity="Boolean" class="mr-1"></app-status-badge> SPF
+                    </p>
+                    <p>
+                        TXT record to explicitly allow servers to use your domain name for sending emails.
+                    </p>
+                </div>
+            </div>
+
+            <!-- second row -->
+
+            <div class="col-3">
+
+                <div class="col-12 field">
+                    <app-generic-copy-input i18n-label label="DNS Zone"
+                                            inputId="domain-ownership-name"
+                                            [inputValue]="domain.ownershipRecordName">
+                    </app-generic-copy-input>
                 </div>
 
                 <div class="col-12 field">
-                    <label for="domain-spf-value" class="text-900 font-semibold" i18n>TXT Record Value</label>
-                    <p-inputGroup>
-                        <button type="button" pButton icon="pi pi-copy"></button>
-                        <input id="domain-spf-value" type="text" pInputText [ngModel]="domain.spfRecordValue" [disabled]="true" />
-                    </p-inputGroup>
+                    <app-generic-copy-input i18n-label label="TXT Record Value"
+                                            inputId="domain-ownership-value"
+                                            [inputValue]="domain.ownershipRecordValue">
+                    </app-generic-copy-input>
+                </div>
+            </div>
+
+            <div class="col-1">
+                <p-divider layout="vertical">
+                </p-divider>
+            </div>
+
+            <div class="col-3">
+
+                <div class="col-12 field">
+                    <app-generic-copy-input i18n-label label="DNS Zone"
+                                            inputId="domain-dkim-name"
+                                            [inputValue]="domain.dkimRecordName">
+                    </app-generic-copy-input>
+                </div>
+
+                <div class="col-12 field">
+                    <app-generic-copy-input i18n-label label="TXT Record Value"
+                                            inputId="domain-dkim-value"
+                                            [inputValue]="domain.dkimRecordValue">
+                    </app-generic-copy-input>
+                </div>
+            </div>
+
+            <div class="col-1">
+                <p-divider layout="vertical">
+                </p-divider>
+            </div>
+
+            <div class="col-3">
+                <div class="col-12 field">
+                    <app-generic-copy-input i18n-label label="DNS Zone"
+                                            inputId="domain-spf-name"
+                                            [inputValue]="domain.spfRecordName">
+                    </app-generic-copy-input>
+                </div>
+
+                <div class="col-12 field">
+                    <app-generic-copy-input i18n-label label="TXT Record Value"
+                                            inputId="domain-spf-value"
+                                            [inputValue]="domain.spfRecordValue">
+                    </app-generic-copy-input>
                 </div>
 
             </div>
 
+            <!--
             <div class="col-12">
                 <p class="text-right text-sm mt-2">
                     To go further, check
                     <a href="https://documentation.mailjet.com/hc/en-us/articles/20531905163419-Understanding-DMARC" target="_blank">Mailjet documentation about DMARC here</a>
                 </p>
-            </div>
+            </div> -->
 
             <div class="col-12 flex justify-content-between mt-4">
 

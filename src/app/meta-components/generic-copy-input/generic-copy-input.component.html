@@ -1,0 +1,8 @@
+<label [for]="inputId" class="text-900 font-semibold">{{ label }}</label>
+<p-inputGroup class="mt-1 mb-4">
+    <button *ngIf="!copied; else buttonPostCopy" (click)="copy()" class="p-button-secondary" type="button" pButton [icon]="buttonIcon"></button>
+    <ng-template #buttonPostCopy>
+        <button type="button" pButton icon="pi pi-check" class="p-button-info"></button>
+    </ng-template>
+    <input [id]="inputId" type="text" pInputText [ngModel]="inputValue" [disabled]="true" />
+</p-inputGroup>

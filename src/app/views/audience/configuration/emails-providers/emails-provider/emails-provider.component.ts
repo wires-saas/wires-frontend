@@ -218,10 +218,10 @@ export class EmailsProviderComponent implements OnInit {
             $localize`Domain verification failed`,
         );
 
-        this.domainService.closeInspectDialog();
+        // this.domainService.closeInspectDialog();
 
         // Re-fetch provider
-        await this.ngOnInit();
+        // await this.ngOnInit();
     }
 
     openDeleteDomain(domain: Domain) {
