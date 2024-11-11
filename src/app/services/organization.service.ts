@@ -9,7 +9,7 @@ export enum PlanType {
     FREE = 'free',
     BASIC = 'basic',
     EXTENDED = 'extended',
-    ENTERPRISE = 'custom',
+    CUSTOM = 'custom',
 }
 
 export interface Plan {

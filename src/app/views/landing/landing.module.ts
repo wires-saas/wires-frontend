@@ -9,6 +9,8 @@ import { AppConfigModule } from 'src/app/layout/config/app.config.module';
 import { AnimateEnterDirective } from './animateenter.directive';
 import { PlansModule } from '../../meta-components/plans/plans.module';
 import { LogosModule } from '../../meta-components/logos/logos.module';
+import {PaymentConfirmationDialogComponent} from "./payment-confirmation-dialog/payment-confirmation-dialog.component";
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
     imports: [
@@ -21,7 +23,8 @@ import { LogosModule } from '../../meta-components/logos/logos.module';
         PlansModule,
         LogosModule,
         LogosModule,
+        DialogModule,
     ],
-    declarations: [LandingComponent, AnimateEnterDirective],
+    declarations: [LandingComponent, AnimateEnterDirective, PaymentConfirmationDialogComponent],
 })
 export class LandingModule {}

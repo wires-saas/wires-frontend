@@ -132,7 +132,7 @@
                 <div class="text-700 text-xl mb-8 text-center line-height-3" i18n>Choose a plan that works best for you and
                     your team.</div>
 
-                <app-plans [forLanding]="true"></app-plans>
+                <app-plans [forLanding]="true" [planEnabled]="planPostCheckout" [canCancelPlan]="false" [canUpdatePlan]="false"></app-plans>
 
             </div>
 
@@ -236,7 +236,7 @@
                         <div class="col-12 md:col-3 mt-4 md:mt-0">
                             <h4 class="font-medium text-xl line-height-3 mb-3 text-900" i18n>Resources</h4>
                             <a class="line-height-3 block cursor-pointer mb-2 text-700" i18n>Get Started</a>
-                            <a class="line-height-3 block cursor-pointer mb-2 text-700" i18n href="https://api.dev.wires.fr/api" target="_blank">Documentation</a>
+                            <a class="line-height-3 block cursor-pointer mb-2 text-700" i18n [href]="documentationLink" target="_blank">Documentation</a>
                             <a class="line-height-3 block cursor-pointer text-700" i18n>Case Studies</a>
                         </div>
 
@@ -261,3 +261,5 @@
 </div>
 
 <app-config [minimal]="true"></app-config>
+
+<app-payment-confirmation-dialog [visible]="!!planPostCheckout"></app-payment-confirmation-dialog>

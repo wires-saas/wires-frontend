@@ -1701,65 +1701,9 @@
         <source>Custom pricing</source>
         <target state="new">Prix sur mesure</target>
       </trans-unit>
-      <trans-unit id="2017755900820007851" datatype="html">
-        <source>INVOICE</source>
-        <target state="new">DERNIÈRE FACTURE</target>
-      </trans-unit>
-      <trans-unit id="8289957608088351390" datatype="html">
-        <source>Billed to</source>
-        <target state="new">Facturé à</target>
-      </trans-unit>
       <trans-unit id="4902817035128594900" datatype="html">
         <source>Description</source>
         <target state="new">Description</target>
-      </trans-unit>
-      <trans-unit id="6762504134540024018" datatype="html">
-        <source>Quantity</source>
-        <target state="new">Quantité</target>
-      </trans-unit>
-      <trans-unit id="1599232533055023845" datatype="html">
-        <source>Unit Price</source>
-        <target state="new">Prix Unitaire</target>
-      </trans-unit>
-      <trans-unit id="3790487355705192747" datatype="html">
-        <source>Line Total</source>
-        <target state="new">Total</target>
-      </trans-unit>
-      <trans-unit id="4798047991571109140" datatype="html">
-        <source>NOTES</source>
-        <target state="new">NOTES</target>
-      </trans-unit>
-      <trans-unit id="5657082509613927957" datatype="html">
-        <source>SUBTOTAL</source>
-        <target state="new">SOUS-TOTAL</target>
-      </trans-unit>
-      <trans-unit id="1831102617504515171" datatype="html">
-        <source>VAT (20%)</source>
-        <target state="new">TVA (20%)</target>
-      </trans-unit>
-      <trans-unit id="6684016449595758284" datatype="html">
-        <source>TOTAL</source>
-        <target state="new">TOTAL</target>
-      </trans-unit>
-      <trans-unit id="6255181836560701959" datatype="html">
-        <source>INVOICE DATE</source>
-        <target state="new">FACTURÉ LE</target>
-      </trans-unit>
-      <trans-unit id="8217951079685286377" datatype="html">
-        <source>DUE DATE</source>
-        <target state="new">ÉCHÉANCE DE PAIEMENT</target>
-      </trans-unit>
-      <trans-unit id="7754403202356625862" datatype="html">
-        <source>REFERENCE #</source>
-        <target state="new">RÉFÉRENCE #</target>
-      </trans-unit>
-      <trans-unit id="1789368895535087987" datatype="html">
-        <source>Please provide invoice reference with your payment</source>
-        <target state="new">Merci de fournir la référence de la facture lors de votre virement</target>
-      </trans-unit>
-      <trans-unit id="1585328301214231050" datatype="html">
-        <source>Total payment is due within 30 days</source>
-        <target state="new">La totalité du paiement est exigible sous 30 jours à compter de la date d&apos;émission</target>
       </trans-unit>
       <trans-unit id="1786686364877146278" datatype="html">
         <source>Super Admin</source>
@@ -3106,7 +3050,7 @@
         <target state="new">Supprimer le domaine &quot;<x id="PH" equiv-text="domain.domain"/>&quot;</target>
       </trans-unit>
       <trans-unit id="6329004472625393198" datatype="html">
-        <source>Domain &quot;<x id="PH" equiv-text="domain"/>&quot; deleted successfully.</source>
+        <source>Domain &quot;<x id="PH" equiv-text="domain.domain"/>&quot; deleted successfully.</source>
         <target state="new">Domaine &quot;<x id="PH" equiv-text="domain"/>&quot; supprimé avec succès.</target>
       </trans-unit>
       <trans-unit id="2956272170596607478" datatype="html">
@@ -3208,6 +3152,42 @@
       <trans-unit id="2112807725736321157" datatype="html">
         <source>Domain &quot;<x id="PH" equiv-text="this.domain?.domain"/>&quot;</source>
         <target state="new">Domaine &quot;<x id="PH" equiv-text="this.domain?.domain"/>&quot;</target>
+      </trans-unit>
+      <trans-unit id="3780487708847177453" datatype="html">
+        <source>Contacts Provider</source>
+        <target state="new">Connecteur de Contacts</target>
+      </trans-unit>
+      <trans-unit id="6733305434981590261" datatype="html">
+        <source>Emails Provider</source>
+        <target state="new">Connecteur d&apos;Emails</target>
+      </trans-unit>
+      <trans-unit id="2869948436884924902" datatype="html">
+        <source>Next Steps</source>
+        <target state="new">Prochaine étape</target>
+      </trans-unit>
+      <trans-unit id="5771126002358411136" datatype="html">
+        <source> Thank you for trusting us !<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> We have sent you an <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>email<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> with a link to create your account. Please check your inbox and follow the instructions. </source>
+        <target state="new"> Merci pour votre confiance !<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Nous vous avons envoyé <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>un email<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> contenant un lien de création de compte. Veuillez vérifier votre boite de réception. </target>
+      </trans-unit>
+      <trans-unit id="5374784679919540633" datatype="html">
+        <source> Wires Team </source>
+        <target state="new"> L&apos;équipe Wires </target>
+      </trans-unit>
+      <trans-unit id="8720977247725652816" datatype="html">
+        <source>Ok</source>
+        <target state="new">Ok</target>
+      </trans-unit>
+      <trans-unit id="3950277734881132731" datatype="html">
+        <source>Billing Portal</source>
+        <target state="new">Portail de facturation</target>
+      </trans-unit>
+      <trans-unit id="5875426487613442060" datatype="html">
+        <source> Our billing is powered by Stripe. To access your invoices, modify your payment method or cancel your plan, please click link below : </source>
+        <target state="new"> Notre facturation est propulsée par Stripe. Pour accéder à vos factures, modifier votre moyen de paiement ou annuler votre abonnement, merci de cliquer le bouton ci-dessous : </target>
+      </trans-unit>
+      <trans-unit id="4589010157196810464" datatype="html">
+        <source>Open Portal</source>
+        <target state="new">Accéder au portail</target>
       </trans-unit>
     </body>
   </file>

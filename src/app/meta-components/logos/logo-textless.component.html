@@ -1,4 +1,12 @@
 <img src="assets/imgs/logo_purple_textless_transparent.png"
-     class="w-10rem"
+     [class.hidden]="!lightMode"
+     [class.w-10rem]="!small"
+     [class.w-5rem]="small"
      [class.border-bottom-2]="withBorder" [class.pb-2]="withBorder" [style.border-color]="'var(--indigo-100)'"
      alt="light logo" />
+<img src="assets/imgs/logo_teal_textless_transparent.png"
+     [class.hidden]="lightMode"
+     [class.w-10rem]="!small"
+     [class.w-5rem]="small"
+     [class.border-bottom-2]="withBorder" [class.pb-2]="withBorder" [style.border-color]="'var(--indigo-100)'"
+     alt="dark logo" />

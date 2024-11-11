@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { Subscription } from 'rxjs';
 import { PlanType } from '../../services/organization.service';
+import {environment} from "../../../environments/environment";
 
 @Component({
     templateUrl: './plans.component.html',
@@ -40,11 +41,10 @@ export class PlansComponent implements OnDestroy {
         // TODO
     }
 
-    selectPlan(plan: PlanType) {
-        if (this.forLanding) {
-            // TODO open contact form ?
-            return;
-        }
+    selectPlan(plan: Exclude<PlanType, PlanType.FREE>) {
+        const paymentLink = environment.paymentLinks && environment.paymentLinks[plan];
+        if (paymentLink) window.open(paymentLink, '_blank');
+        else console.error('No payment link for plan', plan);
 
         this.planEnabled = plan;
     }

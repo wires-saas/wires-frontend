@@ -141,8 +141,14 @@ export class Permission {
                 case PermissionSubject.Folder:
                     subjectI18N = $localize`Folder`;
                     break;
+                case PermissionSubject.ContactsProvider:
+                    subjectI18N = $localize`Contacts Provider`;
+                    break;
+                case PermissionSubject.EmailsProvider:
+                    subjectI18N = $localize`Emails Provider`;
+                    break;
                 default:
-                    subjectI18N = $localize`N/A`;
+                    subjectI18N = $localize`N/A` + ` (${this.subject})`;
                     break;
             }
 

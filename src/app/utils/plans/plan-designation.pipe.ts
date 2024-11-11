@@ -12,7 +12,7 @@ export class PlanDesignationPipe implements PipeTransform {
                 return $localize`Basic Plan`;
             case PlanType.EXTENDED:
                 return $localize`Extended Plan`;
-            case PlanType.ENTERPRISE:
+            case PlanType.CUSTOM:
                 return $localize`Enterprise Plan`;
             case PlanType.FREE:
                 return $localize`Free Plan`;

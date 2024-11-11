@@ -12,7 +12,7 @@ export class PlanPricePipe implements PipeTransform {
                 return 200;
             case PlanType.EXTENDED:
                 return 500;
-            case PlanType.ENTERPRISE:
+            case PlanType.CUSTOM:
                 return $localize`Custom pricing`;
             case PlanType.FREE:
                 return 0;

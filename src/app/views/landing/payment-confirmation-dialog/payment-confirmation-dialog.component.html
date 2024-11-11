@@ -1,0 +1,22 @@
+<p-dialog i18n-header header="Next Steps"
+          [focusOnShow]="false"
+          [(visible)]="visible"
+          [modal]="true"
+          [dismissableMask]="false"
+          [closable]="false"
+          [style]="{width: '30vw'}"
+          [breakpoints]="{'960px': '75vw'}">
+
+    <p class="line-height-3 m-0" i18n>
+        Thank you for trusting us !<br/>
+        We have sent you an <b>email</b> with a link to create your account. Please check your inbox and follow the instructions.
+    </p>
+
+    <app-logo-textless class="block text-center mt-4" [small]="true"></app-logo-textless>
+    <p class="text-center m-0" i18n>
+        Wires Team
+    </p>
+    <ng-template pTemplate="footer">
+        <button pButton icon="pi pi-check" (click)="visible = false" i18n-label label="Ok" class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import {LayoutService} from "../../layout/service/app.layout.service";
 
 @Component({
     templateUrl: './logo-textless.component.html',
@@ -6,4 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class LogoTextlessComponent {
     @Input() withBorder: boolean = false;
+    @Input() small: boolean = false;
+
+    get lightMode(): boolean {
+        return this.layoutService.isLightMode();
+    }
+
+    constructor(private layoutService: LayoutService) {}
 }
