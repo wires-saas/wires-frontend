@@ -30,7 +30,7 @@ export class AppMenuComponent implements OnInit {
     private dashboardMenu: (
         org: Organization,
         authService: AuthService,
-    ) => any[] = (org, authService) => [
+    ) => any[] = (org) => [
         {
             label: 'Dashboards',
             items: [

@@ -1,4 +1,8 @@
-
-
-
-<app-plans [planEnabled]="plan?.type"></app-plans>
+<app-plans [planEnabled]="plan?.type"
+           [canUpdatePlan]="canUpdatePlan"
+           [canCancelPlan]="canCancelPlan"
+           (onPlanSelection)="onPlanSelection.emit($event)"
+           (onPlanUpgrade)="onPlanUpgrade.emit($event)"
+           (onPlanDowngrade)="onPlanDowngrade.emit($event)"
+           (onPlanCancel)="onPlanCancel.emit($event)">
+</app-plans>

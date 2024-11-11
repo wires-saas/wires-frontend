@@ -10,8 +10,8 @@ import { FullNamePipe } from '../../../utils/pipes/full-name.pipe';
 import { PlanPricePipe } from '../../../utils/plans/plan-price.pipe';
 import { PlanDesignationPipe } from '../../../utils/plans/plan-designation.pipe';
 import { LogosModule } from '../../../meta-components/logos/logos.module';
-import {PlansComponent} from "./plans/plans.component";
-import {PlansModule} from "../../../meta-components/plans/plans.module";
+import { PlansComponent } from './plans/plans.component';
+import { PlansModule } from '../../../meta-components/plans/plans.module';
 
 @NgModule({
     imports: [

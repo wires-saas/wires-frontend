@@ -114,9 +114,11 @@
                 </div>
             </form>
 
+
+            <!--
             <h5 i18n>Billing</h5>
             <p class="text-600" i18n>Will receive emails related to payments, cancellation and contract changes</p>
-            <div [formGroup]="billingContactForm" class="grid formgrid p-fluid">
+            <form [formGroup]="billingContactForm" class="grid formgrid p-fluid">
                 <div class="field col-12 md:col-6">
                     <label for="firstname-billing" class="font-medium text-900" i18n>First Name</label>
                     <input formControlName="firstName" id="firstname-billing" type="text" pInputText>
@@ -140,7 +142,8 @@
                     <button (click)="updateBillingContact()" [disabled]="!canSaveBillingContact()"
                             pButton pRipple i18n-label label="Update Billing" icon="pi pi-save" class="w-auto mt-3"></button>
                 </div>
-            </div>
+            </form>
+            -->
         </div>
     </div>
 </div>

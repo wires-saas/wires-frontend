@@ -1,8 +1,19 @@
-import { Component, DestroyRef, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import {
+    Component,
+    DestroyRef,
+    EventEmitter,
+    inject,
+    OnInit,
+    Output,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { deepClone } from '../../../../../../../utils/deep-clone';
-import { Domain, DomainService, DomainStatus } from '../../../../../../../services/domain.service';
+import {
+    Domain,
+    DomainService,
+    DomainStatus,
+} from '../../../../../../../services/domain.service';
 
 @Component({
     selector: 'app-inspect-domain',
@@ -24,12 +35,9 @@ export class InspectDomainComponent implements OnInit {
         return $localize`Domain "${this.domain?.domain}"`;
     }
 
-    constructor(
-        private domainService: DomainService,
-    ) {}
+    constructor(private domainService: DomainService) {}
 
     ngOnInit(): void {
-
         this.domainService.selectedDomain$
             .pipe(
                 map((data) => {

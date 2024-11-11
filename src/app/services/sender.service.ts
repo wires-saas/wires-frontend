@@ -5,7 +5,6 @@ import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { EmailsProvider } from './emails.service';
 import { HttpClient } from '@angular/common/http';
 
-
 export enum SenderStatus {
     Available = 'available',
     Unavailable = 'unavailable',
@@ -21,8 +20,9 @@ export interface Sender {
 export class SenderService {
     private readonly domain: string;
 
-    private selectedSender$$: Subject<Sender | undefined> =
-        new BehaviorSubject<Sender | undefined>(undefined);
+    private selectedSender$$: Subject<Sender | undefined> = new BehaviorSubject<
+        Sender | undefined
+    >(undefined);
     selectedSender$: Observable<Sender | undefined> =
         this.selectedSender$$.asObservable();
 
@@ -102,5 +102,4 @@ export class SenderService {
         this.dialogConfig = { visible: false };
         this.dialogSource$$.next(this.dialogConfig);
     }
-
 }

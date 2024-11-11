@@ -4,7 +4,7 @@
             <h4 i18n>Billing Portal</h4>
             <p i18n>
                 Our billing is powered by Stripe.
-                To access your invoices, modify your payment method or cancel your plan, please click link below :
+                To access your invoices, modify your payment method or update your plan, please click link below :
             </p>
 
             <a [href]="getBillingPortalLink()" target="_blank" rel="noopener noreferrer">
@@ -12,7 +12,46 @@
             </a>
         </div>
     </div>
+
+    <div class="col-12">
+        <app-information-plans (onPlanSelection)="openPaymentLink($event)"
+                               (onPlanUpgrade)="openPortal()"
+                               (onPlanDowngrade)="openPortal()"
+                               (onPlanCancel)="openPortal()"></app-information-plans>
+    </div>
+
+    <div class="col-12">
+        <div class="card">
+            <h4 i18n>Subscription Details</h4>
+            <p [ngSwitch]="currentOrganizationPlan?.status">
+                <ng-container *ngSwitchCase="PlanStatus.ACTIVE" i18n>
+                    Your subscription is active and valid until {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
+                </ng-container>
+
+                <ng-container *ngSwitchCase="PlanStatus.CANCELLED" i18n>
+                    Your subscription has been cancelled and will expire on {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
+                </ng-container>
+
+                <ng-container *ngSwitchCase="PlanStatus.EXPIRED" i18n>
+                    Your subscription has expired on {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
+                </ng-container>
+
+                <ng-container *ngSwitchCase="PlanStatus.INCOMPLETE" i18n>
+                    Your subscription is incomplete. Please open billing portal to solve the issue.
+                </ng-container>
+
+                <ng-container *ngSwitchDefault i18n>
+                    We have not been able to find any subscription for your organization.
+                </ng-container>
+            </p>
+
+            <p *ngIf="currentOrganizationPlan?.customerEmail" i18n>
+                Customer email who is responsible for this subscription : <b>{{ currentOrganizationPlan?.customerEmail }}</b>
+            </p>
+
+        </div>
+    </div>
 </div>
 
 
-<app-information-plans></app-information-plans>
+

@@ -22,10 +22,7 @@ import {
     MessageService,
     SortEvent,
 } from 'primeng/api';
-import {
-    ExtendedRoleName,
-    RoleUtils,
-} from '../../../../utils/role.utils';
+import { ExtendedRoleName, RoleUtils } from '../../../../utils/role.utils';
 import { Slug } from '../../../../utils/types.utils';
 import { AuthService } from '../../../../services/auth.service';
 import { MessageUtils } from '../../../../utils/message.utils';

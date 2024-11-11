@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {LayoutService} from "../../layout/service/app.layout.service";
+import { LayoutService } from '../../layout/service/app.layout.service';
 
 @Component({
     templateUrl: './logo-textless.component.html',

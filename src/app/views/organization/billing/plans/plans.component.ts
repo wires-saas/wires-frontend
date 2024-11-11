@@ -1,9 +1,9 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import {Component, DestroyRef, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import { map } from 'rxjs/operators';
 import {
     Organization,
     OrganizationService,
-    Plan,
+    Plan, PlanType,
 } from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { firstValueFrom } from 'rxjs';
@@ -12,6 +12,7 @@ import {
     UpdateBilling,
 } from '../../../../utils/permission.utils';
 import { AuthService } from '../../../../services/auth.service';
+import {environment} from "../../../../../environments/environment";
 
 @Component({
     selector: 'app-information-plans',
@@ -26,6 +27,11 @@ export class PlansComponent implements OnInit {
     currentOrgSlug: string | undefined;
 
     private destroyRef = inject(DestroyRef);
+
+    @Output() onPlanSelection: EventEmitter<Exclude<PlanType, PlanType.FREE>> = new EventEmitter<Exclude<PlanType, PlanType.FREE>>();
+    @Output() onPlanUpgrade: EventEmitter<Exclude<PlanType, PlanType.FREE>> = new EventEmitter<Exclude<PlanType, PlanType.FREE>>();
+    @Output() onPlanDowngrade: EventEmitter<Exclude<PlanType, PlanType.FREE>> = new EventEmitter<Exclude<PlanType, PlanType.FREE>>();
+    @Output() onPlanCancel: EventEmitter<void> = new EventEmitter<void>();
 
     constructor(
         private authService: AuthService,

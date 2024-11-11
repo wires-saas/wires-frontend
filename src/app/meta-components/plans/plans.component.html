@@ -42,16 +42,16 @@
                 </ul>
 
                 <button *ngIf="canUpdatePlan && (planEnabled === PlanType.EXTENDED || planEnabled === PlanType.CUSTOM)"
-                        (click)="selectPlan(PlanType.BASIC)"
+                        (click)="onPlanDowngrade.emit(PlanType.BASIC)"
                         pButton pRipple i18n-label label="Downgrade Plan" class="px-5 w-full mt-6 p-button-outlined p-button-danger"
                         icon="pi pi-arrow-right" iconPos="right"></button>
                 <button *ngIf="!planEnabled || planEnabled === PlanType.FREE"
-                        (click)="selectPlan(PlanType.BASIC)"
+                        (click)="onPlanSelection.emit(PlanType.BASIC)"
                         pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
                         icon="pi pi-arrow-right" iconPos="right"></button>
 
                 <button *ngIf="canCancelPlan && planEnabled === PlanType.BASIC"
-                        (click)="cancelPlan()"
+                        (click)="onPlanCancel.emit()"
                         pButton pRipple type="button"
                         i18n-label label="Cancel Subscription"
                         class="p-button-danger p-button-text text-sm"></button>
@@ -102,22 +102,22 @@
                 </ul>
 
                 <button *ngIf="canUpdatePlan && planEnabled === PlanType.CUSTOM"
-                        (click)="selectPlan(PlanType.EXTENDED)"
+                        (click)="onPlanDowngrade.emit(PlanType.EXTENDED)"
                         pButton pRipple i18n-label label="Downgrade Plan" class="px-5 w-full mt-6 p-button-outlined p-button-danger"
                         icon="pi pi-arrow-right" iconPos="right"></button>
 
                 <button *ngIf="canUpdatePlan && planEnabled === PlanType.BASIC"
-                        (click)="selectPlan(PlanType.EXTENDED)"
+                        (click)="onPlanUpgrade.emit(PlanType.EXTENDED)"
                         pButton pRipple i18n-label label="Upgrade Plan" class="px-5 w-full mt-6 p-button"
                         icon="pi pi-arrow-right" iconPos="right"></button>
 
                 <button *ngIf="!planEnabled || planEnabled === PlanType.FREE"
-                        (click)="selectPlan(PlanType.EXTENDED)"
+                        (click)="onPlanSelection.emit(PlanType.EXTENDED)"
                         pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
                         icon="pi pi-arrow-right" iconPos="right"></button>
 
                 <button *ngIf="canCancelPlan && planEnabled === PlanType.EXTENDED"
-                        (click)="cancelPlan()"
+                        (click)="onPlanCancel.emit()"
                         pButton pRipple type="button"
                         i18n-label label="Cancel Subscription"
                         class="p-button-danger p-button-text text-sm"></button>
@@ -172,17 +172,17 @@
                 </ul>
 
                 <button *ngIf="canUpdatePlan && (planEnabled === PlanType.BASIC || planEnabled === PlanType.EXTENDED)"
-                        (click)="selectPlan(PlanType.CUSTOM)"
+                        (click)="onPlanUpgrade.emit(PlanType.CUSTOM)"
                         pButton pRipple i18n-label label="Upgrade Plan" class="px-5 w-full mt-6 p-button"
                         icon="pi pi-arrow-right" iconPos="right"></button>
 
                 <button *ngIf="!planEnabled || planEnabled === PlanType.FREE"
-                        (click)="selectPlan(PlanType.CUSTOM)"
+                        (click)="onPlanSelection.emit(PlanType.CUSTOM)"
                         pButton pRipple i18n-label label="Choose Plan" class="px-5 w-full mt-6 p-button-outlined"
                         icon="pi pi-arrow-right" iconPos="right"></button>
 
                 <button *ngIf="canCancelPlan && planEnabled === PlanType.CUSTOM"
-                        (click)="cancelPlan()"
+                        (click)="onPlanCancel.emit()"
                         pButton pRipple type="button"
                         i18n-label label="Cancel Subscription"
                         class="p-button-danger p-button-text text-sm"></button>

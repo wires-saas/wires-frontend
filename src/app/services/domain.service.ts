@@ -4,7 +4,6 @@ import { BehaviorSubject, firstValueFrom, Observable, Subject } from 'rxjs';
 import { EmailsProvider } from './emails.service';
 import { HttpClient } from '@angular/common/http';
 
-
 export enum DomainStatus {
     Verified = 'verified',
     Pending = 'pending',
@@ -33,10 +32,8 @@ export type CreateDomainDto = Pick<Domain, 'domain'>;
 export class DomainService {
     private readonly domain: string;
 
-    private selectedDomain$$: Subject<Domain> =
-        new Subject<Domain>();
-    selectedDomain$: Observable<Domain> =
-        this.selectedDomain$$.asObservable();
+    private selectedDomain$$: Subject<Domain> = new Subject<Domain>();
+    selectedDomain$: Observable<Domain> = this.selectedDomain$$.asObservable();
 
     createDialogVisible: boolean = false;
     private createDialogVisible$$: BehaviorSubject<boolean> =
@@ -120,5 +117,4 @@ export class DomainService {
         this.inspectDialogVisible = false;
         this.inspectDialogVisible$$.next(false);
     }
-
 }

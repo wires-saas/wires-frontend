@@ -1,52 +1,67 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import {Component, DestroyRef, EventEmitter, inject, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { Subscription } from 'rxjs';
-import { PlanType } from '../../services/organization.service';
-import {environment} from "../../../environments/environment";
+import {Organization, OrganizationService, Plan, PlanType} from '../../services/organization.service';
+import { environment } from '../../../environments/environment';
+import {map} from "rxjs/operators";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
     templateUrl: './plans.component.html',
     selector: 'app-plans',
 })
-export class PlansComponent implements OnDestroy {
-    subscription: Subscription;
+export class PlansComponent implements OnInit {
+
+    private destroyRef = inject(DestroyRef);
+
+    currentOrganization: Organization | undefined;
+    currentOrganizationPlan: Plan | undefined;
 
     darkMode: boolean = false;
 
-    @Input() canCancelPlan: boolean = true;
+    @Input() canCancelPlan: boolean = false;
     @Input() canUpdatePlan: boolean = false;
 
     @Input() planEnabled: PlanType | undefined;
     @Input() forLanding: boolean = false;
 
+    @Output() onPlanSelection: EventEmitter<Exclude<PlanType, PlanType.FREE>> = new EventEmitter<Exclude<PlanType, PlanType.FREE>>();
+    @Output() onPlanUpgrade: EventEmitter<Exclude<PlanType, PlanType.FREE>> = new EventEmitter<Exclude<PlanType, PlanType.FREE>>();
+    @Output() onPlanDowngrade: EventEmitter<Exclude<PlanType, PlanType.FREE>> = new EventEmitter<Exclude<PlanType, PlanType.FREE>>();
+    @Output() onPlanCancel: EventEmitter<void> = new EventEmitter<void>();
+
     constructor(
         public router: Router,
         private layoutService: LayoutService,
+        private organizationService: OrganizationService,
     ) {
-        this.subscription = this.layoutService.configUpdate$.subscribe(
-            (config) => {
+    }
+
+    ngOnInit() {
+        this.layoutService.configUpdate$.pipe(
+            map((config) => {
                 this.darkMode =
                     config.colorScheme === 'dark' ||
                     config.colorScheme === 'dim';
-            },
-        );
-    }
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
+        this.organizationService.currentOrganization$.pipe(
+            map(async (org: Organization | undefined) => {
+                this.currentOrganization = org;
 
-    cancelPlan() {
-        // TODO
-    }
-
-    selectPlan(plan: Exclude<PlanType, PlanType.FREE>) {
-        const paymentLink = environment.paymentLinks && environment.paymentLinks[plan];
-        if (paymentLink) window.open(paymentLink, '_blank');
-        else console.error('No payment link for plan', plan);
-
-        this.planEnabled = plan;
+                if (org) {
+                    this.currentOrganizationPlan = await this.organizationService.getPlan(
+                        org.slug,
+                    );
+                } else {
+                    this.currentOrganizationPlan = undefined;
+                }
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
     }
 
     protected readonly PlanType = PlanType;

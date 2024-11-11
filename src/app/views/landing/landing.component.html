@@ -132,7 +132,11 @@
                 <div class="text-700 text-xl mb-8 text-center line-height-3" i18n>Choose a plan that works best for you and
                     your team.</div>
 
-                <app-plans [forLanding]="true" [planEnabled]="planPostCheckout" [canCancelPlan]="false" [canUpdatePlan]="false"></app-plans>
+                <app-plans (onPlanSelection)="openPaymentLink($event)"
+                           [forLanding]="true"
+                           [planEnabled]="planPostCheckout"
+                           [canCancelPlan]="false"
+                           [canUpdatePlan]="false"></app-plans>
 
             </div>
 

@@ -46,19 +46,13 @@ import { SenderListComponent } from './emails-providers/emails-provider/senders/
 import { DurationPipe } from '../../../utils/pipes/duration.pipe';
 import { GenericDataTableComponent } from '../../../meta-components/generic-data-table/generic-data-table.component';
 import { StatusBadgeModule } from '../../../meta-components/status-badge/status-badge.module';
-import {
-    CreateOrUpdateSenderComponent
-} from './emails-providers/emails-provider/senders/create-or-update-sender/create-or-update-sender.component';
+import { CreateOrUpdateSenderComponent } from './emails-providers/emails-provider/senders/create-or-update-sender/create-or-update-sender.component';
 import { ApiService } from '../../../services/api.service';
 import { SenderService } from '../../../services/sender.service';
 import { DomainListComponent } from './emails-providers/emails-provider/domains/domain-list/domain-list.component';
 import { DomainService } from '../../../services/domain.service';
-import {
-    CreateDomainComponent
-} from './emails-providers/emails-provider/domains/create-domain/create-domain.component';
-import {
-    InspectDomainComponent
-} from './emails-providers/emails-provider/domains/inspect-domain/inspect-domain.component';
+import { CreateDomainComponent } from './emails-providers/emails-provider/domains/create-domain/create-domain.component';
+import { InspectDomainComponent } from './emails-providers/emails-provider/domains/inspect-domain/inspect-domain.component';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { DividerModule } from 'primeng/divider';
 import { GenericCopyInputComponent } from '../../../meta-components/generic-copy-input/generic-copy-input.component';
@@ -122,7 +116,7 @@ import { TagModule } from 'primeng/tag';
 
         DomainListComponent,
         CreateDomainComponent,
-        InspectDomainComponent
+        InspectDomainComponent,
     ],
     providers: [
         ApiService,

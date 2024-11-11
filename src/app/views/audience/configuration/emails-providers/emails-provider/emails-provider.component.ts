@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CapitalizePipe } from '../../../../../utils/pipes/capitalize.pipe';
-import { EmailsProvider, EmailsService, } from '../../../../../services/emails.service';
+import {
+    EmailsProvider,
+    EmailsService,
+} from '../../../../../services/emails.service';
 import { firstValueFrom } from 'rxjs';
 import {
     CreateEmailsProvider,
@@ -13,14 +16,18 @@ import { Slug } from '../../../../../utils/types.utils';
 import { Sender, SenderService } from '../../../../../services/sender.service';
 import { ApiService } from '../../../../../services/api.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { CreateDomainDto, Domain, DomainService, DomainStatus } from '../../../../../services/domain.service';
+import {
+    CreateDomainDto,
+    Domain,
+    DomainService,
+    DomainStatus,
+} from '../../../../../services/domain.service';
 
 @Component({
     selector: 'app-emails-provider',
     templateUrl: './emails-provider.component.html',
 })
 export class EmailsProviderComponent implements OnInit {
-
     organizationSlug!: string;
     providerId!: string;
 
@@ -132,23 +139,29 @@ export class EmailsProviderComponent implements OnInit {
     }
 
     async openDeleteSender(sender: Sender) {
-
         const otherSenders = this.provider?.senders || [];
-        const selectedSender = await firstValueFrom(this.senderService.selectedSender$);
+        const selectedSender = await firstValueFrom(
+            this.senderService.selectedSender$,
+        );
 
-        const sendersWithDelete = otherSenders.filter((s) => s.email !== selectedSender?.email);
+        const sendersWithDelete = otherSenders.filter(
+            (s) => s.email !== selectedSender?.email,
+        );
 
         this.senderService.closeDialog();
 
         this.confirmationService.confirm({
-            header: $localize `Delete Sender "${sender.email}"`,
+            header: $localize`Delete Sender "${sender.email}"`,
             key: 'confirm-delete-sender',
             acceptLabel: $localize`Confirm`,
             rejectLabel: $localize`Cancel`,
             accept: async () => {
                 await this.apiService.wrap(
-                    this.senderService
-                        .updateSenders(this.organizationSlug, this.providerId, sendersWithDelete),
+                    this.senderService.updateSenders(
+                        this.organizationSlug,
+                        this.providerId,
+                        sendersWithDelete,
+                    ),
                     $localize`Sender "${sender.email}" deleted successfully.`,
                     $localize`Error deleting sender`,
                 );
@@ -159,17 +172,16 @@ export class EmailsProviderComponent implements OnInit {
     }
 
     async onCreateSender(sender: Sender) {
-
         const otherSenders = this.provider?.senders || [];
 
-        const senders = [
-            ...otherSenders,
-            sender
-        ];
+        const senders = [...otherSenders, sender];
 
         await this.apiService.wrap(
-            this.senderService
-                .updateSenders(this.organizationSlug, this.providerId, senders),
+            this.senderService.updateSenders(
+                this.organizationSlug,
+                this.providerId,
+                senders,
+            ),
             $localize`Sender "${sender.email}" created successfully.`,
             $localize`Error creating sender`,
         );
@@ -180,9 +192,10 @@ export class EmailsProviderComponent implements OnInit {
     }
 
     async onEditSender(sender: Sender) {
-
         const otherSenders = this.provider?.senders || [];
-        const selectedSender = await firstValueFrom(this.senderService.selectedSender$);
+        const selectedSender = await firstValueFrom(
+            this.senderService.selectedSender$,
+        );
 
         const sendersWithUpdate = otherSenders.map((s) => {
             if (s.email === selectedSender?.email) {
@@ -192,8 +205,11 @@ export class EmailsProviderComponent implements OnInit {
         });
 
         await this.apiService.wrap(
-            this.senderService
-                .updateSenders(this.organizationSlug, this.providerId, sendersWithUpdate),
+            this.senderService.updateSenders(
+                this.organizationSlug,
+                this.providerId,
+                sendersWithUpdate,
+            ),
             $localize`Sender "${sender.email}" updated successfully.`,
             $localize`Error updating sender`,
         );
@@ -203,8 +219,6 @@ export class EmailsProviderComponent implements OnInit {
         await this.ngOnInit();
     }
 
-
-
     // For domains
 
     openCreateDomain() {
@@ -212,10 +226,12 @@ export class EmailsProviderComponent implements OnInit {
     }
 
     async onCreateDomain(domain: CreateDomainDto) {
-
         await this.apiService.wrap(
-            this.domainService
-                .createDomain(this.organizationSlug, this.providerId, domain.domain),
+            this.domainService.createDomain(
+                this.organizationSlug,
+                this.providerId,
+                domain.domain,
+            ),
             $localize`Domain "${domain.domain}" added successfully.`,
             $localize`Error adding domain`,
         );
@@ -231,9 +247,11 @@ export class EmailsProviderComponent implements OnInit {
     }
 
     async onVerifyDomain(domain: Domain) {
-
-        const domainPostVerification = await this.domainService
-            .checkDomain(this.organizationSlug, this.providerId, domain);
+        const domainPostVerification = await this.domainService.checkDomain(
+            this.organizationSlug,
+            this.providerId,
+            domain,
+        );
 
         if (!domain.ownership) {
             if (domainPostVerification.ownership) {
@@ -297,18 +315,20 @@ export class EmailsProviderComponent implements OnInit {
     }
 
     openDeleteDomain(domain: Domain) {
-
         this.domainService.closeInspectDialog();
 
         this.confirmationService.confirm({
-            header: $localize `Delete Domain "${domain.domain}"`,
+            header: $localize`Delete Domain "${domain.domain}"`,
             key: 'confirm-delete-domain',
             acceptLabel: $localize`Confirm`,
             rejectLabel: $localize`Cancel`,
             accept: async () => {
                 await this.apiService.wrap(
-                    this.domainService
-                        .removeDomain(this.organizationSlug, this.providerId, domain),
+                    this.domainService.removeDomain(
+                        this.organizationSlug,
+                        this.providerId,
+                        domain,
+                    ),
                     $localize`Domain "${domain.domain}" deleted successfully.`,
                     $localize`Error deleting domain`,
                 );

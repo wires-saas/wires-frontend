@@ -1,9 +1,4 @@
-import {
-    Component,
-    DestroyRef,
-    inject,
-    OnInit,
-} from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import {
     BlockWithHistory,
     BlockService,

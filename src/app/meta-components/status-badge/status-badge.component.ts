@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { FeedRun } from '../../services/feed.service';
 import { SenderStatus } from '../../services/sender.service';
 import { DomainStatus } from '../../services/domain.service';
 

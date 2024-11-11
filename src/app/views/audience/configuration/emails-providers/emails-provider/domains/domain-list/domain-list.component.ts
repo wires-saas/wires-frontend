@@ -14,13 +14,14 @@ export class DomainListComponent {
     @Output() onDeleteDomain: EventEmitter<Domain> = new EventEmitter<Domain>();
 
     @Input() canInspectDomain: boolean = false;
-    @Output() onInspectDomain: EventEmitter<Domain> = new EventEmitter<Domain>();
+    @Output() onInspectDomain: EventEmitter<Domain> =
+        new EventEmitter<Domain>();
 
     columns: string[] = [
         $localize`Domain`,
         $localize`Ownership`,
         $localize`DKIM`,
         $localize`SPF`,
-        $localize`Status`
+        $localize`Status`,
     ];
 }

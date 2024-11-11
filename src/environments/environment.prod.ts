@@ -7,9 +7,16 @@ export const environment = {
         disallowedRoutes: ['https://api.wires.fr/v1/auth/login'],
     },
     paymentLinks: {
-        basic: '',
-        extended: '',
-        custom: '',
+        guest: {
+            basic: '',
+            extended: '',
+            custom: '',
+        },
+        user: {
+            basic: '',
+            extended: '',
+            custom: '',
+        },
     },
     billingPortal: '',
 };

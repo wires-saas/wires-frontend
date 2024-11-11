@@ -12,10 +12,22 @@ export enum PlanType {
     CUSTOM = 'custom',
 }
 
+export enum PlanStatus {
+    INCOMPLETE = 'incomplete',
+    ACTIVE = 'active',
+    CANCELLED = 'cancelled',
+    EXPIRED = 'expired',
+}
+
 export interface Plan {
     organization: Slug;
     type: PlanType;
     permissions: any[];
+    customerEmail: string;
+    currentPeriodStart: number;
+    currentPeriodEnd: number;
+    isTrial: boolean;
+    status: PlanStatus;
 }
 
 export interface OrganizationContact {

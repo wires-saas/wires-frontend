@@ -6,10 +6,13 @@ import { MessageUtils } from '../utils/message.utils';
 
 @Injectable()
 export class ApiService {
-
     constructor(private messageService: MessageService) {}
 
-    async wrap(apiCall: Promise<any>, successMessage: string, errorMessage: string): Promise<void> {
+    async wrap(
+        apiCall: Promise<any>,
+        successMessage: string,
+        errorMessage: string,
+    ): Promise<void> {
         return await apiCall
             .then(() => {
                 this.messageService.add({
@@ -26,5 +29,4 @@ export class ApiService {
                 });
             });
     }
-
 }

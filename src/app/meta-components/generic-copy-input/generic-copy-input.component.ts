@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ButtonDirective } from 'primeng/button';
 import { Ripple } from 'primeng/ripple';
 import { NgIf } from '@angular/common';
@@ -10,7 +10,14 @@ import { FormsModule } from '@angular/forms';
     selector: 'app-generic-copy-input',
     templateUrl: './generic-copy-input.component.html',
     standalone: true,
-    imports: [ButtonDirective, Ripple, NgIf, InputGroupModule, InputTextModule, FormsModule],
+    imports: [
+        ButtonDirective,
+        Ripple,
+        NgIf,
+        InputGroupModule,
+        InputTextModule,
+        FormsModule,
+    ],
 })
 export class GenericCopyInputComponent {
     @Input() label: string = '';
