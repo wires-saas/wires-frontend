@@ -1,4 +1,4 @@
-name: Build, lint, test and push
+name: Prod Build Deploy
 
 on:
   push:

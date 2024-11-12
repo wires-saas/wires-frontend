@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { NotificationService } from './notification.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Permission } from './permission.service';
+import {PlanType} from "./organization.service";
 
 interface ProfileData {
     jwt: {
@@ -122,6 +123,50 @@ export class AuthService {
             this.http.post<void>(`${this.domain}/auth/invite/${token}`, {
                 password,
             }),
+        );
+    }
+
+    async checkOrganizationCreationInviteToken(
+        token: string,
+    ): Promise<{ plan: PlanType; requiresOwnerCreation: boolean; owner: string }> {
+        return firstValueFrom(
+            this.http.get<{ plan: PlanType; requiresOwnerCreation: boolean; owner: string }>(
+                `${this.domain}/auth/organization-creation-invite/${token}`,
+            ),
+        );
+    }
+
+    async useOrganizationCreationInviteToken(
+        token: string,
+        organizationName: string,
+        organizationSlug: string,
+    ): Promise<void> {
+        return firstValueFrom(
+            this.http.post<void>(
+                `${this.domain}/auth/organization-creation-invite/${token}`,
+                {
+                    organizationName,
+                    organizationSlug,
+                }
+            ),
+        );
+    }
+
+    async useOrganizationCreationInviteTokenWithUserCreation(
+        token: string,
+        organizationName: string,
+        organizationSlug: string,
+        userPassword: string,
+    ): Promise<void> {
+        return firstValueFrom(
+            this.http.post<void>(
+                `${this.domain}/auth/organization-creation-invite/${token}`,
+                {
+                    organizationName,
+                    organizationSlug,
+                    userPassword,
+                }
+            ),
         );
     }
 

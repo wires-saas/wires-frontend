@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { AutologinGuard } from '../../guards/autologin.guard';
 import { CanAcceptInviteGuard } from '../../guards/can-accept-invite.guard';
 import { CanResetPasswordGuard } from '../../guards/can-reset-password.guard';
+import {CanAcceptOrganizationCreationInviteGuard} from "../../guards/can-accept-organization-creation-invite.guard";
 
 @NgModule({
     imports: [
@@ -111,6 +112,38 @@ import { CanResetPasswordGuard } from '../../guards/can-reset-password.guard';
                     ),
             },
 
+            // INVITATION TO CREATE ORGANIZATION
+
+            {
+                path: 'create-organization/invalid-token',
+                data: {
+                    title: $localize`Invalid Invite`,
+                    message: $localize`Please retry clicking email link, if the problem persists please contact us for help`,
+                    button: $localize`Go to Log In`,
+                },
+                loadChildren: () =>
+                    import('./error/error.module').then((m) => m.ErrorModule),
+            },
+            {
+                path: 'create-organization/already-used-token',
+                data: {
+                    title: $localize`Already Created`,
+                    message: $localize`This token was already used to create a new organization. Contact us if you think it's a mistake`,
+                    button: $localize`Go to Log In`,
+                },
+                loadChildren: () =>
+                    import('./error/error.module').then((m) => m.ErrorModule),
+            },
+            {
+                path: 'create-organization',
+                data: { welcomeNewUser: true },
+                canActivate: [CanAcceptOrganizationCreationInviteGuard],
+                loadChildren: () =>
+                    import('./create-organization/create-organization.module').then(
+                        (m) => m.CreateOrganizationModule,
+                    ),
+            },
+
             // 2FA - not implemented yet
 
             {
@@ -125,6 +158,11 @@ import { CanResetPasswordGuard } from '../../guards/can-reset-password.guard';
         ]),
     ],
     exports: [RouterModule],
-    providers: [AutologinGuard, CanAcceptInviteGuard, CanResetPasswordGuard],
+    providers: [
+        AutologinGuard,
+        CanAcceptInviteGuard,
+        CanAcceptOrganizationCreationInviteGuard,
+        CanResetPasswordGuard
+    ],
 })
 export class AuthRoutingModule {}

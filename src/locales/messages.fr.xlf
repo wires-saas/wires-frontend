@@ -765,10 +765,6 @@
         <source>Update Administrator</source>
         <target state="new">Mettre à jour le contact d&apos;administration</target>
       </trans-unit>
-      <trans-unit id="4799374982120043626" datatype="html">
-        <source>Update Billing</source>
-        <target state="new">Mettre à jour le contact de facturation</target>
-      </trans-unit>
       <trans-unit id="8878700331247603166" datatype="html">
         <source>Security</source>
         <target state="new">Sécurité</target>
@@ -788,10 +784,6 @@
       <trans-unit id="4394642900724919261" datatype="html">
         <source>Will receive emails related to new features, activity reports and scheduled downtimes</source>
         <target state="new">Recevra les emails relatifs aux nouvelles fonctionnalités, bulletins d&apos;activités et maintenances</target>
-      </trans-unit>
-      <trans-unit id="2050993483569778272" datatype="html">
-        <source>Will receive emails related to payments, cancellation and contract changes</source>
-        <target state="new">Recevra les emails relatifs aux paiements, résiliations et changements contractuels</target>
       </trans-unit>
       <trans-unit id="1209826884150356967" datatype="html">
         <source>Afghanistan</source>
@@ -3181,13 +3173,85 @@
         <source>Billing Portal</source>
         <target state="new">Portail de facturation</target>
       </trans-unit>
-      <trans-unit id="5875426487613442060" datatype="html">
-        <source> Our billing is powered by Stripe. To access your invoices, modify your payment method or cancel your plan, please click link below : </source>
+      <trans-unit id="1926859580002301686" datatype="html">
+        <source> Our billing is powered by Stripe. To access your invoices, modify your payment method or update your plan, please click link below : </source>
         <target state="new"> Notre facturation est propulsée par Stripe. Pour accéder à vos factures, modifier votre moyen de paiement ou annuler votre abonnement, merci de cliquer le bouton ci-dessous : </target>
       </trans-unit>
       <trans-unit id="4589010157196810464" datatype="html">
         <source>Open Portal</source>
         <target state="new">Accéder au portail</target>
+      </trans-unit>
+      <trans-unit id="7808971941385277028" datatype="html">
+        <source>Please retry clicking email link, if the problem persists please contact us for help</source>
+        <target state="new">Désolé pour la gêne occasionnée, veuillez réessayer et nous contacter si le problème persiste</target>
+      </trans-unit>
+      <trans-unit id="2630430208728167282" datatype="html">
+        <source>Already Created</source>
+        <target state="new">Déjà créée</target>
+      </trans-unit>
+      <trans-unit id="1120619665239459349" datatype="html">
+        <source>This token was already used to create a new organization. Contact us if you think it&apos;s a mistake</source>
+        <target state="new">Ce jeton a déjà été utilisé pour créer une organisation. Contactez-nous s'il s'agit d'une erreur</target>
+      </trans-unit>
+      <trans-unit id="363692139305564434" datatype="html">
+        <source>Welcome !</source>
+        <target state="new">Bienvenue !</target>
+      </trans-unit>
+      <trans-unit id="6928556580577073058" datatype="html">
+        <source> To finalize onboarding, please provide us details about your organization<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> And chose a password for your account </source>
+        <target state="new"> Pour finaliser la création, nous vous invitons à fournir les renseignements suivants<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Et à définir un mot de passe pour votre compte </target>
+      </trans-unit>
+      <trans-unit id="5449747385268226216" datatype="html">
+        <source>Congratulations !</source>
+        <target state="new">Félicitations !</target>
+      </trans-unit>
+      <trans-unit id="7849935242158230152" datatype="html">
+        <source> We are proud to be part of your expansion,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Please provide us details about your organization </source>
+        <target state="new"> Nous sommes fiers de contribuer à votre développement,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Merci de fournir les renseignements suivants pour finaliser la création </target>
+      </trans-unit>
+      <trans-unit id="2409672154570643758" datatype="html">
+        <source>Display name</source>
+        <target state="new">Nom d'usage</target>
+      </trans-unit>
+      <trans-unit id="8424010257710435461" datatype="html">
+        <source> Alpha-numeric characters, 2 or more characters </source>
+        <target state="new"> Caractères alpha-numériques, au moins 2 caractères </target>
+      </trans-unit>
+      <trans-unit id="7864850088436032236" datatype="html">
+        <source>Unique identifier used in URLs</source>
+        <target state="new">Identifiant unique utilisé dans les URLs</target>
+      </trans-unit>
+      <trans-unit id="2698920656300891616" datatype="html">
+        <source> Lowercase alphabetic characters, 3 or more characters </source>
+        <target state="new"> Caractères alphabétiques minuscules, au moins 3 caractères </target>
+      </trans-unit>
+      <trans-unit id="484272968178579317" datatype="html">
+        <source>Subscription Details</source>
+        <target state="new">Détails de la souscription</target>
+      </trans-unit>
+      <trans-unit id="8295965316194876746" datatype="html">
+        <source> Your subscription is active and valid until <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </source>
+        <target state="new"> Votre souscription est active et valide jusqu'au <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </target>
+      </trans-unit>
+      <trans-unit id="6650819367128669568" datatype="html">
+        <source> Your subscription has been cancelled and will expire on <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </source>
+        <target state="new"> Votre souscription a été annulée et expirera le <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </target>
+      </trans-unit>
+      <trans-unit id="7751473614119293237" datatype="html">
+        <source> Your subscription has expired on <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </source>
+        <target state="new"> Votre souscription est expirée depuis le <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </target>
+      </trans-unit>
+      <trans-unit id="3034329077225615643" datatype="html">
+        <source> Your subscription is incomplete. Please open billing portal to solve the issue. </source>
+        <target state="new"> Votre souscription est incomplète. Merci de résoudre le problème depuis le portail de facturation pour éviter toute résiliation involontaire. </target>
+      </trans-unit>
+      <trans-unit id="940645343074001738" datatype="html">
+        <source> We have not been able to find any subscription for your organization. </source>
+        <target state="new"> Nous n'avons pas été en mesure de trouver une souscription pour l'organisation sélectionnée. </target>
+      </trans-unit>
+      <trans-unit id="5176202047193793209" datatype="html">
+        <source> Customer email who is responsible for this subscription : <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="onPlan?.customerEmail }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;"/></source>
+        <target state="new"> Email client responsable de la souscription : <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="onPlan?.customerEmail }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;"/></target>
       </trans-unit>
     </body>
   </file>
