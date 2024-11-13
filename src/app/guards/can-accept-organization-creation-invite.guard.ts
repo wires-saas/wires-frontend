@@ -38,15 +38,7 @@ export class CanAcceptOrganizationCreationInviteGuard implements CanActivate {
                 return this.router.parseUrl(
                     '/auth/create-organization/already-used-token',
                 );
-            case 403:
-                return this.router.parseUrl(
-                    '/auth/create-organization/expired-token',
-                );
             case 404:
-                return this.router.parseUrl(
-                    '/auth/create-organization/invalid-token',
-                );
-            case 500:
                 return this.router.parseUrl(
                     '/auth/create-organization/invalid-token',
                 );

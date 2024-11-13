@@ -78,7 +78,7 @@ export class CreateOrganizationComponent implements OnInit {
                 validators: [
                     Validators.required,
                     Validators.minLength(2), Validators.maxLength(255),
-                    Validators.pattern(/^[a-zA-Z0-9][a-zA-Z0-9 ]*[a-zA-Z0-9]$/)
+                    Validators.pattern(/^[a-zA-Z0-9]*$/)
                 ]
             }),
             organizationSlug: new FormControl('', {
