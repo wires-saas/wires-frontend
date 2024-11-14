@@ -1,4 +1,4 @@
-import {Component, DestroyRef, EventEmitter, inject, OnInit, Output} from '@angular/core';
+import {Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
 import { map } from 'rxjs/operators';
 import {
     Organization,
@@ -19,7 +19,8 @@ import {environment} from "../../../../../environments/environment";
     templateUrl: './plans.component.html',
 })
 export class PlansComponent implements OnInit {
-    plan: Plan | undefined;
+
+    @Input() plan: Plan | undefined;
 
     canUpdatePlan: boolean = false;
     canCancelPlan: boolean = false;
@@ -50,13 +51,6 @@ export class PlansComponent implements OnInit {
                     this.canCancelPlan = await firstValueFrom(
                         this.authService.hasPermission$(DeleteBilling),
                     );
-
-                    if (organization) {
-                        this.plan = await this.organizationService.getPlan(
-                            organization.slug,
-                        );
-                        console.log(this.plan);
-                    }
                 }),
                 takeUntilDestroyed(this.destroyRef),
             )

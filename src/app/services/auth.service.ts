@@ -48,6 +48,10 @@ export class AuthService {
             .subscribe();
     }
 
+    async hasKnownAccessToken(): Promise<boolean> {
+        return !!localStorage.getItem('access_token');
+    }
+
     async logIn(
         email: string,
         password: string,

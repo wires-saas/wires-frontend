@@ -2441,6 +2441,63 @@
       <trans-unit id="940645343074001738" datatype="html">
         <source> We have not been able to find any subscription for your organization. </source>
       </trans-unit>
+      <trans-unit id="5381112158978079414" datatype="html">
+        <source> Your free trial is valid until <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </source>
+      </trans-unit>
+      <trans-unit id="8358165375226314728" datatype="html">
+        <source> Your free trial has been cancelled and will expire on <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </source>
+      </trans-unit>
+      <trans-unit id="3677357103242850618" datatype="html">
+        <source> No invoice available yet. </source>
+      </trans-unit>
+      <trans-unit id="5509268503210862745" datatype="html">
+        <source> Click here to view your last invoice <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-file-pdf&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;"/></source>
+      </trans-unit>
+      <trans-unit id="4531661942356164291" datatype="html">
+        <source>It appears you belong to no organization. Please contact your administrator for help</source>
+      </trans-unit>
+      <trans-unit id="480158490205903958" datatype="html">
+        <source>Go to Landing Page</source>
+      </trans-unit>
+      <trans-unit id="645908474048302885" datatype="html">
+        <source>No Organization</source>
+      </trans-unit>
+      <trans-unit id="2856471812249515836" datatype="html">
+        <source>Creating organization...</source>
+      </trans-unit>
+      <trans-unit id="3091499490924276502" datatype="html">
+        <source>Success !</source>
+      </trans-unit>
+      <trans-unit id="3708828428007956302" datatype="html">
+        <source>Organization Slug</source>
+      </trans-unit>
+      <trans-unit id="7374671888521665415" datatype="html">
+        <source>Create organization</source>
+      </trans-unit>
+      <trans-unit id="7613961649215336768" datatype="html">
+        <source>Admin role will be granted to this account</source>
+      </trans-unit>
+      <trans-unit id="7810923642443814756" datatype="html">
+        <source>Admin Email</source>
+      </trans-unit>
+      <trans-unit id="8577995439360524291" datatype="html">
+        <source>Slug is already taken</source>
+      </trans-unit>
+      <trans-unit id="8711993670551876984" datatype="html">
+        <source>Sorry !</source>
+      </trans-unit>
+      <trans-unit id="3191518821470136675" datatype="html">
+        <source>Go to Login</source>
+      </trans-unit>
+      <trans-unit id="3862287245319062904" datatype="html">
+        <source> Organization <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="get(&apos;organizationName&apos;)?.value }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="has been crea"/> has been created successfully,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> We will redirect you to login page on dialog close. </source>
+      </trans-unit>
+      <trans-unit id="8510198791952285108" datatype="html">
+        <source> It looks like an error occurred during organization creation,<x id="LINE_BREAK" ctype="lb" equiv-text="I"/> Please <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>refresh page and retry<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> as it may be a temporary issue.<x id="LINE_BREAK" ctype="lb" equiv-text="I"/><x id="LINE_BREAK" ctype="lb" equiv-text="I"/> If problem persists, please contact support. </source>
+      </trans-unit>
+      <trans-unit id="3633703938338163158" datatype="html">
+        <source>All plans come with a <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>7-day free trial<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

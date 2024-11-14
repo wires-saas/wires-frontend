@@ -94,6 +94,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
                 .finally(() => (this.isWaitingServer = false));
             // TODO 2FA redirection if needed
 
+            console.log('success login, redirecting');
+
             if (success) {
                 const redirectTo =
                     this.route.snapshot.queryParams['redirectTo'] || '/';

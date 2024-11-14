@@ -14,7 +14,8 @@
     </div>
 
     <div class="col-12">
-        <app-information-plans (onPlanSelection)="openPaymentLink($event)"
+        <app-information-plans [plan]="currentOrganizationPlan"
+                               (onPlanSelection)="openPaymentLink($event)"
                                (onPlanUpgrade)="openPortal()"
                                (onPlanDowngrade)="openPortal()"
                                (onPlanCancel)="openPortal()"></app-information-plans>
@@ -23,31 +24,66 @@
     <div class="col-12">
         <div class="card">
             <h4 i18n>Subscription Details</h4>
-            <p [ngSwitch]="currentOrganizationPlan?.status">
-                <ng-container *ngSwitchCase="PlanStatus.ACTIVE" i18n>
-                    Your subscription is active and valid until {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
-                </ng-container>
 
-                <ng-container *ngSwitchCase="PlanStatus.CANCELLED" i18n>
-                    Your subscription has been cancelled and will expire on {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
-                </ng-container>
+            <ng-container *ngIf="currentOrganizationPlan?.isTrial; else subscriptionDetails">
 
-                <ng-container *ngSwitchCase="PlanStatus.EXPIRED" i18n>
-                    Your subscription has expired on {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
-                </ng-container>
+                <p [ngSwitch]="currentOrganizationPlan?.status">
+                    <ng-container *ngSwitchCase="PlanStatus.ACTIVE" i18n>
+                        Your free trial is valid until {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
+                    </ng-container>
 
-                <ng-container *ngSwitchCase="PlanStatus.INCOMPLETE" i18n>
-                    Your subscription is incomplete. Please open billing portal to solve the issue.
-                </ng-container>
+                    <ng-container *ngSwitchCase="PlanStatus.CANCELLED" i18n>
+                        Your free trial has been cancelled and will expire on {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
+                    </ng-container>
 
-                <ng-container *ngSwitchDefault i18n>
-                    We have not been able to find any subscription for your organization.
-                </ng-container>
-            </p>
+                    <ng-container *ngSwitchDefault i18n>
+                        We have not been able to find any subscription for your organization.
+                    </ng-container>
+                </p>
+
+            </ng-container>
+
+            <ng-template #subscriptionDetails>
+
+                <p [ngSwitch]="currentOrganizationPlan?.status">
+                    <ng-container *ngSwitchCase="PlanStatus.ACTIVE" i18n>
+                        Your subscription is active and valid until {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="PlanStatus.CANCELLED" i18n>
+                        Your subscription has been cancelled and will expire on {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="PlanStatus.EXPIRED" i18n>
+                        Your subscription has expired on {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="PlanStatus.INCOMPLETE" i18n>
+                        Your subscription is incomplete. Please open billing portal to solve the issue.
+                    </ng-container>
+
+                    <ng-container *ngSwitchDefault i18n>
+                        We have not been able to find any subscription for your organization.
+                    </ng-container>
+                </p>
+
+            </ng-template>
 
             <p *ngIf="currentOrganizationPlan?.customerEmail" i18n>
                 Customer email who is responsible for this subscription : <b>{{ currentOrganizationPlan?.customerEmail }}</b>
             </p>
+
+            <p *ngIf="currentOrganizationPlan?.lastInvoice; else noInvoiceYet">
+                <a [href]="currentOrganizationPlan?.lastInvoice" target="_blank" rel="noopener noreferrer" class="text-primary" i18n>
+                    Click here to view your last invoice <i class="pi pi-file-pdf"></i>
+                </a>
+            </p>
+
+            <ng-template #noInvoiceYet>
+                <p i18n>
+                    No invoice available yet.
+                </p>
+            </ng-template>
 
         </div>
     </div>

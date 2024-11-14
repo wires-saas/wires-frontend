@@ -3191,7 +3191,7 @@
       </trans-unit>
       <trans-unit id="1120619665239459349" datatype="html">
         <source>This token was already used to create a new organization. Contact us if you think it&apos;s a mistake</source>
-        <target state="new">Ce jeton a déjà été utilisé pour créer une organisation. Contactez-nous s'il s'agit d'une erreur</target>
+        <target state="new">Ce jeton a déjà été utilisé pour créer une organisation. Contactez-nous s&apos;il s&apos;agit d&apos;une erreur</target>
       </trans-unit>
       <trans-unit id="363692139305564434" datatype="html">
         <source>Welcome !</source>
@@ -3211,7 +3211,7 @@
       </trans-unit>
       <trans-unit id="2409672154570643758" datatype="html">
         <source>Display name</source>
-        <target state="new">Nom d'usage</target>
+        <target state="new">Nom d&apos;usage</target>
       </trans-unit>
       <trans-unit id="8424010257710435461" datatype="html">
         <source> Alpha-numeric characters, 2 or more characters </source>
@@ -3231,7 +3231,7 @@
       </trans-unit>
       <trans-unit id="8295965316194876746" datatype="html">
         <source> Your subscription is active and valid until <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </source>
-        <target state="new"> Votre souscription est active et valide jusqu'au <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </target>
+        <target state="new"> Votre souscription est active et valide jusqu&apos;au <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </target>
       </trans-unit>
       <trans-unit id="6650819367128669568" datatype="html">
         <source> Your subscription has been cancelled and will expire on <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </source>
@@ -3247,11 +3247,87 @@
       </trans-unit>
       <trans-unit id="940645343074001738" datatype="html">
         <source> We have not been able to find any subscription for your organization. </source>
-        <target state="new"> Nous n'avons pas été en mesure de trouver une souscription pour l'organisation sélectionnée. </target>
+        <target state="new"> Nous n&apos;avons pas été en mesure de trouver une souscription pour l&apos;organisation sélectionnée. </target>
       </trans-unit>
       <trans-unit id="5176202047193793209" datatype="html">
         <source> Customer email who is responsible for this subscription : <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="onPlan?.customerEmail }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;"/></source>
-        <target state="new"> Email client responsable de la souscription : <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="onPlan?.customerEmail }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;"/></target>
+        <target state="new"> Email de la personne responsable de la souscription : <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="onPlan?.customerEmail }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;"/></target>
+      </trans-unit>
+      <trans-unit id="5381112158978079414" datatype="html">
+        <source> Your free trial is valid until <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </source>
+        <target state="new"> Votre période d&apos;essai terminera le <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/> et sera reconduite automatiquement sans action de votre part. </target>
+      </trans-unit>
+      <trans-unit id="8358165375226314728" datatype="html">
+        <source> Your free trial has been cancelled and will expire on <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </source>
+        <target state="new"> Votre période d&apos;essai terminera le <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/> suite à une annulation de votre part. </target>
+      </trans-unit>
+      <trans-unit id="5509268503210862745" datatype="html">
+        <source> Click here to view your last invoice <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-file-pdf&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;"/></source>
+        <target state="new"> Cliquer ici pour voir la dernière facture <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-file-pdf&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;"/></target>
+      </trans-unit>
+      <trans-unit id="3677357103242850618" datatype="html">
+        <source> No invoice available yet. </source>
+        <target state="new"> Aucune facture pour l&apos;instant. La dernière facture émise sera disponible ici. </target>
+      </trans-unit>
+      <trans-unit id="645908474048302885" datatype="html">
+        <source>No Organization</source>
+        <target state="new">Aucune organisation</target>
+      </trans-unit>
+      <trans-unit id="4531661942356164291" datatype="html">
+        <source>It appears you belong to no organization. Please contact your administrator for help</source>
+        <target state="new">Il semblerait que vous ne fassiez partie d&apos;aucune organisation. Contactez votre administrateur si vous pensez qu&apos;il s&apos;agit d&apos;une erreur</target>
+      </trans-unit>
+      <trans-unit id="480158490205903958" datatype="html">
+        <source>Go to Landing Page</source>
+        <target state="new">Aller à la page d&apos;accueil</target>
+      </trans-unit>
+      <trans-unit id="3708828428007956302" datatype="html">
+        <source>Organization Slug</source>
+        <target state="new">Slug de l&apos;organisation</target>
+      </trans-unit>
+      <trans-unit id="8577995439360524291" datatype="html">
+        <source>Slug is already taken</source>
+        <target state="new">Slug déjà existant</target>
+      </trans-unit>
+      <trans-unit id="7810923642443814756" datatype="html">
+        <source>Admin Email</source>
+        <target state="new">Email de l&apos;administrateur</target>
+      </trans-unit>
+      <trans-unit id="7613961649215336768" datatype="html">
+        <source>Admin role will be granted to this account</source>
+        <target state="new">Le rôle d&apos;administrateur sera attribué à ce compte</target>
+      </trans-unit>
+      <trans-unit id="8711993670551876984" datatype="html">
+        <source>Sorry !</source>
+        <target state="new">Désolé !</target>
+      </trans-unit>
+      <trans-unit id="3091499490924276502" datatype="html">
+        <source>Success !</source>
+        <target state="new">Succès !</target>
+      </trans-unit>
+      <trans-unit id="2856471812249515836" datatype="html">
+        <source>Creating organization...</source>
+        <target state="new">Création de l&apos;organisation en cours...</target>
+      </trans-unit>
+      <trans-unit id="7374671888521665415" datatype="html">
+        <source>Create organization</source>
+        <target state="new">Créer l&apos;organisation</target>
+      </trans-unit>
+      <trans-unit id="3191518821470136675" datatype="html">
+        <source>Go to Login</source>
+        <target state="new">Se connecter</target>
+      </trans-unit>
+      <trans-unit id="8510198791952285108" datatype="html">
+        <source> It looks like an error occurred during organization creation,<x id="LINE_BREAK" ctype="lb" equiv-text="I"/> Please <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>refresh page and retry<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> as it may be a temporary issue.<x id="LINE_BREAK" ctype="lb" equiv-text="I"/><x id="LINE_BREAK" ctype="lb" equiv-text="I"/> If problem persists, please contact support. </source>
+        <target state="new"> Il semblerait qu&apos;une erreur soit survenue durant la création,<x id="LINE_BREAK" ctype="lb" equiv-text="I"/> Merci <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>de rafraichir la page et réessayer<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> dans le cas où il s&apos;agit d&apos;un problème temporaire.<x id="LINE_BREAK" ctype="lb" equiv-text="I"/><x id="LINE_BREAK" ctype="lb" equiv-text="I"/> Si celui-ci persiste, le support vous aidera à créer votre organisation. </target>
+      </trans-unit>
+      <trans-unit id="3862287245319062904" datatype="html">
+        <source> Organization <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="get(&apos;organizationName&apos;)?.value }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="has been crea"/> has been created successfully,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> We will redirect you to login page on dialog close. </source>
+        <target state="new"> Organisation <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="get(&apos;organizationName&apos;)?.value }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="has been crea"/> créée avec succès,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Vous allez être redirigé vers la page de connexion. </target>
+      </trans-unit>
+      <trans-unit id="3633703938338163158" datatype="html">
+        <source>All plans come with a <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>7-day free trial<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</source>
+        <target state="new">Toutes les offres incluent <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>7 jours d'essai gratuit<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</target>
       </trans-unit>
     </body>
   </file>

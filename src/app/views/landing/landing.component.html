@@ -59,7 +59,7 @@
 
 
                 <li class="flex align-items-center">
-                    <button pButton pRipple type="button" pStyleClass="@grandparent" enterFromClass="ng-hidden"
+                    <button (click)="router.navigate(['/landing'], {fragment: 'pricing'})" pButton pRipple type="button" pStyleClass="@grandparent" enterFromClass="ng-hidden"
                         enterActiveClass="px-fadein" leaveToClass="ng-hidden" i18n-label label="Free Trial"
                         class="m-0 mt-3 md:mt-0 md:ml-5 white-space-nowrap"></button>
                 </li>
@@ -129,8 +129,11 @@
 
             <div id="pricing" class="my-6 py-6 md:my-8 md:py-8">
                 <div class="text-900 font-bold text-5xl mb-4 text-center" i18n>Pricing Plans</div>
-                <div class="text-700 text-xl mb-8 text-center line-height-3" i18n>Choose a plan that works best for you and
-                    your team.</div>
+                <div class="text-700 text-xl mb-8 text-center line-height-3">
+                    <span i18n>Choose a plan that works best for you and your team.</span>
+                    <br/>
+                    <span i18n>All plans come with a <b>7-day free trial</b>.</span>
+                </div>
 
                 <app-plans (onPlanSelection)="openPaymentLink($event)"
                            [forLanding]="true"

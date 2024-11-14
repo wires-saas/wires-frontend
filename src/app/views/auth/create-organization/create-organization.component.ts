@@ -1,15 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {LayoutService} from 'src/app/layout/service/app.layout.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 import {PasswordUtils} from '../../../utils/password.utils';
 import {PlanType} from "../../../services/organization.service";
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {map} from "rxjs/operators";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {SlugAvailableValidator} from "../../../utils/validators/slug-available.validator";
 
 @Component({
     templateUrl: './create-organization.component.html',
 })
 export class CreateOrganizationComponent implements OnInit {
+
+    private destroyRef = inject(DestroyRef);
+
+    isWaitingServer: boolean = false;
+    errorDialogVisible: boolean = false;
+    successDialogVisible: boolean = false;
 
     token: string = '';
 
@@ -71,6 +80,7 @@ export class CreateOrganizationComponent implements OnInit {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private authService: AuthService,
+        private slugAvailableValidator: SlugAvailableValidator,
     ) {
         this.organizationForm = new FormGroup({
             organizationName: new FormControl('', {
@@ -87,9 +97,15 @@ export class CreateOrganizationComponent implements OnInit {
                     Validators.required,
                     Validators.minLength(3), Validators.maxLength(32),
                     Validators.pattern(/^[a-z]*$/)
-                ]
+                ],
+                asyncValidators: this.slugAvailableValidator.validate,
             }),
         });
+    }
+
+    get buttonLabel(): string {
+        if (this.isWaitingServer) return $localize`Creating organization...`;
+        else return $localize`Create organization`;
     }
 
     get dark(): boolean {
@@ -105,29 +121,65 @@ export class CreateOrganizationComponent implements OnInit {
         this.requiresOwnerCreation = check.requiresOwnerCreation;
         this.futureOwner = check.owner;
 
+        this.organizationForm.get('organizationSlug')?.valueChanges.pipe(
+            map((value) => {
+                this.organizationForm.get('organizationSlug')?.setValue(value.toLowerCase(), {emitEvent: false});
+            }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe();
+
     }
 
     async submit() {
 
-        if (!this.canSubmit) {
+        if (!this.canSubmit || this.isWaitingServer) {
             return;
         }
 
+        this.disableForm();
+
+        let creationApiCall: Promise<void>;
         if (!this.requiresOwnerCreation) {
-            await this.authService.useOrganizationCreationInviteToken(
+            creationApiCall = this.authService.useOrganizationCreationInviteToken(
                 this.token,
                 this.organizationForm.value.organizationName as string,
                 this.organizationForm.value.organizationSlug as string,
             );
-            await this.router.navigate(['/auth/login'], { state: { organizationCreationConfirmation: true } });
         } else {
-            await this.authService.useOrganizationCreationInviteTokenWithUserCreation(
+            creationApiCall = this.authService.useOrganizationCreationInviteTokenWithUserCreation(
                 this.token,
                 this.organizationForm.value.organizationName as string,
                 this.organizationForm.value.organizationSlug as string,
                 this.password,
             );
-            await this.router.navigate(['/auth/login'], { state: { organizationCreationWithUserConfirmation: true } });
         }
+
+        await creationApiCall
+            .then(() => {
+                this.successDialogVisible = true;
+            })
+            .catch((err) => {
+                console.error(err);
+                this.errorDialogVisible = true;
+                this.enableForm();
+            })
+            .finally(() => {
+                this.isWaitingServer = false;
+            });
+
+    }
+
+    async goToLogin() {
+        await this.router.navigate(['auth/login']);
+    }
+
+    private enableForm() {
+        this.organizationForm.enable();
+        this.isWaitingServer = false;
+    }
+
+    private disableForm() {
+        this.organizationForm.disable();
+        this.isWaitingServer = true;
     }
 }

@@ -6,7 +6,7 @@
     <path [attr.fill]="dark ? 'var(--primary-500)' : 'var(--primary-100)'" d="M1397.5 154.8c47.2-10.6 93.6-25.3 138.6-43.8c21.7-8.9 43-18.8 63.9-29.5V0H643.4c62.9 41.7 129.7 78.2 202.1 107.4C1020.4 178.1 1214.2 196.1 1397.5 154.8z"/>
 </svg>
 <div class="px-5 min-h-screen flex justify-content-center align-items-center">
-    <div class="border-1 surface-border surface-card border-round py-7 px-4 md:px-7 z-1">
+    <div class="scalein border-1 surface-border surface-card border-round py-7 px-4 md:px-7 z-1">
 
         <div class="mb-4" *ngIf="requiresOwnerCreation; else onlyOrganizationCreation">
             <div class="text-900 text-xl font-bold mb-2" i18n>Welcome !</div>
@@ -31,7 +31,7 @@
             <div [formGroup]="organizationForm">
 
                 <span class="p-input-icon-left w-full mb-4">
-                    <label for="organizationName" class="block font-medium text-900 mb-1">Organization Name</label>
+                    <label for="organizationName" class="block font-medium text-900 mb-1" i18n>Organization Name</label>
                         <p-inputGroup>
                             <p-inputGroupAddon>
                                <i class="pi pi-building"></i>
@@ -44,13 +44,22 @@
                 </span>
 
                 <span class="p-input-icon-left w-full mb-4">
-                    <label for="organizationSlug" class="block font-medium text-900 mb-1">Organization Slug</label>
+                    <label for="organizationSlug" class="block font-medium text-900 mb-1" i18n>Organization Slug</label>
                         <p-inputGroup>
                             <p-inputGroupAddon>
                                <i class="pi pi-key"></i>
                             </p-inputGroupAddon>
-                            <input formControlName="organizationSlug" id="organizationSlug" type="text" i18n-placeholder placeholder="Unique identifier used in URLs" pInputText>
+                            <input formControlName="organizationSlug" id="organizationSlug"
+                                   type="text" class="border-round-right"
+                                   i18n-placeholder placeholder="Unique identifier used in URLs" pInputText>
+                            <p-message *ngIf="organizationForm?.get('organizationSlug')?.errors?.['slugUnavailable']"
+                                       severity="error"
+                                       i18n-text text="Slug is already taken"
+                                       class="pl-3 border-noround-left"></p-message>
                         </p-inputGroup>
+
+
+
                     <small i18n>
                         Lowercase alphabetic characters, 3 or more characters
                     </small>
@@ -61,14 +70,14 @@
             <hr/>
 
             <span class="p-input-icon-left w-full mb-4">
-                <label for="ownerEmail" class="block font-medium text-900 mb-1">Admin Email</label>
+                <label for="ownerEmail" class="block font-medium text-900 mb-1" i18n>Admin Email</label>
                     <p-inputGroup>
                         <p-inputGroupAddon>
                            <i class="pi pi-user"></i>
                         </p-inputGroupAddon>
                         <input id="ownerEmail" type="text" pInputText [(ngModel)]="futureOwner" disabled>
                     </p-inputGroup>
-                <small *ngIf="!requiresOwnerCreation">Admin role will be granted to this account</small>
+                <small *ngIf="!requiresOwnerCreation" i18n>Admin role will be granted to this account</small>
             </span>
 
             <ng-container *ngIf="requiresOwnerCreation">
@@ -84,6 +93,7 @@
                                 i18n-strongLabel strongLabel="Would be cracked in years"
                                 [mediumRegex]="mediumRegex"
                                 [strongRegex]="strongRegex"
+                                [disabled]="isWaitingServer"
                                 autocomplete="new-password"
                                 styleClass="w-full"  [inputStyle]="{paddingLeft: '2.5rem'}" inputStyleClass="w-full"
                                 [toggleMask]="true" >
@@ -93,6 +103,7 @@
                     <i class="pi pi-lock z-2"></i>
                     <p-password id="passwordConfirm" [(ngModel)]="passwordConfirmation"
                                 i18n-placeholder placeholder="Repeat Password"
+                                [disabled]="isWaitingServer"
                                 styleClass="w-full"  [inputStyle]="{paddingLeft: '2.5rem'}" inputStyleClass="w-full"
                                 [toggleMask]="true" [feedback]="false"></p-password>
                 </span>
@@ -117,10 +128,35 @@
 
 
             <div class="flex flex-wrap gap-2 justify-content-between">
-                <button pButton pRipple i18n-label label="Submit" [disabled]="!canSubmit" class="flex-auto" (click)="submit()"></button>
+                <button pButton pRipple [label]="buttonLabel" [loading]="isWaitingServer" [disabled]="!canSubmit || isWaitingServer" class="flex-auto" (click)="submit()"></button>
             </div>
+
         </div>
     </div>
 </div>
 
 <app-config [minimal]="true"></app-config>
+
+<p-dialog i18n-header header="Sorry !" [(visible)]="errorDialogVisible" [modal]="true">
+    <p class="line-height-3 m-0" i18n>
+        It looks like an error occurred during organization creation,<br/>
+        Please <b>refresh page and retry</b> as it may be a temporary issue.<br/><br/>
+        If problem persists, please contact support.
+    </p>
+    <ng-template pTemplate="footer">
+        <button pButton (click)="errorDialogVisible = false"
+                i18n-label label="Ok" class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog i18n-header header="Success !" [(visible)]="successDialogVisible" [modal]="true" [dismissableMask]="false">
+    <p class="line-height-3 m-0" i18n>
+        Organization <b>{{ organizationForm.get('organizationName')?.value }}</b> has been created successfully,<br/>
+        We will redirect you to login page on dialog close.
+    </p>
+    <ng-template pTemplate="footer">
+        <button pButton (click)="goToLogin()"
+                i18n-label label="Go to Login" class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>
+

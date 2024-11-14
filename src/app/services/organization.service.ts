@@ -28,6 +28,7 @@ export interface Plan {
     currentPeriodEnd: number;
     isTrial: boolean;
     status: PlanStatus;
+    lastInvoice?: string;
 }
 
 export interface OrganizationContact {
@@ -100,8 +101,9 @@ export class OrganizationService {
         this.getAllPromise = firstValueFrom(
             this.http.get<any[]>(`${this.domain}/organizations`),
         ).then((organizations) => {
-            this.getAllPromise = undefined;
             return organizations;
+        }).finally(() => {
+            this.getAllPromise = undefined;
         });
 
         return this.getAllPromise;

@@ -144,6 +144,17 @@ import {CanAcceptOrganizationCreationInviteGuard} from "../../guards/can-accept-
                     ),
             },
 
+            {
+                path: 'no-organization',
+                data: {
+                    title: $localize`No Organization`,
+                    message: $localize`It appears you belong to no organization. Please contact your administrator for help`,
+                    button: $localize`Go to Landing Page`,
+                },
+                loadChildren: () =>
+                    import('./error/error.module').then((m) => m.ErrorModule),
+            },
+
             // 2FA - not implemented yet
 
             {

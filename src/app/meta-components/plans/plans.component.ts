@@ -16,7 +16,6 @@ export class PlansComponent implements OnInit {
     private destroyRef = inject(DestroyRef);
 
     currentOrganization: Organization | undefined;
-    currentOrganizationPlan: Plan | undefined;
 
     darkMode: boolean = false;
 
@@ -51,14 +50,6 @@ export class PlansComponent implements OnInit {
         this.organizationService.currentOrganization$.pipe(
             map(async (org: Organization | undefined) => {
                 this.currentOrganization = org;
-
-                if (org) {
-                    this.currentOrganizationPlan = await this.organizationService.getPlan(
-                        org.slug,
-                    );
-                } else {
-                    this.currentOrganizationPlan = undefined;
-                }
             }),
             takeUntilDestroyed(this.destroyRef)
         ).subscribe();

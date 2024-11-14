@@ -11,6 +11,8 @@ import { PasswordModule } from 'primeng/password';
 import {PlanDesignationPipe} from "../../../utils/plans/plan-designation.pipe";
 import {InputGroupAddonModule} from "primeng/inputgroupaddon";
 import {InputGroupModule} from "primeng/inputgroup";
+import {MessageModule} from "primeng/message";
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
     imports: [
@@ -26,6 +28,8 @@ import {InputGroupModule} from "primeng/inputgroup";
         InputGroupAddonModule,
         InputGroupModule,
         ReactiveFormsModule,
+        MessageModule,
+        DialogModule,
     ],
     declarations: [CreateOrganizationComponent],
 })
