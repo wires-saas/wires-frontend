@@ -2399,9 +2399,6 @@
       <trans-unit id="2698920656300891616" datatype="html">
         <source> Lowercase alphabetic characters, 3 or more characters </source>
       </trans-unit>
-      <trans-unit id="3034329077225615643" datatype="html">
-        <source> Your subscription is incomplete. Please open billing portal to solve the issue. </source>
-      </trans-unit>
       <trans-unit id="363692139305564434" datatype="html">
         <source>Welcome !</source>
       </trans-unit>
@@ -2497,6 +2494,12 @@
       </trans-unit>
       <trans-unit id="3633703938338163158" datatype="html">
         <source>All plans come with a <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>7-day free trial<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</source>
+      </trans-unit>
+      <trans-unit id="262438522922303027" datatype="html">
+        <source>You have no subscription yet, please chose a plan above.</source>
+      </trans-unit>
+      <trans-unit id="8400858438856996816" datatype="html">
+        <source>Your subscription is incomplete. Please open billing portal to solve the issue.</source>
       </trans-unit>
     </body>
   </file>

@@ -74,7 +74,7 @@ export class RolesComponent implements OnInit {
         this.currentUser = await firstValueFrom(this.authService.currentUser$);
 
         this.canUpdateRole = await firstValueFrom(
-            this.authService.hasPermission$(UpdateRole),
+            this.authService.hasPermission$(UpdateRole, organizationSlug),
         );
 
         this.buildPermissionsForm(rolesWithPermissions, this.canUpdateRole);

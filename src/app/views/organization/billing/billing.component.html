@@ -58,8 +58,15 @@
                         Your subscription has expired on {{ currentOrganizationPlan?.currentPeriodEnd | date: 'mediumDate' }}.
                     </ng-container>
 
-                    <ng-container *ngSwitchCase="PlanStatus.INCOMPLETE" i18n>
-                        Your subscription is incomplete. Please open billing portal to solve the issue.
+                    <ng-container *ngSwitchCase="PlanStatus.INCOMPLETE">
+
+                        <ng-container *ngIf="currentOrganizationPlan?.type === PlanType.FREE; else incompletelyPaid">
+                            <span i18n>You have no subscription yet, please chose a plan above.</span>
+                        </ng-container>
+                        <ng-template #incompletelyPaid>
+                            <span i18n>Your subscription is incomplete. Please open billing portal to solve the issue.</span>
+                        </ng-template>
+
                     </ng-container>
 
                     <ng-container *ngSwitchDefault i18n>

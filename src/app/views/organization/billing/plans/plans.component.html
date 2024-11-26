@@ -1,4 +1,4 @@
-<app-plans [planEnabled]="plan?.type"
+<app-plans [planEnabled]="plan?.status === PlanStatus.ACTIVE ? plan?.type : undefined"
            [canUpdatePlan]="canUpdatePlan"
            [canCancelPlan]="canCancelPlan"
            (onPlanSelection)="onPlanSelection.emit($event)"

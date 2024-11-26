@@ -3241,10 +3241,6 @@
         <source> Your subscription has expired on <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </source>
         <target state="new"> Votre souscription est expirée depuis le <x id="INTERPOLATION" equiv-text="{{ currentOrganizationPlan?.currentPeriodEnd | date: &apos;mediumDate&apos; }}"/>. </target>
       </trans-unit>
-      <trans-unit id="3034329077225615643" datatype="html">
-        <source> Your subscription is incomplete. Please open billing portal to solve the issue. </source>
-        <target state="new"> Votre souscription est incomplète. Merci de résoudre le problème depuis le portail de facturation pour éviter toute résiliation involontaire. </target>
-      </trans-unit>
       <trans-unit id="940645343074001738" datatype="html">
         <source> We have not been able to find any subscription for your organization. </source>
         <target state="new"> Nous n&apos;avons pas été en mesure de trouver une souscription pour l&apos;organisation sélectionnée. </target>
@@ -3327,7 +3323,15 @@
       </trans-unit>
       <trans-unit id="3633703938338163158" datatype="html">
         <source>All plans come with a <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>7-day free trial<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</source>
-        <target state="new">Toutes les offres incluent <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>7 jours d'essai gratuit<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</target>
+        <target state="new">Toutes les offres incluent <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>7 jours d&apos;essai gratuit<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>.</target>
+      </trans-unit>
+      <trans-unit id="262438522922303027" datatype="html">
+        <source>You have no subscription yet, please chose a plan above.</source>
+        <target state="new">Aucune souscription pour cette organisation.</target>
+      </trans-unit>
+      <trans-unit id="8400858438856996816" datatype="html">
+        <source>Your subscription is incomplete. Please open billing portal to solve the issue.</source>
+        <target state="new">Merci d'ouvrir le portail ci-dessus pour compléter votre souscription.</target>
       </trans-unit>
     </body>
   </file>

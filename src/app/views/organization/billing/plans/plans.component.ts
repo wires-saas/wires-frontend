@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 import {
     Organization,
     OrganizationService,
-    Plan, PlanType,
+    Plan, PlanStatus, PlanType,
 } from '../../../../services/organization.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { firstValueFrom } from 'rxjs';
@@ -56,4 +56,6 @@ export class PlansComponent implements OnInit {
             )
             .subscribe();
     }
+
+    protected readonly PlanStatus = PlanStatus;
 }
