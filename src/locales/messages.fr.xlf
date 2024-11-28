@@ -358,7 +358,7 @@
         <target state="new">Prix <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;price&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></target>
       </trans-unit>
       <trans-unit id="2499839142582186183" datatype="html">
-        <source>Status <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;inventoryStatus&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></source>
+        <source>Status <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;plan.status&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
         <target state="new">Statut <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;inventoryStatus&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon"/></target>
       </trans-unit>
       <trans-unit id="1806667489382256324" datatype="html">
@@ -1609,16 +1609,8 @@
         <source>Creation Date <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;createdAt&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
         <target state="new">Création le <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;createdAt&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
       </trans-unit>
-      <trans-unit id="155035325354018605" datatype="html">
-        <source>Country <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;address.country&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
-        <target state="new">Pays <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;address.country&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
-      </trans-unit>
-      <trans-unit id="1457441417699673405" datatype="html">
-        <source>2FA <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;security.twoFactorAuthenticationEnabled&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
-        <target state="new">2FA <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;security.twoFactorAuthenticationEnabled&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
-      </trans-unit>
       <trans-unit id="8901239637096457862" datatype="html">
-        <source>Plan <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;subscription.type&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+        <source>Plan <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;plan.type&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
         <target state="new">Formule <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;subscription.type&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
       </trans-unit>
       <trans-unit id="2266978295648852911" datatype="html">
@@ -3331,7 +3323,23 @@
       </trans-unit>
       <trans-unit id="8400858438856996816" datatype="html">
         <source>Your subscription is incomplete. Please open billing portal to solve the issue.</source>
-        <target state="new">Merci d'ouvrir le portail ci-dessus pour compléter votre souscription.</target>
+        <target state="new">Merci d&apos;ouvrir le portail ci-dessus pour compléter votre souscription.</target>
+      </trans-unit>
+      <trans-unit id="4043049091728011235" datatype="html">
+        <source>Cancelled</source>
+        <target state="new">Annulé</target>
+      </trans-unit>
+      <trans-unit id="3238728868107723514" datatype="html">
+        <source>Incomplete</source>
+        <target state="new">Incomplet</target>
+      </trans-unit>
+      <trans-unit id="7839920616143898889" datatype="html">
+        <source>Error loading organization plan</source>
+        <target state="new">Erreur lors du chargement de la souscription</target>
+      </trans-unit>
+      <trans-unit id="1017419636322628578" datatype="html">
+        <source>Renewal <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;plan.currentPeriodEnd&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
+        <target state="new">Renouvellement <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;plan.currentPeriodEnd&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
       </trans-unit>
     </body>
   </file>

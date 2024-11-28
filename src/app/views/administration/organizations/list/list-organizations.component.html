@@ -18,9 +18,11 @@
                 <th pSortableColumn="name" class="white-space-nowrap" style="width:25%" i18n>Name <p-sortIcon field="name"></p-sortIcon></th>
 
                 <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:25%" i18n>Creation Date <p-sortIcon field="createdAt"></p-sortIcon></th>
-                <th pSortableColumn="address.country" class="white-space-nowrap" style="width:25%" i18n>Country <p-sortIcon field="address.country"></p-sortIcon></th>
-                <th pSortableColumn="security.twoFactorAuthenticationEnabled" class="white-space-nowrap" style="width:10%" i18n>2FA <p-sortIcon field="security.twoFactorAuthenticationEnabled"></p-sortIcon></th>
-                <th pSortableColumn="subscription.type" class="white-space-nowrap" style="width:25%" i18n>Plan <p-sortIcon field="subscription.type"></p-sortIcon></th>
+                <!-- <th pSortableColumn="address.country" class="white-space-nowrap" style="width:25%" i18n>Country <p-sortIcon field="address.country"></p-sortIcon></th> -->
+                <!-- <th pSortableColumn="security.twoFactorAuthenticationEnabled" class="white-space-nowrap" style="width:10%" i18n>2FA <p-sortIcon field="security.twoFactorAuthenticationEnabled"></p-sortIcon></th> -->
+                <th pSortableColumn="plan.type" class="white-space-nowrap" style="width:25%" i18n>Plan <p-sortIcon field="plan.type"></p-sortIcon></th>
+                <th pSortableColumn="plan.currentPeriodEnd" class="white-space-nowrap" style="width:25%" i18n>Renewal <p-sortIcon field="plan.currentPeriodEnd"></p-sortIcon></th>
+                <th pSortableColumn="plan.status" class="white-space-nowrap" style="width:25%" i18n>Status <p-sortIcon field="plan.status"></p-sortIcon></th>
                 <th pSortableColumn="_nbMembers" class="white-space-nowrap" style="width:25%" i18n># Members <p-sortIcon field="_nbMembers"></p-sortIcon></th>
                 <th class="white-space-nowrap" style="width:15%" i18n>Actions</th>
             </tr>
@@ -29,18 +31,21 @@
             <tr>
                 <td>{{ organization.name }}</td>
                 <td>{{ organization.createdAt | date: 'dd/MM/yyyy' }}</td>
-                <td>
+                <!-- <td>
                     <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + organization.address.country.toLowerCase()" class="w-2rem mr-2">
                     {{ organization.address.country | countryName }}
-                </td>
+                </td> -->
+                <!--
                 <td>
                     <i *ngIf="organization.security.twoFactorAuthenticationEnabled; else twoFactorAuthenticationDisabled"
                        class="pi pi-check mr-2 text-900 text-green-500"></i>
                     <ng-template #twoFactorAuthenticationDisabled>
                         <i class="pi pi-times mr-2 text-900 text-red-500"></i>
                     </ng-template>
-                </td>
-                <td>{{ organization.subscription.type }}</td>
+                </td> -->
+                <td>{{ organization.plan?.type | planDesignation }}</td>
+                <td>{{ organization.plan?.currentPeriodEnd | date:'dd/MM' }}</td>
+                <td>{{ organization.plan?.status | planStatus }}</td>
                 <td>{{ organization._nbMembers }}</td>
                 <td>
                     <button (click)="toggleMenuFor(organization, actionsMenu, $event)" pButton pRipple type="button" icon="pi pi-file-edit" class="p-button-rounded p-button-outlined p-button-info"></button>

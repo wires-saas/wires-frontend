@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import {BehaviorSubject, firstValueFrom, Subject} from 'rxjs';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { Slug } from '../utils/types.utils';
@@ -48,6 +48,8 @@ export interface Organization {
     logo: string;
     activity: string;
 
+    plan: Plan;
+
     address: {
         street: string;
         city: string;
@@ -84,6 +86,9 @@ export class OrganizationService {
 
     private getAllPromise: Promise<Organization[]> | undefined;
 
+    private organizationsChanged$$ = new Subject<void>();
+    public organizationsChanged$ = this.organizationsChanged$$.asObservable();
+
     constructor(
         private http: HttpClient,
         private route: ActivatedRoute,
@@ -117,7 +122,7 @@ export class OrganizationService {
         );
     }
 
-    create(organization: {
+    async create(organization: {
         name: string;
         slug: string;
         country?: string;
@@ -127,7 +132,10 @@ export class OrganizationService {
                 `${this.domain}/organizations`,
                 organization,
             ),
-        );
+        ).then((organizationCreated) => {
+            this.organizationsChanged$$.next();
+            return organizationCreated;
+        });
     }
 
     // Update organization

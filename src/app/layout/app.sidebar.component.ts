@@ -58,37 +58,50 @@ export class AppSidebarComponent implements OnInit {
             .subscribe();
 
         // Fetching all organizations
-        this.organizationService.getAll().then((organizations) => {
-            this.availableOrganizations = organizations;
+        this.organizationService.getAll()
+            .then((organizations) => this.setupOrganizationsSelect(organizations));
 
-            if (this.availableOrganizations?.length === 1) {
-                // if only one organization, select it
+        // Refreshing organizations on change
+        this.organizationService.organizationsChanged$.pipe(
+            map(() => {
+                this.organizationService.getAll()
+                    .then((organizations) => this.setupOrganizationsSelect(organizations));
+            }),
+            takeUntilDestroyed(this.destroyRef),
+        ).subscribe();
+    }
+
+    private async setupOrganizationsSelect(organizations: Organization[]) {
+        console.log('organizations', organizations);
+        this.availableOrganizations = organizations;
+
+        if (this.availableOrganizations?.length === 1) {
+            // if only one organization, select it
+            this.selectedOrganization = this.availableOrganizations[0];
+        } else if (this.availableOrganizations?.length > 1) {
+            // if multiple organizations, select the one in the URL
+            const url = this.router.url;
+            const regex = /\/organization\/([^\/]+)/;
+            const match = url.match(regex);
+            const slugInUrl = match && match[1];
+
+            this.selectedOrganization = this.availableOrganizations.find(
+                (org) => org.slug === slugInUrl,
+            );
+
+            // if organization in URL matches none, force select first
+            if (!this.selectedOrganization) {
                 this.selectedOrganization = this.availableOrganizations[0];
-            } else if (this.availableOrganizations?.length > 1) {
-                // if multiple organizations, select the one in the URL
-                const url = this.router.url;
-                const regex = /\/organization\/([^\/]+)/;
-                const match = url.match(regex);
-                const slugInUrl = match && match[1];
-
-                this.selectedOrganization = this.availableOrganizations.find(
-                    (org) => org.slug === slugInUrl,
-                );
-
-                // if organization in URL matches none, force select first
-                if (!this.selectedOrganization) {
-                    this.selectedOrganization = this.availableOrganizations[0];
-                }
-            } else {
-                // if no organization, redirect to unauthorized
-                this.router.navigate(['/auth/unauthorized']);
             }
+        } else {
+            // if no organization, redirect to unauthorized
+            this.router.navigate(['/auth/unauthorized']);
+        }
 
-            if (this.selectedOrganization)
-                this.organizationService.setCurrentOrganization(
-                    this.selectedOrganization,
-                );
-        });
+        if (this.selectedOrganization)
+            this.organizationService.setCurrentOrganization(
+                this.selectedOrganization,
+            );
     }
 
     async onOrganizationChange() {
@@ -134,9 +147,5 @@ export class AppSidebarComponent implements OnInit {
                 );
             }
         }
-    }
-
-    anchor() {
-        this.layoutService.state.anchored = !this.layoutService.state.anchored;
     }
 }

@@ -11,6 +11,8 @@ import { CountryNamePipe } from '../../../../utils/pipes/country-name.pipe';
 import { MenuModule } from 'primeng/menu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import {PlanDesignationPipe} from "../../../../utils/plans/plan-designation.pipe";
+import {PlanStatusPipe} from "../../../../utils/plans/plan-status.pipe";
 
 @NgModule({
     imports: [
@@ -25,6 +27,8 @@ import { ToastModule } from 'primeng/toast';
         MenuModule,
         ConfirmDialogModule,
         ToastModule,
+        PlanDesignationPipe,
+        PlanStatusPipe,
     ],
     declarations: [ListOrganizationsComponent],
 })

@@ -8,6 +8,7 @@ import {
 import { User, UserService } from '../../../../services/user.service';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
     templateUrl: './list-organizations.component.html',
@@ -29,6 +30,17 @@ export class ListOrganizationsComponent implements OnInit {
     async ngOnInit() {
         this.organizations = await this.organizationService.getAll();
         this.users = await this.userService.getUsers();
+
+        await Promise.all(this.organizations.map(async (org) => {
+            try {
+                org.plan = await this.organizationService.getPlan(org.slug);
+            } catch (err) {
+                console.error(err);
+                MessageUtils.parseServerError(this.messageService, err as HttpErrorResponse, {
+                    summary: $localize`Error loading organization plan`,
+                });
+            }
+        }));
 
         this.organizations.forEach((org) => {
             org._nbMembers = this.users.filter((user) =>

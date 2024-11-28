@@ -17,7 +17,6 @@ export class PlanDesignationPipe implements PipeTransform {
             case PlanType.FREE:
                 return $localize`Free Plan`;
             default:
-                console.warn('Unknown plan', plan);
                 return $localize`None`;
         }
     }
