@@ -17,6 +17,7 @@ import { BlocksComponent } from '../views/studio/blocks/blocks.component';
 import { AudienceConfigurationComponent } from '../views/audience/configuration/configuration.component';
 import { ContactsComponent } from '../views/audience/contacts/contacts.component';
 import { DeliveryComponent } from '../views/audience/delivery/delivery.component';
+import {TemplatesComponent} from "../views/studio/templates/templates.component";
 
 @Component({
     selector: 'app-menu',
@@ -82,6 +83,11 @@ export class AppMenuComponent implements OnInit {
                         routerLink: [
                             `/organization/${org.slug}/studio/templates`,
                         ],
+                        routerLinkActiveOptions: { exact: false },
+                        restriction: authService.hasAtLeast$(
+                            TemplatesComponent.permissions,
+                            org.slug,
+                        ),
                     },
                 ],
             },

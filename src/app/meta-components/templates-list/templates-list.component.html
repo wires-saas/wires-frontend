@@ -1,0 +1,6 @@
+<ul class="m-0 p-0 list-none border-1 surface-overlay surface-border border-round p-3 flex flex-column gap-2 w-full">
+    <app-template-card *ngFor="let template of templates"
+                       [template]="template"
+                       (selectTemplate)="selectTemplate.emit(template)">
+    </app-template-card>
+</ul>

@@ -1,1 +1,33 @@
-<h1>Templates</h1>
+<div class="grid">
+    <div class="col-3">
+        <app-explorer (selectFolder)="loadTemplates($event)"></app-explorer>
+    </div>
+
+    <div class="col-6">
+
+        <app-templates-list *ngIf="templates.length; else noTemplate"
+                         [templates]="templates"
+                         (selectTemplate)="openEditor($event)"></app-templates-list>
+
+        <ng-template #noTemplate>
+            <app-empty-card i18n-entity entity="template"></app-empty-card>
+        </ng-template>
+
+    </div>
+
+    <div class="col-3">
+
+        <ng-container *ngIf="canCreateTemplate">
+
+            <a [routerLink]="['editor']">
+                <button pButton pRipple type="button" i18n-label label="Create Template" class="p-button-primary w-full"></button>
+            </a>
+
+        </ng-container>
+
+        <a [routerLink]="['bidule/editor']">
+            <button pButton pRipple type="button" i18n-label label="Go to fake template" class="p-button-text w-full mt-2"></button>
+        </a>
+
+    </div>
+</div>

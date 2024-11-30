@@ -93,6 +93,19 @@ export const UpdateBlock = new Permission(
     PermissionAction.Update,
 );
 
+export const ReadTemplate = new Permission(
+    PermissionSubject.Template,
+    PermissionAction.Read,
+);
+export const CreateTemplate = new Permission(
+    PermissionSubject.Template,
+    PermissionAction.Create,
+);
+export const UpdateTemplate = new Permission(
+    PermissionSubject.Template,
+    PermissionAction.Update,
+);
+
 export const CreateFolder = new Permission(
     PermissionSubject.Folder,
     PermissionAction.Create,

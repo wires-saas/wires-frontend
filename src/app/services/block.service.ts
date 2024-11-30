@@ -8,6 +8,52 @@ import { firstValueFrom } from 'rxjs';
 export interface BlockRef
     extends Pick<Block, 'id' | 'organization' | 'version'> {}
 
+export interface Structure {
+    type: string;
+    children: Array<Structure | Content<any>>;
+}
+
+export enum ContentType {
+    AD = 'ad',
+    BUTTON = 'button',
+    IMAGE = 'image',
+    TEXT = 'text',
+}
+
+export interface Content<T extends ContentType> {
+    type: T;
+}
+
+export class ImageContent implements Content<ContentType.IMAGE> {
+    type: ContentType.IMAGE = ContentType.IMAGE;
+    src: string;
+
+    constructor(src: string) {
+        this.src = src;
+    }
+}
+
+export class TextContent implements Content<ContentType.TEXT> {
+    type: ContentType.TEXT = ContentType.TEXT;
+    value: string;
+
+    constructor(value: string) {
+        this.value = value;
+    }
+}
+
+export const isImageContent = (
+    content: Content<any>,
+): content is ImageContent => {
+    return content.type === ContentType.IMAGE;
+}
+
+export const isTextContent = (
+    content: Content<any>,
+): content is TextContent => {
+    return content.type === ContentType.TEXT;
+}
+
 export class Block {
     id?: string;
     organization: string;
@@ -16,7 +62,7 @@ export class Block {
 
     parameters: BlockParameters;
 
-    model: BlockRef[];
+    model: Structure[];
     code: string;
 
     wysiwygEnabled: boolean; // if set to true, disable model to code compilation, allowing direct code modification
@@ -191,11 +237,18 @@ export enum ParameterType {
     NUMBER = 'number',
     BOOLEAN = 'boolean',
     DATE = 'date',
-    ENUM = 'enum',
-    ARTICLE = 'article',
-    CONTENT = 'content',
-    OBJECT = 'object',
-    ARRAY = 'array',
+    LINK = 'link',
+    STRING_ARRAY = 'string_array',
+}
+
+export enum ParameterSource {
+    CONSTANT = 'constant', // value is hardcoded
+    USER_DEFINED = 'user_defined', // user input
+    HTTP_REQUEST = 'http_request', // result of a request
+    AI_REQUEST = 'ai_request', // result of a prompt
+    CONTACT_METADATA = 'contact_metadata', // first name, last name, etc.
+    SYSTEM = 'system', // date, hours, etc.
+    ARTICLE = 'article', // article content
 }
 
 export interface BlockParameter<T extends ParameterType> {
@@ -204,10 +257,11 @@ export interface BlockParameter<T extends ParameterType> {
     displayName: string;
     description: string;
     required: boolean;
+    source: ParameterSource;
 }
 
 export interface BlockParameters {
-    [key: string]: any;
+    [key: string]: BlockParameter<any>;
 }
 
 @Injectable()
@@ -265,13 +319,15 @@ export class BlockService {
                     displayName: 'test',
                     description: 'test',
                     required: true,
+                    source: ParameterSource.CONSTANT,
                 },
                 leftArticle: {
-                    key: 'leftArticle',
-                    type: ParameterType.ARTICLE,
-                    displayName: 'Bloc Article (gauche)',
-                    description: 'Article pour le bloc de gauche',
+                    key: 'articleTitle',
+                    type: ParameterType.STRING,
+                    displayName: 'Titre Article',
+                    description: 'Titre article pour le bloc de gauche',
                     required: true,
+                    source: ParameterSource.ARTICLE,
                 },
             },
             code: formattedCode,

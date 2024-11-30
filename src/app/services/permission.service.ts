@@ -25,6 +25,7 @@ export enum PermissionSubject {
     Gpt = 'gpt',
     GptRequest = 'gptRequest',
     Block = 'block',
+    Template = 'template',
     Folder = 'folder',
     ContactsProvider = 'contactsProvider',
     EmailsProvider = 'emailsProvider',
