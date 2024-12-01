@@ -1,17 +1,13 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { Block, BlockService } from '../../../services/block.service';
-import { OrganizationService } from '../../../services/organization.service';
-import { map } from 'rxjs/operators';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Router } from '@angular/router';
-import { FolderService } from '../../../services/folder.service';
-import {
-    CreateBlock,
-    ReadBlock,
-    UpdateBlock,
-} from '../../../utils/permission.utils';
-import { firstValueFrom } from 'rxjs';
-import { AuthService } from '../../../services/auth.service';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Block, BlockService} from '../../../services/block.service';
+import {OrganizationService} from '../../../services/organization.service';
+import {map} from 'rxjs/operators';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {Router} from '@angular/router';
+import {FolderItemType, FolderService} from '../../../services/folder.service';
+import {CreateBlock, ReadBlock, UpdateBlock,} from '../../../utils/permission.utils';
+import {firstValueFrom} from 'rxjs';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     templateUrl: './blocks.component.html',
@@ -88,6 +84,7 @@ export class BlocksComponent implements OnInit {
             this.blocks = await this.folderService.getFolderContent<Block>(
                 this.currentOrgSlug,
                 folderId,
+                FolderItemType.Block
             );
         }
     }

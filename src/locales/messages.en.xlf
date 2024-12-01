@@ -2507,6 +2507,42 @@
       <trans-unit id="7839920616143898889" datatype="html">
         <source>Error loading organization plan</source>
       </trans-unit>
+      <trans-unit id="1392190332974844461" datatype="html">
+        <source>This will hide archived template from template list. Are you sure you want to archive template ?</source>
+      </trans-unit>
+      <trans-unit id="215948375369819933" datatype="html">
+        <source>Create Template</source>
+      </trans-unit>
+      <trans-unit id="2772747484492712337" datatype="html">
+        <source>Go to fake template</source>
+      </trans-unit>
+      <trans-unit id="4314061841141617340" datatype="html">
+        <source>New Template</source>
+      </trans-unit>
+      <trans-unit id="4795649828323090737" datatype="html">
+        <source>Error archiving template</source>
+      </trans-unit>
+      <trans-unit id="4924730030506026031" datatype="html">
+        <source>Archive Template</source>
+      </trans-unit>
+      <trans-unit id="5666332981269427278" datatype="html">
+        <source>template</source>
+      </trans-unit>
+      <trans-unit id="623752509340793028" datatype="html">
+        <source>Error deleting template</source>
+      </trans-unit>
+      <trans-unit id="7345687358715985953" datatype="html">
+        <source>Are you sure you want to delete template ? No blocks will be deleted, only template. This action cannot be undone.</source>
+      </trans-unit>
+      <trans-unit id="924243138802371969" datatype="html">
+        <source>Delete Template</source>
+      </trans-unit>
+      <trans-unit id="1036586810617210056" datatype="html">
+        <source>Save Template</source>
+      </trans-unit>
+      <trans-unit id="6987099608813302579" datatype="html">
+        <source>Save Block</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

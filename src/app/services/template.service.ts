@@ -10,7 +10,7 @@ export class Template {
     displayName: string;
     description: string;
 
-    model: any[];
+    blocks: any[];
 
     isArchived: boolean;
 
@@ -35,7 +35,7 @@ export class Template {
         this.organization = '';
         this.displayName = '';
         this.description = '';
-        this.model = [];
+        this.blocks = [];
         this.isArchived = false;
         this.version = 0;
 
@@ -186,7 +186,7 @@ export class TemplateService {
             organization: organizationId,
             displayName: $localize`New Template`,
             description: $localize`Empty description`,
-            model: [],
+            blocks: [],
             version: 0,
         });
     }
@@ -200,7 +200,7 @@ export class TemplateService {
                     displayName: template.displayName,
                     description: template.description,
 
-                    model: template.model,
+                    blocks: template.blocks,
 
                     isArchived: template.isArchived,
                 },
@@ -218,7 +218,7 @@ export class TemplateService {
                     displayName: template.displayName,
                     description: template.description,
 
-                    model: template.model,
+                    blocks: template.blocks,
 
                     isArchived: template.isArchived,
                 },

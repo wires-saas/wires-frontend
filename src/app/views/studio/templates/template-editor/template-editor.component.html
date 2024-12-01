@@ -1,4 +1,4 @@
-<div *ngIf="loadingBlock" class="flex justify-content-between align-items-start mb-2">
+<div *ngIf="loadingTemplate" class="flex justify-content-between align-items-start mb-2">
 
     <div>
         <h1 class="m-0">
@@ -13,21 +13,21 @@
 
 </div>
 
-<ng-container *ngIf="block">
+<ng-container *ngIf="template">
 
     <!-- Display name and description -->
     <div class="flex justify-content-between align-items-start mb-2 fadein animation-duration-200">
 
         <div>
             <h1 class="m-0">
-                {{ block.displayName | emptyBlockDisplayName }}
+                {{ template.displayName | emptyTemplateDisplayName }}
                 <button pButton pRipple type="button"
                         (click)="openDisplayNameDialog()"
                         icon="pi pi-pencil" class="p-button-rounded p-button-secondary p-button-text"></button>
             </h1>
 
             <div class="flex align-items-center">
-                <span class="text-900">{{ block.description | emptyBlockDescription }}</span>
+                <span class="text-900">{{ template.description | emptyTemplateDescription }}</span>
                 <button pButton pRipple type="button"
                     (click)="openDescriptionDialog()"
                     icon="pi pi-pencil" class="p-button-rounded p-button-secondary p-button-text ml-2"></button>
@@ -36,7 +36,7 @@
         </div>
 
 
-        <div *ngIf="canUpdateBlock">
+        <div *ngIf="canUpdateTemplate">
             <p-menu #menu [popup]="true" [model]="actionsMenu"></p-menu>
             <button type="button" pButton
                     class="p-button-rounded p-button-text mb-2 mr-2"
@@ -44,11 +44,11 @@
                     (click)="menu.toggle($event)"></button>
 
             <button pButton pRipple type="button"
-                    (click)="saveBlock()"
-                    [loading]="savingBlock"
-                    [disabled]="block.isArchived"
+                    (click)="saveTemplate()"
+                    [loading]="savingTemplate"
+                    [disabled]="template.isArchived"
                     i18n-label
-                    label="Save Block"
+                    label="Save Template"
                     icon="pi pi-save"
                     class="p-button p-button-primary mb-2"></button>
 
@@ -57,7 +57,7 @@
 
             <div class="flex justify-content-end">
                 <button pButton pRipple type="button"
-                        [disabled]="!block.canUndo()"
+                        [disabled]="!template.canUndo()"
                         (click)="undo()"
                         pTooltip="Undo"
                         tooltipPosition="bottom"
@@ -65,7 +65,7 @@
                         class="p-button-icon-only p-button-secondary p-button-text"></button>
 
                 <button pButton pRipple type="button"
-                        [disabled]="!block.canRedo()"
+                        [disabled]="!template.canRedo()"
                         (click)="redo()"
                         pTooltip="Redo"
                         tooltipPosition="bottom"
@@ -77,11 +77,13 @@
         </div>
     </div>
 
-    <!-- Block editor sections -->
+    <!-- Template editor sections -->
     <div class="grid fadein animation-duration-200">
 
+        <pre [innerHTML]="template | prettyjson:[true, 3, darkMode]"></pre>
 
 
+        <!--
         <app-block-editor-wysiwyg *ngIf="block.wysiwygEnabled && canUpdateBlock; else previewOnly"
                                   [block]="block"
                                   class="col-12 md:col-12 xl:col-6 flex-order-0">
@@ -92,7 +94,9 @@
                                       class="col-12 md:col-12 xl:col-6 flex-order-1">
             </app-block-editor-preview>
         </ng-template>
+        -->
 
+        <!--
         <app-block-editor-code [readonly]="!canUpdateBlock"
                                [block]="block"
                                (blockChange)="cloneBlock()"
@@ -100,36 +104,41 @@
                                [class.flex-order-2]="block.wysiwygEnabled"
                                [class.flex-order-0]="!block.wysiwygEnabled">
         </app-block-editor-code>
+        -->
 
+        <!--
         <app-block-editor-parameters [block]="block"
                                      (blockChange)="cloneBlock()"
                                      class="col-12 md:col-12 xl:col-6 flex-order-2"
                                      [class.flex-order-1]="block.wysiwygEnabled"
                                      [class.flex-order-2]="!block.wysiwygEnabled">
         </app-block-editor-parameters>
+        -->
 
+        <!--
         <app-block-editor-debug [block]="block" [darkMode]="darkMode"
                                 class="col-12 md:col-12 xl:col-6 flex-order-3">
         </app-block-editor-debug>
+        -->
     </div>
 
 
 </ng-container>
 
-<p-confirmDialog i18n-header header="Delete Block" key="confirm-delete" icon="pi pi-exclamation-triangle"
-                 i18n-message message="Are you sure you want to delete block ? Templates relying on this block will be affected. This action cannot be undone."
+<p-confirmDialog i18n-header header="Delete Template" key="confirm-delete" icon="pi pi-exclamation-triangle"
+                 i18n-message message="Are you sure you want to delete template ? No blocks will be deleted, only template. This action cannot be undone."
                  [style]="{width: '600px'}" defaultFocus="none"
                  i18n-acceptLabel acceptLabel="Yes, delete"
                  i18n-rejectLabel rejectLabel="No"
                  acceptButtonStyleClass="p-button-danger"
                  rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
 
-<p-confirmDialog i18n-header header="Archive Block" key="confirm-archive" icon="pi pi-exclamation-triangle"
-                 i18n-message message="For safety concerns you're only allowed to archive blocks. Are you sure you want to archive block ?"
+<p-confirmDialog i18n-header header="Archive Template" key="confirm-archive" icon="pi pi-exclamation-triangle"
+                 i18n-message message="This will hide archived template from template list. Are you sure you want to archive template ?"
                  [style]="{width: '600px'}" defaultFocus="none"
                  i18n-acceptLabel acceptLabel="Yes, archive"
                  i18n-rejectLabel rejectLabel="No"
                  acceptButtonStyleClass="p-button-danger"
                  rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
 
-<p-toast key="block-editor" position="bottom-right"></p-toast>
+<p-toast key="template-editor" position="bottom-right"></p-toast>

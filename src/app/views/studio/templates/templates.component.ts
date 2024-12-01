@@ -1,17 +1,12 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { Block, BlockService } from '../../../services/block.service';
-import { OrganizationService } from '../../../services/organization.service';
-import { map } from 'rxjs/operators';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Router } from '@angular/router';
-import { FolderService } from '../../../services/folder.service';
-import {
-    CreateBlock, CreateTemplate,
-    ReadBlock, ReadTemplate,
-    UpdateBlock, UpdateTemplate,
-} from '../../../utils/permission.utils';
-import { firstValueFrom } from 'rxjs';
-import { AuthService } from '../../../services/auth.service';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {OrganizationService} from '../../../services/organization.service';
+import {map} from 'rxjs/operators';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {Router} from '@angular/router';
+import {FolderItemType, FolderService} from '../../../services/folder.service';
+import {CreateTemplate, ReadTemplate, UpdateTemplate,} from '../../../utils/permission.utils';
+import {firstValueFrom} from 'rxjs';
+import {AuthService} from '../../../services/auth.service';
 import {Template, TemplateService} from "../../../services/template.service";
 
 @Component({
@@ -88,6 +83,7 @@ export class TemplatesComponent implements OnInit {
             this.templates = await this.folderService.getFolderContent<Template>(
                 this.currentOrgSlug,
                 folderId,
+                FolderItemType.Template
             );
         }
     }

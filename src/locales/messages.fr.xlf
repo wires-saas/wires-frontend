@@ -3341,6 +3341,54 @@
         <source>Renewal <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;plan.currentPeriodEnd&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></source>
         <target state="new">Renouvellement <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;plan.currentPeriodEnd&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/th&gt;"/></target>
       </trans-unit>
+      <trans-unit id="4314061841141617340" datatype="html">
+        <source>New Template</source>
+        <target state="new">Nouvelle maquette</target>
+      </trans-unit>
+      <trans-unit id="924243138802371969" datatype="html">
+        <source>Delete Template</source>
+        <target state="new">Supprimer la maquette</target>
+      </trans-unit>
+      <trans-unit id="7345687358715985953" datatype="html">
+        <source>Are you sure you want to delete template ? No blocks will be deleted, only template. This action cannot be undone.</source>
+        <target state="new">Voulez-vous supprimer la maquette ? Aucun bloc ne sera supprimé, seulement la maquette. Cette action est irréversible.</target>
+      </trans-unit>
+      <trans-unit id="4924730030506026031" datatype="html">
+        <source>Archive Template</source>
+        <target state="new">Archiver la maquette</target>
+      </trans-unit>
+      <trans-unit id="1392190332974844461" datatype="html">
+        <source>This will hide archived template from template list. Are you sure you want to archive template ?</source>
+        <target state="new">Voulez-vous archiver la maquette ? Les maquettes archivées sont cachées.</target>
+      </trans-unit>
+      <trans-unit id="623752509340793028" datatype="html">
+        <source>Error deleting template</source>
+        <target state="new">Erreur lors de la suppression</target>
+      </trans-unit>
+      <trans-unit id="4795649828323090737" datatype="html">
+        <source>Error archiving template</source>
+        <target state="new">Erreur lors de l&apos;archivage</target>
+      </trans-unit>
+      <trans-unit id="5666332981269427278" datatype="html">
+        <source>template</source>
+        <target state="new">maquette</target>
+      </trans-unit>
+      <trans-unit id="215948375369819933" datatype="html">
+        <source>Create Template</source>
+        <target state="new">Créer une maquette</target>
+      </trans-unit>
+      <trans-unit id="2772747484492712337" datatype="html">
+        <source>Go to fake template</source>
+        <target state="new">Maquette inexistante</target>
+      </trans-unit>
+      <trans-unit id="6987099608813302579" datatype="html">
+        <source>Save Block</source>
+        <target state="new">Sauvegarder</target>
+      </trans-unit>
+      <trans-unit id="1036586810617210056" datatype="html">
+        <source>Save Template</source>
+        <target state="new">Sauvegarder</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

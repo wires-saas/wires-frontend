@@ -13,6 +13,7 @@ export interface Folder {
 
 export enum FolderItemType {
     Block = 'block',
+    Template = 'template',
 }
 
 @Injectable({
