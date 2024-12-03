@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BlockCardComponent } from './block-card/block-card.component';
+import { BlockRowCardComponent } from './block-row-card/block-row-card.component';
 import { NgForOf } from '@angular/common';
 import { Block } from '../../services/block.service';
-import { RouterLink } from '@angular/router';
+import {ArraySortPipe} from "../../utils/pipes/array-sort.pipe";
 
 @Component({
     selector: 'app-blocks-list',
     templateUrl: './blocks-list.component.html',
-    imports: [BlockCardComponent, NgForOf, RouterLink],
+    imports: [BlockRowCardComponent, NgForOf, ArraySortPipe],
     standalone: true,
 })
 export class BlocksListComponent {

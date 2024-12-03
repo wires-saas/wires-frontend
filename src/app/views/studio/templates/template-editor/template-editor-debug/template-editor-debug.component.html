@@ -1,0 +1,9 @@
+<div class="flex justify-content-start align-items-center mb-2">
+    <span class="text-900 text-xl font-semibold" i18n><i class="pi pi-code mr-1"></i> JSON Model</span>
+    <p-tag severity="info" value="Debug" class="ml-3"></p-tag>
+</div>
+<div class="card">
+
+    <pre [innerHTML]="template | prettyjson:[true, 3, darkMode]"></pre>
+
+</div>

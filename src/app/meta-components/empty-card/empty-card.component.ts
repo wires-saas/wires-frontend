@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
     imports: [],
 })
 export class EmptyCardComponent {
-    @Input() entity!: string;
+    @Input() text!: string;
 }

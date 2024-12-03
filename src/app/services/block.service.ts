@@ -4,6 +4,7 @@ import pretty from 'pretty';
 import { deepClone } from '../utils/deep-clone';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import {PaginationResult} from "../utils/pagination.utils";
 
 export interface BlockRef
     extends Pick<Block, 'id' | 'organization' | 'version'> {}
@@ -279,10 +280,10 @@ export class BlockService {
             setTimeout(async () => {
                 res(
                     firstValueFrom(
-                        this.http.get<Block[]>(
+                        this.http.get<PaginationResult<Block>>(
                             `${this.domain}/organizations/${organizationId}/blocks`,
                         ),
-                    ),
+                    ).then((result) => result.items),
                 );
             }, this.timeout);
         });

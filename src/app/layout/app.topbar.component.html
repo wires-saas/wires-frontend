@@ -9,12 +9,13 @@
 
     <div class="topbar-end">
         <ul class="topbar-menu">
+            <!--
             <li class="topbar-search">
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
                     <input type="text" pInputText i18n-placeholder placeholder="Search" class="w-12rem sm:w-full">
                 </span>
-            </li>
+            </li> -->
             <li class="ml-3">
                 <button *ngIf="colorScheme === 'dim'; else lightMode" pButton type="button" icon="pi pi-moon" class="p-button-text p-button-secondary p-button-rounded flex-shrink-0" (click)="setLightMode()"></button>
                 <ng-template #lightMode>

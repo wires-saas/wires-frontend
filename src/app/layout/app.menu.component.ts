@@ -37,12 +37,12 @@ export class AppMenuComponent implements OnInit {
             items: [
                 {
                     label: $localize`Home`,
-                    icon: 'pi pi-fw pi-home',
+                    icon: 'fa-regular fa-house', // 'pi pi-fw pi-home',
                     routerLink: [`/organization/${org.slug}/files`],
                 },
                 {
                     label: $localize`Inbox`,
-                    icon: 'pi pi-fw pi-inbox',
+                    icon: 'fa-regular fa-envelope', // 'pi pi-fw pi-inbox',
                     routerLink: [`/organization/${org.slug}/mail`],
                     routerLinkActiveOptions: { exact: false },
                 },
@@ -53,7 +53,7 @@ export class AppMenuComponent implements OnInit {
                 },
                 {
                     label: $localize`Stats`,
-                    icon: 'pi pi-fw pi-file',
+                    icon: 'fa-regular fa-chart-mixed', // 'pi pi-fw pi-file',
                     routerLink: [
                         `/organization/${org.slug}/dashboards/overview`,
                     ],
@@ -79,7 +79,7 @@ export class AppMenuComponent implements OnInit {
                     },
                     {
                         label: $localize`Templates`,
-                        icon: 'pi pi-fw pi-file',
+                        icon: 'fa-regular fa-layer-group', // 'pi pi-fw pi-file',
                         routerLink: [
                             `/organization/${org.slug}/studio/templates`,
                         ],
@@ -110,7 +110,7 @@ export class AppMenuComponent implements OnInit {
             items: [
                 {
                     label: $localize`Contacts`,
-                    icon: 'pi pi-fw pi-address-book',
+                    icon: 'fa-light fa-user-group', // 'pi pi-fw pi-address-book',
                     routerLink: [`/organization/${org.slug}/audience/contacts`],
                     /* restriction: authService.hasAtLeast$(
                         ContactsComponent.permissions,
@@ -119,7 +119,7 @@ export class AppMenuComponent implements OnInit {
                 },
                 {
                     label: $localize`Delivery`,
-                    icon: 'pi pi-fw pi-send',
+                    icon: 'fa-regular fa-envelopes-bulk', // 'pi pi-fw pi-send',
                     routerLink: [`/organization/${org.slug}/audience/delivery`],
                     routerLinkActiveOptions: { exact: false },
                     /* restriction: authService.hasAtLeast$(
@@ -129,7 +129,7 @@ export class AppMenuComponent implements OnInit {
                 },
                 {
                     label: $localize`Configuration`,
-                    icon: 'pi pi-fw pi-cog',
+                    icon: 'fa-regular fa-cog', // 'pi pi-fw pi-cog',
                     routerLink: [
                         `/organization/${org.slug}/audience/configuration`,
                     ],
@@ -159,7 +159,7 @@ export class AppMenuComponent implements OnInit {
             items: [
                 {
                     label: $localize`Articles`,
-                    icon: 'pi pi-fw pi-box',
+                    icon: 'fa-regular fa-newspaper', // 'pi pi-fw pi-box',
                     routerLink: [`/organization/${org.slug}/contents/articles`],
                     restriction: authService.hasAtLeast$(
                         ArticlesComponent.permissions,
@@ -168,7 +168,7 @@ export class AppMenuComponent implements OnInit {
                 },
                 {
                     label: $localize`Feeds`,
-                    icon: 'pi pi-fw pi-sitemap',
+                    icon: 'fa-regular fa-rss', // 'pi pi-fw pi-sitemap',
                     routerLink: [`/organization/${org.slug}/contents/feeds`],
                     routerLinkActiveOptions: { exact: false },
                     restriction: authService.hasAtLeast$(
@@ -198,22 +198,16 @@ export class AppMenuComponent implements OnInit {
             items: [
                 {
                     label: $localize`All Users`,
-                    icon: 'pi pi-fw pi-users',
+                    icon: 'fa-light fa-users', // 'pi pi-fw pi-users',
                     routerLink: [`organization/${org.slug}/users/list`],
                     restriction: authService.hasAtLeast$(
                         ListUsersComponent.permissions,
                         org.slug,
                     ),
                 },
-                /* {
-                    label: $localize `Add User`,
-                    icon: 'pi pi-fw pi-user-plus',
-                    routerLink: [`organization/${org.slug}/users/create`],
-                    restriction: authService.hasRole$(Role.MANAGER, org.slug)
-                }, */
                 {
                     label: $localize`Information`,
-                    icon: 'pi pi-fw pi-building',
+                    icon: 'fa-regular fa-memo-circle-info', // 'pi pi-fw pi-building',
                     routerLink: [`organization/${org.slug}/information`],
                     restriction: authService.hasAtLeast$(
                         InformationComponent.permissions,
@@ -222,7 +216,7 @@ export class AppMenuComponent implements OnInit {
                 },
                 {
                     label: $localize`Billing`,
-                    icon: 'pi pi-fw pi-wallet',
+                    icon: 'fa-regular fa-wallet', // 'pi pi-fw pi-wallet',
                     routerLink: [`organization/${org.slug}/billing`],
                     restriction: authService.hasAtLeast$(
                         BillingComponent.permissions,
@@ -231,7 +225,7 @@ export class AppMenuComponent implements OnInit {
                 },
                 {
                     label: $localize`Configuration`,
-                    icon: 'pi pi-fw pi-cog',
+                    icon: 'fa-regular fa-gear', // 'pi pi-fw pi-cog',
                     routerLink: [`organization/${org.slug}/configuration`],
                     restriction: authService.hasAtLeast$(
                         ConfigurationComponent.permissions,
@@ -271,7 +265,7 @@ export class AppMenuComponent implements OnInit {
             items: [
                 {
                     label: $localize`All Organizations`,
-                    icon: 'pi pi-fw pi-list',
+                    icon: 'fa-regular fa-buildings', // 'pi pi-fw pi-list',
                     routerLink: ['administration/organizations/list'],
                 },
                 {
@@ -281,7 +275,7 @@ export class AppMenuComponent implements OnInit {
                 },
                 {
                     label: $localize`All Users`,
-                    icon: 'pi pi-fw pi-users',
+                    icon: 'fa-light fa-users', // 'pi pi-fw pi-users',
                     routerLink: ['administration/organizations/users/list'],
                 },
             ],

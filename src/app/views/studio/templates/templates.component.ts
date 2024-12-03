@@ -83,7 +83,8 @@ export class TemplatesComponent implements OnInit {
             this.templates = await this.folderService.getFolderContent<Template>(
                 this.currentOrgSlug,
                 folderId,
-                FolderItemType.Template
+                FolderItemType.Template,
+                true
             );
         }
     }

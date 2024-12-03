@@ -1,0 +1,11 @@
+<li (click)="selectBlock.emit(block)"
+    class="p-4 hover:surface-100 cursor-pointer border-round border-1 border-transparent transition-all transition-duration-200">
+    <img
+        class="block w-full m-auto border-round"
+        src="https://primefaces.org/cdn/primeng/images/demo/product/black-watch.jpg"
+        [alt]="block.id" />
+
+    <div class="mt-2 font-bold text-center">
+        {{ block.displayName }}
+    </div>
+</li>

@@ -89,12 +89,14 @@ export class FolderService {
         organizationId: string,
         folderId: string,
         itemType?: FolderItemType,
+        recursive?: boolean,
     ): Promise<T[]> {
         let endpoint = `${this.domain}/organizations/${organizationId}/folders/${folderId}/items`;
 
-        if (itemType) endpoint += `?type=${itemType}`;
+        const params: any = { recursive: !!recursive };
+        if (itemType) params['itemType'] = itemType;
 
-        return firstValueFrom(this.http.get<T[]>(endpoint));
+        return firstValueFrom(this.http.get<T[]>(endpoint, { params }));
     }
 
     removeFolder(organizationId: string, folderId: string): Promise<void> {

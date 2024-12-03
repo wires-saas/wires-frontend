@@ -80,8 +80,15 @@
     <!-- Template editor sections -->
     <div class="grid fadein animation-duration-200">
 
-        <pre [innerHTML]="template | prettyjson:[true, 3, darkMode]"></pre>
 
+        <div class="col-12 md:col-12 xl:col-8">
+
+            <i class="fa-brands fa-github-square"></i>
+
+        </div>
+
+        <app-template-editor-blocks-library [blocks]="blocks" class="col-12 md:col-12 xl:col-4">
+        </app-template-editor-blocks-library>
 
         <!--
         <app-block-editor-wysiwyg *ngIf="block.wysiwygEnabled && canUpdateBlock; else previewOnly"
@@ -115,11 +122,11 @@
         </app-block-editor-parameters>
         -->
 
-        <!--
-        <app-block-editor-debug [block]="block" [darkMode]="darkMode"
+
+        <app-template-editor-debug [template]="template" [darkMode]="darkMode"
                                 class="col-12 md:col-12 xl:col-6 flex-order-3">
-        </app-block-editor-debug>
-        -->
+        </app-template-editor-debug>
+
     </div>
 
 

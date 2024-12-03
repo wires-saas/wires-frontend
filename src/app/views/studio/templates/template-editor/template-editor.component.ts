@@ -1,5 +1,6 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import {
+    Block,
     BlockService,
 } from '../../../../services/block.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -13,6 +14,7 @@ import { MessageUtils } from '../../../../utils/message.utils';
 import {UpdateBlock, UpdateTemplate} from '../../../../utils/permission.utils';
 import { AuthService } from '../../../../services/auth.service';
 import {TemplateService, TemplateWithHistory} from "../../../../services/template.service";
+import {BlockLibraryService} from "../../../../services/block-library.service";
 
 @Component({
     selector: 'app-template-editor',
@@ -25,6 +27,11 @@ export class TemplateEditorComponent implements OnInit {
     savingTemplate: boolean = false;
 
     template: TemplateWithHistory | undefined = undefined;
+    blocks: Block[] = [];
+    blocksTotal: number = 0;
+    blocksPage: number = 0;
+    blocksSize: number = 10;
+
 
     darkMode: boolean = false;
 
@@ -37,6 +44,7 @@ export class TemplateEditorComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private blockService: BlockService,
+        private blockLibraryService: BlockLibraryService,
         private templateService: TemplateService,
         private layoutService: LayoutService,
         private activatedRoute: ActivatedRoute,
@@ -107,6 +115,17 @@ export class TemplateEditorComponent implements OnInit {
                                 take(1),
                             )
                             .subscribe();
+
+
+                        this.resetBlocksPagination();
+                        const blocksPaginationResult = await this.blockLibraryService.getBlocks(
+                            this.currentOrgSlug!,
+                            this.blocksPage,
+                            this.blocksSize,
+                            ''
+                        );
+                        this.blocks = blocksPaginationResult.items;
+                        this.blocksTotal = blocksPaginationResult.total;
                     }
                 }),
                 takeUntilDestroyed(this.destroyRef),
@@ -153,8 +172,15 @@ export class TemplateEditorComponent implements OnInit {
         }
     }
 
-    cloneTemplate() {
+    private cloneTemplate() {
         this.template = this.template?.clone();
+    }
+
+    private resetBlocksPagination() {
+        this.blocks = [];
+        this.blocksPage = 0;
+        this.blocksSize = 10;
+        this.blocksTotal = 0;
     }
 
     async openDeleteTemplateDialog() {

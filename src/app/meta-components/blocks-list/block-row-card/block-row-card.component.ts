@@ -4,12 +4,12 @@ import { TagModule } from 'primeng/tag';
 import { DatePipe, NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-block-card',
-    templateUrl: './block-card.component.html',
+    selector: 'app-block-row-card',
+    templateUrl: './block-row-card.component.html',
     imports: [TagModule, NgIf, DatePipe],
     standalone: true,
 })
-export class BlockCardComponent {
+export class BlockRowCardComponent {
     @Input() block!: Block;
     @Output() selectBlock = new EventEmitter<Block>();
 }

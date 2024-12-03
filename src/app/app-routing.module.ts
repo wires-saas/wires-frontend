@@ -130,6 +130,18 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'template-not-found',
+        data: {
+            title: $localize`Template Not Found`,
+            message: $localize`Cannot find the template you are looking for`,
+            button: $localize`Return To Dashboard`,
+        },
+        loadChildren: () =>
+            import('./views/auth/not-found/not-found.module').then(
+                (m) => m.NotFoundModule,
+            ),
+    },
+    {
         path: 'not-found',
         loadChildren: () =>
             import('./views/auth/not-found/not-found.module').then(

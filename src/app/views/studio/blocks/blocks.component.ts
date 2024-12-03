@@ -84,7 +84,8 @@ export class BlocksComponent implements OnInit {
             this.blocks = await this.folderService.getFolderContent<Block>(
                 this.currentOrgSlug,
                 folderId,
-                FolderItemType.Block
+                FolderItemType.Block,
+                true,
             );
         }
     }

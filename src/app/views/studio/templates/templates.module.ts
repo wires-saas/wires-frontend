@@ -19,6 +19,22 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
 import {PrettyJsonPipe} from "../../../utils/pipes/prettyjson.pipe";
 import {BlockService} from "../../../services/block.service";
+import {TemplateEditorDebugComponent} from "./template-editor/template-editor-debug/template-editor-debug.component";
+import {TagModule} from "primeng/tag";
+import {
+    TemplateEditorBlocksLibraryComponent
+} from "./template-editor/template-editor-blocks-library/template-editor-blocks-library.component";
+import {ArraySortPipe} from "../../../utils/pipes/array-sort.pipe";
+import {BlockRowCardComponent} from "../../../meta-components/blocks-list/block-row-card/block-row-card.component";
+import {InputTextModule} from "primeng/inputtext";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {
+    BlockSquareCardComponent
+} from "../../../meta-components/blocks-list/block-square-card/block-square-card.component";
+import {
+    StaticSquareCardComponent
+} from "../../../meta-components/blocks-list/static-square-card/static-square-card.component";
+import {BlockLibraryService} from "../../../services/block-library.service";
 
 @NgModule({
     imports: [
@@ -36,12 +52,28 @@ import {BlockService} from "../../../services/block.service";
         MenuModule,
         ConfirmDialogModule,
         ToastModule,
-        PrettyJsonPipe
+        PrettyJsonPipe,
+        TagModule,
+        ArraySortPipe,
+        BlockRowCardComponent,
+        BlockSquareCardComponent,
+        InputTextModule,
+        ProgressSpinnerModule,
+        BlockSquareCardComponent,
+        BlockSquareCardComponent,
+        BlockSquareCardComponent,
+        StaticSquareCardComponent
     ],
-    declarations: [TemplatesComponent, TemplateEditorComponent],
+    declarations: [
+        TemplatesComponent,
+        TemplateEditorComponent,
+        TemplateEditorDebugComponent,
+        TemplateEditorBlocksLibraryComponent
+    ],
     providers: [
         TemplateService,
         BlockService,
+        BlockLibraryService,
         ConfirmationService,
         MessageService
     ],

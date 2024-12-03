@@ -1585,10 +1585,6 @@
         <source>Error updating billing contact</source>
         <target state="new">Erreur lors de la sauvegarde</target>
       </trans-unit>
-      <trans-unit id="4580988005648117665" datatype="html">
-        <source>Search</source>
-        <target state="new">Rechercher</target>
-      </trans-unit>
       <trans-unit id="2591237466336965033" datatype="html">
         <source>SMS (not yet implemented)</source>
         <target state="new">SMS (à venir)</target>
@@ -2657,14 +2653,6 @@
         <source>Error deleting block</source>
         <target state="new">Erreur lors de la suppression du bloc</target>
       </trans-unit>
-      <trans-unit id="5967405700423317571" datatype="html">
-        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-info-circle text-xl mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> No <x id="INTERPOLATION" equiv-text="{{ entity }}"/> found here </source>
-        <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-info-circle text-xl mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Aucun <x id="INTERPOLATION" equiv-text="{{ entity }}"/> trouvé ici </target>
-      </trans-unit>
-      <trans-unit id="5520007132745336628" datatype="html">
-        <source>block</source>
-        <target state="new">bloc</target>
-      </trans-unit>
       <trans-unit id="3725668259413859247" datatype="html">
         <source>ARCHIVED</source>
         <target state="new">ARCHIVÉ</target>
@@ -3369,10 +3357,6 @@
         <source>Error archiving template</source>
         <target state="new">Erreur lors de l&apos;archivage</target>
       </trans-unit>
-      <trans-unit id="5666332981269427278" datatype="html">
-        <source>template</source>
-        <target state="new">maquette</target>
-      </trans-unit>
       <trans-unit id="215948375369819933" datatype="html">
         <source>Create Template</source>
         <target state="new">Créer une maquette</target>
@@ -3388,6 +3372,30 @@
       <trans-unit id="1036586810617210056" datatype="html">
         <source>Save Template</source>
         <target state="new">Sauvegarder</target>
+      </trans-unit>
+      <trans-unit id="1600090937047484711" datatype="html">
+        <source>No block here</source>
+        <target state="new">Aucun bloc ici</target>
+      </trans-unit>
+      <trans-unit id="6198966368528197267" datatype="html">
+        <source>No template here</source>
+        <target state="new">Aucune maquette ici</target>
+      </trans-unit>
+      <trans-unit id="1084552426687235816" datatype="html">
+        <source>Template Not Found</source>
+        <target state="new">Maquette introuvable</target>
+      </trans-unit>
+      <trans-unit id="3293248766122915915" datatype="html">
+        <source>Cannot find the template you are looking for</source>
+        <target state="new">Cette maquette ne semble pas exister</target>
+      </trans-unit>
+      <trans-unit id="108652148886518436" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-objects-column mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Blocks Library</source>
+        <target state="new"><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-objects-column mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Bibliothèque</target>
+      </trans-unit>
+      <trans-unit id="7124113231866555716" datatype="html">
+        <source>Search for block</source>
+        <target state="new">Rechercher un bloc</target>
       </trans-unit>
     </body>
   </file>
