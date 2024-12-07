@@ -9,6 +9,10 @@ import {Block} from "../../../../../services/block.service";
 export class TemplateEditorBlocksLibraryComponent implements OnChanges {
     @Input() blocks!: Block[];
     @Input() loadingBlocks: boolean = true;
+    @Input() canFetchNextBlocks: boolean = false;
+    @Input() canFetchPreviousBlocks: boolean = false;
+
+    @Output() fetchPreviousBlocks: EventEmitter<void> = new EventEmitter<void>();
     @Output() fetchNextBlocks: EventEmitter<void> = new EventEmitter<void>();
 
     ngOnChanges(changes: SimpleChanges) {

@@ -275,15 +275,16 @@ export class BlockService {
         this.domain = environment.backend;
     }
 
-    async getBlocks(organizationId: string): Promise<Block[]> {
+    async getBlocks(organizationId: string, page: number = 0, limit: number = 25): Promise<PaginationResult<Block>> {
         return new Promise((res, _) => {
             setTimeout(async () => {
                 res(
                     firstValueFrom(
                         this.http.get<PaginationResult<Block>>(
                             `${this.domain}/organizations/${organizationId}/blocks`,
+                            { params: { page, limit } },
                         ),
-                    ).then((result) => result.items),
+                    ),
                 );
             }, this.timeout);
         });

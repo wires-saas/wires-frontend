@@ -11,7 +11,7 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { firstValueFrom, zip } from 'rxjs';
 import { OrganizationService } from '../../../../services/organization.service';
 import { MessageUtils } from '../../../../utils/message.utils';
-import {UpdateBlock, UpdateTemplate} from '../../../../utils/permission.utils';
+import {UpdateTemplate} from '../../../../utils/permission.utils';
 import { AuthService } from '../../../../services/auth.service';
 import {TemplateService, TemplateWithHistory} from "../../../../services/template.service";
 import {BlockLibraryService} from "../../../../services/block-library.service";
@@ -25,12 +25,15 @@ export class TemplateEditorComponent implements OnInit {
 
     loadingTemplate: boolean = false;
     savingTemplate: boolean = false;
+    changingIcon: boolean = false;
 
     template: TemplateWithHistory | undefined = undefined;
     blocks: Block[] = [];
     blocksTotal: number = 0;
     blocksPage: number = 0;
-    blocksSize: number = 10;
+    blocksSize: number = 9;
+
+    iconPickerDialogVisible: boolean = false;
 
 
     darkMode: boolean = false;
@@ -118,14 +121,7 @@ export class TemplateEditorComponent implements OnInit {
 
 
                         this.resetBlocksPagination();
-                        const blocksPaginationResult = await this.blockLibraryService.getBlocks(
-                            this.currentOrgSlug!,
-                            this.blocksPage,
-                            this.blocksSize,
-                            ''
-                        );
-                        this.blocks = blocksPaginationResult.items;
-                        this.blocksTotal = blocksPaginationResult.total;
+                        this.fetchBlocks();
                     }
                 }),
                 takeUntilDestroyed(this.destroyRef),
@@ -156,6 +152,43 @@ export class TemplateEditorComponent implements OnInit {
         this.cloneTemplate();
     }
 
+    private async fetchBlocks() {
+        const blocksPaginationResult = await this.blockLibraryService.getBlocks(
+            this.currentOrgSlug!,
+            this.blocksPage,
+            this.blocksSize,
+            ''
+        );
+        this.blocks = blocksPaginationResult.items;
+        this.blocksTotal = blocksPaginationResult.total;
+    }
+
+    async fetchPreviousBlocks() {
+        if (this.blocksPage === 0) return;
+        this.blocksPage--;
+        await this.fetchBlocks();
+    }
+
+    async fetchNextBlocks() {
+        if ((this.blocksPage + 1) * this.blocksSize >= this.blocksTotal) return;
+        this.blocksPage++;
+        await this.fetchBlocks();
+    }
+
+    openIconDialog() {
+        this.iconPickerDialogVisible = true;
+    }
+
+    changeIcon(icon: string) {
+        this.changingIcon = true;
+        this.iconPickerDialogVisible = false;
+        this.template?.setIcon(icon);
+        this.cloneTemplate();
+
+        // As the icon is based on SVG, we must wait for the icon to be rendered
+        setTimeout(() => this.changingIcon = false, 1);
+    }
+
     openDisplayNameDialog() {
         const nextDisplayName = prompt('Enter new display name');
         if (nextDisplayName) {
@@ -179,7 +212,7 @@ export class TemplateEditorComponent implements OnInit {
     private resetBlocksPagination() {
         this.blocks = [];
         this.blocksPage = 0;
-        this.blocksSize = 10;
+        this.blocksSize = 9;
         this.blocksTotal = 0;
     }
 

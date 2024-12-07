@@ -2544,10 +2544,22 @@
         <source>Cannot find the template you are looking for</source>
       </trans-unit>
       <trans-unit id="108652148886518436" datatype="html">
-        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;pi pi-objects-column mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Blocks Library</source>
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fa-regular fa-puzzle-piece mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Blocks Library</source>
       </trans-unit>
       <trans-unit id="7124113231866555716" datatype="html">
         <source>Search for block</source>
+      </trans-unit>
+      <trans-unit id="3885497195825665706" datatype="html">
+        <source>Next</source>
+      </trans-unit>
+      <trans-unit id="4452427314943113135" datatype="html">
+        <source>Previous</source>
+      </trans-unit>
+      <trans-unit id="6047201425570598382" datatype="html">
+        <source> Not the icon you are looking for? You can contact us to request more icons. </source>
+      </trans-unit>
+      <trans-unit id="8894717561705833105" datatype="html">
+        <source>Available Icons</source>
       </trans-unit>
     </body>
   </file>

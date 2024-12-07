@@ -35,6 +35,8 @@ import {
     StaticSquareCardComponent
 } from "../../../meta-components/blocks-list/static-square-card/static-square-card.component";
 import {BlockLibraryService} from "../../../services/block-library.service";
+import {EmptyTemplateIconPipe} from "../../../utils/pipes/empty-template-icon.pipe";
+import {IconPickerDialogComponent} from "../../../meta-components/icon-picker-dialog/icon-picker-dialog.component";
 
 @NgModule({
     imports: [
@@ -62,7 +64,9 @@ import {BlockLibraryService} from "../../../services/block-library.service";
         BlockSquareCardComponent,
         BlockSquareCardComponent,
         BlockSquareCardComponent,
-        StaticSquareCardComponent
+        StaticSquareCardComponent,
+        EmptyTemplateIconPipe,
+        IconPickerDialogComponent
     ],
     declarations: [
         TemplatesComponent,

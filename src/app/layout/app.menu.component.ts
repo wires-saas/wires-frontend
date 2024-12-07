@@ -69,7 +69,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {
                         label: $localize`Blocks`,
-                        icon: 'pi pi-fw pi-objects-column',
+                        icon: 'fa-regular fa-puzzle-piece',
                         routerLink: [`/organization/${org.slug}/studio/blocks`],
                         routerLinkActiveOptions: { exact: false },
                         restriction: authService.hasAtLeast$(
@@ -79,7 +79,7 @@ export class AppMenuComponent implements OnInit {
                     },
                     {
                         label: $localize`Templates`,
-                        icon: 'fa-regular fa-layer-group', // 'pi pi-fw pi-file',
+                        icon: 'fa-regular fa-puzzle', // 'pi pi-fw pi-file',
                         routerLink: [
                             `/organization/${org.slug}/studio/templates`,
                         ],

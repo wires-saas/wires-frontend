@@ -38,7 +38,7 @@ export class BlocksComponent implements OnInit {
                     if (org) {
                         this.blocks = await this.blockService.getBlocks(
                             org.slug,
-                        );
+                        ).then(_ => _.items);
 
                         this.canCreateBlock = await firstValueFrom(
                             this.authService.hasPermission$(
@@ -79,7 +79,7 @@ export class BlocksComponent implements OnInit {
         if (!folderId) {
             this.blocks = await this.blockService.getBlocks(
                 this.currentOrgSlug,
-            );
+            ).then(_ => _.items);
         } else {
             this.blocks = await this.folderService.getFolderContent<Block>(
                 this.currentOrgSlug,

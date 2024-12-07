@@ -1,5 +1,5 @@
 <div class="flex justify-content-between align-items-center mb-2 w-full">
-    <span class="text-900 text-xl font-semibold" i18n><i class="pi pi-objects-column mr-1"></i> Blocks Library</span>
+    <span class="text-900 text-xl font-semibold" i18n><i class="fa-regular fa-puzzle-piece mr-1"></i> Blocks Library</span>
 
     <span class="p-input-icon-left">
         <i class="pi pi-search"></i>
@@ -10,16 +10,20 @@
 
 <div class="m-0 p-0 border-1 surface-overlay surface-border border-round flex w-full">
     <ul *ngIf="blocks.length; else loadingOrEmpty" class="list-none m-0 p-3 grid">
-        <app-static-square-card i18n-text text="Previous" class="col-4 p-2 flex flex-column">
-            <i class="flex pi pi-chevron-left text-4xl"></i>
-        </app-static-square-card>
 
-
+        <!-- SHOWN BLOCKS -->
         <app-block-square-card *ngFor="let block of blocks | arraySort:{displayName:'asc'}" [block]="block" class="col-4 p-2"></app-block-square-card>
 
-        <app-static-square-card i18n-text text="Next" class="col-4 p-2 flex flex-column">
-            <i class="flex pi pi-chevron-right text-4xl"></i>
-        </app-static-square-card>
+        <button (click)="fetchPreviousBlocks.emit()" [disabled]="!canFetchPreviousBlocks"
+                pButton pRipple type="button"
+                i18n-label label="Previous"
+                icon="fa-regular fa-left" iconPos="left"
+                class="col-6 p-button-secondary p-button-text"></button>
+        <button (click)="fetchNextBlocks.emit()" [disabled]="!canFetchNextBlocks"
+                pButton pRipple type="button"
+                i18n-label label="Next"
+                icon="fa-regular fa-right" iconPos="right"
+                class="col-6 p-button-secondary p-button-text"></button>
 
     </ul>
 

@@ -15,11 +15,19 @@
 
 <ng-container *ngIf="template">
 
-    <!-- Display name and description -->
+    <!-- Display name, description and icon -->
     <div class="flex justify-content-between align-items-start mb-2 fadein animation-duration-200">
 
         <div>
+
             <h1 class="m-0">
+                <button *ngIf="!changingIcon"
+                        pButton pRipple type="button"
+                        (click)="openIconDialog()"
+                        [icon]="template.icon | emptyTemplateIcon"
+                        class="p-button-icon-only p-button-rounded text-3xl mr-2">
+                </button>
+
                 {{ template.displayName | emptyTemplateDisplayName }}
                 <button pButton pRipple type="button"
                         (click)="openDisplayNameDialog()"
@@ -29,8 +37,8 @@
             <div class="flex align-items-center">
                 <span class="text-900">{{ template.description | emptyTemplateDescription }}</span>
                 <button pButton pRipple type="button"
-                    (click)="openDescriptionDialog()"
-                    icon="pi pi-pencil" class="p-button-rounded p-button-secondary p-button-text ml-2"></button>
+                        (click)="openDescriptionDialog()"
+                        icon="pi pi-pencil" class="p-button-rounded p-button-secondary p-button-text ml-2"></button>
             </div>
 
         </div>
@@ -87,7 +95,12 @@
 
         </div>
 
-        <app-template-editor-blocks-library [blocks]="blocks" class="col-12 md:col-12 xl:col-4">
+        <app-template-editor-blocks-library [blocks]="blocks"
+                                            [canFetchPreviousBlocks]="blocksPage > 0"
+                                            (fetchPreviousBlocks)="fetchPreviousBlocks()"
+                                            [canFetchNextBlocks]="(blocksPage + 1) * blocksSize < blocksTotal"
+                                            (fetchNextBlocks)="fetchNextBlocks()"
+                                            class="col-12 md:col-12 xl:col-4">
         </app-template-editor-blocks-library>
 
         <!--
@@ -147,5 +160,11 @@
                  i18n-rejectLabel rejectLabel="No"
                  acceptButtonStyleClass="p-button-danger"
                  rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
+
+<app-icon-picker-dialog [visible]="iconPickerDialogVisible"
+                        [selectedIcon]="template?.icon || ''"
+                        (onIconSelect)="changeIcon($event)"
+                        (onHide)="iconPickerDialogVisible = false">
+</app-icon-picker-dialog>
 
 <p-toast key="template-editor" position="bottom-right"></p-toast>

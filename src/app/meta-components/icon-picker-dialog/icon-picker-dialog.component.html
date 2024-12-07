@@ -1,0 +1,23 @@
+<p-dialog i18n-header header="Available Icons"
+          [focusOnShow]="false"
+          [(visible)]="visible"
+          [modal]="true"
+          [dismissableMask]="true"
+          [closable]="true"
+          [style]="{width: '30vw'}"
+          (onHide)="onHide.emit()"
+          [breakpoints]="{'960px': '75vw'}">
+
+    <button *ngFor="let icon of icons"
+            pButton type="button"
+            (click)="onIconSelect.emit(icon)"
+            [class.p-button-primary]="icon === selectedIcon"
+            [class.p-button-text]="icon !== selectedIcon"
+            class="p-button-rounded p-button-icon-only p-button-secondary text-2xl"
+            [icon]="icon"></button>
+
+    <p class="mt-2 text-sm text-center" i18n>
+        Not the icon you are looking for? You can contact us to request more icons.
+    </p>
+
+</p-dialog>

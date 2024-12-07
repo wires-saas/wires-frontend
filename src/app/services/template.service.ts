@@ -9,6 +9,7 @@ export class Template {
     organization: string;
     displayName: string;
     description: string;
+    icon: string;
 
     blocks: any[];
 
@@ -26,6 +27,10 @@ export class Template {
         this.description = description;
     }
 
+    setIcon(icon: string) {
+        this.icon = icon;
+    }
+
     archive() {
         this.isArchived = true;
     }
@@ -35,6 +40,7 @@ export class Template {
         this.organization = '';
         this.displayName = '';
         this.description = '';
+        this.icon = '';
         this.blocks = [];
         this.isArchived = false;
         this.version = 0;
@@ -69,6 +75,11 @@ export class TemplateWithHistory extends Template {
 
     override setDescription(description: string) {
         super.setDescription(description);
+        this.save();
+    }
+
+    override setIcon(icon: string) {
+        super.setIcon(icon);
         this.save();
     }
 
@@ -186,6 +197,7 @@ export class TemplateService {
             organization: organizationId,
             displayName: $localize`New Template`,
             description: $localize`Empty description`,
+            icon: '',
             blocks: [],
             version: 0,
         });
@@ -199,6 +211,7 @@ export class TemplateService {
                     organization: organizationId,
                     displayName: template.displayName,
                     description: template.description,
+                    icon: template.icon,
 
                     blocks: template.blocks,
 
@@ -217,6 +230,7 @@ export class TemplateService {
                     organization: organizationId,
                     displayName: template.displayName,
                     description: template.description,
+                    icon: template.icon,
 
                     blocks: template.blocks,
 
