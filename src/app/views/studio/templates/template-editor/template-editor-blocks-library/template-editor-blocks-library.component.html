@@ -12,7 +12,10 @@
     <ul *ngIf="blocks.length; else loadingOrEmpty" class="list-none m-0 p-3 grid">
 
         <!-- SHOWN BLOCKS -->
-        <app-block-square-card *ngFor="let block of blocks | arraySort:{displayName:'asc'}" [block]="block" class="col-4 p-2"></app-block-square-card>
+        <app-block-square-card *ngFor="let block of blocks | arraySort:{displayName:'asc'}"
+                               [block]="block" class="col-4 p-2"
+                               (contextmenu)="showBlockContextualMenu($event, block)">
+        </app-block-square-card>
 
         <button (click)="fetchPreviousBlocks.emit()" [disabled]="!canFetchPreviousBlocks"
                 pButton pRipple type="button"
@@ -36,5 +39,15 @@
 </div>
 
 
+
+<p-contextMenu #menu [model]="blockMenu">
+    <ng-template pTemplate="item" let-item>
+        <a pRipple class="flex align-items-center p-menuitem-link">
+            <span [class]="item.icon"></span>
+            <span class="ml-2">{{ item.label }}</span>
+            <i *ngIf="item.items" class="pi pi-angle-right ml-auto"></i>
+        </a>
+    </ng-template>
+</p-contextMenu>
 
 

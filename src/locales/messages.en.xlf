@@ -2544,7 +2544,7 @@
         <source>Cannot find the template you are looking for</source>
       </trans-unit>
       <trans-unit id="108652148886518436" datatype="html">
-        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fa-regular fa-puzzle-piece mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Blocks Library</source>
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="class=&quot;fa-regular fa-puzzle-piece mr-1&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="Blocks Library&lt;/s"/> Blocks Library</source>
       </trans-unit>
       <trans-unit id="7124113231866555716" datatype="html">
         <source>Search for block</source>
@@ -2560,6 +2560,36 @@
       </trans-unit>
       <trans-unit id="8894717561705833105" datatype="html">
         <source>Available Icons</source>
+      </trans-unit>
+      <trans-unit id="1519954996184640001" datatype="html">
+        <source>Error</source>
+      </trans-unit>
+      <trans-unit id="3596794996743007099" datatype="html">
+        <source>Template updated successfully</source>
+      </trans-unit>
+      <trans-unit id="4312393866237772751" datatype="html">
+        <source>Template archived successfully</source>
+      </trans-unit>
+      <trans-unit id="5235236204507025793" datatype="html">
+        <source>Template created successfully</source>
+      </trans-unit>
+      <trans-unit id="5460977001163934315" datatype="html">
+        <source>Add Folder</source>
+      </trans-unit>
+      <trans-unit id="577697124873450107" datatype="html">
+        <source>Template deleted successfully</source>
+      </trans-unit>
+      <trans-unit id="6281573057165908211" datatype="html">
+        <source>Edit Block</source>
+      </trans-unit>
+      <trans-unit id="6477954382685159646" datatype="html">
+        <source>Failed to save template</source>
+      </trans-unit>
+      <trans-unit id="8633968067722072928" datatype="html">
+        <source>Move to</source>
+      </trans-unit>
+      <trans-unit id="9169367680120922814" datatype="html">
+        <source>Root</source>
       </trans-unit>
     </body>
   </file>

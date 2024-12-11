@@ -1,10 +1,12 @@
 <li (click)="selectTemplate.emit(template)"
     class="p-2 hover:surface-100 cursor-pointer border-round border-1 border-transparent transition-all transition-duration-200">
     <div class="flex flex-wrap p-2 align-items-center gap-3">
-        <img
-            class="w-4rem flex-shrink-0 border-round"
-            src="https://primefaces.org/cdn/primeng/images/demo/product/black-watch.jpg"
-            [alt]="template.id" />
+
+        <button pButton pRipple type="button"
+                [icon]="template.icon | emptyTemplateIcon"
+                class="p-button-icon-only p-button-rounded text-3xl mr-2 pointer-events-none">
+        </button>
+
         <div class="flex-1 flex flex-column gap-1">
             <span class="font-bold">
                 <p-tag *ngIf="template.isArchived" severity="warning" i18n-value value="ARCHIVED" class="mr-2"></p-tag>{{ template.displayName }}

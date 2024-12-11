@@ -37,6 +37,7 @@ import {
 import {BlockLibraryService} from "../../../services/block-library.service";
 import {EmptyTemplateIconPipe} from "../../../utils/pipes/empty-template-icon.pipe";
 import {IconPickerDialogComponent} from "../../../meta-components/icon-picker-dialog/icon-picker-dialog.component";
+import {ContextMenuModule} from "primeng/contextmenu";
 
 @NgModule({
     imports: [
@@ -66,7 +67,8 @@ import {IconPickerDialogComponent} from "../../../meta-components/icon-picker-di
         BlockSquareCardComponent,
         StaticSquareCardComponent,
         EmptyTemplateIconPipe,
-        IconPickerDialogComponent
+        IconPickerDialogComponent,
+        ContextMenuModule
     ],
     declarations: [
         TemplatesComponent,

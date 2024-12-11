@@ -175,6 +175,18 @@ export class TemplateEditorComponent implements OnInit {
         await this.fetchBlocks();
     }
 
+    async openBlockEditor(block: Block) {
+
+        await this.router.navigate([
+            '/organization',
+            this.currentOrgSlug,
+            'studio',
+            'blocks',
+            block.id,
+            'editor',
+        ]);
+    }
+
     openIconDialog() {
         this.iconPickerDialogVisible = true;
     }
@@ -224,8 +236,8 @@ export class TemplateEditorComponent implements OnInit {
                     this.messageService.add({
                         key: 'template-editor',
                         severity: 'success',
-                        summary: 'Success',
-                        detail: 'Template deleted successfully',
+                        summary: $localize`Success`,
+                        detail: $localize`Template deleted successfully`,
                     });
                     // this.router.navigate(['/studio/blocks']);
                 })
@@ -252,8 +264,8 @@ export class TemplateEditorComponent implements OnInit {
                     this.messageService.add({
                         key: 'template-editor',
                         severity: 'success',
-                        summary: 'Success',
-                        detail: 'Template archived successfully',
+                        summary: $localize`Success`,
+                        detail: $localize`Template archived successfully`,
                     });
                     // this.router.navigate(['/studio/blocks']);
                 })
@@ -289,15 +301,15 @@ export class TemplateEditorComponent implements OnInit {
                     this.messageService.add({
                         key: 'template-editor',
                         severity: 'success',
-                        summary: 'Success',
-                        detail: 'Template created successfully',
+                        summary: $localize`Success`,
+                        detail: $localize`Template created successfully`,
                     });
                 } else {
                     this.messageService.add({
                         key: 'template-editor',
                         severity: 'success',
-                        summary: 'Success',
-                        detail: 'Template updated successfully',
+                        summary: $localize`Success`,
+                        detail: $localize`Template updated successfully`,
                     });
                 }
             })
@@ -308,8 +320,8 @@ export class TemplateEditorComponent implements OnInit {
                 this.messageService.add({
                     key: 'template-editor',
                     severity: 'error',
-                    summary: 'Error',
-                    detail: 'Failed to save template',
+                    summary: $localize`Error`,
+                    detail: $localize`Failed to save template`,
                 });
             });
     }

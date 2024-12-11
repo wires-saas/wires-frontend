@@ -194,7 +194,7 @@ export class ExplorerComponent implements OnInit {
     private buildFolderMenu(folder: MenuItem): void {
         this.folderMenu = [
             {
-                label: 'Edit',
+                label: $localize`Edit`,
                 icon: 'pi pi-pencil',
                 visible: this.canUpdateFolder,
                 command: async () => {
@@ -208,7 +208,7 @@ export class ExplorerComponent implements OnInit {
                 },
             },
             {
-                label: 'Delete',
+                label: $localize`Delete`,
                 icon: 'pi pi-fw pi-trash',
                 visible: this.canDeleteFolder,
                 command: async () => {
@@ -222,7 +222,7 @@ export class ExplorerComponent implements OnInit {
                 },
             },
             {
-                label: 'Add Folder',
+                label: $localize`Add Folder`,
                 icon: 'pi pi-fw pi-plus',
                 visible: this.canCreateFolder,
                 command: async () => {
@@ -235,12 +235,12 @@ export class ExplorerComponent implements OnInit {
                 },
             },
             {
-                label: 'Move to',
+                label: $localize`Move to`,
                 icon: 'pi pi-fw pi-arrows-alt',
                 visible: this.canUpdateFolder,
                 items: [
                     {
-                        label: 'Root',
+                        label: $localize`Root`,
                         items: undefined,
                         visible: folder['data'].parentFolder !== null,
                         command: async (event: MenuItemCommandEvent) => {
