@@ -52,9 +52,10 @@ export class HomeComponent implements OnInit {
             .catch(async (err) => {
                 console.error('Failed to fetch organizations', err);
 
-                const redirectToLogin = await this.authService.hasKnownAccessToken();
+                const hasKnownAccessToken = await this.authService.hasKnownAccessToken();
 
-                if (redirectToLogin) {
+                if (hasKnownAccessToken) {
+                    await this.authService.logOut();
                     await this.router.navigate(['/auth']);
                     return [];
                 } else {
