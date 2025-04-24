@@ -8,7 +8,7 @@ import {
 import { User, UserService } from '../../../../services/user.service';
 import { MessageUtils } from '../../../../utils/message.utils';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import {HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
     templateUrl: './list-organizations.component.html',

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarModule } from 'primeng/sidebar';
@@ -27,8 +27,7 @@ import { LogosModule } from '../meta-components/logos/logos.module';
 import { FullNamePipe } from '../utils/pipes/full-name.pipe';
 import { ArrayFilterPipe } from '../utils/pipes/array-filter.pipe';
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppLayoutComponent,
         AppBreadcrumbComponent,
         AppSidebarComponent,
@@ -36,11 +35,8 @@ import { ArrayFilterPipe } from '../utils/pipes/array-filter.pipe';
         AppProfileSidebarComponent,
         AppMenuComponent,
         AppMenuitemComponent,
-    ],
-    imports: [
-        BrowserModule,
+    ], imports: [BrowserModule,
         FormsModule,
-        HttpClientModule,
         BrowserAnimationsModule,
         InputTextModule,
         SidebarModule,
@@ -57,7 +53,5 @@ import { ArrayFilterPipe } from '../utils/pipes/array-filter.pipe';
         MenuModule,
         LogosModule,
         FullNamePipe,
-        ArrayFilterPipe,
-    ],
-})
+        ArrayFilterPipe], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppLayoutModule {}
