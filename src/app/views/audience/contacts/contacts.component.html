@@ -1,1 +1,17 @@
-<h1>Contacts</h1>
+<div class="grid">
+
+    <div *ngIf="view === 'list-contacts'" class="col-12 md:col-12 xl:col-12">
+        <app-list-contacts
+            (noContacts)="view = 'no-contact'"
+            (errorFetchingContacts)="view = 'error-fetching-contacts'">
+        </app-list-contacts>
+    </div>
+
+    <div *ngIf="view === 'no-contact'" class="col-12 md:col-8 md:col-offset-2 xl:col-6 xl:col-offset-3">
+        <app-no-contact></app-no-contact>
+    </div>
+
+    <div *ngIf="view === 'error-fetching-contacts'" class="col-12 md:col-8 md:col-offset-2 xl:col-6 xl:col-offset-3">
+        <app-error-fetching-contacts></app-error-fetching-contacts>
+    </div>
+</div>

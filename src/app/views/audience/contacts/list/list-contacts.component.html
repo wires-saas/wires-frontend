@@ -1,0 +1,92 @@
+<div class="card">
+    <p-menu #actionsMenu [popup]="true" [model]="actionsMenuItems"></p-menu>
+
+    <p-table #dt [value]="contacts" [paginator]="true" [rows]="rows" [rowHover]="true" responsiveLayout="scroll"
+             [rowsPerPageOptions]="[10,25,50]" [rowHover]="true" [totalRecords]="totalRecords" [lazy]="true" [loading]="loading"
+             selectionMode="single" [(selection)]="selectedContact"
+             (onLazyLoad)="onLazyLoad($event)" [globalFilterFields]="['email','firstName','lastName']"
+             [showCurrentPageReport]="true"
+             currentPageReportTemplate="{first} - {last} of {totalRecords}"
+             [sortField]="sortField" [sortOrder]="sortOrder">
+        <ng-template pTemplate="caption">
+            <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+
+                <div class="flex flex-wrap gap-2">
+
+                <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" [(ngModel)]="filterValue" (input)="onGlobalFilter(dt, $event)" placeholder="Email Search" class="w-full" />
+                </span>
+                    <button pButton pRipple type="button" icon="pi pi-filter-slash" 
+                            class="p-button-outlined p-button-secondary flex-order-0 sm:flex-order-1"
+                            (click)="reset()"></button>
+
+                        </div>
+
+
+                <div class="flex flex-wrap gap-2">
+                    <a [routerLink]="['/organization/' + currentOrgSlug + '/audience/contacts/create']">
+                        <button [disabled]="!canCreateContact" pButton class="w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" i18n-label label="Add Contacts"></button>
+                    </a>
+                    <button (click)="exportContactsToCSV()" pButton pRipple type="button" icon="pi pi-upload" class="p-button p-button-outlined flex-order-0 sm:flex-order-1" label="Export CSV"></button>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="email" class="white-space-nowrap" style="width:25%">Email <p-sortIcon field="email"></p-sortIcon></th>
+                <th pSortableColumn="firstName" class="white-space-nowrap" style="width:15%">First Name <p-sortIcon field="firstName"></p-sortIcon></th>
+                <th pSortableColumn="lastName" class="white-space-nowrap" style="width:15%">Last Name <p-sortIcon field="lastName"></p-sortIcon></th>
+                <th class="white-space-nowrap" style="width:10%">
+                    Status
+                    <p-columnFilter field="status" matchMode="equals" display="menu"
+                                    [showMatchModes]="false" [showAddButton]="false" [showApplyButton]="false" [showOperator]="false" [showButtons]="false">
+                        <ng-template pTemplate="filter" #filter let-filter="filterCallback">
+                            <p-dropdown [(ngModel)]="statusFilter" [options]="statusOptions" (onChange)="filter($event.value)" placeholder="Select One" styleClass="w-full">
+                                <ng-template let-option pTemplate="item">
+                                    <p-tag [value]="option.label" [severity]="getStatusSeverity(option.value)"></p-tag>
+                                </ng-template>
+                            </p-dropdown>
+                        </ng-template>
+                    </p-columnFilter>
+                </th>
+                <th pSortableColumn="createdAt" class="white-space-nowrap" style="width:20%">Created <p-sortIcon field="createdAt"></p-sortIcon></th>
+                <th class="white-space-nowrap" style="width:15%">Lists</th>
+                <th class="white-space-nowrap" style="width:10%">Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-contact>
+            <tr [pSelectableRow]="contact">
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.firstName }}</td>
+                <td>{{ contact.lastName }}</td>
+                <td><p-tag [value]="contact.status" [severity]="getStatusSeverity(contact.status)"></p-tag></td>
+                <td>{{ contact.createdAt | date:'dd/MM/yyyy' }}</td>
+                <td>
+                    <ng-container *ngIf="contact.lists?.length; else noLists">
+                        <span *ngFor="let list of contact.lists; let last = last">{{ list }}<span *ngIf="!last">, </span></span>
+                    </ng-container>
+                    <ng-template #noLists>-</ng-template>
+                </td>
+                <td>
+                    <button (click)="toggleMenuFor(contact, actionsMenu, $event)" pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-outlined p-button-info"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td [attr.colspan]="7" class="text-center p-5 text-500">
+                    <span i18n>No contacts found.</span>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-confirmDialog header="Delete Contact" key="confirm-delete" icon="pi pi-exclamation-triangle"
+                 message="Are you sure you want to delete this contact? This action cannot be undone."
+                 [style]="{width: '350px'}" defaultFocus="none"
+                 acceptButtonStyleClass="p-button-danger"
+                 rejectButtonStyleClass="p-button-text text-color-secondary"></p-confirmDialog>
+
+<p-toast position="bottom-right" />

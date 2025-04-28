@@ -1,0 +1,16 @@
+<div class="card surface-ground">
+    <div class="flex flex-column align-items-center justify-content-center py-6 px-4">
+        <i class="pi pi-exclamation-triangle text-red-500 text-5xl mb-3"></i>
+        <h2 class="text-900 font-bold text-2xl mb-2">{{ title }}</h2>
+        <p class="text-600 text-center mb-4">{{ description }}</p>
+        <button 
+            *ngIf="buttonLabel"
+            pButton 
+            pRipple 
+            [label]="buttonLabel"
+            icon="pi pi-cog" 
+            class="p-button-danger"
+            (click)="buttonClick.emit()">
+        </button>
+    </div>
+</div> 
