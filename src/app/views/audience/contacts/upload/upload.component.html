@@ -62,31 +62,79 @@
 
             <p><strong>Rows:</strong> {{ csvSummary.rowCount }}</p>
 
-            <p-table [value]="csvSummary.columns" [scrollable]="true">
+            <p-table [value]="csvSummary.columns" [scrollable]="true" styleClass="p-datatable-lg">
                 <ng-template pTemplate="header">
                   <tr>
-                    <th>Column Name</th>
-                    <th>Type</th>
+                    <th>Column</th>
                     <th>Action</th>
+                    <th>Field Name</th>
+                    <th>Field Type</th>
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-col let-i="rowIndex">
                   <tr>
                     <td>{{ col.name }}</td>
-                    <td>{{ col.type }}</td>
                     <td>
                         <form [formGroup]="mappingForm">
-                            <p-dropdown [options]="actions" [formControlName]="'column-' + i" optionLabel="name" optionValue="value" placeholder="Select an Action" />
+                            <p-dropdown
+                                [options]="actionOptions"
+                                [formControlName]="'column-' + i + '-action'"
+                                optionLabel="name" optionValue="value"
+                                placeholder="Select an Action" styleClass="w-full"
+                                appendTo="body"
+                                />
+                        </form>
+                    </td>
+                    <td>
+                        <form *ngIf="notIgnoring(i)" [formGroup]="mappingForm">
+
+                            <ng-container *ngIf="creatingNewField(i); else existingField">
+
+                                <div class="p-input-icon-right w-full">
+                                    <input type="text" pInputText [formControlName]="'column-' + i + '-new-field-name'" class="w-full" />
+                                    <i class="pi pi-info-circle" pTooltip="No special characters allowed" tooltipPosition="bottom"></i>
+                                </div>
+
+                            </ng-container>
+
+                            <ng-template #existingField>
+                                <p-dropdown
+                                    [options]="fieldOptions[i]"
+                                    [formControlName]="'column-' + i + '-field'"
+                                    optionLabel="name"
+                                    optionValue="value"
+                                    placeholder="Select a Field"
+                                    styleClass="w-full"
+                                    appendTo="body"
+                                />
+                            </ng-template>
+                        </form>
+                    </td>
+                    <td>
+                        <form *ngIf="notIgnoring(i)" [formGroup]="mappingForm">
+                            <p-dropdown
+                                [options]="typeOptions"
+                                [formControlName]="'column-' + i + '-type'"
+                                optionLabel="name"
+                                optionValue="value"
+                                placeholder="Select a Type"
+                                styleClass="w-full"
+                                appendTo="body"
+                            />
                         </form>
                     </td>
                   </tr>
                 </ng-template>
               </p-table>
 
+
+              <div class="col-12">
+                <p-messages [value]="messages"></p-messages>
+              </div>
             
 
             <div class="col-12">
-                <button pButton pRipple i18n-label label="Confirm Mapping" icon="pi pi-file-check" class="w-auto mt-3">
+                <button pButton pRipple [disabled]="!mappingForm.valid || messages.length > 0" i18n-label label="Confirm Mapping" icon="pi pi-file-check" class="w-auto mt-1">
                 </button>
 
                 <button pButton type="button" label="Change file" (click)="reset()" class="p-button-primary p-button-text"></button>

@@ -307,7 +307,7 @@ export class ContactsService {
     ): Promise<ContactFieldDefinition[]> {
         return Promise.resolve([
             {
-                name: 'mail',
+                name: 'email',
                 type: 'string',
                 required: true,
                 description: 'The email address of the contact',

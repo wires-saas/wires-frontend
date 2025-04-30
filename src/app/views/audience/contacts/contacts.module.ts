@@ -21,6 +21,9 @@ import { ErrorFetchingContactsComponent } from './error-fetching-contacts/error-
 import { ErrorCardComponent } from 'src/app/meta-components/error-card/error-card.component';
 import { SkeletonModule } from 'primeng/skeleton';
 import { UploadComponent } from './upload/upload.component';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+
 @NgModule({
     imports: [
         ContactsRoutingModule,
@@ -39,6 +42,8 @@ import { UploadComponent } from './upload/upload.component';
         ErrorCardComponent,
         SkeletonModule,
         ReactiveFormsModule,
+        IconFieldModule,
+        InputIconModule
     ],
     declarations: [
         ContactsComponent,
