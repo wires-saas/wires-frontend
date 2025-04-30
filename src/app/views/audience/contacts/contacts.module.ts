@@ -16,10 +16,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorFetchingContactsComponent } from './error-fetching-contacts/error-fetching-contacts.component';
 import { ErrorCardComponent } from 'src/app/meta-components/error-card/error-card.component';
 import { SkeletonModule } from 'primeng/skeleton';
+import { UploadComponent } from './upload/upload.component';
 @NgModule({
     imports: [
         ContactsRoutingModule,
@@ -37,12 +38,14 @@ import { SkeletonModule } from 'primeng/skeleton';
         FormsModule,
         ErrorCardComponent,
         SkeletonModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         ContactsComponent,
         NoContactComponent,
         ErrorFetchingContactsComponent,
-        ListContactsComponent
+        ListContactsComponent,
+        UploadComponent
     ],
     providers: [MessageService, ContactsService, ConfirmationService],
 })

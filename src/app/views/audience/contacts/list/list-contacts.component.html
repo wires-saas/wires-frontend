@@ -25,8 +25,8 @@
 
 
                 <div class="flex flex-wrap gap-2">
-                    <a [routerLink]="['/organization/' + currentOrgSlug + '/audience/contacts/create']">
-                        <button [disabled]="!canCreateContact" pButton class="w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" i18n-label label="Add Contacts"></button>
+                    <a [routerLink]="['/organization/' + currentOrgSlug + '/audience/contacts/upload']">
+                        <button [disabled]="!canCreateContact" pButton class="w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-address-book" i18n-label label="Add Contacts"></button>
                     </a>
                     <button (click)="exportContactsToCSV()" pButton pRipple type="button" icon="pi pi-upload" class="p-button p-button-outlined flex-order-0 sm:flex-order-1" label="Export CSV"></button>
                 </div>

@@ -54,6 +54,13 @@ export interface Contact {
     customData: Record<string, any>;
 }
 
+export interface ContactFieldDefinition {
+    name: string;
+    type: 'string' | 'number' | 'boolean' | 'date';
+    required: boolean;
+    description?: string;
+}
+
 export interface ContactsQueryOptions {
     page?: number;
     limit?: number;
@@ -293,6 +300,31 @@ export class ContactsService {
             lists: ['mocked-list'],
             customData: {},
         });
+    }
+
+    async getContactFields(
+        organizationId: string
+    ): Promise<ContactFieldDefinition[]> {
+        return Promise.resolve([
+            {
+                name: 'mail',
+                type: 'string',
+                required: true,
+                description: 'The email address of the contact',
+            },
+            {
+                name: 'firstName',
+                type: 'string',
+                required: false,
+                description: 'The first name of the contact',
+            },
+            {
+                name: 'lastName',
+                type: 'string',
+                required: false,
+                description: 'The last name of the contact',
+            },
+        ]);
     }
 
     async updateContact(
