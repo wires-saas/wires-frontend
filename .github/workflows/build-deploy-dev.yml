@@ -48,12 +48,20 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
 
+      - name: Set date+SHA tag
+        id: meta
+        run: |
+          echo "TAG=$(date +'%Y-%m-%d')-$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: wiresantoine/wires-frontend:latest,wiresantoine/wires-frontend:dev
+          tags: |
+            wiresantoine/wires-frontend:latest
+            wiresantoine/wires-frontend:dev
+            wiresantoine/wires-frontend:${{ steps.meta.outputs.TAG }}
 
       - name: Always deploy on dev environment
         if: github.event_name == 'push'
